@@ -15,7 +15,7 @@ import CoreTelephony
 import Cocoa
 #endif
 
-class APIClient : NSObject {
+public class APIClient : NSObject {
     
     var manager = AFHTTPRequestOperationManager(baseURL: URL(string: "https://app2.virtualbrix.net/rapi"))//"https://virtualbrix.net/rapi"))
     var mainSyncInProgress:Bool = false

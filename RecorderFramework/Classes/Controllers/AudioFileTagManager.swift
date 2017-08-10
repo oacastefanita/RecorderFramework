@@ -8,21 +8,21 @@
 
 import UIKit
 
-enum TagType : Int {
+public enum TagType : Int {
     case label
     case important
     case note
     case photo
 }
 
-class AudioTag: NSObject {
+public class AudioTag: NSObject {
     var type:TagType = TagType.label
     var timeStamp:TimeInterval!
     var duration:TimeInterval!
     var arg:AnyObject!
 }
 
-class AudioFileTagManager: NSObject {
+public class AudioFileTagManager: NSObject {
     public static let sharedInstance = AudioFileTagManager()
 
     var audioFileTags:NSMutableArray!

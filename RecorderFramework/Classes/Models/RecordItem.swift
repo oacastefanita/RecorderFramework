@@ -8,13 +8,13 @@
 
 import UIKit
 
-@objc enum StorageType : Int {
+@objc public  enum StorageType : Int {
     case auto = 0
     case keepLocally
     case deleteFromLocalStorage
 }
 
-class RecordItem: NSObject, NSSecureCoding, UIActivityItemSource {
+public class RecordItem: NSObject, NSSecureCoding, UIActivityItemSource {
     var text: String! = ""
     var id:String! = ""
     var accessNumber:String! = ""
@@ -46,13 +46,13 @@ class RecordItem: NSObject, NSSecureCoding, UIActivityItemSource {
     
     var fileData: Data! // for airdrop
     
-    var storageType:StorageType = StorageType.auto
+    public var storageType:StorageType = StorageType.auto
     
     override init() {
         super.init()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         if let value = aDecoder.decodeObject(forKey: "title") as? String {
             self.text = value
         }
@@ -133,7 +133,7 @@ class RecordItem: NSObject, NSSecureCoding, UIActivityItemSource {
         }
     }
     
-    func encode(with aCoder: NSCoder) {
+    public func encode(with aCoder: NSCoder) {
         if let value = self.text {
             aCoder.encode(value, forKey: "title")
         }
@@ -213,11 +213,11 @@ class RecordItem: NSObject, NSSecureCoding, UIActivityItemSource {
         }
     }
     
-    static var supportsSecureCoding : Bool {
+    static public  var supportsSecureCoding : Bool {
         return true
     }
     
-    func update(_ item:RecordItem) {
+    public func update(_ item:RecordItem) {
         self.text = item.text
         self.accessNumber = item.accessNumber
         if self.url != item.url {
@@ -236,7 +236,7 @@ class RecordItem: NSObject, NSSecureCoding, UIActivityItemSource {
         self.fromTrash = item.fromTrash
     }
     
-    func recordingNextAction(_ currentAction:Action!) -> Action! {
+    public func recordingNextAction(_ currentAction:Action!) -> Action! {
         var currentFound = currentAction == nil
         for action in ActionsSyncManager.sharedInstance.actions {
             if action.arg1 == self.id {
@@ -252,7 +252,7 @@ class RecordItem: NSObject, NSSecureCoding, UIActivityItemSource {
         return nil
     }
     
-    func securelyArchiveRootObject() -> Data {
+    public func securelyArchiveRootObject() -> Data {
         let data = NSMutableData()
         let archiver = NSKeyedArchiver(forWritingWith: data)
         archiver.requiresSecureCoding = true
@@ -270,7 +270,7 @@ class RecordItem: NSObject, NSSecureCoding, UIActivityItemSource {
         return data as Data
     }
     
-    class func securelyUnarchiveProfileWithFile(_ filePath:String) -> RecordItem {
+    public class func securelyUnarchiveProfileWithFile(_ filePath:String) -> RecordItem {
         let fileData = try? Data(contentsOf: URL(fileURLWithPath: filePath))
         let unarchiver = NSKeyedUnarchiver(forReadingWith: fileData!)
         
@@ -285,19 +285,19 @@ class RecordItem: NSObject, NSSecureCoding, UIActivityItemSource {
     }
     
     //MARK: activity item
-    func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
+    public func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
         return Data()
     }
     
-    func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivityType) -> Any? {
+    public func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivityType) -> Any? {
         return self.securelyArchiveRootObject();
     }
     
-    func activityViewController(_ activityViewController: UIActivityViewController, thumbnailImageForActivityType activityType: UIActivityType?, suggestedSize size: CGSize) -> UIImage! {
+    public func activityViewController(_ activityViewController: UIActivityViewController, thumbnailImageForActivityType activityType: UIActivityType?, suggestedSize size: CGSize) -> UIImage! {
         return UIImage(named: "airdroppreview")
     }
     
-    func activityViewController(_ activityViewController: UIActivityViewController, dataTypeIdentifierForActivityType activityType: UIActivityType?) -> String {
+    public func activityViewController(_ activityViewController: UIActivityViewController, dataTypeIdentifierForActivityType activityType: UIActivityType?) -> String {
         return "com.werockapps.callrec"
     }
 }

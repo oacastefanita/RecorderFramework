@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum ActionType : Int {
+public enum ActionType : Int {
     case deleteRecording
     case renameRecording
     case moveRecording
@@ -28,7 +28,7 @@ enum ActionType : Int {
 
 }
 
-class Action : NSObject, NSCoding {
+public class Action : NSObject, NSCoding {
     
     var id:String
     var type:ActionType = ActionType.moveRecording
@@ -43,7 +43,7 @@ class Action : NSObject, NSCoding {
         super.init()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         id = UUID().uuidString
         
         if let value = aDecoder.decodeObject(forKey: "id") as? String {
@@ -64,7 +64,7 @@ class Action : NSObject, NSCoding {
         }
     }
     
-    func encode(with aCoder: NSCoder) {
+    public func encode(with aCoder: NSCoder) {
         aCoder.encode(self.id, forKey: "id")
         aCoder.encode(NSString(format: "%d", self.type.rawValue) as String, forKey: "type")
         if let value = arg1 {
@@ -82,7 +82,7 @@ class Action : NSObject, NSCoding {
 
 }
 
-class ActionsSyncManager : NSObject {
+public class ActionsSyncManager : NSObject {
     public static let sharedInstance = ActionsSyncManager()
 
     var actions = [Action]()

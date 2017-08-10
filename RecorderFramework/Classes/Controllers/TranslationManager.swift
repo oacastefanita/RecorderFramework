@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TranslationManager : NSObject  {
+public class TranslationManager : NSObject  {
     public static let sharedInstance = TranslationManager()
     
     var languages:Array<Language>

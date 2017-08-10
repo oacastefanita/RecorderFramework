@@ -21,7 +21,7 @@ fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 }
 
 
-class LocalFilesManager: NSObject {
+public class LocalFilesManager: NSObject {
     public static let sharedInstance = LocalFilesManager()
     
     var updateInProgress = false

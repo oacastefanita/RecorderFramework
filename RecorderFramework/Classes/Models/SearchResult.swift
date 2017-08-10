@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SearchResult: NSObject{
+public class SearchResult: NSObject{
     var text: String! = ""
     var recordItem: RecordItem!
     var recordFolder: RecordFolder!

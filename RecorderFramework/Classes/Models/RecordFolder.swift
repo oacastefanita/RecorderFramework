@@ -8,7 +8,7 @@
 
 import Foundation
 
-class RecordFolder: NSObject, NSCoding {
+public class RecordFolder: NSObject, NSCoding {
     var title: String!
     var id: String!
     var created: String!
@@ -22,7 +22,7 @@ class RecordFolder: NSObject, NSCoding {
         super.init()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         if let value = aDecoder.decodeObject(forKey: "title") as? String {
             self.title = value
         }
@@ -45,7 +45,7 @@ class RecordFolder: NSObject, NSCoding {
         }
     }
     
-    func encode(with aCoder: NSCoder) {
+    public func encode(with aCoder: NSCoder) {
         if let value = self.title {
             aCoder.encode(value, forKey: "title")
         }
@@ -66,7 +66,7 @@ class RecordFolder: NSObject, NSCoding {
         aCoder.encode(data, forKey: "recordItems")
     }
     
-    func keepOnlyItemsWithIds(_ ids:Array<String>) {
+    public func keepOnlyItemsWithIds(_ ids:Array<String>) {
         var local = [RecordItem]()
         
         for item in recordedItems {
@@ -80,13 +80,13 @@ class RecordFolder: NSObject, NSCoding {
         recordedItems = local
     }
     
-    func update(_ item:RecordFolder) {
+    public func update(_ item:RecordFolder) {
         self.title = item.title
         self.created = item.created
         self.folderOrder = item.folderOrder
     }
     
-    func folderNextAction(_ currentAction:Action!) -> Action! {
+    public func folderNextAction(_ currentAction:Action!) -> Action! {
         var currentFound = currentAction == nil
         for action in ActionsSyncManager.sharedInstance.actions {
             if action.arg1 == self.id {

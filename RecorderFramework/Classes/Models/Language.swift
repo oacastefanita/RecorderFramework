@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Language: NSObject {
+public class Language: NSObject {
     var code: String! = ""
     var name:String! = ""
 
@@ -16,7 +16,7 @@ class Language: NSObject {
         super.init()
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required public init(coder aDecoder: NSCoder) {
         if let value = aDecoder.decodeObject(forKey: "code") as? String {
             self.code = value
         }
@@ -25,7 +25,7 @@ class Language: NSObject {
         }
     }
     
-    func encodeWithCoder(_ aCoder: NSCoder) {
+    public func encodeWithCoder(_ aCoder: NSCoder) {
         if let value = self.code {
             aCoder.encode(value, forKey: "code")
         }

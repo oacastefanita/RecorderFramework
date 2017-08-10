@@ -8,7 +8,7 @@
 
 import Foundation
 
-class PhoneNumber: NSObject, NSCoding {
+public class PhoneNumber: NSObject, NSCoding {
     var number: String!
     var friendlyNumber:String!
     var phoneNumber: String!
@@ -28,7 +28,7 @@ class PhoneNumber: NSObject, NSCoding {
         self.isDefault = false
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         if let value = aDecoder.decodeObject(forKey: "number") as? String {
             self.number = value
         }
@@ -52,7 +52,7 @@ class PhoneNumber: NSObject, NSCoding {
         }
     }
     
-    func encode(with aCoder: NSCoder) {
+    public func encode(with aCoder: NSCoder) {
         if let value = self.number {
             aCoder.encode(value, forKey: "number")
         }

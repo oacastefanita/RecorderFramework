@@ -8,7 +8,7 @@
 
 import Foundation
 
-class RecordingsManager : NSObject {
+public class RecordingsManager : NSObject {
     public static let sharedInstance = RecordingsManager()
     
     var recordFolders:Array<RecordFolder>!

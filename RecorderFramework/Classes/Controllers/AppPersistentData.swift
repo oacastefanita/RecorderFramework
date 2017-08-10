@@ -9,7 +9,7 @@
 import Foundation
 
 
-class AppPersistentData : NSObject {
+public class AppPersistentData : NSObject {
     
     public static let sharedInstance = AppPersistentData()
     
