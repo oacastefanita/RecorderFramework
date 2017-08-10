@@ -13,19 +13,13 @@ public enum ActionType : Int {
     case renameRecording
     case moveRecording
     case recoverRecording
-    
     case createFolder
     case renameFolder
     case deleteFolder
     case reorderFolders
-    
     case uploadRecording
-    
     case updateFileInfo
-    
     case buyCredits
-    
-
 }
 
 public class Action : NSObject, NSCoding {

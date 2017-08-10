@@ -16,10 +16,10 @@ public enum TagType : Int {
 }
 
 public class AudioTag: NSObject {
-    var type:TagType = TagType.label
-    var timeStamp:TimeInterval!
-    var duration:TimeInterval!
-    var arg:AnyObject!
+    public var type:TagType = TagType.label
+    public var timeStamp:TimeInterval!
+    public var duration:TimeInterval!
+    public var arg:AnyObject!
 }
 
 public class AudioFileTagManager: NSObject {
