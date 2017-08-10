@@ -30,7 +30,7 @@
 /* Begin PBXFileReference section */
 		15275033601CE30C30BF3ABB /* Pods-RecorderFramework_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecorderFramework_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RecorderFramework_Tests/Pods-RecorderFramework_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		314DF6776FA1B02743D556EC /* Pods-RecorderFramework_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecorderFramework_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RecorderFramework_Tests/Pods-RecorderFramework_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		3571DF209FCDEBD6955558A4 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		3571DF209FCDEBD6955558A4 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* RecorderFramework_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecorderFramework_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -45,8 +45,8 @@
 		AB5C69A6C572070C50B37B86 /* Pods-RecorderFramework_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecorderFramework_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-RecorderFramework_Example/Pods-RecorderFramework_Example.release.xcconfig"; sourceTree = "<group>"; };
 		ABC895D75AB12A66762E3FA0 /* Pods_RecorderFramework_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecorderFramework_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBEC1B25FBF6C66D7243E376 /* Pods-RecorderFramework_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecorderFramework_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RecorderFramework_Example/Pods-RecorderFramework_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		BD8FAFAA06FB8DE4B6AD5075 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		E29185CBB934DA489AC6890E /* RecorderFramework.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = RecorderFramework.podspec; path = ../RecorderFramework.podspec; sourceTree = "<group>"; };
+		BD8FAFAA06FB8DE4B6AD5075 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		E29185CBB934DA489AC6890E /* RecorderFramework.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = RecorderFramework.podspec; path = ../RecorderFramework.podspec; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -496,6 +496,7 @@
 			baseConfigurationReference = BBEC1B25FBF6C66D7243E376 /* Pods-RecorderFramework_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				INFOPLIST_FILE = RecorderFramework/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -510,6 +511,7 @@
 			baseConfigurationReference = AB5C69A6C572070C50B37B86 /* Pods-RecorderFramework_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				INFOPLIST_FILE = RecorderFramework/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;

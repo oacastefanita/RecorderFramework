@@ -1,0 +1,303 @@
+//
+//  RecordItem.swift
+//  Recorder
+//
+//  Created by Grif on 24/01/15.
+//  Copyright (c) 2015 Grif. All rights reserved.
+//
+
+import UIKit
+
+@objc enum StorageType : Int {
+    case auto = 0
+    case keepLocally
+    case deleteFromLocalStorage
+}
+
+class RecordItem: NSObject, NSSecureCoding, UIActivityItemSource {
+    var text: String! = ""
+    var id:String! = ""
+    var accessNumber:String! = ""
+    var phone:String! = ""
+    var url:String! = ""
+    var credits:String! = ""
+    var duration:String! = ""
+    var time:String! = ""
+    
+    var lastAccessedTime:String! = ""
+    var fileDownloaded = false
+    var localFile:String! = ""
+    
+    var localMetadataFile:String! = ""
+    var metadataFilePath:String! = ""
+    
+    var fromTrash = false
+    
+    var waveRenderVals:NSArray!
+    
+    //var linkedActionId: String!
+    var shareUrl:String! = ""
+    
+    var firstName: String! = ""
+    var lastName: String! = ""
+    var phoneNumber: String! = ""
+    var email: String! = ""
+    var notes: String! = ""
+    
+    var fileData: Data! // for airdrop
+    
+    var storageType:StorageType = StorageType.auto
+    
+    override init() {
+        super.init()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        if let value = aDecoder.decodeObject(forKey: "title") as? String {
+            self.text = value
+        }
+        if let value = aDecoder.decodeObject(forKey: "id") as? String {
+            self.id = value
+        }
+        if let value = aDecoder.decodeObject(forKey: "accessNumber") as? String {
+            self.accessNumber = value
+        }
+        if let value = aDecoder.decodeObject(forKey: "phone") as? String {
+            self.phone = value
+        }
+        if let value = aDecoder.decodeObject(forKey: "url") as? String {
+            self.url = value
+        }
+        if let value = aDecoder.decodeObject(forKey: "credits") as? String {
+            self.credits = value
+        }
+        if let value = aDecoder.decodeObject(forKey: "duration") as? String {
+            self.duration = value
+        }
+        if let value = aDecoder.decodeObject(forKey: "time") as? String {
+            self.time = value
+        }
+        if let value = aDecoder.decodeObject(forKey: "lastAccessedTime") as? String {
+            self.lastAccessedTime = value
+        }
+        else {
+            self.lastAccessedTime = self.time
+        }
+        
+        if let value = aDecoder.decodeObject(forKey: "localFile") as? String {
+            self.localFile = value
+        }
+        if let value = aDecoder.decodeObject(forKey: "fileDownloaded") as? String {
+            self.fileDownloaded = NSString(string: value).boolValue
+        }
+        if let value = aDecoder.decodeObject(forKey: "fromTrash") as? String {
+            self.fromTrash = NSString(string: value).boolValue
+        }
+        
+        if let data = aDecoder.decodeObject(forKey: "waveRenderVals") as? Data {
+            if data.count > 0{
+                waveRenderVals = NSKeyedUnarchiver.unarchiveObject(with: data) as! NSArray
+            }
+        }
+        
+//        if let value = aDecoder.decodeObjectForKey("linkedActionId") as? String {
+//            self.linkedActionId = value
+//        }
+        
+        if let value = aDecoder.decodeObject(forKey: "shareUrl") as? String {
+            self.shareUrl = value
+        }
+
+        if let value: AnyObject = aDecoder.decodeObject(forKey: "storageType") as? NSNumber{
+            self.storageType = StorageType(rawValue: value.intValue)!
+        }
+
+        if let value = aDecoder.decodeObject(forKey: "firstName") as? String {
+            self.firstName = value
+        }
+        if let value = aDecoder.decodeObject(forKey: "lastName") as? String {
+            self.lastName = value
+        }
+        if let value = aDecoder.decodeObject(forKey: "phoneNumber") as? String {
+            self.phoneNumber = value
+        }
+        if let value = aDecoder.decodeObject(forKey: "email") as? String {
+            self.email = value
+        }
+        if let value = aDecoder.decodeObject(forKey: "notes") as? String {
+            self.notes = value
+        }
+        
+        if let value = aDecoder.decodeObject(forKey: "fileData") as? Data {
+            self.fileData = value
+        }
+    }
+    
+    func encode(with aCoder: NSCoder) {
+        if let value = self.text {
+            aCoder.encode(value, forKey: "title")
+        }
+        
+        if let value = self.id {
+            aCoder.encode(value, forKey: "id")
+        }
+
+        if let value = self.accessNumber {
+            aCoder.encode(value, forKey: "accessNumber")
+        }
+
+        if let value = self.url {
+            aCoder.encode(value, forKey: "url")
+        }
+
+        if let value = self.credits {
+            aCoder.encode(value, forKey: "credits")
+        }
+
+        if let value = self.duration {
+            aCoder.encode(value, forKey: "duration")
+        }
+
+        if let value = self.time {
+            aCoder.encode(value, forKey: "time")
+        }
+
+        if let value = self.lastAccessedTime {
+            aCoder.encode(value, forKey: "lastAccessedTime")
+        }
+
+        if let value = self.localFile {
+            aCoder.encode(value, forKey: "localFile")
+        }
+
+        aCoder.encode(fileDownloaded ? "true" : "false", forKey: "fileDownloaded")
+        aCoder.encode(fromTrash ? "true" : "false", forKey: "fromTrash")
+        
+        if waveRenderVals != nil {
+            let data = NSKeyedArchiver.archivedData(withRootObject: waveRenderVals)
+            aCoder.encode(data, forKey: "waveRenderVals")
+        }
+        
+//        if let value = self.linkedActionId {
+//            aCoder.encodeObject(value, forKey: "linkedActionId")
+//        }
+        
+        if let value = self.shareUrl {
+            aCoder.encode(value, forKey: "shareUrl")
+        }
+        
+        aCoder.encode( NSNumber(value:self.storageType.rawValue), forKey: "storageType")
+        
+        if let value = self.firstName {
+            aCoder.encode(value, forKey: "firstName")
+        }
+        
+        if let value = self.lastName {
+            aCoder.encode(value, forKey: "lastName")
+        }
+        
+        if let value = self.phoneNumber {
+            aCoder.encode(value, forKey: "phoneNumber")
+        }
+        
+        if let value = self.email {
+            aCoder.encode(value, forKey: "email")
+        }
+        
+        if let value = self.notes {
+            aCoder.encode(value, forKey: "notes")
+        }
+        
+        if let value = self.fileData {
+            aCoder.encode(value, forKey: "fileData")
+        }
+    }
+    
+    static var supportsSecureCoding : Bool {
+        return true
+    }
+    
+    func update(_ item:RecordItem) {
+        self.text = item.text
+        self.accessNumber = item.accessNumber
+        if self.url != item.url {
+            fileDownloaded = false
+            localFile = nil
+        }
+        self.url = item.url
+        self.credits = item.credits
+        self.time = item.time
+        self.duration = item.duration
+        self.firstName = item.firstName
+        self.lastName = item.lastName
+        self.phoneNumber = item.phoneNumber
+        self.email = item.email
+        self.notes = item.notes
+        self.fromTrash = item.fromTrash
+    }
+    
+    func recordingNextAction(_ currentAction:Action!) -> Action! {
+        var currentFound = currentAction == nil
+        for action in ActionsSyncManager.sharedInstance.actions {
+            if action.arg1 == self.id {
+                if currentFound {
+                    return action
+                }
+                else if currentAction == action {
+                    currentFound = true
+                }
+            }
+        }
+        
+        return nil
+    }
+    
+    func securelyArchiveRootObject() -> Data {
+        let data = NSMutableData()
+        let archiver = NSKeyedArchiver(forWritingWith: data)
+        archiver.requiresSecureCoding = true
+        
+        var path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] 
+        path += self.localFile
+        
+        if FileManager.default.fileExists(atPath: path) {
+            self.fileData = try? Data(contentsOf: URL(fileURLWithPath: path))
+        }
+        
+        archiver.encode(self, forKey: "AirDropRecording")
+        archiver.finishEncoding()
+        
+        return data as Data
+    }
+    
+    class func securelyUnarchiveProfileWithFile(_ filePath:String) -> RecordItem {
+        let fileData = try? Data(contentsOf: URL(fileURLWithPath: filePath))
+        let unarchiver = NSKeyedUnarchiver(forReadingWith: fileData!)
+        
+        unarchiver.requiresSecureCoding = true
+        if let recItem = unarchiver.decodeObject(of: RecordItem.self, forKey: "AirDropRecording"){
+            if let retRecItem = recItem as? RecordItem {
+                return retRecItem
+            }
+        }
+        
+        return RecordItem()
+    }
+    
+    //MARK: activity item
+    func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
+        return Data()
+    }
+    
+    func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivityType) -> Any? {
+        return self.securelyArchiveRootObject();
+    }
+    
+    func activityViewController(_ activityViewController: UIActivityViewController, thumbnailImageForActivityType activityType: UIActivityType?, suggestedSize size: CGSize) -> UIImage! {
+        return UIImage(named: "airdroppreview")
+    }
+    
+    func activityViewController(_ activityViewController: UIActivityViewController, dataTypeIdentifierForActivityType activityType: UIActivityType?) -> String {
+        return "com.werockapps.callrec"
+    }
+}
