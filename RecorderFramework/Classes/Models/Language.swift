@@ -9,10 +9,10 @@
 import Foundation
 
 public class Language: NSObject {
-    var code: String! = ""
-    var name:String! = ""
+    public var code: String! = ""
+    public var name:String! = ""
 
-    override init() {
+    override public init() {
         super.init()
     }
     

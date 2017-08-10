@@ -9,16 +9,16 @@
 import Foundation
 
 public class RecordFolder: NSObject, NSCoding {
-    var title: String!
-    var id: String!
-    var created: String!
-    var folderOrder:Int = 0
+    public var title: String!
+    public var id: String!
+    public var created: String!
+    public var folderOrder:Int = 0
     //var linkedActionId: String!
     
-    var type:StorageType = StorageType.keepLocally
-    var recordedItems = [RecordItem]()
+    public var type:StorageType = StorageType.keepLocally
+    public var recordedItems = [RecordItem]()
     
-    override init() {
+    override public init() {
         super.init()
     }
     

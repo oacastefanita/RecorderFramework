@@ -8,47 +8,47 @@
 
 import UIKit
 
-@objc public  enum StorageType : Int {
+@objc public enum StorageType : Int {
     case auto = 0
     case keepLocally
     case deleteFromLocalStorage
 }
 
 public class RecordItem: NSObject, NSSecureCoding, UIActivityItemSource {
-    var text: String! = ""
-    var id:String! = ""
-    var accessNumber:String! = ""
-    var phone:String! = ""
-    var url:String! = ""
-    var credits:String! = ""
-    var duration:String! = ""
-    var time:String! = ""
+    public var text: String! = ""
+    public var id:String! = ""
+    public var accessNumber:String! = ""
+    public var phone:String! = ""
+    public var url:String! = ""
+    public var credits:String! = ""
+    public var duration:String! = ""
+    public var time:String! = ""
     
-    var lastAccessedTime:String! = ""
-    var fileDownloaded = false
-    var localFile:String! = ""
+    public var lastAccessedTime:String! = ""
+    public var fileDownloaded = false
+    public var localFile:String! = ""
     
-    var localMetadataFile:String! = ""
-    var metadataFilePath:String! = ""
+    public var localMetadataFile:String! = ""
+    public var metadataFilePath:String! = ""
     
-    var fromTrash = false
+    public var fromTrash = false
     
-    var waveRenderVals:NSArray!
+    public var waveRenderVals:NSArray!
     
     //var linkedActionId: String!
-    var shareUrl:String! = ""
+    public var shareUrl:String! = ""
     
-    var firstName: String! = ""
-    var lastName: String! = ""
-    var phoneNumber: String! = ""
-    var email: String! = ""
-    var notes: String! = ""
+    public var firstName: String! = ""
+    public var lastName: String! = ""
+    public var phoneNumber: String! = ""
+    public var email: String! = ""
+    public var notes: String! = ""
     
-    var fileData: Data! // for airdrop
+    public var fileData: Data! // for airdrop
     
     public var storageType:StorageType = StorageType.auto
     
-    override init() {
+    override public init() {
         super.init()
     }
     

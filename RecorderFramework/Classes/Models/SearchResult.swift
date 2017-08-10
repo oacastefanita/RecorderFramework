@@ -9,8 +9,8 @@
 import Foundation
 
 public class SearchResult: NSObject{
-    var text: String! = ""
-    var recordItem: RecordItem!
-    var recordFolder: RecordFolder!
-    var isText: Bool = false
+    public var text: String! = ""
+    public var recordItem: RecordItem!
+    public var recordFolder: RecordFolder!
+    public var isText: Bool = false
 }

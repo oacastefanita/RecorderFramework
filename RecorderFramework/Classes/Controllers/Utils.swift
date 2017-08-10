@@ -9,8 +9,8 @@
 import UIKit
 import AddressBook
 
-extension NSString {
-    var localized: String {
+public extension NSString {
+    public var localized: String {
         if let value:String = TranslationManager.sharedInstance.translations.object(forKey: self) as? String {
             return value
         }
@@ -19,8 +19,8 @@ extension NSString {
     }
 }
 
-extension String {
-    var localized: String {
+public extension String {
+    public var localized: String {
         if let value:String = TranslationManager.sharedInstance.translations.object(forKey: self) as? String {
             return value
         }
@@ -28,7 +28,7 @@ extension String {
         return NSLocalizedString(self, tableName: nil, bundle: Bundle.main, value: "", comment: "")
     }
 
-    func aesEncrypt() -> String {
+    public func aesEncrypt() -> String {
         if (self.isEmpty){
             return ""
         }else{
@@ -36,7 +36,7 @@ extension String {
         }
     }
     
-    func aesDecrypt() -> String {
+    public func aesDecrypt() -> String {
         if (self.isEmpty){
             return ""
         }else{
@@ -53,14 +53,14 @@ extension String {
 //    }
 //}
 
-extension Array {
-    func contains<T>(_ obj: T) -> Bool where T : Equatable {
+public extension Array {
+    public func contains<T>(_ obj: T) -> Bool where T : Equatable {
         return self.filter({$0 as? T == obj}).count > 0
     }
 }
 
-extension Array {
-    func indexOf<T : Equatable>(_ x:T) -> Int? {
+public extension Array {
+    public func indexOf<T : Equatable>(_ x:T) -> Int? {
         for i in 0 ..< self.count {
             if self[i] as! T == x {
                 return i
@@ -70,9 +70,9 @@ extension Array {
     }
 }
 
-class Utils:NSObject {
+public class Utils:NSObject {
     
-    class func createContact(_ phone:String) {
+    public class func createContact(_ phone:String) {
         let addressBook = ABAddressBookCreateWithOptions(nil, nil)
         if addressBook == nil{
             return
@@ -138,7 +138,7 @@ class Utils:NSObject {
         }
     }
     
-    class func saveAddressBookChanges(_ addressBookRef: ABAddressBook) {
+    public class func saveAddressBookChanges(_ addressBookRef: ABAddressBook) {
         if ABAddressBookHasUnsavedChanges(addressBookRef){
             var err: Unmanaged<CFError>? = nil
             let savedToAddressBook = ABAddressBookSave(addressBookRef, &err)
@@ -153,29 +153,29 @@ class Utils:NSObject {
     }
 }
 
-let kNotificationRecordingsUpdated = "RecordingsUpdated"
-let kNotificationCameFromBackground = "CameFromBackground"
+public let kNotificationRecordingsUpdated = "RecordingsUpdated"
+public let kNotificationCameFromBackground = "CameFromBackground"
 
-protocol AlertControllerDelegate{
+public protocol AlertControllerDelegate{
     func alertAccepted(_ alertController:AlertController)
     func alertRejected(_ alertController:AlertController)
 }
 
 
-class AlertController: NSObject, UIAlertViewDelegate {
+public class AlertController: NSObject, UIAlertViewDelegate {
     
-    var delegate:AlertControllerDelegate! {
+    public var delegate:AlertControllerDelegate! {
         didSet {
             if (UIDevice.current.systemVersion as NSString).floatValue < 8.0 {
                 alertView.delegate = self
             }
         }
     }
-    var alertView:UIAlertView!
+    public var alertView:UIAlertView!
     
-    var tag = 0
+    public var tag = 0
     
-    class func showAlert(_ sender:UIViewController, title:String, message:String, accept:String?, reject:String?) -> AlertController {
+    public class func showAlert(_ sender:UIViewController, title:String, message:String, accept:String?, reject:String?) -> AlertController {
         let instance = AlertController()
         
         instance.showAlert(sender, title: title, message: message, accept: accept, reject:reject)
@@ -191,7 +191,7 @@ class AlertController: NSObject, UIAlertViewDelegate {
         return instance
     }
     
-    func showAlert (_ sender:UIViewController, title:String, message:String, accept:String?, reject:String?) {
+    public func showAlert (_ sender:UIViewController, title:String, message:String, accept:String?, reject:String?) {
         if (UIDevice.current.systemVersion as NSString).floatValue < 8.0 {
             alertView = UIAlertView()
             if let _accept = accept {
@@ -227,7 +227,7 @@ class AlertController: NSObject, UIAlertViewDelegate {
         }
     }
     
-    func showAlert (_ sender:UIViewController, title:String, message:String, accept:String?, reject:String?, cancel:String?) {
+    public func showAlert (_ sender:UIViewController, title:String, message:String, accept:String?, reject:String?, cancel:String?) {
         if (UIDevice.current.systemVersion as NSString).floatValue < 8.0 {
             alertView = UIAlertView()
             if let _accept = accept {
@@ -273,7 +273,7 @@ class AlertController: NSObject, UIAlertViewDelegate {
         }
     }
     
-    func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
+    public func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
         if delegate != nil {
             if buttonIndex == 0 {
                 delegate.alertAccepted(self)

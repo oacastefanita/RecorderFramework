@@ -9,17 +9,17 @@
 import Foundation
 
 public class ServerMessage: NSObject {
-    var id: String! = ""
-    var title:String! = ""
-    var body:String! = ""
-    var time:String! = ""
-    var read: Bool = false
+    public var id: String! = ""
+    public var title:String! = ""
+    public var body:String! = ""
+    public var time:String! = ""
+    public var read: Bool = false
     
-    override init() {
+    override public init() {
         super.init()
     }
     
-    func getDate() -> Date
+    public func getDate() -> Date
     {
         //Create Date Formatter
         let dateFormatter = DateFormatter()

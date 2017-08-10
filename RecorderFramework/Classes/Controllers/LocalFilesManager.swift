@@ -24,15 +24,14 @@ fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 public class LocalFilesManager: NSObject {
     public static let sharedInstance = LocalFilesManager()
     
-    var updateInProgress = false
-    var remainingFileSize = 0
-    var handleFileSize = false
+    public var updateInProgress = false
+    public var remainingFileSize = 0
+    public var handleFileSize = false
     
-    var itemsToDownload = [RecordItem]()
-    var itemsToDelete = [RecordItem]()
-
+    public var itemsToDownload = [RecordItem]()
+    public var itemsToDelete = [RecordItem]()
     
-    func updateLocalFiles() {
+    public func updateLocalFiles() {
         if updateInProgress {
             return
         }
@@ -152,7 +151,7 @@ public class LocalFilesManager: NSObject {
         downloadFiles(itemsToDownload)
     }
     
-    func downloadFiles(_ workingFiles:[RecordItem]){
+    public func downloadFiles(_ workingFiles:[RecordItem]){
         if workingFiles.count == 0  {
             updateInProgress = false
             // delete files
@@ -248,7 +247,7 @@ public class LocalFilesManager: NSObject {
         }
     }
     
-    func getAllFiles(_ mode:Int) -> [RecordItem]{
+    public func getAllFiles(_ mode:Int) -> [RecordItem]{
         var recList = [RecordItem]()
         for folder in RecordingsManager.sharedInstance.recordFolders {
             if folder.id == "-99" {

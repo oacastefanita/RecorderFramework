@@ -11,11 +11,11 @@ import Foundation
 public class TranslationManager : NSObject  {
     public static let sharedInstance = TranslationManager()
     
-    var languages:Array<Language>
-    var translations:NSDictionary
-    var currentLanguage:String!
+    public var languages:Array<Language>
+    public var translations:NSDictionary
+    public var currentLanguage:String!
     
-    override init() {
+    override public init() {
         self.translations = NSDictionary()
         self.languages = Array()
         
@@ -24,7 +24,7 @@ public class TranslationManager : NSObject  {
         loadData()
     }
     
-    func saveData() {
+    public func saveData() {
         let defaults = UserDefaults.standard
         
         defaults.set(translations, forKey: "translations");
@@ -36,7 +36,7 @@ public class TranslationManager : NSObject  {
         defaults.synchronize()
     }
     
-    func loadData() {
+    public func loadData() {
         let defaults = UserDefaults.standard
         
         if let value:NSDictionary = defaults.value(forKey: "translations") as? NSDictionary {

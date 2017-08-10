@@ -11,14 +11,14 @@ import Foundation
 public class RecordingsManager : NSObject {
     public static let sharedInstance = RecordingsManager()
     
-    var recordFolders:Array<RecordFolder>!
+    public var recordFolders:Array<RecordFolder>!
     
-    override init() {
+    override public init() {
         super.init()
         recordFolders = Array<RecordFolder>()
     }
     
-    func syncItem(_ recordFolder:RecordFolder) -> RecordFolder {
+    public func syncItem(_ recordFolder:RecordFolder) -> RecordFolder {
         
         for existingItem in recordFolders {
             if existingItem.id == recordFolder.id {
@@ -31,7 +31,7 @@ public class RecordingsManager : NSObject {
         return recordFolder
     }
     
-    func getFolderWithId(_ folderId:String!) -> RecordFolder! {
+    public func getFolderWithId(_ folderId:String!) -> RecordFolder! {
         for folder in recordFolders {
             if folder.id == folderId {
                 return folder
@@ -40,7 +40,7 @@ public class RecordingsManager : NSObject {
         return nil
     }
     
-    func deleteRecord(_ recordItem:RecordItem) {
+    public func deleteRecord(_ recordItem:RecordItem) {
         for folder in recordFolders {
             var index = 0
             for item in folder.recordedItems {
@@ -68,7 +68,7 @@ public class RecordingsManager : NSObject {
     }
 
     
-    func getRecordingById(_ id:String) -> RecordItem! {
+    public func getRecordingById(_ id:String) -> RecordItem! {
         for folder in recordFolders {
             for item in folder.recordedItems {
                 if item.id == id {
@@ -79,7 +79,7 @@ public class RecordingsManager : NSObject {
         return nil
     }
     
-    func searchRecordings(_ name:String) -> Array<SearchResult> {
+    public func searchRecordings(_ name:String) -> Array<SearchResult> {
         var results = Array<SearchResult>()
         for folder in recordFolders {
             if folder.id == "-99"{
@@ -129,7 +129,7 @@ public class RecordingsManager : NSObject {
         return results
     }
     
-    func syncRecordingItem(_ recordItem:RecordItem, folder:RecordFolder) -> RecordItem {
+    public func syncRecordingItem(_ recordItem:RecordItem, folder:RecordFolder) -> RecordItem {
         
         for recFolder in recordFolders {
             for existingItem in recFolder.recordedItems {
@@ -144,7 +144,7 @@ public class RecordingsManager : NSObject {
         return recordItem
     }
     
-    func updateAllFilesFolder() {
+    public func updateAllFilesFolder() {
         if self.recordFolders.count < 2 {
             return
         }
@@ -161,7 +161,7 @@ public class RecordingsManager : NSObject {
         }
     }
     
-    func updateTrashFolder(){
+    public func updateTrashFolder(){
         var trashFolder = RecordFolder()
         for recFolder in recordFolders {
             if recFolder.id == "trash"{
@@ -176,7 +176,7 @@ public class RecordingsManager : NSObject {
     
     // MARK: clear data
     
-    func clearData() {
+    public func clearData() {
         let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] 
         
         for recFolder in recordFolders {
@@ -208,7 +208,7 @@ public class RecordingsManager : NSObject {
         RecordingsManager.sharedInstance.recordFolders.insert(allFilesFolder, at: 1)
     }
     
-    func getFolderByLinkedAction(_ actionId:String!) -> RecordFolder! {
+    public func getFolderByLinkedAction(_ actionId:String!) -> RecordFolder! {
         for folder in recordFolders {
             var action:Action! = folder.folderNextAction(nil)
             while action != nil {
@@ -221,7 +221,7 @@ public class RecordingsManager : NSObject {
         return nil
     }
     
-    func applyLocalActions() {
+    public func applyLocalActions() {
         //move actions:
         for folder in recordFolders {
             for var i in (0..<folder.recordedItems.count){
@@ -248,7 +248,7 @@ public class RecordingsManager : NSObject {
         }
     }
     
-    func sortByFolderOrder() {
+    public func sortByFolderOrder() {
         recordFolders.sorted { (r1, r2) -> Bool in
             if r1.id == "0" {
                 return true
@@ -273,7 +273,7 @@ public class RecordingsManager : NSObject {
         }
     }
     
-    func keepOnlyItemsWithIds(_ ids:Array<String>) {
+    public func keepOnlyItemsWithIds(_ ids:Array<String>) {
         var local = [RecordFolder]()
         
         for item in recordFolders {

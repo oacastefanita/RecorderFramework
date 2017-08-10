@@ -13,30 +13,30 @@ public class AppPersistentData : NSObject {
     
     public static let sharedInstance = AppPersistentData()
     
-    var phone:String!
-    var apiKey:String!
-    var verificationCode:String! //for testing
-    var notificationToken:String!
-    var invalidAPIKey = false
+    public var phone:String!
+    public var apiKey:String!
+    public var verificationCode:String! //for testing
+    public var notificationToken:String!
+    public var invalidAPIKey = false
     
     // settings
-    var playBeep = false
-    var passOn = false
-    var filePermission:String!
-    var credits:Int!
-    var app:String!
+    public var playBeep = false
+    public var passOn = false
+    public var filePermission:String!
+    public var credits:Int!
+    public var app:String!
     
-    var phoneNumbers:Array<PhoneNumber>
-    var serverMessages:Array<ServerMessage>
+    public var phoneNumbers:Array<PhoneNumber>
+    public var serverMessages:Array<ServerMessage>
     
-    var justReseted = false
-    var free = false
+    public var justReseted = false
+    public var free = false
     
     // settings
-    var receivedNotification = false
-    var messageID:String!
+    public var receivedNotification = false
+    public var messageID:String!
     
-    override init() {
+    override public init() {
         phoneNumbers = Array<PhoneNumber>()
         serverMessages = Array<ServerMessage>()
         super.init()
@@ -75,7 +75,7 @@ public class AppPersistentData : NSObject {
         }
     }
 
-    func saveData() {
+    public func saveData() {
         let defaults = UserDefaults.standard
         
         if(phone != nil){
@@ -112,7 +112,7 @@ public class AppPersistentData : NSObject {
         defaults.synchronize()
     }
     
-    func loadData() {
+    public func loadData() {
         let defaults = UserDefaults.standard
         
         if let value:String = defaults.value(forKey: "phone") as? String {
@@ -161,11 +161,11 @@ public class AppPersistentData : NSObject {
         #endif
     }
     
-    func registered() -> Bool {
+    public func registered() -> Bool {
         return !(AppPersistentData.sharedInstance.phone == nil || AppPersistentData.sharedInstance.phone.isEmpty)
     }
     
-    func verified() -> Bool {
+    public func verified() -> Bool {
         return !(AppPersistentData.sharedInstance.apiKey == nil || AppPersistentData.sharedInstance.apiKey.isEmpty)
     }
 }

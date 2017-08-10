@@ -9,15 +9,15 @@
 import Foundation
 
 public class PhoneNumber: NSObject, NSCoding {
-    var number: String!
-    var friendlyNumber:String!
-    var phoneNumber: String!
-    var prefix: String!
-    var flag: String!
-    var country: String!
-    var isDefault = false
+    public var number: String!
+    public var friendlyNumber:String!
+    public var phoneNumber: String!
+    public var prefix: String!
+    public var flag: String!
+    public var country: String!
+    public var isDefault = false
     
-    override init() {
+    override public init() {
         super.init()
         self.number = ""
         self.friendlyNumber = ""
