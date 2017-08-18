@@ -44,10 +44,10 @@ public class APIClient : NSObject {
     
     public func register(_ number:NSString, completionHandler:((Bool, AnyObject?) -> Void)?)
     {
-        var parameters = ["phone": number, "token": "55942ee3894f51000530894"]
-        manager?.post("register_phone", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
+        let parameters = ["phone": number, "token": "55942ee3894f51000530894"]
+        _ = manager?.post("register_phone", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
             do {
-                var jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options: JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
+                let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options: JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
                 if (jsonDict.count == 0 || (jsonDict.count > 0 && jsonDict.object(forKey: "status") != nil && !(jsonDict.object(forKey: "status")! as AnyObject).isEqual("ok"))) {
                     if completionHandler != nil {
                         if let strError:String = jsonDict.object(forKey: "msg") as? String  {
@@ -93,18 +93,18 @@ public class APIClient : NSObject {
         let carrier = tn.subscriberCellularProvider
         
 #if CRFREE
-        var appCode = "free"
+        let appCode = "free"
 #else
-        var appCode = "pro"
+        let appCode = "pro"
 #endif
 
         let mcc:String! = (carrier != nil && !carrier!.mobileCountryCode!.isEmpty) ? carrier!.mobileCountryCode : "310"
         let deviceToken =  AppPersistentData.sharedInstance.notificationToken == nil ? "Simulator" : AppPersistentData.sharedInstance.notificationToken
-        let parameters = ["phone": AppPersistentData.sharedInstance.phone, "code": code, "mcc": mcc, "token": "55942ee3894f51000530894", "app": appCode, "device_token":deviceToken] as [String : Any]
+        let parameters = ["phone": AppPersistentData.sharedInstance.phone, "code": code, "mcc": mcc, "token": "55942ee3894f51000530894", "app": appCode, "device_token":deviceToken!] as [String : Any]
 //        var parameters = [("phone", AppPersistentData.sharedInstance.phone), ("code": code), ("mcc": (carrier != nil && !carrier!.mobileCountryCode!.isEmpty) ? carrier!.mobileCountryCode : "310"), ("token": "55942ee3894f51000530894"), ("app": appCode), ("device_token": AppPersistentData.sharedInstance.notificationToken == nil ? "Simulator" : AppPersistentData.sharedInstance.notificationToken)] //"226" "310" carrier.mobileCountryCode
-        manager?.post("verify_phone", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
+        _ = manager?.post("verify_phone", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
             do {
-                var jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options: JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
+                let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options: JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
                 if (jsonDict.count == 0 || (jsonDict.count > 0 && jsonDict.object(forKey: "status") != nil && !(jsonDict.object(forKey: "status")! as AnyObject).isEqual("ok"))) {
                     if completionHandler != nil {
                         if let strError:String = jsonDict.object(forKey: "msg") as? String  {
@@ -165,9 +165,9 @@ public class APIClient : NSObject {
 //            parameters["source"] = "app2"
 //        }
         
-        manager?.post("get_files", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
+        _ = manager?.post("get_files", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
             do {
-            var jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options: JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
+            let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options: JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
             if (jsonDict.count == 0 || (jsonDict.count > 0 && jsonDict.object(forKey: "status") != nil && !(jsonDict.object(forKey: "status")! as AnyObject).isEqual("ok"))) {
                 if completionHandler != nil {
                     if let strError:String = jsonDict.object(forKey: "msg") as? String  {
@@ -183,7 +183,7 @@ public class APIClient : NSObject {
                 }
             }
             else {
-                if var calls:Array<NSDictionary> = jsonDict.object(forKey: "files") as? Array<NSDictionary> {
+                if let calls:Array<NSDictionary> = jsonDict.object(forKey: "files") as? Array<NSDictionary> {
                 
                     var allIds:Array<String> = Array<String>()
                     var recordFolder = RecordingsManager.sharedInstance.recordFolders[0]
@@ -194,65 +194,65 @@ public class APIClient : NSObject {
                         }
                     }
                     for item in recordFolder.recordedItems {
-                        var action:Action! = item.recordingNextAction(nil)
+                        let action:Action! = item.recordingNextAction(nil)
                         if action != nil {
                             allIds.append(item.id)
                         }
                     }
                     
                     for call in calls {
-                        var item:RecordItem = RecordItem()
+                        let item:RecordItem = RecordItem()
                         if folderId == "trash"{
                             item.fromTrash = true
                         }
 
-                        if var value:String = call.object(forKey: "name") as? String {
+                        if let value:String = call.object(forKey: "name") as? String {
                             item.text = value
                         }
-                        if var value:String = call.object(forKey: "id") as? String {
+                        if let value:String = call.object(forKey: "id") as? String {
                             item.id = value
                         }
-                        if var value:String = call.object(forKey: "phone") as? String {
+                        if let value:String = call.object(forKey: "phone") as? String {
                             item.phone = value
                         }
-                        if var value:String = call.object(forKey: "access_number") as? String {
+                        if let value:String = call.object(forKey: "access_number") as? String {
                             item.accessNumber = value
                         }
-                        if var value:String = call.object(forKey: "url") as? String {
+                        if let value:String = call.object(forKey: "url") as? String {
                             item.url = value
                         }
-                        if var value:String = call.object(forKey: "share_url") as? String {
+                        if let value:String = call.object(forKey: "share_url") as? String {
                             item.shareUrl = value
                         }
-                        if var value:String = call.object(forKey: "credits") as? String {
+                        if let value:String = call.object(forKey: "credits") as? String {
                             item.credits = value
                         }
-                        if var value:String = call.object(forKey: "duration") as? String {
+                        if let value:String = call.object(forKey: "duration") as? String {
                             item.duration = value
                         }
-                        if var value:String = call.object(forKey: "time") as? String {
+                        if let value:String = call.object(forKey: "time") as? String {
                             item.time = value
                             item.lastAccessedTime = value
                         }
-                        if var value:String = call.object(forKey: "f_name") as? String {
+                        if let value:String = call.object(forKey: "f_name") as? String {
                             item.firstName = value
                         }
-                        if var value:String = call.object(forKey: "l_name") as? String {
+                        if let value:String = call.object(forKey: "l_name") as? String {
                             item.lastName = value
                         }
-                        if var value:String = call.object(forKey: "phone") as? String {
+                        if let value:String = call.object(forKey: "phone") as? String {
                             item.phoneNumber = value
                         }
-                        if var value:String = call.object(forKey: "email") as? String {
+                        if let value:String = call.object(forKey: "email") as? String {
                             item.email = value
                         }
-                        if var value:String = call.object(forKey: "notes") as? String {
+                        if let value:String = call.object(forKey: "notes") as? String {
                             item.notes = value
                         }
                         
                         allIds.append(item.id)
                         
-                        var synchedItem = RecordingsManager.sharedInstance.syncRecordingItem(item, folder:recordFolder)
+                        _ = RecordingsManager.sharedInstance.syncRecordingItem(item, folder:recordFolder)
                         
                         var on = UserDefaults.standard.object(forKey: "3GSync") as? Bool
                         if(on == nil){
@@ -296,7 +296,7 @@ public class APIClient : NSObject {
             return
         }
 
-        var parameters = ["api_key": AppPersistentData.sharedInstance.apiKey]
+        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey]
         var defaultPhone = " "
         for phoneNumber in AppPersistentData.sharedInstance.phoneNumbers{
             if phoneNumber.isDefault{
@@ -305,7 +305,7 @@ public class APIClient : NSObject {
             }
         }
         AppPersistentData.sharedInstance.phoneNumbers.removeAll(keepingCapacity: false)
-        manager?.post("get_phones", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
+        _ = manager?.post("get_phones", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
             do {
             if let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options: JSONSerialization.ReadingOptions.mutableLeaves) as? NSDictionary {
                 if (jsonDict.count == 0 || (jsonDict.count > 0 && jsonDict.object(forKey: "status") != nil && !(jsonDict.object(forKey: "status")! as AnyObject).isEqual("ok"))) {
@@ -324,26 +324,26 @@ public class APIClient : NSObject {
                 }
             }
             else {
-                if var numbers:Array<NSDictionary> = try JSONSerialization.jsonObject(with: operation.responseData, options: JSONSerialization.ReadingOptions.mutableLeaves) as? Array<NSDictionary> {
+                if let numbers:Array<NSDictionary> = try JSONSerialization.jsonObject(with: operation.responseData, options: JSONSerialization.ReadingOptions.mutableLeaves) as? Array<NSDictionary> {
                     
                     for number in numbers {
-                        var phoneNumber = PhoneNumber()
-                        if var value:String = number.object(forKey: "phone_number") as? String {
+                        let phoneNumber = PhoneNumber()
+                        if let value:String = number.object(forKey: "phone_number") as? String {
                             phoneNumber.phoneNumber = value
                         }
-                        if var value:String = number.object(forKey: "number") as? String {
+                        if let value:String = number.object(forKey: "number") as? String {
                             phoneNumber.number = value
                         }
-                        if var value:String = number.object(forKey: "prefix") as? String {
+                        if let value:String = number.object(forKey: "prefix") as? String {
                             phoneNumber.prefix = value
                         }
-                        if var value:String = number.object(forKey: "friendly_name") as? String {
+                        if let value:String = number.object(forKey: "friendly_name") as? String {
                             phoneNumber.friendlyNumber = value
                         }
-                        if var value:String = number.object(forKey: "flag") as? String {
+                        if let value:String = number.object(forKey: "flag") as? String {
                             phoneNumber.flag = value
                         }
-                        if var value:String = number.object(forKey: "country") as? String {
+                        if let value:String = number.object(forKey: "country") as? String {
                             phoneNumber.country = value
                         }
                         
@@ -418,9 +418,9 @@ public class APIClient : NSObject {
             
             return
         }
-        var parameters = ["api_key": AppPersistentData.sharedInstance.apiKey]
-        manager?.post("get_folders", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
-            var error: NSError?
+        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey]
+        _ = manager?.post("get_folders", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
+
             var foundDefault = false
             var foundAllFiles = false
             var foundTrash = false
@@ -446,26 +446,26 @@ public class APIClient : NSObject {
             }
             
             if !foundDefault {
-                var defaultFolder = RecordFolder()
+                let defaultFolder = RecordFolder()
                 defaultFolder.id = "0"
                 defaultFolder.title = "New Call Recordings".localized
                 RecordingsManager.sharedInstance.recordFolders.insert(defaultFolder, at: 0)
             }
             if !foundAllFiles {
-                var defaultFolder = RecordFolder()
+                let defaultFolder = RecordFolder()
                 defaultFolder.id = "-99"
                 defaultFolder.title = "All Files".localized
                 RecordingsManager.sharedInstance.recordFolders.insert(defaultFolder, at: 1)
             }
             if !foundTrash {
-                var defaultFolder = RecordFolder()
+                let defaultFolder = RecordFolder()
                 defaultFolder.id = "trash"
                 defaultFolder.title = "Trash".localized
                 RecordingsManager.sharedInstance.recordFolders.insert(defaultFolder, at: 2)
             }
             
             do {
-             var jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options: JSONSerialization.ReadingOptions.mutableLeaves)
+             let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options: JSONSerialization.ReadingOptions.mutableLeaves)
                 if ((jsonDict as AnyObject).count == 0 || ((jsonDict as AnyObject).count > 0 && (jsonDict as AnyObject).object(forKey: "status") != nil && !((jsonDict as AnyObject).object(forKey:"status")! as AnyObject).isEqual("ok"))) {
                     if completionHandler != nil {
                         if let strError:String = (jsonDict as AnyObject).object(forKey:"msg") as? String  {
@@ -482,30 +482,30 @@ public class APIClient : NSObject {
                 }
                 else {
                     
-                    if var folders:Array<NSDictionary> = (jsonDict as! AnyObject).object(forKey:"folders") as? Array<NSDictionary> {
+                    if let folders:Array<NSDictionary> = (jsonDict as AnyObject).object(forKey:"folders") as? Array<NSDictionary> {
                         var ids:Array<String> = Array<String>()
                         ids.append("0")
                         ids.append("-99")
                         ids.append("trash")
                         for folder in folders {
-                            var recordFolder = RecordFolder()
+                            let recordFolder = RecordFolder()
                             
-                            if var value:String = folder.object(forKey: "name") as? String {
+                            if let value:String = folder.object(forKey: "name") as? String {
                                 recordFolder.title = value
                             }
-                            if var value:String = folder.object(forKey: "id") as? String {
+                            if let value:String = folder.object(forKey: "id") as? String {
                                 recordFolder.id  = value
                             }
-                            if var value:String = folder.object(forKey: "created") as? String {
+                            if let value:String = folder.object(forKey: "created") as? String {
                                 recordFolder.created  = value
                             }
                             
-                            if var value:String = folder.object(forKey: "folder_order") as? String {
+                            if let value:String = folder.object(forKey: "folder_order") as? String {
                                 recordFolder.folderOrder  = Int(value)!
                             }
                             ids.append(recordFolder.id)
                             
-                            RecordingsManager.sharedInstance.syncItem(recordFolder)
+                            _ = RecordingsManager.sharedInstance.syncItem(recordFolder)
                         }
                         RecordingsManager.sharedInstance.keepOnlyItemsWithIds(ids);
                         RecordingsManager.sharedInstance.updateTrashFolder()
@@ -536,11 +536,11 @@ public class APIClient : NSObject {
             return
         }
 
-        var parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "name" : name] as [String : Any]
+        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "name" : name] as [String : Any]
         
-        manager?.post("create_folder", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
+        _ = manager?.post("create_folder", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
             do {
-                var jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options: JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
+                let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options: JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
                 if (jsonDict.count == 0 || (jsonDict.count > 0 && jsonDict.object(forKey: "status") != nil && !(jsonDict.object(forKey: "status")! as AnyObject).isEqual("ok"))) {
                     if completionHandler != nil {
                         if let strError:String = jsonDict.object(forKey: "msg") as? String  {
@@ -579,7 +579,7 @@ public class APIClient : NSObject {
                             }
                         }
                     }
-                    RecordingsManager.sharedInstance.syncItem(recordFolder!)
+                    _ = RecordingsManager.sharedInstance.syncItem(recordFolder!)
                     
                     if completionHandler != nil {
                         completionHandler!( true, nil)
@@ -604,14 +604,14 @@ public class APIClient : NSObject {
             return
         }
 
-        var parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "id" : folderId] as NSMutableDictionary
+        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "id" : folderId] as NSMutableDictionary
         if moveTo != nil && moveTo != ""{
             parameters.setValue(moveTo, forKey: "move_to")
         }
         
-        manager?.post("delete_folder", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
+        _ = manager?.post("delete_folder", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
             do {
-                var jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options: JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
+                let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options: JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
                 if (jsonDict.count == 0 || (jsonDict.count > 0 && jsonDict.object(forKey: "status") != nil && !(jsonDict.object(forKey: "status")! as AnyObject).isEqual("ok"))) {
                     if completionHandler != nil {
                         if let strError:String = jsonDict.object(forKey: "msg") as? String  {
@@ -656,9 +656,9 @@ public class APIClient : NSObject {
 
         parameters["api_key"] = AppPersistentData.sharedInstance.apiKey
         
-        manager?.post("update_folders_order", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
+        _ = manager?.post("update_folders_order", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
             do {
-                var jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options: JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
+                let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options: JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
                 if (jsonDict.count == 0 || (jsonDict.count > 0 && jsonDict.object(forKey: "status") != nil && !(jsonDict.object(forKey: "status")! as AnyObject).isEqual("ok"))) {
                     if completionHandler != nil {
                         if let strError:String = jsonDict.object(forKey: "msg") as? String  {
@@ -702,11 +702,11 @@ public class APIClient : NSObject {
             return
         }
 
-        var parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "id" : folderId, "name" : name]
+        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "id" : folderId, "name" : name]
         
-        manager?.post("update_folder", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
+        _ = manager?.post("update_folder", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
             do {
-                var jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
+                let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
                 if (jsonDict.count == 0 || (jsonDict.count > 0 && jsonDict.object(forKey: "status") != nil && !(jsonDict.object(forKey: "status")! as AnyObject).isEqual("ok"))) {
                     if completionHandler != nil {
                         if let strError:String = jsonDict.object(forKey: "msg") as? String  {
@@ -746,11 +746,11 @@ public class APIClient : NSObject {
             return
         }
 
-        var parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "ids" : recordItemId, "action" : removeForever ? "remove_forever" : ""]
+        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "ids" : recordItemId, "action" : removeForever ? "remove_forever" : ""]
         
-        manager?.post("delete_files", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
+        _ = manager?.post("delete_files", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
             do {
-                var jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
+                let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
                 if (jsonDict.count == 0 || (jsonDict.count > 0 && jsonDict.object(forKey: "status") != nil && !(jsonDict.object(forKey: "status")! as AnyObject).isEqual("ok"))) {
                     if completionHandler != nil {
                         if let strError:String = jsonDict.object(forKey: "msg") as? String  {
@@ -790,11 +790,11 @@ public class APIClient : NSObject {
             return
         }
 
-        var parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "id" : recordItem.id, "folder_id" : folderId]
+        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "id" : recordItem.id, "folder_id" : folderId]
         
-        manager?.post("update_file", parameters: parameters, success:  { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
+        _ = manager?.post("update_file", parameters: parameters, success:  { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
             do {
-                var jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
+                let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
                 if (jsonDict.count == 0 || (jsonDict.count > 0 && jsonDict.object(forKey: "status") != nil && !(jsonDict.object(forKey: "status")! as AnyObject).isEqual("ok"))) {
                     if completionHandler != nil {
                         if let strError:String = jsonDict.object(forKey: "msg") as? String  {
@@ -834,11 +834,11 @@ public class APIClient : NSObject {
             return
         }
 
-        var parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "id" : recordItem.id, "folder_id" : folderId]
+        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "id" : recordItem.id, "folder_id" : folderId]
         
-        manager?.post("recover_file", parameters: parameters, success:  { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
+        _ = manager?.post("recover_file", parameters: parameters, success:  { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
             do {
-                var jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
+                let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
                 if (jsonDict.count == 0 || (jsonDict.count > 0 && jsonDict.object(forKey: "status") != nil && !(jsonDict.object(forKey: "status")! as AnyObject).isEqual("ok"))) {
                     if completionHandler != nil {
                         if let strError:String = jsonDict.object(forKey: "msg") as? String  {
@@ -880,9 +880,9 @@ public class APIClient : NSObject {
 
         parameters.setObject(AppPersistentData.sharedInstance.apiKey, forKey: "api_key" as NSCopying)
         
-        manager?.post("update_file", parameters: parameters, success:  { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
+        _ = manager?.post("update_file", parameters: parameters, success:  { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
             do {
-                var jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
+                let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
                 if (jsonDict.count == 0 || (jsonDict.count > 0 && jsonDict.object(forKey: "status") != nil && !(jsonDict.object(forKey: "status")! as AnyObject).isEqual("ok"))) {
                     if completionHandler != nil {
                         if let strError:String = jsonDict.object(forKey: "msg") as? String  {
@@ -922,11 +922,11 @@ public class APIClient : NSObject {
             return
         }
 
-        var parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "id" : recordItem.id, "name":name]
+        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "id" : recordItem.id, "name":name]
 
-        manager?.post("update_file", parameters: parameters, success:  { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
+        _ = manager?.post("update_file", parameters: parameters, success:  { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
             do {
-                var jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
+                let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
                 if (jsonDict.count == 0 || (jsonDict.count > 0 && jsonDict.object(forKey: "status") != nil && !(jsonDict.object(forKey: "status")! as AnyObject).isEqual("ok"))) {
                     if completionHandler != nil {
                         if let strError:String = jsonDict.object(forKey: "msg") as? String  {
@@ -967,8 +967,8 @@ public class APIClient : NSObject {
         }
 
         do {
-            var jsonData = try JSONSerialization.data(withJSONObject: ["name":"audio_upload_test","notes":""], options: JSONSerialization.WritingOptions.prettyPrinted)
-            var parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "data": "{\"name\":\"\(recordItem.text)\",\"notes\":\"\(recordItem.notes)\"} "]
+            //let jsonData = try JSONSerialization.data(withJSONObject: ["name":"audio_upload_test","notes":""], options: JSONSerialization.WritingOptions.prettyPrinted)
+            let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "data": "{\"name\":\"\(recordItem.text)\",\"notes\":\"\(recordItem.notes)\"} "]
             
             
     //        if SwiftPreprocessor.sharedInstance().SWIFT_ISRECORDER{
@@ -979,7 +979,7 @@ public class APIClient : NSObject {
             path += recordItem.localFile
             
             if URL(fileURLWithPath:path).pathExtension == "caf" {
-                var wavPath = path.replacingOccurrences(of: ".caf", with: ".wav", options: NSString.CompareOptions.literal, range: nil)
+                let wavPath = path.replacingOccurrences(of: ".caf", with: ".wav", options: NSString.CompareOptions.literal, range: nil)
 //                AudioConverter.exportAsset(asWaveFormat: path, destination:wavPath)
                 path = wavPath
             }
@@ -989,7 +989,7 @@ public class APIClient : NSObject {
                 return
             }
             
-            manager?.post("create_file", parameters: parameters, constructingBodyWith: { (data) -> Void in
+            _ = manager?.post("create_file", parameters: parameters, constructingBodyWith: { (data) -> Void in
                 do {
                  try data?.appendPart(withFileURL: NSURL(fileURLWithPath: path) as URL!, name: "file")
                 }
@@ -1036,11 +1036,11 @@ public class APIClient : NSObject {
                 }
             }
         }
-        catch {
-            if completionHandler != nil {
-                completionHandler!(false, "Error parsing server result." as AnyObject)
-            }
-        }
+//        catch {
+//            if completionHandler != nil {
+//                completionHandler!(false, "Error parsing server result." as AnyObject)
+//            }
+//        }
     }
     
     public func downloadFile(_ fileUrl:NSString, localPath:NSString, completionHandler:((Bool) -> Void)?)
@@ -1134,11 +1134,11 @@ public class APIClient : NSObject {
         
         var isWav = false
         var isMP3 = false
-        if var wavRange = path.range(of: ".wav") {
+        if path.range(of: ".wav") != nil {
             isWav = true
         }
         
-        if var wavRange = path.range(of: ".mp3") {
+        if path.range(of: ".mp3") != nil {
             isMP3 = true
         }
         if !isWav && !isMP3 {
@@ -1148,17 +1148,17 @@ public class APIClient : NSObject {
         // improve: remove local file if already exist and download it again (it may be a broken file)
 
         if !FileManager.default.fileExists(atPath: path) {
-            APIClient.sharedInstance.downloadFile(recordItem.url as! NSString, localPath:path as NSString, completionHandler: { (success) -> Void in
+            APIClient.sharedInstance.downloadFile(recordItem.url! as NSString, localPath:path as NSString, completionHandler: { (success) -> Void in
                 recordItem.fileDownloaded = success
                 if success {
                     recordItem.localFile = "/" + toFolder + "/" + recordItem.url.components(separatedBy: "/").last!
                     var isWav = false
                     var isMP3 = false
-                    if var wavRange = recordItem.localFile.range(of: ".wav") {
+                    if recordItem.localFile.range(of: ".wav") != nil {
                         isWav = true
                     }
                     
-                    if var wavRange = recordItem.localFile.range(of: ".mp3") {
+                    if recordItem.localFile.range(of: ".mp3") != nil {
                         isMP3 = true
                     }
                     if !isWav && !isMP3 {
@@ -1204,11 +1204,11 @@ public class APIClient : NSObject {
             recordItem.localFile = "/" + toFolder + "/" + recordItem.url.components(separatedBy: "/").last!
             var isWav = false
             var isMP3 = false
-            if var wavRange = recordItem.localFile.range(of: ".wav") {
+            if recordItem.localFile.range(of: ".wav") != nil {
                 isWav = true
             }
             
-            if var wavRange = recordItem.localFile.range(of: ".mp3") {
+            if recordItem.localFile.range(of: ".mp3") != nil {
                 isMP3 = true
             }
             if !isWav && !isMP3 {
@@ -1324,11 +1324,11 @@ public class APIClient : NSObject {
             return
         }
 
-        var parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "play_beep" : playBeep ? "yes" : "no"]
+        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "play_beep" : playBeep ? "yes" : "no"]
         
-        manager?.post("update_settings", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
+        _ = manager?.post("update_settings", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
             do {
-                var jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
+                let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
                 if (jsonDict.count == 0 || (jsonDict.count > 0 && jsonDict.object(forKey: "status") != nil && !(jsonDict.object(forKey: "status")! as AnyObject).isEqual("ok"))) {
                     if completionHandler != nil {
                         if let strError:String = jsonDict.object(forKey: "msg") as? String  {
@@ -1372,11 +1372,11 @@ public class APIClient : NSObject {
             return
         }
 
-        var parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "app" : free ? "free" : "pro"]
+        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "app" : free ? "free" : "pro"]
         
-        manager?.post("update_user", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
+        _ = manager?.post("update_user", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
             do {
-                var jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
+                let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
                 if (jsonDict.count == 0 || (jsonDict.count > 0 && jsonDict.object(forKey: "status") != nil && !(jsonDict.object(forKey: "status")! as AnyObject).isEqual("ok"))) {
                     if completionHandler != nil {
                         if let strError:String = jsonDict.object(forKey: "msg") as? String  {
@@ -1417,9 +1417,9 @@ public class APIClient : NSObject {
             return
         }
 
-        var parameters = ["api_key": AppPersistentData.sharedInstance.apiKey]
+        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey]
 
-        manager?.post("get_settings", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
+        _ = manager?.post("get_settings", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
             do {
                 let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
                 if (jsonDict.count == 0 || (jsonDict.count > 0 && jsonDict.object(forKey: "status") != nil && !(jsonDict.object(forKey: "status")! as AnyObject).isEqual("ok"))) {
@@ -1439,16 +1439,16 @@ public class APIClient : NSObject {
                 else {
                     if let settings:NSDictionary = jsonDict.object(forKey: "settings") as? NSDictionary {
                         
-                        if var value:String = settings.object(forKey: "play_beep") as? String {
+                        if let value:String = settings.object(forKey: "play_beep") as? String {
                             AppPersistentData.sharedInstance.playBeep = value == "no" ? false:true
                         }
-                        if var value:String = settings.object(forKey: "files_permission") as? String {
+                        if let value:String = settings.object(forKey: "files_permission") as? String {
                             AppPersistentData.sharedInstance.filePermission = value
                         }
-                        if var value:Int = jsonDict.object(forKey: "credits") as? Int {
+                        if let value:Int = jsonDict.object(forKey: "credits") as? Int {
                             AppPersistentData.sharedInstance.credits = value
                         }
-                        if var value:String = settings.object(forKey: "app") as? String {
+                        if let value:String = settings.object(forKey: "app") as? String {
                             AppPersistentData.sharedInstance.app = value
                         }
                         AppPersistentData.sharedInstance.saveData()
@@ -1476,11 +1476,11 @@ public class APIClient : NSObject {
             return
         }
 
-        var parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "amount" : credits, "reciept" : receipt] as [String : Any]
+        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "amount" : credits, "reciept" : receipt] as [String : Any]
         
-        manager?.post("buy_credits", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
+        _ = manager?.post("buy_credits", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
             do {
-                var jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
+                let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
                 if (jsonDict.count == 0 || (jsonDict.count > 0 && jsonDict.object(forKey: "status") != nil && !(jsonDict.object(forKey: "status")! as AnyObject).isEqual("ok"))) {
                     if completionHandler != nil {
                         if let strError:String = jsonDict.object(forKey: "msg") as? String  {
@@ -1520,11 +1520,11 @@ public class APIClient : NSObject {
             return
         }
 
-        var parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "device_token" : token]
+        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "device_token" : token]
         
-        manager?.post("update_device_token", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
+        _ = manager?.post("update_device_token", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
             do {
-                var jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
+                let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
                 if (jsonDict.count == 0 || (jsonDict.count > 0 && jsonDict.object(forKey: "status") != nil && !(jsonDict.object(forKey: "status")! as AnyObject).isEqual("ok"))) {
                     if completionHandler != nil {
                         if let strError:String = jsonDict.object(forKey: "msg") as? String  {
@@ -1564,11 +1564,11 @@ public class APIClient : NSObject {
             return
         }
 
-        var parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "device" : token, "title" : "Title", "body" : "body"];
+        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "device" : token, "title" : "Title", "body" : "body"];
         
-        manager?.post("notify_user", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
+        _ = manager?.post("notify_user", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
             do {
-                var jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
+                let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
                 if (jsonDict.count == 0 || (jsonDict.count > 0 && jsonDict.object(forKey: "status") != nil && !(jsonDict.object(forKey: "status")! as AnyObject).isEqual("ok"))) {
                     if completionHandler != nil {
                         if let strError:String = jsonDict.object(forKey: "msg") as? String  {
@@ -1608,11 +1608,11 @@ public class APIClient : NSObject {
             return
         }
 
-        var parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "title" : "Title", "body" : "body"];
+        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "title" : "Title", "body" : "body"];
         
-        manager?.post("add_msg", parameters: parameters, success:{ (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
+        _ = manager?.post("add_msg", parameters: parameters, success:{ (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
             do {
-                var jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
+                let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
                 if (jsonDict.count == 0 || (jsonDict.count > 0 && jsonDict.object(forKey: "status") != nil && !(jsonDict.object(forKey: "status")! as AnyObject).isEqual("ok"))) {
                     if completionHandler != nil {
                         if let strError:String = jsonDict.object(forKey: "msg") as? String  {
@@ -1653,11 +1653,11 @@ public class APIClient : NSObject {
             return
         }
 
-        var parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "language": language]
+        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "language": language]
         
-        manager?.post("get_translations", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
+        _ = manager?.post("get_translations", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
             do {
-                var jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
+                let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
                 if (jsonDict.count == 0 || (jsonDict.count > 0 && jsonDict.object(forKey: "status") != nil && !(jsonDict.object(forKey: "status")! as AnyObject).isEqual("ok"))) {
                     if completionHandler != nil {
                         if let strError:String = jsonDict.object(forKey: "msg") as? String  {
@@ -1697,12 +1697,11 @@ public class APIClient : NSObject {
             return
         }
 
-        var parameters = ["api_key": AppPersistentData.sharedInstance.apiKey]
+        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey]
         
-        manager?.post("get_languages", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
-            var error: NSError?
+        _ = manager?.post("get_languages", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
             do {
-                var jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options: JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
+                let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options: JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
                 
                 if (jsonDict.count == 0 || (jsonDict.count > 0 && jsonDict.object(forKey: "status") != nil && !(jsonDict.object(forKey: "status")! as AnyObject).isEqual("ok"))) {
                     if completionHandler != nil {
@@ -1719,15 +1718,15 @@ public class APIClient : NSObject {
                     }
                 }
                 else {
-                    if var calls:Array<NSDictionary> = jsonDict.object(forKey: "languages") as? Array<NSDictionary> {
+                    if let calls:Array<NSDictionary> = jsonDict.object(forKey: "languages") as? Array<NSDictionary> {
                         TranslationManager.sharedInstance.languages = Array()
                         for call in calls {
-                            var item:Language = Language()
+                            let item:Language = Language()
                             
-                            if var value:String = call.object(forKey: "name") as? String {
+                            if let value:String = call.object(forKey: "name") as? String {
                                 item.name = value
                             }
-                            if var value:String = call.object(forKey: "code") as? String {
+                            if let value:String = call.object(forKey: "code") as? String {
                                 item.code = value
                             }
                             TranslationManager.sharedInstance.languages.append(item)
@@ -1760,8 +1759,8 @@ public class APIClient : NSObject {
             return
         }
 
-        var defaults = UserDefaults.standard
-        var lastTime = defaults.object(forKey: "messageTime")
+        let defaults = UserDefaults.standard
+        let lastTime = defaults.object(forKey: "messageTime")
         if lastTime != nil{
             if ((lastTime as! NSNumber).intValue - (Date().timeIntervalSince1970 as NSNumber).intValue) < 24 * 60 * 60{
                 completionHandler!( true, nil)
@@ -1769,11 +1768,11 @@ public class APIClient : NSObject {
             }
         }
         
-        var parameters = ["api_key": AppPersistentData.sharedInstance.apiKey]
+        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey]
         
-        manager?.post("get_msgs", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
+        _ = manager?.post("get_msgs", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
             do {
-                var jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
+                let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
                 if (jsonDict.count == 0 || (jsonDict.count > 0 && jsonDict.object(forKey: "status") != nil && !(jsonDict.object(forKey: "status")! as AnyObject).isEqual("ok"))) {
                     if completionHandler != nil {
                         if let strError:String = jsonDict.object(forKey: "msg") as? String  {
@@ -1789,23 +1788,23 @@ public class APIClient : NSObject {
                     }
                 }
                 else {
-                    if var msgs:Array<NSDictionary> = jsonDict.object(forKey: "msgs") as? Array<NSDictionary> {
+                    if let msgs:Array<NSDictionary> = jsonDict.object(forKey: "msgs") as? Array<NSDictionary> {
                         
                         defaults.set(NSNumber(value: NSDate().timeIntervalSince1970), forKey: "messageTime")
 
                         for msg in msgs {
-                            var item:ServerMessage = ServerMessage()
+                            let item:ServerMessage = ServerMessage()
                             
-                            if var value:String = msg.object(forKey: "id") as? String {
+                            if let value:String = msg.object(forKey: "id") as? String {
                                 item.id = value
                             }
-                            if var value:String = msg.object(forKey: "title") as? String {
+                            if let value:String = msg.object(forKey: "title") as? String {
                                 item.title = value
                             }
-                            if var value:String = msg.object(forKey: "body") as? String {
+                            if let value:String = msg.object(forKey: "body") as? String {
                                 item.body = value
                             }
-                            if var value:String = msg.object(forKey: "time") as? String {
+                            if let value:String = msg.object(forKey: "time") as? String {
                                 item.time = value
                             }
                             
@@ -1838,7 +1837,7 @@ public class APIClient : NSObject {
             catch {
                 
             }
-            } as! (AFHTTPRequestOperation?, Any?) -> Void) { (operation:AFHTTPRequestOperation!, error:Error!) -> Void in
+            } as (AFHTTPRequestOperation?, Any?) -> Void) { (operation:AFHTTPRequestOperation!, error:Error!) -> Void in
                 if completionHandler != nil {
                     completionHandler!(false, operation.responseString as AnyObject)
                 }
@@ -1851,7 +1850,7 @@ public class APIClient : NSObject {
             return
         }
         
-        var parameters = ["api_key": AppPersistentData.sharedInstance.apiKey,"name":(recordItem.text)+"_metadata", "parent_id":(recordItem.id)]
+        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey,"name":(recordItem.text)+"_metadata", "parent_id":(recordItem.id)]
         
         var path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] 
         path += recordItem.localFile
@@ -1862,7 +1861,7 @@ public class APIClient : NSObject {
             return
         }
         
-        manager?.post("create_meta_file", parameters: parameters, constructingBodyWith: { (data) -> Void in
+        _ = manager?.post("create_meta_file", parameters: parameters, constructingBodyWith: { (data) -> Void in
             do {
                 try data?.appendPart(withFileURL: NSURL(fileURLWithPath: path) as URL!, name: "file")
             }
@@ -1872,7 +1871,7 @@ public class APIClient : NSObject {
             },
             success: { (operation, data) -> Void in
                 do {
-                    var jsonDict = try JSONSerialization.jsonObject(with: (operation?.responseData)!, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
+                    let jsonDict = try JSONSerialization.jsonObject(with: (operation?.responseData)!, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
                     if (jsonDict.count == 0 || (jsonDict.count > 0 && jsonDict.object(forKey: "status") != nil && !(jsonDict.object(forKey: "status")! as AnyObject).isEqual("ok"))) {
                         if completionHandler != nil {
                             if let strError:String = jsonDict.object(forKey: "msg") as? String  {
@@ -1909,10 +1908,10 @@ public class APIClient : NSObject {
                     var tagsCompleted = 0
                     for tag in AudioFileTagManager.sharedInstance.audioFileTags{
                         if (tag as! AudioTag).type == TagType.photo{
-                            var imgPath = AudioFileTagManager.sharedInstance.getPhotoFilePath(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as! String + recordItem.localFile, time: (tag as! AudioTag).timeStamp)
+                            let imgPath = AudioFileTagManager.sharedInstance.getPhotoFilePath(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + recordItem.localFile, time: (tag as! AudioTag).timeStamp)
                             
-                            var imgParameters = ["api_key": AppPersistentData.sharedInstance.apiKey,"name":imgPath.components(separatedBy:"/").last, "parent_id":(recordItem.id)]
-                            self.manager?.post("create_meta_file", parameters: imgParameters, constructingBodyWith: { (data) -> Void in
+                            let imgParameters = ["api_key": AppPersistentData.sharedInstance.apiKey,"name":imgPath.components(separatedBy:"/").last, "parent_id":(recordItem.id)]
+                            _ = self.manager?.post("create_meta_file", parameters: imgParameters, constructingBodyWith: { (data) -> Void in
                                 do {
                                     try data?.appendPart(withFileURL: NSURL(fileURLWithPath: imgPath) as URL!, name: "file")
                                 }
@@ -1959,11 +1958,11 @@ public class APIClient : NSObject {
             return
         }
         
-        var parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "parent_id":(recordItem.id)]
+        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "parent_id":(recordItem.id)]
         
-        manager?.post("get_meta_files", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
+        _ = manager?.post("get_meta_files", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
             do {
-                var jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
+                let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
                 if (jsonDict.count == 0 || (jsonDict.count > 0 && jsonDict.object(forKey: "status") != nil && !(jsonDict.object(forKey: "status")! as AnyObject).isEqual("ok"))) {
                     if completionHandler != nil {
                         if let strError:String = jsonDict.object(forKey: "msg") as? String  {

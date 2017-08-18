@@ -1,3 +1,4 @@
+
 //
 //  ActionsSyncManager.swift
 //  Recorder
@@ -466,7 +467,7 @@ public class ActionsSyncManager : NSObject {
         case ActionType.createFolder:
             let recordFolder = RecordingsManager.sharedInstance.getFolderByLinkedAction(action!.id)
             if recordFolder != nil {
-                APIClient.sharedInstance.createFolder(recordFolder!.title! as NSString, localID:recordFolder!.id as! NSString, completionHandler: { (success, data) -> Void in
+                APIClient.sharedInstance.createFolder(recordFolder!.title! as NSString, localID:recordFolder!.id! as NSString, completionHandler: { (success, data) -> Void in
                     if success {
 //                        var index = 0
 //                        for recItem in RecordingsManager.sharedInstance.recordFolders {
@@ -575,9 +576,6 @@ public class ActionsSyncManager : NSObject {
                 self.processActions(newActions)
                 
             })
-        default:
-            
-            break
         }
     }
     

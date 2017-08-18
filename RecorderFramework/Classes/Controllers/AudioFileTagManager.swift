@@ -68,7 +68,6 @@ public class AudioFileTagManager: NSObject {
             let file = NSDictionary();
             file.write(toFile: audioMetadataFilePath, atomically: true);
             
-            var error:NSError
             let outputStream = OutputStream(toFileAtPath: audioMetadataFilePath, append: false)
             outputStream?.open()
             
@@ -95,7 +94,7 @@ public class AudioFileTagManager: NSObject {
                     let newTag = AudioTag()
                     newTag.timeStamp = (tag as AnyObject).object(forKey: "timeStamp") as! TimeInterval
                     newTag.duration = (tag as AnyObject).object(forKey: "duration") as! TimeInterval
-                    newTag.arg = (tag as AnyObject).object(forKey: "arg") as! AnyObject
+                    newTag.arg = (tag as AnyObject).object(forKey:"arg") as AnyObject
                     if((tag as AnyObject).object(forKey: "type") as! String == "Label")
                     {
                         newTag.type = TagType.label
@@ -155,9 +154,6 @@ public class AudioFileTagManager: NSObject {
                 case TagType.photo:
                 newDict.setObject("Photo", forKey: "type" as NSCopying)
                 break
-                
-                default:
-                break
             }
             tags.add(newDict);
         }
@@ -169,7 +165,6 @@ public class AudioFileTagManager: NSObject {
             myDict.setObject(self.waveRenderVals, forKey: "waveRenderVals" as NSCopying)
         }
         
-        var error:NSError
         let outputStream = OutputStream(toFileAtPath: audioMetadataFilePath, append: false)
         outputStream?.open()
         
