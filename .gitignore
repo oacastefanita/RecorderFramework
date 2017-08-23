@@ -62,3 +62,28 @@ Example/Pods/Target Support Files/RecorderFramework/RecorderFramework-umbrella.h
 Example/Pods/Target Support Files/RecorderFramework/RecorderFramework.modulemap
 Example/Pods/Target Support Files/RecorderFramework/RecorderFramework.xcconfig
 Example/RecorderFramework.xcworkspace/contents.xcworkspacedata
+Example/Pods/Alamofire/LICENSE
+Example/Pods/Alamofire/README.md
+Example/Pods/Alamofire/Source/AFError.swift
+Example/Pods/Alamofire/Source/Alamofire.swift
+Example/Pods/Alamofire/Source/DispatchQueue+Alamofire.swift
+Example/Pods/Alamofire/Source/MultipartFormData.swift
+Example/Pods/Alamofire/Source/NetworkReachabilityManager.swift
+Example/Pods/Alamofire/Source/Notifications.swift
+Example/Pods/Alamofire/Source/ParameterEncoding.swift
+Example/Pods/Alamofire/Source/Request.swift
+Example/Pods/Alamofire/Source/Response.swift
+Example/Pods/Alamofire/Source/ResponseSerialization.swift
+Example/Pods/Alamofire/Source/Result.swift
+Example/Pods/Alamofire/Source/ServerTrustPolicy.swift
+Example/Pods/Alamofire/Source/SessionDelegate.swift
+Example/Pods/Alamofire/Source/SessionManager.swift
+Example/Pods/Alamofire/Source/TaskDelegate.swift
+Example/Pods/Alamofire/Source/Timeline.swift
+Example/Pods/Alamofire/Source/Validation.swift
+Example/Pods/Target Support Files/Alamofire/Alamofire-dummy.m
+Example/Pods/Target Support Files/Alamofire/Alamofire-prefix.pch
+Example/Pods/Target Support Files/Alamofire/Alamofire-umbrella.h
+Example/Pods/Target Support Files/Alamofire/Alamofire.modulemap
+Example/Pods/Target Support Files/Alamofire/Alamofire.xcconfig
+Example/Pods/Target Support Files/Alamofire/Info.plist
