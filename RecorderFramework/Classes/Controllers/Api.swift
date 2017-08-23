@@ -6,6 +6,8 @@
 //  Copyright © 2017 Codapper Software. All rights reserved.
 //
 
+import Alamofire
+
 open class Api: NSObject {
     
     var baseURL:String

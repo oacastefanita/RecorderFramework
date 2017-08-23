@@ -72,7 +72,7 @@ public class APIClient : NSObject {
                         AppPersistentData.sharedInstance.verificationCode = value
                     }
                     
-                    AppPersistentData.sharedInstance.savedData()
+                    AppPersistentData.sharedInstance.saveData()
                     
                     if completionHandler != nil {
                         completionHandler!(true, nil)
