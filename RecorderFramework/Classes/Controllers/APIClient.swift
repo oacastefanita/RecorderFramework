@@ -44,13 +44,47 @@ public class APIClient : NSObject {
 //        manager?.securityPolicy = securityPolicy;
     }
     
-    public func register(_ number:NSString, completionHandler:((Bool, AnyObject?) -> Void)?)
+    public func register(_ number:NSString, completionHandler:((Bool, Any?) -> Void)?)
     {
         let parameters = ["phone": number, "token": "55942ee3894f51000530894"]
         api.doRequest("register_phone", method: .post, parameters: parameters) { (success, data) in
             if success {
-                
+                if data!["status"] != nil && (data!["status"] as? String) != "ok" {
+                    if let strError = data!["msg"] as? String {
+                        if completionHandler != nil {
+                            completionHandler!(false, strError.localized)
+                        }
+                    }
+                    else {
+                        if completionHandler != nil {
+                            completionHandler!(false, nil)
+                        }
+                    }
+                }
+                else {
+                    if let value = data!["phone"] as? String {
+                        AppPersistentData.sharedInstance.phone = value
+                    }
+                    if let value = data!["api_key"] as? String {
+                        AppPersistentData.sharedInstance.apiKey = value
+                    }
+                    if let value = data!["code"] as? String {
+                        AppPersistentData.sharedInstance.verificationCode = value
+                    }
+                    
+                    AppPersistentData.sharedInstance.savedData()
+                    
+                    if completionHandler != nil {
+                        completionHandler!(true, nil)
+                    }
+                }
             }
+            else {
+                if completionHandler != nil {
+                    completionHandler!(success, data!["error"] as? String)
+                }
+            }
+            
         }
     }
 //        let parameters = ["phone": number, "token": "55942ee3894f51000530894"]
