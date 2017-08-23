@@ -21,6 +21,7 @@ public enum ActionType : Int {
     case uploadRecording
     case updateFileInfo
     case buyCredits
+    case custom
 }
 
 public class Action : NSObject, NSCoding {
@@ -77,6 +78,11 @@ public class Action : NSObject, NSCoding {
 
 }
 
+public protocol CustomActionDelegate {
+    func handle(action:Action, completionHandler:((Bool, AnyObject?) -> Void)?)
+}
+
+
 public class ActionsSyncManager : NSObject {
     public static let sharedInstance = ActionsSyncManager()
 
@@ -84,6 +90,8 @@ public class ActionsSyncManager : NSObject {
     public var syncInProgress = false
     public var actionsFailed:Int = 0
     public var currentController:UIViewController!
+    
+    var delegate:CustomActionDelegate!
     
     override public init() {
         super.init()
@@ -576,6 +584,21 @@ public class ActionsSyncManager : NSObject {
                 self.processActions(newActions)
                 
             })
+            break
+        case ActionType.custom:
+            if delegate != nil {
+                delegate.handle(action: action!, completionHandler: { (success, data) -> Void in
+                    if success {
+                        self.removeAction(action!.id)
+                        self.saveActions()
+                    }
+                    else {
+                        self.actionsFailed += 1
+                    }
+                    self.processActions(newActions)
+                })
+            }
+            break
         }
     }
     
