@@ -307,6 +307,18 @@ public class ActionsSyncManager : NSObject {
         self.startProcessingActions()
     }
     
+    public func customAction(arg1:String, arg2:String, arg3:NSMutableDictionary) {
+        let action = Action()
+        action.arg1 = arg1
+        action.arg2 = arg2
+        action.arg3 = arg3
+        action.timeStamp = Date().timeIntervalSince1970
+        action.type = ActionType.custom
+        actions.append(action)
+        self.saveActions()
+        self.startProcessingActions()
+    }
+    
     // MARK: processing
     
     public func startProcessingActions() {

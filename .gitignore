@@ -31,3 +31,34 @@ Carthage
 # `pod install` in .travis.yml
 #
 # Pods/
+Example/Podfile.lock
+Example/Pods/Manifest.lock
+Example/Pods/Local Podspecs/RecorderFramework.podspec.json
+Example/Pods/Pods.xcodeproj/project.pbxproj
+Example/Pods/Target Support Files/Pods-RecorderFramework_Example/Info.plist
+Example/Pods/Target Support Files/Pods-RecorderFramework_Example/Pods-RecorderFramework_Example-acknowledgements.markdown
+Example/Pods/Target Support Files/Pods-RecorderFramework_Example/Pods-RecorderFramework_Example-acknowledgements.plist
+Example/Pods/Target Support Files/Pods-RecorderFramework_Example/Pods-RecorderFramework_Example-dummy.m
+Example/Pods/Target Support Files/Pods-RecorderFramework_Example/Pods-RecorderFramework_Example-frameworks.sh
+Example/Pods/Target Support Files/Pods-RecorderFramework_Example/Pods-RecorderFramework_Example-resources.sh
+Example/Pods/Target Support Files/Pods-RecorderFramework_Example/Pods-RecorderFramework_Example-umbrella.h
+Example/Pods/Target Support Files/Pods-RecorderFramework_Example/Pods-RecorderFramework_Example.debug.xcconfig
+Example/Pods/Target Support Files/Pods-RecorderFramework_Example/Pods-RecorderFramework_Example.modulemap
+Example/Pods/Target Support Files/Pods-RecorderFramework_Example/Pods-RecorderFramework_Example.release.xcconfig
+Example/Pods/Target Support Files/Pods-RecorderFramework_Tests/Info.plist
+Example/Pods/Target Support Files/Pods-RecorderFramework_Tests/Pods-RecorderFramework_Tests-acknowledgements.markdown
+Example/Pods/Target Support Files/Pods-RecorderFramework_Tests/Pods-RecorderFramework_Tests-acknowledgements.plist
+Example/Pods/Target Support Files/Pods-RecorderFramework_Tests/Pods-RecorderFramework_Tests-dummy.m
+Example/Pods/Target Support Files/Pods-RecorderFramework_Tests/Pods-RecorderFramework_Tests-frameworks.sh
+Example/Pods/Target Support Files/Pods-RecorderFramework_Tests/Pods-RecorderFramework_Tests-resources.sh
+Example/Pods/Target Support Files/Pods-RecorderFramework_Tests/Pods-RecorderFramework_Tests-umbrella.h
+Example/Pods/Target Support Files/Pods-RecorderFramework_Tests/Pods-RecorderFramework_Tests.debug.xcconfig
+Example/Pods/Target Support Files/Pods-RecorderFramework_Tests/Pods-RecorderFramework_Tests.modulemap
+Example/Pods/Target Support Files/Pods-RecorderFramework_Tests/Pods-RecorderFramework_Tests.release.xcconfig
+Example/Pods/Target Support Files/RecorderFramework/Info.plist
+Example/Pods/Target Support Files/RecorderFramework/RecorderFramework-dummy.m
+Example/Pods/Target Support Files/RecorderFramework/RecorderFramework-prefix.pch
+Example/Pods/Target Support Files/RecorderFramework/RecorderFramework-umbrella.h
+Example/Pods/Target Support Files/RecorderFramework/RecorderFramework.modulemap
+Example/Pods/Target Support Files/RecorderFramework/RecorderFramework.xcconfig
+Example/RecorderFramework.xcworkspace/contents.xcworkspacedata
