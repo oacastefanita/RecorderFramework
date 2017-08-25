@@ -24,7 +24,7 @@ public class APIClient : NSObject {
     
     public static let sharedInstance = APIClient()
     
-    var api = Api(baseURL: "https://app2.virtualbrix.net/rapi")
+    var api = Api(baseURL: "https://app2.virtualbrix.net/rapi/")
     
     override public init() {
         super.init()
