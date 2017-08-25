@@ -29,6 +29,20 @@ public class APIClient : NSObject {
     override public init() {
         super.init()
         //self.initalizeManager()
+        
+        api.completionHandlerLog = { (req, resp) in
+//            var logLevel = ""
+//            if (UserDefaults.standard.string(forKey: "logLevelPreference") != nil){
+//                logLevel = UserDefaults.standard.string(forKey: "logLevelPreference")!
+//            }
+//            if logLevel == "5"{
+//                self.mixpanel.track("ServerLog", properties:["Request": req, "Response": resp])
+//            }
+//            else {
+                print(req)
+                print(resp)
+//            }
+        }
     }
     
     public func initalizeManager()
