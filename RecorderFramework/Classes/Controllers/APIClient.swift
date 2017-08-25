@@ -84,7 +84,6 @@ public class APIClient : NSObject {
                     completionHandler!(success, data!["error"] as? String)
                 }
             }
-            
         }
     }
 //        let parameters = ["phone": number, "token": "55942ee3894f51000530894"]
@@ -129,7 +128,65 @@ public class APIClient : NSObject {
 //            }
 //        }
 //    }
-//    
+
+    
+    public func sendVerificationCode(_ code:NSString, completionHandler:((Bool, Any?) -> Void)?) {
+        let tn = CTTelephonyNetworkInfo();
+        let carrier = tn.subscriberCellularProvider
+
+#if CRFREE
+        let appCode = "free"
+#else
+        let appCode = "pro"
+#endif
+
+        let mcc:String! = (carrier != nil && !carrier!.mobileCountryCode!.isEmpty) ? carrier!.mobileCountryCode : "310"
+        let deviceToken =  AppPersistentData.sharedInstance.notificationToken == nil ? "Simulator" : AppPersistentData.sharedInstance.notificationToken
+        let parameters = ["phone": AppPersistentData.sharedInstance.phone, "code": code, "mcc": mcc, "token": "55942ee3894f51000530894", "app": appCode, "device_token":deviceToken!] as [String : Any]
+//        var parameters = [("phone", AppPersistentData.sharedInstance.phone), ("code": code), ("mcc": (carrier != nil && !carrier!.mobileCountryCode!.isEmpty) ? carrier!.mobileCountryCode : "310"), ("token": "55942ee3894f51000530894"), ("app": appCode), ("device_token": AppPersistentData.sharedInstance.notificationToken == nil ? "Simulator" : AppPersistentData.sharedInstance.notificationToken)] //"226" "310" carrier.mobileCountryCode
+
+        api.doRequest("verify_phone", method: .post, parameters: parameters) { (success, data) in
+            if success {
+                if data!["status"] != nil && (data!["status"] as? String) != "ok" {
+                    if let strError = data!["msg"] as? String {
+                        if completionHandler != nil {
+                            completionHandler!(false, strError.localized)
+                        }
+                    }
+                    else {
+                        if completionHandler != nil {
+                            completionHandler!(false, nil)
+                        }
+                    }
+                }
+                else {
+                    if let value:String = data!["api_key"] as? String  {
+                        AppPersistentData.sharedInstance.apiKey = value
+                        AppPersistentData.sharedInstance.invalidAPIKey = false
+                        AppPersistentData.sharedInstance.saveData()
+
+                        if completionHandler != nil {
+                            completionHandler!( true, nil)
+                        }
+                    } else{
+                        if completionHandler != nil {
+                            if let strError:String = data!["msg"] as? String  {
+                                completionHandler!(false, strError.localized as AnyObject)
+                            }
+                            else {
+                                completionHandler!(false, nil)
+                            }
+                        }
+                    }
+                }
+            }
+            else {
+                if completionHandler != nil {
+                    completionHandler!(success, data!["error"] as? String)
+                }
+            }
+        }
+    }
 //    public func sendVerificationCode(_ code:NSString, completionHandler:((Bool, AnyObject?) -> Void)?)
 //    {
 //        let tn = CTTelephonyNetworkInfo();
@@ -192,8 +249,134 @@ public class APIClient : NSObject {
 //        }
 //    }
 //    
-//    public func getRecordings(_ folderId:String!, completionHandler:((Bool, AnyObject?) -> Void)?)
-//    {
+    public func getRecordings(_ folderId:String!, completionHandler:((Bool, Any?) -> Void)?) {
+        if AppPersistentData.sharedInstance.invalidAPIKey {
+            completionHandler!(false, "Invalid API Key" as AnyObject)
+            return
+        }
+
+        var parameters:[String : Any] = ["api_key": AppPersistentData.sharedInstance.apiKey]
+        if folderId != nil {
+            parameters.updateValue(folderId, forKey: "folder_id")
+        }
+        
+        api.doRequest("get_files", method: .post, parameters: parameters) { (success, data) in
+            if success {
+                if data!["status"] != nil && (data!["status"] as? String) != "ok" {
+                    if let strError = data!["msg"] as? String {
+                        if completionHandler != nil {
+                            completionHandler!(false, strError.localized)
+                        }
+                    }
+                    else {
+                        if completionHandler != nil {
+                            completionHandler!(false, nil)
+                        }
+                    }
+                }
+                else {
+                    if let calls:Array<NSDictionary> = data!["files"] as? Array<NSDictionary> {
+                        var allIds:Array<String> = Array<String>()
+                        var recordFolder = RecordingsManager.sharedInstance.recordFolders[0]
+                        for recFolder in RecordingsManager.sharedInstance.recordFolders {
+                            if recFolder.id == folderId {
+                                recordFolder = recFolder
+                                break
+                            }
+                        }
+                        for item in recordFolder.recordedItems {
+                            let action:Action! = item.recordingNextAction(nil)
+                            if action != nil {
+                                allIds.append(item.id)
+                            }
+                        }
+    
+                        for call in calls {
+                            let item:RecordItem = RecordItem()
+                            if folderId == "trash"{
+                                item.fromTrash = true
+                            }
+    
+                            if let value:String = call.object(forKey: "name") as? String {
+                                item.text = value
+                            }
+                            if let value:String = call.object(forKey: "id") as? String {
+                                item.id = value
+                            }
+                            if let value:String = call.object(forKey: "phone") as? String {
+                                item.phone = value
+                            }
+                            if let value:String = call.object(forKey: "access_number") as? String {
+                                item.accessNumber = value
+                            }
+                            if let value:String = call.object(forKey: "url") as? String {
+                                item.url = value
+                            }
+                            if let value:String = call.object(forKey: "share_url") as? String {
+                                item.shareUrl = value
+                            }
+                            if let value:String = call.object(forKey: "credits") as? String {
+                                item.credits = value
+                            }
+                            if let value:String = call.object(forKey: "duration") as? String {
+                                item.duration = value
+                            }
+                            if let value:String = call.object(forKey: "time") as? String {
+                                item.time = value
+                                item.lastAccessedTime = value
+                            }
+                            if let value:String = call.object(forKey: "f_name") as? String {
+                                item.firstName = value
+                            }
+                            if let value:String = call.object(forKey: "l_name") as? String {
+                                item.lastName = value
+                            }
+                            if let value:String = call.object(forKey: "phone") as? String {
+                                item.phoneNumber = value
+                            }
+                            if let value:String = call.object(forKey: "email") as? String {
+                                item.email = value
+                            }
+                            if let value:String = call.object(forKey: "notes") as? String {
+                                item.notes = value
+                            }
+    
+                            allIds.append(item.id)
+                            
+                            _ = RecordingsManager.sharedInstance.syncRecordingItem(item, folder:recordFolder)
+                            
+                            var on = UserDefaults.standard.object(forKey: "3GSync") as? Bool
+                            if(on == nil){
+                                on = true
+                            }
+    //                        
+    //                        if AFNetworkReachabilityManager.sharedManager().reachableViaWiFi || on! {
+    //                            if synchedItem.url != nil && !synchedItem.url.isEmpty && !synchedItem.fileDownloaded {
+    //                                APIClient.sharedInstance.downloadAudioFile(synchedItem, toFolder:recordFolder.title, completionHandler:{ (Bool success) -> Void in
+    //                                    AppPersistentData.sharedInstance.saveData()
+    //                                });
+    //                            }
+    //                        }
+                        }
+                        
+                        recordFolder.keepOnlyItemsWithIds(allIds);
+                        
+                        AppPersistentData.sharedInstance.saveData()
+                    }
+                    
+                    if completionHandler != nil {
+                        completionHandler!( true, nil)
+                    }
+                }
+            }
+            else {
+                if completionHandler != nil {
+                    completionHandler!(success, data!["error"] as? String)
+                }
+            }
+        }
+
+    }
 //        if AppPersistentData.sharedInstance.invalidAPIKey {
 //            completionHandler!(false, "Invalid API Key" as AnyObject)
 //            return
@@ -333,21 +516,119 @@ public class APIClient : NSObject {
 //        }
 //    }
 //    
-//    public func getPhoneNumbers(_ completionHandler:((Bool, AnyObject?) -> Void)?) {
-//        if AppPersistentData.sharedInstance.invalidAPIKey {
-//            completionHandler!(false, "Invalid API Key" as AnyObject)
-//            return
-//        }
-//
-//        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey]
-//        var defaultPhone = " "
-//        for phoneNumber in AppPersistentData.sharedInstance.phoneNumbers{
-//            if phoneNumber.isDefault{
-//                defaultPhone = phoneNumber.phoneNumber
-//                break
-//            }
-//        }
-//        AppPersistentData.sharedInstance.phoneNumbers.removeAll(keepingCapacity: false)
+    public func getPhoneNumbers(_ completionHandler:((Bool, Any?) -> Void)?) {
+        if AppPersistentData.sharedInstance.invalidAPIKey {
+            completionHandler!(false, "Invalid API Key")
+            return
+        }
+
+        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey]
+        var defaultPhone = " "
+        for phoneNumber in AppPersistentData.sharedInstance.phoneNumbers{
+            if phoneNumber.isDefault{
+                defaultPhone = phoneNumber.phoneNumber
+                break
+            }
+        }
+        AppPersistentData.sharedInstance.phoneNumbers.removeAll(keepingCapacity: false)
+        
+        api.doRequest("get_phones", method: .post, parameters: parameters) { (success, data) in
+            if success {
+                if data!["status"] != nil && (data!["status"] as? String) != "ok" {
+                    if let strError = data!["msg"] as? String {
+                        if completionHandler != nil {
+                            completionHandler!(false, strError.localized)
+                        }
+                    }
+                    else {
+                        if completionHandler != nil {
+                            completionHandler!(false, nil)
+                        }
+                    }
+                }
+                else {
+                    if let numbers:Array<NSDictionary> = data!["root"] as? Array<NSDictionary> {
+    
+                        for number in numbers {
+                            let phoneNumber = PhoneNumber()
+                            if let value:String = number.object(forKey: "phone_number") as? String {
+                                phoneNumber.phoneNumber = value
+                            }
+                            if let value:String = number.object(forKey: "number") as? String {
+                                phoneNumber.number = value
+                            }
+                            if let value:String = number.object(forKey: "prefix") as? String {
+                                phoneNumber.prefix = value
+                            }
+                            if let value:String = number.object(forKey: "friendly_name") as? String {
+                                phoneNumber.friendlyNumber = value
+                            }
+                            if let value:String = number.object(forKey: "flag") as? String {
+                                phoneNumber.flag = value
+                            }
+                            if let value:String = number.object(forKey: "country") as? String {
+                                phoneNumber.country = value
+                            }
+    
+                            AppPersistentData.sharedInstance.phoneNumbers.append(phoneNumber)
+                        }
+                    }
+                    if AppPersistentData.sharedInstance.phoneNumbers.count > 0{
+                        var found = false
+                        for phoneNumber in AppPersistentData.sharedInstance.phoneNumbers{
+                            if phoneNumber.phoneNumber == defaultPhone{
+                                phoneNumber.isDefault = true
+                                found = true
+                                break
+                            }
+                        }
+    
+                        if !found{
+                            AppPersistentData.sharedInstance.phoneNumbers.first!.isDefault = true
+                        }
+                    }
+                    var downloadsCompleted = 0
+                    for phoneNumber in  AppPersistentData.sharedInstance.phoneNumbers {
+                        var path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+                        path = path.appendingFormat("/" + "flags" + "/");
+                        do {
+                            if !FileManager.default.fileExists(atPath: path) {
+                                try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
+                            }
+                        }
+                        catch {
+                            
+                        }
+                        path = path.appendingFormat(phoneNumber.flag.components(separatedBy: "/").last!)
+                        if !FileManager.default.fileExists(atPath: path) {
+                            APIClient.sharedInstance.downloadFile(phoneNumber.flag!, localPath:path, completionHandler: { (success) -> Void in
+                                downloadsCompleted += 1
+                                if(downloadsCompleted == AppPersistentData.sharedInstance.phoneNumbers.count){
+                                    if completionHandler != nil {
+                                        completionHandler!( true, nil)
+                                    }
+                                }
+                            })
+                        }
+                        else{
+                            downloadsCompleted += 1
+                            if(downloadsCompleted == AppPersistentData.sharedInstance.phoneNumbers.count){
+                                if completionHandler != nil {
+                                    completionHandler!( true, nil)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            else {
+                if completionHandler != nil {
+                    completionHandler!(success, data!["error"] as? String)
+                }
+            }
+        }
+    }
+    
 //        _ = manager?.post("get_phones", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
 //            do {
 //            if let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options: JSONSerialization.ReadingOptions.mutableLeaves) as? NSDictionary {
@@ -448,20 +729,121 @@ public class APIClient : NSObject {
 //        }
 //    }
 //
-//    public func getFolders(_ completionHandler:((Bool, AnyObject?) -> Void)?) {
-//        if AppPersistentData.sharedInstance.invalidAPIKey {
-//            completionHandler!(false, "Invalid API Key" as AnyObject)
-//            return
-//        }
-//        
-//        if AppPersistentData.sharedInstance.apiKey == nil {
-//            if completionHandler != nil {
-//                completionHandler!(false, nil)
-//            }
-//            
-//            return
-//        }
-//        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey]
+    public func getFolders(_ completionHandler:((Bool, Any?) -> Void)?) {
+        if AppPersistentData.sharedInstance.invalidAPIKey {
+            completionHandler!(false, "Invalid API Key" as AnyObject)
+            return
+        }
+        
+        if AppPersistentData.sharedInstance.apiKey == nil {
+            if completionHandler != nil {
+                completionHandler!(false, nil)
+            }
+            
+            return
+        }
+        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey]
+        
+        api.doRequest("get_folders", method: .post, parameters: parameters) { (success, data) in
+            var foundDefault = false
+            var foundAllFiles = false
+            var foundTrash = false
+            for recordFolder in RecordingsManager.sharedInstance.recordFolders {
+                if recordFolder.id == "0" {
+                    foundDefault = true
+                    if foundAllFiles && foundDefault && foundTrash{
+                        break
+                    }
+                }
+                if recordFolder.id == "-99" {
+                    foundAllFiles = true
+                    if foundAllFiles && foundDefault && foundTrash{
+                        break
+                    }
+                }
+                if recordFolder.id == "trash" {
+                    foundTrash = true
+                    if foundAllFiles && foundDefault && foundTrash{
+                        break
+                    }
+                }
+            }
+
+            if !foundDefault {
+                let defaultFolder = RecordFolder()
+                defaultFolder.id = "0"
+                defaultFolder.title = "New Call Recordings".localized
+                RecordingsManager.sharedInstance.recordFolders.insert(defaultFolder, at: 0)
+            }
+            if !foundAllFiles {
+                let defaultFolder = RecordFolder()
+                defaultFolder.id = "-99"
+                defaultFolder.title = "All Files".localized
+                RecordingsManager.sharedInstance.recordFolders.insert(defaultFolder, at: 1)
+            }
+            if !foundTrash {
+                let defaultFolder = RecordFolder()
+                defaultFolder.id = "trash"
+                defaultFolder.title = "Trash".localized
+                RecordingsManager.sharedInstance.recordFolders.insert(defaultFolder, at: 2)
+            }
+
+            if success {
+                if data!["status"] != nil && (data!["status"] as? String) != "ok" {
+                    if let strError = data!["msg"] as? String {
+                        if completionHandler != nil {
+                            completionHandler!(false, strError.localized)
+                        }
+                    }
+                    else {
+                        if completionHandler != nil {
+                            completionHandler!(false, nil)
+                        }
+                    }
+                }
+                else {
+                    if let folders:Array<NSDictionary> = data!["folders"] as? Array<NSDictionary> {
+                        var ids:Array<String> = Array<String>()
+                        ids.append("0")
+                        ids.append("-99")
+                        ids.append("trash")
+                        for folder in folders {
+                            let recordFolder = RecordFolder()
+
+                            if let value:String = folder.object(forKey: "name") as? String {
+                                recordFolder.title = value
+                            }
+                            if let value:String = folder.object(forKey: "id") as? String {
+                                recordFolder.id  = value
+                            }
+                            if let value:String = folder.object(forKey: "created") as? String {
+                                recordFolder.created  = value
+                            }
+
+                            if let value:String = folder.object(forKey: "folder_order") as? String {
+                                recordFolder.folderOrder  = Int(value)!
+                            }
+                            ids.append(recordFolder.id)
+
+                            _ = RecordingsManager.sharedInstance.syncItem(recordFolder)
+                        }
+                        RecordingsManager.sharedInstance.keepOnlyItemsWithIds(ids);
+                        RecordingsManager.sharedInstance.updateTrashFolder()
+                        RecordingsManager.sharedInstance.sortByFolderOrder()
+                    }
+                    
+                    if completionHandler != nil {
+                        completionHandler!( true, nil)
+                    }
+                }
+            }
+            else {
+                if completionHandler != nil {
+                    completionHandler!(success, data!["error"] as? String)
+                }
+            }
+        }
+    }
 //        _ = manager?.post("get_folders", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
 //
 //            var foundDefault = false
@@ -572,15 +954,67 @@ public class APIClient : NSObject {
 //        }
 //    }
 //    
-//    public func createFolder(_ name:NSString, localID:NSString, completionHandler:((Bool, AnyObject?) -> Void)?)
-//    {
-//        if AppPersistentData.sharedInstance.invalidAPIKey {
-//            completionHandler!(false, "Invalid API Key" as AnyObject)
-//            return
-//        }
+    public func createFolder(_ name:NSString, localID:NSString, completionHandler:((Bool, Any?) -> Void)?)
+    {
+        if AppPersistentData.sharedInstance.invalidAPIKey {
+            completionHandler!(false, "Invalid API Key" as AnyObject)
+            return
+        }
+
+        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "name" : name] as [String : Any]
+        
+        api.doRequest("create_folder", method: .post, parameters: parameters) { (success, data) in
+            if success {
+                if data!["status"] != nil && (data!["status"] as? String) != "ok" {
+                    if let strError = data!["msg"] as? String {
+                        if completionHandler != nil {
+                            completionHandler!(false, strError.localized)
+                        }
+                    }
+                    else {
+                        if completionHandler != nil {
+                            completionHandler!(false, nil)
+                        }
+                    }
+                }
+                else {
+                    var recordFolder = RecordingsManager.sharedInstance.getFolderWithId(localID as String)
+                    if recordFolder == nil {
+                        recordFolder = RecordFolder()
+                    }
+
+                    if let value:String = data!["name"] as? String {
+                        recordFolder?.title = value
+                    }
+                    else {
+                        recordFolder?.title = name as String
+                    }
+                    if let value:NSNumber = data!["id"] as? NSNumber {
+                        recordFolder?.id = value.stringValue
+                        for action in ActionsSyncManager.sharedInstance.actions {
+                            if action.arg1 == localID as String {
+                                action.arg1 = recordFolder?.id
+                            }
+                            if action.arg2 == localID as String {
+                                action.arg2 = recordFolder?.id
+                            }
+                        }
+                    }
+                    _ = RecordingsManager.sharedInstance.syncItem(recordFolder!)
+                    
+                    if completionHandler != nil {
+                        completionHandler!( true, nil)
+                    }
+                }
+            }
+            else {
+                if completionHandler != nil {
+                    completionHandler!(success, data!["error"] as? String)
+                }
+            }
+        }
+    }
 //
-//        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "name" : name] as [String : Any]
-//        
 //        _ = manager?.post("create_folder", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
 //            do {
 //                let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options: JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
@@ -641,17 +1075,47 @@ public class APIClient : NSObject {
 //        }
 //    }
 //    
-//    public func deleteFolder(_ folderId:String, moveTo:String!, completionHandler:((Bool, AnyObject?) -> Void)?) {
-//        if AppPersistentData.sharedInstance.invalidAPIKey {
-//            completionHandler!(false, "Invalid API Key" as AnyObject)
-//            return
-//        }
-//
-//        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "id" : folderId] as NSMutableDictionary
-//        if moveTo != nil && moveTo != ""{
-//            parameters.setValue(moveTo, forKey: "move_to")
-//        }
-//        
+    public func deleteFolder(_ folderId:String, moveTo:String!, completionHandler:((Bool, Any?) -> Void)?) {
+        if AppPersistentData.sharedInstance.invalidAPIKey {
+            completionHandler!(false, "Invalid API Key" as AnyObject)
+            return
+        }
+
+        var parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "id" : folderId]
+        if moveTo != nil && moveTo != ""{
+            parameters["move_to"] = moveTo
+        }
+     
+        api.doRequest("delete_folder", method: .post, parameters: parameters) { (success, data) in
+            if success {
+                if data!["status"] != nil && (data!["status"] as? String) != "ok" {
+                    if let strError = data!["msg"] as? String {
+                        if completionHandler != nil {
+                            completionHandler!(false, strError.localized)
+                        }
+                    }
+                    else {
+                        if completionHandler != nil {
+                            completionHandler!(false, nil)
+                        }
+                    }
+                }
+                else {
+                    if completionHandler != nil {
+                        completionHandler!( true, nil)
+                        APIClient.sharedInstance.updateFolders({ (success) -> Void in
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: kNotificationRecordingsUpdated), object: nil)
+                        })
+                    }
+                }
+            }
+            else {
+                if completionHandler != nil {
+                    completionHandler!(success, data!["error"] as? String)
+                }
+            }
+        }
+    }
 //        _ = manager?.post("delete_folder", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
 //            do {
 //                let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options: JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
@@ -691,14 +1155,45 @@ public class APIClient : NSObject {
 //        }
 //    }
 //    
-//    public func reorderFolders(_ parameters:NSMutableDictionary, completionHandler:((Bool, AnyObject?) -> Void)?) {
-//        if AppPersistentData.sharedInstance.invalidAPIKey {
-//            completionHandler!(false, "Invalid API Key" as AnyObject)
-//            return
-//        }
-//
-//        parameters["api_key"] = AppPersistentData.sharedInstance.apiKey
-//        
+    public func reorderFolders(_ parameters:[String:Any], completionHandler:((Bool, Any?) -> Void)?) {
+        if AppPersistentData.sharedInstance.invalidAPIKey {
+            completionHandler!(false, "Invalid API Key" as AnyObject)
+            return
+        }
+
+        var params = parameters
+        params["api_key"] = AppPersistentData.sharedInstance.apiKey
+
+        api.doRequest("update_folders_order", method: .post, parameters: params) { (success, data) in
+            if success {
+                if data!["status"] != nil && (data!["status"] as? String) != "ok" {
+                    if let strError = data!["msg"] as? String {
+                        if completionHandler != nil {
+                            completionHandler!(false, strError.localized)
+                        }
+                    }
+                    else {
+                        if completionHandler != nil {
+                            completionHandler!(false, nil)
+                        }
+                    }
+                }
+                else {
+                    if completionHandler != nil {
+                        completionHandler!( true, nil)
+                        self.updateFolders({ (success) -> Void in
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: kNotificationRecordingsUpdated), object: nil)
+                        })
+                    }
+                }
+            }
+            else {
+                if completionHandler != nil {
+                    completionHandler!(success, data!["error"] as? String)
+                }
+            }
+        }
+    }
 //        _ = manager?.post("update_folders_order", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
 //            do {
 //                let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options: JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
@@ -739,14 +1234,41 @@ public class APIClient : NSObject {
 //    }
 //    
 //    
-//    public func renameFolder(_ folderId:String, name:String, completionHandler:((Bool, AnyObject?) -> Void)?) {
-//        if AppPersistentData.sharedInstance.invalidAPIKey {
-//            completionHandler!(false, "Invalid API Key" as AnyObject)
-//            return
-//        }
-//
-//        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "id" : folderId, "name" : name]
-//        
+    public func renameFolder(_ folderId:String, name:String, completionHandler:((Bool, Any?) -> Void)?) {
+        if AppPersistentData.sharedInstance.invalidAPIKey {
+            completionHandler!(false, "Invalid API Key" as AnyObject)
+            return
+        }
+
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "id" : folderId, "name" : name]
+
+        api.doRequest("update_folder", method: .post, parameters: parameters) { (success, data) in
+            if success {
+                if data!["status"] != nil && (data!["status"] as? String) != "ok" {
+                    if let strError = data!["msg"] as? String {
+                        if completionHandler != nil {
+                            completionHandler!(false, strError.localized)
+                        }
+                    }
+                    else {
+                        if completionHandler != nil {
+                            completionHandler!(false, nil)
+                        }
+                    }
+                }
+                else {
+                    if completionHandler != nil {
+                        completionHandler!( true, nil)
+                    }
+                }
+            }
+            else {
+                if completionHandler != nil {
+                    completionHandler!(success, data!["error"] as? String)
+                }
+            }
+        }
+    }
 //        _ = manager?.post("update_folder", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
 //            do {
 //                let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
@@ -783,14 +1305,42 @@ public class APIClient : NSObject {
 //        }
 //    }
 //
-//    public func deleteRecording(_ recordItemId:String, removeForever:Bool, completionHandler:((Bool, AnyObject?) -> Void)?) {
-//        if AppPersistentData.sharedInstance.invalidAPIKey {
-//            completionHandler!(false, "Invalid API Key" as AnyObject)
-//            return
-//        }
+    public func deleteRecording(_ recordItemId:String, removeForever:Bool, completionHandler:((Bool, Any?) -> Void)?) {
+        if AppPersistentData.sharedInstance.invalidAPIKey {
+            completionHandler!(false, "Invalid API Key" as AnyObject)
+            return
+        }
+
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "ids" : recordItemId, "action" : removeForever ? "remove_forever" : ""]
+     
+        api.doRequest("delete_files", method: .post, parameters: parameters) { (success, data) in
+            if success {
+                if data!["status"] != nil && (data!["status"] as? String) != "ok" {
+                    if let strError = data!["msg"] as? String {
+                        if completionHandler != nil {
+                            completionHandler!(false, strError.localized)
+                        }
+                    }
+                    else {
+                        if completionHandler != nil {
+                            completionHandler!(false, nil)
+                        }
+                    }
+                }
+                else {
+                    if completionHandler != nil {
+                        completionHandler!( true, nil)
+                    }
+                }
+            }
+            else {
+                if completionHandler != nil {
+                    completionHandler!(success, data!["error"] as? String)
+                }
+            }
+        }
+    }
 //
-//        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "ids" : recordItemId, "action" : removeForever ? "remove_forever" : ""]
-//        
 //        _ = manager?.post("delete_files", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
 //            do {
 //                let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
@@ -827,14 +1377,42 @@ public class APIClient : NSObject {
 //        }
 //    }
 //    
-//    public func moveRecording(_ recordItem:RecordItem, folderId:String, completionHandler:((Bool, AnyObject?) -> Void)?) {
-//        if AppPersistentData.sharedInstance.invalidAPIKey {
-//            completionHandler!(false, "Invalid API Key" as AnyObject)
-//            return
-//        }
+    public func moveRecording(_ recordItem:RecordItem, folderId:String, completionHandler:((Bool, Any?) -> Void)?) {
+        if AppPersistentData.sharedInstance.invalidAPIKey {
+            completionHandler!(false, "Invalid API Key" as AnyObject)
+            return
+        }
+
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "id" : recordItem.id, "folder_id" : folderId]
+     
+        api.doRequest("update_file", method: .post, parameters: parameters) { (success, data) in
+            if success {
+                if data!["status"] != nil && (data!["status"] as? String) != "ok" {
+                    if let strError = data!["msg"] as? String {
+                        if completionHandler != nil {
+                            completionHandler!(false, strError.localized)
+                        }
+                    }
+                    else {
+                        if completionHandler != nil {
+                            completionHandler!(false, nil)
+                        }
+                    }
+                }
+                else {
+                    if completionHandler != nil {
+                        completionHandler!( true, nil)
+                    }
+                }
+            }
+            else {
+                if completionHandler != nil {
+                    completionHandler!(success, data!["error"] as? String)
+                }
+            }
+        }
+    }
 //
-//        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "id" : recordItem.id, "folder_id" : folderId]
-//        
 //        _ = manager?.post("update_file", parameters: parameters, success:  { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
 //            do {
 //                let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
@@ -871,14 +1449,42 @@ public class APIClient : NSObject {
 //        }
 //    }
 //    
-//    public func recoverRecording(_ recordItem:RecordItem, folderId:String, completionHandler:((Bool, AnyObject?) -> Void)?) {
-//        if AppPersistentData.sharedInstance.invalidAPIKey {
-//            completionHandler!(false, "Invalid API Key" as AnyObject)
-//            return
-//        }
+    public func recoverRecording(_ recordItem:RecordItem, folderId:String, completionHandler:((Bool, Any?) -> Void)?) {
+        if AppPersistentData.sharedInstance.invalidAPIKey {
+            completionHandler!(false, "Invalid API Key" as AnyObject)
+            return
+        }
+
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "id" : recordItem.id, "folder_id" : folderId]
+        
+        api.doRequest("recover_file", method: .post, parameters: parameters) { (success, data) in
+            if success {
+                if data!["status"] != nil && (data!["status"] as? String) != "ok" {
+                    if let strError = data!["msg"] as? String {
+                        if completionHandler != nil {
+                            completionHandler!(false, strError.localized)
+                        }
+                    }
+                    else {
+                        if completionHandler != nil {
+                            completionHandler!(false, nil)
+                        }
+                    }
+                }
+                else {
+                    if completionHandler != nil {
+                        completionHandler!( true, nil)
+                    }
+                }
+            }
+            else {
+                if completionHandler != nil {
+                    completionHandler!(success, data!["error"] as? String)
+                }
+            }
+        }
+    }
 //
-//        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "id" : recordItem.id, "folder_id" : folderId]
-//        
 //        _ = manager?.post("recover_file", parameters: parameters, success:  { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
 //            do {
 //                let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
@@ -915,14 +1521,44 @@ public class APIClient : NSObject {
 //        }
 //    }
 //    
-//    public func updateRecordingInfo(_ recordItem:RecordItem ,parameters:NSMutableDictionary, completionHandler:((Bool, AnyObject?) -> Void)?) {
-//        if AppPersistentData.sharedInstance.invalidAPIKey {
-//            completionHandler!(false, "Invalid API Key" as AnyObject)
-//            return
-//        }
-//
-//        parameters.setObject(AppPersistentData.sharedInstance.apiKey, forKey: "api_key" as NSCopying)
-//        
+    public func updateRecordingInfo(_ recordItem:RecordItem ,parameters:[String:Any], completionHandler:((Bool, Any?) -> Void)?) {
+        if AppPersistentData.sharedInstance.invalidAPIKey {
+            completionHandler!(false, "Invalid API Key" as AnyObject)
+            return
+        }
+
+        //parameters.setObject(AppPersistentData.sharedInstance.apiKey, forKey: "api_key" as NSCopying)
+        
+        var params = parameters
+        params["api_key"] = AppPersistentData.sharedInstance.apiKey
+        
+        api.doRequest("update_file", method: .post, parameters: params) { (success, data) in
+            if success {
+                if data!["status"] != nil && (data!["status"] as? String) != "ok" {
+                    if let strError = data!["msg"] as? String {
+                        if completionHandler != nil {
+                            completionHandler!(false, strError.localized)
+                        }
+                    }
+                    else {
+                        if completionHandler != nil {
+                            completionHandler!(false, nil)
+                        }
+                    }
+                }
+                else {
+                    if completionHandler != nil {
+                        completionHandler!( true, nil)
+                    }
+                }
+            }
+            else {
+                if completionHandler != nil {
+                    completionHandler!(success, data!["error"] as? String)
+                }
+            }
+        }
+    }
 //        _ = manager?.post("update_file", parameters: parameters, success:  { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
 //            do {
 //                let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
@@ -959,14 +1595,41 @@ public class APIClient : NSObject {
 //        }
 //    }
 //
-//    public func renameRecording(_ recordItem:RecordItem, name:String, completionHandler:((Bool, AnyObject?) -> Void)?) {
-//        if AppPersistentData.sharedInstance.invalidAPIKey {
-//            completionHandler!(false, "Invalid API Key" as AnyObject)
-//            return
-//        }
-//
-//        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "id" : recordItem.id, "name":name]
-//
+    public func renameRecording(_ recordItem:RecordItem, name:String, completionHandler:((Bool, Any?) -> Void)?) {
+        if AppPersistentData.sharedInstance.invalidAPIKey {
+            completionHandler!(false, "Invalid API Key" as AnyObject)
+            return
+        }
+
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "id" : recordItem.id, "name":name]
+
+        api.doRequest("update_file", method: .post, parameters: parameters) { (success, data) in
+            if success {
+                if data!["status"] != nil && (data!["status"] as? String) != "ok" {
+                    if let strError = data!["msg"] as? String {
+                        if completionHandler != nil {
+                            completionHandler!(false, strError.localized)
+                        }
+                    }
+                    else {
+                        if completionHandler != nil {
+                            completionHandler!(false, nil)
+                        }
+                    }
+                }
+                else {
+                    if completionHandler != nil {
+                        completionHandler!( true, nil)
+                    }
+                }
+            }
+            else {
+                if completionHandler != nil {
+                    completionHandler!(success, data!["error"] as? String)
+                }
+            }
+        }
+    }
 //        _ = manager?.post("update_file", parameters: parameters, success:  { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
 //            do {
 //                let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
@@ -1003,12 +1666,13 @@ public class APIClient : NSObject {
 //        }
 //    }
 //    
-//    public func uploadRecording(_ recordItem:RecordItem, completionHandler:((Bool, AnyObject?) -> Void)?) {
-//        if AppPersistentData.sharedInstance.invalidAPIKey {
-//            completionHandler!(false, "Invalid API Key" as AnyObject)
-//            return
-//        }
-//
+    public func uploadRecording(_ recordItem:RecordItem, completionHandler:((Bool, AnyObject?) -> Void)?) {
+        if AppPersistentData.sharedInstance.invalidAPIKey {
+            completionHandler!(false, "Invalid API Key" as AnyObject)
+            return
+        }
+
+    }
 //        do {
 //            //let jsonData = try JSONSerialization.data(withJSONObject: ["name":"audio_upload_test","notes":""], options: JSONSerialization.WritingOptions.prettyPrinted)
 //            let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "data": "{\"name\":\"\(recordItem.text)\",\"notes\":\"\(recordItem.notes)\"} "]
@@ -1086,15 +1750,22 @@ public class APIClient : NSObject {
 ////        }
 //    }
 //    
-//    public func downloadFile(_ fileUrl:NSString, localPath:NSString, completionHandler:((Bool) -> Void)?)
-//    {
-//        if (AppPersistentData.sharedInstance.invalidAPIKey || fileUrl == ""){
-//            completionHandler!(false)
-//            return
-//        }
-//
-//        var url = fileUrl as String
-//        url += "?api_key=" + AppPersistentData.sharedInstance.apiKey
+    public func downloadFile(_ fileUrl:String, localPath:String, completionHandler:((Bool) -> Void)?)
+    {
+        if (AppPersistentData.sharedInstance.invalidAPIKey || fileUrl == ""){
+            completionHandler!(false)
+            return
+        }
+
+        var url = fileUrl as String
+        url += "?api_key=" + AppPersistentData.sharedInstance.apiKey
+        
+        api.downloadFile(url, atPath: localPath) { (success, data) in
+            if completionHandler != nil {
+                completionHandler!(success)
+            }
+        }
+    }
 //        let request = URLRequest(url: URL(string: url as String)!)
 //        let operation = AFHTTPRequestOperation(request: request)
 //        
@@ -1156,219 +1827,245 @@ public class APIClient : NSObject {
 ////        op.outputStream.open()
 //    }
 //    
-//    public func downloadAudioFile(_ recordItem:RecordItem, toFolder:String, completionHandler:((Bool) -> Void)?) {
-//        if AppPersistentData.sharedInstance.invalidAPIKey {
-//            completionHandler!(false)
-//            return
-//        }
-//
-//        var path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] 
-//        path = path + ("/" + toFolder + "/");
-//        if !FileManager.default.fileExists(atPath: path) {
-//            do {
-//             try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
-//            }
-//            catch
-//            {
-//                
-//            }
-//        }
-//        path = path + recordItem.url.components(separatedBy: "/").last!
-//        
-//        var isWav = false
-//        var isMP3 = false
-//        if path.range(of: ".wav") != nil {
-//            isWav = true
-//        }
-//        
-//        if path.range(of: ".mp3") != nil {
-//            isMP3 = true
-//        }
-//        if !isWav && !isMP3 {
-//            path = path + ".wav"
-//        }
-//        
-//        // improve: remove local file if already exist and download it again (it may be a broken file)
-//
-//        if !FileManager.default.fileExists(atPath: path) {
-//            APIClient.sharedInstance.downloadFile(recordItem.url! as NSString, localPath:path as NSString, completionHandler: { (success) -> Void in
-//                recordItem.fileDownloaded = success
-//                if success {
-//                    recordItem.localFile = "/" + toFolder + "/" + recordItem.url.components(separatedBy: "/").last!
-//                    var isWav = false
-//                    var isMP3 = false
-//                    if recordItem.localFile.range(of: ".wav") != nil {
-//                        isWav = true
-//                    }
-//                    
-//                    if recordItem.localFile.range(of: ".mp3") != nil {
-//                        isMP3 = true
-//                    }
-//                    if !isWav && !isMP3 {
-//                        recordItem.localFile = recordItem.localFile + ".wav"
-//                    }
-//                    NSLog(path)
-//                    self.getMetadataFiles(recordItem, completionHandler: { (success, files) -> Void in
-//                        if success && files != nil {
-//                            let allFiles = files as! Array<NSDictionary>
-//                            for file in allFiles{
-//                                let url = (file.object(forKey: "file") as? String)!
-//                                let name = (file.object(forKey: "name") as? String)!
-//                                var metaPath = AudioFileTagManager.sharedInstance.getMetadataFilePath(path)
-//                                if url.components(separatedBy: ".").last != "json" {
-//                                    var path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] 
-//                                    path = path + ("/" + toFolder + "/")
-//                                    
-//                                    let end = "__" + name.components(separatedBy: "__").last!
-//                                    
-//                                    metaPath = metaPath.components(separatedBy: "_metadata").first!
-//                                    metaPath = metaPath + end
-//                                }
-//                                
-//                                APIClient.sharedInstance.downloadFile(url as NSString, localPath:metaPath as NSString, completionHandler: { (success) -> Void in
-//                                    if(success){
-//                                        AudioFileTagManager.sharedInstance.setupWithFile(path)
-//                                        recordItem.waveRenderVals = NSMutableArray(array: AudioFileTagManager.sharedInstance.waveRenderVals)
-//                                        AppPersistentData.sharedInstance.saveData()
-//                                    }
-//                                })
-//                            }
-//                        }
-//                    })
-//                    
-//                    if completionHandler != nil {
-//                        completionHandler!(true)
-//                    }
-//                }
-//            })
-//        }
-//        else {
-//            recordItem.fileDownloaded = true
-//            recordItem.localFile = "/" + toFolder + "/" + recordItem.url.components(separatedBy: "/").last!
-//            var isWav = false
-//            var isMP3 = false
-//            if recordItem.localFile.range(of: ".wav") != nil {
-//                isWav = true
-//            }
-//            
-//            if recordItem.localFile.range(of: ".mp3") != nil {
-//                isMP3 = true
-//            }
-//            if !isWav && !isMP3 {
-//                recordItem.localFile = recordItem.localFile + ".wav"
-//            }
-//
-//            if completionHandler != nil {
-//                completionHandler!(true)
-//            }
-//
-//        }
-//    }
-//    
-//    public func mainSync(_ completionHandler:((Bool) -> Void)?) {
-//        if AppPersistentData.sharedInstance.invalidAPIKey {
-//            completionHandler!(false)
-//            return
-//        }
-//
-//        if mainSyncInProgress {
-//            if completionHandler != nil {
-//                completionHandler!(false)
-//            }
-//            return
-//        }
-//        if AppPersistentData.sharedInstance.apiKey == nil {
-//            mainSyncInProgress = false
-//            if completionHandler != nil {
-//                completionHandler!(false)
-//            }
-//            return
-////            AppPersistentData.sharedInstance.apiKey = "557872b508520557872b50855c"
-//        }
-//        mainSyncInProgress = true
-//        mainSyncErrors = 0
-//        
-//        APIClient.sharedInstance.getSettings({ (success, data) -> Void in
-//            APIClient.sharedInstance.getMessages({ (success, data) -> Void in
-//                APIClient.sharedInstance.getLanguages { (success, data) -> Void in
-//                    APIClient.sharedInstance.getTranslations(TranslationManager.sharedInstance.currentLanguage, completionHandler:{ (success, data) -> Void in
-//                        APIClient.sharedInstance.getPhoneNumbers { (success, data) -> Void in
-//                            if !success {
-//                                self.mainSyncErrors += 1
-//                            }
-//                            APIClient.sharedInstance.getFolders({ (success, data) -> Void in
-//                                if !success {
-//                                    self.mainSyncErrors += 1
-//                                }
-//                                
-//                                self.getRecordings({ (success) -> Void in
-//                                    if completionHandler != nil {
-//                                        completionHandler!(true)
-//                                    }
-//                                    self.mainSyncInProgress = false
-//                                    //                    if self.mainSyncErrors > 0 {
-//                                    //                        AlertController.showAlert(self.currentViewController, title: "Warning".localized, message: "Errors occured during server sync process".localized, accept: "Ok".localized, reject: nil)
-//                                    //                    }
-//                                    NotificationCenter.default.post(name: Notification.Name(rawValue: kNotificationRecordingsUpdated), object: nil)
-//                                })
-//                            })
-//                        }
-//                    })
-//                }
-//            })
-//        })
-//    }
-//    
-//    
-//    public func updateFolders(_ completionHandler:((Bool) -> Void)?) {
-//        APIClient.sharedInstance.getFolders { (success, data) -> Void in
-//            if !success {
-//                return
-//            }
-//            APIClient.sharedInstance.getRecordings({ (success) -> Void in
-//                if completionHandler != nil {
-//                    completionHandler!(true)
-//                }
-//            })
-//        }
-//    }
-//
-//    public func getRecordings(_ completionHandler:((Bool) -> Void)?) {
-//        if AppPersistentData.sharedInstance.apiKey == nil {
-//            if completionHandler != nil {
-//                completionHandler!(false)
-//                return
-//            }
-//        }
-//        var countToHandle = RecordingsManager.sharedInstance.recordFolders.count - 1
-//
-//        for recordFolder in RecordingsManager.sharedInstance.recordFolders {
-//            if recordFolder.id == "-99"{
-//                continue
-//            }
-//            APIClient.sharedInstance.getRecordings(recordFolder.id, completionHandler:{ (success, data) -> Void in
-//                if !success {
-//                    self.mainSyncErrors += 1
-//                }
-//                countToHandle -= 1
-//                if countToHandle <= 0 {
-//                    RecordingsManager.sharedInstance.updateAllFilesFolder()
-//                    if completionHandler != nil {
-//                        completionHandler!(true)
-//                    }
-//                }
-//            })
-//        }
-//    }
-//    
-//    public func updateSettings(_ playBeep:Bool, completionHandler:((Bool, AnyObject?) -> Void)?) {
-//        if AppPersistentData.sharedInstance.invalidAPIKey {
-//            completionHandler!(false, "Invalid API Key" as AnyObject)
-//            return
-//        }
-//
-//        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "play_beep" : playBeep ? "yes" : "no"]
-//        
+    public func downloadAudioFile(_ recordItem:RecordItem, toFolder:String, completionHandler:((Bool) -> Void)?) {
+        if AppPersistentData.sharedInstance.invalidAPIKey {
+            completionHandler!(false)
+            return
+        }
+
+        var path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] 
+        path = path + ("/" + toFolder + "/");
+        if !FileManager.default.fileExists(atPath: path) {
+            do {
+             try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
+            }
+            catch
+            {
+                
+            }
+        }
+        path = path + recordItem.url.components(separatedBy: "/").last!
+        
+        var isWav = false
+        var isMP3 = false
+        if path.range(of: ".wav") != nil {
+            isWav = true
+        }
+        
+        if path.range(of: ".mp3") != nil {
+            isMP3 = true
+        }
+        if !isWav && !isMP3 {
+            path = path + ".wav"
+        }
+
+        // improve: remove local file if already exist and download it again (it may be a broken file)
+
+        if !FileManager.default.fileExists(atPath: path) {
+            APIClient.sharedInstance.downloadFile(recordItem.url!, localPath:path, completionHandler: { (success) -> Void in
+                recordItem.fileDownloaded = success
+                if success {
+                    recordItem.localFile = "/" + toFolder + "/" + recordItem.url.components(separatedBy: "/").last!
+                    var isWav = false
+                    var isMP3 = false
+                    if recordItem.localFile.range(of: ".wav") != nil {
+                        isWav = true
+                    }
+                    
+                    if recordItem.localFile.range(of: ".mp3") != nil {
+                        isMP3 = true
+                    }
+                    if !isWav && !isMP3 {
+                        recordItem.localFile = recordItem.localFile + ".wav"
+                    }
+                    NSLog(path)
+                    self.getMetadataFiles(recordItem, completionHandler: { (success, files) -> Void in
+                        if success && files != nil {
+                            let allFiles = files as! Array<NSDictionary>
+                            for file in allFiles{
+                                let url = (file.object(forKey: "file") as? String)!
+                                let name = (file.object(forKey: "name") as? String)!
+                                var metaPath = AudioFileTagManager.sharedInstance.getMetadataFilePath(path)
+                                if url.components(separatedBy: ".").last != "json" {
+                                    var path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] 
+                                    path = path + ("/" + toFolder + "/")
+                                    
+                                    let end = "__" + name.components(separatedBy: "__").last!
+                                    
+                                    metaPath = metaPath.components(separatedBy: "_metadata").first!
+                                    metaPath = metaPath + end
+                                }
+                                
+                                APIClient.sharedInstance.downloadFile(url, localPath:metaPath, completionHandler: { (success) -> Void in
+                                    if(success){
+                                        AudioFileTagManager.sharedInstance.setupWithFile(path)
+                                        recordItem.waveRenderVals = NSMutableArray(array: AudioFileTagManager.sharedInstance.waveRenderVals)
+                                        AppPersistentData.sharedInstance.saveData()
+                                    }
+                                })
+                            }
+                        }
+                    })
+                    
+                    if completionHandler != nil {
+                        completionHandler!(true)
+                    }
+                }
+            })
+        }
+        else {
+            recordItem.fileDownloaded = true
+            recordItem.localFile = "/" + toFolder + "/" + recordItem.url.components(separatedBy: "/").last!
+            var isWav = false
+            var isMP3 = false
+            if recordItem.localFile.range(of: ".wav") != nil {
+                isWav = true
+            }
+            
+            if recordItem.localFile.range(of: ".mp3") != nil {
+                isMP3 = true
+            }
+            if !isWav && !isMP3 {
+                recordItem.localFile = recordItem.localFile + ".wav"
+            }
+
+            if completionHandler != nil {
+                completionHandler!(true)
+            }
+
+        }
+    }
+    
+    public func mainSync(_ completionHandler:((Bool) -> Void)?) {
+        if AppPersistentData.sharedInstance.invalidAPIKey {
+            completionHandler!(false)
+            return
+        }
+
+        if mainSyncInProgress {
+            if completionHandler != nil {
+                completionHandler!(false)
+            }
+            return
+        }
+        if AppPersistentData.sharedInstance.apiKey == nil {
+            mainSyncInProgress = false
+            if completionHandler != nil {
+                completionHandler!(false)
+            }
+            return
+//            AppPersistentData.sharedInstance.apiKey = "557872b508520557872b50855c"
+        }
+        mainSyncInProgress = true
+        mainSyncErrors = 0
+        
+        APIClient.sharedInstance.getSettings({ (success, data) -> Void in
+            APIClient.sharedInstance.getMessages({ (success, data) -> Void in
+                APIClient.sharedInstance.getLanguages { (success, data) -> Void in
+                    APIClient.sharedInstance.getTranslations(TranslationManager.sharedInstance.currentLanguage, completionHandler:{ (success, data) -> Void in
+                        APIClient.sharedInstance.getPhoneNumbers { (success, data) -> Void in
+                            if !success {
+                                self.mainSyncErrors += 1
+                            }
+                            APIClient.sharedInstance.getFolders({ (success, data) -> Void in
+                                if !success {
+                                    self.mainSyncErrors += 1
+                                }
+                                
+                                self.getRecordings({ (success) -> Void in
+                                    if completionHandler != nil {
+                                        completionHandler!(true)
+                                    }
+                                    self.mainSyncInProgress = false
+                                    //                    if self.mainSyncErrors > 0 {
+                                    //                        AlertController.showAlert(self.currentViewController, title: "Warning".localized, message: "Errors occured during server sync process".localized, accept: "Ok".localized, reject: nil)
+                                    //                    }
+                                    NotificationCenter.default.post(name: Notification.Name(rawValue: kNotificationRecordingsUpdated), object: nil)
+                                })
+                            })
+                        }
+                    })
+                }
+            })
+        })
+    }
+
+    public func updateFolders(_ completionHandler:((Bool) -> Void)?) {
+        APIClient.sharedInstance.getFolders { (success, data) -> Void in
+            if !success {
+                return
+            }
+            APIClient.sharedInstance.getRecordings({ (success) -> Void in
+                if completionHandler != nil {
+                    completionHandler!(true)
+                }
+            })
+        }
+    }
+
+    public func getRecordings(_ completionHandler:((Bool) -> Void)?) {
+        if AppPersistentData.sharedInstance.apiKey == nil {
+            if completionHandler != nil {
+                completionHandler!(false)
+                return
+            }
+        }
+        var countToHandle = RecordingsManager.sharedInstance.recordFolders.count - 1
+
+        for recordFolder in RecordingsManager.sharedInstance.recordFolders {
+            if recordFolder.id == "-99"{
+                continue
+            }
+            APIClient.sharedInstance.getRecordings(recordFolder.id, completionHandler:{ (success, data) -> Void in
+                if !success {
+                    self.mainSyncErrors += 1
+                }
+                countToHandle -= 1
+                if countToHandle <= 0 {
+                    RecordingsManager.sharedInstance.updateAllFilesFolder()
+                    if completionHandler != nil {
+                        completionHandler!(true)
+                    }
+                }
+            })
+        }
+    }
+    
+    public func updateSettings(_ playBeep:Bool, completionHandler:((Bool, Any?) -> Void)?) {
+        if AppPersistentData.sharedInstance.invalidAPIKey {
+            completionHandler!(false, "Invalid API Key" as AnyObject)
+            return
+        }
+
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "play_beep" : playBeep ? "yes" : "no"]
+
+        api.doRequest("update_settings", method: .post, parameters: parameters) { (success, data) in
+            if success {
+                if data!["status"] != nil && (data!["status"] as? String) != "ok" {
+                    if let strError = data!["msg"] as? String {
+                        if completionHandler != nil {
+                            completionHandler!(false, strError.localized)
+                        }
+                    }
+                    else {
+                        if completionHandler != nil {
+                            completionHandler!(false, nil)
+                        }
+                    }
+                }
+                else {
+                    if completionHandler != nil {
+                        completionHandler!( true, nil)
+                    }
+                }
+            }
+            else {
+                if completionHandler != nil {
+                    completionHandler!(success, data!["error"] as? String)
+                }
+            }
+        }
+    }
 //        _ = manager?.post("update_settings", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
 //            do {
 //                let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
@@ -1409,14 +2106,41 @@ public class APIClient : NSObject {
 //        }
 //    }
 //    
-//    public func updateUser(_ free:Bool, completionHandler:((Bool, AnyObject?) -> Void)?) {
-//        if AppPersistentData.sharedInstance.invalidAPIKey {
-//            completionHandler!(false, "Invalid API Key" as AnyObject)
-//            return
-//        }
-//
-//        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "app" : free ? "free" : "pro"]
-//        
+    public func updateUser(_ free:Bool, completionHandler:((Bool, Any?) -> Void)?) {
+        if AppPersistentData.sharedInstance.invalidAPIKey {
+            completionHandler!(false, "Invalid API Key" as AnyObject)
+            return
+        }
+
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "app" : free ? "free" : "pro"]
+        
+        api.doRequest("update_user", method: .post, parameters: parameters) { (success, data) in
+            if success {
+                if data!["status"] != nil && (data!["status"] as? String) != "ok" {
+                    if let strError = data!["msg"] as? String {
+                        if completionHandler != nil {
+                            completionHandler!(false, strError.localized)
+                        }
+                    }
+                    else {
+                        if completionHandler != nil {
+                            completionHandler!(false, nil)
+                        }
+                    }
+                }
+                else {
+                    if completionHandler != nil {
+                        completionHandler!( true, nil)
+                    }
+                }
+            }
+            else {
+                if completionHandler != nil {
+                    completionHandler!(success, data!["error"] as? String)
+                }
+            }
+        }
+    }
 //        _ = manager?.post("update_user", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
 //            do {
 //                let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
@@ -1453,15 +2177,58 @@ public class APIClient : NSObject {
 //        }
 //    }
 //    
-//    public func getSettings(_ completionHandler:((Bool, AnyObject?) -> Void)?)
-//    {
-//        if AppPersistentData.sharedInstance.invalidAPIKey {
-//            completionHandler!(false, "Invalid API Key" as AnyObject)
-//            return
-//        }
-//
-//        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey]
-//
+    public func getSettings(_ completionHandler:((Bool, Any?) -> Void)?)
+    {
+        if AppPersistentData.sharedInstance.invalidAPIKey {
+            completionHandler!(false, "Invalid API Key" as AnyObject)
+            return
+        }
+
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey]
+
+        api.doRequest("get_settings", method: .post, parameters: parameters) { (success, data) in
+            if success {
+                if data!["status"] != nil && (data!["status"] as? String) != "ok" {
+                    if let strError = data!["msg"] as? String {
+                        if completionHandler != nil {
+                            completionHandler!(false, strError.localized)
+                        }
+                    }
+                    else {
+                        if completionHandler != nil {
+                            completionHandler!(false, nil)
+                        }
+                    }
+                }
+                else {
+                    if let settings:NSDictionary = data!["settings"] as? NSDictionary {
+                        if let value:String = settings.object(forKey: "play_beep") as? String {
+                            AppPersistentData.sharedInstance.playBeep = value == "no" ? false:true
+                        }
+                        if let value:String = settings.object(forKey: "files_permission") as? String {
+                            AppPersistentData.sharedInstance.filePermission = value
+                        }
+                        if let value:Int = data!["credits"] as? Int {
+                            AppPersistentData.sharedInstance.credits = value
+                        }
+                        if let value:String = settings.object(forKey: "app") as? String {
+                            AppPersistentData.sharedInstance.app = value
+                        }
+                        AppPersistentData.sharedInstance.saveData()
+                    }
+                    
+                    if completionHandler != nil {
+                        completionHandler!( true, nil)
+                    }
+                }
+            }
+            else {
+                if completionHandler != nil {
+                    completionHandler!(success, data!["error"] as? String)
+                }
+            }
+        }
+    }
 //        _ = manager?.post("get_settings", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
 //            do {
 //                let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
@@ -1513,14 +2280,41 @@ public class APIClient : NSObject {
 //        }
 //    }
 //    
-//    public func buyCredits(_ credits:Int, receipt:String, completionHandler:((Bool, AnyObject?) -> Void)?) {
-//        if AppPersistentData.sharedInstance.invalidAPIKey {
-//            completionHandler!(false, "Invalid API Key" as AnyObject)
-//            return
-//        }
-//
-//        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "amount" : credits, "reciept" : receipt] as [String : Any]
-//        
+    public func buyCredits(_ credits:Int, receipt:String, completionHandler:((Bool, Any?) -> Void)?) {
+        if AppPersistentData.sharedInstance.invalidAPIKey {
+            completionHandler!(false, "Invalid API Key" as AnyObject)
+            return
+        }
+
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "amount" : credits, "reciept" : receipt] as [String : Any]
+
+        api.doRequest("buy_credits", method: .post, parameters: parameters) { (success, data) in
+            if success {
+                if data!["status"] != nil && (data!["status"] as? String) != "ok" {
+                    if let strError = data!["msg"] as? String {
+                        if completionHandler != nil {
+                            completionHandler!(false, strError.localized)
+                        }
+                    }
+                    else {
+                        if completionHandler != nil {
+                            completionHandler!(false, nil)
+                        }
+                    }
+                }
+                else {
+                    if completionHandler != nil {
+                        completionHandler!( true, nil)
+                    }
+                }
+            }
+            else {
+                if completionHandler != nil {
+                    completionHandler!(success, data!["error"] as? String)
+                }
+            }
+        }
+    }
 //        _ = manager?.post("buy_credits", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
 //            do {
 //                let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
@@ -1557,14 +2351,42 @@ public class APIClient : NSObject {
 //        }
 //    }
 //    
-//    public func updateToken(_ token:String, completionHandler:((Bool, AnyObject?) -> Void)?) {
-//        if AppPersistentData.sharedInstance.invalidAPIKey {
-//            completionHandler!(false, "Invalid API Key" as AnyObject)
-//            return
-//        }
-//
-//        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "device_token" : token]
-//        
+    public func updateToken(_ token:String, completionHandler:((Bool, Any?) -> Void)?) {
+        if AppPersistentData.sharedInstance.invalidAPIKey {
+            completionHandler!(false, "Invalid API Key" as AnyObject)
+            return
+        }
+
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "device_token" : token]
+        
+        api.doRequest("update_device_token", method: .post, parameters: parameters) { (success, data) in
+            if success {
+                if data!["status"] != nil && (data!["status"] as? String) != "ok" {
+                    if let strError = data!["msg"] as? String {
+                        if completionHandler != nil {
+                            completionHandler!(false, strError.localized)
+                        }
+                    }
+                    else {
+                        if completionHandler != nil {
+                            completionHandler!(false, nil)
+                        }
+                    }
+                }
+                else {
+                    if completionHandler != nil {
+                        completionHandler!( true, nil)
+                    }
+                }
+            }
+            else {
+                if completionHandler != nil {
+                    completionHandler!(success, data!["error"] as? String)
+                }
+            }
+        }
+    }
+    
 //        _ = manager?.post("update_device_token", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
 //            do {
 //                let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
@@ -1601,14 +2423,42 @@ public class APIClient : NSObject {
 //        }
 //    }
 //    
-//    public func notifyUser(_ token:String, completionHandler:((Bool, AnyObject?) -> Void)?) {
-//        if AppPersistentData.sharedInstance.invalidAPIKey {
-//            completionHandler!(false, "Invalid API Key" as AnyObject)
-//            return
-//        }
-//
-//        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "device" : token, "title" : "Title", "body" : "body"];
-//        
+    public func notifyUser(_ token:String, completionHandler:((Bool, Any?) -> Void)?) {
+        if AppPersistentData.sharedInstance.invalidAPIKey {
+            completionHandler!(false, "Invalid API Key" as AnyObject)
+            return
+        }
+
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "device" : token, "title" : "Title", "body" : "body"]
+        
+        api.doRequest("notify_user", method: .post, parameters: parameters) { (success, data) in
+            if success {
+                if data!["status"] != nil && (data!["status"] as? String) != "ok" {
+                    if let strError = data!["msg"] as? String {
+                        if completionHandler != nil {
+                            completionHandler!(false, strError.localized)
+                        }
+                    }
+                    else {
+                        if completionHandler != nil {
+                            completionHandler!(false, nil)
+                        }
+                    }
+                }
+                else {
+                    if completionHandler != nil {
+                        completionHandler!( true, nil)
+                    }
+                }
+            }
+            else {
+                if completionHandler != nil {
+                    completionHandler!(success, data!["error"] as? String)
+                }
+            }
+        }
+    }
+    
 //        _ = manager?.post("notify_user", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
 //            do {
 //                let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
@@ -1645,14 +2495,41 @@ public class APIClient : NSObject {
 //        }
 //    }
 //    
-//    public func addMessage(_ token:String, completionHandler:((Bool, AnyObject?) -> Void)?) {
-//        if AppPersistentData.sharedInstance.invalidAPIKey {
-//            completionHandler!(false, "Invalid API Key" as AnyObject)
-//            return
-//        }
-//
-//        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "title" : "Title", "body" : "body"];
-//        
+    public func addMessage(_ token:String, completionHandler:((Bool, Any?) -> Void)?) {
+        if AppPersistentData.sharedInstance.invalidAPIKey {
+            completionHandler!(false, "Invalid API Key" as AnyObject)
+            return
+        }
+
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "title" : "Title", "body" : "body"];
+     
+        api.doRequest("add_msg", method: .post, parameters: parameters) { (success, data) in
+            if success {
+                if data!["status"] != nil && (data!["status"] as? String) != "ok" {
+                    if let strError = data!["msg"] as? String {
+                        if completionHandler != nil {
+                            completionHandler!(false, strError.localized)
+                        }
+                    }
+                    else {
+                        if completionHandler != nil {
+                            completionHandler!(false, nil)
+                        }
+                    }
+                }
+                else {
+                    if completionHandler != nil {
+                        completionHandler!( true, nil)
+                    }
+                }
+            }
+            else {
+                if completionHandler != nil {
+                    completionHandler!(success, data!["error"] as? String)
+                }
+            }
+        }
+    }
 //        _ = manager?.post("add_msg", parameters: parameters, success:{ (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
 //            do {
 //                let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
@@ -1689,15 +2566,42 @@ public class APIClient : NSObject {
 //        }
 //    }
 //    
-//    public func getTranslations(_ language:String,completionHandler:((Bool, AnyObject?) -> Void)?)
-//    {
-//        if AppPersistentData.sharedInstance.invalidAPIKey {
-//            completionHandler!(false, "Invalid API Key" as AnyObject)
-//            return
-//        }
-//
-//        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "language": language]
-//        
+    public func getTranslations(_ language:String,completionHandler:((Bool, Any?) -> Void)?)
+    {
+        if AppPersistentData.sharedInstance.invalidAPIKey {
+            completionHandler!(false, "Invalid API Key" as AnyObject)
+            return
+        }
+
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "language": language]
+
+        api.doRequest("get_translations", method: .post, parameters: parameters) { (success, data) in
+            if success {
+                if data!["status"] != nil && (data!["status"] as? String) != "ok" {
+                    if let strError = data!["msg"] as? String {
+                        if completionHandler != nil {
+                            completionHandler!(false, strError.localized)
+                        }
+                    }
+                    else {
+                        if completionHandler != nil {
+                            completionHandler!(false, nil)
+                        }
+                    }
+                }
+                else {
+                    if completionHandler != nil {
+                        completionHandler!( true, nil)
+                    }
+                }
+            }
+            else {
+                if completionHandler != nil {
+                    completionHandler!(success, data!["error"] as? String)
+                }
+            }
+        }
+    }
 //        _ = manager?.post("get_translations", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
 //            do {
 //                let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
@@ -1734,14 +2638,57 @@ public class APIClient : NSObject {
 //        }
 //    }
 //    
-//    public func getLanguages(_ completionHandler:((Bool, AnyObject?) -> Void)?){
-//        if AppPersistentData.sharedInstance.invalidAPIKey {
-//            completionHandler!(false, "Invalid API Key" as AnyObject)
-//            return
-//        }
-//
-//        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey]
-//        
+    public func getLanguages(_ completionHandler:((Bool, Any?) -> Void)?){
+        if AppPersistentData.sharedInstance.invalidAPIKey {
+            completionHandler!(false, "Invalid API Key" as AnyObject)
+            return
+        }
+
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey]
+
+        api.doRequest("get_languages", method: .post, parameters: parameters) { (success, data) in
+            if success {
+                if data!["status"] != nil && (data!["status"] as? String) != "ok" {
+                    if let strError = data!["msg"] as? String {
+                        if completionHandler != nil {
+                            completionHandler!(false, strError.localized)
+                        }
+                    }
+                    else {
+                        if completionHandler != nil {
+                            completionHandler!(false, nil)
+                        }
+                    }
+                }
+                else {
+                    if let calls:Array<NSDictionary> = data!["languages"] as? Array<NSDictionary> {
+                        TranslationManager.sharedInstance.languages = Array()
+                        for call in calls {
+                            let item:Language = Language()
+
+                            if let value:String = call.object(forKey: "name") as? String {
+                                item.name = value
+                            }
+                            if let value:String = call.object(forKey: "code") as? String {
+                                item.code = value
+                            }
+                            TranslationManager.sharedInstance.languages.append(item)
+                        }
+                        AppPersistentData.sharedInstance.saveData()
+                    }
+                    
+                    if completionHandler != nil {
+                        completionHandler!( true, nil)
+                    }
+                }
+            }
+            else {
+                if completionHandler != nil {
+                    completionHandler!(success, data!["error"] as? String)
+                }
+            }
+        }
+    }
 //        _ = manager?.post("get_languages", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
 //            do {
 //                let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options: JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
@@ -1795,24 +2742,93 @@ public class APIClient : NSObject {
 //        }
 //    }
 //    
-//    public func getMessages(_ completionHandler:((Bool, AnyObject?) -> Void)?)
-//    {
-//        if AppPersistentData.sharedInstance.invalidAPIKey {
-//            completionHandler!(false, "Invalid API Key" as AnyObject)
-//            return
-//        }
-//
-//        let defaults = UserDefaults.standard
-//        let lastTime = defaults.object(forKey: "messageTime")
-//        if lastTime != nil{
-//            if ((lastTime as! NSNumber).intValue - (Date().timeIntervalSince1970 as NSNumber).intValue) < 24 * 60 * 60{
-//                completionHandler!( true, nil)
-//                return
-//            }
-//        }
-//        
-//        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey]
-//        
+    public func getMessages(_ completionHandler:((Bool, Any?) -> Void)?)
+    {
+        if AppPersistentData.sharedInstance.invalidAPIKey {
+            completionHandler!(false, "Invalid API Key" as AnyObject)
+            return
+        }
+
+        let defaults = UserDefaults.standard
+        let lastTime = defaults.object(forKey: "messageTime")
+        if lastTime != nil{
+            if ((lastTime as! NSNumber).intValue - (Date().timeIntervalSince1970 as NSNumber).intValue) < 24 * 60 * 60{
+                completionHandler!( true, nil)
+                return
+            }
+        }
+        
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey]
+
+        api.doRequest("get_msgs", method: .post, parameters: parameters) { (success, data) in
+            if success {
+                if data!["status"] != nil && (data!["status"] as? String) != "ok" {
+                    if let strError = data!["msg"] as? String {
+                        if completionHandler != nil {
+                            completionHandler!(false, strError.localized)
+                        }
+                    }
+                    else {
+                        if completionHandler != nil {
+                            completionHandler!(false, nil)
+                        }
+                    }
+                }
+                else {
+                    if let msgs:Array<NSDictionary> = data!["msgs"] as? Array<NSDictionary> {
+
+                        defaults.set(NSNumber(value: NSDate().timeIntervalSince1970), forKey: "messageTime")
+
+                        for msg in msgs {
+                            let item:ServerMessage = ServerMessage()
+
+                            if let value:String = msg.object(forKey: "id") as? String {
+                                item.id = value
+                            }
+                            if let value:String = msg.object(forKey: "title") as? String {
+                                item.title = value
+                            }
+                            if let value:String = msg.object(forKey: "body") as? String {
+                                item.body = value
+                            }
+                            if let value:String = msg.object(forKey: "time") as? String {
+                                item.time = value
+                            }
+
+                            var found = false
+                            for msg in AppPersistentData.sharedInstance.serverMessages{
+                                if msg.id == item.id{
+                                    found = true
+                                    break
+                                }
+                            }
+
+                            if !found{
+                                item.read = false
+                                if lastTime == nil{
+                                    item.read = true
+                                }
+                                AppPersistentData.sharedInstance.serverMessages.append(item)
+                            }
+                            
+                        }
+                        AppPersistentData.sharedInstance.serverMessages.sort { $0.time < $1.time }
+                        AppPersistentData.sharedInstance.saveData()
+                    }
+                
+                    if completionHandler != nil {
+                        completionHandler!( true, nil)
+                    }
+                }
+            }
+            else {
+                if completionHandler != nil {
+                    completionHandler!(success, data!["error"] as? String)
+                }
+            }
+        }
+    }
+    
 //        _ = manager?.post("get_msgs", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
 //            do {
 //                let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
@@ -1887,23 +2903,25 @@ public class APIClient : NSObject {
 //        }
 //    }
 //    
-//    public func uploadMetadataFile(_ recordItem:RecordItem, completionHandler:((Bool, AnyObject?) -> Void)?) {
-//        if AppPersistentData.sharedInstance.invalidAPIKey {
-//            completionHandler!(false, "Invalid API Key" as AnyObject)
-//            return
-//        }
-//        
-//        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey,"name":(recordItem.text)+"_metadata", "parent_id":(recordItem.id)]
-//        
-//        var path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] 
-//        path += recordItem.localFile
-//        path = AudioFileTagManager.sharedInstance.getMetadataFilePath(path)
-//        NSLog(path)
-//        if !FileManager.default.fileExists(atPath: path ){
-//            completionHandler!(false, nil)
-//            return
-//        }
-//        
+    public func uploadMetadataFile(_ recordItem:RecordItem, completionHandler:((Bool, Any?) -> Void)?) {
+        if AppPersistentData.sharedInstance.invalidAPIKey {
+            completionHandler!(false, "Invalid API Key" as AnyObject)
+            return
+        }
+        
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey,"name":(recordItem.text)+"_metadata", "parent_id":(recordItem.id)]
+        
+        var path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] 
+        path += recordItem.localFile
+        path = AudioFileTagManager.sharedInstance.getMetadataFilePath(path)
+        NSLog(path)
+        if !FileManager.default.fileExists(atPath: path ){
+            completionHandler!(false, nil)
+            return
+        }
+
+
+    }
 //        _ = manager?.post("create_meta_file", parameters: parameters, constructingBodyWith: { (data) -> Void in
 //            do {
 //                try data?.appendPart(withFileURL: NSURL(fileURLWithPath: path) as URL!, name: "file")
@@ -1994,15 +3012,43 @@ public class APIClient : NSObject {
 //        }
 //    }
 //    
-//    public func getMetadataFiles(_ recordItem:RecordItem, completionHandler:((Bool, AnyObject?) -> Void)?)
-//    {
-//        if AppPersistentData.sharedInstance.invalidAPIKey {
-//            completionHandler!(false, "Invalid API Key" as AnyObject)
-//            return
-//        }
-//        
-//        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "parent_id":(recordItem.id)]
-//        
+    public func getMetadataFiles(_ recordItem:RecordItem, completionHandler:((Bool, Any?) -> Void)?)
+    {
+        if AppPersistentData.sharedInstance.invalidAPIKey {
+            completionHandler!(false, "Invalid API Key" as AnyObject)
+            return
+        }
+        
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "parent_id":(recordItem.id)]
+
+        api.doRequest("get_meta_files", method: .post, parameters: parameters) { (success, data) in
+            if success {
+                if data!["status"] != nil && (data!["status"] as? String) != "ok" {
+                    if let strError = data!["msg"] as? String {
+                        if completionHandler != nil {
+                            completionHandler!(false, strError.localized)
+                        }
+                    }
+                    else {
+                        if completionHandler != nil {
+                            completionHandler!(false, nil)
+                        }
+                    }
+                }
+                else {
+                    if completionHandler != nil {
+                        completionHandler!( true, nil)
+                    }
+                }
+            }
+            else {
+                if completionHandler != nil {
+                    completionHandler!(success, data!["error"] as? String)
+                }
+            }
+        }
+
+    }
 //        _ = manager?.post("get_meta_files", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response:Any!) -> Void in
 //            do {
 //                let jsonDict = try JSONSerialization.jsonObject(with: operation.responseData, options:JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
