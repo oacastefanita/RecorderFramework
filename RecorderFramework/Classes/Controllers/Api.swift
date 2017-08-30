@@ -50,7 +50,7 @@ open class Api: NSObject {
                 if fieldNames != nil && fieldNames!.count > index {
                     fieldName = fieldNames![index]
                 }
-                var mimeType = "image/jpeg"
+                var mimeType = "audio/wav"
                 if fieldName == "video" {
                     mimeType = "video/quicktime"
                 }

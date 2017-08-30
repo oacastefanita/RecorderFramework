@@ -9,6 +9,7 @@
 import Foundation
 import CoreTelephony
 
+let API_BASE_URL = "https://app2.virtualbrix.net/rapi/"
 #if os(iOS)
     
 #else
@@ -23,7 +24,7 @@ public class APIClient : NSObject {
     
     public static let sharedInstance = APIClient()
     
-    var api = Api(baseURL: "https://app2.virtualbrix.net/rapi/")
+    var api = Api(baseURL: API_BASE_URL)
     
     override public init() {
         super.init()
@@ -1692,7 +1693,7 @@ public class APIClient : NSObject {
 //        }
 
 
-        api.upload("create_file", imagesFiles: [path], fieldNames: ["file"], parameters:parameters) { (success, data) in
+        api.upload(API_BASE_URL + "create_file", imagesFiles: [path], fieldNames: ["file"], parameters:parameters) { (success, data) in
             if success {
 //                if data!["status"] != nil && (data!["status"] as? String) != "ok" {
 //                    if let strError = data!["msg"] as? String {
