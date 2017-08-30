@@ -120,7 +120,7 @@ open class Api: NSObject {
         let strHeaders = self.customHeaders != nil ? "\(self.customHeaders!)" : ""
         self.completionHandlerLog!("\(method) REQUEST:\(self.baseURL + url) \(Date()) HEADER:\(strHeaders)", "BODY:\(jsonString)")
         
-        let request = Alamofire.request("\(self.baseURL)\(url)", method: method, parameters: parameters, encoding: JSONEncoding.default, headers:customHeaders).responseJSON { response in
+        let request = Alamofire.request("\(self.baseURL)\(url)", method: method, parameters: parameters, encoding: URLEncoding.default, headers:customHeaders).responseJSON { response in
             
             if let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue) as String? {
                 self.completionHandlerLog("\(method) RESPONSE:\(self.baseURL + url) \(Date())", "BODY:\(responseString)")
