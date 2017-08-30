@@ -1665,7 +1665,7 @@ public class APIClient : NSObject {
 //        }
 //    }
 //    
-    public func uploadRecording(_ recordItem:RecordItem, completionHandler:((Bool, AnyObject?) -> Void)?) {
+    public func uploadRecording(_ recordItem:RecordItem, completionHandler:((Bool, Any?) -> Void)?) {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
@@ -1693,34 +1693,41 @@ public class APIClient : NSObject {
 //        }
 
 
-        api.upload(API_BASE_URL + "create_file", imagesFiles: [path], fieldNames: ["file"], parameters:parameters) { (success, data) in
+        api.upload(API_BASE_URL + "create_file", imagesFiles: [path], fieldNames: ["file"], parameters:parameters) { (success, retData) in
             if success {
-//                if data!["status"] != nil && (data!["status"] as? String) != "ok" {
-//                    if let strError = data!["msg"] as? String {
-//                        if completionHandler != nil {
-//                            completionHandler!(false, strError.localized)
-//                        }
-//                    }
-//                    else {
-//                        if completionHandler != nil {
-//                            completionHandler!(false, nil)
-//                        }
-//                    }
-//                }
-//                else {
-//                    if let value:NSNumber = data!["id"] as? NSNumber  {
-//                        recordItem.id = String(format:"%.0f", value.doubleValue)
-//                    }
-//
-//                    if completionHandler != nil {
-//                        completionHandler!( true, nil)
-//                    }
-//                }
+                if let data = retData as? [String:Any] {
+                    if data["status"] != nil && (data["status"] as? String) != "ok" {
+                        if let strError = data["msg"] as? String {
+                            if completionHandler != nil {
+                                completionHandler!(false, strError.localized)
+                            }
+                        }
+                        else {
+                            if completionHandler != nil {
+                                completionHandler!(false, nil)
+                            }
+                        }
+                    }
+                    else {
+                        if let value:NSNumber = data["id"] as? NSNumber  {
+                            recordItem.id = String(format:"%.0f", value.doubleValue)
+                        }
+
+                        if completionHandler != nil {
+                            completionHandler!( true, nil)
+                        }
+                    }
+                }
             }
             else {
-//                if completionHandler != nil {
-//                    completionHandler!(success, data!["error"] as? String)
-//                }
+                if completionHandler != nil {
+                    if retData is String {
+                        completionHandler!(success, retData)
+                    }
+                    else {
+                        completionHandler!(success, "Error occured while uploading file.")
+                    }
+                }
             }
         }
     }
