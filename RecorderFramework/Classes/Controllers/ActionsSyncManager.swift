@@ -1,4 +1,5 @@
 
+
 //
 //  ActionsSyncManager.swift
 //  Recorder
@@ -352,7 +353,7 @@ public class ActionsSyncManager : NSObject {
 //                }
 //                AlertController.showAlert(self.currentController, title: "Actions failed".localized, message: message, accept: "OK".localized, reject: nil)
 //            }
-            AFAPIClient.sharedInstance.mainSync({ (success) -> Void in
+            APIClient.sharedInstance.mainSync({ (success) -> Void in
                 NotificationCenter.default.post(name: Notification.Name(rawValue: kNotificationRecordingsUpdated), object: nil)
             })
             return
@@ -367,7 +368,7 @@ public class ActionsSyncManager : NSObject {
 
 //            let recordItem = RecordingsManager.sharedInstance.getRecordingById(action!.arg1)
 //            if recordItem != nil {
-                AFAPIClient.sharedInstance.deleteRecording(action!.arg1, removeForever:action!.arg2 == "true", completionHandler: { (success, data) -> Void in
+                APIClient.sharedInstance.deleteRecording(action!.arg1, removeForever:action!.arg2 == "true", completionHandler: { (success, data) -> Void in
                     if !success {
                         self.actionsFailed += 1
                     }
@@ -389,7 +390,7 @@ public class ActionsSyncManager : NSObject {
             
             let recordItem = RecordingsManager.sharedInstance.getRecordingById(action!.arg1)
             if recordItem != nil {
-                AFAPIClient.sharedInstance.moveRecording(recordItem!, folderId:action!.arg2, completionHandler: { (success, data) -> Void in
+                APIClient.sharedInstance.moveRecording(recordItem!, folderId:action!.arg2, completionHandler: { (success, data) -> Void in
                     if !success {
                         self.actionsFailed += 1
                     }
@@ -410,7 +411,7 @@ public class ActionsSyncManager : NSObject {
             
             let recordItem = RecordingsManager.sharedInstance.getRecordingById(action!.arg1)
             if recordItem != nil {
-                AFAPIClient.sharedInstance.recoverRecording(recordItem!, folderId:action!.arg2, completionHandler: { (success, data) -> Void in
+                APIClient.sharedInstance.recoverRecording(recordItem!, folderId:action!.arg2, completionHandler: { (success, data) -> Void in
                     if !success {
                         self.actionsFailed += 1
                     }
@@ -431,7 +432,7 @@ public class ActionsSyncManager : NSObject {
             
             let recordItem = RecordingsManager.sharedInstance.getRecordingById(action!.arg1)
             if recordItem != nil {
-                AFAPIClient.sharedInstance.renameRecording(recordItem!, name:action!.arg2, completionHandler: { (success, data) -> Void in
+                APIClient.sharedInstance.renameRecording(recordItem!, name:action!.arg2, completionHandler: { (success, data) -> Void in
                     if !success {
                         self.actionsFailed += 1
                     }
@@ -457,9 +458,9 @@ public class ActionsSyncManager : NSObject {
             if AFNetworkReachabilityManager.shared().isReachableViaWiFi || on! {
                 let recordItem = RecordingsManager.sharedInstance.getRecordingById(action!.arg1)
                 if recordItem != nil {
-                    AFAPIClient.sharedInstance.uploadRecording(recordItem!, completionHandler: { (success, data) -> Void in
+                    APIClient.sharedInstance.uploadRecording(recordItem!, completionHandler: { (success, data) -> Void in
                         if(success){
-                            AFAPIClient.sharedInstance.uploadMetadataFile(recordItem!, completionHandler: { (success, data) -> Void in
+                            APIClient.sharedInstance.uploadMetadataFile(recordItem!, completionHandler: { (success, data) -> Void in
                                 if !success {
                                     self.actionsFailed += 1
                                 }
@@ -487,7 +488,7 @@ public class ActionsSyncManager : NSObject {
         case ActionType.createFolder:
             let recordFolder = RecordingsManager.sharedInstance.getFolderByLinkedAction(action!.id)
             if recordFolder != nil {
-                AFAPIClient.sharedInstance.createFolder(recordFolder!.title! as NSString, localID:recordFolder!.id! as NSString, completionHandler: { (success, data) -> Void in
+                APIClient.sharedInstance.createFolder(recordFolder!.title! as NSString, localID:recordFolder!.id! as NSString, completionHandler: { (success, data) -> Void in
                     if success {
 //                        var index = 0
 //                        for recItem in RecordingsManager.sharedInstance.recordFolders {
@@ -517,7 +518,7 @@ public class ActionsSyncManager : NSObject {
         case ActionType.renameFolder:
             let recordFolder = RecordingsManager.sharedInstance.getFolderByLinkedAction(action!.id)
             if recordFolder != nil {
-                AFAPIClient.sharedInstance.renameFolder((recordFolder?.id)!, name:action!.arg2, completionHandler: { (success, data) -> Void in
+                APIClient.sharedInstance.renameFolder((recordFolder?.id)!, name:action!.arg2, completionHandler: { (success, data) -> Void in
                     if success {
                         self.removeAction(action!.id)
                         self.saveActions()
@@ -536,7 +537,7 @@ public class ActionsSyncManager : NSObject {
             }
             break
         case ActionType.deleteFolder:
-            AFAPIClient.sharedInstance.deleteFolder(action!.arg1, moveTo:action!.arg2, completionHandler: { (success, data) -> Void in
+            APIClient.sharedInstance.deleteFolder(action!.arg1, moveTo:action!.arg2, completionHandler: { (success, data) -> Void in
                 if success {
                     self.removeAction(action!.id)
                     self.saveActions()
@@ -550,7 +551,7 @@ public class ActionsSyncManager : NSObject {
             })
             break
         case ActionType.reorderFolders:
-            AFAPIClient.sharedInstance.reorderFolders(action!.arg3, completionHandler: { (success, data) -> Void in
+            APIClient.sharedInstance.reorderFolders(action!.arg3 as! [String : Any], completionHandler: { (success, data) -> Void in
                 if success || data as! String == "Nothing to Update" {
                     self.removeAction(action!.id)
                     self.saveActions()
@@ -567,7 +568,7 @@ public class ActionsSyncManager : NSObject {
         case ActionType.updateFileInfo:
             let recordItem = RecordingsManager.sharedInstance.getRecordingById(action!.arg1)
             if recordItem != nil {
-                AFAPIClient.sharedInstance.updateRecordingInfo(recordItem!, parameters: action!.arg3, completionHandler: { (success, data) -> Void in
+                APIClient.sharedInstance.updateRecordingInfo(recordItem!, parameters: action!.arg3 as! [String : Any], completionHandler: { (success, data) -> Void in
                     if !success {
                         self.actionsFailed += 1
                     }
@@ -585,7 +586,7 @@ public class ActionsSyncManager : NSObject {
             break
             
         case ActionType.buyCredits:
-            AFAPIClient.sharedInstance.buyCredits((action!.arg1 as NSString).integerValue, receipt:action!.arg2, completionHandler: { (success, data) -> Void in
+            APIClient.sharedInstance.buyCredits((action!.arg1 as NSString).integerValue, receipt:action!.arg2, completionHandler: { (success, data) -> Void in
                 if success {
                     self.removeAction(action!.id)
                     self.saveActions()

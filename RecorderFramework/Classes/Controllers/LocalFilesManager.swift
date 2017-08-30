@@ -214,7 +214,7 @@ public class LocalFilesManager: NSObject {
                 self.downloadFiles(newFiles)
             }
             else {
-                AFAPIClient.sharedInstance.downloadAudioFile(item!, toFolder: folder.id, completionHandler: { (success) -> Void in
+                APIClient.sharedInstance.downloadAudioFile(item!, toFolder: folder.id, completionHandler: { (success) -> Void in
                     var path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] 
                     path += item!.localFile
                     
@@ -222,7 +222,7 @@ public class LocalFilesManager: NSObject {
                         self.remainingFileSize -= (try! Data(contentsOf: URL(fileURLWithPath: path))).count
                     }
 
-//                    AFAPIClient.sharedInstance.downloadFile(item!.metadataFilePath, localPath:item!.localMetadataFile, completionHandler: { (Bool success) -> Void in
+//                    APIClient.sharedInstance.downloadFile(item!.metadataFilePath, localPath:item!.localMetadataFile, completionHandler: { (Bool success) -> Void in
 //                        if success {
 //
 //                        }
