@@ -17,7 +17,6 @@ import Cocoa
 
 public class APIClient : NSObject {
     
-    //public var manager = AFHTTPRequestOperationManager(baseURL: URL(string: "https://app2.virtualbrix.net/rapi"))//"https://virtualbrix.net/rapi"))
     public var mainSyncInProgress:Bool = false
     public var mainSyncErrors:Int = 0
     public var currentViewController = UIViewController()
@@ -28,8 +27,6 @@ public class APIClient : NSObject {
     
     override public init() {
         super.init()
-        //self.initalizeManager()
-        
         api.completionHandlerLog = { (req, resp) in
 //            var logLevel = ""
 //            if (UserDefaults.standard.string(forKey: "logLevelPreference") != nil){
@@ -43,19 +40,6 @@ public class APIClient : NSObject {
                 print(resp)
 //            }
         }
-    }
-    
-    public func initalizeManager()
-    {
-//        AFHTTPRequestOperationLogger.shared().startLogging()
-//        AFHTTPRequestOperationLogger.shared().level = AFHTTPRequestLoggerLevel.AFLoggerLevelDebug
-//        manager?.requestSerializer = AFHTTPRequestSerializer()
-//        manager?.responseSerializer = AFJSONResponseSerializer()
-//        manager?.responseSerializer.acceptableContentTypes = NSSet(array:["text/html"]) as Set<NSObject>
-//        
-//        let securityPolicy = AFSecurityPolicy(pinningMode: AFSSLPinningMode.none)
-//        securityPolicy?.allowInvalidCertificates = false
-//        manager?.securityPolicy = securityPolicy;
     }
     
     public func register(_ number:NSString, completionHandler:((Bool, Any?) -> Void)?)
@@ -1686,15 +1670,61 @@ public class APIClient : NSObject {
             return
         }
 
+        var path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        path += recordItem.localFile
+
+        if URL(fileURLWithPath:path).pathExtension == "caf" {
+            let wavPath = path.replacingOccurrences(of: ".caf", with: ".wav", options: NSString.CompareOptions.literal, range: nil)
+//                AudioConverter.exportAsset(asWaveFormat: path, destination:wavPath)
+            path = wavPath
+        }
+
+        if !FileManager.default.fileExists(atPath: path ){
+            completionHandler!(false, nil)
+            return
+        }
+        
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "data": "{\"name\":\"\(recordItem.text)\",\"notes\":\"\(recordItem.notes)\"}"]
+
+
+//        if SwiftPreprocessor.sharedInstance().SWIFT_ISRECORDER{
+//            parameters["source"] = "app2"
+//        }
+
+
+        api.upload("create_file", imagesFiles: [path], fieldNames: ["file"], parameters:parameters) { (success, data) in
+            if success {
+//                if data!["status"] != nil && (data!["status"] as? String) != "ok" {
+//                    if let strError = data!["msg"] as? String {
+//                        if completionHandler != nil {
+//                            completionHandler!(false, strError.localized)
+//                        }
+//                    }
+//                    else {
+//                        if completionHandler != nil {
+//                            completionHandler!(false, nil)
+//                        }
+//                    }
+//                }
+//                else {
+//                    if let value:NSNumber = data!["id"] as? NSNumber  {
+//                        recordItem.id = String(format:"%.0f", value.doubleValue)
+//                    }
+//
+//                    if completionHandler != nil {
+//                        completionHandler!( true, nil)
+//                    }
+//                }
+            }
+            else {
+//                if completionHandler != nil {
+//                    completionHandler!(success, data!["error"] as? String)
+//                }
+            }
+        }
     }
 //        do {
 //            //let jsonData = try JSONSerialization.data(withJSONObject: ["name":"audio_upload_test","notes":""], options: JSONSerialization.WritingOptions.prettyPrinted)
-//            let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "data": "{\"name\":\"\(recordItem.text)\",\"notes\":\"\(recordItem.notes)\"} "]
-//            
-//            
-//    //        if SwiftPreprocessor.sharedInstance().SWIFT_ISRECORDER{
-//    //            parameters["source"] = "app2"
-//    //        }
 //
 //            var path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] 
 //            path += recordItem.localFile
