@@ -129,7 +129,7 @@ public class ActionsSyncManager : NSObject {
         self.saveActions()
         self.startProcessingActions()
         
-        AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeFolderCreated);
+        //AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeFolderCreated);
     }
     
     public func deleteFolder(_ recordFolder:RecordFolder, moveToFolder:String!) {
@@ -148,7 +148,7 @@ public class ActionsSyncManager : NSObject {
         self.saveActions()
         self.startProcessingActions()
         
-        AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeFolderDeleted);
+        //AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeFolderDeleted);
     }
     
     public func renameFolder(_ recordFolder:RecordFolder) {
@@ -162,7 +162,7 @@ public class ActionsSyncManager : NSObject {
         self.saveActions()
         self.startProcessingActions()
         
-        AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeFolderRenamed);
+        //AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeFolderRenamed);
     }
 
 
@@ -185,7 +185,7 @@ public class ActionsSyncManager : NSObject {
         self.saveActions()
         self.startProcessingActions()
         
-        AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeRecordItemDeleted);
+        //AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeRecordItemDeleted);
     }
     
     public func deleteRecordings(_ recordItemIds:String, forever:Bool) {
@@ -206,7 +206,7 @@ public class ActionsSyncManager : NSObject {
         self.saveActions()
         self.startProcessingActions()
         
-        AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeRecordItemDeleted);
+        //AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeRecordItemDeleted);
     }
 
     public func moveRecording(_ recordItem:RecordItem, folderId:String) {
@@ -241,7 +241,7 @@ public class ActionsSyncManager : NSObject {
         
         self.saveActions()
         
-        AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeRecordItemMoved);
+        //AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeRecordItemMoved);
     }
     
     public func recoverRecording(_ recordItem:RecordItem, folderId:String) {
@@ -254,7 +254,7 @@ public class ActionsSyncManager : NSObject {
         
         self.saveActions()
         
-        AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeRecordItemMoved);
+        //AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeRecordItemMoved);
     }
     
     public func renameRecording(_ recordItem:RecordItem) {
@@ -268,7 +268,7 @@ public class ActionsSyncManager : NSObject {
         self.saveActions()
         self.startProcessingActions()
         
-        AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeRecordItemRenamed);
+        //AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeRecordItemRenamed);
     }
     
     public func uploadRecording(_ recordItem:RecordItem) {
@@ -293,7 +293,7 @@ public class ActionsSyncManager : NSObject {
         
         self.saveActions()
         self.startProcessingActions()
-        AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeFolderReorder);
+        //AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeFolderReorder);
     }
 
     
