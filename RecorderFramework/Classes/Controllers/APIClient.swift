@@ -339,6 +339,10 @@ public class APIClient : NSObject {
                             if let value:String = call.object(forKey: "notes") as? String {
                                 item.notes = value
                             }
+                            
+                            if let value:String = call.object(forKey: "tags") as? String {
+                                item.tags = value
+                            }
     
                             allIds.append(item.id)
                             
@@ -1685,7 +1689,7 @@ public class APIClient : NSObject {
             return
         }
         
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "data": "{\"name\":\"\(recordItem.text)\",\"notes\":\"\(recordItem.notes)\"}"]
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "data": "{\"name\":\"\(recordItem.text)\",\"notes\":\"\(recordItem.notes)\",\"tags\":\"\(recordItem.tags)\"}"]
 
 
 //        if SwiftPreprocessor.sharedInstance().SWIFT_ISRECORDER{

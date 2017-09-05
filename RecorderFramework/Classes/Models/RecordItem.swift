@@ -43,6 +43,7 @@ public class RecordItem: NSObject, NSSecureCoding, UIActivityItemSource {
     public var phoneNumber: String! = ""
     public var email: String! = ""
     public var notes: String! = ""
+    public var tags: String = ""
     
     public var fileData: Data! // for airdrop
     
@@ -128,6 +129,10 @@ public class RecordItem: NSObject, NSSecureCoding, UIActivityItemSource {
             self.notes = value
         }
         
+        if let value = aDecoder.decodeObject(forKey: "tags") as? String {
+            self.tags = value
+        }
+        
         if let value = aDecoder.decodeObject(forKey: "fileData") as? Data {
             self.fileData = value
         }
@@ -208,6 +213,8 @@ public class RecordItem: NSObject, NSSecureCoding, UIActivityItemSource {
             aCoder.encode(value, forKey: "notes")
         }
         
+        aCoder.encode(tags, forKey: "tags")
+        
         if let value = self.fileData {
             aCoder.encode(value, forKey: "fileData")
         }
@@ -233,6 +240,7 @@ public class RecordItem: NSObject, NSSecureCoding, UIActivityItemSource {
         self.phoneNumber = item.phoneNumber
         self.email = item.email
         self.notes = item.notes
+        self.tags = item.tags
         self.fromTrash = item.fromTrash
     }
     
