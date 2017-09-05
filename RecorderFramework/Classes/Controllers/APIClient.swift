@@ -239,6 +239,9 @@ public class APIClient : NSObject {
                             if let value:String = call.object(forKey: "tags") as? String {
                                 item.tags = value
                             }
+                            if let value:String = call.object(forKey: "is_star") as? String {
+                                item.isStar = value == "1"
+                            }
     
                             allIds.append(item.id)
                             

@@ -45,6 +45,8 @@ public class RecordItem: NSObject, NSSecureCoding, UIActivityItemSource {
     public var notes: String! = ""
     public var tags: String = ""
     
+    public var isStar = false
+    
     public var fileData: Data! // for airdrop
     
     public var storageType:StorageType = StorageType.auto
@@ -93,6 +95,10 @@ public class RecordItem: NSObject, NSSecureCoding, UIActivityItemSource {
         }
         if let value = aDecoder.decodeObject(forKey: "fromTrash") as? String {
             self.fromTrash = NSString(string: value).boolValue
+        }
+        
+        if let value = aDecoder.decodeObject(forKey: "isStar") as? String {
+            self.isStar = NSString(string: value).boolValue
         }
         
         if let data = aDecoder.decodeObject(forKey: "waveRenderVals") as? Data {
@@ -177,6 +183,7 @@ public class RecordItem: NSObject, NSSecureCoding, UIActivityItemSource {
 
         aCoder.encode(fileDownloaded ? "true" : "false", forKey: "fileDownloaded")
         aCoder.encode(fromTrash ? "true" : "false", forKey: "fromTrash")
+        aCoder.encode(isStar ? "true" : "false", forKey: "isStar")
         
         if waveRenderVals != nil {
             let data = NSKeyedArchiver.archivedData(withRootObject: waveRenderVals)
@@ -242,6 +249,7 @@ public class RecordItem: NSObject, NSSecureCoding, UIActivityItemSource {
         self.notes = item.notes
         self.tags = item.tags
         self.fromTrash = item.fromTrash
+        self.isStar = item.isStar
     }
     
     public func recordingNextAction(_ currentAction:Action!) -> Action! {
