@@ -547,10 +547,11 @@ public class APIClient : NSObject {
                     if let value:NSNumber = data!["id"] as? NSNumber {
                         recordFolder?.id = value.stringValue
                         for action in ActionsSyncManager.sharedInstance.actions {
-                            if action.arg1 == localID as String {
+                            if action.arg1 != nil && action.arg1 == localID as String {
                                 action.arg1 = recordFolder?.id
                             }
-                            if action.arg2 == localID as String {
+                            
+                            if action.arg2 != nil && action.arg2 == localID as String {
                                 action.arg2 = recordFolder?.id
                             }
                         }
