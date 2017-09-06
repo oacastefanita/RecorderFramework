@@ -86,13 +86,13 @@ public class Utils:NSObject {
                     
                 } else {
                     print("Just authorized", terminator: "")
-                    var recordIDString: AnyObject? = UserDefaults.standard.object(forKey: "contact") as AnyObject
+                    var recordIDString = UserDefaults.standard.object(forKey: "contact") as? String
                     if recordIDString == nil{
-                        recordIDString = "" as AnyObject
+                        recordIDString = "0"
                     } else{
                          print(recordIDString, terminator: "")
                     }
-                    let recordID:Int32 = ( recordIDString as! NSString).intValue
+                    let recordID:Int32 = Int32(recordIDString!)!
                     var contact:ABRecord
                     
                     var found = false
