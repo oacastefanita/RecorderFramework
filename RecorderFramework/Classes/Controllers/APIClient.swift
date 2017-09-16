@@ -1741,4 +1741,132 @@ public class APIClient : NSObject {
 
     }
 
+    //MARK: profile
+    
+    public func getProfile(completionHandler:((Bool, Any?) -> Void)?)
+    {
+        if AppPersistentData.sharedInstance.invalidAPIKey {
+            completionHandler!(false, "Invalid API Key" as AnyObject)
+            return
+        }
+        
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey]
+        
+        api.doRequest("get_profile", method: .post, parameters: parameters) { (success, data) in
+            if success {
+                if data!["status"] != nil && (data!["status"] as? String) != "ok" {
+                    if let strError = data!["msg"] as? String {
+                        if completionHandler != nil {
+                            completionHandler!(false, strError.localized)
+                        }
+                    }
+                    else {
+                        if completionHandler != nil {
+                            completionHandler!(false, nil)
+                        }
+                    }
+                }
+                else {
+                    if completionHandler != nil {
+                        completionHandler!( true, nil)
+                    }
+                }
+            }
+            else {
+                if completionHandler != nil {
+                    completionHandler!(success, data!["error"] as? String)
+                }
+            }
+        }
+    }
+    
+    public func updateProfile(params:[String:Any], completionHandler:((Bool, Any?) -> Void)?)
+    {
+        if AppPersistentData.sharedInstance.invalidAPIKey {
+            completionHandler!(false, "Invalid API Key" as AnyObject)
+            return
+        }
+        
+        var parameters = params
+        parameters["api_key"] = AppPersistentData.sharedInstance.apiKey
+        
+        api.doRequest("update_profile", method: .post, parameters: parameters) { (success, data) in
+            if success {
+                if data!["status"] != nil && (data!["status"] as? String) != "ok" {
+                    if let strError = data!["msg"] as? String {
+                        if completionHandler != nil {
+                            completionHandler!(false, strError.localized)
+                        }
+                    }
+                    else {
+                        if completionHandler != nil {
+                            completionHandler!(false, nil)
+                        }
+                    }
+                }
+                else {
+                    if completionHandler != nil {
+                        completionHandler!( true, nil)
+                    }
+                }
+            }
+            else {
+                if completionHandler != nil {
+                    completionHandler!(success, data!["error"] as? String)
+                }
+            }
+        }
+    }
+    
+    public func uploadProfilePicture(path:String, completionHandler:((Bool, Any?) -> Void)?) {
+        if AppPersistentData.sharedInstance.invalidAPIKey {
+            completionHandler!(false, "Invalid API Key" as AnyObject)
+            return
+        }
+        
+        if !FileManager.default.fileExists(atPath: path ){
+            completionHandler!(false, nil)
+            return
+        }
+        
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey]
+        
+        api.upload(API_BASE_URL + "update_profile_img", imagesFiles: [path], fieldNames: ["file"], parameters:parameters, mimeType: "image/jpeg") { (success, retData) in
+            if success {
+                if let data = retData as? [String:Any] {
+                    if data["status"] != nil && (data["status"] as? String) != "ok" {
+                        if let strError = data["msg"] as? String {
+                            if completionHandler != nil {
+                                completionHandler!(false, strError.localized)
+                            }
+                        }
+                        else {
+                            if completionHandler != nil {
+                                completionHandler!(false, nil)
+                            }
+                        }
+                    }
+                    else {
+                        
+                        if completionHandler != nil {
+                            completionHandler!( true, nil)
+                        }
+                    }
+                }
+            }
+            else {
+                if completionHandler != nil {
+                    if retData is String {
+                        completionHandler!(success, retData)
+                    }
+                    else {
+                        completionHandler!(success, "Error occured while uploading file.")
+                    }
+                }
+            }
+        }
+    }
+    
+
+
 }

@@ -41,7 +41,7 @@ open class Api: NSObject {
         }
     }
     
-    open func upload(_ toUrl:String, imagesFiles:[String], fieldNames:[String]? = nil, parameters:[String:Any]? = nil, completionHandler:((Bool, Any) -> Void)?) {
+    open func upload(_ toUrl:String, imagesFiles:[String], fieldNames:[String]? = nil, parameters:[String:Any]? = nil, mimeType:String = "audio/wav", completionHandler:((Bool, Any) -> Void)?) {
         Alamofire.upload(multipartFormData: { (data) in
             var index = 0
             for filePath in imagesFiles {
@@ -49,10 +49,6 @@ open class Api: NSObject {
                 var fieldName = String(index+1)
                 if fieldNames != nil && fieldNames!.count > index {
                     fieldName = fieldNames![index]
-                }
-                var mimeType = "audio/wav"
-                if fieldName == "video" {
-                    mimeType = "video/quicktime"
                 }
                 data.append(URL(fileURLWithPath: filePath), withName: fieldName, fileName: name, mimeType: mimeType)
                 index += 1
