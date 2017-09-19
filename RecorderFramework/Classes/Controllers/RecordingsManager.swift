@@ -123,6 +123,12 @@ public class RecordingsManager : NSObject {
                     result.recordFolder = folder
                     result.text = item.notes
                     results.append(result)
+                } else if (item.tags.lowercased().range(of: name.lowercased()) != nil) {
+                    let result = SearchResult()
+                    result.recordItem = item
+                    result.recordFolder = folder
+                    result.text = item.notes
+                    results.append(result)
                 }
             }
         }
