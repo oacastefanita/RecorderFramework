@@ -1794,6 +1794,8 @@ public class APIClient : NSObject {
                                 user.playBeep = value
                             }
                         }
+                        AppPersistentData.sharedInstance.user = user
+                        AppPersistentData.sharedInstance.saveData()
                     }
                     
                     if completionHandler != nil {
