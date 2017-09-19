@@ -1161,7 +1161,7 @@ public class APIClient : NSObject {
                 completionHandler!(false)
             }
             return
-//            AppPersistentData.sharedInstance.apiKey = "557872b508520557872b50855c"
+//            AppPersistentData.sharedInstance.apiKey = "562a60677fd88562a60677fdc4"
         }
         mainSyncInProgress = true
         mainSyncErrors = 0
@@ -1170,27 +1170,29 @@ public class APIClient : NSObject {
             APIClient.sharedInstance.getMessages({ (success, data) -> Void in
                 APIClient.sharedInstance.getLanguages { (success, data) -> Void in
                     APIClient.sharedInstance.getTranslations(TranslationManager.sharedInstance.currentLanguage, completionHandler:{ (success, data) -> Void in
-                        APIClient.sharedInstance.getPhoneNumbers { (success, data) -> Void in
-                            if !success {
-                                self.mainSyncErrors += 1
-                            }
-                            APIClient.sharedInstance.getFolders({ (success, data) -> Void in
+                        APIClient.sharedInstance.getProfile({ (success, data) -> Void in
+                            APIClient.sharedInstance.getPhoneNumbers { (success, data) -> Void in
                                 if !success {
                                     self.mainSyncErrors += 1
                                 }
-                                
-                                self.getRecordings({ (success) -> Void in
-                                    if completionHandler != nil {
-                                        completionHandler!(true)
+                                APIClient.sharedInstance.getFolders({ (success, data) -> Void in
+                                    if !success {
+                                        self.mainSyncErrors += 1
                                     }
-                                    self.mainSyncInProgress = false
-                                    //                    if self.mainSyncErrors > 0 {
-                                    //                        AlertController.showAlert(self.currentViewController, title: "Warning".localized, message: "Errors occured during server sync process".localized, accept: "Ok".localized, reject: nil)
-                                    //                    }
-                                    NotificationCenter.default.post(name: Notification.Name(rawValue: kNotificationRecordingsUpdated), object: nil)
+                                    
+                                    self.getRecordings({ (success) -> Void in
+                                        if completionHandler != nil {
+                                            completionHandler!(true)
+                                        }
+                                        self.mainSyncInProgress = false
+                                        //                    if self.mainSyncErrors > 0 {
+                                        //                        AlertController.showAlert(self.currentViewController, title: "Warning".localized, message: "Errors occured during server sync process".localized, accept: "Ok".localized, reject: nil)
+                                        //                    }
+                                        NotificationCenter.default.post(name: Notification.Name(rawValue: kNotificationRecordingsUpdated), object: nil)
+                                    })
                                 })
-                            })
-                        }
+                            }
+                        })
                     })
                 }
             })
@@ -1336,7 +1338,7 @@ public class APIClient : NSObject {
                 else {
                     if let settings:NSDictionary = data!["settings"] as? NSDictionary {
                         if let value:String = settings.object(forKey: "play_beep") as? String {
-                            AppPersistentData.sharedInstance.playBeep = value == "no" ? false:true
+                            AppPersistentData.sharedInstance.user.playBeep = value == "no" ? false:true
                         }
                         if let value:String = settings.object(forKey: "files_permission") as? String {
                             AppPersistentData.sharedInstance.filePermission = value
@@ -1743,7 +1745,7 @@ public class APIClient : NSObject {
 
     //MARK: profile
     
-    public func getProfile(completionHandler:((Bool, Any?) -> Void)?)
+    public func getProfile(_ completionHandler:((Bool, Any?) -> Void)?)
     {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
@@ -1767,6 +1769,33 @@ public class APIClient : NSObject {
                     }
                 }
                 else {
+                    if let profile:NSDictionary = data!["profile"] as? NSDictionary {
+                        let user = User()
+                            
+                        if let value:String = profile.object(forKey: "f_name") as? String {
+                            user.firstName = value
+                        }
+                        if let value:String = profile.object(forKey: "l_name") as? String {
+                            user.lastName = value
+                        }
+                        if let value:String = profile.object(forKey: "email") as? String {
+                            user.email = value
+                        }
+                        if let value:String = profile.object(forKey: "max_length") as? String {
+                            user.maxLenght = value
+                        }
+                        if let stringValue:String = profile.object(forKey: "play_beep") as? String {
+                            if let value:Bool = (stringValue == "yes" || stringValue == "true" || stringValue == "1"){
+                                user.playBeep = value
+                            }
+                        }
+                        if let stringValue:String = profile.object(forKey: "is_public") as? String {
+                            if let value:Bool = (stringValue == "yes" || stringValue == "true" || stringValue == "1") {
+                                user.playBeep = value
+                            }
+                        }
+                    }
+                    
                     if completionHandler != nil {
                         completionHandler!( true, nil)
                     }

@@ -20,7 +20,7 @@ public class AppPersistentData : NSObject {
     public var invalidAPIKey = false
     
     // settings
-    public var playBeep = false
+    public var user:User! = User()
     public var passOn = false
     public var filePermission:String!
     public var credits:Int!
@@ -106,7 +106,7 @@ public class AppPersistentData : NSObject {
         let serverMessagesData = NSKeyedArchiver.archivedData(withRootObject: serverMessages)
         defaults.set(serverMessagesData, forKey: "serverMessages")
         
-        defaults.setValue(playBeep ? "true" : "false", forKey: "playBeep");
+        defaults.setValue(NSKeyedArchiver.archivedData(withRootObject: user),  forKey: "user");
         defaults.set(passOn , forKey: "passwordpref");
         
         defaults.synchronize()
@@ -149,8 +149,8 @@ public class AppPersistentData : NSObject {
             serverMessages = NSKeyedUnarchiver.unarchiveObject(with: data) as! Array<ServerMessage>
         }
         
-        if let value:String = defaults.value(forKey: "playBeep") as? String {
-            playBeep = value == "true"
+        if let data = defaults.value(forKey: "user") as? Data {
+            user = NSKeyedUnarchiver.unarchiveObject(with: data) as! User
         }
         
         passOn = defaults.bool(forKey: "passwordpref")
