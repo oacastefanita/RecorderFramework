@@ -175,6 +175,14 @@ public class AlertController: NSObject, UIAlertViewDelegate {
     
     public var tag = 0
     
+    public class func showTextFieldAlert(_ sender:UIViewController, title:String, accept:String?, reject:String?) -> AlertController {
+        let instance = AlertController()
+        
+        instance.showTextFieldAlert(sender, title: title, accept: accept, reject: reject)
+        
+        return instance
+    }
+    
     public class func showAlert(_ sender:UIViewController, title:String, message:String, accept:String?, reject:String?) -> AlertController {
         let instance = AlertController()
         
@@ -223,6 +231,46 @@ public class AlertController: NSObject, UIAlertViewDelegate {
                 }))
             }
 
+            sender.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    public func showTextFieldAlert (_ sender:UIViewController, title:String, accept:String?, reject:String?) {
+        if (UIDevice.current.systemVersion as NSString).floatValue < 8.0 {
+            alertView = UIAlertView()
+            if let _accept = accept {
+                alertView.addButton(withTitle: _accept)
+            }
+            if let _reject = reject {
+                alertView.addButton(withTitle: _reject)
+            }
+            alertView.title = title
+            alertView.addSubview(UITextField())
+            alertView.show()
+        }
+        else {
+            let alert = UIAlertController(title: title, message: nil, preferredStyle: UIAlertControllerStyle.alert)
+            if let _accept = accept {
+                alert.addAction(UIAlertAction(title: _accept, style: .default, handler: { action in
+                    alert.dismiss(animated: false, completion: nil)
+                    if self.delegate != nil {
+                        self.delegate.alertAccepted(self)
+                    }
+                }))
+            }
+            if let _reject = reject {
+                alert.addAction(UIAlertAction(title: _reject, style: .default, handler: { action in
+                    alert.dismiss(animated: false, completion: nil)
+                    if self.delegate != nil {
+                        self.delegate.alertRejected(self)
+                    }
+                }))
+            }
+            alert.addTextField(configurationHandler: {(_ textField: UITextField) -> Void in
+                textField.placeholder = "Current password"
+                textField.isSecureTextEntry = true
+            })
+            
             sender.present(alert, animated: true, completion: nil)
         }
     }
