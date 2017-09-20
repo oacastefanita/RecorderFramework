@@ -158,6 +158,12 @@ public let kNotificationCameFromBackground = "CameFromBackground"
 
 public protocol AlertControllerDelegate{
     func alertAccepted(_ alertController:AlertController)
+    func alertAccepted(_ alertController:AlertController, text: String)
+    func alertRejected(_ alertController:AlertController)
+}
+
+public protocol TextAlertControllerDelegate{
+    func alertAccepted(_ alertController:AlertController, text: String?)
     func alertRejected(_ alertController:AlertController)
 }
 
@@ -171,6 +177,7 @@ public class AlertController: NSObject, UIAlertViewDelegate {
             }
         }
     }
+    public var textDelegate:TextAlertControllerDelegate!
     public var alertView:UIAlertView!
     
     public var tag = 0
@@ -253,16 +260,16 @@ public class AlertController: NSObject, UIAlertViewDelegate {
             if let _accept = accept {
                 alert.addAction(UIAlertAction(title: _accept, style: .default, handler: { action in
                     alert.dismiss(animated: false, completion: nil)
-                    if self.delegate != nil {
-                        self.delegate.alertAccepted(self)
+                    if self.textDelegate != nil {
+                        self.textDelegate.alertAccepted(self, text: alert.textFields?.first?.text)
                     }
                 }))
             }
             if let _reject = reject {
                 alert.addAction(UIAlertAction(title: _reject, style: .default, handler: { action in
                     alert.dismiss(animated: false, completion: nil)
-                    if self.delegate != nil {
-                        self.delegate.alertRejected(self)
+                    if self.textDelegate != nil {
+                        self.textDelegate.alertRejected(self)
                     }
                 }))
             }
