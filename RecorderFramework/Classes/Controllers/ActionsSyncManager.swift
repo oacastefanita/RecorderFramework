@@ -170,7 +170,7 @@ public class ActionsSyncManager : NSObject {
     public func addPasswordToFolder(_ recordFolder:RecordFolder) {
         let action = Action()
         action.timeStamp = Date().timeIntervalSince1970
-        action.type = ActionType.renameFolder
+        action.type = ActionType.addPasswordToFolder
         action.arg1 = recordFolder.id
         action.arg2 = recordFolder.password
         actions.append(action)
