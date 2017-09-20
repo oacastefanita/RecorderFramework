@@ -483,7 +483,9 @@ public class APIClient : NSObject {
                             if let value:String = folder.object(forKey: "created") as? String {
                                 recordFolder.created  = value
                             }
-
+                            if let value:String = folder.object(forKey: "pass") as? String {
+                                recordFolder.password  = value
+                            }
                             if let value:String = folder.object(forKey: "folder_order") as? String {
                                 recordFolder.folderOrder  = Int(value)!
                             }
@@ -661,6 +663,42 @@ public class APIClient : NSObject {
 
         let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "id" : folderId, "name" : name]
 
+        api.doRequest("update_folder", method: .post, parameters: parameters) { (success, data) in
+            if success {
+                if data!["status"] != nil && (data!["status"] as? String) != "ok" {
+                    if let strError = data!["msg"] as? String {
+                        if completionHandler != nil {
+                            completionHandler!(false, strError.localized)
+                        }
+                    }
+                    else {
+                        if completionHandler != nil {
+                            completionHandler!(false, nil)
+                        }
+                    }
+                }
+                else {
+                    if completionHandler != nil {
+                        completionHandler!( true, nil)
+                    }
+                }
+            }
+            else {
+                if completionHandler != nil {
+                    completionHandler!(success, data!["error"] as? String)
+                }
+            }
+        }
+    }
+    
+    public func addPasswordToFolder(_ folderId:String, pass:String, completionHandler:((Bool, Any?) -> Void)?) {
+        if AppPersistentData.sharedInstance.invalidAPIKey {
+            completionHandler!(false, "Invalid API Key" as AnyObject)
+            return
+        }
+        
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "id" : folderId, "pass" : pass]
+        
         api.doRequest("update_folder", method: .post, parameters: parameters) { (success, data) in
             if success {
                 if data!["status"] != nil && (data!["status"] as? String) != "ok" {

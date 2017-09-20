@@ -13,6 +13,8 @@ public class RecordFolder: NSObject, NSCoding {
     public var id: String!
     public var created: String!
     public var folderOrder:Int = 0
+    public var password: String!
+    
     //var linkedActionId: String!
     
     public var type:StorageType = StorageType.keepLocally
@@ -34,6 +36,9 @@ public class RecordFolder: NSObject, NSCoding {
         }
         if let value = aDecoder.decodeObject(forKey: "folder_order") as? String {
             self.folderOrder = Int(value)!
+        }
+        if let value = aDecoder.decodeObject(forKey: "password") as? String {
+            self.password = value
         }
         
 //        if let value = aDecoder.decodeObjectForKey("linkedActionId") as? String {
@@ -57,7 +62,9 @@ public class RecordFolder: NSObject, NSCoding {
         }
         
         aCoder.encode(String(folderOrder), forKey: "folder_order")
-        
+        if let value = self.password {
+            aCoder.encode(value, forKey: "password")
+        }
 //        if let value = self.linkedActionId {
 //            aCoder.encodeObject(value, forKey: "linkedActionId")
 //        }
