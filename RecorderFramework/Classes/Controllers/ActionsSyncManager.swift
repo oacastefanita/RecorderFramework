@@ -23,6 +23,8 @@ public enum ActionType : Int {
     case updateFileInfo
     case buyCredits
     case custom
+    case addPasswordToFolder
+    case updateUserProfile
 }
 
 public class Action : NSObject, NSCoding {
@@ -164,6 +166,20 @@ public class ActionsSyncManager : NSObject {
         
         //AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeFolderRenamed);
     }
+    
+    public func addPasswordToFolder(_ recordFolder:RecordFolder) {
+        let action = Action()
+        action.timeStamp = Date().timeIntervalSince1970
+        action.type = ActionType.renameFolder
+        action.arg1 = recordFolder.id
+        action.arg2 = recordFolder.password
+        actions.append(action)
+        
+        self.saveActions()
+        self.startProcessingActions()
+        
+        //AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeFolderRenamed);
+    }
 
 
     // MARK: recordings actions
@@ -296,6 +312,17 @@ public class ActionsSyncManager : NSObject {
         //AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeFolderReorder);
     }
 
+    public func updateUserProfile(_ user:User, userInfo:NSMutableDictionary) {
+        let action = Action()
+        action.timeStamp = Date().timeIntervalSince1970
+        action.type = ActionType.updateUserProfile
+        action.arg3 = userInfo;
+        actions.append(action)
+        
+        self.saveActions()
+        self.startProcessingActions()
+        //AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeFolderReorder);
+    }
     
     public func reorderFolders(_ parameters:NSMutableDictionary) {
         let action = Action()
@@ -536,6 +563,27 @@ public class ActionsSyncManager : NSObject {
                 processActions(newActions)
             }
             break
+        case ActionType.addPasswordToFolder:
+            let recordFolder = RecordingsManager.sharedInstance.getFolderByLinkedAction(action!.id)
+            if recordFolder != nil {
+                APIClient.sharedInstance.addPasswordToFolder((recordFolder?.id)!, pass:action!.arg2, completionHandler: { (success, data) -> Void in
+                    if success {
+                        self.removeAction(action!.id)
+                        self.saveActions()
+                    }
+                    else {
+                        self.actionsFailed += 1
+                    }
+                    self.processActions(newActions)
+                    
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: kNotificationRecordingsUpdated), object: nil)
+                })
+            }
+            else {
+                self.removeAction(action!.id)
+                processActions(newActions)
+            }
+            break
         case ActionType.deleteFolder:
             APIClient.sharedInstance.deleteFolder(action!.arg1, moveTo:action!.arg2, completionHandler: { (success, data) -> Void in
                 if success {
@@ -611,6 +659,18 @@ public class ActionsSyncManager : NSObject {
                     self.processActions(newActions)
                 })
             }
+            break
+        case ActionType.updateUserProfile:
+            APIClient.sharedInstance.updateProfile(params: action!.arg3 as! [String : Any], completionHandler: { (success, data) -> Void in
+                if !success {
+                    self.actionsFailed += 1
+                }
+                else {
+                    self.removeAction(action!.id)
+                    self.saveActions()
+                }
+                self.processActions(newActions)
+            })
             break
         }
     }
