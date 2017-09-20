@@ -158,7 +158,6 @@ public let kNotificationCameFromBackground = "CameFromBackground"
 
 public protocol AlertControllerDelegate{
     func alertAccepted(_ alertController:AlertController)
-    func alertAccepted(_ alertController:AlertController, text: String)
     func alertRejected(_ alertController:AlertController)
 }
 
