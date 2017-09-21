@@ -15,6 +15,7 @@ public class User: NSObject {
     public var isPublic:Bool! = false
     public var playBeep:Bool! = false
     public var maxLenght:String! = ""
+    public var imagePath:String! = ""
     
     override public init() {
         super.init()
@@ -38,6 +39,9 @@ public class User: NSObject {
         }
         if let value = aDecoder.decodeObject(forKey: "maxLenght") as? String {
             self.maxLenght = value
+        }
+        if let value = aDecoder.decodeObject(forKey: "imagePath") as? String {
+            self.imagePath = value
         }
     }
     
@@ -64,6 +68,10 @@ public class User: NSObject {
         
         if let value = self.maxLenght {
             aCoder.encode(value, forKey: "maxLenght")
+        }
+        
+        if let value = self.imagePath {
+            aCoder.encode(value, forKey: "imagePath")
         }
     }
 }

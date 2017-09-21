@@ -1822,6 +1822,9 @@ public class APIClient : NSObject {
                         if let value:String = profile.object(forKey: "max_length") as? String {
                             user.maxLenght = value
                         }
+                        if let value:String = profile.object(forKey: "pic") as? String {
+                            user.imagePath = value
+                        }
                         if let stringValue:String = profile.object(forKey: "play_beep") as? String {
                             if let value:Bool = (stringValue == "yes" || stringValue == "true" || stringValue == "1"){
                                 user.playBeep = value
