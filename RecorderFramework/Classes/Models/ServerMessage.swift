@@ -9,11 +9,11 @@
 import Foundation
 
 public class ServerMessage: NSObject {
-    public var id: String! = ""
-    public var title:String! = ""
-    public var body:String! = ""
-    public var time:String! = ""
-    public var read: Bool = false
+    @objc public var id: String! = ""
+    @objc public var title:String! = ""
+    @objc public var body:String! = ""
+    @objc public var time:String! = ""
+    @objc public var read: Bool = false
     
     override public init() {
         super.init()
@@ -68,3 +68,4 @@ public class ServerMessage: NSObject {
         aCoder.encode(read ? "true" : "false", forKey: "read")
     }
 }
+

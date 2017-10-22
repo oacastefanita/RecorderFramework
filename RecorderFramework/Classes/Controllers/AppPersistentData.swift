@@ -10,31 +10,30 @@ import Foundation
 
 
 public class AppPersistentData : NSObject {
+    @objc public static let sharedInstance = AppPersistentData()
     
-    public static let sharedInstance = AppPersistentData()
-    
-    public var phone:String!
-    public var apiKey:String!
-    public var verificationCode:String! //for testing
-    public var notificationToken:String!
-    public var invalidAPIKey = false
+    @objc public var phone:String!
+    @objc public var apiKey:String!
+    @objc public var verificationCode:String! //for testing
+    @objc public var notificationToken:String!
+    @objc public var invalidAPIKey = false
     
     // settings
-    public var user:User! = User()
-    public var passOn = false
-    public var filePermission:String!
+    @objc public var user:User! = User()
+    @objc public var passOn = false
+    @objc public var filePermission:String!
     public var credits:Int!
-    public var app:String!
+    @objc public var app:String!
     
-    public var phoneNumbers:Array<PhoneNumber>
-    public var serverMessages:Array<ServerMessage>
+    @objc public var phoneNumbers:Array<PhoneNumber>
+    @objc public var serverMessages:Array<ServerMessage>
     
-    public var justReseted = false
-    public var free = false
+    @objc public var justReseted = false
+    @objc public var free = false
     
     // settings
-    public var receivedNotification = false
-    public var messageID:String!
+    @objc public var receivedNotification = false
+    @objc public var messageID:String!
     
     override public init() {
         phoneNumbers = Array<PhoneNumber>()
@@ -74,8 +73,8 @@ public class AppPersistentData : NSObject {
             UserDefaults.standard.synchronize()
         }
     }
-
-    public func saveData() {
+    
+    @objc public func saveData() {
         let defaults = UserDefaults.standard
         
         if(phone != nil){
@@ -169,3 +168,4 @@ public class AppPersistentData : NSObject {
         return !(AppPersistentData.sharedInstance.apiKey == nil || AppPersistentData.sharedInstance.apiKey.isEmpty)
     }
 }
+

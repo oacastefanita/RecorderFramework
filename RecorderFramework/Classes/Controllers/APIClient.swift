@@ -13,7 +13,7 @@ let API_BASE_URL = "https://app2.virtualbrix.net/rapi/"
 #if os(iOS)
     
 #else
-import Cocoa
+    import Cocoa
 #endif
 
 public class APIClient : NSObject {
@@ -22,24 +22,24 @@ public class APIClient : NSObject {
     public var mainSyncErrors:Int = 0
     public var currentViewController = UIViewController()
     
-    public static let sharedInstance = APIClient()
+    @objc public static let sharedInstance = APIClient()
     
     var api = Api(baseURL: API_BASE_URL)
     
     override public init() {
         super.init()
         api.completionHandlerLog = { (req, resp) in
-//            var logLevel = ""
-//            if (UserDefaults.standard.string(forKey: "logLevelPreference") != nil){
-//                logLevel = UserDefaults.standard.string(forKey: "logLevelPreference")!
-//            }
-//            if logLevel == "5"{
-//                self.mixpanel.track("ServerLog", properties:["Request": req, "Response": resp])
-//            }
-//            else {
-                print(req)
-                print(resp)
-//            }
+            //            var logLevel = ""
+            //            if (UserDefaults.standard.string(forKey: "logLevelPreference") != nil){
+            //                logLevel = UserDefaults.standard.string(forKey: "logLevelPreference")!
+            //            }
+            //            if logLevel == "5"{
+            //                self.mixpanel.track("ServerLog", properties:["Request": req, "Response": resp])
+            //            }
+            //            else {
+            print(req)
+            print(resp)
+            //            }
         }
     }
     
@@ -89,18 +89,18 @@ public class APIClient : NSObject {
     public func sendVerificationCode(_ code:NSString, completionHandler:((Bool, Any?) -> Void)?) {
         let tn = CTTelephonyNetworkInfo();
         let carrier = tn.subscriberCellularProvider
-
-#if CRFREE
-        let appCode = "free"
-#else
-        let appCode = "pro"
-#endif
-
+        
+        #if CRFREE
+            let appCode = "free"
+        #else
+            let appCode = "pro"
+        #endif
+        
         let mcc:String! = (carrier != nil && !carrier!.mobileCountryCode!.isEmpty) ? carrier!.mobileCountryCode : "310"
         let deviceToken =  AppPersistentData.sharedInstance.notificationToken == nil ? "Simulator" : AppPersistentData.sharedInstance.notificationToken
         let parameters = ["phone": AppPersistentData.sharedInstance.phone, "code": code, "mcc": mcc, "token": "55942ee3894f51000530894", "app": appCode, "device_token":deviceToken!] as [String : Any]
-//        var parameters = [("phone", AppPersistentData.sharedInstance.phone), ("code": code), ("mcc": (carrier != nil && !carrier!.mobileCountryCode!.isEmpty) ? carrier!.mobileCountryCode : "310"), ("token": "55942ee3894f51000530894"), ("app": appCode), ("device_token": AppPersistentData.sharedInstance.notificationToken == nil ? "Simulator" : AppPersistentData.sharedInstance.notificationToken)] //"226" "310" carrier.mobileCountryCode
-
+        //        var parameters = [("phone", AppPersistentData.sharedInstance.phone), ("code": code), ("mcc": (carrier != nil && !carrier!.mobileCountryCode!.isEmpty) ? carrier!.mobileCountryCode : "310"), ("token": "55942ee3894f51000530894"), ("app": appCode), ("device_token": AppPersistentData.sharedInstance.notificationToken == nil ? "Simulator" : AppPersistentData.sharedInstance.notificationToken)] //"226" "310" carrier.mobileCountryCode
+        
         api.doRequest("verify_phone", method: .post, parameters: parameters) { (success, data) in
             if success {
                 if data!["status"] != nil && (data!["status"] as? String) != "ok" {
@@ -120,7 +120,7 @@ public class APIClient : NSObject {
                         AppPersistentData.sharedInstance.apiKey = value
                         AppPersistentData.sharedInstance.invalidAPIKey = false
                         AppPersistentData.sharedInstance.saveData()
-
+                        
                         if completionHandler != nil {
                             completionHandler!( true, nil)
                         }
@@ -143,13 +143,13 @@ public class APIClient : NSObject {
             }
         }
     }
-
+    
     public func getRecordings(_ folderId:String!, completionHandler:((Bool, Any?) -> Void)?) {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
         }
-
+        
         var parameters:[String : Any] = ["api_key": AppPersistentData.sharedInstance.apiKey]
         if folderId != nil {
             parameters.updateValue(folderId, forKey: "folder_id")
@@ -185,13 +185,13 @@ public class APIClient : NSObject {
                                 allIds.append(item.id)
                             }
                         }
-    
+                        
                         for call in calls {
                             let item:RecordItem = RecordItem()
                             if folderId == "trash"{
                                 item.fromTrash = true
                             }
-    
+                            
                             if let value:String = call.object(forKey: "name") as? String {
                                 item.text = value
                             }
@@ -242,7 +242,7 @@ public class APIClient : NSObject {
                             if let value:String = call.object(forKey: "is_star") as? String {
                                 item.isStar = value == "1"
                             }
-    
+                            
                             allIds.append(item.id)
                             
                             _ = RecordingsManager.sharedInstance.syncRecordingItem(item, folder:recordFolder)
@@ -251,14 +251,14 @@ public class APIClient : NSObject {
                             if(on == nil){
                                 on = true
                             }
-    //                        
-    //                        if AFNetworkReachabilityManager.sharedManager().reachableViaWiFi || on! {
-    //                            if synchedItem.url != nil && !synchedItem.url.isEmpty && !synchedItem.fileDownloaded {
-    //                                APIClient.sharedInstance.downloadAudioFile(synchedItem, toFolder:recordFolder.title, completionHandler:{ (Bool success) -> Void in
-    //                                    AppPersistentData.sharedInstance.saveData()
-    //                                });
-    //                            }
-    //                        }
+                            //
+                            //                        if AFNetworkReachabilityManager.sharedManager().reachableViaWiFi || on! {
+                            //                            if synchedItem.url != nil && !synchedItem.url.isEmpty && !synchedItem.fileDownloaded {
+                            //                                APIClient.sharedInstance.downloadAudioFile(synchedItem, toFolder:recordFolder.title, completionHandler:{ (Bool success) -> Void in
+                            //                                    AppPersistentData.sharedInstance.saveData()
+                            //                                });
+                            //                            }
+                            //                        }
                         }
                         
                         recordFolder.keepOnlyItemsWithIds(allIds);
@@ -277,15 +277,15 @@ public class APIClient : NSObject {
                 }
             }
         }
-
+        
     }
-
+    
     public func getPhoneNumbers(_ completionHandler:((Bool, Any?) -> Void)?) {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key")
             return
         }
-
+        
         let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey]
         var defaultPhone = " "
         for phoneNumber in AppPersistentData.sharedInstance.phoneNumbers{
@@ -312,7 +312,7 @@ public class APIClient : NSObject {
                 }
                 else {
                     if let numbers:Array<NSDictionary> = data!["root"] as? Array<NSDictionary> {
-    
+                        
                         for number in numbers {
                             let phoneNumber = PhoneNumber()
                             if let value:String = number.object(forKey: "phone_number") as? String {
@@ -333,7 +333,7 @@ public class APIClient : NSObject {
                             if let value:String = number.object(forKey: "country") as? String {
                                 phoneNumber.country = value
                             }
-    
+                            
                             AppPersistentData.sharedInstance.phoneNumbers.append(phoneNumber)
                         }
                     }
@@ -346,7 +346,7 @@ public class APIClient : NSObject {
                                 break
                             }
                         }
-    
+                        
                         if !found{
                             AppPersistentData.sharedInstance.phoneNumbers.first!.isDefault = true
                         }
@@ -392,7 +392,7 @@ public class APIClient : NSObject {
             }
         }
     }
-
+    
     public func getFolders(_ completionHandler:((Bool, Any?) -> Void)?) {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
@@ -432,7 +432,7 @@ public class APIClient : NSObject {
                     }
                 }
             }
-
+            
             if !foundDefault {
                 let defaultFolder = RecordFolder()
                 defaultFolder.id = "0"
@@ -451,7 +451,7 @@ public class APIClient : NSObject {
                 defaultFolder.title = "Trash".localized
                 RecordingsManager.sharedInstance.recordFolders.insert(defaultFolder, at: 2)
             }
-
+            
             if success {
                 if data!["status"] != nil && (data!["status"] as? String) != "ok" {
                     if let strError = data!["msg"] as? String {
@@ -473,7 +473,7 @@ public class APIClient : NSObject {
                         ids.append("trash")
                         for folder in folders {
                             let recordFolder = RecordFolder()
-
+                            
                             if let value:String = folder.object(forKey: "name") as? String {
                                 recordFolder.title = value
                             }
@@ -490,7 +490,7 @@ public class APIClient : NSObject {
                                 recordFolder.folderOrder  = Int(value)!
                             }
                             ids.append(recordFolder.id)
-
+                            
                             _ = RecordingsManager.sharedInstance.syncItem(recordFolder)
                         }
                         RecordingsManager.sharedInstance.keepOnlyItemsWithIds(ids);
@@ -510,14 +510,14 @@ public class APIClient : NSObject {
             }
         }
     }
-
+    
     public func createFolder(_ name:NSString, localID:NSString, completionHandler:((Bool, Any?) -> Void)?)
     {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
         }
-
+        
         let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "name" : name] as [String : Any]
         
         api.doRequest("create_folder", method: .post, parameters: parameters) { (success, data) in
@@ -539,7 +539,7 @@ public class APIClient : NSObject {
                     if recordFolder == nil {
                         recordFolder = RecordFolder()
                     }
-
+                    
                     if let value:String = data!["name"] as? String {
                         recordFolder?.title = value
                     }
@@ -572,18 +572,18 @@ public class APIClient : NSObject {
             }
         }
     }
-
+    
     public func deleteFolder(_ folderId:String, moveTo:String!, completionHandler:((Bool, Any?) -> Void)?) {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
         }
-
+        
         var parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "id" : folderId]
         if moveTo != nil && moveTo != ""{
             parameters["move_to"] = moveTo
         }
-     
+        
         api.doRequest("delete_folder", method: .post, parameters: parameters) { (success, data) in
             if success {
                 if data!["status"] != nil && (data!["status"] as? String) != "ok" {
@@ -614,16 +614,16 @@ public class APIClient : NSObject {
             }
         }
     }
-
+    
     public func reorderFolders(_ parameters:[String:Any], completionHandler:((Bool, Any?) -> Void)?) {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
         }
-
+        
         var params = parameters
         params["api_key"] = AppPersistentData.sharedInstance.apiKey
-
+        
         api.doRequest("update_folders_order", method: .post, parameters: params) { (success, data) in
             if success {
                 if data!["status"] != nil && (data!["status"] as? String) != "ok" {
@@ -654,15 +654,15 @@ public class APIClient : NSObject {
             }
         }
     }
-
+    
     public func renameFolder(_ folderId:String, name:String, completionHandler:((Bool, Any?) -> Void)?) {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
         }
-
+        
         let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "id" : folderId, "name" : name]
-
+        
         api.doRequest("update_folder", method: .post, parameters: parameters) { (success, data) in
             if success {
                 if data!["status"] != nil && (data!["status"] as? String) != "ok" {
@@ -726,15 +726,15 @@ public class APIClient : NSObject {
             }
         }
     }
-
+    
     public func deleteRecording(_ recordItemId:String, removeForever:Bool, completionHandler:((Bool, Any?) -> Void)?) {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
         }
-
+        
         let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "ids" : recordItemId, "action" : removeForever ? "remove_forever" : ""]
-     
+        
         api.doRequest("delete_files", method: .post, parameters: parameters) { (success, data) in
             if success {
                 if data!["status"] != nil && (data!["status"] as? String) != "ok" {
@@ -762,15 +762,15 @@ public class APIClient : NSObject {
             }
         }
     }
-
+    
     public func moveRecording(_ recordItem:RecordItem, folderId:String, completionHandler:((Bool, Any?) -> Void)?) {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
         }
-
+        
         let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "id" : recordItem.id, "folder_id" : folderId]
-     
+        
         api.doRequest("update_file", method: .post, parameters: parameters) { (success, data) in
             if success {
                 if data!["status"] != nil && (data!["status"] as? String) != "ok" {
@@ -798,13 +798,13 @@ public class APIClient : NSObject {
             }
         }
     }
-
+    
     public func recoverRecording(_ recordItem:RecordItem, folderId:String, completionHandler:((Bool, Any?) -> Void)?) {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
         }
-
+        
         let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "id" : recordItem.id, "folder_id" : folderId]
         
         api.doRequest("recover_file", method: .post, parameters: parameters) { (success, data) in
@@ -834,13 +834,13 @@ public class APIClient : NSObject {
             }
         }
     }
-
+    
     public func updateRecordingInfo(_ recordItem:RecordItem ,parameters:[String:Any], completionHandler:((Bool, Any?) -> Void)?) {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
         }
-
+        
         //parameters.setObject(AppPersistentData.sharedInstance.apiKey, forKey: "api_key" as NSCopying)
         
         var params = parameters
@@ -951,15 +951,15 @@ public class APIClient : NSObject {
             }
         }
     }
-
+    
     public func renameRecording(_ recordItem:RecordItem, name:String, completionHandler:((Bool, Any?) -> Void)?) {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
         }
-
+        
         let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "id" : recordItem.id, "name":name]
-
+        
         api.doRequest("update_file", method: .post, parameters: parameters) { (success, data) in
             if success {
                 if data!["status"] != nil && (data!["status"] as? String) != "ok" {
@@ -987,35 +987,35 @@ public class APIClient : NSObject {
             }
         }
     }
-
+    
     public func uploadRecording(_ recordItem:RecordItem, completionHandler:((Bool, Any?) -> Void)?) {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
         }
-
+        
         var path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
         path += recordItem.localFile
-
+        
         if URL(fileURLWithPath:path).pathExtension == "caf" {
             let wavPath = path.replacingOccurrences(of: ".caf", with: ".wav", options: NSString.CompareOptions.literal, range: nil)
-//                AudioConverter.exportAsset(asWaveFormat: path, destination:wavPath)
+            //                AudioConverter.exportAsset(asWaveFormat: path, destination:wavPath)
             path = wavPath
         }
-
+        
         if !FileManager.default.fileExists(atPath: path ){
             completionHandler!(false, nil)
             return
         }
         
         let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "data": "{\"name\":\"\(recordItem.text)\",\"notes\":\"\(recordItem.notes)\",\"tags\":\"\(recordItem.tags)\"}"]
-
-
-//        if SwiftPreprocessor.sharedInstance().SWIFT_ISRECORDER{
-//            parameters["source"] = "app2"
-//        }
-
-
+        
+        
+        //        if SwiftPreprocessor.sharedInstance().SWIFT_ISRECORDER{
+        //            parameters["source"] = "app2"
+        //        }
+        
+        
         api.upload(API_BASE_URL + "create_file", imagesFiles: [path], fieldNames: ["file"], parameters:parameters) { (success, retData) in
             if success {
                 if let data = retData as? [String:Any] {
@@ -1035,7 +1035,7 @@ public class APIClient : NSObject {
                         if let value:NSNumber = data["id"] as? NSNumber  {
                             recordItem.id = String(format:"%.0f", value.doubleValue)
                         }
-
+                        
                         if completionHandler != nil {
                             completionHandler!( true, nil)
                         }
@@ -1054,14 +1054,14 @@ public class APIClient : NSObject {
             }
         }
     }
- 
+    
     public func downloadFile(_ fileUrl:String, localPath:String, completionHandler:((Bool) -> Void)?)
     {
         if (AppPersistentData.sharedInstance.invalidAPIKey || fileUrl == ""){
             completionHandler!(false)
             return
         }
-
+        
         var url = fileUrl as String
         url += "?api_key=" + AppPersistentData.sharedInstance.apiKey
         
@@ -1071,18 +1071,18 @@ public class APIClient : NSObject {
             }
         }
     }
-
+    
     public func downloadAudioFile(_ recordItem:RecordItem, toFolder:String, completionHandler:((Bool) -> Void)?) {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false)
             return
         }
-
-        var path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] 
+        
+        var path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
         path = path + ("/" + toFolder + "/");
         if !FileManager.default.fileExists(atPath: path) {
             do {
-             try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
+                try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
             }
             catch
             {
@@ -1103,9 +1103,9 @@ public class APIClient : NSObject {
         if !isWav && !isMP3 {
             path = path + ".wav"
         }
-
+        
         // improve: remove local file if already exist and download it again (it may be a broken file)
-
+        
         if !FileManager.default.fileExists(atPath: path) {
             APIClient.sharedInstance.downloadFile(recordItem.url!, localPath:path, completionHandler: { (success) -> Void in
                 recordItem.fileDownloaded = success
@@ -1132,7 +1132,7 @@ public class APIClient : NSObject {
                                 let name = (file.object(forKey: "name") as? String)!
                                 var metaPath = AudioFileTagManager.sharedInstance.getMetadataFilePath(path)
                                 if url.components(separatedBy: ".").last != "json" {
-                                    var path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] 
+                                    var path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
                                     path = path + ("/" + toFolder + "/")
                                     
                                     let end = "__" + name.components(separatedBy: "__").last!
@@ -1173,11 +1173,11 @@ public class APIClient : NSObject {
             if !isWav && !isMP3 {
                 recordItem.localFile = recordItem.localFile + ".wav"
             }
-
+            
             if completionHandler != nil {
                 completionHandler!(true)
             }
-
+            
         }
     }
     
@@ -1186,7 +1186,7 @@ public class APIClient : NSObject {
             completionHandler!(false)
             return
         }
-
+        
         if mainSyncInProgress {
             if completionHandler != nil {
                 completionHandler!(false)
@@ -1199,7 +1199,7 @@ public class APIClient : NSObject {
                 completionHandler!(false)
             }
             return
-//            AppPersistentData.sharedInstance.apiKey = "562a60677fd88562a60677fdc4"
+            //            AppPersistentData.sharedInstance.apiKey = "562a60677fd88562a60677fdc4"
         }
         mainSyncInProgress = true
         mainSyncErrors = 0
@@ -1236,7 +1236,7 @@ public class APIClient : NSObject {
             })
         })
     }
-
+    
     public func updateFolders(_ completionHandler:((Bool) -> Void)?) {
         APIClient.sharedInstance.getFolders { (success, data) -> Void in
             if !success {
@@ -1249,7 +1249,7 @@ public class APIClient : NSObject {
             })
         }
     }
-
+    
     public func getRecordings(_ completionHandler:((Bool) -> Void)?) {
         if AppPersistentData.sharedInstance.apiKey == nil {
             if completionHandler != nil {
@@ -1258,7 +1258,7 @@ public class APIClient : NSObject {
             }
         }
         var countToHandle = RecordingsManager.sharedInstance.recordFolders.count - 1
-
+        
         for recordFolder in RecordingsManager.sharedInstance.recordFolders {
             if recordFolder.id == "-99"{
                 continue
@@ -1283,9 +1283,9 @@ public class APIClient : NSObject {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
         }
-
+        
         let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "play_beep" : playBeep ? "yes" : "no"]
-
+        
         api.doRequest("update_settings", method: .post, parameters: parameters) { (success, data) in
             if success {
                 if data!["status"] != nil && (data!["status"] as? String) != "ok" {
@@ -1313,13 +1313,13 @@ public class APIClient : NSObject {
             }
         }
     }
-
+    
     public func updateUser(_ free:Bool, completionHandler:((Bool, Any?) -> Void)?) {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
         }
-
+        
         let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "app" : free ? "free" : "pro"]
         
         api.doRequest("update_user", method: .post, parameters: parameters) { (success, data) in
@@ -1349,16 +1349,16 @@ public class APIClient : NSObject {
             }
         }
     }
-
+    
     public func getSettings(_ completionHandler:((Bool, Any?) -> Void)?)
     {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
         }
-
+        
         let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey]
-
+        
         api.doRequest("get_settings", method: .post, parameters: parameters) { (success, data) in
             if success {
                 if data!["status"] != nil && (data!["status"] as? String) != "ok" {
@@ -1402,15 +1402,15 @@ public class APIClient : NSObject {
             }
         }
     }
-
+    
     public func buyCredits(_ credits:Int, receipt:String, completionHandler:((Bool, Any?) -> Void)?) {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
         }
-
+        
         let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "amount" : credits, "reciept" : receipt] as [String : Any]
-
+        
         api.doRequest("buy_credits", method: .post, parameters: parameters) { (success, data) in
             if success {
                 if data!["status"] != nil && (data!["status"] as? String) != "ok" {
@@ -1438,13 +1438,13 @@ public class APIClient : NSObject {
             }
         }
     }
-  
+    
     public func updateToken(_ token:String, completionHandler:((Bool, Any?) -> Void)?) {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
         }
-
+        
         let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "device_token" : token]
         
         api.doRequest("update_device_token", method: .post, parameters: parameters) { (success, data) in
@@ -1480,7 +1480,7 @@ public class APIClient : NSObject {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
         }
-
+        
         let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "device" : token, "title" : "Title", "body" : "body"]
         
         api.doRequest("notify_user", method: .post, parameters: parameters) { (success, data) in
@@ -1516,9 +1516,9 @@ public class APIClient : NSObject {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
         }
-
+        
         let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "title" : "Title", "body" : "body"];
-     
+        
         api.doRequest("add_msg", method: .post, parameters: parameters) { (success, data) in
             if success {
                 if data!["status"] != nil && (data!["status"] as? String) != "ok" {
@@ -1546,16 +1546,16 @@ public class APIClient : NSObject {
             }
         }
     }
-
+    
     public func getTranslations(_ language:String,completionHandler:((Bool, Any?) -> Void)?)
     {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
         }
-
+        
         let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "language": language]
-
+        
         api.doRequest("get_translations", method: .post, parameters: parameters) { (success, data) in
             if success {
                 if data!["status"] != nil && (data!["status"] as? String) != "ok" {
@@ -1583,15 +1583,15 @@ public class APIClient : NSObject {
             }
         }
     }
- 
+    
     public func getLanguages(_ completionHandler:((Bool, Any?) -> Void)?){
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
         }
-
+        
         let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey]
-
+        
         api.doRequest("get_languages", method: .post, parameters: parameters) { (success, data) in
             if success {
                 if data!["status"] != nil && (data!["status"] as? String) != "ok" {
@@ -1611,7 +1611,7 @@ public class APIClient : NSObject {
                         TranslationManager.sharedInstance.languages = Array()
                         for call in calls {
                             let item:Language = Language()
-
+                            
                             if let value:String = call.object(forKey: "name") as? String {
                                 item.name = value
                             }
@@ -1635,14 +1635,14 @@ public class APIClient : NSObject {
             }
         }
     }
-
-    public func getMessages(_ completionHandler:((Bool, Any?) -> Void)?)
+    
+    @objc public func getMessages(_ completionHandler:((Bool, Any?) -> Void)?)
     {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
         }
-
+        
         let defaults = UserDefaults.standard
         let lastTime = defaults.object(forKey: "messageTime")
         if lastTime != nil{
@@ -1653,7 +1653,7 @@ public class APIClient : NSObject {
         }
         
         let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey]
-
+        
         api.doRequest("get_msgs", method: .post, parameters: parameters) { (success, data) in
             if success {
                 if data!["status"] != nil && (data!["status"] as? String) != "ok" {
@@ -1670,12 +1670,12 @@ public class APIClient : NSObject {
                 }
                 else {
                     if let msgs:Array<NSDictionary> = data!["msgs"] as? Array<NSDictionary> {
-
+                        
                         defaults.set(NSNumber(value: NSDate().timeIntervalSince1970), forKey: "messageTime")
-
+                        
                         for msg in msgs {
                             let item:ServerMessage = ServerMessage()
-
+                            
                             if let value:String = msg.object(forKey: "id") as? String {
                                 item.id = value
                             }
@@ -1688,7 +1688,7 @@ public class APIClient : NSObject {
                             if let value:String = msg.object(forKey: "time") as? String {
                                 item.time = value
                             }
-
+                            
                             var found = false
                             for msg in AppPersistentData.sharedInstance.serverMessages{
                                 if msg.id == item.id{
@@ -1696,7 +1696,7 @@ public class APIClient : NSObject {
                                     break
                                 }
                             }
-
+                            
                             if !found{
                                 item.read = false
                                 if lastTime == nil{
@@ -1709,7 +1709,7 @@ public class APIClient : NSObject {
                         AppPersistentData.sharedInstance.serverMessages.sort { $0.time < $1.time }
                         AppPersistentData.sharedInstance.saveData()
                     }
-                
+                    
                     if completionHandler != nil {
                         completionHandler!( true, nil)
                     }
@@ -1731,7 +1731,7 @@ public class APIClient : NSObject {
         
         let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey,"name":(recordItem.text)+"_metadata", "parent_id":(recordItem.id)]
         
-        var path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] 
+        var path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
         path += recordItem.localFile
         path = AudioFileTagManager.sharedInstance.getMetadataFilePath(path)
         NSLog(path)
@@ -1739,10 +1739,10 @@ public class APIClient : NSObject {
             completionHandler!(false, nil)
             return
         }
-
-
+        
+        
     }
-
+    
     public func getMetadataFiles(_ recordItem:RecordItem, completionHandler:((Bool, Any?) -> Void)?)
     {
         if AppPersistentData.sharedInstance.invalidAPIKey {
@@ -1751,7 +1751,7 @@ public class APIClient : NSObject {
         }
         
         let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "parent_id":(recordItem.id)]
-
+        
         api.doRequest("get_meta_files", method: .post, parameters: parameters) { (success, data) in
             if success {
                 if data!["status"] != nil && (data!["status"] as? String) != "ok" {
@@ -1778,9 +1778,9 @@ public class APIClient : NSObject {
                 }
             }
         }
-
+        
     }
-
+    
     //MARK: profile
     
     public func getProfile(_ completionHandler:((Bool, Any?) -> Void)?)
@@ -1809,7 +1809,7 @@ public class APIClient : NSObject {
                 else {
                     if let profile:NSDictionary = data!["profile"] as? NSDictionary {
                         let user = User()
-                            
+                        
                         if let value:String = profile.object(forKey: "f_name") as? String {
                             user.firstName = value
                         }
@@ -1939,6 +1939,7 @@ public class APIClient : NSObject {
         }
     }
     
-
-
+    
+    
 }
+

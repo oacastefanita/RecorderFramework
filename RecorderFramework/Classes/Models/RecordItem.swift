@@ -15,41 +15,41 @@ import UIKit
 }
 
 public class RecordItem: NSObject, NSSecureCoding, UIActivityItemSource {
-    public var text: String! = ""
-    public var id:String! = ""
-    public var accessNumber:String! = ""
-    public var phone:String! = ""
-    public var url:String! = ""
-    public var credits:String! = ""
-    public var duration:String! = ""
-    public var time:String! = ""
+    @objc public var text: String! = ""
+    @objc public var id:String! = ""
+    @objc public var accessNumber:String! = ""
+    @objc public var phone:String! = ""
+    @objc public var url:String! = ""
+    @objc public var credits:String! = ""
+    @objc public var duration:String! = ""
+    @objc public var time:String! = ""
     
-    public var lastAccessedTime:String! = ""
-    public var fileDownloaded = false
-    public var localFile:String! = ""
+    @objc public var lastAccessedTime:String! = ""
+    @objc public var fileDownloaded = false
+    @objc public var localFile:String! = ""
     
-    public var localMetadataFile:String! = ""
-    public var metadataFilePath:String! = ""
+    @objc public var localMetadataFile:String! = ""
+    @objc public var metadataFilePath:String! = ""
     
-    public var fromTrash = false
+    @objc public var fromTrash = false
     
-    public var waveRenderVals:NSArray!
+    @objc public var waveRenderVals:NSArray!
     
     //var linkedActionId: String!
-    public var shareUrl:String! = ""
+    @objc public var shareUrl:String! = ""
     
-    public var firstName: String! = ""
-    public var lastName: String! = ""
-    public var phoneNumber: String! = ""
-    public var email: String! = ""
-    public var notes: String! = ""
-    public var tags: String = ""
+    @objc public var firstName: String! = ""
+    @objc public var lastName: String! = ""
+    @objc public var phoneNumber: String! = ""
+    @objc public var email: String! = ""
+    @objc public var notes: String! = ""
+    @objc public var tags: String = ""
     
-    public var isStar = false
+    @objc public var isStar = false
     
-    public var fileData: Data! // for airdrop
+    @objc public var fileData: Data! // for airdrop
     
-    public var storageType:StorageType = StorageType.auto
+    @objc public var storageType:StorageType = StorageType.auto
     
     override public init() {
         super.init()
@@ -107,18 +107,18 @@ public class RecordItem: NSObject, NSSecureCoding, UIActivityItemSource {
             }
         }
         
-//        if let value = aDecoder.decodeObjectForKey("linkedActionId") as? String {
-//            self.linkedActionId = value
-//        }
+        //        if let value = aDecoder.decodeObjectForKey("linkedActionId") as? String {
+        //            self.linkedActionId = value
+        //        }
         
         if let value = aDecoder.decodeObject(forKey: "shareUrl") as? String {
             self.shareUrl = value
         }
-
+        
         if let value: AnyObject = aDecoder.decodeObject(forKey: "storageType") as? NSNumber{
             self.storageType = StorageType(rawValue: value.intValue)!
         }
-
+        
         if let value = aDecoder.decodeObject(forKey: "firstName") as? String {
             self.firstName = value
         }
@@ -152,35 +152,35 @@ public class RecordItem: NSObject, NSSecureCoding, UIActivityItemSource {
         if let value = self.id {
             aCoder.encode(value, forKey: "id")
         }
-
+        
         if let value = self.accessNumber {
             aCoder.encode(value, forKey: "accessNumber")
         }
-
+        
         if let value = self.url {
             aCoder.encode(value, forKey: "url")
         }
-
+        
         if let value = self.credits {
             aCoder.encode(value, forKey: "credits")
         }
-
+        
         if let value = self.duration {
             aCoder.encode(value, forKey: "duration")
         }
-
+        
         if let value = self.time {
             aCoder.encode(value, forKey: "time")
         }
-
+        
         if let value = self.lastAccessedTime {
             aCoder.encode(value, forKey: "lastAccessedTime")
         }
-
+        
         if let value = self.localFile {
             aCoder.encode(value, forKey: "localFile")
         }
-
+        
         aCoder.encode(fileDownloaded ? "true" : "false", forKey: "fileDownloaded")
         aCoder.encode(fromTrash ? "true" : "false", forKey: "fromTrash")
         aCoder.encode(isStar ? "true" : "false", forKey: "isStar")
@@ -190,9 +190,9 @@ public class RecordItem: NSObject, NSSecureCoding, UIActivityItemSource {
             aCoder.encode(data, forKey: "waveRenderVals")
         }
         
-//        if let value = self.linkedActionId {
-//            aCoder.encodeObject(value, forKey: "linkedActionId")
-//        }
+        //        if let value = self.linkedActionId {
+        //            aCoder.encodeObject(value, forKey: "linkedActionId")
+        //        }
         
         if let value = self.shareUrl {
             aCoder.encode(value, forKey: "shareUrl")
@@ -273,7 +273,7 @@ public class RecordItem: NSObject, NSSecureCoding, UIActivityItemSource {
         let archiver = NSKeyedArchiver(forWritingWith: data)
         archiver.requiresSecureCoding = true
         
-        var path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] 
+        var path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
         path += self.localFile
         
         if FileManager.default.fileExists(atPath: path) {
@@ -317,3 +317,4 @@ public class RecordItem: NSObject, NSSecureCoding, UIActivityItemSource {
         return "com.werockapps.callrec"
     }
 }
+

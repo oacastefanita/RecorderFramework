@@ -9,16 +9,16 @@
 import Foundation
 
 public class RecordFolder: NSObject, NSCoding {
-    public var title: String!
-    public var id: String!
-    public var created: String!
-    public var folderOrder:Int = 0
-    public var password: String!
+    @objc public var title: String!
+    @objc public var id: String!
+    @objc public var created: String!
+    @objc public var folderOrder:Int = 0
+    @objc public var password: String!
     
     //var linkedActionId: String!
     
-    public var type:StorageType = StorageType.keepLocally
-    public var recordedItems = [RecordItem]()
+    @objc public var type:StorageType = StorageType.keepLocally
+    @objc public var recordedItems = [RecordItem]()
     
     override public init() {
         super.init()
@@ -41,10 +41,10 @@ public class RecordFolder: NSObject, NSCoding {
             self.password = value
         }
         
-//        if let value = aDecoder.decodeObjectForKey("linkedActionId") as? String {
-//            self.linkedActionId = value
-//        }
-
+        //        if let value = aDecoder.decodeObjectForKey("linkedActionId") as? String {
+        //            self.linkedActionId = value
+        //        }
+        
         if let data = aDecoder.decodeObject(forKey: "recordItems") as? Data {
             recordedItems = NSKeyedUnarchiver.unarchiveObject(with: data) as! Array<RecordItem>
         }
@@ -65,9 +65,9 @@ public class RecordFolder: NSObject, NSCoding {
         if let value = self.password {
             aCoder.encode(value, forKey: "password")
         }
-//        if let value = self.linkedActionId {
-//            aCoder.encodeObject(value, forKey: "linkedActionId")
-//        }
+        //        if let value = self.linkedActionId {
+        //            aCoder.encodeObject(value, forKey: "linkedActionId")
+        //        }
         
         let data = NSKeyedArchiver.archivedData(withRootObject: recordedItems)
         aCoder.encode(data, forKey: "recordItems")
@@ -107,5 +107,6 @@ public class RecordFolder: NSObject, NSCoding {
         }
         return nil
     }
-
+    
 }
+

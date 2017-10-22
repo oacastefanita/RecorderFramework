@@ -9,9 +9,9 @@
 import Foundation
 
 public class RecordingsManager : NSObject {
-    public static let sharedInstance = RecordingsManager()
+    @objc public static let sharedInstance = RecordingsManager()
     
-    public var recordFolders:Array<RecordFolder>!
+    @objc public var recordFolders:Array<RecordFolder>!
     
     override public init() {
         super.init()
@@ -46,7 +46,7 @@ public class RecordingsManager : NSObject {
             for item in folder.recordedItems {
                 if item.id == recordItem.id {
                     if recordItem.fileDownloaded && recordItem.localFile != nil {
-                        var path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] 
+                        var path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
                         path += recordItem.localFile
                         
                         if FileManager.default.fileExists(atPath: path) {
@@ -66,7 +66,7 @@ public class RecordingsManager : NSObject {
             }
         }
     }
-
+    
     
     public func getRecordingById(_ id:String) -> RecordItem! {
         for folder in recordFolders {
@@ -183,7 +183,7 @@ public class RecordingsManager : NSObject {
     // MARK: clear data
     
     public func clearData() {
-        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] 
+        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
         
         for recFolder in recordFolders {
             for existingItem in recFolder.recordedItems {
@@ -274,7 +274,7 @@ public class RecordingsManager : NSObject {
             if r2.id == "trash" {
                 return true
             }
-
+            
             return r1.folderOrder < r2.folderOrder
         }
     }
@@ -302,3 +302,4 @@ public class RecordingsManager : NSObject {
         recordFolders = local
     }
 }
+

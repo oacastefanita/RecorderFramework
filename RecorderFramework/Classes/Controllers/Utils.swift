@@ -9,8 +9,8 @@
 import UIKit
 import AddressBook
 
-public extension NSString {
-    public var localized: String {
+@objc public extension NSString {
+    @objc public var localized: String {
         if let value:String = TranslationManager.sharedInstance.translations.object(forKey: self) as? String {
             return value
         }
@@ -27,7 +27,7 @@ public extension String {
         
         return NSLocalizedString(self, tableName: nil, bundle: Bundle.main, value: "", comment: "")
     }
-
+    
     public func aesEncrypt() -> String {
         if (self.isEmpty){
             return ""
@@ -90,7 +90,7 @@ public class Utils:NSObject {
                     if recordIDString == nil{
                         recordIDString = "0"
                     } else{
-                         print(recordIDString, terminator: "")
+                        print(recordIDString, terminator: "")
                     }
                     let recordID:Int32 = Int32(recordIDString!)!
                     var contact:ABRecord
@@ -128,7 +128,7 @@ public class Utils:NSObject {
                     ABMultiValueAddValueAndLabel(phoneNumbers, phone as CFTypeRef, cfstr, nil)
                     ABRecordSetValue(contact, kABPersonPhoneProperty, phoneNumbers,nil)
                     ABAddressBookAddRecord(addressBookRef, contact, nil)
-
+                    
                     self.saveAddressBookChanges(addressBookRef)
                     
                     UserDefaults.standard.set("\(ABRecordGetRecordID(contact))", forKey: "contact");
@@ -189,15 +189,15 @@ public class AlertController: NSObject, UIAlertViewDelegate {
         return instance
     }
     
-    public class func showAlert(_ sender:UIViewController, title:String, message:String, accept:String?, reject:String?) -> AlertController {
+    @objc public class func showAlert(_ sender:UIViewController, title:String, message:String, accept:String?, reject:String?) -> AlertController {
         let instance = AlertController()
         
         instance.showAlert(sender, title: title, message: message, accept: accept, reject:reject)
-
+        
         return instance
     }
     
-    class func showAlert(_ sender:UIViewController, title:String, message:String, accept:String?, reject:String?, cancel:String?) -> AlertController {
+    @objc class func showAlert(_ sender:UIViewController, title:String, message:String, accept:String?, reject:String?, cancel:String?) -> AlertController {
         let instance = AlertController()
         
         instance.showAlert(sender, title: title, message: message, accept: accept, reject:reject, cancel:cancel)
@@ -205,7 +205,7 @@ public class AlertController: NSObject, UIAlertViewDelegate {
         return instance
     }
     
-    public func showAlert (_ sender:UIViewController, title:String, message:String, accept:String?, reject:String?) {
+    @objc public func showAlert (_ sender:UIViewController, title:String, message:String, accept:String?, reject:String?) {
         if (UIDevice.current.systemVersion as NSString).floatValue < 8.0 {
             alertView = UIAlertView()
             if let _accept = accept {
@@ -223,20 +223,20 @@ public class AlertController: NSObject, UIAlertViewDelegate {
             if let _accept = accept {
                 alert.addAction(UIAlertAction(title: _accept, style: .default, handler: { action in
                     alert.dismiss(animated: false, completion: nil)
-                        if self.delegate != nil {
-                            self.delegate.alertAccepted(self)
-                        }
+                    if self.delegate != nil {
+                        self.delegate.alertAccepted(self)
+                    }
                 }))
             }
             if let _reject = reject {
                 alert.addAction(UIAlertAction(title: _reject, style: .default, handler: { action in
                     alert.dismiss(animated: false, completion: nil)
-                        if self.delegate != nil {
-                            self.delegate.alertRejected(self)
-                        }
+                    if self.delegate != nil {
+                        self.delegate.alertRejected(self)
+                    }
                 }))
             }
-
+            
             sender.present(alert, animated: true, completion: nil)
         }
     }
@@ -319,7 +319,7 @@ public class AlertController: NSObject, UIAlertViewDelegate {
             if let _cancel = cancel {
                 alert.addAction(UIAlertAction(title: _cancel, style: .default, handler: { action in
                     alert.dismiss(animated: false, completion: nil)
-
+                    
                 }))
             }
             
@@ -339,3 +339,4 @@ public class AlertController: NSObject, UIAlertViewDelegate {
     }
     
 }
+

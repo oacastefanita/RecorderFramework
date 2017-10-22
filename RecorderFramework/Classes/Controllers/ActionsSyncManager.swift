@@ -10,7 +10,7 @@
 
 import Foundation
 
-public enum ActionType : Int {
+@objc public enum ActionType : Int {
     case deleteRecording
     case renameRecording
     case moveRecording
@@ -29,11 +29,11 @@ public enum ActionType : Int {
 
 public class Action : NSObject, NSCoding {
     
-    public var id:String
-    public var type:ActionType = ActionType.moveRecording
-    public var arg1:String!
-    public var arg2:String!
-    public var arg3:NSMutableDictionary!
+    @objc public var id:String
+    @objc public var type:ActionType = ActionType.moveRecording
+    @objc public var arg1:String!
+    @objc public var arg2:String!
+    @objc public var arg3:NSMutableDictionary!
     
     public var timeStamp:TimeInterval!
     
@@ -76,9 +76,9 @@ public class Action : NSObject, NSCoding {
             let data =  NSKeyedArchiver.archivedData(withRootObject: value)
             aCoder.encode(data, forKey: "arg3")
         }
-
+        
     }
-
+    
 }
 
 public protocol CustomActionDelegate {
@@ -86,13 +86,13 @@ public protocol CustomActionDelegate {
 }
 
 
-public class ActionsSyncManager : NSObject {
-    public static let sharedInstance = ActionsSyncManager()
-
-    public var actions = [Action]()
-    public var syncInProgress = false
-    public var actionsFailed:Int = 0
-    public var currentController:UIViewController!
+@objc public class ActionsSyncManager : NSObject {
+    @objc public static let sharedInstance = ActionsSyncManager()
+    
+    @objc public var actions = [Action]()
+    @objc public var syncInProgress = false
+    @objc public var actionsFailed:Int = 0
+    @objc public var currentController:UIViewController!
     
     var delegate:CustomActionDelegate!
     
@@ -180,8 +180,8 @@ public class ActionsSyncManager : NSObject {
         
         //AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeFolderRenamed);
     }
-
-
+    
+    
     // MARK: recordings actions
     public func deleteRecording(_ recordItem:RecordItem, forever:Bool) {
         let action = Action()
@@ -224,7 +224,7 @@ public class ActionsSyncManager : NSObject {
         
         //AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeRecordItemDeleted);
     }
-
+    
     public func moveRecording(_ recordItem:RecordItem, folderId:String) {
         
         var okToAdd = false
@@ -287,7 +287,7 @@ public class ActionsSyncManager : NSObject {
         //AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeRecordItemRenamed);
     }
     
-    public func uploadRecording(_ recordItem:RecordItem) {
+    @objc public func uploadRecording(_ recordItem:RecordItem) {
         let action = Action()
         action.timeStamp = Date().timeIntervalSince1970
         action.type = ActionType.uploadRecording
@@ -311,7 +311,7 @@ public class ActionsSyncManager : NSObject {
         self.startProcessingActions()
         //AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeFolderReorder);
     }
-
+    
     public func updateUserProfile(_ user:User, userInfo:NSMutableDictionary) {
         let action = Action()
         action.timeStamp = Date().timeIntervalSince1970
@@ -353,33 +353,33 @@ public class ActionsSyncManager : NSObject {
         if AppPersistentData.sharedInstance.apiKey == nil {
             return
         }
-//        var on = NSUserDefaults.standardUserDefaults().objectForKey("3GSync") as? Bool
-//        if(on == nil){
-//            on = false
-//        }
-//        if AFNetworkReachabilityManager.sharedManager().reachableViaWiFi || on! {
-            if syncInProgress {
-                return
-            }
-            actionsFailed = 0
-            if self.actions.count > 0 {
-                syncInProgress = true
-                self.processActions(self.actions)
-            }
-//        }
+        //        var on = NSUserDefaults.standardUserDefaults().objectForKey("3GSync") as? Bool
+        //        if(on == nil){
+        //            on = false
+        //        }
+        //        if AFNetworkReachabilityManager.sharedManager().reachableViaWiFi || on! {
+        if syncInProgress {
+            return
+        }
+        actionsFailed = 0
+        if self.actions.count > 0 {
+            syncInProgress = true
+            self.processActions(self.actions)
+        }
+        //        }
     }
     
     public func processActions( _ workingActions:[Action] ) {
         if workingActions.count == 0 {
             syncInProgress = false
             self.saveActions()
-//            if actionsFailed > 0 {
-//                var message = (NSString(format: "%d action failed at last sync session", actionsFailed) as String).localized
-//                if actionsFailed > 1 {
-//                    message = (NSString(format: "%d actions failed at last sync session", actionsFailed) as String).localized
-//                }
-//                AlertController.showAlert(self.currentController, title: "Actions failed".localized, message: message, accept: "OK".localized, reject: nil)
-//            }
+            //            if actionsFailed > 0 {
+            //                var message = (NSString(format: "%d action failed at last sync session", actionsFailed) as String).localized
+            //                if actionsFailed > 1 {
+            //                    message = (NSString(format: "%d actions failed at last sync session", actionsFailed) as String).localized
+            //                }
+            //                AlertController.showAlert(self.currentController, title: "Actions failed".localized, message: message, accept: "OK".localized, reject: nil)
+            //            }
             APIClient.sharedInstance.mainSync({ (success) -> Void in
                 NotificationCenter.default.post(name: Notification.Name(rawValue: kNotificationRecordingsUpdated), object: nil)
             })
@@ -392,26 +392,26 @@ public class ActionsSyncManager : NSObject {
         
         switch(action!.type) {
         case ActionType.deleteRecording:
-
-//            let recordItem = RecordingsManager.sharedInstance.getRecordingById(action!.arg1)
-//            if recordItem != nil {
-                APIClient.sharedInstance.deleteRecording(action!.arg1, removeForever:action!.arg2 == "true", completionHandler: { (success, data) -> Void in
-                    if !success {
-                        self.actionsFailed += 1
-                    }
-                    else {
-                        self.removeAction(action!.id)
-                        self.saveActions()
-                    }
-                    self.processActions(newActions)
+            
+            //            let recordItem = RecordingsManager.sharedInstance.getRecordingById(action!.arg1)
+            //            if recordItem != nil {
+            APIClient.sharedInstance.deleteRecording(action!.arg1, removeForever:action!.arg2 == "true", completionHandler: { (success, data) -> Void in
+                if !success {
+                    self.actionsFailed += 1
+                }
+                else {
+                    self.removeAction(action!.id)
+                    self.saveActions()
+                }
+                self.processActions(newActions)
                 
-                })
-//            }
-//            else {
-//                self.removeAction(action!.id)
-//                processActions(newActions)
-//            }
-
+            })
+            //            }
+            //            else {
+            //                self.removeAction(action!.id)
+            //                processActions(newActions)
+            //            }
+            
             break
         case ActionType.moveRecording:
             
@@ -517,15 +517,15 @@ public class ActionsSyncManager : NSObject {
             if recordFolder != nil {
                 APIClient.sharedInstance.createFolder(recordFolder!.title! as NSString, localID:recordFolder!.id! as NSString, completionHandler: { (success, data) -> Void in
                     if success {
-//                        var index = 0
-//                        for recItem in RecordingsManager.sharedInstance.recordFolders {
-//                            if recItem.linkedActionId != nil && recItem.linkedActionId == recordFolder.linkedActionId {
-//                                RecordingsManager.sharedInstance.recordFolders.removeAtIndex(index)
-//                                AppPersistentData.sharedInstance.saveData()
-//                                break
-//                            }
-//                            index++
-//                        }
+                        //                        var index = 0
+                        //                        for recItem in RecordingsManager.sharedInstance.recordFolders {
+                        //                            if recItem.linkedActionId != nil && recItem.linkedActionId == recordFolder.linkedActionId {
+                        //                                RecordingsManager.sharedInstance.recordFolders.removeAtIndex(index)
+                        //                                AppPersistentData.sharedInstance.saveData()
+                        //                                break
+                        //                            }
+                        //                            index++
+                        //                        }
                         self.removeAction(action!.id)
                         self.saveActions()
                     }
@@ -612,7 +612,7 @@ public class ActionsSyncManager : NSObject {
                 NotificationCenter.default.post(name: Notification.Name(rawValue: kNotificationRecordingsUpdated), object: nil)
             })
             break
-
+            
         case ActionType.updateFileInfo:
             let recordItem = RecordingsManager.sharedInstance.getRecordingById(action!.arg1)
             if recordItem != nil {
@@ -710,3 +710,4 @@ public class ActionsSyncManager : NSObject {
         return nil
     }
 }
+
