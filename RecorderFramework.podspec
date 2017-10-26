@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RecorderFramework'
-  s.version          = '0.1.32'
+  s.version          = '0.1.33'
   s.summary          = 'A short description of RecorderFramework.'
 
 # This description is used to generate tags and improve search results.
