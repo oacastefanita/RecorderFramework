@@ -55,7 +55,7 @@ public class RecordItem: NSObject, NSSecureCoding, UIActivityItemSource {
         super.init()
     }
     
-    required public init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder){
         if let value = aDecoder.decodeObject(forKey: "title") as? String {
             self.text = value
         }
@@ -144,7 +144,7 @@ public class RecordItem: NSObject, NSSecureCoding, UIActivityItemSource {
         }
     }
     
-    public func encode(with aCoder: NSCoder) {
+     public func encode(with aCoder: NSCoder) {
         if let value = self.text {
             aCoder.encode(value, forKey: "title")
         }

@@ -105,7 +105,10 @@ public class AppPersistentData : NSObject {
         let serverMessagesData = NSKeyedArchiver.archivedData(withRootObject: serverMessages)
         defaults.set(serverMessagesData, forKey: "serverMessages")
         
-        defaults.setValue(NSKeyedArchiver.archivedData(withRootObject: user),  forKey: "user");
+        if user != nil{
+            defaults.setValue(NSKeyedArchiver.archivedData(withRootObject: user),  forKey: "user")
+        }
+        
         defaults.set(passOn , forKey: "passwordpref");
         
         defaults.synchronize()
@@ -131,6 +134,7 @@ public class AppPersistentData : NSObject {
         if let data = defaults.object(forKey: "recordFolders") as? Data {
             RecordingsManager.sharedInstance.recordFolders = NSKeyedUnarchiver.unarchiveObject(with: data) as! Array<RecordFolder>
         }
+        checkDefaultFolders()
         
         if let data = defaults.object(forKey: "translations") as? Data {
             TranslationManager.sharedInstance.translations = NSKeyedUnarchiver.unarchiveObject(with: data) as! NSDictionary
@@ -155,9 +159,20 @@ public class AppPersistentData : NSObject {
         passOn = defaults.bool(forKey: "passwordpref")
         
         free = false
-        #if CRFREE
-            free = true
-        #endif
+    }
+    
+    func checkDefaultFolders(){
+        if RecordingsManager.sharedInstance.recordFolders.count == 0 {
+            let folder = RecordFolder()
+            folder.title = "New Call Recordings".localized
+            folder.id = "0"
+            RecordingsManager.sharedInstance.recordFolders.append(folder)
+            
+            let allFilesfolder = RecordFolder()
+            allFilesfolder.title = "All Files".localized
+            allFilesfolder.id = "-99"
+            RecordingsManager.sharedInstance.recordFolders.append(allFilesfolder)
+        }
     }
     
     public func registered() -> Bool {

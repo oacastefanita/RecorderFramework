@@ -24,7 +24,7 @@ public class RecordFolder: NSObject, NSCoding {
         super.init()
     }
     
-    required public init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder){
         if let value = aDecoder.decodeObject(forKey: "title") as? String {
             self.title = value
         }

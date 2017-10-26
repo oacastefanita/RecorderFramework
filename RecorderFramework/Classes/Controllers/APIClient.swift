@@ -90,12 +90,10 @@ public class APIClient : NSObject {
         let tn = CTTelephonyNetworkInfo();
         let carrier = tn.subscriberCellularProvider
         
-        #if CRFREE
-            let appCode = "free"
-        #else
-            let appCode = "pro"
-        #endif
-        
+        var appCode = "pro"
+        if RecorderFrameworkManager.sharedInstance.isFree{
+            appCode = "free"
+        }
         let mcc:String! = (carrier != nil && !carrier!.mobileCountryCode!.isEmpty) ? carrier!.mobileCountryCode : "310"
         let deviceToken =  AppPersistentData.sharedInstance.notificationToken == nil ? "Simulator" : AppPersistentData.sharedInstance.notificationToken
         let parameters = ["phone": AppPersistentData.sharedInstance.phone, "code": code, "mcc": mcc, "token": "55942ee3894f51000530894", "app": appCode, "device_token":deviceToken!] as [String : Any]

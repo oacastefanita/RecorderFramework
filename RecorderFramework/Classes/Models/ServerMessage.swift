@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class ServerMessage: NSObject {
+public class ServerMessage: NSObject, NSCoding {
     @objc public var id: String! = ""
     @objc public var title:String! = ""
     @objc public var body:String! = ""
@@ -34,7 +34,7 @@ public class ServerMessage: NSObject {
         return dateFromString
     }
     
-    required public init(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder){
         if let value = aDecoder.decodeObject(forKey: "id") as? String {
             self.id = value
         }
@@ -52,7 +52,7 @@ public class ServerMessage: NSObject {
         }
     }
     
-    public func encodeWithCoder(_ aCoder: NSCoder) {
+     public func encode(with aCoder: NSCoder) {
         if let value = self.id {
             aCoder.encode(value, forKey: "id")
         }

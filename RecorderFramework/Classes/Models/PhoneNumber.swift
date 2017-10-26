@@ -28,7 +28,7 @@ public class PhoneNumber: NSObject, NSCoding {
         self.isDefault = false
     }
     
-    required public init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder){
         if let value = aDecoder.decodeObject(forKey: "number") as? String {
             self.number = value
         }
@@ -51,7 +51,6 @@ public class PhoneNumber: NSObject, NSCoding {
             self.isDefault = NSString(string: value).boolValue
         }
     }
-    
     public func encode(with aCoder: NSCoder) {
         if let value = self.number {
             aCoder.encode(value, forKey: "number")
