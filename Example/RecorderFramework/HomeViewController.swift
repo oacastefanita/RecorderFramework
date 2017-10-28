@@ -36,7 +36,7 @@ class HomeViewController: UIViewController{
                 
             }
             else {
-                
+                self.alert(message: (data as! AnyObject).description)
             }
         })
     }
@@ -47,7 +47,7 @@ class HomeViewController: UIViewController{
                 
             }
             else {
-                
+                self.alert(message: (data as! AnyObject).description)
             }
         })
     }
@@ -58,7 +58,7 @@ class HomeViewController: UIViewController{
 
             }
             else {
-
+                self.alert(message: (data as! AnyObject).description)
             }
         })
     }
@@ -69,7 +69,7 @@ class HomeViewController: UIViewController{
                 
             }
             else {
-                
+                self.alert(message: (data as! AnyObject).description)
             }
         })
     }
@@ -80,7 +80,7 @@ class HomeViewController: UIViewController{
                 
             }
             else {
-                
+                self.alert(message: (data as! AnyObject).description)
             }
         })
     }

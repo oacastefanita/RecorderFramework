@@ -40,7 +40,7 @@ class EnterCodeViewController: UIViewController,UITextFieldDelegate {
                 
             }
             else {
-                
+                self.alert(message: (data as! AnyObject).description)
             }
         })
     }

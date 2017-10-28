@@ -120,4 +120,60 @@ public class RecorderFrameworkManager : NSObject {
     public func getProfile(_ completionHandler:((Bool, Any?) -> Void)?){
         APIClient.sharedInstance.getProfile(completionHandler)
     }
+    
+    public func buyCredits(_ credits:Int, reciept:String!) {
+        ActionsSyncManager.sharedInstance.buyCredits(credits, reciept:reciept)
+    }
+    
+    public func createFolder(_ recordFolder:RecordFolder) {
+        ActionsSyncManager.sharedInstance.createFolder(recordFolder)
+    }
+    
+    public func deleteFolder(_ recordFolder:RecordFolder, moveToFolder:String!) {
+        ActionsSyncManager.sharedInstance.deleteFolder(recordFolder, moveToFolder: moveToFolder)
+    }
+    
+    public func renameFolder(_ recordFolder:RecordFolder) {
+        ActionsSyncManager.sharedInstance.renameFolder(recordFolder)
+    }
+    
+    public func addPasswordToFolder(_ recordFolder:RecordFolder) {
+        ActionsSyncManager.sharedInstance.addPasswordToFolder(recordFolder)
+    }
+    
+    public func deleteRecording(_ recordItem:RecordItem, forever:Bool) {
+        ActionsSyncManager.sharedInstance.deleteRecording(recordItem, forever: forever)
+    }
+    
+    public func deleteRecordings(_ recordItemIds:String, forever:Bool) {
+        ActionsSyncManager.sharedInstance.deleteRecordings(recordItemIds, forever: forever)
+    }
+    
+    public func moveRecording(_ recordItem:RecordItem, folderId:String) {
+        ActionsSyncManager.sharedInstance.moveRecording(recordItem, folderId: folderId)
+    }
+    
+    public func recoverRecording(_ recordItem:RecordItem, folderId:String) {
+        ActionsSyncManager.sharedInstance.recoverRecording(recordItem, folderId: folderId)
+    }
+    
+    public func renameRecording(_ recordItem:RecordItem) {
+        ActionsSyncManager.sharedInstance.renameRecording(recordItem)
+    }
+    
+    @objc public func uploadRecording(_ recordItem:RecordItem) {
+        ActionsSyncManager.sharedInstance.uploadRecording(recordItem)
+    }
+    
+    public func updateRecordingInfo(_ recordItem:RecordItem, fileInfo:NSMutableDictionary) {
+        ActionsSyncManager.sharedInstance.updateRecordingInfo(recordItem, fileInfo: fileInfo)
+    }
+    
+    public func updateUserProfile(_ user:User, userInfo:NSMutableDictionary) {
+        ActionsSyncManager.sharedInstance.updateUserProfile(user, userInfo: userInfo)
+    }
+    
+    public func reorderFolders(_ parameters:NSMutableDictionary) {
+        ActionsSyncManager.sharedInstance.reorderFolders(parameters)
+    }
 }

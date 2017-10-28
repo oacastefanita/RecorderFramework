@@ -404,7 +404,7 @@ public class APIClient : NSObject {
             
             return
         }
-        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey]
+        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey!]
         
         api.doRequest("get_folders", method: .post, parameters: parameters) { (success, data) in
             var foundDefault = false

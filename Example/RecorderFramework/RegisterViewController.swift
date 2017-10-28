@@ -34,7 +34,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
                 self.performSegue(withIdentifier: "showEnterCodeFromRegister", sender: self)
             }
             else {
-                
+                self.alert(message: (data as! AnyObject).description)
             }
         })
     }

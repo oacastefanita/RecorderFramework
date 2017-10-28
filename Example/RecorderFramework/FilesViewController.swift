@@ -9,9 +9,10 @@
 import UIKit
 import RecorderFramework
 
-class FilesViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
+class FilesViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, TitleViewControllerDelegater {
     
     var selectedFolder:Int = 0
+    var titleType = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,5 +55,48 @@ class FilesViewController: UIViewController,UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         self.performSegue(withIdentifier: "showFileFromFiles", sender: self)
+    }
+    
+    @IBAction func onNewRecording(_ sender: Any) {
+        
+    }
+    
+    @IBAction func onCheckPassword(_ sender: Any) {
+        titleType = 0
+        self.performSegue(withIdentifier: "titleFromFiles", sender: self)
+    }
+    
+    @IBAction func onAddPassword(_ sender: Any) {
+        titleType = 1
+        self.performSegue(withIdentifier: "titleFromFiles", sender: self)
+    }
+    
+    @IBAction func onRename(_ sender: Any) {
+        titleType = 2
+        self.performSegue(withIdentifier: "titleFromFiles", sender: self)
+    }
+    
+    @IBAction func onDelete(_ sender: Any) {
+        RecorderFrameworkManager.sharedInstance.deleteFolder(RecordingsManager.sharedInstance.recordFolders[selectedFolder], moveToFolder: "")
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "titleFromFiles"{
+            (segue.destination as! TitleViewController).delegate = self
+        }
+    }
+    
+    func selectedTitle(_ title: String){
+        if titleType == 0{
+            if RecordingsManager.sharedInstance.recordFolders[selectedFolder].password == title{
+                
+            }
+        }else if titleType == 1{
+            RecordingsManager.sharedInstance.recordFolders[selectedFolder].password = title
+            RecorderFrameworkManager.sharedInstance.addPasswordToFolder(RecordingsManager.sharedInstance.recordFolders[selectedFolder])
+        }else{
+            RecordingsManager.sharedInstance.recordFolders[selectedFolder].title = title
+            RecorderFrameworkManager.sharedInstance.renameFolder(RecordingsManager.sharedInstance.recordFolders[selectedFolder])
+        }
     }
 }

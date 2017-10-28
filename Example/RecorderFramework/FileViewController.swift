@@ -24,5 +24,31 @@ class FileViewController: UIViewController{
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    @IBAction func onRename(_ sender: Any) {
+        
+    }
+    
+    @IBAction func onClone(_ sender: Any) {
+        
+    }
+    
+    @IBAction func onRecover(_ sender: Any) {
+        
+    }
+    
+    @IBAction func onMove(_ sender: Any) {
+        
+    }
+    
+    @IBAction func onUpdate(_ sender: Any) {
+        
+    }
+    
+    @IBAction func onDelete(_ sender: Any) {
+        
+    }
+    
+    @IBAction func onStar(_ sender: Any) {
+        
+    }
 }
-

@@ -9,7 +9,7 @@
 import UIKit
 import RecorderFramework
 
-class FoldersViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
+class FoldersViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, TitleViewControllerDelegater {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -42,5 +42,32 @@ class FoldersViewController: UIViewController,UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         self.performSegue(withIdentifier: "showFilesFromFolders", sender: self)
+    }
+    
+    @IBAction func onCreate(_ sender: Any) {
+        self.performSegue(withIdentifier: "createFolderFromFolders", sender: self)
+    }
+    
+    @IBAction func onReorder(_ sender: Any) {
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showFilesFromFolders"{
+            
+        } else if segue.identifier == "createFolderFromFolders"{
+            (segue.destination as! TitleViewController).delegate = self
+        }
+    }
+    
+    func selectedTitle(_ title: String){
+        RecorderFrameworkManager.sharedInstance.createFolder(title, localID: "", completionHandler: { (success, data) -> Void in
+            if success {
+                
+            }
+            else {
+                self.alert(message: (data as! AnyObject).description)
+            }
+        })
     }
 }
