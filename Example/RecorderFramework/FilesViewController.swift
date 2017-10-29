@@ -78,6 +78,8 @@ class FilesViewController: UIViewController,UITableViewDelegate, UITableViewData
     
     @IBAction func onDelete(_ sender: Any) {
         RecorderFrameworkManager.sharedInstance.deleteFolder(RecordingsManager.sharedInstance.recordFolders[selectedFolder], moveToFolder: "")
+        RecorderFrameworkManager.sharedInstance.getRecordingsManager().recordFolders.remove(at: selectedFolder)
+        self.navigationController?.popViewController(animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -89,14 +91,18 @@ class FilesViewController: UIViewController,UITableViewDelegate, UITableViewData
     func selectedTitle(_ title: String){
         if titleType == 0{
             if RecordingsManager.sharedInstance.recordFolders[selectedFolder].password == title{
-                
+                self.alert(message: "Password is correct")
+            }else{
+                self.alert(message: "Password is incorrect")
             }
         }else if titleType == 1{
             RecordingsManager.sharedInstance.recordFolders[selectedFolder].password = title
             RecorderFrameworkManager.sharedInstance.addPasswordToFolder(RecordingsManager.sharedInstance.recordFolders[selectedFolder])
+            self.alert(message: "Request sent")
         }else{
             RecordingsManager.sharedInstance.recordFolders[selectedFolder].title = title
             RecorderFrameworkManager.sharedInstance.renameFolder(RecordingsManager.sharedInstance.recordFolders[selectedFolder])
+            self.alert(message: "Request sent")
         }
     }
 }

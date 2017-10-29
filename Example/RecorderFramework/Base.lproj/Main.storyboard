@@ -333,6 +333,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="tableView" destination="jaW-gV-C1p" id="V2a-Rt-bg9"/>
                         <segue destination="6Qh-J4-ptr" kind="show" identifier="showFilesFromFolders" id="5HZ-OU-DSS"/>
                         <segue destination="G04-zZ-0Yy" kind="show" identifier="createFolderFromFolders" id="8zy-MB-s7l"/>
                     </connections>
@@ -538,6 +539,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ePg-Zz-p0I"/>
+        <segue reference="8zy-MB-s7l"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -10,6 +10,8 @@ import UIKit
 import RecorderFramework
 
 class FoldersViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, TitleViewControllerDelegater {
+    var selectedIndex = 0
+    @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -17,6 +19,11 @@ class FoldersViewController: UIViewController,UITableViewDelegate, UITableViewDa
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -41,6 +48,7 @@ class FoldersViewController: UIViewController,UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        selectedIndex = indexPath.row
         self.performSegue(withIdentifier: "showFilesFromFolders", sender: self)
     }
     
@@ -54,7 +62,7 @@ class FoldersViewController: UIViewController,UITableViewDelegate, UITableViewDa
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showFilesFromFolders"{
-            
+            (segue.destination as! FilesViewController).selectedFolder = selectedIndex
         } else if segue.identifier == "createFolderFromFolders"{
             (segue.destination as! TitleViewController).delegate = self
         }
@@ -63,10 +71,10 @@ class FoldersViewController: UIViewController,UITableViewDelegate, UITableViewDa
     func selectedTitle(_ title: String){
         RecorderFrameworkManager.sharedInstance.createFolder(title, localID: "", completionHandler: { (success, data) -> Void in
             if success {
-                
+                self.navigationController?.popViewController(animated: true)
             }
             else {
-                self.alert(message: (data as! AnyObject).description)
+                self.alert(message: (data as AnyObject).description)
             }
         })
     }

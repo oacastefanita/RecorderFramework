@@ -13,6 +13,10 @@ public class RecorderFrameworkManager : NSObject {
         return RecordingsManager.sharedInstance.recordFolders
     }
     
+    public func getRecordingsManager() -> RecordingsManager{
+        return RecordingsManager.sharedInstance
+    }
+    
     public func register(_ number:String, completionHandler:((Bool, Any?) -> Void)?){
         APIClient.sharedInstance.register(number as NSString, completionHandler: completionHandler)
     }
