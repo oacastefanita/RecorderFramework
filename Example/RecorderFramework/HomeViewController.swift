@@ -10,7 +10,7 @@ import UIKit
 import RecorderFramework
 
 class HomeViewController: UIViewController{
-
+    var selectedObject: AnyObject!
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -33,7 +33,7 @@ class HomeViewController: UIViewController{
     @IBAction func onGetSettings(_ sender: Any) {
         RecorderFrameworkManager.sharedInstance.getSettings({ (success, data) -> Void in
             if success {
-                
+                self.performSegue(withIdentifier: "showSettingsFromHome", sender: self)
             }
             else {
                 self.alert(message: (data as! AnyObject).description)
@@ -55,7 +55,7 @@ class HomeViewController: UIViewController{
     @IBAction func onGetLanguages(_ sender: Any) {
         RecorderFrameworkManager.sharedInstance.getLanguages({ (success, data) -> Void in
             if success {
-
+                self.performSegue(withIdentifier: "showLanguagesFromHome", sender: self)
             }
             else {
                 self.alert(message: (data as! AnyObject).description)
@@ -66,7 +66,7 @@ class HomeViewController: UIViewController{
     @IBAction func onGetPhoneNumbers(_ sender: Any) {
         RecorderFrameworkManager.sharedInstance.getPhoneNumbers({ (success, data) -> Void in
             if success {
-                
+                self.performSegue(withIdentifier: "showPhoneNumbersFromHome", sender: self)
             }
             else {
                 self.alert(message: (data as! AnyObject).description)
@@ -77,12 +77,19 @@ class HomeViewController: UIViewController{
     @IBAction func onGetProfile(_ sender: Any) {
         RecorderFrameworkManager.sharedInstance.getProfile({ (success, data) -> Void in
             if success {
-                
+                self.selectedObject = data as AnyObject
+                self.performSegue(withIdentifier: "showProfileFromHome", sender: self)
             }
             else {
                 self.alert(message: (data as! AnyObject).description)
             }
         })
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showTranslationsFromLanguages"{
+            (segue.destination as! DisplayViewController).object = selectedObject
+        }
     }
 }
 

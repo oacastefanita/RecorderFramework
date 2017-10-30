@@ -12,6 +12,7 @@ import RecorderFramework
 class FilesViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, TitleViewControllerDelegater {
     
     var selectedFolder:Int = 0
+    var selectedFile: RecordItem!
     var titleType = 0
     
     override func viewDidLoad() {
@@ -49,16 +50,19 @@ class FilesViewController: UIViewController,UITableViewDelegate, UITableViewData
         else {
             cell.textLabel?.text = "Untitled".localized
         }
+        cell.detailTextLabel?.text = ""
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        selectedFile = RecordingsManager.sharedInstance.recordFolders[selectedFolder].recordedItems[indexPath.row]
         self.performSegue(withIdentifier: "showFileFromFiles", sender: self)
     }
     
     @IBAction func onNewRecording(_ sender: Any) {
-        
+        selectedFile = nil
+        self.performSegue(withIdentifier: "showFileFromFiles", sender: self)
     }
     
     @IBAction func onCheckPassword(_ sender: Any) {
@@ -85,6 +89,8 @@ class FilesViewController: UIViewController,UITableViewDelegate, UITableViewData
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "titleFromFiles"{
             (segue.destination as! TitleViewController).delegate = self
+        } else if segue.identifier == "showFileFromFiles"{
+            (segue.destination as! FileViewController).file = selectedFile
         }
     }
     
@@ -98,10 +104,12 @@ class FilesViewController: UIViewController,UITableViewDelegate, UITableViewData
         }else if titleType == 1{
             RecordingsManager.sharedInstance.recordFolders[selectedFolder].password = title
             RecorderFrameworkManager.sharedInstance.addPasswordToFolder(RecordingsManager.sharedInstance.recordFolders[selectedFolder])
+            self.navigationController?.popViewController(animated: true)
             self.alert(message: "Request sent")
         }else{
             RecordingsManager.sharedInstance.recordFolders[selectedFolder].title = title
             RecorderFrameworkManager.sharedInstance.renameFolder(RecordingsManager.sharedInstance.recordFolders[selectedFolder])
+            self.navigationController?.popViewController(animated: true)
             self.alert(message: "Request sent")
         }
     }

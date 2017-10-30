@@ -1,17 +1,18 @@
 //
-//  FoldersViewController.swift
+//  LanguagesViewController.swift
 //  RecorderFramework_Example
 //
-//  Created by Stefanita Oaca on 26/10/2017.
+//  Created by Stefanita Oaca on 30/10/2017.
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
 import UIKit
 import RecorderFramework
 
-class FoldersViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, TitleViewControllerDelegater {
-    var selectedIndex = 0
+class LanguagesViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
+    var selectedObject: AnyObject!
     @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -37,46 +38,33 @@ class FoldersViewController: UIViewController,UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return RecorderFrameworkManager.sharedInstance.getFolders().count
+        return RecorderFrameworkManager.sharedInstance.getLanguages().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  tableView.dequeueReusableCell(withIdentifier: "titleCell", for: indexPath)
-        cell.textLabel?.text = RecorderFrameworkManager.sharedInstance.getFolders()[indexPath.row].title
+        cell.textLabel?.text = RecorderFrameworkManager.sharedInstance.getLanguages()[indexPath.row].name
         cell.detailTextLabel?.text = ""
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        selectedIndex = indexPath.row
-        self.performSegue(withIdentifier: "showFilesFromFolders", sender: self)
-    }
-    
-    @IBAction func onCreate(_ sender: Any) {
-        self.performSegue(withIdentifier: "createFolderFromFolders", sender: self)
-    }
-    
-    @IBAction func onReorder(_ sender: Any) {
-        
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showFilesFromFolders"{
-            (segue.destination as! FilesViewController).selectedFolder = selectedIndex
-        } else if segue.identifier == "createFolderFromFolders"{
-            (segue.destination as! TitleViewController).delegate = self
-        }
-    }
-    
-    func selectedTitle(_ title: String){
-        RecorderFrameworkManager.sharedInstance.createFolder(title, localID: "", completionHandler: { (success, data) -> Void in
+        RecorderFrameworkManager.sharedInstance.getTranslations(RecorderFrameworkManager.sharedInstance.getLanguages()[indexPath.row].code, completionHandler: { (success, data) -> Void in
             if success {
-                self.navigationController?.popViewController(animated: true)
+                self.selectedObject = data as AnyObject
+                self.performSegue(withIdentifier: "showTranslationsFromLanguages", sender: self)
             }
             else {
-                self.alert(message: (data as AnyObject).description)
+                self.alert(message: (data as! AnyObject).description)
             }
         })
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showTranslationsFromLanguages"{
+            (segue.destination as! DisplayViewController).object = selectedObject
+        }
+    }
+
 }

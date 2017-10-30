@@ -9,6 +9,22 @@ public class RecorderFrameworkManager : NSObject {
         super.init()
     }
     
+    public func getUser() -> User{
+        return AppPersistentData.sharedInstance.user
+    }
+    
+    public func getTranslations() -> NSDictionary{
+        return TranslationManager.sharedInstance.translations
+    }
+    
+    public func getPhoneNumbers() -> Array<PhoneNumber>{
+        return AppPersistentData.sharedInstance.phoneNumbers
+    }
+    
+    public func getLanguages() -> Array<Language>{
+        return TranslationManager.sharedInstance.languages
+    }
+    
     public func getFolders() -> Array<RecordFolder>{
         return RecordingsManager.sharedInstance.recordFolders
     }

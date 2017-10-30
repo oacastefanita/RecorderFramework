@@ -1382,7 +1382,7 @@ public class APIClient : NSObject {
                         if let value:Int = data!["credits"] as? Int {
                             AppPersistentData.sharedInstance.credits = value
                         }
-                        if let value:String = settings.object(forKey: "app") as? String {
+                        if let value:String = data!["app"] as? String {
                             AppPersistentData.sharedInstance.app = value
                         }
                         AppPersistentData.sharedInstance.saveData()
@@ -1570,7 +1570,7 @@ public class APIClient : NSObject {
                 }
                 else {
                     if completionHandler != nil {
-                        completionHandler!( true, nil)
+                        completionHandler!( true, data)
                     }
                 }
             }
