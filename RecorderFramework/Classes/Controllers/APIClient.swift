@@ -7,12 +7,12 @@
 //
 
 import Foundation
-import CoreTelephony
 
 let API_BASE_URL = "https://app2.virtualbrix.net/rapi/"
 #if os(iOS)
+    import CoreTelephony
+#elseif os(OSX)
     
-#else
     import Cocoa
 #endif
 
@@ -20,7 +20,6 @@ public class APIClient : NSObject {
     
     public var mainSyncInProgress:Bool = false
     public var mainSyncErrors:Int = 0
-    public var currentViewController = UIViewController()
     
     @objc public static let sharedInstance = APIClient()
     
@@ -85,7 +84,7 @@ public class APIClient : NSObject {
             }
         }
     }
-    
+    #if os(iOS)
     public func sendVerificationCode(_ code:NSString, completionHandler:((Bool, Any?) -> Void)?) {
         let tn = CTTelephonyNetworkInfo();
         let carrier = tn.subscriberCellularProvider
@@ -141,7 +140,7 @@ public class APIClient : NSObject {
             }
         }
     }
-    
+    #endif
     public func getRecordings(_ folderId:String!, completionHandler:((Bool, Any?) -> Void)?) {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
@@ -185,62 +184,10 @@ public class APIClient : NSObject {
                         }
                         
                         for call in calls {
-                            let item:RecordItem = RecordItem()
+                            let item = RecorderFactory.createRecordItemFromDict(call)
                             if folderId == "trash"{
                                 item.fromTrash = true
                             }
-                            
-                            if let value:String = call.object(forKey: "name") as? String {
-                                item.text = value
-                            }
-                            if let value:String = call.object(forKey: "id") as? String {
-                                item.id = value
-                            }
-                            if let value:String = call.object(forKey: "phone") as? String {
-                                item.phone = value
-                            }
-                            if let value:String = call.object(forKey: "access_number") as? String {
-                                item.accessNumber = value
-                            }
-                            if let value:String = call.object(forKey: "url") as? String {
-                                item.url = value
-                            }
-                            if let value:String = call.object(forKey: "share_url") as? String {
-                                item.shareUrl = value
-                            }
-                            if let value:String = call.object(forKey: "credits") as? String {
-                                item.credits = value
-                            }
-                            if let value:String = call.object(forKey: "duration") as? String {
-                                item.duration = value
-                            }
-                            if let value:String = call.object(forKey: "time") as? String {
-                                item.time = value
-                                item.lastAccessedTime = value
-                            }
-                            if let value:String = call.object(forKey: "f_name") as? String {
-                                item.firstName = value
-                            }
-                            if let value:String = call.object(forKey: "l_name") as? String {
-                                item.lastName = value
-                            }
-                            if let value:String = call.object(forKey: "phone") as? String {
-                                item.phoneNumber = value
-                            }
-                            if let value:String = call.object(forKey: "email") as? String {
-                                item.email = value
-                            }
-                            if let value:String = call.object(forKey: "notes") as? String {
-                                item.notes = value
-                            }
-                            
-                            if let value:String = call.object(forKey: "tags") as? String {
-                                item.tags = value
-                            }
-                            if let value:String = call.object(forKey: "is_star") as? String {
-                                item.isStar = value == "1"
-                            }
-                            
                             allIds.append(item.id)
                             
                             _ = RecordingsManager.sharedInstance.syncRecordingItem(item, folder:recordFolder)
@@ -470,23 +417,7 @@ public class APIClient : NSObject {
                         ids.append("-99")
                         ids.append("trash")
                         for folder in folders {
-                            let recordFolder = RecordFolder()
-                            
-                            if let value:String = folder.object(forKey: "name") as? String {
-                                recordFolder.title = value
-                            }
-                            if let value:String = folder.object(forKey: "id") as? String {
-                                recordFolder.id  = value
-                            }
-                            if let value:String = folder.object(forKey: "created") as? String {
-                                recordFolder.created  = value
-                            }
-                            if let value:String = folder.object(forKey: "pass") as? String {
-                                recordFolder.password  = value
-                            }
-                            if let value:String = folder.object(forKey: "folder_order") as? String {
-                                recordFolder.folderOrder  = Int(value)!
-                            }
+                            let recordFolder = RecorderFactory.createRecordFolderFromDict(folder)
                             ids.append(recordFolder.id)
                             
                             _ = RecordingsManager.sharedInstance.syncItem(recordFolder)
@@ -1221,9 +1152,6 @@ public class APIClient : NSObject {
                                             completionHandler!(true)
                                         }
                                         self.mainSyncInProgress = false
-                                        //                    if self.mainSyncErrors > 0 {
-                                        //                        AlertController.showAlert(self.currentViewController, title: "Warning".localized, message: "Errors occured during server sync process".localized, accept: "Ok".localized, reject: nil)
-                                        //                    }
                                         NotificationCenter.default.post(name: Notification.Name(rawValue: kNotificationRecordingsUpdated), object: nil)
                                     })
                                 })
@@ -1737,8 +1665,6 @@ public class APIClient : NSObject {
             completionHandler!(false, nil)
             return
         }
-        
-        
     }
     
     public func getMetadataFiles(_ recordItem:RecordItem, completionHandler:((Bool, Any?) -> Void)?)

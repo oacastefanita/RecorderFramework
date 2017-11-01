@@ -19,7 +19,8 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-
+#import <TargetConditionals.h>
+#if TARGET_OS_IOS
 #import <Foundation/Foundation.h>
 #import <SystemConfiguration/SystemConfiguration.h>
 
@@ -199,3 +200,4 @@ extern NSString * const AFNetworkingReachabilityNotificationStatusItem;
  Returns a localized string representation of an `AFNetworkReachabilityStatus` value.
  */
 extern NSString * AFStringFromNetworkReachabilityStatus(AFNetworkReachabilityStatus status);
+#endif

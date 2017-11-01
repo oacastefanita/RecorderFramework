@@ -14,6 +14,7 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		67D5BE920E12852EBB8D4EF1 /* Pods_RecorderFramework_WatchExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 748F834FFABC1EB351E432FB /* Pods_RecorderFramework_WatchExample.framework */; };
 		A22A10491FA1E5F400DAFA40 /* FilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22A10481FA1E5F400DAFA40 /* FilesViewController.swift */; };
 		A22A104B1FA1F00500DAFA40 /* FileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22A104A1FA1F00500DAFA40 /* FileViewController.swift */; };
 		A23A2CB51FA1D84C00E25F87 /* FoldersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23A2CB41FA1D84C00E25F87 /* FoldersViewController.swift */; };
@@ -21,12 +22,28 @@
 		A23EBB741FA76AA700F9D188 /* DisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23EBB731FA76AA700F9D188 /* DisplayViewController.swift */; };
 		A24C5D171FA7880300EE9347 /* PhoneNumbersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24C5D161FA7880300EE9347 /* PhoneNumbersViewController.swift */; };
 		A24C5D191FA79BCD00EE9347 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24C5D181FA79BCD00EE9347 /* ProfileViewController.swift */; };
+		A2523FCE1FA7C39700D4A39A /* sample.wav in Resources */ = {isa = PBXBuildFile; fileRef = A2523FCD1FA7C39700D4A39A /* sample.wav */; };
 		A2689F8F1FA5051300A3F391 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2689F8E1FA5051300A3F391 /* Extensions.swift */; };
+		A2732ECF1FAA5D84004E3A35 /* FoldersInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2732ECE1FAA5D84004E3A35 /* FoldersInterfaceController.swift */; };
+		A2732ED11FAA5E81004E3A35 /* FoldersRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2732ED01FAA5E80004E3A35 /* FoldersRowController.swift */; };
+		A2732ED31FAA6C98004E3A35 /* FilesInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2732ED21FAA6C98004E3A35 /* FilesInterfaceController.swift */; };
+		A2732ED51FAA6CAD004E3A35 /* FilesRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2732ED41FAA6CAD004E3A35 /* FilesRowController.swift */; };
 		A282D8CC1FA4E83900BD3189 /* TitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A282D8CB1FA4E83900BD3189 /* TitleViewController.swift */; };
+		A297CD891FA8E669004E5B15 /* Pods_RecorderFramework_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A297CD8A1FA8E669004E5B15 /* Pods_RecorderFramework_Example.framework */; };
 		A2AE31C01FA0BE7D00CCDC79 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AE31BF1FA0BE7D00CCDC79 /* HomeViewController.swift */; };
+		A2B2D14B1FA876F400A1FACE /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2B2D1491FA876F400A1FACE /* Interface.storyboard */; };
+		A2B2D14D1FA876F400A1FACE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2B2D14C1FA876F400A1FACE /* Assets.xcassets */; };
+		A2B2D1541FA876F400A1FACE /* RecorderFramework-WatchExample Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A2B2D1531FA876F400A1FACE /* RecorderFramework-WatchExample Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A2B2D1591FA876F400A1FACE /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B2D1581FA876F400A1FACE /* InterfaceController.swift */; };
+		A2B2D15B1FA876F400A1FACE /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B2D15A1FA876F400A1FACE /* ExtensionDelegate.swift */; };
+		A2B2D15D1FA876F400A1FACE /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B2D15C1FA876F400A1FACE /* NotificationController.swift */; };
+		A2B2D15F1FA876F400A1FACE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2B2D15E1FA876F400A1FACE /* Assets.xcassets */; };
+		A2B2D1641FA876F400A1FACE /* RecorderFramework-WatchExample.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = A2B2D1471FA876F400A1FACE /* RecorderFramework-WatchExample.app */; };
+		A2D405371FAA76140042E605 /* RecordInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D405361FAA76140042E605 /* RecordInterfaceController.swift */; };
 		A2E949411F9FB1BA00FAA5D0 /* EnterCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E949401F9FB1BA00FAA5D0 /* EnterCodeViewController.swift */; };
+		A2F76A741FA892E300EF05EE /* WatchDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F76A731FA892E300EF05EE /* WatchDataController.swift */; };
 		A2FE5C301FA74B8F005FD2D1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FE5C2F1FA74B8F005FD2D1 /* SettingsViewController.swift */; };
-		BE298E9F7D761F5E65E91E58 /* Pods_RecorderFramework_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 863430D0C86DCE6607C6635E /* Pods_RecorderFramework_Example.framework */; };
+		E0E736F45E40C1C8CF080258 /* Pods_RecorderFramework_WatchExample_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F599AB697E3B38936AB05FB5 /* Pods_RecorderFramework_WatchExample_Extension.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,12 +54,57 @@
 			remoteGlobalIDString = 607FACCF1AFB9204008FA782;
 			remoteInfo = RecorderFramework;
 		};
+		A2B2D1551FA876F400A1FACE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 607FACC81AFB9204008FA782 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A2B2D1521FA876F400A1FACE;
+			remoteInfo = "RecorderFramework-WatchExample Extension";
+		};
+		A2B2D1621FA876F400A1FACE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 607FACC81AFB9204008FA782 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A2B2D1461FA876F400A1FACE;
+			remoteInfo = "RecorderFramework-WatchExample";
+		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		A2B2D1681FA876F400A1FACE /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				A2B2D1541FA876F400A1FACE /* RecorderFramework-WatchExample Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A2B2D16C1FA876F400A1FACE /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				A2B2D1641FA876F400A1FACE /* RecorderFramework-WatchExample.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		042B6C753B83A880584B5592 /* Pods-RecorderFramework-WatchExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecorderFramework-WatchExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RecorderFramework-WatchExample/Pods-RecorderFramework-WatchExample.debug.xcconfig"; sourceTree = "<group>"; };
 		15275033601CE30C30BF3ABB /* Pods-RecorderFramework_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecorderFramework_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RecorderFramework_Tests/Pods-RecorderFramework_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		16EC78387965287E28C17189 /* Pods-RecorderFramework_Example-RecorderFramework-WatchExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecorderFramework_Example-RecorderFramework-WatchExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RecorderFramework_Example-RecorderFramework-WatchExample/Pods-RecorderFramework_Example-RecorderFramework-WatchExample.debug.xcconfig"; sourceTree = "<group>"; };
+		2C9C0E5CAD9402738AD998B0 /* Pods_RecorderFramework_Example_RecorderFramework_WatchExample_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecorderFramework_Example_RecorderFramework_WatchExample_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		314DF6776FA1B02743D556EC /* Pods-RecorderFramework_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecorderFramework_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RecorderFramework_Tests/Pods-RecorderFramework_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		34AB82E0A49B1ABA121558B8 /* Pods-RecorderFramework-WatchExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecorderFramework-WatchExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-RecorderFramework-WatchExample/Pods-RecorderFramework-WatchExample.release.xcconfig"; sourceTree = "<group>"; };
 		3571DF209FCDEBD6955558A4 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		3C880E07BDCAA2A192D625DD /* Pods-RecorderFramework_Example-RecorderFramework-WatchExample Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecorderFramework_Example-RecorderFramework-WatchExample Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-RecorderFramework_Example-RecorderFramework-WatchExample Extension/Pods-RecorderFramework_Example-RecorderFramework-WatchExample Extension.release.xcconfig"; sourceTree = "<group>"; };
+		42D1BA2B5B331A9601D98807 /* Pods-RecorderFramework_Example-RecorderFramework-WatchExample Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecorderFramework_Example-RecorderFramework-WatchExample Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RecorderFramework_Example-RecorderFramework-WatchExample Extension/Pods-RecorderFramework_Example-RecorderFramework-WatchExample Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* RecorderFramework_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecorderFramework_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -53,7 +115,9 @@
 		607FACE51AFB9204008FA782 /* RecorderFramework_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecorderFramework_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		748F834FFABC1EB351E432FB /* Pods_RecorderFramework_WatchExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecorderFramework_WatchExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		863430D0C86DCE6607C6635E /* Pods_RecorderFramework_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecorderFramework_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1221A40950338952D348F70 /* Pods_RecorderFramework_Example_RecorderFramework_WatchExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecorderFramework_Example_RecorderFramework_WatchExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A22A10481FA1E5F400DAFA40 /* FilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesViewController.swift; sourceTree = "<group>"; };
 		A22A104A1FA1F00500DAFA40 /* FileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileViewController.swift; sourceTree = "<group>"; };
 		A23A2CB41FA1D84C00E25F87 /* FoldersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersViewController.swift; sourceTree = "<group>"; };
@@ -61,24 +125,56 @@
 		A23EBB731FA76AA700F9D188 /* DisplayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayViewController.swift; sourceTree = "<group>"; };
 		A24C5D161FA7880300EE9347 /* PhoneNumbersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumbersViewController.swift; sourceTree = "<group>"; };
 		A24C5D181FA79BCD00EE9347 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		A2523FCD1FA7C39700D4A39A /* sample.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sample.wav; sourceTree = "<group>"; };
 		A2689F8E1FA5051300A3F391 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		A2732ECE1FAA5D84004E3A35 /* FoldersInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoldersInterfaceController.swift; sourceTree = "<group>"; };
+		A2732ED01FAA5E80004E3A35 /* FoldersRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoldersRowController.swift; sourceTree = "<group>"; };
+		A2732ED21FAA6C98004E3A35 /* FilesInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesInterfaceController.swift; sourceTree = "<group>"; };
+		A2732ED41FAA6CAD004E3A35 /* FilesRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesRowController.swift; sourceTree = "<group>"; };
 		A282D8CB1FA4E83900BD3189 /* TitleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleViewController.swift; sourceTree = "<group>"; };
+		A297CD881FA8E648004E5B15 /* RecorderFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RecorderFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A297CD8A1FA8E669004E5B15 /* Pods_RecorderFramework_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_RecorderFramework_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2AE31BF1FA0BE7D00CCDC79 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		A2B2D1471FA876F400A1FACE /* RecorderFramework-WatchExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RecorderFramework-WatchExample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2B2D14A1FA876F400A1FACE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		A2B2D14C1FA876F400A1FACE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A2B2D14E1FA876F400A1FACE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A2B2D1531FA876F400A1FACE /* RecorderFramework-WatchExample Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "RecorderFramework-WatchExample Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2B2D1581FA876F400A1FACE /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		A2B2D15A1FA876F400A1FACE /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		A2B2D15C1FA876F400A1FACE /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		A2B2D15E1FA876F400A1FACE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A2B2D1601FA876F400A1FACE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A2B2D1611FA876F400A1FACE /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		A2D405361FAA76140042E605 /* RecordInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordInterfaceController.swift; sourceTree = "<group>"; };
 		A2E949401F9FB1BA00FAA5D0 /* EnterCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCodeViewController.swift; sourceTree = "<group>"; };
+		A2F76A731FA892E300EF05EE /* WatchDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchDataController.swift; sourceTree = "<group>"; };
 		A2FE5C2F1FA74B8F005FD2D1 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		AB5C69A6C572070C50B37B86 /* Pods-RecorderFramework_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecorderFramework_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-RecorderFramework_Example/Pods-RecorderFramework_Example.release.xcconfig"; sourceTree = "<group>"; };
 		ABC895D75AB12A66762E3FA0 /* Pods_RecorderFramework_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecorderFramework_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBEC1B25FBF6C66D7243E376 /* Pods-RecorderFramework_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecorderFramework_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RecorderFramework_Example/Pods-RecorderFramework_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		BD8FAFAA06FB8DE4B6AD5075 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		D32B226A1FC9611E181DAC22 /* Pods-RecorderFramework-WatchExample Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecorderFramework-WatchExample Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RecorderFramework-WatchExample Extension/Pods-RecorderFramework-WatchExample Extension.debug.xcconfig"; sourceTree = "<group>"; };
+		D586134EFB8FCD0771AC3BB1 /* Pods-RecorderFramework-WatchExample Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecorderFramework-WatchExample Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-RecorderFramework-WatchExample Extension/Pods-RecorderFramework-WatchExample Extension.release.xcconfig"; sourceTree = "<group>"; };
 		E29185CBB934DA489AC6890E /* RecorderFramework.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = RecorderFramework.podspec; path = ../RecorderFramework.podspec; sourceTree = "<group>"; };
+		F3AD3B9DF5FA38F59CF258A3 /* Pods-RecorderFramework_Example-RecorderFramework-WatchExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecorderFramework_Example-RecorderFramework-WatchExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-RecorderFramework_Example-RecorderFramework-WatchExample/Pods-RecorderFramework_Example-RecorderFramework-WatchExample.release.xcconfig"; sourceTree = "<group>"; };
+		F599AB697E3B38936AB05FB5 /* Pods_RecorderFramework_WatchExample_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecorderFramework_WatchExample_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		5D02A35894C227B4E8E70685 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				67D5BE920E12852EBB8D4EF1 /* Pods_RecorderFramework_WatchExample.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		607FACCD1AFB9204008FA782 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE298E9F7D761F5E65E91E58 /* Pods_RecorderFramework_Example.framework in Frameworks */,
+				A297CD891FA8E669004E5B15 /* Pods_RecorderFramework_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +183,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2FDA33EEA90CE15D2A44A0DD /* Pods_RecorderFramework_Tests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A2B2D1501FA876F400A1FACE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E0E736F45E40C1C8CF080258 /* Pods_RecorderFramework_WatchExample_Extension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,6 +203,8 @@
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACD21AFB9204008FA782 /* Example for RecorderFramework */,
 				607FACE81AFB9204008FA782 /* Tests */,
+				A2B2D1481FA876F400A1FACE /* RecorderFramework-WatchExample */,
+				A2B2D1571FA876F400A1FACE /* RecorderFramework-WatchExample Extension */,
 				607FACD11AFB9204008FA782 /* Products */,
 				7B775D1222EE278438027086 /* Pods */,
 				91A4A99FDAE8352DE6480444 /* Frameworks */,
@@ -110,6 +216,8 @@
 			children = (
 				607FACD01AFB9204008FA782 /* RecorderFramework_Example.app */,
 				607FACE51AFB9204008FA782 /* RecorderFramework_Tests.xctest */,
+				A2B2D1471FA876F400A1FACE /* RecorderFramework-WatchExample.app */,
+				A2B2D1531FA876F400A1FACE /* RecorderFramework-WatchExample Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -117,6 +225,7 @@
 		607FACD21AFB9204008FA782 /* Example for RecorderFramework */ = {
 			isa = PBXGroup;
 			children = (
+				A2523FCD1FA7C39700D4A39A /* sample.wav */,
 				A2689F8E1FA5051300A3F391 /* Extensions.swift */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* RegisterViewController.swift */,
@@ -182,6 +291,14 @@
 				AB5C69A6C572070C50B37B86 /* Pods-RecorderFramework_Example.release.xcconfig */,
 				15275033601CE30C30BF3ABB /* Pods-RecorderFramework_Tests.debug.xcconfig */,
 				314DF6776FA1B02743D556EC /* Pods-RecorderFramework_Tests.release.xcconfig */,
+				042B6C753B83A880584B5592 /* Pods-RecorderFramework-WatchExample.debug.xcconfig */,
+				34AB82E0A49B1ABA121558B8 /* Pods-RecorderFramework-WatchExample.release.xcconfig */,
+				D32B226A1FC9611E181DAC22 /* Pods-RecorderFramework-WatchExample Extension.debug.xcconfig */,
+				D586134EFB8FCD0771AC3BB1 /* Pods-RecorderFramework-WatchExample Extension.release.xcconfig */,
+				16EC78387965287E28C17189 /* Pods-RecorderFramework_Example-RecorderFramework-WatchExample.debug.xcconfig */,
+				F3AD3B9DF5FA38F59CF258A3 /* Pods-RecorderFramework_Example-RecorderFramework-WatchExample.release.xcconfig */,
+				42D1BA2B5B331A9601D98807 /* Pods-RecorderFramework_Example-RecorderFramework-WatchExample Extension.debug.xcconfig */,
+				3C880E07BDCAA2A192D625DD /* Pods-RecorderFramework_Example-RecorderFramework-WatchExample Extension.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -189,10 +306,45 @@
 		91A4A99FDAE8352DE6480444 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A297CD8A1FA8E669004E5B15 /* Pods_RecorderFramework_Example.framework */,
+				A297CD881FA8E648004E5B15 /* RecorderFramework.framework */,
 				863430D0C86DCE6607C6635E /* Pods_RecorderFramework_Example.framework */,
 				ABC895D75AB12A66762E3FA0 /* Pods_RecorderFramework_Tests.framework */,
+				748F834FFABC1EB351E432FB /* Pods_RecorderFramework_WatchExample.framework */,
+				F599AB697E3B38936AB05FB5 /* Pods_RecorderFramework_WatchExample_Extension.framework */,
+				A1221A40950338952D348F70 /* Pods_RecorderFramework_Example_RecorderFramework_WatchExample.framework */,
+				2C9C0E5CAD9402738AD998B0 /* Pods_RecorderFramework_Example_RecorderFramework_WatchExample_Extension.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A2B2D1481FA876F400A1FACE /* RecorderFramework-WatchExample */ = {
+			isa = PBXGroup;
+			children = (
+				A2B2D1491FA876F400A1FACE /* Interface.storyboard */,
+				A2B2D14C1FA876F400A1FACE /* Assets.xcassets */,
+				A2B2D14E1FA876F400A1FACE /* Info.plist */,
+			);
+			path = "RecorderFramework-WatchExample";
+			sourceTree = "<group>";
+		};
+		A2B2D1571FA876F400A1FACE /* RecorderFramework-WatchExample Extension */ = {
+			isa = PBXGroup;
+			children = (
+				A2D405361FAA76140042E605 /* RecordInterfaceController.swift */,
+				A2732ED41FAA6CAD004E3A35 /* FilesRowController.swift */,
+				A2732ED21FAA6C98004E3A35 /* FilesInterfaceController.swift */,
+				A2732ED01FAA5E80004E3A35 /* FoldersRowController.swift */,
+				A2732ECE1FAA5D84004E3A35 /* FoldersInterfaceController.swift */,
+				A2B2D1581FA876F400A1FACE /* InterfaceController.swift */,
+				A2B2D15A1FA876F400A1FACE /* ExtensionDelegate.swift */,
+				A2B2D15C1FA876F400A1FACE /* NotificationController.swift */,
+				A2F76A731FA892E300EF05EE /* WatchDataController.swift */,
+				A2B2D15E1FA876F400A1FACE /* Assets.xcassets */,
+				A2B2D1601FA876F400A1FACE /* Info.plist */,
+				A2B2D1611FA876F400A1FACE /* PushNotificationPayload.apns */,
+			);
+			path = "RecorderFramework-WatchExample Extension";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,10 +360,12 @@
 				607FACCE1AFB9204008FA782 /* Resources */,
 				D7A8A64611F359A54D67610F /* [CP] Embed Pods Frameworks */,
 				AAFC3663300DCF22080F81CE /* [CP] Copy Pods Resources */,
+				A2B2D16C1FA876F400A1FACE /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				A2B2D1631FA876F400A1FACE /* PBXTargetDependency */,
 			);
 			name = RecorderFramework_Example;
 			productName = RecorderFramework;
@@ -239,24 +393,74 @@
 			productReference = 607FACE51AFB9204008FA782 /* RecorderFramework_Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		A2B2D1461FA876F400A1FACE /* RecorderFramework-WatchExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A2B2D1691FA876F400A1FACE /* Build configuration list for PBXNativeTarget "RecorderFramework-WatchExample" */;
+			buildPhases = (
+				0FBC96672D6868D7C69A9D14 /* [CP] Check Pods Manifest.lock */,
+				A2B2D1451FA876F400A1FACE /* Resources */,
+				A2B2D1681FA876F400A1FACE /* Embed App Extensions */,
+				5D02A35894C227B4E8E70685 /* Frameworks */,
+				B0423DEC3EF315BC23B25881 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A2B2D1561FA876F400A1FACE /* PBXTargetDependency */,
+			);
+			name = "RecorderFramework-WatchExample";
+			productName = "RecorderFramework-WatchExample";
+			productReference = A2B2D1471FA876F400A1FACE /* RecorderFramework-WatchExample.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		A2B2D1521FA876F400A1FACE /* RecorderFramework-WatchExample Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A2B2D1651FA876F400A1FACE /* Build configuration list for PBXNativeTarget "RecorderFramework-WatchExample Extension" */;
+			buildPhases = (
+				848FB8483D45D501271CCC68 /* [CP] Check Pods Manifest.lock */,
+				A2B2D14F1FA876F400A1FACE /* Sources */,
+				A2B2D1501FA876F400A1FACE /* Frameworks */,
+				A2B2D1511FA876F400A1FACE /* Resources */,
+				36085A21DF7DE4870B238564 /* [CP] Embed Pods Frameworks */,
+				14EAD7096C90336465815D12 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "RecorderFramework-WatchExample Extension";
+			productName = "RecorderFramework-WatchExample Extension";
+			productReference = A2B2D1531FA876F400A1FACE /* RecorderFramework-WatchExample Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		607FACC81AFB9204008FA782 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0900;
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = CocoaPods;
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
 						LastSwiftMigration = 0820;
+						ProvisioningStyle = Manual;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
 						LastSwiftMigration = 0820;
 						TestTargetID = 607FACCF1AFB9204008FA782;
+					};
+					A2B2D1461FA876F400A1FACE = {
+						CreatedOnToolsVersion = 9.0.1;
+						ProvisioningStyle = Automatic;
+					};
+					A2B2D1521FA876F400A1FACE = {
+						CreatedOnToolsVersion = 9.0.1;
+						DevelopmentTeam = UB5EDUN3Q5;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -275,6 +479,8 @@
 			targets = (
 				607FACCF1AFB9204008FA782 /* RecorderFramework_Example */,
 				607FACE41AFB9204008FA782 /* RecorderFramework_Tests */,
+				A2B2D1461FA876F400A1FACE /* RecorderFramework-WatchExample */,
+				A2B2D1521FA876F400A1FACE /* RecorderFramework-WatchExample Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -284,6 +490,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2523FCE1FA7C39700D4A39A /* sample.wav in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
@@ -297,9 +504,79 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A2B2D1451FA876F400A1FACE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A2B2D14D1FA876F400A1FACE /* Assets.xcassets in Resources */,
+				A2B2D14B1FA876F400A1FACE /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A2B2D1511FA876F400A1FACE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A2B2D15F1FA876F400A1FACE /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0FBC96672D6868D7C69A9D14 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RecorderFramework-WatchExample-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		14EAD7096C90336465815D12 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RecorderFramework-WatchExample Extension/Pods-RecorderFramework-WatchExample Extension-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		36085A21DF7DE4870B238564 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-RecorderFramework-WatchExample Extension/Pods-RecorderFramework-WatchExample Extension-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire-watchOS/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/RecorderFramework-watchOS/RecorderFramework.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RecorderFramework.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RecorderFramework-WatchExample Extension/Pods-RecorderFramework-WatchExample Extension-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		6ADF49085409AE6AE3092249 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -312,6 +589,24 @@
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-RecorderFramework_Tests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		848FB8483D45D501271CCC68 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RecorderFramework-WatchExample Extension-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -348,6 +643,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RecorderFramework_Example/Pods-RecorderFramework_Example-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		B0423DEC3EF315BC23B25881 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RecorderFramework-WatchExample/Pods-RecorderFramework-WatchExample-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C922AA9AC309E240439DDE23 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -373,8 +683,8 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-RecorderFramework_Example/Pods-RecorderFramework_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/RecorderFramework/RecorderFramework.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/RecorderFramework-iOS/RecorderFramework.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -433,6 +743,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A2B2D14F1FA876F400A1FACE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A2B2D15D1FA876F400A1FACE /* NotificationController.swift in Sources */,
+				A2732ECF1FAA5D84004E3A35 /* FoldersInterfaceController.swift in Sources */,
+				A2732ED51FAA6CAD004E3A35 /* FilesRowController.swift in Sources */,
+				A2F76A741FA892E300EF05EE /* WatchDataController.swift in Sources */,
+				A2732ED11FAA5E81004E3A35 /* FoldersRowController.swift in Sources */,
+				A2732ED31FAA6C98004E3A35 /* FilesInterfaceController.swift in Sources */,
+				A2B2D15B1FA876F400A1FACE /* ExtensionDelegate.swift in Sources */,
+				A2B2D1591FA876F400A1FACE /* InterfaceController.swift in Sources */,
+				A2D405371FAA76140042E605 /* RecordInterfaceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -440,6 +766,16 @@
 			isa = PBXTargetDependency;
 			target = 607FACCF1AFB9204008FA782 /* RecorderFramework_Example */;
 			targetProxy = 607FACE61AFB9204008FA782 /* PBXContainerItemProxy */;
+		};
+		A2B2D1561FA876F400A1FACE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A2B2D1521FA876F400A1FACE /* RecorderFramework-WatchExample Extension */;
+			targetProxy = A2B2D1551FA876F400A1FACE /* PBXContainerItemProxy */;
+		};
+		A2B2D1631FA876F400A1FACE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A2B2D1461FA876F400A1FACE /* RecorderFramework-WatchExample */;
+			targetProxy = A2B2D1621FA876F400A1FACE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -458,6 +794,14 @@
 				607FACDF1AFB9204008FA782 /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		A2B2D1491FA876F400A1FACE /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A2B2D14A1FA876F400A1FACE /* Base */,
+			);
+			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -502,7 +846,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -542,7 +886,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -556,11 +900,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = RecorderFramework/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.RecorderFramework-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -571,11 +919,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = RecorderFramework/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.RecorderFramework-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
@@ -616,6 +968,134 @@
 			};
 			name = Release;
 		};
+		A2B2D1661FA876F400A1FACE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D32B226A1FC9611E181DAC22 /* Pods-RecorderFramework-WatchExample Extension.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = UB5EDUN3Q5;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "RecorderFramework-WatchExample Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.RecorderFramework-Example.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+			};
+			name = Debug;
+		};
+		A2B2D1671FA876F400A1FACE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D586134EFB8FCD0771AC3BB1 /* Pods-RecorderFramework-WatchExample Extension.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UB5EDUN3Q5;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "RecorderFramework-WatchExample Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.RecorderFramework-Example.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+			};
+			name = Release;
+		};
+		A2B2D16A1FA876F400A1FACE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 042B6C753B83A880584B5592 /* Pods-RecorderFramework-WatchExample.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				IBSC_MODULE = RecorderFramework_WatchExample_Extension;
+				INFOPLIST_FILE = "RecorderFramework-WatchExample/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.RecorderFramework-Example.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+			};
+			name = Debug;
+		};
+		A2B2D16B1FA876F400A1FACE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 34AB82E0A49B1ABA121558B8 /* Pods-RecorderFramework-WatchExample.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				IBSC_MODULE = RecorderFramework_WatchExample_Extension;
+				INFOPLIST_FILE = "RecorderFramework-WatchExample/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.RecorderFramework-Example.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -642,6 +1122,24 @@
 			buildConfigurations = (
 				607FACF31AFB9204008FA782 /* Debug */,
 				607FACF41AFB9204008FA782 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A2B2D1651FA876F400A1FACE /* Build configuration list for PBXNativeTarget "RecorderFramework-WatchExample Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A2B2D1661FA876F400A1FACE /* Debug */,
+				A2B2D1671FA876F400A1FACE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A2B2D1691FA876F400A1FACE /* Build configuration list for PBXNativeTarget "RecorderFramework-WatchExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A2B2D16A1FA876F400A1FACE /* Debug */,
+				A2B2D16B1FA876F400A1FACE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

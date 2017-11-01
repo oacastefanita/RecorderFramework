@@ -26,6 +26,19 @@ class FileViewController: UIViewController, TitleViewControllerDelegater{
         if file == nil{
             btnUpdate.setTitle("Done", for: .normal)
             file = RecordItem()
+            if let audioFilePath = Bundle.main.path(forResource: "sample", ofType: "wav") {
+                print(audioFilePath)
+                let fileManager = FileManager.default
+                var path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+                do {
+                    try fileManager.moveItem(atPath: audioFilePath, toPath: path + "sample.wav")
+                }
+                catch let error as NSError {
+                    print("Ooops! Something went wrong: \(error)")
+                }
+                file.localFile =  "sample.wav"
+            }
+            RecorderFrameworkManager.sharedInstance.syncRecordingItem(file, folder: RecorderFrameworkManager.sharedInstance.getFolders().first!)
         }
         fillView()
     }
@@ -79,10 +92,6 @@ class FileViewController: UIViewController, TitleViewControllerDelegater{
     }
     
     @IBAction func onUpdate(_ sender: Any) {
-        if btnUpdate.titleLabel?.text == "Done"{
-            RecorderFrameworkManager.sharedInstance.uploadRecording(file)
-            return
-        }
         file.tags = txtTags.text!
         file.notes = txtNotes.text!
         file.email = txtEmail.text!
@@ -90,6 +99,14 @@ class FileViewController: UIViewController, TitleViewControllerDelegater{
         file.lastName = txtLastName.text!
         file.firstName = txtFirstName.text!
         file.text = txtName.text!
+        
+        if btnUpdate.titleLabel?.text == "Done"{
+            RecorderFrameworkManager.sharedInstance.uploadRecording(file)
+            self.alert(message: "Request sent")
+            self.navigationController?.popViewController(animated: true)
+            return
+        }
+        
         let dict = NSMutableDictionary(dictionary: ["id":file.id, "f_name":file.firstName, "l_name":file.lastName, "email":file.email, "notes":file.notes, "phone":file.phoneNumber, "tags":file.tags])
         RecorderFrameworkManager.sharedInstance.updateRecordingInfo(file, fileInfo: dict)
     }

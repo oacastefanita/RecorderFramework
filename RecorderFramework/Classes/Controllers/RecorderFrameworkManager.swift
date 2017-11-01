@@ -7,10 +7,35 @@ public class RecorderFrameworkManager : NSObject {
     
     override public init() {
         super.init()
+        WatchKitController.sharedInstance
+        AppPersistentData.sharedInstance
     }
     
     public func getUser() -> User{
+        WatchKitController.sharedInstance.sendUser()
         return AppPersistentData.sharedInstance.user
+    }
+    
+    public func setUser(_ user:User){
+        return AppPersistentData.sharedInstance.user = user
+    }
+    
+    public func setFolders(_ folders: Array<RecordFolder>!){
+        RecordingsManager.sharedInstance.recordFolders = folders
+        for folder in folders{
+            RecordingsManager.sharedInstance.syncItem(folder)
+        }
+    }
+    
+    public func setFiles(_ files: Array<RecordItem>!){
+        for file in files{
+            for recFolder in RecordingsManager.sharedInstance.recordFolders {
+                if recFolder.id == file.folderId {
+                    RecordingsManager.sharedInstance.syncRecordingItem(file, folder: recFolder)
+                    break
+                }
+            }
+        }
     }
     
     public func getTranslations() -> NSDictionary{
@@ -26,6 +51,7 @@ public class RecorderFrameworkManager : NSObject {
     }
     
     public func getFolders() -> Array<RecordFolder>{
+        WatchKitController.sharedInstance.sendFolders()
         return RecordingsManager.sharedInstance.recordFolders
     }
     
@@ -36,10 +62,11 @@ public class RecorderFrameworkManager : NSObject {
     public func register(_ number:String, completionHandler:((Bool, Any?) -> Void)?){
         APIClient.sharedInstance.register(number as NSString, completionHandler: completionHandler)
     }
-    
+    #if os(iOS)
     public func sendVerificationCode(_ code:String, completionHandler:((Bool, Any?) -> Void)?) {
         APIClient.sharedInstance.sendVerificationCode(code as NSString, completionHandler: completionHandler)
     }
+    #endif
     
     public func getFolders(_ completionHandler:((Bool, Any?) -> Void)?) {
         APIClient.sharedInstance.getFolders(completionHandler)
@@ -195,5 +222,13 @@ public class RecorderFrameworkManager : NSObject {
     
     public func reorderFolders(_ parameters:NSMutableDictionary) {
         ActionsSyncManager.sharedInstance.reorderFolders(parameters)
+    }
+    
+    public func syncItem(_ recordFolder:RecordFolder) -> RecordFolder {
+        return RecordingsManager.sharedInstance.syncItem(recordFolder)
+    }
+    
+    public func syncRecordingItem(_ recordItem:RecordItem, folder:RecordFolder) -> RecordItem {
+        return RecordingsManager.sharedInstance.syncRecordingItem(recordItem, folder:folder)
     }
 }

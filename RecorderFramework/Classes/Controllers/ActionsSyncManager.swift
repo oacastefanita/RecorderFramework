@@ -1,5 +1,3 @@
-
-
 //
 //  ActionsSyncManager.swift
 //  Recorder
@@ -8,7 +6,7 @@
 //  Copyright (c) 2015 Grif. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 @objc public enum ActionType : Int {
     case deleteRecording
@@ -92,12 +90,12 @@ public protocol CustomActionDelegate {
     @objc public var actions = [Action]()
     @objc public var syncInProgress = false
     @objc public var actionsFailed:Int = 0
-    @objc public var currentController:UIViewController!
     
     var delegate:CustomActionDelegate!
     
     override public init() {
         super.init()
+        #if os(iOS)
         AFNetworkReachabilityManager.shared().startMonitoring()
         
         AFNetworkReachabilityManager.shared().setReachabilityStatusChange { (status) -> Void in
@@ -105,6 +103,7 @@ public protocol CustomActionDelegate {
                 self.startProcessingActions()
             }
         }
+        #endif
     }
     
     // MARK: credits
@@ -482,35 +481,37 @@ public protocol CustomActionDelegate {
             if(on == nil){
                 on = true
             }
-            if AFNetworkReachabilityManager.shared().isReachableViaWiFi || on! {
-                let recordItem = RecordingsManager.sharedInstance.getRecordingById(action!.arg1)
-                if recordItem != nil {
-                    APIClient.sharedInstance.uploadRecording(recordItem!, completionHandler: { (success, data) -> Void in
-                        if(success){
-                            APIClient.sharedInstance.uploadMetadataFile(recordItem!, completionHandler: { (success, data) -> Void in
-                                if !success {
-                                    self.actionsFailed += 1
-                                }
-                                else {
-                                    self.removeAction(action!.id)
-                                    self.saveActions()
-                                }
-                                self.processActions(newActions)
-                            })
-                        } else{
-                            self.actionsFailed += 1
+            #if os(iOS)
+            if !(AFNetworkReachabilityManager.shared().isReachableViaWiFi || on!) {
+                processActions(newActions)
+                break
+            }
+            #endif
+            
+            let recordItem = RecordingsManager.sharedInstance.getRecordingById(action!.arg1)
+            if recordItem != nil {
+                APIClient.sharedInstance.uploadRecording(recordItem!, completionHandler: { (success, data) -> Void in
+                    if(success){
+                        APIClient.sharedInstance.uploadMetadataFile(recordItem!, completionHandler: { (success, data) -> Void in
+                            if !success {
+                                self.actionsFailed += 1
+                            }
+                            else {
+                                self.removeAction(action!.id)
+                                self.saveActions()
+                            }
                             self.processActions(newActions)
-                        }
-                    })
-                }
-                else {
-                    self.removeAction(action!.id)
-                    processActions(newActions)
-                }
-            }else {
+                        })
+                    } else{
+                        self.actionsFailed += 1
+                        self.processActions(newActions)
+                    }
+                })
+            }
+            else {
+                self.removeAction(action!.id)
                 processActions(newActions)
             }
-            
             break
         case ActionType.createFolder:
             let recordFolder = RecordingsManager.sharedInstance.getFolderByLinkedAction(action!.id)

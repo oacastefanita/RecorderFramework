@@ -22,6 +22,9 @@
 
 #import "AFNetworkReachabilityManager.h"
 
+#import <TargetConditionals.h>
+#if TARGET_OS_IOS
+
 #import <netinet/in.h>
 #import <netinet6/in6.h>
 #import <arpa/inet.h>
@@ -257,3 +260,4 @@ static void AFNetworkReachabilityReleaseCallback(const void *info) {
 }
 
 @end
+#endif

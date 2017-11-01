@@ -1,11 +1,17 @@
 use_frameworks!
 
+target 'RecorderFramework-WatchExample’ do
+  pod 'RecorderFramework', :path => '../'
+end
+
+target 'RecorderFramework-WatchExample Extension’ do
+  pod 'RecorderFramework', :path => '../'
+end
+
 target 'RecorderFramework_Example' do
   pod 'RecorderFramework', :path => '../'
 
   target 'RecorderFramework_Tests' do
     inherit! :search_paths
-
-    
   end
 end

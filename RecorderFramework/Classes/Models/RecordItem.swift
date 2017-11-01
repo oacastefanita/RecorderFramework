@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 @objc public enum StorageType : Int {
     case auto = 0
@@ -14,7 +15,8 @@ import UIKit
     case deleteFromLocalStorage
 }
 
-public class RecordItem: NSObject, NSSecureCoding, UIActivityItemSource {
+public class RecordItem: NSObject, NSSecureCoding {
+    @objc public var folderId: String! = ""
     @objc public var text: String! = ""
     @objc public var id:String! = ""
     @objc public var accessNumber:String! = ""
@@ -56,6 +58,9 @@ public class RecordItem: NSObject, NSSecureCoding, UIActivityItemSource {
     }
     
     public required init?(coder aDecoder: NSCoder){
+        if let value = aDecoder.decodeObject(forKey: "folderId") as? String {
+            self.folderId = value
+        }
         if let value = aDecoder.decodeObject(forKey: "title") as? String {
             self.text = value
         }
@@ -145,6 +150,10 @@ public class RecordItem: NSObject, NSSecureCoding, UIActivityItemSource {
     }
     
      public func encode(with aCoder: NSCoder) {
+        if let value = self.folderId {
+            aCoder.encode(value, forKey: "folderId")
+        }
+        
         if let value = self.text {
             aCoder.encode(value, forKey: "title")
         }
@@ -232,6 +241,7 @@ public class RecordItem: NSObject, NSSecureCoding, UIActivityItemSource {
     }
     
     public func update(_ item:RecordItem) {
+        self.folderId = item.folderId
         self.text = item.text
         self.accessNumber = item.accessNumber
         if self.url != item.url {
@@ -301,20 +311,20 @@ public class RecordItem: NSObject, NSSecureCoding, UIActivityItemSource {
     }
     
     //MARK: activity item
-    public func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
-        return Data()
-    }
-    
-    public func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivityType?) -> Any? {
-        return self.securelyArchiveRootObject();
-    }
-    
-    public func activityViewController(_ activityViewController: UIActivityViewController, thumbnailImageForActivityType activityType: UIActivityType?, suggestedSize size: CGSize) -> UIImage! {
-        return UIImage(named: "airdroppreview")
-    }
-    
-    public func activityViewController(_ activityViewController: UIActivityViewController, dataTypeIdentifierForActivityType activityType: UIActivityType?) -> String {
-        return "com.werockapps.callrec"
-    }
+//    public func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
+//        return Data()
+//    }
+//
+//    public func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivityType?) -> Any? {
+//        return self.securelyArchiveRootObject();
+//    }
+//
+//    public func activityViewController(_ activityViewController: UIActivityViewController, thumbnailImageForActivityType activityType: UIActivityType?, suggestedSize size: CGSize) -> UIImage! {
+//        return UIImage(named: "airdroppreview")
+//    }
+//
+//    public func activityViewController(_ activityViewController: UIActivityViewController, dataTypeIdentifierForActivityType activityType: UIActivityType?) -> String {
+//        return "com.werockapps.callrec"
+//    }
 }
 

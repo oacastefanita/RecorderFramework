@@ -6,9 +6,11 @@
 //  Copyright (c) 2015 Grif. All rights reserved.
 //
 
-import UIKit
-import AddressBook
 
+import UIKit
+#if os(iOS)
+import AddressBook
+#endif
 @objc public extension NSString {
     @objc public var localized: String {
         if let value:String = TranslationManager.sharedInstance.translations.object(forKey: self) as? String {
@@ -71,7 +73,7 @@ public extension Array {
 }
 
 public class Utils:NSObject {
-    
+    #if os(iOS)
     public class func createContact(_ phone:String) {
         let addressBook = ABAddressBookCreateWithOptions(nil, nil)
         if addressBook == nil{
@@ -151,11 +153,13 @@ public class Utils:NSObject {
             print("No changes occurred.", terminator: "")
         }
     }
+    #endif
 }
 
 public let kNotificationRecordingsUpdated = "RecordingsUpdated"
 public let kNotificationCameFromBackground = "CameFromBackground"
 
+#if os(iOS)
 public protocol AlertControllerDelegate{
     func alertAccepted(_ alertController:AlertController)
     func alertRejected(_ alertController:AlertController)
@@ -165,7 +169,6 @@ public protocol TextAlertControllerDelegate{
     func alertAccepted(_ alertController:AlertController, text: String?)
     func alertRejected(_ alertController:AlertController)
 }
-
 
 public class AlertController: NSObject, UIAlertViewDelegate {
     
@@ -339,4 +342,5 @@ public class AlertController: NSObject, UIAlertViewDelegate {
     }
     
 }
+#endif
 

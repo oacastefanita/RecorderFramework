@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="13196" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch38" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="13051"/>
+    </dependencies>
+    <scenes>
+        <!--Interface Controller-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="RecorderFramework_WatchExample" customModuleProvider="target">
+                    <items>
+                        <table alignment="left" id="d59-fs-NlV"/>
+                        <button width="1" alignment="left" title="Folders" id="JXh-Ou-wvP">
+                            <connections>
+                                <segue destination="OT2-pH-CeP" kind="push" id="YSl-j5-Q44"/>
+                            </connections>
+                        </button>
+                        <button width="1" alignment="left" title="User" id="1xF-KH-EzJ">
+                            <connections>
+                                <segue destination="0pl-lh-QW6" kind="push" id="OlN-oC-mA6"/>
+                            </connections>
+                        </button>
+                        <button width="1" alignment="left" title="New Recording" id="GZc-fT-3bi">
+                            <connections>
+                                <segue destination="bzL-kw-eCw" kind="push" id="38r-KB-HLk"/>
+                            </connections>
+                        </button>
+                    </items>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="220" y="-272"/>
+        </scene>
+        <!--Interface Controller-->
+        <scene sceneID="bVX-FM-KwQ">
+            <objects>
+                <controller id="0pl-lh-QW6"/>
+            </objects>
+            <point key="canvasLocation" x="663" y="134"/>
+        </scene>
+        <!--Record Interface Controller-->
+        <scene sceneID="Ou8-0d-Y0M">
+            <objects>
+                <controller id="bzL-kw-eCw" customClass="RecordInterfaceController" customModule="RecorderFramework_WatchExample_Extension">
+                    <items>
+                        <button width="1" alignment="left" title="Start" id="R7R-XE-jNb">
+                            <connections>
+                                <action selector="onRecord:" destination="bzL-kw-eCw" id="kxh-cp-ATE"/>
+                            </connections>
+                        </button>
+                    </items>
+                    <connections>
+                        <outlet property="btnRecord" destination="R7R-XE-jNb" id="E9x-gK-7r1"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="663" y="-671"/>
+        </scene>
+        <!--Static Notification Interface Controller-->
+        <scene sceneID="AEw-b0-oYE">
+            <objects>
+                <notificationController id="YCC-NB-fut">
+                    <items>
+                        <label alignment="left" text="Alert Label" id="IdU-wH-bcW"/>
+                    </items>
+                    <notificationCategory key="notificationCategory" identifier="myCategory" id="JfB-70-Muf"/>
+                    <connections>
+                        <outlet property="notificationAlertLabel" destination="IdU-wH-bcW" id="JKC-fr-R95"/>
+                        <segue destination="4sK-HA-Art" kind="relationship" relationship="dynamicNotificationInterface" id="kXh-Jw-8B1"/>
+                    </connections>
+                </notificationController>
+            </objects>
+            <point key="canvasLocation" x="220" y="643"/>
+        </scene>
+        <!--Notification Controller-->
+        <scene sceneID="ZPc-GJ-vnh">
+            <objects>
+                <controller id="4sK-HA-Art" customClass="NotificationController" customModule="RecorderFramework_WatchExample" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="468" y="643"/>
+        </scene>
+        <!--Folders Interface Controller-->
+        <scene sceneID="Jl6-ix-GZv">
+            <objects>
+                <controller id="OT2-pH-CeP" customClass="FoldersInterfaceController" customModule="RecorderFramework_WatchExample_Extension">
+                    <items>
+                        <table alignment="left" id="UEn-BI-8Wh">
+                            <items>
+                                <tableRow identifier="foldersRow" id="xtZ-mR-XCj" customClass="FoldersRowController" customModule="RecorderFramework_WatchExample_Extension">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" spacing="6" id="Bne-Ak-knc">
+                                        <items>
+                                            <separator height="1" alignment="left" verticalAlignment="center" id="Y6r-tl-mZN">
+                                                <color key="color" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </separator>
+                                            <label alignment="left" text="Title:" id="hfr-QK-aft"/>
+                                            <label alignment="left" verticalAlignment="center" text="Label" numberOfLines="0" id="mJA-Tc-bZe"/>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="separator" destination="Y6r-tl-mZN" id="pjb-Pf-HQi"/>
+                                        <outlet property="titleLabel" destination="mJA-Tc-bZe" id="hbo-kI-z9Q"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                        <label alignment="center" verticalAlignment="center" hidden="YES" text="No Data, Please use the app first" numberOfLines="0" id="vT1-pO-y71"/>
+                    </items>
+                    <connections>
+                        <outlet property="lblNoData" destination="vT1-pO-y71" id="oQh-Eh-ZE1"/>
+                        <outlet property="pollsTable" destination="UEn-BI-8Wh" id="do6-6w-H4j"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="663" y="-272"/>
+        </scene>
+        <!--FilesInterfaceController-->
+        <scene sceneID="BQX-RB-bfp">
+            <objects>
+                <controller identifier="FilesInterfaceController" id="XvX-bZ-hYE" customClass="FilesInterfaceController" customModule="RecorderFramework_WatchExample_Extension">
+                    <items>
+                        <table alignment="left" id="HIg-cU-pd9">
+                            <items>
+                                <tableRow identifier="filesRow" id="saz-n2-MYU" customClass="FilesRowController" customModule="RecorderFramework_WatchExample_Extension">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" spacing="6" id="hmr-eB-syB">
+                                        <items>
+                                            <separator height="1" alignment="left" verticalAlignment="center" id="qoF-GP-Yyu">
+                                                <color key="color" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </separator>
+                                            <label alignment="left" text="Title:" id="adD-qv-GrU"/>
+                                            <label alignment="left" verticalAlignment="center" text="Label" numberOfLines="0" id="YRz-ny-CCc"/>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="separator" destination="qoF-GP-Yyu" id="6GC-zT-0xa"/>
+                                        <outlet property="titleLabel" destination="YRz-ny-CCc" id="Mhz-QF-UJJ"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                        <label alignment="center" verticalAlignment="center" hidden="YES" text="No Data, Please use the app first" numberOfLines="0" id="n1I-8o-C1d"/>
+                    </items>
+                    <connections>
+                        <outlet property="lblNoData" destination="n1I-8o-C1d" id="NWM-x1-0b6"/>
+                        <outlet property="table" destination="HIg-cU-pd9" id="zbd-N9-GKS"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="1036" y="-272"/>
+        </scene>
+    </scenes>
+</document>
