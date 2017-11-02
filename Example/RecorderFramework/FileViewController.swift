@@ -29,9 +29,9 @@ class FileViewController: UIViewController, TitleViewControllerDelegater{
             if let audioFilePath = Bundle.main.path(forResource: "sample", ofType: "wav") {
                 print(audioFilePath)
                 let fileManager = FileManager.default
-                var path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+                var path = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)!.path
                 do {
-                    try fileManager.moveItem(atPath: audioFilePath, toPath: path + "sample.wav")
+                    try fileManager.moveItem(atPath: audioFilePath, toPath: path + "/sample.wav")
                 }
                 catch let error as NSError {
                     print("Ooops! Something went wrong: \(error)")
@@ -39,6 +39,32 @@ class FileViewController: UIViewController, TitleViewControllerDelegater{
                 file.localFile =  "sample.wav"
             }
             RecorderFrameworkManager.sharedInstance.syncRecordingItem(file, folder: RecorderFrameworkManager.sharedInstance.getFolders().first!)
+        }else{
+            if !file.fileDownloaded || file.localFile == nil {
+                var folder:RecordFolder! = nil
+                
+                for iterate in RecordingsManager.sharedInstance.recordFolders {
+                    if iterate.id == "-99" {
+                        continue
+                    }
+                    for recItem in iterate.recordedItems {
+                        if recItem == file {
+                            folder = iterate
+                            break
+                        }
+                    }
+                    if folder != nil {
+                        break
+                    }
+                }
+                
+                RecorderFrameworkManager.sharedInstance.downloadAudioFile(file, toFolder: folder.id, completionHandler: { (success) in
+                    
+                })
+            }
+            else {
+                
+            }
         }
         fillView()
     }

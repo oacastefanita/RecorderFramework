@@ -14,7 +14,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     func applicationDidFinishLaunching() {
         // Perform any final initialization of your application.
         WatchData.sharedInstance.activate()
-        RecorderFrameworkManager.sharedInstance
+        RecorderFrameworkManager.sharedInstance.containerName = "group.com.codebluestudio.Recorder"
     }
 
     func applicationDidBecomeActive() {

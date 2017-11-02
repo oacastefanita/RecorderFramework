@@ -135,6 +135,9 @@
 		A297CD881FA8E648004E5B15 /* RecorderFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RecorderFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A297CD8A1FA8E669004E5B15 /* Pods_RecorderFramework_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_RecorderFramework_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2AE31BF1FA0BE7D00CCDC79 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		A2AFABDF1FAB0E1200510F7D /* RecorderFramework_Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RecorderFramework_Example.entitlements; sourceTree = "<group>"; };
+		A2AFABE01FAB0E1D00510F7D /* RecorderFramework-WatchExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "RecorderFramework-WatchExample.entitlements"; sourceTree = "<group>"; };
+		A2AFABE11FAB0E2500510F7D /* RecorderFramework-WatchExample Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "RecorderFramework-WatchExample Extension.entitlements"; sourceTree = "<group>"; };
 		A2B2D1471FA876F400A1FACE /* RecorderFramework-WatchExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RecorderFramework-WatchExample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2B2D14A1FA876F400A1FACE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		A2B2D14C1FA876F400A1FACE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -200,6 +203,7 @@
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
+				A2AFABDF1FAB0E1200510F7D /* RecorderFramework_Example.entitlements */,
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACD21AFB9204008FA782 /* Example for RecorderFramework */,
 				607FACE81AFB9204008FA782 /* Tests */,
@@ -321,6 +325,7 @@
 		A2B2D1481FA876F400A1FACE /* RecorderFramework-WatchExample */ = {
 			isa = PBXGroup;
 			children = (
+				A2AFABE01FAB0E1D00510F7D /* RecorderFramework-WatchExample.entitlements */,
 				A2B2D1491FA876F400A1FACE /* Interface.storyboard */,
 				A2B2D14C1FA876F400A1FACE /* Assets.xcassets */,
 				A2B2D14E1FA876F400A1FACE /* Info.plist */,
@@ -331,6 +336,7 @@
 		A2B2D1571FA876F400A1FACE /* RecorderFramework-WatchExample Extension */ = {
 			isa = PBXGroup;
 			children = (
+				A2AFABE11FAB0E2500510F7D /* RecorderFramework-WatchExample Extension.entitlements */,
 				A2D405361FAA76140042E605 /* RecordInterfaceController.swift */,
 				A2732ED41FAA6CAD004E3A35 /* FilesRowController.swift */,
 				A2732ED21FAA6C98004E3A35 /* FilesInterfaceController.swift */,
@@ -445,22 +451,41 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = UB5EDUN3Q5;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = JR2XB652YC;
 						LastSwiftMigration = 0820;
+						ProvisioningStyle = Manual;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
 					A2B2D1461FA876F400A1FACE = {
 						CreatedOnToolsVersion = 9.0.1;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = UB5EDUN3Q5;
+						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					A2B2D1521FA876F400A1FACE = {
 						CreatedOnToolsVersion = 9.0.1;
 						DevelopmentTeam = UB5EDUN3Q5;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -900,15 +925,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = RecorderFramework_Example.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Stefanita Oaca (23RETXK7ZK)";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = UB5EDUN3Q5;
 				INFOPLIST_FILE = RecorderFramework/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.RecorderFramework-Example";
+				PRODUCT_BUNDLE_IDENTIFIER = com.codebluestudio.Recorder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "3ea4c958-ddb8-4f10-aa4d-3795af08e474";
+				PROVISIONING_PROFILE_SPECIFIER = "Recorder dev";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -919,15 +947,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = RecorderFramework_Example.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Boohead, Inc. (UB5EDUN3Q5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = UB5EDUN3Q5;
 				INFOPLIST_FILE = RecorderFramework/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.RecorderFramework-Example";
+				PRODUCT_BUNDLE_IDENTIFIER = com.codebluestudio.Recorder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "5961f631-5a14-4ea5-b339-cae1871bd4aa";
+				PROVISIONING_PROFILE_SPECIFIER = "Recorder AppStore";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
@@ -936,6 +968,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 15275033601CE30C30BF3ABB /* Pods-RecorderFramework_Tests.debug.xcconfig */;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = JR2XB652YC;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -948,6 +983,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -956,6 +992,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 314DF6776FA1B02743D556EC /* Pods-RecorderFramework_Tests.release.xcconfig */;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = UB5EDUN3Q5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -964,6 +1003,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -984,14 +1024,18 @@
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = "RecorderFramework-WatchExample Extension/RecorderFramework-WatchExample Extension.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Stefanita Oaca (23RETXK7ZK)";
+				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = UB5EDUN3Q5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "RecorderFramework-WatchExample Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.RecorderFramework-Example.watchkitapp.watchkitextension";
+				PRODUCT_BUNDLE_IDENTIFIER = com.codebluestudio.Recorder.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE = "f78bb659-245a-4bfc-b0b5-d55a04fba6cd";
+				PROVISIONING_PROFILE_SPECIFIER = "Recorder Watch Extension Dev";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1017,13 +1061,18 @@
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = "RecorderFramework-WatchExample Extension/RecorderFramework-WatchExample Extension.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Boohead, Inc. (UB5EDUN3Q5)";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = UB5EDUN3Q5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "RecorderFramework-WatchExample Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.RecorderFramework-Example.watchkitapp.watchkitextension";
+				PRODUCT_BUNDLE_IDENTIFIER = com.codebluestudio.Recorder.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE = "9ece5e3b-dcc4-4d70-8949-0fc4e7d4718d";
+				PROVISIONING_PROFILE_SPECIFIER = "Recorder Watch Extension Appstore";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
@@ -1049,13 +1098,18 @@
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = "RecorderFramework-WatchExample/RecorderFramework-WatchExample.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Stefanita Oaca (23RETXK7ZK)";
+				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = UB5EDUN3Q5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = RecorderFramework_WatchExample_Extension;
 				INFOPLIST_FILE = "RecorderFramework-WatchExample/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.RecorderFramework-Example.watchkitapp";
+				PRODUCT_BUNDLE_IDENTIFIER = com.codebluestudio.Recorder.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "9ed65b88-9586-453d-802f-40bf1c3ebb19";
+				PROVISIONING_PROFILE_SPECIFIER = "Recorder Watch Dev";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1082,12 +1136,18 @@
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = "RecorderFramework-WatchExample/RecorderFramework-WatchExample.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Boohead, Inc. (UB5EDUN3Q5)";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Distribution: Boohead, Inc. (UB5EDUN3Q5)";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = UB5EDUN3Q5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = RecorderFramework_WatchExample_Extension;
 				INFOPLIST_FILE = "RecorderFramework-WatchExample/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.RecorderFramework-Example.watchkitapp";
+				PRODUCT_BUNDLE_IDENTIFIER = com.codebluestudio.Recorder.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "72af46a8-7703-4a7f-ae2a-8e7bdd5c3374";
+				PROVISIONING_PROFILE_SPECIFIER = "Recorder watch AppStore";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;

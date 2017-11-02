@@ -16,7 +16,7 @@ class RecordInterfaceController: WKInterfaceController {
     var recording = false
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-        // Configure interface objects here.
+
     }
     
     override func willActivate() {
@@ -30,24 +30,25 @@ class RecordInterfaceController: WKInterfaceController {
     }
     
     @IBAction func onRecord(_ sender: Any) {
-        var p = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-        let recordFilePath = p + "/Recording1.caf"
+        let fileManager = FileManager.default
+        let sharedContainer = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)
+        let recordFilePath = sharedContainer?.appendingPathComponent("Recording1.wav")
         if recording{
-            dismissAudioRecorderController()
-            recording = false
             self.btnRecord.setTitle("Record")
+            recording = !recording
         }else{
-            presentAudioRecorderController(withOutputURL: URL(string: recordFilePath)!,
-                                           preset: .narrowBandSpeech,
-                                           options: nil,
-                                           completion: { saved, error in
-                                            
-                                            if let err = error {
-                                                print(err.localizedDescription)
-                                            }
-            })
-            recording = true
+            recording = !recording
             self.btnRecord.setTitle("Stop")
+            let preset = WKAudioRecorderPreset.narrowBandSpeech
+            presentAudioRecorderController(
+                withOutputURL: recordFilePath!,
+                preset: preset,
+                options: nil) { [weak self] (didSave: Bool, error: Error?) in
+                    print("Did save? \(didSave) - Error: \(String(describing: error))")
+                    guard didSave else { return }
+                    self?.btnRecord.setTitle("Record")
+                    self?.recording = !(self?.recording)!
+            }
         }
     }
 }

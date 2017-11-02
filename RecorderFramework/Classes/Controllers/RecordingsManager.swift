@@ -46,7 +46,8 @@ public class RecordingsManager : NSObject {
             for item in folder.recordedItems {
                 if item.id == recordItem.id {
                     if recordItem.fileDownloaded && recordItem.localFile != nil {
-                        var path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+                        let fileManager = FileManager.default
+                        var path = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)!.path
                         path += recordItem.localFile
                         
                         if FileManager.default.fileExists(atPath: path) {
@@ -183,7 +184,8 @@ public class RecordingsManager : NSObject {
     // MARK: clear data
     
     public func clearData() {
-        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        let fileManager = FileManager.default
+        var path = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)!.path
         
         for recFolder in recordFolders {
             for existingItem in recFolder.recordedItems {

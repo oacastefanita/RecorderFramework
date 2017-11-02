@@ -4,6 +4,7 @@ public class RecorderFrameworkManager : NSObject {
     @objc public static let sharedInstance = RecorderFrameworkManager()
     
     public var isFree = false
+    public var containerName:String!
     
     override public init() {
         super.init()

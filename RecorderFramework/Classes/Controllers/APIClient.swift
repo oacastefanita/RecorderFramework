@@ -298,7 +298,8 @@ public class APIClient : NSObject {
                     }
                     var downloadsCompleted = 0
                     for phoneNumber in  AppPersistentData.sharedInstance.phoneNumbers {
-                        var path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+                        let fileManager = FileManager.default
+                        var path = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)!.path
                         path = path.appendingFormat("/" + "flags" + "/");
                         do {
                             if !FileManager.default.fileExists(atPath: path) {
@@ -923,7 +924,8 @@ public class APIClient : NSObject {
             return
         }
         
-        var path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        let fileManager = FileManager.default
+        var path = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)!.path
         path += recordItem.localFile
         
         if URL(fileURLWithPath:path).pathExtension == "caf" {
@@ -1007,7 +1009,8 @@ public class APIClient : NSObject {
             return
         }
         
-        var path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        let fileManager = FileManager.default
+        var path = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)!.path
         path = path + ("/" + toFolder + "/");
         if !FileManager.default.fileExists(atPath: path) {
             do {
@@ -1061,7 +1064,8 @@ public class APIClient : NSObject {
                                 let name = (file.object(forKey: "name") as? String)!
                                 var metaPath = AudioFileTagManager.sharedInstance.getMetadataFilePath(path)
                                 if url.components(separatedBy: ".").last != "json" {
-                                    var path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+                                    let fileManager = FileManager.default
+                                    var path = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)!.path
                                     path = path + ("/" + toFolder + "/")
                                     
                                     let end = "__" + name.components(separatedBy: "__").last!
@@ -1657,7 +1661,8 @@ public class APIClient : NSObject {
         
         let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey,"name":(recordItem.text)+"_metadata", "parent_id":(recordItem.id)]
         
-        var path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        let fileManager = FileManager.default
+        var path = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)!.path
         path += recordItem.localFile
         path = AudioFileTagManager.sharedInstance.getMetadataFilePath(path)
         NSLog(path)

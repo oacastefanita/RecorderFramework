@@ -119,7 +119,8 @@ public class LocalFilesManager: NSObject {
         }
         else {
             // delete files
-            let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] 
+            let fileManager = FileManager.default
+            var path = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)!.path
             
             for item in itemsToDelete {
                 let itemPath = path + item.localFile
@@ -155,7 +156,8 @@ public class LocalFilesManager: NSObject {
         if workingFiles.count == 0  {
             updateInProgress = false
             // delete files
-            let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] 
+            let fileManager = FileManager.default
+            var path = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)!.path
             
             for item in itemsToDelete {
                 item.fileDownloaded = false
@@ -215,7 +217,8 @@ public class LocalFilesManager: NSObject {
             }
             else {
                 APIClient.sharedInstance.downloadAudioFile(item!, toFolder: folder.id, completionHandler: { (success) -> Void in
-                    var path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] 
+                    let fileManager = FileManager.default
+                    var path = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)!.path
                     path += item!.localFile
                     
                     if FileManager.default.fileExists(atPath: path) {
@@ -236,7 +239,8 @@ public class LocalFilesManager: NSObject {
                 itemsToDelete.append(item!)
             }
             else {
-                var path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] 
+                let fileManager = FileManager.default
+                var path = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)!.path
                 path += item!.localFile
                 
                 if FileManager.default.fileExists(atPath: path) {

@@ -283,7 +283,8 @@ public class RecordItem: NSObject, NSSecureCoding {
         let archiver = NSKeyedArchiver(forWritingWith: data)
         archiver.requiresSecureCoding = true
         
-        var path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        let fileManager = FileManager.default
+        var path = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)!.path
         path += self.localFile
         
         if FileManager.default.fileExists(atPath: path) {

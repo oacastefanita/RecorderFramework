@@ -17,16 +17,16 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>0.5.0</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>20171102</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>WKCompanionAppBundleIdentifier</key>
-	<string>org.cocoapods.demo.RecorderFramework-Example</string>
+	<string>com.codebluestudio.Recorder</string>
 	<key>WKWatchKitApp</key>
 	<true/>
 </dict>
