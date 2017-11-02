@@ -16,7 +16,8 @@ class RecordInterfaceController: WKInterfaceController {
     var recording = false
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-
+        self.recItem = RecordItem()
+        recItem.id = UUID().uuidString
     }
     
     override func willActivate() {
@@ -27,6 +28,17 @@ class RecordInterfaceController: WKInterfaceController {
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()
+    }
+    @IBAction func onName() {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy.MM.dd HH:mm"
+        let string = formatter.string(from: Date())
+        presentTextInputController(withSuggestions: [string], allowedInputMode:   WKTextInputMode.plain) { (arr: [Any]?) in
+            print(arr ?? "Not find")
+            if arr != nil && arr!.count >= 1{
+                self.recItem.text = arr![0] as! String
+            }
+        }
     }
     
     @IBAction func onRecord(_ sender: Any) {

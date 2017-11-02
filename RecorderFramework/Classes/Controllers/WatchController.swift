@@ -96,6 +96,21 @@ public class WatchKitController: NSObject, WCSessionDelegate{
         }
     }
     
+    func sendApiKey(){
+        if !sessionActive(){
+            return
+        }
+        
+        context["api_key"] = AppPersistentData.sharedInstance.apiKey
+        do {
+            try session?.updateApplicationContext(
+                context
+            )
+        } catch let error as NSError {
+            NSLog("Updating the context failed: " + error.localizedDescription)
+        }
+    }
+    
     /// Add user to the context and send the new context
     public func sendUser(){
         if !sessionActive(){

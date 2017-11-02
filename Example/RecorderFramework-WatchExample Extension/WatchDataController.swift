@@ -27,6 +27,9 @@ public class WatchData: NSObject,WCSessionDelegate {
         if let user = applicationContext["user"] {
             RecorderFrameworkManager.sharedInstance.setUser(RecorderFactory.createUserFromDict(user as! NSDictionary))
         }
+        if let key = applicationContext["api_key"] {
+            RecorderFrameworkManager.sharedInstance.setApiKey(key as! String)
+        }
         if let folders = applicationContext["folders"]{
             var foldersArray = Array<RecordFolder>()
             for folder in (folders as! Array<NSDictionary>){

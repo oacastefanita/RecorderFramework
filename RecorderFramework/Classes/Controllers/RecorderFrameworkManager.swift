@@ -9,7 +9,7 @@ public class RecorderFrameworkManager : NSObject {
     override public init() {
         super.init()
         WatchKitController.sharedInstance
-        AppPersistentData.sharedInstance
+        AppPersistentData.sharedInstance.loadData()
     }
     
     public func getUser() -> User{
@@ -26,6 +26,10 @@ public class RecorderFrameworkManager : NSObject {
         for folder in folders{
             RecordingsManager.sharedInstance.syncItem(folder)
         }
+    }
+    
+    public func setApiKey(_ key:String){
+        AppPersistentData.sharedInstance.apiKey = key
     }
     
     public func setFiles(_ files: Array<RecordItem>!){
@@ -53,6 +57,7 @@ public class RecorderFrameworkManager : NSObject {
     
     public func getFolders() -> Array<RecordFolder>{
         WatchKitController.sharedInstance.sendFolders()
+        WatchKitController.sharedInstance.sendApiKey()
         return RecordingsManager.sharedInstance.recordFolders
     }
     

@@ -35,10 +35,27 @@
             </objects>
             <point key="canvasLocation" x="220" y="-272"/>
         </scene>
-        <!--Interface Controller-->
+        <!--User Interface Controller-->
         <scene sceneID="bVX-FM-KwQ">
             <objects>
-                <controller id="0pl-lh-QW6"/>
+                <controller id="0pl-lh-QW6" customClass="UserInterfaceController" customModule="RecorderFramework_WatchExample_Extension">
+                    <items>
+                        <label alignment="left" text="First Name" id="SBE-nF-1Nz"/>
+                        <label alignment="left" text="Last Name" id="coj-gI-GyN"/>
+                        <label alignment="left" text="Email" id="jdt-di-eJZ"/>
+                        <label alignment="left" text="Number" id="BdS-CY-zYT"/>
+                        <label alignment="left" text="PlayBeep:" id="r4l-0D-ocG"/>
+                        <label alignment="left" text="IsPublic" id="b85-NK-TSE"/>
+                    </items>
+                    <connections>
+                        <outlet property="lblEmail" destination="jdt-di-eJZ" id="21U-ee-Lam"/>
+                        <outlet property="lblFirstName" destination="SBE-nF-1Nz" id="J6w-Tx-t88"/>
+                        <outlet property="lblIsPublic" destination="b85-NK-TSE" id="fu4-Bm-pJ3"/>
+                        <outlet property="lblLastName" destination="coj-gI-GyN" id="7et-Cb-kkg"/>
+                        <outlet property="lblNumber" destination="BdS-CY-zYT" id="J3v-m9-8tr"/>
+                        <outlet property="lblPlayBeep" destination="r4l-0D-ocG" id="pWZ-Jk-qNg"/>
+                    </connections>
+                </controller>
             </objects>
             <point key="canvasLocation" x="663" y="134"/>
         </scene>
@@ -50,6 +67,11 @@
                         <button width="1" alignment="left" title="Start" id="R7R-XE-jNb">
                             <connections>
                                 <action selector="onRecord:" destination="bzL-kw-eCw" id="kxh-cp-ATE"/>
+                            </connections>
+                        </button>
+                        <button width="1" alignment="left" title="Name" id="k4J-6z-P1i">
+                            <connections>
+                                <action selector="onName" destination="bzL-kw-eCw" id="Uno-No-CJn"/>
                             </connections>
                         </button>
                     </items>
@@ -150,6 +172,34 @@
                 </controller>
             </objects>
             <point key="canvasLocation" x="1036" y="-272"/>
+        </scene>
+        <!--FileInterfaceController-->
+        <scene sceneID="EIM-Ia-K1x">
+            <objects>
+                <controller identifier="FileInterfaceController" id="Wkq-YD-la7" customClass="FileInterfaceController" customModule="RecorderFramework_WatchExample_Extension">
+                    <items>
+                        <label alignment="left" text="Downloading..." id="Mkf-r5-t36"/>
+                        <label alignment="left" text="Name:" id="Pby-yv-4q3"/>
+                        <label alignment="left" text="First name: " id="Z3S-TN-uV4"/>
+                        <label alignment="left" text="Last name: " id="WyJ-k3-rWV"/>
+                        <label alignment="left" text="Phone number:" id="BZ9-1K-Zfe"/>
+                        <label alignment="left" text="Email:" id="wsj-el-3mR"/>
+                        <label alignment="left" text="Notes:" id="98E-gp-yrg"/>
+                        <label alignment="left" text="Tags:" id="4dD-6a-aut"/>
+                    </items>
+                    <connections>
+                        <outlet property="lblDownloading" destination="Mkf-r5-t36" id="2e0-1S-36Z"/>
+                        <outlet property="lblEmail" destination="wsj-el-3mR" id="IhL-SP-ZkE"/>
+                        <outlet property="lblFirstName" destination="Z3S-TN-uV4" id="tx6-Vx-4dd"/>
+                        <outlet property="lblLastName" destination="WyJ-k3-rWV" id="r7i-on-MBY"/>
+                        <outlet property="lblName" destination="Pby-yv-4q3" id="XZ6-z0-LgX"/>
+                        <outlet property="lblNotes" destination="98E-gp-yrg" id="oex-OH-O4o"/>
+                        <outlet property="lblPhoneNumber" destination="BZ9-1K-Zfe" id="oI7-pw-gOj"/>
+                        <outlet property="lblTags" destination="4dD-6a-aut" id="tYl-Lu-CCf"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="1398" y="-277"/>
         </scene>
     </scenes>
 </document>

@@ -15,6 +15,7 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		67D5BE920E12852EBB8D4EF1 /* Pods_RecorderFramework_WatchExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 748F834FFABC1EB351E432FB /* Pods_RecorderFramework_WatchExample.framework */; };
+		A20569AB1FABC9010089396F /* UserInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20569AA1FABC9010089396F /* UserInterfaceController.swift */; };
 		A22A10491FA1E5F400DAFA40 /* FilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22A10481FA1E5F400DAFA40 /* FilesViewController.swift */; };
 		A22A104B1FA1F00500DAFA40 /* FileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22A104A1FA1F00500DAFA40 /* FileViewController.swift */; };
 		A23A2CB51FA1D84C00E25F87 /* FoldersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23A2CB41FA1D84C00E25F87 /* FoldersViewController.swift */; };
@@ -39,6 +40,7 @@
 		A2B2D15D1FA876F400A1FACE /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B2D15C1FA876F400A1FACE /* NotificationController.swift */; };
 		A2B2D15F1FA876F400A1FACE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2B2D15E1FA876F400A1FACE /* Assets.xcassets */; };
 		A2B2D1641FA876F400A1FACE /* RecorderFramework-WatchExample.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = A2B2D1471FA876F400A1FACE /* RecorderFramework-WatchExample.app */; };
+		A2BF34A31FAB995400C7006F /* FileInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BF34A21FAB995400C7006F /* FileInterfaceController.swift */; };
 		A2D405371FAA76140042E605 /* RecordInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D405361FAA76140042E605 /* RecordInterfaceController.swift */; };
 		A2E949411F9FB1BA00FAA5D0 /* EnterCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E949401F9FB1BA00FAA5D0 /* EnterCodeViewController.swift */; };
 		A2F76A741FA892E300EF05EE /* WatchDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F76A731FA892E300EF05EE /* WatchDataController.swift */; };
@@ -118,6 +120,7 @@
 		748F834FFABC1EB351E432FB /* Pods_RecorderFramework_WatchExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecorderFramework_WatchExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		863430D0C86DCE6607C6635E /* Pods_RecorderFramework_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecorderFramework_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1221A40950338952D348F70 /* Pods_RecorderFramework_Example_RecorderFramework_WatchExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecorderFramework_Example_RecorderFramework_WatchExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A20569AA1FABC9010089396F /* UserInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInterfaceController.swift; sourceTree = "<group>"; };
 		A22A10481FA1E5F400DAFA40 /* FilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesViewController.swift; sourceTree = "<group>"; };
 		A22A104A1FA1F00500DAFA40 /* FileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileViewController.swift; sourceTree = "<group>"; };
 		A23A2CB41FA1D84C00E25F87 /* FoldersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersViewController.swift; sourceTree = "<group>"; };
@@ -149,6 +152,7 @@
 		A2B2D15E1FA876F400A1FACE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A2B2D1601FA876F400A1FACE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A2B2D1611FA876F400A1FACE /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		A2BF34A21FAB995400C7006F /* FileInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileInterfaceController.swift; sourceTree = "<group>"; };
 		A2D405361FAA76140042E605 /* RecordInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordInterfaceController.swift; sourceTree = "<group>"; };
 		A2E949401F9FB1BA00FAA5D0 /* EnterCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCodeViewController.swift; sourceTree = "<group>"; };
 		A2F76A731FA892E300EF05EE /* WatchDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchDataController.swift; sourceTree = "<group>"; };
@@ -337,7 +341,9 @@
 			isa = PBXGroup;
 			children = (
 				A2AFABE11FAB0E2500510F7D /* RecorderFramework-WatchExample Extension.entitlements */,
+				A20569AA1FABC9010089396F /* UserInterfaceController.swift */,
 				A2D405361FAA76140042E605 /* RecordInterfaceController.swift */,
+				A2BF34A21FAB995400C7006F /* FileInterfaceController.swift */,
 				A2732ED41FAA6CAD004E3A35 /* FilesRowController.swift */,
 				A2732ED21FAA6C98004E3A35 /* FilesInterfaceController.swift */,
 				A2732ED01FAA5E80004E3A35 /* FoldersRowController.swift */,
@@ -773,12 +779,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2B2D15D1FA876F400A1FACE /* NotificationController.swift in Sources */,
+				A2BF34A31FAB995400C7006F /* FileInterfaceController.swift in Sources */,
 				A2732ECF1FAA5D84004E3A35 /* FoldersInterfaceController.swift in Sources */,
 				A2732ED51FAA6CAD004E3A35 /* FilesRowController.swift in Sources */,
 				A2F76A741FA892E300EF05EE /* WatchDataController.swift in Sources */,
 				A2732ED11FAA5E81004E3A35 /* FoldersRowController.swift in Sources */,
 				A2732ED31FAA6C98004E3A35 /* FilesInterfaceController.swift in Sources */,
 				A2B2D15B1FA876F400A1FACE /* ExtensionDelegate.swift in Sources */,
+				A20569AB1FABC9010089396F /* UserInterfaceController.swift in Sources */,
 				A2B2D1591FA876F400A1FACE /* InterfaceController.swift in Sources */,
 				A2D405371FAA76140042E605 /* RecordInterfaceController.swift in Sources */,
 			);
@@ -1032,6 +1040,14 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "RecorderFramework-WatchExample Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"RecorderFramework\"",
+					"-Obj-c",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.codebluestudio.Recorder.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE = "f78bb659-245a-4bfc-b0b5-d55a04fba6cd";
@@ -1069,6 +1085,14 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "RecorderFramework-WatchExample Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"RecorderFramework\"",
+					"-Obj-c",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.codebluestudio.Recorder.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE = "9ece5e3b-dcc4-4d70-8949-0fc4e7d4718d";

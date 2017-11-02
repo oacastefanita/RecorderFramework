@@ -43,6 +43,6 @@ class FilesInterfaceController: WKInterfaceController {
     }
     
     override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
-        
+        self.pushController(withName: "FileInterfaceController", context: array[rowIndex])
     }
 }

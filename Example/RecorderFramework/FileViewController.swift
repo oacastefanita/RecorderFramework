@@ -8,6 +8,7 @@
 
 import UIKit
 import RecorderFramework
+import AVFoundation
 
 class FileViewController: UIViewController, TitleViewControllerDelegater{
     @IBOutlet weak var txtTags: UITextField!
@@ -20,6 +21,7 @@ class FileViewController: UIViewController, TitleViewControllerDelegater{
     @IBOutlet weak var btnUpdate: UIButton!
     var file: RecordItem!
     var titleType = 0
+    var player:AVAudioPlayer!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -59,14 +61,39 @@ class FileViewController: UIViewController, TitleViewControllerDelegater{
                 }
                 
                 RecorderFrameworkManager.sharedInstance.downloadAudioFile(file, toFolder: folder.id, completionHandler: { (success) in
-                    
+                    self.play()
                 })
             }
             else {
-                
+                self.play()
             }
         }
         fillView()
+    }
+    
+    func play() {
+        let fileManager = FileManager.default
+        var path = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)!.path
+        path += file.localFile
+        
+        if !FileManager.default.fileExists(atPath: path) {
+            return
+        }
+        do {
+            let url = URL(fileURLWithPath: path)
+            do {
+                player = try AVAudioPlayer(contentsOf: url)
+                guard let player = player else { return }
+                
+                player.prepareToPlay()
+                player.play()
+            } catch let error as NSError {
+                print(error.description)
+            }
+        }
+        catch {
+            
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
