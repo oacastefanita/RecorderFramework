@@ -32,6 +32,10 @@ public class RecorderFrameworkManager : NSObject {
         AppPersistentData.sharedInstance.apiKey = key
     }
     
+    public func getApiKey() -> String?{
+        return AppPersistentData.sharedInstance.apiKey
+    }
+    
     public func setFiles(_ files: Array<RecordItem>!){
         for file in files{
             for recFolder in RecordingsManager.sharedInstance.recordFolders {

@@ -10,7 +10,7 @@ import UIKit
 import RecorderFramework
 import AVFoundation
 
-class FileViewController: UIViewController, TitleViewControllerDelegater{
+class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudioRecorderDelegate{
     @IBOutlet weak var txtTags: UITextField!
     @IBOutlet weak var txtNotes: UITextField!
     @IBOutlet weak var txtEmail: UITextField!
@@ -19,28 +19,28 @@ class FileViewController: UIViewController, TitleViewControllerDelegater{
     @IBOutlet weak var txtFirstName: UITextField!
     @IBOutlet weak var txtName: UITextField!
     @IBOutlet weak var btnUpdate: UIButton!
+    @IBOutlet weak var recordingTimeLabel: UILabel!
+    
     var file: RecordItem!
+    var folder: RecordFolder!
     var titleType = 0
     var player:AVAudioPlayer!
+    var recording = false
+    
+    //Variables
+    var audioRecorder: AVAudioRecorder!
+    var meterTimer:Timer!
+    var isAudioRecordingGranted: Bool!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         if file == nil{
             btnUpdate.setTitle("Done", for: .normal)
             file = RecordItem()
-            if let audioFilePath = Bundle.main.path(forResource: "sample", ofType: "wav") {
-                print(audioFilePath)
-                let fileManager = FileManager.default
-                var path = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)!.path
-                do {
-                    try fileManager.moveItem(atPath: audioFilePath, toPath: path + "/sample.wav")
-                }
-                catch let error as NSError {
-                    print("Ooops! Something went wrong: \(error)")
-                }
-                file.localFile =  "sample.wav"
-            }
-            RecorderFrameworkManager.sharedInstance.syncRecordingItem(file, folder: RecorderFrameworkManager.sharedInstance.getFolders().first!)
+            file.id = UUID().uuidString
+            checkPermission()
+            folder.recordedItems.append(file)
         }else{
             if !file.fileDownloaded || file.localFile == nil {
                 var folder:RecordFolder! = nil
@@ -69,6 +69,30 @@ class FileViewController: UIViewController, TitleViewControllerDelegater{
             }
         }
         fillView()
+    }
+    
+    func checkPermission(){
+        switch AVAudioSession.sharedInstance().recordPermission() {
+        case AVAudioSessionRecordPermission.granted:
+            isAudioRecordingGranted = true
+            break
+        case AVAudioSessionRecordPermission.denied:
+            isAudioRecordingGranted = false
+            break
+        case AVAudioSessionRecordPermission.undetermined:
+            AVAudioSession.sharedInstance().requestRecordPermission() { [unowned self] allowed in
+                DispatchQueue.main.async {
+                    if allowed {
+                        self.isAudioRecordingGranted = true
+                    } else {
+                        self.isAudioRecordingGranted = false
+                    }
+                }
+            }
+            break
+        default:
+            break
+        }
     }
     
     func play() {
@@ -154,7 +178,7 @@ class FileViewController: UIViewController, TitleViewControllerDelegater{
         file.text = txtName.text!
         
         if btnUpdate.titleLabel?.text == "Done"{
-            RecorderFrameworkManager.sharedInstance.uploadRecording(file)
+            doSaveCurrentRecording()
             self.alert(message: "Request sent")
             self.navigationController?.popViewController(animated: true)
             return
@@ -201,5 +225,108 @@ class FileViewController: UIViewController, TitleViewControllerDelegater{
         if segue.identifier == "titleFromFile"{
             (segue.destination as! TitleViewController).delegate = self
         }
+    }
+    
+    @IBAction func audioRecorderAction(_ sender: UIButton) {
+        
+        if recording{
+            finishAudioRecording(success: true)
+        }else{
+            if isAudioRecordingGranted {
+                
+                //Create the session.
+                let session = AVAudioSession.sharedInstance()
+                
+                do {
+                    //Configure the session for recording and playback.
+                    try session.setCategory(AVAudioSessionCategoryPlayAndRecord, with: .defaultToSpeaker)
+                    try session.setActive(true)
+                    //Set up a high-quality recording session.
+                    let settings = [
+                        AVFormatIDKey:Int(kAudioFormatLinearPCM),
+                        AVSampleRateKey:44100.0,
+                        AVNumberOfChannelsKey:1,
+                        AVLinearPCMBitDepthKey:8,
+                        AVLinearPCMIsFloatKey:false,
+                        AVLinearPCMIsBigEndianKey:false,
+                        AVEncoderAudioQualityKey:AVAudioQuality.max.rawValue
+                        ] as [String : Any]
+                    //Create audio file name URL
+                    let fileManager = FileManager.default
+                    let sharedContainer = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)
+                    let path = sharedContainer?.appendingPathComponent("Recording1.wav")
+                    //Create the audio recording, and assign ourselves as the delegate
+                    audioRecorder = try AVAudioRecorder(url: path!, settings: settings)
+                    audioRecorder.delegate = self
+                    audioRecorder.isMeteringEnabled = true
+                    audioRecorder.record()
+                    meterTimer = Timer.scheduledTimer(timeInterval: 0.1, target:self, selector:#selector(self.updateAudioMeter(timer:)), userInfo:nil, repeats:true)
+                }
+                catch let error {
+                    print("Error for start audio recording: \(error.localizedDescription)")
+                }
+            }
+        }
+        recording = !recording
+    }
+    
+    func finishAudioRecording(success: Bool) {
+        
+        audioRecorder.stop()
+        audioRecorder = nil
+        meterTimer.invalidate()
+        
+        if success {
+            print("Recording finished successfully.")
+        } else {
+            print("Recording failed :(")
+        }
+    }
+    
+    @objc func updateAudioMeter(timer: Timer) {
+        
+        if audioRecorder.isRecording {
+            let hr = Int((audioRecorder.currentTime / 60) / 60)
+            let min = Int(audioRecorder.currentTime / 60)
+            let sec = Int(audioRecorder.currentTime.truncatingRemainder(dividingBy: 60))
+            let totalTimeString = String(format: "%02d:%02d:%02d", hr, min, sec)
+            recordingTimeLabel.text = totalTimeString
+            audioRecorder.updateMeters()
+        }
+    }
+    
+    //MARK:- Audio recoder delegate methods
+    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
+        
+        if !flag {
+            finishAudioRecording(success: false)
+        }
+    }
+    
+    func doSaveCurrentRecording() {
+        file.fileDownloaded = true
+        
+        let fileManager = FileManager.default
+        let sharedContainer = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)
+        let oldPath = sharedContainer?.appendingPathComponent("Recording1.wav")
+        
+        var newPath = "/" + (RecordingsManager.sharedInstance.recordFolders.first?.title)! + "/" + file.id
+        if !FileManager.default.fileExists(atPath: (sharedContainer?.path)! + newPath) {
+            do {
+                try FileManager.default.createDirectory(atPath: (sharedContainer?.path)! + newPath, withIntermediateDirectories: true, attributes: nil)
+            } catch _ {
+            }
+        }
+        newPath = newPath + "/" + file.id + ".wav"
+        
+        do {
+            try fileManager.moveItem(atPath: (oldPath?.path)!, toPath: (sharedContainer?.path)! + newPath)
+            file.localFile = newPath
+        }
+        catch let error as NSError {
+            print("Ooops! Something went wrong: \(error)")
+        }
+        ActionsSyncManager.sharedInstance.uploadRecording(file)
+        AppPersistentData.sharedInstance.saveData()
     }
 }

@@ -60,7 +60,36 @@ class RecordInterfaceController: WKInterfaceController {
                     guard didSave else { return }
                     self?.btnRecord.setTitle("Record")
                     self?.recording = !(self?.recording)!
+                    self?.doSaveCurrentRecording()
             }
         }
+    }
+    
+    func doSaveCurrentRecording() {
+        recItem.fileDownloaded = true
+        
+        let fileManager = FileManager.default
+        let sharedContainer = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)
+        let oldPath = sharedContainer?.appendingPathComponent("Recording1.wav")
+        
+        var newPath = "/" + (RecordingsManager.sharedInstance.recordFolders.first?.title)! + "/" + recItem.id
+        if !FileManager.default.fileExists(atPath: (sharedContainer?.path)! + newPath) {
+            do {
+                try FileManager.default.createDirectory(atPath: (sharedContainer?.path)! + newPath, withIntermediateDirectories: true, attributes: nil)
+            } catch _ {
+            }
+        }
+        newPath = newPath + "/" + recItem.id + ".wav"
+        
+        do {
+            try fileManager.moveItem(atPath: (oldPath?.path)!, toPath: (sharedContainer?.path)! + newPath)
+            recItem.localFile = newPath
+        }
+        catch let error as NSError {
+            print("Ooops! Something went wrong: \(error)")
+        }
+        RecordingsManager.sharedInstance.recordFolders[0].recordedItems.append(recItem)
+        ActionsSyncManager.sharedInstance.uploadRecording(recItem)
+        AppPersistentData.sharedInstance.saveData()
     }
 }

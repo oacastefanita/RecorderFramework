@@ -23,7 +23,6 @@
 		A23EBB741FA76AA700F9D188 /* DisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23EBB731FA76AA700F9D188 /* DisplayViewController.swift */; };
 		A24C5D171FA7880300EE9347 /* PhoneNumbersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24C5D161FA7880300EE9347 /* PhoneNumbersViewController.swift */; };
 		A24C5D191FA79BCD00EE9347 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24C5D181FA79BCD00EE9347 /* ProfileViewController.swift */; };
-		A2523FCE1FA7C39700D4A39A /* sample.wav in Resources */ = {isa = PBXBuildFile; fileRef = A2523FCD1FA7C39700D4A39A /* sample.wav */; };
 		A2689F8F1FA5051300A3F391 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2689F8E1FA5051300A3F391 /* Extensions.swift */; };
 		A2732ECF1FAA5D84004E3A35 /* FoldersInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2732ECE1FAA5D84004E3A35 /* FoldersInterfaceController.swift */; };
 		A2732ED11FAA5E81004E3A35 /* FoldersRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2732ED01FAA5E80004E3A35 /* FoldersRowController.swift */; };
@@ -128,7 +127,6 @@
 		A23EBB731FA76AA700F9D188 /* DisplayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayViewController.swift; sourceTree = "<group>"; };
 		A24C5D161FA7880300EE9347 /* PhoneNumbersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumbersViewController.swift; sourceTree = "<group>"; };
 		A24C5D181FA79BCD00EE9347 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		A2523FCD1FA7C39700D4A39A /* sample.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sample.wav; sourceTree = "<group>"; };
 		A2689F8E1FA5051300A3F391 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A2732ECE1FAA5D84004E3A35 /* FoldersInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoldersInterfaceController.swift; sourceTree = "<group>"; };
 		A2732ED01FAA5E80004E3A35 /* FoldersRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoldersRowController.swift; sourceTree = "<group>"; };
@@ -233,7 +231,6 @@
 		607FACD21AFB9204008FA782 /* Example for RecorderFramework */ = {
 			isa = PBXGroup;
 			children = (
-				A2523FCD1FA7C39700D4A39A /* sample.wav */,
 				A2689F8E1FA5051300A3F391 /* Extensions.swift */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* RegisterViewController.swift */,
@@ -521,7 +518,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A2523FCE1FA7C39700D4A39A /* sample.wav in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,

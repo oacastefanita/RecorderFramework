@@ -931,11 +931,26 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5MA-5a-sxT">
+                                <rect key="frame" x="77" y="247.5" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dpI-y0-yJl">
+                                <rect key="frame" x="8" y="112" width="49" height="271"/>
+                                <state key="normal" title="Record"/>
+                                <connections>
+                                    <action selector="audioRecorderAction:" destination="rnC-AD-rWf" eventType="touchUpInside" id="W3x-3X-TtV"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Abd-mn-vDq" firstAttribute="top" secondItem="Ita-45-qsy" secondAttribute="bottom" constant="8" id="0PY-Af-Tfq"/>
                             <constraint firstItem="8c8-vV-aJo" firstAttribute="leading" secondItem="tTO-0y-N4P" secondAttribute="trailing" constant="8" id="5A1-Xk-uWZ"/>
+                            <constraint firstItem="dpI-y0-yJl" firstAttribute="leading" secondItem="kDA-qI-aGI" secondAttribute="leading" constant="8" id="ISN-dQ-0vw"/>
+                            <constraint firstItem="5MA-5a-sxT" firstAttribute="leading" secondItem="dpI-y0-yJl" secondAttribute="trailing" constant="20" id="PLf-Q6-qZq"/>
                             <constraint firstItem="8c8-vV-aJo" firstAttribute="top" secondItem="Ita-45-qsy" secondAttribute="bottom" constant="8" id="SEb-WT-fSf"/>
                             <constraint firstItem="rGx-Ly-UsJ" firstAttribute="top" secondItem="Ita-45-qsy" secondAttribute="bottom" constant="8" id="X16-9I-17A"/>
                             <constraint firstItem="pQ7-TL-NAm" firstAttribute="leading" secondItem="kDA-qI-aGI" secondAttribute="leading" constant="8" id="ake-0Z-0cw"/>
@@ -947,17 +962,21 @@
                             <constraint firstItem="Abd-mn-vDq" firstAttribute="leading" secondItem="pQ7-TL-NAm" secondAttribute="trailing" constant="8" id="h6k-TC-YWR"/>
                             <constraint firstItem="rGx-Ly-UsJ" firstAttribute="leading" secondItem="Abd-mn-vDq" secondAttribute="trailing" constant="8" id="noD-gD-zXN"/>
                             <constraint firstAttribute="trailing" secondItem="q6n-lo-3BW" secondAttribute="trailing" constant="8" id="okJ-2u-jht"/>
+                            <constraint firstItem="q6n-lo-3BW" firstAttribute="top" secondItem="dpI-y0-yJl" secondAttribute="bottom" constant="10" id="qfy-kX-gdK"/>
                             <constraint firstItem="1Cr-ea-hOh" firstAttribute="top" secondItem="Ita-45-qsy" secondAttribute="bottom" constant="8" id="rsg-wZ-9Rt"/>
                             <constraint firstItem="h75-hG-QHg" firstAttribute="leading" secondItem="8c8-vV-aJo" secondAttribute="trailing" constant="8" id="ruX-yL-NP5"/>
                             <constraint firstItem="c7s-9u-74x" firstAttribute="top" secondItem="q6n-lo-3BW" secondAttribute="bottom" constant="8" id="sKs-Vd-6RO"/>
+                            <constraint firstItem="5MA-5a-sxT" firstAttribute="centerY" secondItem="dpI-y0-yJl" secondAttribute="centerY" id="t83-sp-Cb0"/>
                             <constraint firstItem="c7s-9u-74x" firstAttribute="leading" secondItem="kDA-qI-aGI" secondAttribute="leading" id="vEs-mI-g9c"/>
                             <constraint firstAttribute="trailing" secondItem="c7s-9u-74x" secondAttribute="trailing" id="yD9-yr-dVO"/>
                             <constraint firstItem="tTO-0y-N4P" firstAttribute="leading" secondItem="1Cr-ea-hOh" secondAttribute="trailing" constant="8" id="yjU-Cc-tP5"/>
+                            <constraint firstItem="dpI-y0-yJl" firstAttribute="top" secondItem="pQ7-TL-NAm" secondAttribute="bottom" constant="10" id="yv1-Xq-fkQ"/>
                             <constraint firstItem="pQ7-TL-NAm" firstAttribute="top" secondItem="Ita-45-qsy" secondAttribute="bottom" constant="8" id="zFr-uW-rBO"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="btnUpdate" destination="Abd-mn-vDq" id="IvO-vp-Zjy"/>
+                        <outlet property="recordingTimeLabel" destination="5MA-5a-sxT" id="emz-po-FIN"/>
                         <outlet property="txtEmail" destination="CxA-lb-Pep" id="wBd-mp-rIs"/>
                         <outlet property="txtFirstName" destination="faO-3d-Dq9" id="KVc-RG-aXe"/>
                         <outlet property="txtLastName" destination="YJ4-3Y-J94" id="bHY-Hl-Qrb"/>
@@ -975,6 +994,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="C7U-gp-LW3"/>
-        <segue reference="8zy-MB-s7l"/>
+        <segue reference="hLC-bV-XVH"/>
     </inferredMetricsTieBreakers>
 </document>

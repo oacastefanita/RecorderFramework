@@ -91,6 +91,7 @@ class FilesViewController: UIViewController,UITableViewDelegate, UITableViewData
             (segue.destination as! TitleViewController).delegate = self
         } else if segue.identifier == "showFileFromFiles"{
             (segue.destination as! FileViewController).file = selectedFile
+            (segue.destination as! FileViewController).folder = RecordingsManager.sharedInstance.recordFolders[selectedFolder]
         }
     }
     

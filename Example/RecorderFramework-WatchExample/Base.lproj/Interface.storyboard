@@ -14,7 +14,7 @@
             <objects>
                 <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="RecorderFramework_WatchExample" customModuleProvider="target">
                     <items>
-                        <table alignment="left" id="d59-fs-NlV"/>
+                        <label alignment="left" text="Please use the app first" numberOfLines="0" id="LyZ-MB-dif"/>
                         <button width="1" alignment="left" title="Folders" id="JXh-Ou-wvP">
                             <connections>
                                 <segue destination="OT2-pH-CeP" kind="push" id="YSl-j5-Q44"/>
@@ -31,6 +31,12 @@
                             </connections>
                         </button>
                     </items>
+                    <connections>
+                        <outlet property="btnFolders" destination="JXh-Ou-wvP" id="ayy-B2-qpT"/>
+                        <outlet property="btnNewRecording" destination="GZc-fT-3bi" id="a2E-gc-qKT"/>
+                        <outlet property="btnUser" destination="1xF-KH-EzJ" id="lRc-1b-7Ig"/>
+                        <outlet property="lblNoData" destination="LyZ-MB-dif" id="dmA-8U-sPC"/>
+                    </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="220" y="-272"/>
