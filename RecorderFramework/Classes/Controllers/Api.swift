@@ -57,6 +57,7 @@ open class Api: NSObject {
                 for (key, value) in parameters! {
                     data.append((value as! AnyObject).data(using: String.Encoding.utf8.rawValue)!, withName: key)
                 }
+                self.completionHandlerLog!("REQUEST:\(toUrl)", " BODY:\(data)")
             }
             
         }, to: toUrl, method:.post, headers:customHeaders) { (result) in
