@@ -19,6 +19,7 @@ class FoldersViewController: UIViewController,UITableViewDelegate, UITableViewDa
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        tableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,7 +51,9 @@ class FoldersViewController: UIViewController,UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         selectedIndex = indexPath.row
-        self.performSegue(withIdentifier: "showFilesFromFolders", sender: self)
+        RecorderFrameworkManager.sharedInstance.getRecordings(RecorderFrameworkManager.sharedInstance.getFolders()[indexPath.row].id, completionHandler: ({ (success, data) -> Void in
+            self.performSegue(withIdentifier: "showFilesFromFolders", sender: self)
+        }))
     }
     
     @IBAction func onCreate(_ sender: Any) {

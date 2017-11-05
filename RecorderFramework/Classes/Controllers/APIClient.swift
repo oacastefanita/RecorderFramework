@@ -918,7 +918,7 @@ public class APIClient : NSObject {
         }
     }
     
-    public func uploadRecording(_ recordItem:RecordItem, completionHandler:((Bool, Any?) -> Void)?) {
+    public func uploadRecording(_ recordItem:RecordItem!, completionHandler:((Bool, Any?) -> Void)?) {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return

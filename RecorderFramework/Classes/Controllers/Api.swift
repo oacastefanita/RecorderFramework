@@ -55,7 +55,7 @@ open class Api: NSObject {
             }
             if parameters != nil {
                 for (key, value) in parameters! {
-                    data.append((value as AnyObject).data(using: String.Encoding.utf8.rawValue)!, withName: key)
+                    data.append((value as! AnyObject).data(using: String.Encoding.utf8.rawValue)!, withName: key)
                 }
             }
             

@@ -20,6 +20,7 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
     @IBOutlet weak var txtName: UITextField!
     @IBOutlet weak var btnUpdate: UIButton!
     @IBOutlet weak var recordingTimeLabel: UILabel!
+    @IBOutlet weak var btnRecord: UIButton!
     
     var file: RecordItem!
     var folder: RecordFolder!
@@ -175,7 +176,7 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
         file.phoneNumber = txtPhoneNumber.text!
         file.lastName = txtLastName.text!
         file.firstName = txtFirstName.text!
-        file.text = txtName.text!
+        file.text = txtName.text
         
         if btnUpdate.titleLabel?.text == "Done"{
             doSaveCurrentRecording()
@@ -190,13 +191,15 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
     
     @IBAction func onDelete(_ sender: Any) {
         RecorderFrameworkManager.sharedInstance.deleteRecording(file, forever: true)
+        self.navigationController?.popViewController(animated: true)
+        self.alert(message: "Request sent")
     }
     
     @IBAction func onStar(_ sender: Any) {
         RecorderFrameworkManager.sharedInstance.star(true, entityId: file.id, isFile: true, completionHandler: { (success, data) -> Void in
             if success {
-                self.alert(message: "Request sent")
                 self.navigationController?.popViewController(animated: true)
+                self.alert(message: "Request sent")
             }
             else {
                 self.alert(message: (data as AnyObject).description)
@@ -228,12 +231,12 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
     }
     
     @IBAction func audioRecorderAction(_ sender: UIButton) {
-        
         if recording{
+            btnRecord.setTitle("Record", for: .normal)
             finishAudioRecording(success: true)
         }else{
             if isAudioRecordingGranted {
-                
+                btnRecord.setTitle("Stop", for: .normal)
                 //Create the session.
                 let session = AVAudioSession.sharedInstance()
                 

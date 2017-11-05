@@ -15,6 +15,8 @@ class FilesViewController: UIViewController,UITableViewDelegate, UITableViewData
     var selectedFile: RecordItem!
     var titleType = 0
     
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -22,6 +24,7 @@ class FilesViewController: UIViewController,UITableViewDelegate, UITableViewData
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        tableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {

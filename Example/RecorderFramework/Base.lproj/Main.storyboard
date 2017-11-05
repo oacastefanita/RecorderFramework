@@ -793,6 +793,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="tableView" destination="t9V-xg-fDG" id="R24-wM-y8x"/>
                         <segue destination="rnC-AD-rWf" kind="show" identifier="showFileFromFiles" id="bA4-ER-KEw"/>
                         <segue destination="G04-zZ-0Yy" kind="show" identifier="titleFromFiles" id="ePg-Zz-p0I"/>
                     </connections>
@@ -975,6 +976,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btnRecord" destination="dpI-y0-yJl" id="VuT-hN-oQg"/>
                         <outlet property="btnUpdate" destination="Abd-mn-vDq" id="IvO-vp-Zjy"/>
                         <outlet property="recordingTimeLabel" destination="5MA-5a-sxT" id="emz-po-FIN"/>
                         <outlet property="txtEmail" destination="CxA-lb-Pep" id="wBd-mp-rIs"/>

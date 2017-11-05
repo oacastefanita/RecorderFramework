@@ -13,7 +13,9 @@ public class RecorderFrameworkManager : NSObject {
     }
     
     public func getUser() -> User{
+        #if os(iOS)
         WatchKitController.sharedInstance.sendUser()
+        #endif
         return AppPersistentData.sharedInstance.user
     }
     
@@ -60,8 +62,10 @@ public class RecorderFrameworkManager : NSObject {
     }
     
     public func getFolders() -> Array<RecordFolder>{
+        #if os(iOS)
         WatchKitController.sharedInstance.sendFolders()
         WatchKitController.sharedInstance.sendApiKey()
+        #endif
         return RecordingsManager.sharedInstance.recordFolders
     }
     
