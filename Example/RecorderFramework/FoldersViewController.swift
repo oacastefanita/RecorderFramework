@@ -52,6 +52,7 @@ class FoldersViewController: UIViewController,UITableViewDelegate, UITableViewDa
         tableView.deselectRow(at: indexPath, animated: true)
         selectedIndex = indexPath.row
         RecorderFrameworkManager.sharedInstance.getRecordings(RecorderFrameworkManager.sharedInstance.getFolders()[indexPath.row].id, completionHandler: ({ (success, data) -> Void in
+            
             self.performSegue(withIdentifier: "showFilesFromFolders", sender: self)
         }))
     }

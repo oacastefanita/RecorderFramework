@@ -4,29 +4,29 @@
 <dict>
 	<key>Consumables</key>
 	<dict>
-		<key>com.werockapps.CallRecorder100</key>
+		<key>com.werockapps.Recorder100</key>
 		<dict>
 			<key>ConsumableCount</key>
 			<integer>1</integer>
 			<key>ConsumableId</key>
-			<string>com.werockapps.CallRecorder100</string>
+			<string>com.werockapps.Recorder100</string>
 		</dict>
-		<key>com.werockapps.CallRecorder300</key>
+		<key>com.werockapps.Recorder300</key>
 		<dict>
 			<key>ConsumableCount</key>
 			<integer>1</integer>
 			<key>ConsumableId</key>
-			<string>com.werockapps.CallRecorder300</string>
+			<string>com.werockapps.Recorder300</string>
 		</dict>
-		<key>com.werockapps.CallRecorder1000</key>
+		<key>com.werockapps.Recorder1000</key>
 		<dict>
 			<key>ConsumableCount</key>
 			<integer>1</integer>
 			<key>ConsumableId</key>
-			<string>com.werockapps.CallRecorder1000</string>
+			<string>com.werockapps.Recorder1000</string>
 		</dict>
 	</dict>
 	<key>SharedSecret</key>
-	<string>c5cd2611d2dc42bbb43611de61dddd8c</string>
+	<string>ad4028657563419bbee853bbfae7d106</string>
 </dict>
 </plist>

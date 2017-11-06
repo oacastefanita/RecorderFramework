@@ -11,6 +11,13 @@ public class RecorderFrameworkManager : NSObject {
         WatchKitController.sharedInstance
         AppPersistentData.sharedInstance.loadData()
     }
+    public func searchRecordings(_ name:String) -> Array<SearchResult> {
+        return RecordingsManager.sharedInstance.searchRecordings(name)
+    }
+    
+    public func deleteRecordingItem(_ recordItemId:String) {
+        RecordingsManager.sharedInstance.deleteRecordingItem(recordItemId)
+    }
     
     public func buy100(reciept:String){
         AppPersistentData.sharedInstance.credits = AppPersistentData.sharedInstance.credits + 100

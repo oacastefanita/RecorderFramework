@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         RecorderFrameworkManager.sharedInstance.containerName = "group.com.codebluestudio.Recorder"
+        MKStoreKit.shared().startProductRequest()
         return true
     }
 

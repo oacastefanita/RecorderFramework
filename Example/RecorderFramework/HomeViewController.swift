@@ -43,11 +43,13 @@ class HomeViewController: UIViewController{
     
     @IBAction func onGetMessages(_ sender: Any) {
         RecorderFrameworkManager.sharedInstance.getMessages({ (success, data) -> Void in
-            if success {
+            if success && data != nil {
                 
             }
-            else {
+            else if data != nil{
                 self.alert(message: (data as! AnyObject).description)
+            }else{
+                self.alert(message: "No data")
             }
         })
     }

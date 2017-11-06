@@ -151,6 +151,18 @@ public class RecordingsManager : NSObject {
         return recordItem
     }
     
+    public func deleteRecordingItem(_ recordItemId:String) {
+        
+        for recFolder in recordFolders {
+            for existingItem in recFolder.recordedItems {
+                if existingItem.id == recordItemId {
+                    recFolder.recordedItems.remove(at: recFolder.recordedItems.index(of: existingItem)!)
+                    return
+                }
+            }
+        }
+    }
+    
     public func updateAllFilesFolder() {
         if self.recordFolders.count < 2 {
             return

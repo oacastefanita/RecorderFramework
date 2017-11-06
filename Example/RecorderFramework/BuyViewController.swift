@@ -16,9 +16,9 @@ class BuyViewController: UIViewController{
     }
     
     @IBAction func buy100(){
-        MKStoreKit.shared().initiatePaymentRequestForProduct(withIdentifier: "com.werockapps.CallRecorder100")
+        MKStoreKit.shared().initiatePaymentRequestForProduct(withIdentifier: "com.werockapps.Recorder100")
         NotificationCenter.default.addObserver(forName: NSNotification.Name.mkStoreKitProductPurchased, object: nil, queue: OperationQueue()) {note in
-            RecorderFrameworkManager.sharedInstance.buy100(reciept: "com.werockapps.CallRecorder100")
+            RecorderFrameworkManager.sharedInstance.buy100(reciept: "com.werockapps.Recorder100")
         }
         NotificationCenter.default.addObserver(forName: NSNotification.Name.mkStoreKitRestoringPurchasesFailed, object: nil, queue: OperationQueue()) {note in
             
@@ -26,9 +26,9 @@ class BuyViewController: UIViewController{
     }
     
     @IBAction func buy300(){
-        MKStoreKit.shared().initiatePaymentRequestForProduct(withIdentifier: "com.werockapps.CallRecorder300")
+        MKStoreKit.shared().initiatePaymentRequestForProduct(withIdentifier: "com.werockapps.Recorder300")
         NotificationCenter.default.addObserver(forName: NSNotification.Name.mkStoreKitProductPurchased, object: nil, queue: OperationQueue()) {note in
-            RecorderFrameworkManager.sharedInstance.buy100(reciept: "com.werockapps.CallRecorder300")
+            RecorderFrameworkManager.sharedInstance.buy100(reciept: "com.werockapps.Recorder300")
         }
         NotificationCenter.default.addObserver(forName: NSNotification.Name.mkStoreKitRestoringPurchasesFailed, object: nil, queue: OperationQueue()) {note in
             
@@ -36,9 +36,9 @@ class BuyViewController: UIViewController{
     }
     
     @IBAction func buy1000(){
-        MKStoreKit.shared().initiatePaymentRequestForProduct(withIdentifier: "com.werockapps.CallRecorder1000")
+        MKStoreKit.shared().initiatePaymentRequestForProduct(withIdentifier: "com.werockapps.Recorder1000")
         NotificationCenter.default.addObserver(forName: NSNotification.Name.mkStoreKitProductPurchased, object: nil, queue: OperationQueue()) {note in
-            RecorderFrameworkManager.sharedInstance.buy100(reciept: "com.werockapps.CallRecorder1000")
+            RecorderFrameworkManager.sharedInstance.buy100(reciept: "com.werockapps.Recorder1000")
         }
         NotificationCenter.default.addObserver(forName: NSNotification.Name.mkStoreKitRestoringPurchasesFailed, object: nil, queue: OperationQueue()) {note in
             

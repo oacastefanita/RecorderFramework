@@ -207,7 +207,7 @@ public class APIClient : NSObject {
                         }
                         
                         recordFolder.keepOnlyItemsWithIds(allIds);
-                        
+                        RecordingsManager.sharedInstance.updateAllFilesFolder()
                         AppPersistentData.sharedInstance.saveData()
                     }
                     
@@ -1764,7 +1764,7 @@ public class APIClient : NSObject {
                         }
                         if let stringValue:String = profile.object(forKey: "is_public") as? String {
                             if let value:Bool = (stringValue == "yes" || stringValue == "true" || stringValue == "1") {
-                                user.playBeep = value
+                                user.isPublic = value
                             }
                         }
                         AppPersistentData.sharedInstance.user = user

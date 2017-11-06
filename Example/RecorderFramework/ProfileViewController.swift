@@ -39,7 +39,7 @@ class ProfileViewController: UIViewController {
     }
     @IBAction func onDone(_ sender: Any) {
         let params = NSMutableDictionary()
-        params["data[play_beep]"] = RecorderFrameworkManager.sharedInstance.getUser().playBeep == true ? "1" : "0"
+        params["data[play_beep]"] = swtPlayBell.isOn ? "1":"0"
         params["data[f_name]"] = txtFirstName.text ?? ""
         params["data[l_name]"] = txtLastName.text ?? ""
         params["data[is_public]"] = swtPublic.isOn ? "1":"0"

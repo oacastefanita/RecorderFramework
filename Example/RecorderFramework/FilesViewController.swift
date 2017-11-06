@@ -24,6 +24,7 @@ class FilesViewController: UIViewController,UITableViewDelegate, UITableViewData
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        RecorderFrameworkManager.sharedInstance.deleteRecordingItem("Delete")
         tableView.reloadData()
     }
     

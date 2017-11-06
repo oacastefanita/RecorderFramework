@@ -29,6 +29,8 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
     var player:AVAudioPlayer!
     var recording = false
     
+    var fileCreated = false
+    
     //Variables
     var audioRecorder: AVAudioRecorder!
     var meterTimer:Timer!
@@ -40,9 +42,10 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
         if file == nil{
             btnUpdate.setTitle("Done", for: .normal)
             file = RecordItem()
-            file.id = UUID().uuidString
+            file.id = "Delete"
             checkPermission()
             folder.recordedItems.append(file)
+            fileCreated = true
         }else{
             if !file.fileDownloaded || file.localFile == nil {
                 var folder:RecordFolder! = nil
@@ -176,6 +179,7 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
     }
     
     @IBAction func onUpdate(_ sender: Any) {
+        self.view.endEditing(true)
         file.tags = txtTags.text!
         file.notes = txtNotes.text!
         file.email = txtEmail.text!
@@ -183,6 +187,7 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
         file.lastName = txtLastName.text!
         file.firstName = txtFirstName.text!
         file.text = txtName.text
+        file.id = UUID().uuidString
         
         if btnUpdate.titleLabel?.text == "Done"{
             doSaveCurrentRecording()

@@ -34,6 +34,7 @@ class TitleViewController: UIViewController,UITextFieldDelegate {
     }
     
     @IBAction func onDone(_ sender: Any) {
+        txtTitle.endEditing(true)
         if delegate != nil{
             delegate.selectedTitle(txtTitle.text!)
         }
