@@ -31,6 +31,10 @@
 		A282D8CC1FA4E83900BD3189 /* TitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A282D8CB1FA4E83900BD3189 /* TitleViewController.swift */; };
 		A297CD891FA8E669004E5B15 /* Pods_RecorderFramework_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A297CD8A1FA8E669004E5B15 /* Pods_RecorderFramework_Example.framework */; };
 		A2AE31C01FA0BE7D00CCDC79 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AE31BF1FA0BE7D00CCDC79 /* HomeViewController.swift */; };
+		A2AEABEC1FB0903D0094DCF8 /* MKStoreKitConfigs.plist in Resources */ = {isa = PBXBuildFile; fileRef = A2AEABE91FB0903D0094DCF8 /* MKStoreKitConfigs.plist */; };
+		A2AEABED1FB0903D0094DCF8 /* MKStoreKit.m in Sources */ = {isa = PBXBuildFile; fileRef = A2AEABEB1FB0903D0094DCF8 /* MKStoreKit.m */; };
+		A2AEABEF1FB090E80094DCF8 /* BuyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AEABEE1FB090E80094DCF8 /* BuyViewController.swift */; };
+		A2AEABF11FB0944C0094DCF8 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AEABF01FB0944C0094DCF8 /* StoreKit.framework */; };
 		A2B2D14B1FA876F400A1FACE /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2B2D1491FA876F400A1FACE /* Interface.storyboard */; };
 		A2B2D14D1FA876F400A1FACE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2B2D14C1FA876F400A1FACE /* Assets.xcassets */; };
 		A2B2D1541FA876F400A1FACE /* RecorderFramework-WatchExample Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A2B2D1531FA876F400A1FACE /* RecorderFramework-WatchExample Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -127,6 +131,7 @@
 		A23EBB731FA76AA700F9D188 /* DisplayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayViewController.swift; sourceTree = "<group>"; };
 		A24C5D161FA7880300EE9347 /* PhoneNumbersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumbersViewController.swift; sourceTree = "<group>"; };
 		A24C5D181FA79BCD00EE9347 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		A258F5BB1FB0958200DB1073 /* RecorderFramework-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RecorderFramework-Bridging-Header.h"; sourceTree = "<group>"; };
 		A2689F8E1FA5051300A3F391 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A2732ECE1FAA5D84004E3A35 /* FoldersInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoldersInterfaceController.swift; sourceTree = "<group>"; };
 		A2732ED01FAA5E80004E3A35 /* FoldersRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoldersRowController.swift; sourceTree = "<group>"; };
@@ -136,6 +141,11 @@
 		A297CD881FA8E648004E5B15 /* RecorderFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RecorderFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A297CD8A1FA8E669004E5B15 /* Pods_RecorderFramework_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_RecorderFramework_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2AE31BF1FA0BE7D00CCDC79 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		A2AEABE91FB0903D0094DCF8 /* MKStoreKitConfigs.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MKStoreKitConfigs.plist; sourceTree = "<group>"; };
+		A2AEABEA1FB0903D0094DCF8 /* MKStoreKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKStoreKit.h; sourceTree = "<group>"; };
+		A2AEABEB1FB0903D0094DCF8 /* MKStoreKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKStoreKit.m; sourceTree = "<group>"; };
+		A2AEABEE1FB090E80094DCF8 /* BuyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyViewController.swift; sourceTree = "<group>"; };
+		A2AEABF01FB0944C0094DCF8 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		A2AFABDF1FAB0E1200510F7D /* RecorderFramework_Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RecorderFramework_Example.entitlements; sourceTree = "<group>"; };
 		A2AFABE01FAB0E1D00510F7D /* RecorderFramework-WatchExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "RecorderFramework-WatchExample.entitlements"; sourceTree = "<group>"; };
 		A2AFABE11FAB0E2500510F7D /* RecorderFramework-WatchExample Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "RecorderFramework-WatchExample Extension.entitlements"; sourceTree = "<group>"; };
@@ -180,6 +190,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A297CD891FA8E669004E5B15 /* Pods_RecorderFramework_Example.framework in Frameworks */,
+				A2AEABF11FB0944C0094DCF8 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,6 +242,7 @@
 		607FACD21AFB9204008FA782 /* Example for RecorderFramework */ = {
 			isa = PBXGroup;
 			children = (
+				A2AEABE81FB0903D0094DCF8 /* MKStoreKit */,
 				A2689F8E1FA5051300A3F391 /* Extensions.swift */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* RegisterViewController.swift */,
@@ -245,10 +257,12 @@
 				A23EBB731FA76AA700F9D188 /* DisplayViewController.swift */,
 				A24C5D161FA7880300EE9347 /* PhoneNumbersViewController.swift */,
 				A24C5D181FA79BCD00EE9347 /* ProfileViewController.swift */,
+				A2AEABEE1FB090E80094DCF8 /* BuyViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
+				A258F5BB1FB0958200DB1073 /* RecorderFramework-Bridging-Header.h */,
 			);
 			name = "Example for RecorderFramework";
 			path = RecorderFramework;
@@ -311,6 +325,7 @@
 		91A4A99FDAE8352DE6480444 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A2AEABF01FB0944C0094DCF8 /* StoreKit.framework */,
 				A297CD8A1FA8E669004E5B15 /* Pods_RecorderFramework_Example.framework */,
 				A297CD881FA8E648004E5B15 /* RecorderFramework.framework */,
 				863430D0C86DCE6607C6635E /* Pods_RecorderFramework_Example.framework */,
@@ -321,6 +336,16 @@
 				2C9C0E5CAD9402738AD998B0 /* Pods_RecorderFramework_Example_RecorderFramework_WatchExample_Extension.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A2AEABE81FB0903D0094DCF8 /* MKStoreKit */ = {
+			isa = PBXGroup;
+			children = (
+				A2AEABE91FB0903D0094DCF8 /* MKStoreKitConfigs.plist */,
+				A2AEABEA1FB0903D0094DCF8 /* MKStoreKit.h */,
+				A2AEABEB1FB0903D0094DCF8 /* MKStoreKit.m */,
+			);
+			path = MKStoreKit;
 			sourceTree = "<group>";
 		};
 		A2B2D1481FA876F400A1FACE /* RecorderFramework-WatchExample */ = {
@@ -461,6 +486,9 @@
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
 							};
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
 						};
 					};
 					607FACE41AFB9204008FA782 = {
@@ -521,6 +549,7 @@
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
+				A2AEABEC1FB0903D0094DCF8 /* MKStoreKitConfigs.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -746,6 +775,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2E949411F9FB1BA00FAA5D0 /* EnterCodeViewController.swift in Sources */,
+				A2AEABEF1FB090E80094DCF8 /* BuyViewController.swift in Sources */,
+				A2AEABED1FB0903D0094DCF8 /* MKStoreKit.m in Sources */,
 				A2689F8F1FA5051300A3F391 /* Extensions.swift in Sources */,
 				A23A2CB51FA1D84C00E25F87 /* FoldersViewController.swift in Sources */,
 				A2FE5C301FA74B8F005FD2D1 /* SettingsViewController.swift in Sources */,
@@ -941,6 +972,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "3ea4c958-ddb8-4f10-aa4d-3795af08e474";
 				PROVISIONING_PROFILE_SPECIFIER = "Recorder dev";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/stefanitaoaca/Environments/RecorderFramework/repository/Example/RecorderFramework/RecorderFramework-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -964,6 +996,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "5961f631-5a14-4ea5-b339-cae1871bd4aa";
 				PROVISIONING_PROFILE_SPECIFIER = "Recorder AppStore";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/stefanitaoaca/Environments/RecorderFramework/repository/Example/RecorderFramework/RecorderFramework-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;

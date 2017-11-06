@@ -12,6 +12,31 @@ public class RecorderFrameworkManager : NSObject {
         AppPersistentData.sharedInstance.loadData()
     }
     
+    public func buy100(reciept:String){
+        AppPersistentData.sharedInstance.credits = AppPersistentData.sharedInstance.credits + 100
+        AppPersistentData.sharedInstance.saveData()
+            
+        // server call
+        ActionsSyncManager.sharedInstance.buyCredits(100, reciept: reciept)
+        ActionsSyncManager.sharedInstance.startProcessingActions()
+    }
+    
+    public func buy300(reciept:String){
+        AppPersistentData.sharedInstance.credits = AppPersistentData.sharedInstance.credits + 300
+        AppPersistentData.sharedInstance.saveData()
+            // server call
+        ActionsSyncManager.sharedInstance.buyCredits(300, reciept: reciept)
+        ActionsSyncManager.sharedInstance.startProcessingActions()
+    }
+    
+    public func buy1000(reciept:String){
+        AppPersistentData.sharedInstance.credits = AppPersistentData.sharedInstance.credits + 1000
+        AppPersistentData.sharedInstance.saveData()
+        // server call
+        ActionsSyncManager.sharedInstance.buyCredits(1000, reciept: reciept)
+        ActionsSyncManager.sharedInstance.startProcessingActions()
+    }
+    
     public func getUser() -> User{
         #if os(iOS)
         WatchKitController.sharedInstance.sendUser()

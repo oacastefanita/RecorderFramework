@@ -10,7 +10,7 @@ import UIKit
 import RecorderFramework
 import AVFoundation
 
-class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudioRecorderDelegate{
+class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudioRecorderDelegate, UITextFieldDelegate{
     @IBOutlet weak var txtTags: UITextField!
     @IBOutlet weak var txtNotes: UITextField!
     @IBOutlet weak var txtEmail: UITextField!
@@ -21,6 +21,7 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
     @IBOutlet weak var btnUpdate: UIButton!
     @IBOutlet weak var recordingTimeLabel: UILabel!
     @IBOutlet weak var btnRecord: UIButton!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     var file: RecordItem!
     var folder: RecordFolder!
@@ -60,7 +61,7 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
                         break
                     }
                 }
-                
+                self.recordingTimeLabel.text = "Downloading"
                 RecorderFrameworkManager.sharedInstance.downloadAudioFile(file, toFolder: folder.id, completionHandler: { (success) in
                     self.play()
                 })
@@ -70,6 +71,8 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
             }
         }
         fillView()
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(noti:)), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(noti:)), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
     }
     
     func checkPermission(){
@@ -140,7 +143,10 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
         txtName.text = file.text
     }
     
-    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.endEditing(true)
+        return true
+    }
     
     @IBAction func onRename(_ sender: Any) {
         titleType = 0
@@ -187,6 +193,8 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
         
         let dict = NSMutableDictionary(dictionary: ["id":file.id, "f_name":file.firstName, "l_name":file.lastName, "email":file.email, "notes":file.notes, "phone":file.phoneNumber, "tags":file.tags])
         RecorderFrameworkManager.sharedInstance.updateRecordingInfo(file, fileInfo: dict)
+        self.navigationController?.popViewController(animated: true)
+        self.alert(message: "Request sent")
     }
     
     @IBAction func onDelete(_ sender: Any) {
@@ -331,5 +339,23 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
         }
         ActionsSyncManager.sharedInstance.uploadRecording(file)
         AppPersistentData.sharedInstance.saveData()
+    }
+    
+    @objc func keyboardWillHide(noti: Notification) {
+        let contentInsets = UIEdgeInsets.zero
+        scrollView.contentInset = contentInsets
+        scrollView.scrollIndicatorInsets = contentInsets
+    }
+    
+    
+    @objc func keyboardWillShow(noti: Notification) {
+        
+        guard let userInfo = noti.userInfo else { return }
+        guard var keyboardFrame: CGRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+        
+        var contentInset:UIEdgeInsets = scrollView.contentInset
+        contentInset.bottom = keyboardFrame.size.height
+        scrollView.contentInset = contentInset
     }
 }

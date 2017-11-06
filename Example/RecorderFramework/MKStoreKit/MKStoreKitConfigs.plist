@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Consumables</key>
+	<dict>
+		<key>com.werockapps.CallRecorder100</key>
+		<dict>
+			<key>ConsumableCount</key>
+			<integer>1</integer>
+			<key>ConsumableId</key>
+			<string>com.werockapps.CallRecorder100</string>
+		</dict>
+		<key>com.werockapps.CallRecorder300</key>
+		<dict>
+			<key>ConsumableCount</key>
+			<integer>1</integer>
+			<key>ConsumableId</key>
+			<string>com.werockapps.CallRecorder300</string>
+		</dict>
+		<key>com.werockapps.CallRecorder1000</key>
+		<dict>
+			<key>ConsumableCount</key>
+			<integer>1</integer>
+			<key>ConsumableId</key>
+			<string>com.werockapps.CallRecorder1000</string>
+		</dict>
+	</dict>
+	<key>SharedSecret</key>
+	<string>c5cd2611d2dc42bbb43611de61dddd8c</string>
+</dict>
+</plist>

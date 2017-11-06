@@ -923,6 +923,9 @@ public class APIClient : NSObject {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
         }
+        if recordItem.localFile == nil{
+            return
+        }
         
         let fileManager = FileManager.default
         var path = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)!.path
