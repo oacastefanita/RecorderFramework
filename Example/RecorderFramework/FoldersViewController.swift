@@ -70,6 +70,7 @@ class FoldersViewController: UIViewController,UITableViewDelegate, UITableViewDa
             (segue.destination as! FilesViewController).selectedFolder = selectedIndex
         } else if segue.identifier == "createFolderFromFolders"{
             (segue.destination as! TitleViewController).delegate = self
+            (segue.destination as! TitleViewController).placeholder = "Folder title"
         }
     }
     

@@ -15,6 +15,8 @@ class FilesViewController: UIViewController,UITableViewDelegate, UITableViewData
     var selectedFile: RecordItem!
     var titleType = 0
     
+    var placeholder = ""
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -71,16 +73,19 @@ class FilesViewController: UIViewController,UITableViewDelegate, UITableViewData
     
     @IBAction func onCheckPassword(_ sender: Any) {
         titleType = 0
+        placeholder = "enter pass"
         self.performSegue(withIdentifier: "titleFromFiles", sender: self)
     }
     
     @IBAction func onAddPassword(_ sender: Any) {
         titleType = 1
+        placeholder = "enter new pass"
         self.performSegue(withIdentifier: "titleFromFiles", sender: self)
     }
     
     @IBAction func onRename(_ sender: Any) {
         titleType = 2
+        placeholder = "new name"
         self.performSegue(withIdentifier: "titleFromFiles", sender: self)
     }
     
@@ -93,6 +98,7 @@ class FilesViewController: UIViewController,UITableViewDelegate, UITableViewData
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "titleFromFiles"{
             (segue.destination as! TitleViewController).delegate = self
+            (segue.destination as! TitleViewController).placeholder = placeholder
         } else if segue.identifier == "showFileFromFiles"{
             (segue.destination as! FileViewController).file = selectedFile
             (segue.destination as! FileViewController).folder = RecordingsManager.sharedInstance.recordFolders[selectedFolder]

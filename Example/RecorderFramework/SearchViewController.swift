@@ -11,6 +11,7 @@ import RecorderFramework
 
 class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     var objects = [SearchResult]()
+    var selectedFile: RecordItem!
     @IBOutlet weak var txtSearch: UITextField!
     @IBOutlet weak var tableView: UITableView!
     
@@ -60,11 +61,19 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        selectedFile = objects[indexPath.row].recordItem!
+        self.performSegue(withIdentifier: "showFileDetailsFromSearch", sender: self)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         objects = RecorderFrameworkManager.sharedInstance.searchRecordings(textField.text!)
         tableView.reloadData()
         return true
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showFileDetailsFromSearch"{
+            (segue.destination as! FileViewController).file = selectedFile
+        }
     }
 }

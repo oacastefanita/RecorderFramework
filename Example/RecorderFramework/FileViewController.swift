@@ -36,6 +36,8 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
     var meterTimer:Timer!
     var isAudioRecordingGranted: Bool!
     
+    var placeholder = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -66,10 +68,12 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
                 }
                 self.recordingTimeLabel.text = "Downloading"
                 RecorderFrameworkManager.sharedInstance.downloadAudioFile(file, toFolder: folder.id, completionHandler: { (success) in
+                    self.recordingTimeLabel.text = "Downloaded"
                     self.play()
                 })
             }
             else {
+                self.recordingTimeLabel.text = "Downloaded"
                 self.play()
             }
         }
@@ -153,6 +157,7 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
     
     @IBAction func onRename(_ sender: Any) {
         titleType = 0
+        placeholder = "new name id"
         self.performSegue(withIdentifier: "titleFromFile", sender: self)
     }
     
@@ -170,11 +175,13 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
     
     @IBAction func onRecover(_ sender: Any) {
         titleType = 2
+        placeholder = "item id"
         self.performSegue(withIdentifier: "titleFromFile", sender: self)
     }
     
     @IBAction func onMove(_ sender: Any) {
         titleType = 1
+        placeholder = "Folder id"
         self.performSegue(withIdentifier: "titleFromFile", sender: self)
     }
     
@@ -240,6 +247,7 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "titleFromFile"{
             (segue.destination as! TitleViewController).delegate = self
+            (segue.destination as! TitleViewController).placeholder = placeholder
         }
     }
     

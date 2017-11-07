@@ -15,6 +15,7 @@ protocol TitleViewControllerDelegater {
 
 class TitleViewController: UIViewController,UITextFieldDelegate {
     
+    var placeholder = ""
     @IBOutlet weak var txtTitle: UITextField!
     var delegate: TitleViewControllerDelegater!
     
@@ -22,6 +23,7 @@ class TitleViewController: UIViewController,UITextFieldDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         txtTitle.text = ""
+        txtTitle.placeholder = placeholder
     }
     
     override func viewDidAppear(_ animated: Bool) {

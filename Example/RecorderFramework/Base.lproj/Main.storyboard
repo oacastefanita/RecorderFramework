@@ -296,7 +296,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Vn-mz-VFZ">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Vn-mz-VFZ">
                                 <rect key="frame" x="24" y="72" width="327" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -354,6 +354,7 @@
                     <connections>
                         <outlet property="tableView" destination="p9Q-ez-Kir" id="oYO-0v-daF"/>
                         <outlet property="txtSearch" destination="3Vn-mz-VFZ" id="XAx-Mp-nBd"/>
+                        <segue destination="rnC-AD-rWf" kind="show" identifier="showFileDetailsFromSearch" id="VCW-3U-8x8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gnn-ce-v6P" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1178,6 +1179,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="VCW-3U-8x8"/>
         <segue reference="C7U-gp-LW3"/>
         <segue reference="ePg-Zz-p0I"/>
     </inferredMetricsTieBreakers>
