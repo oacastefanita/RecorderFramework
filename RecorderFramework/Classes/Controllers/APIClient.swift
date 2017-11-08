@@ -92,7 +92,7 @@ public class APIClient : NSObject {
         }
         
         let deviceToken =  AppPersistentData.sharedInstance.notificationToken == nil ? "Simulator" : AppPersistentData.sharedInstance.notificationToken
-        let parameters = ["phone": AppPersistentData.sharedInstance.phone, "code": code, "token": "55942ee3894f51000530894", "app": appCode, "device_token":deviceToken!] as [String : Any]
+        let parameters = ["phone": AppPersistentData.sharedInstance.phone,"mcc":"310" ,"code": code, "token": "55942ee3894f51000530894", "app": appCode, "device_token":deviceToken!] as [String : Any]
         //        var parameters = [("phone", AppPersistentData.sharedInstance.phone), ("code": code), ("mcc": (carrier != nil && !carrier!.mobileCountryCode!.isEmpty) ? carrier!.mobileCountryCode : "310"), ("token": "55942ee3894f51000530894"), ("app": appCode), ("device_token": AppPersistentData.sharedInstance.notificationToken == nil ? "Simulator" : AppPersistentData.sharedInstance.notificationToken)] //"226" "310" carrier.mobileCountryCode
         
         #if os(iOS)

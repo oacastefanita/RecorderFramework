@@ -15,7 +15,7 @@
         <!--Register View Controller-->
         <scene sceneID="hzt-L2-tN9">
             <objects>
-                <viewController id="ckF-jZ-pnX" customClass="RegisterViewController" customModule="RecorderFramework_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ckF-jZ-pnX" customClass="RegisterViewController" customModule="RecorderFramework_TVExample" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XEC-V1-afB"/>
                         <viewControllerLayoutGuide type="bottom" id="Tmt-Yy-g8B"/>
@@ -74,7 +74,7 @@
         <!--Title View Controller-->
         <scene sceneID="OXI-A8-xeu">
             <objects>
-                <viewController id="FIh-SW-5dV" customClass="TitleViewController" customModule="RecorderFramework_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="FIh-SW-5dV" customClass="TitleViewController" customModule="RecorderFramework_TVExample" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="sMV-Ih-LvF"/>
                         <viewControllerLayoutGuide type="bottom" id="zrS-Lo-WlU"/>
@@ -144,7 +144,7 @@
         <!--Enter Code View Controller-->
         <scene sceneID="2Qa-1y-h8B">
             <objects>
-                <viewController id="SnC-nm-VoB" customClass="EnterCodeViewController" customModule="RecorderFramework_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="SnC-nm-VoB" customClass="EnterCodeViewController" customModule="RecorderFramework_TVExample" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="D7u-wZ-oaq"/>
                         <viewControllerLayoutGuide type="bottom" id="PAy-ot-2bx"/>
@@ -202,7 +202,7 @@
         <!--Home View Controller-->
         <scene sceneID="aG9-TE-Bx9">
             <objects>
-                <viewController id="3q9-xb-jWK" customClass="HomeViewController" customModule="RecorderFramework_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="3q9-xb-jWK" customClass="HomeViewController" customModule="RecorderFramework_TVExample" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lhk-9F-QcS"/>
                         <viewControllerLayoutGuide type="bottom" id="Jq5-lq-oOL"/>
@@ -351,7 +351,7 @@
         <!--Search View Controller-->
         <scene sceneID="yjI-pf-fo0">
             <objects>
-                <viewController id="l4L-qR-sLJ" customClass="SearchViewController" customModule="RecorderFramework_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="l4L-qR-sLJ" customClass="SearchViewController" customModule="RecorderFramework_TVExample" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7pc-xg-bvv"/>
                         <viewControllerLayoutGuide type="bottom" id="QbJ-Sr-8sm"/>
@@ -434,7 +434,7 @@
         <!--Buy View Controller-->
         <scene sceneID="mQC-AO-351">
             <objects>
-                <viewController id="RIK-C2-6gB" customClass="BuyViewController" customModule="RecorderFramework_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="RIK-C2-6gB" customClass="BuyViewController" customModule="RecorderFramework_TVExample" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qLf-4J-JOb"/>
                         <viewControllerLayoutGuide type="bottom" id="vds-yC-bPo"/>
@@ -496,7 +496,7 @@
         <!--Folders View Controller-->
         <scene sceneID="ux6-Wf-ESE">
             <objects>
-                <viewController id="rvE-X0-UBJ" customClass="FoldersViewController" customModule="RecorderFramework_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="rvE-X0-UBJ" customClass="FoldersViewController" customModule="RecorderFramework_TVExample" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fkB-dV-Dg0"/>
                         <viewControllerLayoutGuide type="bottom" id="UJE-kF-cBA"/>
@@ -592,7 +592,7 @@
         <!--Languages View Controller-->
         <scene sceneID="3ks-D6-UjW">
             <objects>
-                <viewController id="bXF-AJ-sc9" customClass="LanguagesViewController" customModule="RecorderFramework_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="bXF-AJ-sc9" customClass="LanguagesViewController" customModule="RecorderFramework_TVExample" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JZr-W3-y32"/>
                         <viewControllerLayoutGuide type="bottom" id="68x-Wm-big"/>
@@ -659,7 +659,7 @@
         <!--Phone Numbers View Controller-->
         <scene sceneID="JhX-rc-rV4">
             <objects>
-                <viewController id="m1Z-an-jzh" customClass="PhoneNumbersViewController" customModule="RecorderFramework_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="m1Z-an-jzh" customClass="PhoneNumbersViewController" customModule="RecorderFramework_TVExample" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="g94-Tg-fIj"/>
                         <viewControllerLayoutGuide type="bottom" id="eHb-EG-2sV"/>
@@ -723,7 +723,7 @@
         <!--Profile View Controller-->
         <scene sceneID="clt-CX-0b4">
             <objects>
-                <viewController id="yQp-qL-L1W" customClass="ProfileViewController" customModule="RecorderFramework_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="yQp-qL-L1W" customClass="ProfileViewController" customModule="RecorderFramework_TVExample" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="R8U-dx-WE1"/>
                         <viewControllerLayoutGuide type="bottom" id="mXH-eO-LzH"/>
@@ -796,25 +796,25 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="X5I-Sg-wNn">
-                                <rect key="frame" x="103" y="617" width="354" height="101"/>
+                                <rect key="frame" x="103" y="617" width="214" height="101"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.10000000000000001" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="rsC-ml-71c"/>
                                 </constraints>
                                 <segments>
-                                    <segment title="First"/>
-                                    <segment title="Second"/>
+                                    <segment title="No"/>
+                                    <segment title="Yes"/>
                                 </segments>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="MEH-e7-wq7">
-                                <rect key="frame" x="98" y="757" width="354" height="101"/>
+                                <rect key="frame" x="98" y="757" width="214" height="101"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.10000000000000001" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="PKC-Mx-DsA"/>
                                 </constraints>
                                 <segments>
-                                    <segment title="First"/>
-                                    <segment title="Second"/>
+                                    <segment title="No"/>
+                                    <segment title="Yes"/>
                                 </segments>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GUt-nb-5Di">
@@ -861,6 +861,8 @@
                         <viewLayoutGuide key="safeArea" id="nUW-Va-vMZ"/>
                     </view>
                     <connections>
+                        <outlet property="btnSegmentPlayBeep" destination="X5I-Sg-wNn" id="hw8-cf-TRQ"/>
+                        <outlet property="btnSegmentPublic" destination="MEH-e7-wq7" id="SG9-zN-q2X"/>
                         <outlet property="txtEmail" destination="8wg-gw-a9i" id="zYs-yl-RRh"/>
                         <outlet property="txtFirstName" destination="jHw-gn-gTw" id="oZm-Ys-zth"/>
                         <outlet property="txtLastName" destination="LqQ-c5-xj5" id="ABi-95-FH3"/>
@@ -874,7 +876,7 @@
         <!--Display View Controller-->
         <scene sceneID="HNH-gQ-Hbd">
             <objects>
-                <viewController id="FfK-5u-QBd" customClass="DisplayViewController" customModule="RecorderFramework_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="FfK-5u-QBd" customClass="DisplayViewController" customModule="RecorderFramework_TVExample" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dEa-1t-Y8S"/>
                         <viewControllerLayoutGuide type="bottom" id="7yT-Hf-c66"/>
@@ -910,7 +912,7 @@
         <!--Settings View Controller-->
         <scene sceneID="XkM-Kc-Kle">
             <objects>
-                <viewController id="Z3F-w0-rkZ" customClass="SettingsViewController" customModule="RecorderFramework_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Z3F-w0-rkZ" customClass="SettingsViewController" customModule="RecorderFramework_TVExample" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eSM-Xj-yII"/>
                         <viewControllerLayoutGuide type="bottom" id="QWC-pb-Vbd"/>
@@ -956,14 +958,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="OOF-qq-eKB">
-                                <rect key="frame" x="100" y="161" width="354" height="101"/>
+                                <rect key="frame" x="100" y="162" width="214" height="101"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.10000000000000001" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="G2n-nx-fN8"/>
                                 </constraints>
                                 <segments>
-                                    <segment title="First"/>
-                                    <segment title="Second"/>
+                                    <segment title="No"/>
+                                    <segment title="Yes"/>
                                 </segments>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GgI-cg-hfJ">
@@ -996,6 +998,7 @@
                         <viewLayoutGuide key="safeArea" id="AAQ-9c-f46"/>
                     </view>
                     <connections>
+                        <outlet property="btnSegmentBeep" destination="OOF-qq-eKB" id="9aa-Bq-OTp"/>
                         <outlet property="lblApp" destination="TMn-Qf-YQd" id="Xtm-DH-irX"/>
                         <outlet property="lblCredits" destination="esG-OX-r7y" id="lVq-6n-rSd"/>
                         <outlet property="lblFilePermission" destination="vT7-ep-IOQ" id="dWu-sa-eyT"/>
@@ -1008,7 +1011,7 @@
         <!--Files View Controller-->
         <scene sceneID="xIX-h9-vgc">
             <objects>
-                <viewController id="SJY-qB-MZm" customClass="FilesViewController" customModule="RecorderFramework_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="SJY-qB-MZm" customClass="FilesViewController" customModule="RecorderFramework_TVExample" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1lz-AJ-757"/>
                         <viewControllerLayoutGuide type="bottom" id="9hn-St-uGG"/>
@@ -1143,7 +1146,7 @@
         <!--File View Controller-->
         <scene sceneID="DyU-ed-Yab">
             <objects>
-                <viewController id="tiJ-I5-Si5" customClass="FileViewController" customModule="RecorderFramework_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="tiJ-I5-Si5" customClass="FileViewController" customModule="RecorderFramework_TVExample" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QIy-02-HAC"/>
                         <viewControllerLayoutGuide type="bottom" id="0hx-8t-Pxn"/>
@@ -1233,7 +1236,7 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pES-A3-2dc">
-                                        <rect key="frame" x="20" y="360" width="1648" height="536"/>
+                                        <rect key="frame" x="20" y="280" width="1648" height="536"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="first name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qly-xC-2yE">
                                                 <rect key="frame" x="8" y="8" width="1632" height="80"/>
@@ -1332,7 +1335,7 @@
                                         </constraints>
                                     </view>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0kN-89-z9N">
-                                        <rect key="frame" x="28" y="252" width="1632" height="100"/>
+                                        <rect key="frame" x="28" y="172" width="1632" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="uyC-Tf-ils"/>
                                         </constraints>
@@ -1343,26 +1346,6 @@
                                             <outlet property="delegate" destination="tiJ-I5-Si5" id="mPe-ls-Yyk"/>
                                         </connections>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z4Q-u1-rrc">
-                                        <rect key="frame" x="171" y="142" width="0.0" height="100"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="100" id="p2r-C1-Zvy"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ns2-UA-X2S">
-                                        <rect key="frame" x="28" y="142" width="123" height="100"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="OiG-pG-vyd"/>
-                                        </constraints>
-                                        <state key="normal" title="Record"/>
-                                        <connections>
-                                            <action selector="audioRecorderAction:" destination="tiJ-I5-Si5" eventType="touchUpInside" id="PzP-0x-OT4"/>
-                                            <action selector="audioRecorderAction:" destination="tiJ-I5-Si5" eventType="primaryActionTriggered" id="h0W-lR-80L"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="Qbn-cP-1hs" firstAttribute="leading" secondItem="rQm-hI-wgG" secondAttribute="trailing" constant="8" id="079-gI-5qF"/>
@@ -1371,23 +1354,19 @@
                                     <constraint firstItem="0kN-89-z9N" firstAttribute="leading" secondItem="m7h-EV-xJo" secondAttribute="leading" constant="28" id="8jE-lv-maw"/>
                                     <constraint firstItem="Hmx-cU-h1m" firstAttribute="leading" secondItem="BzK-CF-1Ud" secondAttribute="trailing" constant="8" id="9qC-iS-L5t"/>
                                     <constraint firstItem="uon-tw-VHM" firstAttribute="baseline" secondItem="Qgb-rk-WpR" secondAttribute="baseline" id="E7U-zg-nz6"/>
-                                    <constraint firstItem="z4Q-u1-rrc" firstAttribute="centerY" secondItem="Ns2-UA-X2S" secondAttribute="centerY" id="G6D-xO-j34"/>
                                     <constraint firstItem="uon-tw-VHM" firstAttribute="baseline" secondItem="rQm-hI-wgG" secondAttribute="baseline" id="KQB-Zk-MNb"/>
-                                    <constraint firstItem="Ns2-UA-X2S" firstAttribute="top" secondItem="uon-tw-VHM" secondAttribute="bottom" constant="10" id="LdZ-zF-5wO"/>
                                     <constraint firstItem="uon-tw-VHM" firstAttribute="baseline" secondItem="BzK-CF-1Ud" secondAttribute="baseline" id="OE8-oQ-Wpq"/>
                                     <constraint firstItem="VJf-Gg-0ot" firstAttribute="leading" secondItem="Qbn-cP-1hs" secondAttribute="trailing" constant="8" id="Ojf-gL-EhW"/>
                                     <constraint firstItem="uon-tw-VHM" firstAttribute="top" secondItem="m7h-EV-xJo" secondAttribute="top" constant="32" id="OzO-iX-iNJ"/>
                                     <constraint firstItem="rQm-hI-wgG" firstAttribute="leading" secondItem="Hmx-cU-h1m" secondAttribute="trailing" constant="8" id="QlQ-YL-8SW"/>
                                     <constraint firstItem="uon-tw-VHM" firstAttribute="baseline" secondItem="Hmx-cU-h1m" secondAttribute="baseline" id="VHb-T3-H04"/>
-                                    <constraint firstItem="0kN-89-z9N" firstAttribute="top" secondItem="Ns2-UA-X2S" secondAttribute="bottom" constant="10" id="VJq-AU-eWv"/>
+                                    <constraint firstItem="0kN-89-z9N" firstAttribute="top" secondItem="uon-tw-VHM" secondAttribute="bottom" constant="40" id="XQg-gi-Xgy"/>
                                     <constraint firstAttribute="trailing" secondItem="pES-A3-2dc" secondAttribute="trailing" constant="20" id="Xgs-Am-Bhe"/>
                                     <constraint firstItem="uon-tw-VHM" firstAttribute="leading" secondItem="m7h-EV-xJo" secondAttribute="leading" constant="8" id="aWl-yY-Vf5"/>
                                     <constraint firstItem="BzK-CF-1Ud" firstAttribute="leading" secondItem="uon-tw-VHM" secondAttribute="trailing" constant="8" id="bq3-3O-ZaM"/>
                                     <constraint firstItem="pES-A3-2dc" firstAttribute="leading" secondItem="m7h-EV-xJo" secondAttribute="leading" constant="20" id="fUS-I3-k2E"/>
-                                    <constraint firstItem="z4Q-u1-rrc" firstAttribute="leading" secondItem="Ns2-UA-X2S" secondAttribute="trailing" constant="20" id="hmw-df-Tg0"/>
                                     <constraint firstItem="uon-tw-VHM" firstAttribute="baseline" secondItem="VJf-Gg-0ot" secondAttribute="baseline" id="iqd-vN-R5s"/>
                                     <constraint firstItem="pES-A3-2dc" firstAttribute="top" secondItem="0kN-89-z9N" secondAttribute="bottom" constant="8" id="nlJ-n5-Pib"/>
-                                    <constraint firstItem="Ns2-UA-X2S" firstAttribute="leading" secondItem="m7h-EV-xJo" secondAttribute="leading" constant="28" id="usO-UN-akR"/>
                                     <constraint firstItem="uon-tw-VHM" firstAttribute="baseline" secondItem="Qbn-cP-1hs" secondAttribute="baseline" id="vcp-f2-efK"/>
                                     <constraint firstAttribute="bottom" secondItem="pES-A3-2dc" secondAttribute="bottom" id="wmV-eA-KNr"/>
                                 </constraints>
@@ -1404,9 +1383,7 @@
                         <viewLayoutGuide key="safeArea" id="ivF-j9-Uar"/>
                     </view>
                     <connections>
-                        <outlet property="btnRecord" destination="Ns2-UA-X2S" id="xVB-ha-jGl"/>
                         <outlet property="btnUpdate" destination="BzK-CF-1Ud" id="0Yj-jd-tCf"/>
-                        <outlet property="recordingTimeLabel" destination="z4Q-u1-rrc" id="vgV-Ly-AF7"/>
                         <outlet property="scrollView" destination="m7h-EV-xJo" id="r2E-fM-pFH"/>
                         <outlet property="txtEmail" destination="Z5g-z3-V6p" id="jtH-lu-Pv0"/>
                         <outlet property="txtFirstName" destination="qly-xC-2yE" id="VF6-WQ-NiE"/>

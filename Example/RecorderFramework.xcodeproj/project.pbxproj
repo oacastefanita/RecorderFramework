@@ -67,6 +67,7 @@
 		A2B2D1641FA876F400A1FACE /* RecorderFramework-WatchExample.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = A2B2D1471FA876F400A1FACE /* RecorderFramework-WatchExample.app */; };
 		A2BF34A31FAB995400C7006F /* FileInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BF34A21FAB995400C7006F /* FileInterfaceController.swift */; };
 		A2D405371FAA76140042E605 /* RecordInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D405361FAA76140042E605 /* RecordInterfaceController.swift */; };
+		A2D6BBEA1FB3B90F003C6CE4 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2D6BBE91FB3B90E003C6CE4 /* StoreKit.framework */; };
 		A2E949411F9FB1BA00FAA5D0 /* EnterCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E949401F9FB1BA00FAA5D0 /* EnterCodeViewController.swift */; };
 		A2F76A741FA892E300EF05EE /* WatchDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F76A731FA892E300EF05EE /* WatchDataController.swift */; };
 		A2FE5C301FA74B8F005FD2D1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FE5C2F1FA74B8F005FD2D1 /* SettingsViewController.swift */; };
@@ -210,6 +211,8 @@
 		A2B2D1611FA876F400A1FACE /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		A2BF34A21FAB995400C7006F /* FileInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileInterfaceController.swift; sourceTree = "<group>"; };
 		A2D405361FAA76140042E605 /* RecordInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordInterfaceController.swift; sourceTree = "<group>"; };
+		A2D6BBE81FB3B908003C6CE4 /* RecorderFramework-TVExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "RecorderFramework-TVExample.entitlements"; sourceTree = "<group>"; };
+		A2D6BBE91FB3B90E003C6CE4 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS11.1.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
 		A2E949401F9FB1BA00FAA5D0 /* EnterCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCodeViewController.swift; sourceTree = "<group>"; };
 		A2F76A731FA892E300EF05EE /* WatchDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchDataController.swift; sourceTree = "<group>"; };
 		A2FE5C2F1FA74B8F005FD2D1 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -257,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				44A6410D38DC1A48FB236A5A /* Pods_RecorderFramework_TVExample.framework in Frameworks */,
+				A2D6BBEA1FB3B90F003C6CE4 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,6 +392,7 @@
 		91A4A99FDAE8352DE6480444 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A2D6BBE91FB3B90E003C6CE4 /* StoreKit.framework */,
 				A2AEABF01FB0944C0094DCF8 /* StoreKit.framework */,
 				A297CD8A1FA8E669004E5B15 /* Pods_RecorderFramework_Example.framework */,
 				A297CD881FA8E648004E5B15 /* RecorderFramework.framework */,
@@ -405,6 +410,7 @@
 		A21AD9161FB1EF1500BCDD1F /* RecorderFramework-TVExample */ = {
 			isa = PBXGroup;
 			children = (
+				A2D6BBE81FB3B908003C6CE4 /* RecorderFramework-TVExample.entitlements */,
 				A2A6254A1FB1FD3D003714C8 /* BuyViewController.swift */,
 				A2A6255B1FB1FD3E003714C8 /* DisplayViewController.swift */,
 				A2A625481FB1FD3C003714C8 /* EnterCodeViewController.swift */,
@@ -624,7 +630,18 @@
 					A21AD9141FB1EF1500BCDD1F = {
 						CreatedOnToolsVersion = 9.1;
 						DevelopmentTeam = UB5EDUN3Q5;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					A2B2D1461FA876F400A1FACE = {
 						CreatedOnToolsVersion = 9.0.1;
@@ -1287,14 +1304,17 @@
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = "RecorderFramework-TVExample/RecorderFramework-TVExample.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Stefanita Oaca (23RETXK7ZK)";
+				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = UB5EDUN3Q5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "RecorderFramework-TVExample/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.werockapps.RecorderFramework-TVExample";
+				PRODUCT_BUNDLE_IDENTIFIER = com.codebluestudio.Recorder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Recorder TV dev";
 				SDKROOT = appletvos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/stefanitaoaca/Environments/RecorderFramework/repository/Example/RecorderFramework-TvExample/RecorderFramework-Bridging-Header.h";
@@ -1321,13 +1341,17 @@
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = "RecorderFramework-TVExample/RecorderFramework-TVExample.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Boohead, Inc. (UB5EDUN3Q5)";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = UB5EDUN3Q5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "RecorderFramework-TVExample/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.werockapps.RecorderFramework-TVExample";
+				PRODUCT_BUNDLE_IDENTIFIER = com.codebluestudio.Recorder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Recorder TV appstore";
 				SDKROOT = appletvos;
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/stefanitaoaca/Environments/RecorderFramework/repository/Example/RecorderFramework-TvExample/RecorderFramework-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;

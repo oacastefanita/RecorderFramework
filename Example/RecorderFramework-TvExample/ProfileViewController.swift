@@ -17,8 +17,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtPic: UITextField!
     @IBOutlet weak var txtMaxLenght: UITextField!
-//    @IBOutlet weak var swtPlayBell: UISwitch!
-//    @IBOutlet weak var swtPublic: UISwitch!
+    @IBOutlet var btnSegmentPlayBeep : UISegmentedControl!
+    @IBOutlet var btnSegmentPublic : UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,10 +39,10 @@ class ProfileViewController: UIViewController {
     }
     @IBAction func onDone(_ sender: Any) {
         let params = NSMutableDictionary()
-//        params["data[play_beep]"] = swtPlayBell.isOn ? "1":"0"
+        params["data[play_beep]"] = btnSegmentPlayBeep.selectedSegmentIndex == 1 ? "1":"0"
         params["data[f_name]"] = txtFirstName.text ?? ""
         params["data[l_name]"] = txtLastName.text ?? ""
-//        params["data[is_public]"] = swtPublic.isOn ? "1":"0"
+        params["data[is_public]"] = btnSegmentPublic.selectedSegmentIndex == 1 ? "1":"0"
         params["data[max_length]"] = "119"
         params["data[email]"] = txtEmail.text ?? ""
         
@@ -56,8 +56,8 @@ class ProfileViewController: UIViewController {
         txtLastName.text = RecorderFrameworkManager.sharedInstance.getUser().lastName
         txtEmail.text = RecorderFrameworkManager.sharedInstance.getUser().email
         txtMaxLenght.text = RecorderFrameworkManager.sharedInstance.getUser().maxLenght
-//        swtPlayBell.isOn = RecorderFrameworkManager.sharedInstance.getUser().playBeep
-//        swtPublic.isOn = RecorderFrameworkManager.sharedInstance.getUser().isPublic
+        btnSegmentPlayBeep.selectedSegmentIndex = RecorderFrameworkManager.sharedInstance.getUser().playBeep ? 1:0
+        btnSegmentPublic.selectedSegmentIndex = RecorderFrameworkManager.sharedInstance.getUser().isPublic ? 1:0
     }
     
     
