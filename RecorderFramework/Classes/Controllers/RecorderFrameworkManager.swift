@@ -8,7 +8,9 @@ public class RecorderFrameworkManager : NSObject {
     
     override public init() {
         super.init()
+        #if os(iOS) || os(watchOS)
         WatchKitController.sharedInstance
+        #endif
         AppPersistentData.sharedInstance.loadData()
     }
     public func searchRecordings(_ name:String) -> Array<SearchResult> {
@@ -108,11 +110,10 @@ public class RecorderFrameworkManager : NSObject {
     public func register(_ number:String, completionHandler:((Bool, Any?) -> Void)?){
         APIClient.sharedInstance.register(number as NSString, completionHandler: completionHandler)
     }
-    #if os(iOS)
+    
     public func sendVerificationCode(_ code:String, completionHandler:((Bool, Any?) -> Void)?) {
         APIClient.sharedInstance.sendVerificationCode(code as NSString, completionHandler: completionHandler)
     }
-    #endif
     
     public func getFolders(_ completionHandler:((Bool, Any?) -> Void)?) {
         APIClient.sharedInstance.getFolders(completionHandler)

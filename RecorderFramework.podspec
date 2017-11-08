@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RecorderFramework'
-  s.version          = '0.1.36'
+  s.version          = '0.1.37'
   s.summary          = 'A short description of RecorderFramework.'
 
 # This description is used to generate tags and improve search results.
@@ -30,7 +30,7 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '10.0'
   s.watchos.deployment_target = '3.2'
-  #s.tvos.deployment_target = '10.13'
+  s.tvos.deployment_target = '10.13'
   #s.osx.deployment_target  = '10.12'
 
   s.source_files = 'RecorderFramework/Classes/**/*'

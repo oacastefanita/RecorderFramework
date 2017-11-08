@@ -84,19 +84,23 @@ public class APIClient : NSObject {
             }
         }
     }
-    #if os(iOS)
+    
     public func sendVerificationCode(_ code:NSString, completionHandler:((Bool, Any?) -> Void)?) {
-        let tn = CTTelephonyNetworkInfo();
-        let carrier = tn.subscriberCellularProvider
-        
         var appCode = "pro"
         if RecorderFrameworkManager.sharedInstance.isFree{
             appCode = "free"
         }
-        let mcc:String! = (carrier != nil && !carrier!.mobileCountryCode!.isEmpty) ? carrier!.mobileCountryCode : "310"
+        
         let deviceToken =  AppPersistentData.sharedInstance.notificationToken == nil ? "Simulator" : AppPersistentData.sharedInstance.notificationToken
-        let parameters = ["phone": AppPersistentData.sharedInstance.phone, "code": code, "mcc": mcc, "token": "55942ee3894f51000530894", "app": appCode, "device_token":deviceToken!] as [String : Any]
+        let parameters = ["phone": AppPersistentData.sharedInstance.phone, "code": code, "token": "55942ee3894f51000530894", "app": appCode, "device_token":deviceToken!] as [String : Any]
         //        var parameters = [("phone", AppPersistentData.sharedInstance.phone), ("code": code), ("mcc": (carrier != nil && !carrier!.mobileCountryCode!.isEmpty) ? carrier!.mobileCountryCode : "310"), ("token": "55942ee3894f51000530894"), ("app": appCode), ("device_token": AppPersistentData.sharedInstance.notificationToken == nil ? "Simulator" : AppPersistentData.sharedInstance.notificationToken)] //"226" "310" carrier.mobileCountryCode
+        
+        #if os(iOS)
+            let tn = CTTelephonyNetworkInfo();
+            let carrier = tn.subscriberCellularProvider
+            let mcc:String! = (carrier != nil && !carrier!.mobileCountryCode!.isEmpty) ? carrier!.mobileCountryCode : "310"
+            parameters["mcc"] = mcc
+        #endif
         
         api.doRequest("verify_phone", method: .post, parameters: parameters) { (success, data) in
             if success {
@@ -140,7 +144,7 @@ public class APIClient : NSObject {
             }
         }
     }
-    #endif
+    
     public func getRecordings(_ folderId:String!, completionHandler:((Bool, Any?) -> Void)?) {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)

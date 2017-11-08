@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2FDA33EEA90CE15D2A44A0DD /* Pods_RecorderFramework_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABC895D75AB12A66762E3FA0 /* Pods_RecorderFramework_Tests.framework */; };
+		44A6410D38DC1A48FB236A5A /* Pods_RecorderFramework_TVExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E661733D0244F442E8E17BE4 /* Pods_RecorderFramework_TVExample.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* RegisterViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -16,6 +17,9 @@
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		67D5BE920E12852EBB8D4EF1 /* Pods_RecorderFramework_WatchExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 748F834FFABC1EB351E432FB /* Pods_RecorderFramework_WatchExample.framework */; };
 		A20569AB1FABC9010089396F /* UserInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20569AA1FABC9010089396F /* UserInterfaceController.swift */; };
+		A21AD9181FB1EF1500BCDD1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21AD9171FB1EF1500BCDD1F /* AppDelegate.swift */; };
+		A21AD91D1FB1EF1500BCDD1F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A21AD91B1FB1EF1500BCDD1F /* Main.storyboard */; };
+		A21AD91F1FB1EF1500BCDD1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A21AD91E1FB1EF1500BCDD1F /* Assets.xcassets */; };
 		A22A10491FA1E5F400DAFA40 /* FilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22A10481FA1E5F400DAFA40 /* FilesViewController.swift */; };
 		A22A104B1FA1F00500DAFA40 /* FileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22A104A1FA1F00500DAFA40 /* FileViewController.swift */; };
 		A23A2CB51FA1D84C00E25F87 /* FoldersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23A2CB41FA1D84C00E25F87 /* FoldersViewController.swift */; };
@@ -31,6 +35,23 @@
 		A282D8CC1FA4E83900BD3189 /* TitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A282D8CB1FA4E83900BD3189 /* TitleViewController.swift */; };
 		A2931C281FB103C200B631E2 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2931C271FB103C200B631E2 /* SearchViewController.swift */; };
 		A297CD891FA8E669004E5B15 /* Pods_RecorderFramework_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A297CD8A1FA8E669004E5B15 /* Pods_RecorderFramework_Example.framework */; };
+		A2A6255C1FB1FD3E003714C8 /* EnterCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A625481FB1FD3C003714C8 /* EnterCodeViewController.swift */; };
+		A2A6255D1FB1FD3E003714C8 /* BuyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A6254A1FB1FD3D003714C8 /* BuyViewController.swift */; };
+		A2A6255E1FB1FD3E003714C8 /* LanguagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A6254B1FB1FD3D003714C8 /* LanguagesViewController.swift */; };
+		A2A6255F1FB1FD3E003714C8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A6254C1FB1FD3D003714C8 /* SettingsViewController.swift */; };
+		A2A625601FB1FD3E003714C8 /* MKStoreKitConfigs.plist in Resources */ = {isa = PBXBuildFile; fileRef = A2A6254E1FB1FD3D003714C8 /* MKStoreKitConfigs.plist */; };
+		A2A625611FB1FD3E003714C8 /* MKStoreKit.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A625501FB1FD3D003714C8 /* MKStoreKit.m */; };
+		A2A625621FB1FD3E003714C8 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A625511FB1FD3D003714C8 /* SearchViewController.swift */; };
+		A2A625631FB1FD3E003714C8 /* TitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A625521FB1FD3D003714C8 /* TitleViewController.swift */; };
+		A2A625641FB1FD3E003714C8 /* FoldersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A625531FB1FD3D003714C8 /* FoldersViewController.swift */; };
+		A2A625651FB1FD3E003714C8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A625541FB1FD3D003714C8 /* HomeViewController.swift */; };
+		A2A625661FB1FD3E003714C8 /* FilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A625551FB1FD3D003714C8 /* FilesViewController.swift */; };
+		A2A625671FB1FD3E003714C8 /* FileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A625561FB1FD3D003714C8 /* FileViewController.swift */; };
+		A2A625681FB1FD3E003714C8 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A625571FB1FD3D003714C8 /* RegisterViewController.swift */; };
+		A2A625691FB1FD3E003714C8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A625581FB1FD3E003714C8 /* Extensions.swift */; };
+		A2A6256A1FB1FD3E003714C8 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A625591FB1FD3E003714C8 /* ProfileViewController.swift */; };
+		A2A6256B1FB1FD3E003714C8 /* PhoneNumbersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A6255A1FB1FD3E003714C8 /* PhoneNumbersViewController.swift */; };
+		A2A6256C1FB1FD3E003714C8 /* DisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A6255B1FB1FD3E003714C8 /* DisplayViewController.swift */; };
 		A2AE31C01FA0BE7D00CCDC79 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AE31BF1FA0BE7D00CCDC79 /* HomeViewController.swift */; };
 		A2AEABEC1FB0903D0094DCF8 /* MKStoreKitConfigs.plist in Resources */ = {isa = PBXBuildFile; fileRef = A2AEABE91FB0903D0094DCF8 /* MKStoreKitConfigs.plist */; };
 		A2AEABED1FB0903D0094DCF8 /* MKStoreKit.m in Sources */ = {isa = PBXBuildFile; fileRef = A2AEABEB1FB0903D0094DCF8 /* MKStoreKit.m */; };
@@ -111,6 +132,7 @@
 		3571DF209FCDEBD6955558A4 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		3C880E07BDCAA2A192D625DD /* Pods-RecorderFramework_Example-RecorderFramework-WatchExample Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecorderFramework_Example-RecorderFramework-WatchExample Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-RecorderFramework_Example-RecorderFramework-WatchExample Extension/Pods-RecorderFramework_Example-RecorderFramework-WatchExample Extension.release.xcconfig"; sourceTree = "<group>"; };
 		42D1BA2B5B331A9601D98807 /* Pods-RecorderFramework_Example-RecorderFramework-WatchExample Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecorderFramework_Example-RecorderFramework-WatchExample Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RecorderFramework_Example-RecorderFramework-WatchExample Extension/Pods-RecorderFramework_Example-RecorderFramework-WatchExample Extension.debug.xcconfig"; sourceTree = "<group>"; };
+		47CB45A5DC2389216625BD69 /* Pods-RecorderFramework-TVExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecorderFramework-TVExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RecorderFramework-TVExample/Pods-RecorderFramework-TVExample.debug.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* RecorderFramework_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecorderFramework_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -125,6 +147,11 @@
 		863430D0C86DCE6607C6635E /* Pods_RecorderFramework_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecorderFramework_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1221A40950338952D348F70 /* Pods_RecorderFramework_Example_RecorderFramework_WatchExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecorderFramework_Example_RecorderFramework_WatchExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A20569AA1FABC9010089396F /* UserInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInterfaceController.swift; sourceTree = "<group>"; };
+		A21AD9151FB1EF1500BCDD1F /* RecorderFramework-TVExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RecorderFramework-TVExample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A21AD9171FB1EF1500BCDD1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A21AD91C1FB1EF1500BCDD1F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A21AD91E1FB1EF1500BCDD1F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A21AD9201FB1EF1500BCDD1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A22A10481FA1E5F400DAFA40 /* FilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesViewController.swift; sourceTree = "<group>"; };
 		A22A104A1FA1F00500DAFA40 /* FileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileViewController.swift; sourceTree = "<group>"; };
 		A23A2CB41FA1D84C00E25F87 /* FoldersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersViewController.swift; sourceTree = "<group>"; };
@@ -142,6 +169,25 @@
 		A2931C271FB103C200B631E2 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		A297CD881FA8E648004E5B15 /* RecorderFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RecorderFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A297CD8A1FA8E669004E5B15 /* Pods_RecorderFramework_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_RecorderFramework_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2A625481FB1FD3C003714C8 /* EnterCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EnterCodeViewController.swift; path = "RecorderFramework-TvExample/EnterCodeViewController.swift"; sourceTree = SOURCE_ROOT; };
+		A2A625491FB1FD3D003714C8 /* RecorderFramework-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RecorderFramework-Bridging-Header.h"; path = "RecorderFramework-TvExample/RecorderFramework-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		A2A6254A1FB1FD3D003714C8 /* BuyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BuyViewController.swift; path = "RecorderFramework-TvExample/BuyViewController.swift"; sourceTree = SOURCE_ROOT; };
+		A2A6254B1FB1FD3D003714C8 /* LanguagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LanguagesViewController.swift; path = "RecorderFramework-TvExample/LanguagesViewController.swift"; sourceTree = SOURCE_ROOT; };
+		A2A6254C1FB1FD3D003714C8 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = "RecorderFramework-TvExample/SettingsViewController.swift"; sourceTree = SOURCE_ROOT; };
+		A2A6254E1FB1FD3D003714C8 /* MKStoreKitConfigs.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MKStoreKitConfigs.plist; sourceTree = "<group>"; };
+		A2A6254F1FB1FD3D003714C8 /* MKStoreKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKStoreKit.h; sourceTree = "<group>"; };
+		A2A625501FB1FD3D003714C8 /* MKStoreKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKStoreKit.m; sourceTree = "<group>"; };
+		A2A625511FB1FD3D003714C8 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchViewController.swift; path = "RecorderFramework-TvExample/SearchViewController.swift"; sourceTree = SOURCE_ROOT; };
+		A2A625521FB1FD3D003714C8 /* TitleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TitleViewController.swift; path = "RecorderFramework-TvExample/TitleViewController.swift"; sourceTree = SOURCE_ROOT; };
+		A2A625531FB1FD3D003714C8 /* FoldersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FoldersViewController.swift; path = "RecorderFramework-TvExample/FoldersViewController.swift"; sourceTree = SOURCE_ROOT; };
+		A2A625541FB1FD3D003714C8 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = "RecorderFramework-TvExample/HomeViewController.swift"; sourceTree = SOURCE_ROOT; };
+		A2A625551FB1FD3D003714C8 /* FilesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilesViewController.swift; path = "RecorderFramework-TvExample/FilesViewController.swift"; sourceTree = SOURCE_ROOT; };
+		A2A625561FB1FD3D003714C8 /* FileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileViewController.swift; path = "RecorderFramework-TvExample/FileViewController.swift"; sourceTree = SOURCE_ROOT; };
+		A2A625571FB1FD3D003714C8 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegisterViewController.swift; path = "RecorderFramework-TvExample/RegisterViewController.swift"; sourceTree = SOURCE_ROOT; };
+		A2A625581FB1FD3E003714C8 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = "RecorderFramework-TvExample/Extensions.swift"; sourceTree = SOURCE_ROOT; };
+		A2A625591FB1FD3E003714C8 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = "RecorderFramework-TvExample/ProfileViewController.swift"; sourceTree = SOURCE_ROOT; };
+		A2A6255A1FB1FD3E003714C8 /* PhoneNumbersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhoneNumbersViewController.swift; path = "RecorderFramework-TvExample/PhoneNumbersViewController.swift"; sourceTree = SOURCE_ROOT; };
+		A2A6255B1FB1FD3E003714C8 /* DisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DisplayViewController.swift; path = "RecorderFramework-TvExample/DisplayViewController.swift"; sourceTree = SOURCE_ROOT; };
 		A2AE31BF1FA0BE7D00CCDC79 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		A2AEABE91FB0903D0094DCF8 /* MKStoreKitConfigs.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MKStoreKitConfigs.plist; sourceTree = "<group>"; };
 		A2AEABEA1FB0903D0094DCF8 /* MKStoreKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKStoreKit.h; sourceTree = "<group>"; };
@@ -174,8 +220,10 @@
 		D32B226A1FC9611E181DAC22 /* Pods-RecorderFramework-WatchExample Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecorderFramework-WatchExample Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RecorderFramework-WatchExample Extension/Pods-RecorderFramework-WatchExample Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		D586134EFB8FCD0771AC3BB1 /* Pods-RecorderFramework-WatchExample Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecorderFramework-WatchExample Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-RecorderFramework-WatchExample Extension/Pods-RecorderFramework-WatchExample Extension.release.xcconfig"; sourceTree = "<group>"; };
 		E29185CBB934DA489AC6890E /* RecorderFramework.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = RecorderFramework.podspec; path = ../RecorderFramework.podspec; sourceTree = "<group>"; };
+		E661733D0244F442E8E17BE4 /* Pods_RecorderFramework_TVExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecorderFramework_TVExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3AD3B9DF5FA38F59CF258A3 /* Pods-RecorderFramework_Example-RecorderFramework-WatchExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecorderFramework_Example-RecorderFramework-WatchExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-RecorderFramework_Example-RecorderFramework-WatchExample/Pods-RecorderFramework_Example-RecorderFramework-WatchExample.release.xcconfig"; sourceTree = "<group>"; };
 		F599AB697E3B38936AB05FB5 /* Pods_RecorderFramework_WatchExample_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecorderFramework_WatchExample_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBCC0496485A539991BA718E /* Pods-RecorderFramework-TVExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecorderFramework-TVExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-RecorderFramework-TVExample/Pods-RecorderFramework-TVExample.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,6 +252,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A21AD9121FB1EF1500BCDD1F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				44A6410D38DC1A48FB236A5A /* Pods_RecorderFramework_TVExample.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A2B2D1501FA876F400A1FACE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -224,6 +280,7 @@
 				607FACE81AFB9204008FA782 /* Tests */,
 				A2B2D1481FA876F400A1FACE /* RecorderFramework-WatchExample */,
 				A2B2D1571FA876F400A1FACE /* RecorderFramework-WatchExample Extension */,
+				A21AD9161FB1EF1500BCDD1F /* RecorderFramework-TVExample */,
 				607FACD11AFB9204008FA782 /* Products */,
 				7B775D1222EE278438027086 /* Pods */,
 				91A4A99FDAE8352DE6480444 /* Frameworks */,
@@ -237,6 +294,7 @@
 				607FACE51AFB9204008FA782 /* RecorderFramework_Tests.xctest */,
 				A2B2D1471FA876F400A1FACE /* RecorderFramework-WatchExample.app */,
 				A2B2D1531FA876F400A1FACE /* RecorderFramework-WatchExample Extension.appex */,
+				A21AD9151FB1EF1500BCDD1F /* RecorderFramework-TVExample.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -321,6 +379,8 @@
 				F3AD3B9DF5FA38F59CF258A3 /* Pods-RecorderFramework_Example-RecorderFramework-WatchExample.release.xcconfig */,
 				42D1BA2B5B331A9601D98807 /* Pods-RecorderFramework_Example-RecorderFramework-WatchExample Extension.debug.xcconfig */,
 				3C880E07BDCAA2A192D625DD /* Pods-RecorderFramework_Example-RecorderFramework-WatchExample Extension.release.xcconfig */,
+				47CB45A5DC2389216625BD69 /* Pods-RecorderFramework-TVExample.debug.xcconfig */,
+				FBCC0496485A539991BA718E /* Pods-RecorderFramework-TVExample.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -337,9 +397,49 @@
 				F599AB697E3B38936AB05FB5 /* Pods_RecorderFramework_WatchExample_Extension.framework */,
 				A1221A40950338952D348F70 /* Pods_RecorderFramework_Example_RecorderFramework_WatchExample.framework */,
 				2C9C0E5CAD9402738AD998B0 /* Pods_RecorderFramework_Example_RecorderFramework_WatchExample_Extension.framework */,
+				E661733D0244F442E8E17BE4 /* Pods_RecorderFramework_TVExample.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
+		};
+		A21AD9161FB1EF1500BCDD1F /* RecorderFramework-TVExample */ = {
+			isa = PBXGroup;
+			children = (
+				A2A6254A1FB1FD3D003714C8 /* BuyViewController.swift */,
+				A2A6255B1FB1FD3E003714C8 /* DisplayViewController.swift */,
+				A2A625481FB1FD3C003714C8 /* EnterCodeViewController.swift */,
+				A2A625581FB1FD3E003714C8 /* Extensions.swift */,
+				A2A625551FB1FD3D003714C8 /* FilesViewController.swift */,
+				A2A625561FB1FD3D003714C8 /* FileViewController.swift */,
+				A2A625531FB1FD3D003714C8 /* FoldersViewController.swift */,
+				A2A625541FB1FD3D003714C8 /* HomeViewController.swift */,
+				A2A6254B1FB1FD3D003714C8 /* LanguagesViewController.swift */,
+				A2A6254D1FB1FD3D003714C8 /* MKStoreKit */,
+				A2A6255A1FB1FD3E003714C8 /* PhoneNumbersViewController.swift */,
+				A2A625591FB1FD3E003714C8 /* ProfileViewController.swift */,
+				A2A625491FB1FD3D003714C8 /* RecorderFramework-Bridging-Header.h */,
+				A2A625571FB1FD3D003714C8 /* RegisterViewController.swift */,
+				A2A625511FB1FD3D003714C8 /* SearchViewController.swift */,
+				A2A6254C1FB1FD3D003714C8 /* SettingsViewController.swift */,
+				A2A625521FB1FD3D003714C8 /* TitleViewController.swift */,
+				A21AD9171FB1EF1500BCDD1F /* AppDelegate.swift */,
+				A21AD91B1FB1EF1500BCDD1F /* Main.storyboard */,
+				A21AD91E1FB1EF1500BCDD1F /* Assets.xcassets */,
+				A21AD9201FB1EF1500BCDD1F /* Info.plist */,
+			);
+			path = "RecorderFramework-TVExample";
+			sourceTree = "<group>";
+		};
+		A2A6254D1FB1FD3D003714C8 /* MKStoreKit */ = {
+			isa = PBXGroup;
+			children = (
+				A2A6254E1FB1FD3D003714C8 /* MKStoreKitConfigs.plist */,
+				A2A6254F1FB1FD3D003714C8 /* MKStoreKit.h */,
+				A2A625501FB1FD3D003714C8 /* MKStoreKit.m */,
+			);
+			name = MKStoreKit;
+			path = "RecorderFramework-TvExample/MKStoreKit";
+			sourceTree = SOURCE_ROOT;
 		};
 		A2AEABE81FB0903D0094DCF8 /* MKStoreKit */ = {
 			isa = PBXGroup;
@@ -430,6 +530,26 @@
 			productReference = 607FACE51AFB9204008FA782 /* RecorderFramework_Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		A21AD9141FB1EF1500BCDD1F /* RecorderFramework-TVExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A21AD9211FB1EF1500BCDD1F /* Build configuration list for PBXNativeTarget "RecorderFramework-TVExample" */;
+			buildPhases = (
+				03F555DA46695E0CB01D97CA /* [CP] Check Pods Manifest.lock */,
+				A21AD9111FB1EF1500BCDD1F /* Sources */,
+				A21AD9121FB1EF1500BCDD1F /* Frameworks */,
+				A21AD9131FB1EF1500BCDD1F /* Resources */,
+				9F00D3754B4D81D1C89D9F8A /* [CP] Embed Pods Frameworks */,
+				BC7BF4BF2562BCFD76825BA4 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "RecorderFramework-TVExample";
+			productName = "RecorderFramework-TVExample";
+			productReference = A21AD9151FB1EF1500BCDD1F /* RecorderFramework-TVExample.app */;
+			productType = "com.apple.product-type.application";
+		};
 		A2B2D1461FA876F400A1FACE /* RecorderFramework-WatchExample */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A2B2D1691FA876F400A1FACE /* Build configuration list for PBXNativeTarget "RecorderFramework-WatchExample" */;
@@ -476,7 +596,7 @@
 		607FACC81AFB9204008FA782 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0900;
+				LastSwiftUpdateCheck = 0910;
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = CocoaPods;
 				TargetAttributes = {
@@ -500,6 +620,11 @@
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						TestTargetID = 607FACCF1AFB9204008FA782;
+					};
+					A21AD9141FB1EF1500BCDD1F = {
+						CreatedOnToolsVersion = 9.1;
+						DevelopmentTeam = UB5EDUN3Q5;
+						ProvisioningStyle = Automatic;
 					};
 					A2B2D1461FA876F400A1FACE = {
 						CreatedOnToolsVersion = 9.0.1;
@@ -540,6 +665,7 @@
 				607FACE41AFB9204008FA782 /* RecorderFramework_Tests */,
 				A2B2D1461FA876F400A1FACE /* RecorderFramework-WatchExample */,
 				A2B2D1521FA876F400A1FACE /* RecorderFramework-WatchExample Extension */,
+				A21AD9141FB1EF1500BCDD1F /* RecorderFramework-TVExample */,
 			);
 		};
 /* End PBXProject section */
@@ -563,6 +689,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A21AD9131FB1EF1500BCDD1F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A2A625601FB1FD3E003714C8 /* MKStoreKitConfigs.plist in Resources */,
+				A21AD91F1FB1EF1500BCDD1F /* Assets.xcassets in Resources */,
+				A21AD91D1FB1EF1500BCDD1F /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A2B2D1451FA876F400A1FACE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -583,6 +719,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		03F555DA46695E0CB01D97CA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RecorderFramework-TVExample-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		0FBC96672D6868D7C69A9D14 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -687,6 +841,26 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RecorderFramework_Tests/Pods-RecorderFramework_Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		9F00D3754B4D81D1C89D9F8A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-RecorderFramework-TVExample/Pods-RecorderFramework-TVExample-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire-tvOS/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/RecorderFramework-tvOS/RecorderFramework.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RecorderFramework.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RecorderFramework-TVExample/Pods-RecorderFramework-TVExample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		AAFC3663300DCF22080F81CE /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -715,6 +889,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RecorderFramework-WatchExample/Pods-RecorderFramework-WatchExample-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BC7BF4BF2562BCFD76825BA4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RecorderFramework-TVExample/Pods-RecorderFramework-TVExample-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C922AA9AC309E240439DDE23 /* [CP] Check Pods Manifest.lock */ = {
@@ -805,6 +994,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A21AD9111FB1EF1500BCDD1F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A2A6256B1FB1FD3E003714C8 /* PhoneNumbersViewController.swift in Sources */,
+				A2A6255C1FB1FD3E003714C8 /* EnterCodeViewController.swift in Sources */,
+				A2A625621FB1FD3E003714C8 /* SearchViewController.swift in Sources */,
+				A21AD9181FB1EF1500BCDD1F /* AppDelegate.swift in Sources */,
+				A2A6255E1FB1FD3E003714C8 /* LanguagesViewController.swift in Sources */,
+				A2A6256C1FB1FD3E003714C8 /* DisplayViewController.swift in Sources */,
+				A2A6255F1FB1FD3E003714C8 /* SettingsViewController.swift in Sources */,
+				A2A625651FB1FD3E003714C8 /* HomeViewController.swift in Sources */,
+				A2A625671FB1FD3E003714C8 /* FileViewController.swift in Sources */,
+				A2A625631FB1FD3E003714C8 /* TitleViewController.swift in Sources */,
+				A2A625611FB1FD3E003714C8 /* MKStoreKit.m in Sources */,
+				A2A625661FB1FD3E003714C8 /* FilesViewController.swift in Sources */,
+				A2A625681FB1FD3E003714C8 /* RegisterViewController.swift in Sources */,
+				A2A6255D1FB1FD3E003714C8 /* BuyViewController.swift in Sources */,
+				A2A6256A1FB1FD3E003714C8 /* ProfileViewController.swift in Sources */,
+				A2A625641FB1FD3E003714C8 /* FoldersViewController.swift in Sources */,
+				A2A625691FB1FD3E003714C8 /* Extensions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A2B2D14F1FA876F400A1FACE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -858,6 +1071,14 @@
 				607FACDF1AFB9204008FA782 /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		A21AD91B1FB1EF1500BCDD1F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A21AD91C1FB1EF1500BCDD1F /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		A2B2D1491FA876F400A1FACE /* Interface.storyboard */ = {
@@ -1046,6 +1267,72 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		A21AD9221FB1EF1500BCDD1F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 47CB45A5DC2389216625BD69 /* Pods-RecorderFramework-TVExample.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = UB5EDUN3Q5;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "RecorderFramework-TVExample/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.werockapps.RecorderFramework-TVExample";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/stefanitaoaca/Environments/RecorderFramework/repository/Example/RecorderFramework-TvExample/RecorderFramework-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 11.1;
+			};
+			name = Debug;
+		};
+		A21AD9231FB1EF1500BCDD1F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FBCC0496485A539991BA718E /* Pods-RecorderFramework-TVExample.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UB5EDUN3Q5;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "RecorderFramework-TVExample/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.werockapps.RecorderFramework-TVExample";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/stefanitaoaca/Environments/RecorderFramework/repository/Example/RecorderFramework-TvExample/RecorderFramework-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 11.1;
 			};
 			name = Release;
 		};
@@ -1241,6 +1528,15 @@
 			buildConfigurations = (
 				607FACF31AFB9204008FA782 /* Debug */,
 				607FACF41AFB9204008FA782 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A21AD9211FB1EF1500BCDD1F /* Build configuration list for PBXNativeTarget "RecorderFramework-TVExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A21AD9221FB1EF1500BCDD1F /* Debug */,
+				A21AD9231FB1EF1500BCDD1F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
