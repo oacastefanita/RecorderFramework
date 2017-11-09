@@ -16,6 +16,7 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		67D5BE920E12852EBB8D4EF1 /* Pods_RecorderFramework_WatchExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 748F834FFABC1EB351E432FB /* Pods_RecorderFramework_WatchExample.framework */; };
+		850FAA7B8BF4FA4255305461 /* Pods_RecorderFramework_MacExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B73DD214B01B20F486E1C762 /* Pods_RecorderFramework_MacExample.framework */; };
 		A20569AB1FABC9010089396F /* UserInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20569AA1FABC9010089396F /* UserInterfaceController.swift */; };
 		A21AD9181FB1EF1500BCDD1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21AD9171FB1EF1500BCDD1F /* AppDelegate.swift */; };
 		A21AD91D1FB1EF1500BCDD1F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A21AD91B1FB1EF1500BCDD1F /* Main.storyboard */; };
@@ -25,6 +26,7 @@
 		A23A2CB51FA1D84C00E25F87 /* FoldersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23A2CB41FA1D84C00E25F87 /* FoldersViewController.swift */; };
 		A23EBB721FA761E200F9D188 /* LanguagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23EBB711FA761E200F9D188 /* LanguagesViewController.swift */; };
 		A23EBB741FA76AA700F9D188 /* DisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23EBB731FA76AA700F9D188 /* DisplayViewController.swift */; };
+		A241726E1FB3DBED00247212 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A241726D1FB3DBED00247212 /* AddressBook.framework */; };
 		A24C5D171FA7880300EE9347 /* PhoneNumbersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24C5D161FA7880300EE9347 /* PhoneNumbersViewController.swift */; };
 		A24C5D191FA79BCD00EE9347 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24C5D181FA79BCD00EE9347 /* ProfileViewController.swift */; };
 		A2689F8F1FA5051300A3F391 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2689F8E1FA5051300A3F391 /* Extensions.swift */; };
@@ -32,6 +34,8 @@
 		A2732ED11FAA5E81004E3A35 /* FoldersRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2732ED01FAA5E80004E3A35 /* FoldersRowController.swift */; };
 		A2732ED31FAA6C98004E3A35 /* FilesInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2732ED21FAA6C98004E3A35 /* FilesInterfaceController.swift */; };
 		A2732ED51FAA6CAD004E3A35 /* FilesRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2732ED41FAA6CAD004E3A35 /* FilesRowController.swift */; };
+		A27A2FA21FB441B8000B3E41 /* EnterCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27A2FA11FB441B8000B3E41 /* EnterCodeViewController.swift */; };
+		A27A2FA41FB44CE1000B3E41 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27A2FA31FB44CE1000B3E41 /* HomeViewController.swift */; };
 		A282D8CC1FA4E83900BD3189 /* TitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A282D8CB1FA4E83900BD3189 /* TitleViewController.swift */; };
 		A2931C281FB103C200B631E2 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2931C271FB103C200B631E2 /* SearchViewController.swift */; };
 		A297CD891FA8E669004E5B15 /* Pods_RecorderFramework_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A297CD8A1FA8E669004E5B15 /* Pods_RecorderFramework_Example.framework */; };
@@ -68,6 +72,10 @@
 		A2BF34A31FAB995400C7006F /* FileInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BF34A21FAB995400C7006F /* FileInterfaceController.swift */; };
 		A2D405371FAA76140042E605 /* RecordInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D405361FAA76140042E605 /* RecordInterfaceController.swift */; };
 		A2D6BBEA1FB3B90F003C6CE4 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2D6BBE91FB3B90E003C6CE4 /* StoreKit.framework */; };
+		A2D6BBF21FB3D0D9003C6CE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D6BBF11FB3D0D9003C6CE4 /* AppDelegate.swift */; };
+		A2D6BBF41FB3D0D9003C6CE4 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D6BBF31FB3D0D9003C6CE4 /* RegisterViewController.swift */; };
+		A2D6BBF61FB3D0D9003C6CE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2D6BBF51FB3D0D9003C6CE4 /* Assets.xcassets */; };
+		A2D6BBF91FB3D0D9003C6CE4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2D6BBF71FB3D0D9003C6CE4 /* Main.storyboard */; };
 		A2E949411F9FB1BA00FAA5D0 /* EnterCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E949401F9FB1BA00FAA5D0 /* EnterCodeViewController.swift */; };
 		A2F76A741FA892E300EF05EE /* WatchDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F76A731FA892E300EF05EE /* WatchDataController.swift */; };
 		A2FE5C301FA74B8F005FD2D1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FE5C2F1FA74B8F005FD2D1 /* SettingsViewController.swift */; };
@@ -144,6 +152,7 @@
 		607FACE51AFB9204008FA782 /* RecorderFramework_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecorderFramework_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		7020D5B4D20C656FA427624E /* Pods-RecorderFramework-MacExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecorderFramework-MacExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-RecorderFramework-MacExample/Pods-RecorderFramework-MacExample.release.xcconfig"; sourceTree = "<group>"; };
 		748F834FFABC1EB351E432FB /* Pods_RecorderFramework_WatchExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecorderFramework_WatchExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		863430D0C86DCE6607C6635E /* Pods_RecorderFramework_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecorderFramework_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1221A40950338952D348F70 /* Pods_RecorderFramework_Example_RecorderFramework_WatchExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecorderFramework_Example_RecorderFramework_WatchExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,6 +167,7 @@
 		A23A2CB41FA1D84C00E25F87 /* FoldersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersViewController.swift; sourceTree = "<group>"; };
 		A23EBB711FA761E200F9D188 /* LanguagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagesViewController.swift; sourceTree = "<group>"; };
 		A23EBB731FA76AA700F9D188 /* DisplayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayViewController.swift; sourceTree = "<group>"; };
+		A241726D1FB3DBED00247212 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		A24C5D161FA7880300EE9347 /* PhoneNumbersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumbersViewController.swift; sourceTree = "<group>"; };
 		A24C5D181FA79BCD00EE9347 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A258F5BB1FB0958200DB1073 /* RecorderFramework-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RecorderFramework-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -166,6 +176,8 @@
 		A2732ED01FAA5E80004E3A35 /* FoldersRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoldersRowController.swift; sourceTree = "<group>"; };
 		A2732ED21FAA6C98004E3A35 /* FilesInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesInterfaceController.swift; sourceTree = "<group>"; };
 		A2732ED41FAA6CAD004E3A35 /* FilesRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesRowController.swift; sourceTree = "<group>"; };
+		A27A2FA11FB441B8000B3E41 /* EnterCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCodeViewController.swift; sourceTree = "<group>"; };
+		A27A2FA31FB44CE1000B3E41 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		A282D8CB1FA4E83900BD3189 /* TitleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleViewController.swift; sourceTree = "<group>"; };
 		A2931C271FB103C200B631E2 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		A297CD881FA8E648004E5B15 /* RecorderFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RecorderFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -213,13 +225,22 @@
 		A2D405361FAA76140042E605 /* RecordInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordInterfaceController.swift; sourceTree = "<group>"; };
 		A2D6BBE81FB3B908003C6CE4 /* RecorderFramework-TVExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "RecorderFramework-TVExample.entitlements"; sourceTree = "<group>"; };
 		A2D6BBE91FB3B90E003C6CE4 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS11.1.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
+		A2D6BBEF1FB3D0D8003C6CE4 /* RecorderFramework-MacExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RecorderFramework-MacExample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2D6BBF11FB3D0D9003C6CE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A2D6BBF31FB3D0D9003C6CE4 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		A2D6BBF51FB3D0D9003C6CE4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A2D6BBF81FB3D0D9003C6CE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A2D6BBFA1FB3D0D9003C6CE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A2D6BBFB1FB3D0D9003C6CE4 /* RecorderFramework_MacExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RecorderFramework_MacExample.entitlements; sourceTree = "<group>"; };
 		A2E949401F9FB1BA00FAA5D0 /* EnterCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCodeViewController.swift; sourceTree = "<group>"; };
 		A2F76A731FA892E300EF05EE /* WatchDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchDataController.swift; sourceTree = "<group>"; };
 		A2FE5C2F1FA74B8F005FD2D1 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		AB5C69A6C572070C50B37B86 /* Pods-RecorderFramework_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecorderFramework_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-RecorderFramework_Example/Pods-RecorderFramework_Example.release.xcconfig"; sourceTree = "<group>"; };
 		ABC895D75AB12A66762E3FA0 /* Pods_RecorderFramework_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecorderFramework_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B73DD214B01B20F486E1C762 /* Pods_RecorderFramework_MacExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecorderFramework_MacExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBEC1B25FBF6C66D7243E376 /* Pods-RecorderFramework_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecorderFramework_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RecorderFramework_Example/Pods-RecorderFramework_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		BD8FAFAA06FB8DE4B6AD5075 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		BE8712C1D6E1BB79AA9FB6B9 /* Pods-RecorderFramework-MacExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecorderFramework-MacExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RecorderFramework-MacExample/Pods-RecorderFramework-MacExample.debug.xcconfig"; sourceTree = "<group>"; };
 		D32B226A1FC9611E181DAC22 /* Pods-RecorderFramework-WatchExample Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecorderFramework-WatchExample Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RecorderFramework-WatchExample Extension/Pods-RecorderFramework-WatchExample Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		D586134EFB8FCD0771AC3BB1 /* Pods-RecorderFramework-WatchExample Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecorderFramework-WatchExample Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-RecorderFramework-WatchExample Extension/Pods-RecorderFramework-WatchExample Extension.release.xcconfig"; sourceTree = "<group>"; };
 		E29185CBB934DA489AC6890E /* RecorderFramework.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = RecorderFramework.podspec; path = ../RecorderFramework.podspec; sourceTree = "<group>"; };
@@ -242,6 +263,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A241726E1FB3DBED00247212 /* AddressBook.framework in Frameworks */,
 				A297CD891FA8E669004E5B15 /* Pods_RecorderFramework_Example.framework in Frameworks */,
 				A2AEABF11FB0944C0094DCF8 /* StoreKit.framework in Frameworks */,
 			);
@@ -272,6 +294,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A2D6BBEC1FB3D0D8003C6CE4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				850FAA7B8BF4FA4255305461 /* Pods_RecorderFramework_MacExample.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -285,6 +315,7 @@
 				A2B2D1481FA876F400A1FACE /* RecorderFramework-WatchExample */,
 				A2B2D1571FA876F400A1FACE /* RecorderFramework-WatchExample Extension */,
 				A21AD9161FB1EF1500BCDD1F /* RecorderFramework-TVExample */,
+				A2D6BBF01FB3D0D9003C6CE4 /* RecorderFramework-MacExample */,
 				607FACD11AFB9204008FA782 /* Products */,
 				7B775D1222EE278438027086 /* Pods */,
 				91A4A99FDAE8352DE6480444 /* Frameworks */,
@@ -299,6 +330,7 @@
 				A2B2D1471FA876F400A1FACE /* RecorderFramework-WatchExample.app */,
 				A2B2D1531FA876F400A1FACE /* RecorderFramework-WatchExample Extension.appex */,
 				A21AD9151FB1EF1500BCDD1F /* RecorderFramework-TVExample.app */,
+				A2D6BBEF1FB3D0D8003C6CE4 /* RecorderFramework-MacExample.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -385,6 +417,8 @@
 				3C880E07BDCAA2A192D625DD /* Pods-RecorderFramework_Example-RecorderFramework-WatchExample Extension.release.xcconfig */,
 				47CB45A5DC2389216625BD69 /* Pods-RecorderFramework-TVExample.debug.xcconfig */,
 				FBCC0496485A539991BA718E /* Pods-RecorderFramework-TVExample.release.xcconfig */,
+				BE8712C1D6E1BB79AA9FB6B9 /* Pods-RecorderFramework-MacExample.debug.xcconfig */,
+				7020D5B4D20C656FA427624E /* Pods-RecorderFramework-MacExample.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -392,6 +426,7 @@
 		91A4A99FDAE8352DE6480444 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A241726D1FB3DBED00247212 /* AddressBook.framework */,
 				A2D6BBE91FB3B90E003C6CE4 /* StoreKit.framework */,
 				A2AEABF01FB0944C0094DCF8 /* StoreKit.framework */,
 				A297CD8A1FA8E669004E5B15 /* Pods_RecorderFramework_Example.framework */,
@@ -403,6 +438,7 @@
 				A1221A40950338952D348F70 /* Pods_RecorderFramework_Example_RecorderFramework_WatchExample.framework */,
 				2C9C0E5CAD9402738AD998B0 /* Pods_RecorderFramework_Example_RecorderFramework_WatchExample_Extension.framework */,
 				E661733D0244F442E8E17BE4 /* Pods_RecorderFramework_TVExample.framework */,
+				B73DD214B01B20F486E1C762 /* Pods_RecorderFramework_MacExample.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -488,6 +524,21 @@
 				A2B2D1611FA876F400A1FACE /* PushNotificationPayload.apns */,
 			);
 			path = "RecorderFramework-WatchExample Extension";
+			sourceTree = "<group>";
+		};
+		A2D6BBF01FB3D0D9003C6CE4 /* RecorderFramework-MacExample */ = {
+			isa = PBXGroup;
+			children = (
+				A2D6BBF11FB3D0D9003C6CE4 /* AppDelegate.swift */,
+				A2D6BBF31FB3D0D9003C6CE4 /* RegisterViewController.swift */,
+				A27A2FA11FB441B8000B3E41 /* EnterCodeViewController.swift */,
+				A27A2FA31FB44CE1000B3E41 /* HomeViewController.swift */,
+				A2D6BBF51FB3D0D9003C6CE4 /* Assets.xcassets */,
+				A2D6BBF71FB3D0D9003C6CE4 /* Main.storyboard */,
+				A2D6BBFA1FB3D0D9003C6CE4 /* Info.plist */,
+				A2D6BBFB1FB3D0D9003C6CE4 /* RecorderFramework_MacExample.entitlements */,
+			);
+			path = "RecorderFramework-MacExample";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -596,6 +647,26 @@
 			productReference = A2B2D1531FA876F400A1FACE /* RecorderFramework-WatchExample Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
+		A2D6BBEE1FB3D0D8003C6CE4 /* RecorderFramework-MacExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A2D6BBFC1FB3D0D9003C6CE4 /* Build configuration list for PBXNativeTarget "RecorderFramework-MacExample" */;
+			buildPhases = (
+				8D55160F85204CA6183683E7 /* [CP] Check Pods Manifest.lock */,
+				A2D6BBEB1FB3D0D8003C6CE4 /* Sources */,
+				A2D6BBEC1FB3D0D8003C6CE4 /* Frameworks */,
+				A2D6BBED1FB3D0D8003C6CE4 /* Resources */,
+				F417B401B3CEAF5D754A3BE1 /* [CP] Embed Pods Frameworks */,
+				9E03CB7B3E341A08BCAEE187 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "RecorderFramework-MacExample";
+			productName = "RecorderFramework-MacExample";
+			productReference = A2D6BBEF1FB3D0D8003C6CE4 /* RecorderFramework-MacExample.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -663,6 +734,11 @@
 							};
 						};
 					};
+					A2D6BBEE1FB3D0D8003C6CE4 = {
+						CreatedOnToolsVersion = 9.1;
+						DevelopmentTeam = UB5EDUN3Q5;
+						ProvisioningStyle = Manual;
+					};
 				};
 			};
 			buildConfigurationList = 607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "RecorderFramework" */;
@@ -683,6 +759,7 @@
 				A2B2D1461FA876F400A1FACE /* RecorderFramework-WatchExample */,
 				A2B2D1521FA876F400A1FACE /* RecorderFramework-WatchExample Extension */,
 				A21AD9141FB1EF1500BCDD1F /* RecorderFramework-TVExample */,
+				A2D6BBEE1FB3D0D8003C6CE4 /* RecorderFramework-MacExample */,
 			);
 		};
 /* End PBXProject section */
@@ -730,6 +807,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2B2D15F1FA876F400A1FACE /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A2D6BBED1FB3D0D8003C6CE4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A2D6BBF61FB3D0D9003C6CE4 /* Assets.xcassets in Resources */,
+				A2D6BBF91FB3D0D9003C6CE4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -858,6 +944,39 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RecorderFramework_Tests/Pods-RecorderFramework_Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		8D55160F85204CA6183683E7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RecorderFramework-MacExample-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9E03CB7B3E341A08BCAEE187 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RecorderFramework-MacExample/Pods-RecorderFramework-MacExample-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		9F00D3754B4D81D1C89D9F8A /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -976,6 +1095,26 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RecorderFramework_Tests/Pods-RecorderFramework_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		F417B401B3CEAF5D754A3BE1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-RecorderFramework-MacExample/Pods-RecorderFramework-MacExample-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire-macOS/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/RecorderFramework-macOS/RecorderFramework.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RecorderFramework.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RecorderFramework-MacExample/Pods-RecorderFramework-MacExample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1053,6 +1192,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A2D6BBEB1FB3D0D8003C6CE4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A27A2FA21FB441B8000B3E41 /* EnterCodeViewController.swift in Sources */,
+				A2D6BBF41FB3D0D9003C6CE4 /* RegisterViewController.swift in Sources */,
+				A2D6BBF21FB3D0D9003C6CE4 /* AppDelegate.swift in Sources */,
+				A27A2FA41FB44CE1000B3E41 /* HomeViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1104,6 +1254,14 @@
 				A2B2D14A1FA876F400A1FACE /* Base */,
 			);
 			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
+		A2D6BBF71FB3D0D9003C6CE4 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A2D6BBF81FB3D0D9003C6CE4 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1526,6 +1684,74 @@
 			};
 			name = Release;
 		};
+		A2D6BBFD1FB3D0D9003C6CE4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE8712C1D6E1BB79AA9FB6B9 /* Pods-RecorderFramework-MacExample.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = "RecorderFramework-MacExample/RecorderFramework_MacExample.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = UB5EDUN3Q5;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "RecorderFramework-MacExample/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codebluestudio.Recorder.macapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		A2D6BBFE1FB3D0D9003C6CE4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7020D5B4D20C656FA427624E /* Pods-RecorderFramework-MacExample.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = "RecorderFramework-MacExample/RecorderFramework_MacExample.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = UB5EDUN3Q5;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "RecorderFramework-MacExample/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codebluestudio.Recorder.macapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1579,6 +1805,15 @@
 			buildConfigurations = (
 				A2B2D16A1FA876F400A1FACE /* Debug */,
 				A2B2D16B1FA876F400A1FACE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A2D6BBFC1FB3D0D9003C6CE4 /* Build configuration list for PBXNativeTarget "RecorderFramework-MacExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A2D6BBFD1FB3D0D9003C6CE4 /* Debug */,
+				A2D6BBFE1FB3D0D9003C6CE4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

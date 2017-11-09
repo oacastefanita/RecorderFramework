@@ -6,7 +6,6 @@
 //  Copyright (c) 2015 Grif. All rights reserved.
 //
 
-import UIKit
 import Foundation
 
 @objc public enum StorageType : Int {

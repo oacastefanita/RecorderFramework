@@ -1,4 +1,7 @@
 use_frameworks!
+target 'RecorderFramework-MacExample’ do
+  pod 'RecorderFramework', :path => '../'
+end
 
 target 'RecorderFramework-TVExample’ do
   pod 'RecorderFramework', :path => '../'

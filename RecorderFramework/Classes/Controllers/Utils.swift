@@ -5,9 +5,6 @@
 //  Created by Grif on 24/04/15.
 //  Copyright (c) 2015 Grif. All rights reserved.
 //
-
-
-import UIKit
 #if os(iOS)
 import AddressBook
 #endif

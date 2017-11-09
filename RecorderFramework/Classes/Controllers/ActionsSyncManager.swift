@@ -6,8 +6,6 @@
 //  Copyright (c) 2015 Grif. All rights reserved.
 //
 
-import UIKit
-
 @objc public enum ActionType : Int {
     case deleteRecording
     case renameRecording
