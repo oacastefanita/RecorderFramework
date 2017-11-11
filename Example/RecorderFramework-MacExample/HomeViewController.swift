@@ -10,7 +10,7 @@ import Cocoa
 import RecorderFramework
 
 class HomeViewController: NSViewController {
-    
+    var selectedObject: AnyObject!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,28 +23,75 @@ class HomeViewController: NSViewController {
         }
     }
     
-    @IBAction func onGetFolders(_ sender:Any){
-        
+    @IBAction func onGetFolders(_ sender: Any) {
+        RecorderFrameworkManager.sharedInstance.getFolders({ (success, data) -> Void in
+            self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(rawValue: "showFoldersFromHome"), sender: self)
+        })
     }
-    @IBAction func onGetSettings(_ sender:Any){
-        
+    
+    @IBAction func onGetSettings(_ sender: Any) {
+        RecorderFrameworkManager.sharedInstance.getSettings({ (success, data) -> Void in
+            if success {
+                self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(rawValue: "showSettingsFromHome"), sender: self)
+            }
+            else {
+                
+            }
+        })
     }
-    @IBAction func onGetMessages(_ sender:Any){
-        
+    
+    @IBAction func onGetMessages(_ sender: Any) {
+        RecorderFrameworkManager.sharedInstance.getMessages({ (success, data) -> Void in
+            if success && data != nil {
+                
+            }
+            else if data != nil{
+                
+            }else{
+                
+            }
+        })
     }
-    @IBAction func onGetLanguages(_ sender:Any){
-        
+    
+    @IBAction func onGetLanguages(_ sender: Any) {
+        RecorderFrameworkManager.sharedInstance.getLanguages({ (success, data) -> Void in
+            if success {
+                self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(rawValue: "showLanguagesFromHome"), sender: self)
+            }
+            else {
+                
+            }
+        })
     }
-    @IBAction func onPhoneNumbers(_ sender:Any){
-        
+    
+    @IBAction func onGetPhoneNumbers(_ sender: Any) {
+        RecorderFrameworkManager.sharedInstance.getPhoneNumbers({ (success, data) -> Void in
+            if success {
+                self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(rawValue: "showPhoneNumbersFromHome"), sender: self)
+            }
+            else {
+                
+            }
+        })
     }
-    @IBAction func onGetProfile(_ sender:Any){
-        
+    
+    @IBAction func onGetProfile(_ sender: Any) {
+        RecorderFrameworkManager.sharedInstance.getProfile({ (success, data) -> Void in
+            if success {
+                self.selectedObject = data as AnyObject
+                self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(rawValue: "showProfileFromHome"), sender: self)
+            }
+            else {
+                
+            }
+        })
     }
-    @IBAction func onBuy(_ sender:Any){
-        
-    }
-    @IBAction func onSearch(_ sender:Any){
-        
+    
+    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+        if segue.identifier != nil{
+            if segue.identifier!.rawValue == "showTranslationsFromLanguages"{
+                //            (segue.destination as! DisplayViewController).object = selectedObject
+            }
+        }
     }
 }

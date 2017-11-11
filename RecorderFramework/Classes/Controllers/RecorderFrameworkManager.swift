@@ -108,11 +108,11 @@ public class RecorderFrameworkManager : NSObject {
     }
     
     public func register(_ number:String, completionHandler:((Bool, Any?) -> Void)?){
-        APIClient.sharedInstance.register(number as NSString, completionHandler: completionHandler)
+        APIClient.sharedInstance.register(number as! NSString, completionHandler: completionHandler)
     }
     
     public func sendVerificationCode(_ code:String, completionHandler:((Bool, Any?) -> Void)?) {
-        APIClient.sharedInstance.sendVerificationCode(code as NSString, completionHandler: completionHandler)
+        APIClient.sharedInstance.sendVerificationCode(code as! NSString, completionHandler: completionHandler)
     }
     
     public func getFolders(_ completionHandler:((Bool, Any?) -> Void)?) {

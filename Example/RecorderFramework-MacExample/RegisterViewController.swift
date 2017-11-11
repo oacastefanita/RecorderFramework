@@ -15,7 +15,7 @@ class RegisterViewController: NSViewController {
     @IBOutlet weak var btnDone: NSButton!
     
     @IBAction func onDone(_ sender:Any){
-        RecorderFrameworkManager.sharedInstance.register(self.txtPhone.stringValue, completionHandler: { (success, data) -> Void in
+        RecorderFrameworkManager.sharedInstance.register(self.txtPhone!.stringValue, completionHandler: { (success, data) -> Void in
 //            if success {
                 self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(rawValue: "showEnterCodeFromRegister"), sender: self)
 //            }
