@@ -166,9 +166,9 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, UIText
         file.lastName = txtLastName.text!
         file.firstName = txtFirstName.text!
         file.text = txtName.text
-        file.id = UUID().uuidString
         
         if btnUpdate.titleLabel?.text == "Done"{
+            file.id = UUID().uuidString
             doSaveCurrentRecording()
             self.alert(message: "Request sent")
             self.navigationController?.popViewController(animated: true)

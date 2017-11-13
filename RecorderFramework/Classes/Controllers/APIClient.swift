@@ -631,7 +631,7 @@ public class APIClient : NSObject {
             return
         }
         
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "id" : folderId, "pass" : pass]
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "id" : folderId, "pass" : pass, ]
         
         api.doRequest("update_folder", method: .post, parameters: parameters) { (success, data) in
             if success {

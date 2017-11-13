@@ -48,6 +48,8 @@
 		A284BB471FB82E9000D82F49 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A284BB461FB82E9000D82F49 /* SettingsViewController.swift */; };
 		A284BB491FB8457200D82F49 /* FoldersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A284BB481FB8457200D82F49 /* FoldersViewController.swift */; };
 		A284BB4B1FB8475400D82F49 /* TitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A284BB4A1FB8475400D82F49 /* TitleViewController.swift */; };
+		A284BB4D1FB84F3400D82F49 /* FilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A284BB4C1FB84F3400D82F49 /* FilesViewController.swift */; };
+		A284BB4F1FB8A00900D82F49 /* FileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A284BB4E1FB8A00900D82F49 /* FileViewController.swift */; };
 		A2931C281FB103C200B631E2 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2931C271FB103C200B631E2 /* SearchViewController.swift */; };
 		A297CD891FA8E669004E5B15 /* Pods_RecorderFramework_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A297CD8A1FA8E669004E5B15 /* Pods_RecorderFramework_Example.framework */; };
 		A2A6255C1FB1FD3E003714C8 /* EnterCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A625481FB1FD3C003714C8 /* EnterCodeViewController.swift */; };
@@ -204,6 +206,8 @@
 		A284BB461FB82E9000D82F49 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A284BB481FB8457200D82F49 /* FoldersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersViewController.swift; sourceTree = "<group>"; };
 		A284BB4A1FB8475400D82F49 /* TitleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleViewController.swift; sourceTree = "<group>"; };
+		A284BB4C1FB84F3400D82F49 /* FilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesViewController.swift; sourceTree = "<group>"; };
+		A284BB4E1FB8A00900D82F49 /* FileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileViewController.swift; sourceTree = "<group>"; };
 		A2931C271FB103C200B631E2 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		A297CD881FA8E648004E5B15 /* RecorderFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RecorderFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A297CD8A1FA8E669004E5B15 /* Pods_RecorderFramework_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_RecorderFramework_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -584,6 +588,8 @@
 				A284BB461FB82E9000D82F49 /* SettingsViewController.swift */,
 				A284BB481FB8457200D82F49 /* FoldersViewController.swift */,
 				A284BB4A1FB8475400D82F49 /* TitleViewController.swift */,
+				A284BB4C1FB84F3400D82F49 /* FilesViewController.swift */,
+				A284BB4E1FB8A00900D82F49 /* FileViewController.swift */,
 				A2D6BBF51FB3D0D9003C6CE4 /* Assets.xcassets */,
 				A2D6BBF71FB3D0D9003C6CE4 /* Main.storyboard */,
 				A2D6BBFA1FB3D0D9003C6CE4 /* Info.plist */,
@@ -790,6 +796,9 @@
 						DevelopmentTeam = UB5EDUN3Q5;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.Mac = {
+								enabled = 1;
+							};
 							com.apple.InAppPurchase = {
 								enabled = 1;
 							};
@@ -1261,6 +1270,7 @@
 			files = (
 				A2412DC41FB76D9F00B7EC7D /* SearchViewController.swift in Sources */,
 				A2412DD11FB7901700B7EC7D /* PhoneNumbersViewController.swift in Sources */,
+				A284BB4F1FB8A00900D82F49 /* FileViewController.swift in Sources */,
 				A27A2FA21FB441B8000B3E41 /* EnterCodeViewController.swift in Sources */,
 				A284BB4B1FB8475400D82F49 /* TitleViewController.swift in Sources */,
 				A284BB491FB8457200D82F49 /* FoldersViewController.swift in Sources */,
@@ -1272,6 +1282,7 @@
 				A2412DCF1FB788FD00B7EC7D /* ProfileViewController.swift in Sources */,
 				A2412DD31FB7925F00B7EC7D /* LanguagesViewController.swift in Sources */,
 				A2412DC61FB7857F00B7EC7D /* BuyViewController.swift in Sources */,
+				A284BB4D1FB84F3400D82F49 /* FilesViewController.swift in Sources */,
 				A284BB471FB82E9000D82F49 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

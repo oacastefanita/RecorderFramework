@@ -19,6 +19,7 @@ class EnterCodeViewController: NSViewController {
             if success {
                 APIClient.sharedInstance.mainSync { (success) -> Void in
                     if success {
+                        self.view.window?.close()
                         self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(rawValue: "showHomeFromEnterCode"), sender: self)
                     }
                 }

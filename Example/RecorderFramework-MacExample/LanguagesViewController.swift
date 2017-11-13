@@ -41,6 +41,7 @@ class LanguagesViewController: NSViewController, NSTableViewDelegate, NSTableVie
             if success {
                 self.selectedObject = data as AnyObject
                 self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(rawValue: "showTranslationsFromLanguages"), sender: self)
+                self.view.window?.close()
             }
             else {
                 

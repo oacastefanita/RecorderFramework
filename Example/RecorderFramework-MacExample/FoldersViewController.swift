@@ -43,13 +43,14 @@ class FoldersViewController: NSViewController, NSTableViewDelegate, NSTableViewD
         RecorderFrameworkManager.sharedInstance.getRecordings(RecorderFrameworkManager.sharedInstance.getFolders()[row].id, completionHandler: ({ (success, data) -> Void in
             
             self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(rawValue: "showFilesFromFolders"), sender: self)
+            self.view.window?.close()
         }))
     }
     
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         if segue.identifier != nil{
             if segue.identifier!.rawValue == "showFilesFromFolders"{
-//                (segue.destinationController as! FilesViewController).selectedFolder = selectedIndex
+                (segue.destinationController as! FilesViewController).selectedFolder = selectedIndex
             } else if segue.identifier!.rawValue == "createFolderFromFolders"{
                 (segue.destinationController as! TitleViewController).delegate = self
                 (segue.destinationController as! TitleViewController).placeholder = "Folder title"

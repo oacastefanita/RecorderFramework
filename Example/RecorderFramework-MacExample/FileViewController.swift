@@ -1,27 +1,27 @@
 //
 //  FileViewController.swift
-//  RecorderFramework_Example
+//  RecorderFramework-MacExample
 //
-//  Created by Stefanita Oaca on 26/10/2017.
+//  Created by Stefanita Oaca on 12/11/2017.
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import UIKit
+import Cocoa
 import RecorderFramework
 import AVFoundation
 
-class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudioRecorderDelegate, UITextFieldDelegate{
-    @IBOutlet weak var txtTags: UITextField!
-    @IBOutlet weak var txtNotes: UITextField!
-    @IBOutlet weak var txtEmail: UITextField!
-    @IBOutlet weak var txtPhoneNumber: UITextField!
-    @IBOutlet weak var txtLastName: UITextField!
-    @IBOutlet weak var txtFirstName: UITextField!
-    @IBOutlet weak var txtName: UITextField!
-    @IBOutlet weak var btnUpdate: UIButton!
-    @IBOutlet weak var recordingTimeLabel: UILabel!
-    @IBOutlet weak var btnRecord: UIButton!
-    @IBOutlet weak var scrollView: UIScrollView!
+class FileViewController: NSViewController, TitleViewControllerDelegater, AVAudioRecorderDelegate, NSTextFieldDelegate{
+    @IBOutlet weak var txtTags: NSTextField!
+    @IBOutlet weak var txtNotes: NSTextField!
+    @IBOutlet weak var txtEmail: NSTextField!
+    @IBOutlet weak var txtPhoneNumber: NSTextField!
+    @IBOutlet weak var txtLastName: NSTextField!
+    @IBOutlet weak var txtFirstName: NSTextField!
+    @IBOutlet weak var txtName: NSTextField!
+    @IBOutlet weak var btnUpdate: NSButton!
+    
+    @IBOutlet weak var btnRecord: NSButton!
+    @IBOutlet weak var recordingTimeLabel: NSTextField!
     
     var file: RecordItem!
     var folder: RecordFolder!
@@ -42,10 +42,9 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         if file == nil{
-            btnUpdate.setTitle("Done", for: .normal)
+            btnUpdate.title = "Done"
             file = RecordItem()
             file.id = "Delete"
-            checkPermission()
             folder.recordedItems.append(file)
             fileCreated = true
         }else{
@@ -66,44 +65,18 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
                         break
                     }
                 }
-                self.recordingTimeLabel.text = "Downloading"
+                self.recordingTimeLabel.stringValue = "Downloading"
                 RecorderFrameworkManager.sharedInstance.downloadAudioFile(file, toFolder: folder.id, completionHandler: { (success) in
-                    self.recordingTimeLabel.text = "Downloaded"
+                    self.recordingTimeLabel.stringValue = "Downloaded"
                     self.play()
                 })
             }
             else {
-                self.recordingTimeLabel.text = "Downloaded"
+                self.recordingTimeLabel.stringValue = "Downloaded"
                 self.play()
             }
         }
         fillView()
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(noti:)), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(noti:)), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
-    }
-    
-    func checkPermission(){
-        switch AVAudioSession.sharedInstance().recordPermission() {
-        case AVAudioSessionRecordPermission.granted:
-            isAudioRecordingGranted = true
-            break
-        case AVAudioSessionRecordPermission.denied:
-            isAudioRecordingGranted = false
-            break
-        case AVAudioSessionRecordPermission.undetermined:
-            AVAudioSession.sharedInstance().requestRecordPermission() { [unowned self] allowed in
-                DispatchQueue.main.async {
-                    if allowed {
-                        self.isAudioRecordingGranted = true
-                    } else {
-                        self.isAudioRecordingGranted = false
-                    }
-                }
-            }
-            break
-        default:
-            break
-        }
     }
     
     func play() {
@@ -131,44 +104,29 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func fillView(){
-        txtTags.text = file.tags
-        txtNotes.text = file.notes
-        txtEmail.text = file.email
-        txtPhoneNumber.text = file.phoneNumber
-        txtLastName.text = file.lastName
-        txtFirstName.text = file.firstName
-        txtName.text = file.text
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.endEditing(true)
-        return true
+        txtTags.stringValue = file.tags
+        txtNotes.stringValue = file.notes
+        txtEmail.stringValue = file.email
+        txtPhoneNumber.stringValue = file.phoneNumber
+        txtLastName.stringValue = file.lastName
+        txtFirstName.stringValue = file.firstName
+        txtName.stringValue = file.text
     }
     
     @IBAction func onRename(_ sender: Any) {
         titleType = 0
         placeholder = "new name id"
-        self.performSegue(withIdentifier: "titleFromFile", sender: self)
+        self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(rawValue: "titleFromFile"), sender: self)
     }
     
     @IBAction func onClone(_ sender: Any) {
         RecorderFrameworkManager.sharedInstance.cloneFile(entityId: file.id, completionHandler: { (success, data) -> Void in
             if success {
-                self.navigationController?.popViewController(animated: true)
-                self.alert(message: "Request sent")
+                self.view.window?.close()
             }
             else {
-                self.alert(message: (data as AnyObject).description)
+                
             }
         })
     }
@@ -176,53 +134,49 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
     @IBAction func onRecover(_ sender: Any) {
         titleType = 2
         placeholder = "item id"
-        self.performSegue(withIdentifier: "titleFromFile", sender: self)
+        self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(rawValue: "titleFromFile"), sender: self)
     }
     
     @IBAction func onMove(_ sender: Any) {
         titleType = 1
         placeholder = "Folder id"
-        self.performSegue(withIdentifier: "titleFromFile", sender: self)
+        self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(rawValue: "titleFromFile"), sender: self)
     }
     
     @IBAction func onUpdate(_ sender: Any) {
-        self.view.endEditing(true)
-        file.tags = txtTags.text!
-        file.notes = txtNotes.text!
-        file.email = txtEmail.text!
-        file.phoneNumber = txtPhoneNumber.text!
-        file.lastName = txtLastName.text!
-        file.firstName = txtFirstName.text!
-        file.text = txtName.text
+        file.tags = txtTags.stringValue
+        file.notes = txtNotes.stringValue
+        file.email = txtEmail.stringValue
+        file.phoneNumber = txtPhoneNumber.stringValue
+        file.lastName = txtLastName.stringValue
+        file.firstName = txtFirstName.stringValue
+        file.text = txtName.stringValue
         
-        if btnUpdate.titleLabel?.text == "Done"{
+    
+        if btnUpdate.title == "Done"{
             file.id = UUID().uuidString
             doSaveCurrentRecording()
-            self.alert(message: "Request sent")
-            self.navigationController?.popViewController(animated: true)
+            self.view.window?.close()
             return
         }
         
         let dict = NSMutableDictionary(dictionary: ["id":file.id, "f_name":file.firstName, "l_name":file.lastName, "email":file.email, "notes":file.notes, "phone":file.phoneNumber, "tags":file.tags])
         RecorderFrameworkManager.sharedInstance.updateRecordingInfo(file, fileInfo: dict)
-        self.navigationController?.popViewController(animated: true)
-        self.alert(message: "Request sent")
+        self.view.window?.close()
     }
     
     @IBAction func onDelete(_ sender: Any) {
         RecorderFrameworkManager.sharedInstance.deleteRecording(file, forever: true)
-        self.navigationController?.popViewController(animated: true)
-        self.alert(message: "Request sent")
+        self.view.window?.close()
     }
     
     @IBAction func onStar(_ sender: Any) {
         RecorderFrameworkManager.sharedInstance.star(true, entityId: file.id, isFile: true, completionHandler: { (success, data) -> Void in
             if success {
-                self.navigationController?.popViewController(animated: true)
-                self.alert(message: "Request sent")
+                self.view.window?.close()
             }
             else {
-                self.alert(message: (data as AnyObject).description)
+                
             }
         })
     }
@@ -231,41 +185,31 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
         if titleType == 0{
             file.text = title
             RecorderFrameworkManager.sharedInstance.renameRecording(file)
-            self.navigationController?.popViewController(animated: true)
-            self.alert(message: "Request sent")
+            self.view.window?.close()
         }else if titleType == 1{
             RecorderFrameworkManager.sharedInstance.moveRecording(file, folderId: title)
-            self.navigationController?.popViewController(animated: true)
-            self.alert(message: "Request sent")
+            self.view.window?.close()
         }else{
             RecorderFrameworkManager.sharedInstance.recoverRecording(file, folderId: title)
-            self.navigationController?.popViewController(animated: true)
-            self.alert(message: "Request sent")
+            self.view.window?.close()
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "titleFromFile"{
-            (segue.destination as! TitleViewController).delegate = self
-            (segue.destination as! TitleViewController).placeholder = placeholder
+    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+        if segue.identifier!.rawValue == "titleFromFile"{
+            (segue.destinationController as! TitleViewController).delegate = self
+            (segue.destinationController as! TitleViewController).placeholder = placeholder
         }
     }
     
-    @IBAction func audioRecorderAction(_ sender: UIButton) {
+    @IBAction func audioRecorderAction(_ sender: Any) {
         if recording{
-            btnRecord.setTitle("Record", for: .normal)
+            btnRecord.title = "Record"
             finishAudioRecording(success: true)
         }else{
-            if isAudioRecordingGranted {
-                btnRecord.setTitle("Stop", for: .normal)
-                //Create the session.
-                let session = AVAudioSession.sharedInstance()
-                
+//            if isAudioRecordingGranted {
+                btnRecord.title = "Stop"
                 do {
-                    //Configure the session for recording and playback.
-                    try session.setCategory(AVAudioSessionCategoryPlayAndRecord, with: .defaultToSpeaker)
-                    try session.setActive(true)
-                    //Set up a high-quality recording session.
                     let settings = [
                         AVFormatIDKey:Int(kAudioFormatLinearPCM),
                         AVSampleRateKey:44100.0,
@@ -289,7 +233,7 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
                 catch let error {
                     print("Error for start audio recording: \(error.localizedDescription)")
                 }
-            }
+//            }
         }
         recording = !recording
     }
@@ -314,7 +258,7 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
             let min = Int(audioRecorder.currentTime / 60)
             let sec = Int(audioRecorder.currentTime.truncatingRemainder(dividingBy: 60))
             let totalTimeString = String(format: "%02d:%02d:%02d", hr, min, sec)
-            recordingTimeLabel.text = totalTimeString
+            recordingTimeLabel.stringValue = totalTimeString
             audioRecorder.updateMeters()
         }
     }
@@ -353,22 +297,5 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
         ActionsSyncManager.sharedInstance.uploadRecording(file)
         AppPersistentData.sharedInstance.saveData()
     }
-    
-    @objc func keyboardWillHide(noti: Notification) {
-        let contentInsets = UIEdgeInsets.zero
-        scrollView.contentInset = contentInsets
-        scrollView.scrollIndicatorInsets = contentInsets
-    }
-    
-    
-    @objc func keyboardWillShow(noti: Notification) {
-        
-        guard let userInfo = noti.userInfo else { return }
-        guard var keyboardFrame: CGRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
-        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
-        
-        var contentInset:UIEdgeInsets = scrollView.contentInset
-        contentInset.bottom = keyboardFrame.size.height
-        scrollView.contentInset = contentInset
-    }
 }
+

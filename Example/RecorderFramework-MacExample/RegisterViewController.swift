@@ -16,12 +16,13 @@ class RegisterViewController: NSViewController {
     
     @IBAction func onDone(_ sender:Any){
         RecorderFrameworkManager.sharedInstance.register(self.txtPhone!.stringValue, completionHandler: { (success, data) -> Void in
-//            if success {
+            if success {
+                self.view.window?.close()
                 self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(rawValue: "showEnterCodeFromRegister"), sender: self)
-//            }
-//            else {
+            }
+            else {
 //                self.alert(message: (data as! AnyObject).description)
-//            }
+            }
         })
     }
     
