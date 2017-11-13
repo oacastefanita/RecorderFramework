@@ -7,31 +7,31 @@
 //
 
 
-public enum TagType : Int {
+enum TagType : Int {
     case label
     case important
     case note
     case photo
 }
 
-public class AudioTag: NSObject {
+class AudioTag: NSObject {
     public var type:TagType = TagType.label
     public var timeStamp:TimeInterval!
     public var duration:TimeInterval!
     public var arg:AnyObject!
 }
 
-public class AudioFileTagManager: NSObject {
-    public static let sharedInstance = AudioFileTagManager()
+class AudioFileTagManager: NSObject {
+    static let sharedInstance = AudioFileTagManager()
 
-    public var audioFileTags:NSMutableArray!
+    var audioFileTags:NSMutableArray!
     fileprivate var audioFilePath:String!
     fileprivate var audioMetadataFilePath:String!
-    public var waveRenderVals:NSArray!
+    var waveRenderVals:NSArray!
     
-    public var definedLabels:NSMutableArray!
+    var definedLabels:NSMutableArray!
     
-    public func removeMetadataFile(_ filePath:String){
+    func removeMetadataFile(_ filePath:String){
         let metaPath = filePath.components(separatedBy: ".")[filePath.components(separatedBy: ".").count - 2] + "_metadata.json"
         if(FileManager.default.fileExists(atPath: metaPath)) {
             do {
@@ -43,11 +43,11 @@ public class AudioFileTagManager: NSObject {
         }
     }
     
-    public func getMetadataFilePath(_ filePath:String) -> String{
+    func getMetadataFilePath(_ filePath:String) -> String{
         return filePath.components(separatedBy: ".")[filePath.components(separatedBy: ".").count - 2] + "_metadata.json"
     }
     
-    public func getPhotoFilePath(_ filePath:String,time:TimeInterval) -> String{
+    func getPhotoFilePath(_ filePath:String,time:TimeInterval) -> String{
         
         let seconds = Int(time)
         let milisec = Int((Float(time) - Float(seconds)) * 1000)
@@ -55,7 +55,7 @@ public class AudioFileTagManager: NSObject {
         return filePath.components(separatedBy: ".")[filePath.components(separatedBy: ".").count - 2] + newpath
     }
     
-    public func setupWithFile(_ filePath:String) {
+    func setupWithFile(_ filePath:String) {
         audioFilePath = filePath
         audioMetadataFilePath = filePath.components(separatedBy: ".")[filePath.components(separatedBy: ".").count - 2] + "_metadata.json"
         
@@ -122,7 +122,7 @@ public class AudioFileTagManager: NSObject {
         }
     }
     
-    public func saveToFile(){
+    func saveToFile(){
         let tags = NSMutableArray()
         for tag in audioFileTags {
             let newDict = NSMutableDictionary()
@@ -172,12 +172,12 @@ public class AudioFileTagManager: NSObject {
         outputStream?.close()
     }
     
-    public func updateWaveRenderVals(_ waveRenderVals:NSArray){
+    func updateWaveRenderVals(_ waveRenderVals:NSArray){
         self.waveRenderVals = waveRenderVals
         saveToFile();
     }
     
-    public func addLabel(_ timeStamp:TimeInterval, duration:TimeInterval, label:String!) {
+    func addLabel(_ timeStamp:TimeInterval, duration:TimeInterval, label:String!) {
         let newTag = AudioTag()
         newTag.type = TagType.label
         newTag.timeStamp = timeStamp
@@ -188,7 +188,7 @@ public class AudioFileTagManager: NSObject {
         saveToFile();
     }
     
-    public func addImportant(_ timeStamp:TimeInterval, duration:TimeInterval) {
+    func addImportant(_ timeStamp:TimeInterval, duration:TimeInterval) {
         let newTag = AudioTag()
         newTag.type = TagType.important
         newTag.timeStamp = timeStamp
@@ -198,7 +198,7 @@ public class AudioFileTagManager: NSObject {
         saveToFile();
     }
     
-    public func addNote(_ timeStamp:TimeInterval, duration:TimeInterval, note:String!) {
+    func addNote(_ timeStamp:TimeInterval, duration:TimeInterval, note:String!) {
         let newTag = AudioTag()
         newTag.type = TagType.note
         newTag.timeStamp = timeStamp
@@ -210,7 +210,7 @@ public class AudioFileTagManager: NSObject {
     }
 
     
-    public func addPhoto(_ timeStamp:TimeInterval, duration:TimeInterval, path:String!) {
+    func addPhoto(_ timeStamp:TimeInterval, duration:TimeInterval, path:String!) {
         let newTag = AudioTag()
         newTag.type = TagType.photo
         newTag.timeStamp = timeStamp

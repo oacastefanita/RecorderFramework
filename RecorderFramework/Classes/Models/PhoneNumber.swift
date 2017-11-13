@@ -51,6 +51,7 @@ public class PhoneNumber: NSObject, NSCoding {
             self.isDefault = NSString(string: value).boolValue
         }
     }
+    
     public func encode(with aCoder: NSCoder) {
         if let value = self.number {
             aCoder.encode(value, forKey: "number")

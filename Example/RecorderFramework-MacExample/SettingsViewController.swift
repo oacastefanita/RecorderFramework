@@ -23,9 +23,9 @@ class SettingsViewController: NSViewController{
     
     func loadViewData(){
         swcBeep.state = NSControl.StateValue(rawValue: RecorderFrameworkManager.sharedInstance.getUser().playBeep == true ? 1 : 0)
-        lblFilePermission.stringValue = lblFilePermission.stringValue + AppPersistentData.sharedInstance.filePermission
-        lblApp.stringValue = lblApp.stringValue + AppPersistentData.sharedInstance.app
-        lblCredits.stringValue = lblCredits.stringValue + "\(AppPersistentData.sharedInstance.credits!)"
+        lblFilePermission.stringValue = lblFilePermission.stringValue + RecorderFrameworkManager.sharedInstance.getFilePermission()!
+        lblApp.stringValue = lblApp.stringValue + RecorderFrameworkManager.sharedInstance.getApp()!
+        lblCredits.stringValue = lblCredits.stringValue + "\(RecorderFrameworkManager.sharedInstance.getCredits())"
     }
     
     @IBAction func onUpdate(_ sender: Any) {

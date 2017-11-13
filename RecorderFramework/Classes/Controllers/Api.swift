@@ -8,19 +8,19 @@
 
 import Alamofire
 
-open class Api: NSObject {
+class Api: NSObject {
     
     var baseURL:String
-    open var customHeaders:[String:String]?
+    var customHeaders:[String:String]?
     var authenticationRequest:Request!
     
-    public var completionHandlerLog:((String, String) -> Void)!
+    var completionHandlerLog:((String, String) -> Void)!
     
-    public init(baseURL:String) {
+    init(baseURL:String) {
         self.baseURL = baseURL
     }
     
-    open func downloadFile(_ fromURL:String, atPath:String, completionHandler:((Bool, String) -> Void)?) {
+    func downloadFile(_ fromURL:String, atPath:String, completionHandler:((Bool, String) -> Void)?) {
         let destination: DownloadRequest.DownloadFileDestination = { _, _ in
             let url = URL(fileURLWithPath: atPath)
             return (url, [.removePreviousFile, .createIntermediateDirectories])
@@ -41,7 +41,7 @@ open class Api: NSObject {
         }
     }
     
-    open func upload(_ toUrl:String, imagesFiles:[String], fieldNames:[String]? = nil, parameters:[String:Any]? = nil, mimeType:String = "audio/wav", completionHandler:((Bool, Any) -> Void)?) {
+    func upload(_ toUrl:String, imagesFiles:[String], fieldNames:[String]? = nil, parameters:[String:Any]? = nil, mimeType:String = "audio/wav", completionHandler:((Bool, Any) -> Void)?) {
         Alamofire.upload(multipartFormData: { (data) in
             var index = 0
             for filePath in imagesFiles {
@@ -92,7 +92,7 @@ open class Api: NSObject {
         }
     }
     
-    open func doRequest(_ url:String, method:HTTPMethod, parameters:[String : Any]!, storeAuthRequest:Bool = false, completionHandler:((Bool, [String : Any]?) -> Void)?) {
+    func doRequest(_ url:String, method:HTTPMethod, parameters:[String : Any]!, storeAuthRequest:Bool = false, completionHandler:((Bool, [String : Any]?) -> Void)?) {
         
         var jsonString = ""
         if parameters != nil {

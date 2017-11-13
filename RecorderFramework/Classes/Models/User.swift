@@ -21,7 +21,6 @@ public class User: NSObject, NSCoding {
         super.init()
     }
     
-    
     public required init?(coder aDecoder: NSCoder){
         if let value = aDecoder.decodeObject(forKey: "firstName") as? String {
             self.firstName = value

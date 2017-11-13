@@ -350,8 +350,8 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
         catch let error as NSError {
             print("Ooops! Something went wrong: \(error)")
         }
-        ActionsSyncManager.sharedInstance.uploadRecording(file)
-        AppPersistentData.sharedInstance.saveData()
+        RecorderFrameworkManager.sharedInstance.uploadRecording(file)
+        RecorderFrameworkManager.sharedInstance.saveData()
     }
     
     @objc func keyboardWillHide(noti: Notification) {

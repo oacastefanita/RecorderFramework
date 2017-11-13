@@ -5,9 +5,9 @@
 //  Created by Stefanita Oaca on 01/11/2017.
 //
 
-open class RecorderFactory: NSObject {
+class RecorderFactory: NSObject {
     
-    open class func createUserFromDict(_ dict: NSDictionary) -> User{
+    class func createUserFromDict(_ dict: NSDictionary) -> User{
         let object = User()
         
         if let value:String = dict.object(forKey: "f_name") as? String {
@@ -39,12 +39,12 @@ open class RecorderFactory: NSObject {
         return object
     }
     
-    open class func createDictFromUser(_ user: User) -> NSDictionary{
+    class func createDictFromUser(_ user: User) -> NSDictionary{
         let dict = NSMutableDictionary(dictionary: ["l_name":user.lastName ?? "", "f_name":user.firstName ?? "", "email":user.email ?? "", "max_length":user.maxLenght ?? "", "pic":user.imagePath ?? "", "play_beep":user.playBeep ?? "", "is_public":user.isPublic ?? ""])
         return dict
     }
 
-    open class func createRecordFolderFromDict(_ dict: NSDictionary) -> RecordFolder{
+    class func createRecordFolderFromDict(_ dict: NSDictionary) -> RecordFolder{
         let object = RecordFolder()
         
         if let value:String = dict.object(forKey: "name") as? String {
@@ -72,7 +72,7 @@ open class RecorderFactory: NSObject {
         return object
     }
     
-    open class func createDictFromRecordFolder(_ folder: RecordFolder) -> NSDictionary{
+    class func createDictFromRecordFolder(_ folder: RecordFolder) -> NSDictionary{
         let dict = NSMutableDictionary(dictionary: ["id":folder.id ?? "", "name":folder.title ?? "", "created":folder.created ?? "", "pass":folder.password ?? "", "folder_order":folder.folderOrder ?? ""])
         var array = [NSDictionary]()
         for file in folder.recordedItems{
@@ -82,7 +82,7 @@ open class RecorderFactory: NSObject {
         return dict
     }
     
-    open class func createRecordItemFromDict(_ dict: NSDictionary) -> RecordItem{
+    class func createRecordItemFromDict(_ dict: NSDictionary) -> RecordItem{
         let object = RecordItem()
         if let value:String = dict.object(forKey: "folderId") as? String {
             object.folderId = value
@@ -141,7 +141,7 @@ open class RecorderFactory: NSObject {
         return object
     }
     
-    open class func createDictFromRecordItem(_ file: RecordItem) -> NSDictionary{
+    class func createDictFromRecordItem(_ file: RecordItem) -> NSDictionary{
         let dict = NSDictionary(dictionary: ["folderId":file.folderId, "name":file.text, "id":file.id, "phone":file.phone, "access_number":file.accessNumber, "url":file.url, "share_url":file.shareUrl, "credits":file.credits, "duration":file.duration, "time":file.time,"f_name":file.firstName, "l_name":file.lastName, "email":file.email, "notes":file.notes, "phone":file.phoneNumber, "tags":file.tags])
         return dict
     }

@@ -32,7 +32,7 @@ class EnterCodeViewController: UIViewController,UITextFieldDelegate {
     @IBAction func onDone(_ sender: Any) {
         RecorderFrameworkManager.sharedInstance.sendVerificationCode(self.txtCode.text!, completionHandler: { (success, data) -> Void in
             if success {
-                APIClient.sharedInstance.mainSync { (success) -> Void in
+                RecorderFrameworkManager.sharedInstance.mainSync { (success) -> Void in
                     if success {
                         self.performSegue(withIdentifier: "showHomeFromEnterCode", sender: self)
                     }

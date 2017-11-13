@@ -11,10 +11,10 @@ import WatchConnectivity
 import CoreData
 import RecorderFramework
 
-public class WatchKitController: NSObject, WCSessionDelegate{
+class WatchKitController: NSObject, WCSessionDelegate{
     
     /// Singleton
-    public static let sharedInstance = WatchKitController()
+    static let sharedInstance = WatchKitController()
     
     /// Current watchkit session
     var session : WCSession?
@@ -27,22 +27,22 @@ public class WatchKitController: NSObject, WCSessionDelegate{
         self.activate()
     }
     
-    public func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?)
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?)
     {
         
     }
     
     #if os(iOS)
-    public func sessionDidBecomeInactive(_ session: WCSession) {
+    func sessionDidBecomeInactive(_ session: WCSession) {
     }
     
-    public func sessionDidDeactivate(_ session: WCSession) {
+    func sessionDidDeactivate(_ session: WCSession) {
         session.activate()
     }
     #endif
 
     /// Activate the watch session
-    public func activate(){
+    func activate(){
         if WCSession.isSupported() {    //  it is supported
             session = WCSession.default
             session!.delegate = self
@@ -65,7 +65,7 @@ public class WatchKitController: NSObject, WCSessionDelegate{
     /// Check if the session is active
     ///
     /// - Returns: true if current session is active
-    public func sessionActive() -> Bool{
+    func sessionActive() -> Bool{
         if !WCSession.isSupported(){
             return false
         }
@@ -77,7 +77,7 @@ public class WatchKitController: NSObject, WCSessionDelegate{
     }
 
     /// Add all folders to the context and send the new context
-    public func sendFolders(){
+    func sendFolders(){
         if !sessionActive(){
             return
         }
@@ -112,7 +112,7 @@ public class WatchKitController: NSObject, WCSessionDelegate{
     }
     
     /// Add user to the context and send the new context
-    public func sendUser(){
+    func sendUser(){
         if !sessionActive(){
             return
         }

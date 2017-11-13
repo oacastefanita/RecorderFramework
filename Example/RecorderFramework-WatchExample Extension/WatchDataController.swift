@@ -25,7 +25,7 @@ public class WatchData: NSObject,WCSessionDelegate {
     @available(watchOS 2.0, *)
     public func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]){
         if let user = applicationContext["user"] {
-            RecorderFrameworkManager.sharedInstance.setUser(RecorderFactory.createUserFromDict(user as! NSDictionary))
+            RecorderFrameworkManager.sharedInstance.setUser(RecorderFrameworkManager.sharedInstance.createUserFromDict(user as! NSDictionary))
         }
         if let key = applicationContext["api_key"] {
             RecorderFrameworkManager.sharedInstance.setApiKey(key as! String)
@@ -33,11 +33,11 @@ public class WatchData: NSObject,WCSessionDelegate {
         if let folders = applicationContext["folders"]{
             var foldersArray = Array<RecordFolder>()
             for folder in (folders as! Array<NSDictionary>){
-                foldersArray.append(RecorderFactory.createRecordFolderFromDict(folder))
+                foldersArray.append(RecorderFrameworkManager.sharedInstance.createRecordFolderFromDict(folder))
             }
             RecorderFrameworkManager.sharedInstance.setFolders(foldersArray)
         }
-        AppPersistentData.sharedInstance.saveData()
+        RecorderFrameworkManager.sharedInstance.saveData()
     }
 
     @available(watchOS 2.0, *)

@@ -89,7 +89,7 @@ class RecordInterfaceController: WKInterfaceController {
             print("Ooops! Something went wrong: \(error)")
         }
         RecordingsManager.sharedInstance.recordFolders[0].recordedItems.append(recItem)
-        ActionsSyncManager.sharedInstance.uploadRecording(recItem)
-        AppPersistentData.sharedInstance.saveData()
+        RecorderFrameworkManager.sharedInstance.uploadRecording(recItem)
+        RecorderFrameworkManager.sharedInstance.saveData()
     }
 }

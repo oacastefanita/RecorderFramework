@@ -9,33 +9,33 @@
 import Foundation
 
 
-public class AppPersistentData : NSObject {
-    @objc public static let sharedInstance = AppPersistentData()
+class AppPersistentData : NSObject {
+    @objc static let sharedInstance = AppPersistentData()
     
-    @objc public var phone:String!
-    @objc public var apiKey:String!
-    @objc public var verificationCode:String! //for testing
-    @objc public var notificationToken:String!
-    @objc public var invalidAPIKey = false
+    @objc var phone:String!
+    @objc var apiKey:String!
+    @objc var verificationCode:String! //for testing
+    @objc var notificationToken:String!
+    @objc var invalidAPIKey = false
     
     // settings
-    @objc public var user:User! = User()
-    @objc public var passOn = false
-    @objc public var filePermission:String!
+    @objc var user:User! = User()
+    @objc var passOn = false
+    @objc var filePermission:String!
     public var credits:Int!
-    @objc public var app:String!
+    @objc var app:String!
     
-    @objc public var phoneNumbers:Array<PhoneNumber>
-    @objc public var serverMessages:Array<ServerMessage>
+    @objc var phoneNumbers:Array<PhoneNumber>
+    @objc var serverMessages:Array<ServerMessage>
     
-    @objc public var justReseted = false
-    @objc public var free = false
+    @objc var justReseted = false
+    @objc var free = false
     
     // settings
-    @objc public var receivedNotification = false
-    @objc public var messageID:String!
+    @objc var receivedNotification = false
+    @objc var messageID:String!
     
-    override public init() {
+    override init() {
         phoneNumbers = Array<PhoneNumber>()
         serverMessages = Array<ServerMessage>()
         super.init()
@@ -74,7 +74,7 @@ public class AppPersistentData : NSObject {
         }
     }
     
-    @objc public func saveData() {
+    @objc func saveData() {
         let defaults = UserDefaults.standard
         
         if(phone != nil){
@@ -114,7 +114,7 @@ public class AppPersistentData : NSObject {
         defaults.synchronize()
     }
     
-    public func loadData() {
+    func loadData() {
         let defaults = UserDefaults.standard
         
         if let value:String = defaults.value(forKey: "phone") as? String {
@@ -175,11 +175,11 @@ public class AppPersistentData : NSObject {
         }
     }
     
-    public func registered() -> Bool {
+    func registered() -> Bool {
         return !(AppPersistentData.sharedInstance.phone == nil || AppPersistentData.sharedInstance.phone.isEmpty)
     }
     
-    public func verified() -> Bool {
+    func verified() -> Bool {
         return !(AppPersistentData.sharedInstance.apiKey == nil || AppPersistentData.sharedInstance.apiKey.isEmpty)
     }
 }

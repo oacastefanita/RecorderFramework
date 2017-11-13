@@ -13,11 +13,6 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
     
     @IBOutlet weak var txtPhone: UITextField!
     @IBOutlet weak var btnDone: UIButton!
-    
-    @IBOutlet weak var btnDone: NSButton!
-    @IBOutlet weak var txtPhone: NSTextField!
-    @IBOutlet weak var txtPhone: NSTextField!
-    @IBOutlet weak var onDone: NSButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.

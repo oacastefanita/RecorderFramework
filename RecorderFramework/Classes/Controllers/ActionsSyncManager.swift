@@ -31,7 +31,7 @@ public class Action : NSObject, NSCoding {
     @objc public var arg2:String!
     @objc public var arg3:NSMutableDictionary!
     
-    public var timeStamp:TimeInterval!
+    var timeStamp:TimeInterval!
     
     override public init() {
         id = UUID().uuidString
@@ -77,12 +77,12 @@ public class Action : NSObject, NSCoding {
     
 }
 
-public protocol CustomActionDelegate {
+protocol CustomActionDelegate {
     func handle(action:Action, completionHandler:((Bool, AnyObject?) -> Void)?)
 }
 
 
-@objc public class ActionsSyncManager : NSObject {
+@objc class ActionsSyncManager : NSObject {
     @objc public static let sharedInstance = ActionsSyncManager()
     
     @objc public var actions = [Action]()
@@ -91,7 +91,7 @@ public protocol CustomActionDelegate {
     
     var delegate:CustomActionDelegate!
     
-    override public init() {
+    override init() {
         super.init()
         #if os(iOS)
         AFNetworkReachabilityManager.shared().startMonitoring()
@@ -105,7 +105,7 @@ public protocol CustomActionDelegate {
     }
     
     // MARK: credits
-    public func buyCredits(_ credits:Int, reciept:String!) {
+    func buyCredits(_ credits:Int, reciept:String!) {
         let action = Action()
         action.timeStamp = Date().timeIntervalSince1970
         action.type = ActionType.buyCredits
@@ -118,7 +118,7 @@ public protocol CustomActionDelegate {
     }
     
     // MARK: folder actions
-    public func createFolder(_ recordFolder:RecordFolder) {
+    func createFolder(_ recordFolder:RecordFolder) {
         let action = Action()
         action.timeStamp = Date().timeIntervalSince1970
         action.type = ActionType.createFolder
@@ -131,7 +131,7 @@ public protocol CustomActionDelegate {
         //AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeFolderCreated);
     }
     
-    public func deleteFolder(_ recordFolder:RecordFolder, moveToFolder:String!) {
+    func deleteFolder(_ recordFolder:RecordFolder, moveToFolder:String!) {
         let action = Action()
         action.timeStamp = Date().timeIntervalSince1970
         action.type = ActionType.deleteFolder
@@ -150,7 +150,7 @@ public protocol CustomActionDelegate {
         //AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeFolderDeleted);
     }
     
-    public func renameFolder(_ recordFolder:RecordFolder) {
+    func renameFolder(_ recordFolder:RecordFolder) {
         let action = Action()
         action.timeStamp = Date().timeIntervalSince1970
         action.type = ActionType.renameFolder
@@ -164,7 +164,7 @@ public protocol CustomActionDelegate {
         //AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeFolderRenamed);
     }
     
-    public func addPasswordToFolder(_ recordFolder:RecordFolder) {
+    func addPasswordToFolder(_ recordFolder:RecordFolder) {
         let action = Action()
         action.timeStamp = Date().timeIntervalSince1970
         action.type = ActionType.addPasswordToFolder
@@ -180,7 +180,7 @@ public protocol CustomActionDelegate {
     
     
     // MARK: recordings actions
-    public func deleteRecording(_ recordItem:RecordItem, forever:Bool) {
+    func deleteRecording(_ recordItem:RecordItem, forever:Bool) {
         let action = Action()
         action.timeStamp = Date().timeIntervalSince1970
         action.type = ActionType.deleteRecording
@@ -201,7 +201,7 @@ public protocol CustomActionDelegate {
         //AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeRecordItemDeleted);
     }
     
-    public func deleteRecordings(_ recordItemIds:String, forever:Bool) {
+    func deleteRecordings(_ recordItemIds:String, forever:Bool) {
         let action = Action()
         action.timeStamp = Date().timeIntervalSince1970
         action.type = ActionType.deleteRecording
@@ -222,7 +222,7 @@ public protocol CustomActionDelegate {
         //AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeRecordItemDeleted);
     }
     
-    public func moveRecording(_ recordItem:RecordItem, folderId:String) {
+    func moveRecording(_ recordItem:RecordItem, folderId:String) {
         
         var okToAdd = false
         for iterateFolder in RecordingsManager.sharedInstance.recordFolders {
@@ -257,7 +257,7 @@ public protocol CustomActionDelegate {
         //AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeRecordItemMoved);
     }
     
-    public func recoverRecording(_ recordItem:RecordItem, folderId:String) {
+    func recoverRecording(_ recordItem:RecordItem, folderId:String) {
         let action = Action()
         action.timeStamp = Date().timeIntervalSince1970
         action.type = ActionType.recoverRecording
@@ -270,7 +270,7 @@ public protocol CustomActionDelegate {
         //AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeRecordItemMoved);
     }
     
-    public func renameRecording(_ recordItem:RecordItem) {
+    func renameRecording(_ recordItem:RecordItem) {
         let action = Action()
         action.timeStamp = Date().timeIntervalSince1970
         action.type = ActionType.renameRecording
@@ -284,7 +284,7 @@ public protocol CustomActionDelegate {
         //AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeRecordItemRenamed);
     }
     
-    @objc public func uploadRecording(_ recordItem:RecordItem) {
+    @objc func uploadRecording(_ recordItem:RecordItem) {
         let action = Action()
         action.timeStamp = Date().timeIntervalSince1970
         action.type = ActionType.uploadRecording
@@ -296,7 +296,7 @@ public protocol CustomActionDelegate {
         self.startProcessingActions()
     }
     
-    public func updateRecordingInfo(_ recordItem:RecordItem, fileInfo:NSMutableDictionary) {
+    func updateRecordingInfo(_ recordItem:RecordItem, fileInfo:NSMutableDictionary) {
         let action = Action()
         action.timeStamp = Date().timeIntervalSince1970
         action.type = ActionType.updateFileInfo
@@ -309,7 +309,7 @@ public protocol CustomActionDelegate {
         //AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeFolderReorder);
     }
     
-    public func updateUserProfile(_ user:User, userInfo:NSMutableDictionary) {
+    func updateUserProfile(_ user:User, userInfo:NSMutableDictionary) {
         let action = Action()
         action.timeStamp = Date().timeIntervalSince1970
         action.type = ActionType.updateUserProfile
@@ -321,7 +321,7 @@ public protocol CustomActionDelegate {
         //AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeFolderReorder);
     }
     
-    public func reorderFolders(_ parameters:NSMutableDictionary) {
+    func reorderFolders(_ parameters:NSMutableDictionary) {
         let action = Action()
         action.arg1 = "-1"
         action.timeStamp = Date().timeIntervalSince1970
@@ -332,7 +332,7 @@ public protocol CustomActionDelegate {
         self.startProcessingActions()
     }
     
-    public func customAction(arg1:String?, arg2:String?, arg3:NSMutableDictionary?) {
+    func customAction(arg1:String?, arg2:String?, arg3:NSMutableDictionary?) {
         let action = Action()
         action.arg1 = arg1
         action.arg2 = arg2
@@ -346,7 +346,7 @@ public protocol CustomActionDelegate {
     
     // MARK: processing
     
-    public func startProcessingActions() {
+    func startProcessingActions() {
         if AppPersistentData.sharedInstance.apiKey == nil {
             return
         }
@@ -366,7 +366,7 @@ public protocol CustomActionDelegate {
         //        }
     }
     
-    public func processActions( _ workingActions:[Action] ) {
+    func processActions( _ workingActions:[Action] ) {
         if workingActions.count == 0 {
             syncInProgress = false
             self.saveActions()
@@ -674,7 +674,7 @@ public protocol CustomActionDelegate {
         }
     }
     
-    public func removeAction(_ id:String) {
+    func removeAction(_ id:String) {
         var index = 0
         for action in actions {
             if action.id == id {
@@ -686,12 +686,12 @@ public protocol CustomActionDelegate {
     }
     
     
-    public func saveActions() {
+    func saveActions() {
         let data = NSKeyedArchiver.archivedData(withRootObject: actions)
         UserDefaults.standard.set(data, forKey: "actions")
     }
     
-    public func loadActions() {
+    func loadActions() {
         let defaults = UserDefaults.standard
         if let data = defaults.object(forKey: "actions") as? Data {
             actions = NSKeyedUnarchiver.unarchiveObject(with: data) as! [Action]
@@ -700,7 +700,7 @@ public protocol CustomActionDelegate {
     
     // MARK: helpers
     
-    public func getActionById(_ actionID:String) -> Action! {
+    func getActionById(_ actionID:String) -> Action! {
         for action in actions {
             if action.id == actionID {
                 return action

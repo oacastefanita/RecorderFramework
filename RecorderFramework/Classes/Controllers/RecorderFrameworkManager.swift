@@ -46,6 +46,14 @@ public class RecorderFrameworkManager : NSObject {
         ActionsSyncManager.sharedInstance.startProcessingActions()
     }
     
+    public func createUserFromDict(_ dict: NSDictionary) -> User{
+        return RecorderFactory.createUserFromDict(dict)
+    }
+    
+    public func createRecordFolderFromDict(_ dict: NSDictionary) -> RecordFolder{
+        return RecorderFactory.createRecordFolderFromDict(dict)
+    }
+    
     public func getUser() -> User{
         #if os(iOS)
         WatchKitController.sharedInstance.sendUser()
@@ -66,6 +74,18 @@ public class RecorderFrameworkManager : NSObject {
     
     public func setApiKey(_ key:String){
         AppPersistentData.sharedInstance.apiKey = key
+    }
+    
+    public func getFilePermission() -> String?{
+        return AppPersistentData.sharedInstance.filePermission
+    }
+    
+    public func getApp() -> String?{
+        return AppPersistentData.sharedInstance.app
+    }
+    
+    public func getCredits() -> Int{
+        return AppPersistentData.sharedInstance.credits
     }
     
     public func getApiKey() -> String?{
@@ -125,6 +145,10 @@ public class RecorderFrameworkManager : NSObject {
     
     public func getPhoneNumbers(_ completionHandler:((Bool, Any?) -> Void)?) {
         APIClient.sharedInstance.getPhoneNumbers(completionHandler)
+    }
+    
+    public func saveData(){
+        AppPersistentData.sharedInstance.saveData()
     }
     
     public func createFolder(_ name:String, localID:String, completionHandler:((Bool, Any?) -> Void)?){
@@ -277,5 +301,9 @@ public class RecorderFrameworkManager : NSObject {
     
     public func syncRecordingItem(_ recordItem:RecordItem, folder:RecordFolder) -> RecordItem {
         return RecordingsManager.sharedInstance.syncRecordingItem(recordItem, folder:folder)
+    }
+    
+    public func mainSync(_ completionHandler:((Bool) -> Void)?) {
+        APIClient.sharedInstance.mainSync(completionHandler)
     }
 }

@@ -34,10 +34,10 @@ class SettingsViewController: UIViewController{
     }
     
     func loadViewData(){
-        swcBeep.isOn = AppPersistentData.sharedInstance.user.playBeep
-        lblFilePermission.text = lblFilePermission.text! + AppPersistentData.sharedInstance.filePermission
-        lblApp.text = lblApp.text! + AppPersistentData.sharedInstance.app
-        lblCredits.text = lblCredits.text! + "\(AppPersistentData.sharedInstance.credits!)"
+        swcBeep.isOn = RecorderFrameworkManager.sharedInstance.getUser().playBeep        
+        lblFilePermission.text = lblFilePermission.text! + RecorderFrameworkManager.sharedInstance.getFilePermission()!
+        lblApp.text = lblApp.text! + RecorderFrameworkManager.sharedInstance.getApp()!
+        lblCredits.text = lblCredits.text! + "\(RecorderFrameworkManager.sharedInstance.getCredits())"
     }
     
     @IBAction func onUpdate(_ sender: Any) {

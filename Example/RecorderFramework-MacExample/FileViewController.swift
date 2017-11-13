@@ -294,8 +294,8 @@ class FileViewController: NSViewController, TitleViewControllerDelegater, AVAudi
         catch let error as NSError {
             print("Ooops! Something went wrong: \(error)")
         }
-        ActionsSyncManager.sharedInstance.uploadRecording(file)
-        AppPersistentData.sharedInstance.saveData()
+        RecorderFrameworkManager.sharedInstance.uploadRecording(file)
+        RecorderFrameworkManager.sharedInstance.saveData()
     }
 }
 

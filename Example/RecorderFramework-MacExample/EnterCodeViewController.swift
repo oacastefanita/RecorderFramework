@@ -17,7 +17,7 @@ class EnterCodeViewController: NSViewController {
     @IBAction func onDone(_ sender:Any){
         RecorderFrameworkManager.sharedInstance.sendVerificationCode(self.txtCode.stringValue, completionHandler: { (success, data) -> Void in
             if success {
-                APIClient.sharedInstance.mainSync { (success) -> Void in
+                RecorderFrameworkManager.sharedInstance.mainSync { (success) -> Void in
                     if success {
                         self.view.window?.close()
                         self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(rawValue: "showHomeFromEnterCode"), sender: self)
