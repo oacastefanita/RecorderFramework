@@ -19,8 +19,6 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, UIText
     @IBOutlet weak var txtFirstName: UITextField!
     @IBOutlet weak var txtName: UITextField!
     @IBOutlet weak var btnUpdate: UIButton!
-    @IBOutlet weak var recordingTimeLabel: UILabel!
-    @IBOutlet weak var btnRecord: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     
     var file: RecordItem!
@@ -64,14 +62,14 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, UIText
                         break
                     }
                 }
-                self.recordingTimeLabel.text = "Downloading"
+//                self.recordingTimeLabel.text = "Downloading"
                 RecorderFrameworkManager.sharedInstance.downloadAudioFile(file, toFolder: folder.id, completionHandler: { (success) in
-                    self.recordingTimeLabel.text = "Downloaded"
+//                    self.recordingTimeLabel.text = "Downloaded"
                     self.play()
                 })
             }
             else {
-                self.recordingTimeLabel.text = "Downloaded"
+//                self.recordingTimeLabel.text = "Downloaded"
                 self.play()
             }
         }
