@@ -7,14 +7,14 @@
 //
 
 
-enum TagType : Int {
+public enum TagType : Int {
     case label
     case important
     case note
     case photo
 }
 
-class AudioTag: NSObject {
+public class AudioTag: NSObject {
     public var type:TagType = TagType.label
     public var timeStamp:TimeInterval!
     public var duration:TimeInterval!
