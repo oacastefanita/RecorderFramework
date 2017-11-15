@@ -10,7 +10,7 @@ import Foundation
 
 
 public class AppPersistentData : NSObject {
-    @objc static let sharedInstance = AppPersistentData()
+    @objc public static let sharedInstance = AppPersistentData()
     
     @objc public var phone:String!
     @objc public var apiKey:String!
