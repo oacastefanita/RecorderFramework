@@ -315,7 +315,7 @@ public class RecorderFrameworkManager : NSObject {
     }
     
     /// Save data
-    public func saveData(){
+    @objc public func saveData(){
         AppPersistentData.sharedInstance.saveData()
     }
     
