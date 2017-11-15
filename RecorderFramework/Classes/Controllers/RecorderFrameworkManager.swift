@@ -14,7 +14,7 @@ public class RecorderFrameworkManager : NSObject {
         AppPersistentData.sharedInstance.loadData()
     }
     
-    func uploadProfilePicture(path:String, completionHandler:((Bool, Any?) -> Void)?) {
+    public func uploadProfilePicture(path:String, completionHandler:((Bool, Any?) -> Void)?) {
         APIClient.sharedInstance.uploadProfilePicture(path: path, completionHandler: completionHandler)
     }
     
