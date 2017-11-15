@@ -14,6 +14,14 @@ public class RecorderFrameworkManager : NSObject {
         AppPersistentData.sharedInstance.loadData()
     }
     
+    public func getAudioFileTags() -> NSMutableArray!{
+        return AudioFileTagManager.sharedInstance.audioFileTags
+    }
+    
+    public func updateToken(_ token:String, completionHandler:((Bool, Any?) -> Void)?) {
+        APIClient.sharedInstance.updateToken(token, completionHandler: completionHandler)
+    }
+    
     public func startProcessingActions(){
         ActionsSyncManager.sharedInstance.startProcessingActions()
     }
