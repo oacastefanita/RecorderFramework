@@ -14,44 +14,52 @@ public class RecorderFrameworkManager : NSObject {
         AppPersistentData.sharedInstance.loadData()
     }
     
-    func removeMetadataFile(_ filePath:String){
+    public func startProcessingActions(){
+        ActionsSyncManager.sharedInstance.startProcessingActions()
+    }
+    
+    public func updateLocalFiles(){
+        LocalFilesManager.sharedInstance.updateLocalFiles()
+    }
+    
+    public func removeMetadataFile(_ filePath:String){
         AudioFileTagManager.sharedInstance.removeMetadataFile(filePath)
     }
     
-    func getMetadataFilePath(_ filePath:String) -> String{
+    public func getMetadataFilePath(_ filePath:String) -> String{
         return AudioFileTagManager.sharedInstance.getMetadataFilePath(filePath)
     }
     
-    func getPhotoFilePath(_ filePath:String,time:TimeInterval) -> String{
+    public func getPhotoFilePath(_ filePath:String,time:TimeInterval) -> String{
         return AudioFileTagManager.sharedInstance.getPhotoFilePath(filePath, time:time)
     }
     
-    func setupWithFile(_ filePath:String) {
+    public func setupWithFile(_ filePath:String) {
         AudioFileTagManager.sharedInstance.setupWithFile(filePath)
     }
     
-    func saveToFile(){
+    public func saveToFile(){
         AudioFileTagManager.sharedInstance.saveToFile()
     }
     
-    func updateWaveRenderVals(_ waveRenderVals:NSArray){
+    public func updateWaveRenderVals(_ waveRenderVals:NSArray){
         AudioFileTagManager.sharedInstance.updateWaveRenderVals(waveRenderVals)
     }
     
-    func addLabel(_ timeStamp:TimeInterval, duration:TimeInterval, label:String!) {
+    public func addLabel(_ timeStamp:TimeInterval, duration:TimeInterval, label:String!) {
         AudioFileTagManager.sharedInstance.addLabel(timeStamp, duration: duration, label: label)
     }
     
-    func addImportant(_ timeStamp:TimeInterval, duration:TimeInterval) {
+    public func addImportant(_ timeStamp:TimeInterval, duration:TimeInterval) {
         AudioFileTagManager.sharedInstance.addImportant(timeStamp, duration: duration)
     }
     
-    func addNote(_ timeStamp:TimeInterval, duration:TimeInterval, note:String!) {
+    public func addNote(_ timeStamp:TimeInterval, duration:TimeInterval, note:String!) {
         AudioFileTagManager.sharedInstance.addNote(timeStamp, duration: duration, note: note)
     }
     
     
-    func addPhoto(_ timeStamp:TimeInterval, duration:TimeInterval, path:String!) {
+    public func addPhoto(_ timeStamp:TimeInterval, duration:TimeInterval, path:String!) {
         AudioFileTagManager.sharedInstance.addPhoto(timeStamp, duration: duration, path: path)
     }
     
@@ -293,6 +301,16 @@ public class RecorderFrameworkManager : NSObject {
     /// Save data
     public func saveData(){
         AppPersistentData.sharedInstance.saveData()
+    }
+    
+    /// Load data
+    public func loadData(){
+        AppPersistentData.sharedInstance.loadData()
+    }
+    
+    /// Clear data
+    public func clearRecordingsData(){
+        RecordingsManager.sharedInstance.clearData()
     }
     
     /// Create folder

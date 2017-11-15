@@ -9,31 +9,31 @@
 import Foundation
 
 
-class AppPersistentData : NSObject {
+public class AppPersistentData : NSObject {
     @objc static let sharedInstance = AppPersistentData()
     
-    @objc var phone:String!
-    @objc var apiKey:String!
-    @objc var verificationCode:String! //for testing
-    @objc var notificationToken:String!
-    @objc var invalidAPIKey = false
+    @objc public var phone:String!
+    @objc public var apiKey:String!
+    @objc public var verificationCode:String! //for testing
+    @objc public var notificationToken:String!
+    @objc public var invalidAPIKey = false
     
     // settings
-    @objc var user:User! = User()
-    @objc var passOn = false
-    @objc var filePermission:String!
+    @objc public var user:User! = User()
+    @objc public var passOn = false
+    @objc public var filePermission:String!
     public var credits:Int!
-    @objc var app:String!
+    @objc public var app:String!
     
-    @objc var phoneNumbers:Array<PhoneNumber>
-    @objc var serverMessages:Array<ServerMessage>
+    @objc public var phoneNumbers:Array<PhoneNumber>
+    @objc public var serverMessages:Array<ServerMessage>
     
-    @objc var justReseted = false
-    @objc var free = false
+    @objc public var justReseted = false
+    @objc public var free = false
     
     // settings
-    @objc var receivedNotification = false
-    @objc var messageID:String!
+    @objc public var receivedNotification = false
+    @objc public var messageID:String!
     
     override init() {
         phoneNumbers = Array<PhoneNumber>()
@@ -175,11 +175,11 @@ class AppPersistentData : NSObject {
         }
     }
     
-    func registered() -> Bool {
+    public func registered() -> Bool {
         return !(AppPersistentData.sharedInstance.phone == nil || AppPersistentData.sharedInstance.phone.isEmpty)
     }
     
-    func verified() -> Bool {
+    public func verified() -> Bool {
         return !(AppPersistentData.sharedInstance.apiKey == nil || AppPersistentData.sharedInstance.apiKey.isEmpty)
     }
 }
