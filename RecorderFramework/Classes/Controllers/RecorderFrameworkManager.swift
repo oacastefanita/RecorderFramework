@@ -13,6 +13,76 @@ public class RecorderFrameworkManager : NSObject {
         #endif
         AppPersistentData.sharedInstance.loadData()
     }
+    
+    func removeMetadataFile(_ filePath:String){
+        AudioFileTagManager.sharedInstance.removeMetadataFile(filePath)
+    }
+    
+    func getMetadataFilePath(_ filePath:String) -> String{
+        return AudioFileTagManager.sharedInstance.getMetadataFilePath(filePath)
+    }
+    
+    func getPhotoFilePath(_ filePath:String,time:TimeInterval) -> String{
+        return AudioFileTagManager.sharedInstance.getPhotoFilePath(filePath, time:time)
+    }
+    
+    func setupWithFile(_ filePath:String) {
+        AudioFileTagManager.sharedInstance.setupWithFile(filePath)
+    }
+    
+    func saveToFile(){
+        AudioFileTagManager.sharedInstance.saveToFile()
+    }
+    
+    func updateWaveRenderVals(_ waveRenderVals:NSArray){
+        AudioFileTagManager.sharedInstance.updateWaveRenderVals(waveRenderVals)
+    }
+    
+    func addLabel(_ timeStamp:TimeInterval, duration:TimeInterval, label:String!) {
+        AudioFileTagManager.sharedInstance.addLabel(timeStamp, duration: duration, label: label)
+    }
+    
+    func addImportant(_ timeStamp:TimeInterval, duration:TimeInterval) {
+        AudioFileTagManager.sharedInstance.addImportant(timeStamp, duration: duration)
+    }
+    
+    func addNote(_ timeStamp:TimeInterval, duration:TimeInterval, note:String!) {
+        AudioFileTagManager.sharedInstance.addNote(timeStamp, duration: duration, note: note)
+    }
+    
+    
+    func addPhoto(_ timeStamp:TimeInterval, duration:TimeInterval, path:String!) {
+        AudioFileTagManager.sharedInstance.addPhoto(timeStamp, duration: duration, path: path)
+    }
+    
+    /// Get current translations language
+    ///
+    /// - Returns: current translations language
+    public func getCurrentLanguage() -> String{
+        return TranslationManager.sharedInstance.currentLanguage
+    }
+    
+    /// Set current language
+    ///
+    /// - Parameter language: new language
+    public func setCurrentLanguage(_ language: String){
+        TranslationManager.sharedInstance.currentLanguage = language
+    }
+    
+    /// Get translations
+    ///
+    /// - Returns: NSDictionary containing translations
+    public func getTranslations() -> NSDictionary{
+        return TranslationManager.sharedInstance.translations
+    }
+    
+    /// Get languages
+    ///
+    /// - Returns: Array of Languge objects
+    public func getLanguages() -> Array<Language>{
+        return TranslationManager.sharedInstance.languages
+    }
+    
     /// Search Recordings
     ///
     /// - Parameter name: search string
@@ -154,25 +224,11 @@ public class RecorderFrameworkManager : NSObject {
         }
     }
     
-    /// Get translations
-    ///
-    /// - Returns: translations dictionary
-    public func getTranslations() -> NSDictionary{
-        return TranslationManager.sharedInstance.translations
-    }
-    
     /// Get Phone numbers
     ///
     /// - Returns: PhoneNumber objects array
     public func getPhoneNumbers() -> Array<PhoneNumber>{
         return AppPersistentData.sharedInstance.phoneNumbers
-    }
-    
-    /// Get Languages
-    ///
-    /// - Returns: Language objects array
-    public func getLanguages() -> Array<Language>{
-        return TranslationManager.sharedInstance.languages
     }
     
     /// Get folders
