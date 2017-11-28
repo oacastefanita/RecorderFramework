@@ -1083,8 +1083,7 @@ class APIClient : NSObject {
                                 
                                 APIClient.sharedInstance.downloadFile(url, localPath:metaPath, completionHandler: { (success) -> Void in
                                     if(success){
-                                        AudioFileTagManager.sharedInstance.setupWithFile(path)
-                                        recordItem.waveRenderVals = NSMutableArray(array: AudioFileTagManager.sharedInstance.waveRenderVals)
+                                        recordItem.setupWithFile(path)
                                         AppPersistentData.sharedInstance.saveData()
                                     }
                                 })
@@ -1676,6 +1675,41 @@ class APIClient : NSObject {
         if !FileManager.default.fileExists(atPath: path ){
             completionHandler!(false, nil)
             return
+        }       
+        
+        api.upload(API_BASE_URL + "create_meta_file", imagesFiles: [path], fieldNames: ["file"], parameters:parameters) { (success, retData) in
+            if success {
+                if let data = retData as? [String:Any] {
+                    if data["status"] != nil && (data["status"] as? String) != "ok" {
+                        if let strError = data["msg"] as? String {
+                            if completionHandler != nil {
+                                completionHandler!(false, strError.localized)
+                            }
+                        }
+                        else {
+                            if completionHandler != nil {
+                                completionHandler!(false, nil)
+                            }
+                        }
+                    }
+                    else {
+                        
+                        if completionHandler != nil {
+                            completionHandler!( true, nil)
+                        }
+                    }
+                }
+            }
+            else {
+                if completionHandler != nil {
+                    if retData is String {
+                        completionHandler!(success, retData)
+                    }
+                    else {
+                        completionHandler!(success, "Error occured while uploading file.")
+                    }
+                }
+            }
         }
     }
     
@@ -1704,7 +1738,7 @@ class APIClient : NSObject {
                 }
                 else {
                     if completionHandler != nil {
-                        completionHandler!( true, nil)
+                        completionHandler!( true, data?["meta_files"])
                     }
                 }
             }

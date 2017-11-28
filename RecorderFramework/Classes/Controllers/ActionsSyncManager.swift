@@ -21,6 +21,7 @@
     case custom
     case addPasswordToFolder
     case updateUserProfile
+    case uploadMetadata
 }
 
 public class Action : NSObject, NSCoding {
@@ -309,6 +310,18 @@ protocol CustomActionDelegate {
         //AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeFolderReorder);
     }
     
+    func updateRecordingMetadata(_ recordItem:RecordItem) {
+        let action = Action()
+        action.timeStamp = Date().timeIntervalSince1970
+        action.type = ActionType.uploadMetadata
+        action.arg1 = recordItem.id
+        actions.append(action)
+        
+        self.saveActions()
+        self.startProcessingActions()
+        //AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeFolderReorder);
+    }
+    
     func updateUserProfile(_ user:User, userInfo:NSMutableDictionary) {
         let action = Action()
         action.timeStamp = Date().timeIntervalSince1970
@@ -511,6 +524,36 @@ protocol CustomActionDelegate {
                 processActions(newActions)
             }
             break
+            
+        case ActionType.uploadMetadata:
+            var on = UserDefaults.standard.object(forKey: "3GSync") as? Bool
+            if(on == nil){
+                on = true
+            }
+            #if os(iOS)
+                if !(AFNetworkReachabilityManager.shared().isReachableViaWiFi || on!) {
+                    processActions(newActions)
+                    break
+                }
+            #endif
+            let recordItem = RecordingsManager.sharedInstance.getRecordingById(action!.arg1)
+            if recordItem != nil {
+                APIClient.sharedInstance.uploadMetadataFile(recordItem!, completionHandler: { (success, data) -> Void in
+                    if !success {
+                        self.actionsFailed += 1
+                    }
+                    else {
+                        self.removeAction(action!.id)
+                        self.saveActions()
+                    }
+                    self.processActions(newActions)
+                })
+            }
+            else {
+                self.removeAction(action!.id)
+                processActions(newActions)
+            }
+            break
         case ActionType.createFolder:
             let recordFolder = RecordingsManager.sharedInstance.getFolderByLinkedAction(action!.id)
             if recordFolder != nil {
@@ -611,7 +654,6 @@ protocol CustomActionDelegate {
                 NotificationCenter.default.post(name: Notification.Name(rawValue: kNotificationRecordingsUpdated), object: nil)
             })
             break
-            
         case ActionType.updateFileInfo:
             let recordItem = RecordingsManager.sharedInstance.getRecordingById(action!.arg1)
             if recordItem != nil {

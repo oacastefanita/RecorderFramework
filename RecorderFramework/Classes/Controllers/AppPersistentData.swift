@@ -175,10 +175,16 @@ public class AppPersistentData : NSObject {
         }
     }
     
+    /// Registered
+    ///
+    /// - Returns: boolean value if phone is registered
     public func registered() -> Bool {
         return !(AppPersistentData.sharedInstance.phone == nil || AppPersistentData.sharedInstance.phone.isEmpty)
     }
     
+    /// Verified
+    ///
+    /// - Returns: boolean value if phone is verified
     public func verified() -> Bool {
         return !(AppPersistentData.sharedInstance.apiKey == nil || AppPersistentData.sharedInstance.apiKey.isEmpty)
     }

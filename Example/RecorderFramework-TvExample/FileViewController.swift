@@ -10,7 +10,7 @@ import UIKit
 import RecorderFramework
 import AVFoundation
 
-class FileViewController: UIViewController, TitleViewControllerDelegater, UITextFieldDelegate{
+class FileViewController: UIViewController, TitleViewControllerDelegater{
     @IBOutlet weak var txtTags: UITextField!
     @IBOutlet weak var txtNotes: UITextField!
     @IBOutlet weak var txtEmail: UITextField!
@@ -120,11 +120,6 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, UIText
         txtName.text = file.text
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.endEditing(true)
-        return true
-    }
-    
     @IBAction func onRename(_ sender: Any) {
         titleType = 0
         placeholder = "new name id"
@@ -212,6 +207,7 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, UIText
             self.navigationController?.popViewController(animated: true)
             self.alert(message: "Request sent")
         }
+        RecorderFrameworkManager.sharedInstance.startProcessingActions()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

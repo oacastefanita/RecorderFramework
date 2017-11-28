@@ -14,70 +14,121 @@ public class RecorderFrameworkManager : NSObject {
         AppPersistentData.sharedInstance.loadData()
     }
     
+    /// Upload profile picture
+    ///
+    /// - Parameters:
+    ///   - path: picture path
+    ///   - completionHandler: block to be called upon receiving the server's response
     public func uploadProfilePicture(path:String, completionHandler:((Bool, Any?) -> Void)?) {
         APIClient.sharedInstance.uploadProfilePicture(path: path, completionHandler: completionHandler)
     }
     
+    /// Get recordings
+    ///
+    /// - Parameter completionHandler: block to be called upon receiving the server's response
     public func getRecordings(_ completionHandler:((Bool) -> Void)?) {
         APIClient.sharedInstance.getRecordings(completionHandler)
     }
     
+    /// Get audio file tags
+    ///
+    /// - Returns: Array containing AudiTag objects
     public func getAudioFileTags() -> NSMutableArray!{
         return AudioFileTagManager.sharedInstance.audioFileTags
     }
     
+    /// Update token
+    ///
+    /// - Parameters:
+    ///   - token: token string
+    ///   - completionHandler: block to be called upon receiving the server's response
     public func updateToken(_ token:String, completionHandler:((Bool, Any?) -> Void)?) {
         APIClient.sharedInstance.updateToken(token, completionHandler: completionHandler)
     }
     
+    /// Start processing actions
     public func startProcessingActions(){
         ActionsSyncManager.sharedInstance.startProcessingActions()
     }
     
+    /// Update local files
     public func updateLocalFiles(){
         LocalFilesManager.sharedInstance.updateLocalFiles()
     }
     
+    /// Remove metadata file
+    ///
+    /// - Parameter filePath: metadata file path
     public func removeMetadataFile(_ filePath:String){
         AudioFileTagManager.sharedInstance.removeMetadataFile(filePath)
     }
     
+    /// Get metadata file path
+    ///
+    /// - Parameter filePath: file path of the recording
+    /// - Returns: metadata file path
     public func getMetadataFilePath(_ filePath:String) -> String{
         return AudioFileTagManager.sharedInstance.getMetadataFilePath(filePath)
     }
     
-    public func getPhotoFilePath(_ filePath:String,time:TimeInterval) -> String{
-        return AudioFileTagManager.sharedInstance.getPhotoFilePath(filePath, time:time)
-    }
-    
+    /// Setup with file
+    ///
+    /// - Parameter filePath: filepath of the file
     public func setupWithFile(_ filePath:String) {
         AudioFileTagManager.sharedInstance.setupWithFile(filePath)
     }
     
+    /// Save to file
     public func saveToFile(){
         AudioFileTagManager.sharedInstance.saveToFile()
     }
     
+    /// Update wave render values
+    ///
+    /// - Parameter waveRenderVals: new wave render values
     public func updateWaveRenderVals(_ waveRenderVals:NSArray){
         AudioFileTagManager.sharedInstance.updateWaveRenderVals(waveRenderVals)
     }
     
-    public func addLabel(_ timeStamp:TimeInterval, duration:TimeInterval, label:String!) {
-        AudioFileTagManager.sharedInstance.addLabel(timeStamp, duration: duration, label: label)
-    }
-    
-    public func addImportant(_ timeStamp:TimeInterval, duration:TimeInterval) {
-        AudioFileTagManager.sharedInstance.addImportant(timeStamp, duration: duration)
-    }
-    
-    public func addNote(_ timeStamp:TimeInterval, duration:TimeInterval, note:String!) {
-        AudioFileTagManager.sharedInstance.addNote(timeStamp, duration: duration, note: note)
-    }
-    
-    
-    public func addPhoto(_ timeStamp:TimeInterval, duration:TimeInterval, path:String!) {
-        AudioFileTagManager.sharedInstance.addPhoto(timeStamp, duration: duration, path: path)
-    }
+//    /// Add label tag
+//    ///
+//    /// - Parameters:
+//    ///   - timeStamp: tag time stamp
+//    ///   - duration: tag duration
+//    ///   - label: label text
+//    public func addLabel(_ timeStamp:TimeInterval, duration:TimeInterval, label:String!) {
+//        AudioFileTagManager.sharedInstance.addLabel(timeStamp, duration: duration, label: label)
+//    }
+//    
+//    /// Add important tag
+//    ///
+//    /// - Parameters:
+//    ///   - timeStamp: tag time stamp
+//    ///   - duration: tag duration
+//    public func addImportant(_ timeStamp:TimeInterval, duration:TimeInterval) {
+//        AudioFileTagManager.sharedInstance.addImportant(timeStamp, duration: duration)
+//    }
+//    
+//    /// Add note tag
+//    ///
+//    /// - Parameters:
+//    ///   - timeStamp: tag time stamp
+//    ///   - duration: tag duration
+//    ///   - note: note text
+//    public func addNote(_ timeStamp:TimeInterval, duration:TimeInterval, note:String!) {
+//        AudioFileTagManager.sharedInstance.addNote(timeStamp, duration: duration, note: note)
+//    }
+//    
+//    
+//    /// Add Photo tag
+//    ///
+//    /// - Parameters:
+//    ///   - timeStamp: tag time stamp
+//    ///   - duration: tag duration
+//    ///   - path: photo path
+//    public func addPhoto(_ timeStamp:TimeInterval, duration:TimeInterval, path:String!) {
+//        AudioFileTagManager.sharedInstance.addPhoto(timeStamp, duration: duration, path: path)
+//    }
     
     /// Get current translations language
     ///
@@ -457,39 +508,39 @@ public class RecorderFrameworkManager : NSObject {
         APIClient.sharedInstance.uploadRecording(recordItem, completionHandler: completionHandler)
     }
     
-    /// <#Description#>
+    /// Download File
     ///
     /// - Parameters:
-    ///   - fileUrl: <#fileUrl description#>
-    ///   - localPath: <#localPath description#>
+    ///   - fileUrl: file url for download
+    ///   - localPath: local path of the file
     ///   - completionHandler: block to be called upon receiving the server's response
     public func downloadFile(_ fileUrl:String, localPath:String, completionHandler:((Bool) -> Void)?){
         APIClient.sharedInstance.downloadFile(fileUrl, localPath: localPath, completionHandler: completionHandler)
     }
     
-    /// <#Description#>
+    /// Download audio file
     ///
     /// - Parameters:
-    ///   - recordItem: <#recordItem description#>
-    ///   - toFolder: <#toFolder description#>
+    ///   - recordItem: the RecordItem object that the file belongs to
+    ///   - toFolder: RecordFolder that the RecordItem belongs to
     ///   - completionHandler: block to be called upon receiving the server's response
     public func downloadAudioFile(_ recordItem:RecordItem, toFolder:String, completionHandler:((Bool) -> Void)?) {
         APIClient.sharedInstance.downloadAudioFile(recordItem, toFolder: toFolder, completionHandler: completionHandler)
     }
     
-    /// <#Description#>
+    /// Update settings
     ///
     /// - Parameters:
-    ///   - playBeep: <#playBeep description#>
+    ///   - playBeep: Boolean indicator of playbeep value
     ///   - completionHandler: block to be called upon receiving the server's response
     public func updateSettings(_ playBeep:Bool, completionHandler:((Bool, Any?) -> Void)?) {
         APIClient.sharedInstance.updateSettings(playBeep, completionHandler: completionHandler)
     }
     
-    /// <#Description#>
+    /// Update user
     ///
     /// - Parameters:
-    ///   - free: <#free description#>
+    ///   - free: bollean indicator of free user
     ///   - completionHandler: block to be called upon receiving the server's response
     public func updateUser(_ free:Bool, completionHandler:((Bool, Any?) -> Void)?) {
         APIClient.sharedInstance.updateUser(free, completionHandler: completionHandler)
@@ -532,11 +583,11 @@ public class RecorderFrameworkManager : NSObject {
         APIClient.sharedInstance.getProfile(completionHandler)
     }
     
-    /// <#Description#>
+    /// Buy Credits
     ///
     /// - Parameters:
-    ///   - credits: <#credits description#>
-    ///   - reciept: <#reciept description#>
+    ///   - credits: number of credits
+    ///   - reciept: in app purchase id
     public func buyCredits(_ credits:Int, reciept:String!) {
         ActionsSyncManager.sharedInstance.buyCredits(credits, reciept:reciept)
     }
@@ -669,5 +720,46 @@ public class RecorderFrameworkManager : NSObject {
     /// - Parameter completionHandler: block to be called upon receiving the server's response
     public func mainSync(_ completionHandler:((Bool) -> Void)?) {
         APIClient.sharedInstance.mainSync(completionHandler)
+    }
+    
+    /// Get documents path
+    ///
+    /// - Returns: documents path string
+    public func getPath() -> String{
+        let fileManager = FileManager.default
+        var path = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)!.path + "/"
+        return path
+    }
+    
+    /// Get photo file path
+    ///
+    /// - Parameters:
+    ///   - filePath: recording file path
+    ///   - time: tag time
+    /// - Returns: string value of file path
+    public func getPhotoFilePath(_ filePath:String,time:TimeInterval) -> String{
+        return AudioFileTagManager.sharedInstance.getPhotoFilePath(filePath, time: time)
+    }
+    
+    /// Get photo file path
+    ///
+    /// - Parameters:
+    ///   - filePath: recording file path
+    ///   - time: tag time
+    ///   - index: image index
+    /// - Returns: string value of file path
+    public func getPhotoFilePath(_ filePath:String,time:TimeInterval, index: Int) -> String{
+        return AudioFileTagManager.sharedInstance.getPhotoFilePath(filePath, time: time, index: index)
+    }
+    
+    /// Update recording metadata
+    ///
+    /// - Parameter recordItem: record item to be updated
+    public func updateRecordingMetadata(_ recordItem:RecordItem) {
+        ActionsSyncManager.sharedInstance.updateRecordingMetadata(recordItem)
+    }
+    
+    public func downloadFile(_ fromURL:String, atPath:String, completionHandler:((Bool, String) -> Void)?) {
+        APIClient.sharedInstance.api.downloadFile(fromURL, atPath: atPath, completionHandler: completionHandler)
     }
 }

@@ -193,6 +193,7 @@ class FileViewController: NSViewController, TitleViewControllerDelegater, AVAudi
             RecorderFrameworkManager.sharedInstance.recoverRecording(file, folderId: title)
             self.view.window?.close()
         }
+        RecorderFrameworkManager.sharedInstance.startProcessingActions()
     }
     
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {

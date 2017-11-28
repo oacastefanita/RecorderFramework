@@ -7,18 +7,32 @@
 //
 
 
-public enum TagType : Int {
-    case label
-    case important
-    case note
-    case photo
+public enum TagType : String {
+    case note = "note"
+    case todo = "todo"
+    case date = "date"
+    case alert = "alert"
+    case images = "images"
+    case audio = "audio"
+    case video = "video"
+    case tags = "tags"
+    case beforeAfter = "beforeAfter"
+    case panorama = "panorama"
+    case productViewer = "productViewer"
+    case pageFlip = "pageFlip"
+    case location = "location"
+    case phoneNumber = "phoneNumber"
+    case socialMedia = "socialMedia"
+    case imageURL = "imageURL"
+    case htmlEmbed = "htmlEmbed"
 }
 
 public class AudioTag: NSObject {
-    public var type:TagType = TagType.label
+    public var type:TagType = TagType.note
     public var timeStamp:TimeInterval!
     public var duration:TimeInterval!
     public var arg:AnyObject!
+    public var arg2:AnyObject!
 }
 
 class AudioFileTagManager: NSObject {
@@ -52,6 +66,14 @@ class AudioFileTagManager: NSObject {
         let seconds = Int(time)
         let milisec = Int((Float(time) - Float(seconds)) * 1000)
         let newpath = String(format:"__%d_%d.png",seconds, milisec)
+        return filePath.components(separatedBy: ".")[filePath.components(separatedBy: ".").count - 2] + newpath
+    }
+    
+    func getPhotoFilePath(_ filePath:String,time:TimeInterval, index: Int) -> String{
+        
+        let seconds = Int(time)
+        let milisec = Int((Float(time) - Float(seconds)) * 1000)
+        let newpath = String(format:"__%d_%d_%d.png",seconds, milisec, index)
         return filePath.components(separatedBy: ".")[filePath.components(separatedBy: ".").count - 2] + newpath
     }
     
@@ -94,21 +116,9 @@ class AudioFileTagManager: NSObject {
                     newTag.timeStamp = (tag as AnyObject).object(forKey: "timeStamp") as! TimeInterval
                     newTag.duration = (tag as AnyObject).object(forKey: "duration") as! TimeInterval
                     newTag.arg = (tag as AnyObject).object(forKey:"arg") as AnyObject
-                    if((tag as AnyObject).object(forKey: "type") as! String == "Label")
+                    if let value = (tag as AnyObject).object(forKey: "type") as? String
                     {
-                        newTag.type = TagType.label
-                    }
-                    else if((tag as AnyObject).object(forKey: "type") as! String == "Important")
-                    {
-                        newTag.type = TagType.important
-                    }
-                    else if((tag as AnyObject).object(forKey: "type") as! String == "Note")
-                    {
-                        newTag.type = TagType.note
-                    }
-                    else if((tag as AnyObject).object(forKey: "type") as! String == "Photo")
-                    {
-                        newTag.type = TagType.photo
+                        newTag.type = TagType(rawValue: value)!
                     }
                     audioFileTags.add(newTag)
                 }
@@ -122,7 +132,7 @@ class AudioFileTagManager: NSObject {
         }
     }
     
-    func saveToFile(){
+    public func saveToFile(){
         let tags = NSMutableArray()
         for tag in audioFileTags {
             let newDict = NSMutableDictionary()
@@ -135,25 +145,11 @@ class AudioFileTagManager: NSObject {
             if((tag as! AudioTag).arg != nil){
                 newDict.setObject((tag as! AudioTag).arg, forKey: "arg" as NSCopying)
             }
-            
-            switch (tag as! AudioTag) .type
-            {
-                case TagType.label:
-                newDict.setObject("Label", forKey: "type" as NSCopying)
-                break
-                
-                case TagType.important:
-                newDict.setObject("Important", forKey: "type" as NSCopying)
-                break
-                
-                case TagType.note:
-                newDict.setObject("Note", forKey: "type" as NSCopying)
-                break
-                
-                case TagType.photo:
-                newDict.setObject("Photo", forKey: "type" as NSCopying)
-                break
+            if((tag as! AudioTag).arg != nil){
+                newDict.setObject((tag as! AudioTag).arg2, forKey: "arg2" as NSCopying)
             }
+            newDict.setObject((tag as! AudioTag).type.rawValue, forKey: "type" as NSCopying)
+
             tags.add(newDict);
         }
         
@@ -177,47 +173,47 @@ class AudioFileTagManager: NSObject {
         saveToFile();
     }
     
-    func addLabel(_ timeStamp:TimeInterval, duration:TimeInterval, label:String!) {
-        let newTag = AudioTag()
-        newTag.type = TagType.label
-        newTag.timeStamp = timeStamp
-        newTag.duration = duration
-        newTag.arg = label as AnyObject
-        
-        audioFileTags.add(newTag)
-        saveToFile();
-    }
-    
-    func addImportant(_ timeStamp:TimeInterval, duration:TimeInterval) {
-        let newTag = AudioTag()
-        newTag.type = TagType.important
-        newTag.timeStamp = timeStamp
-        newTag.duration = duration
-        
-        audioFileTags.add(newTag)
-        saveToFile();
-    }
-    
-    func addNote(_ timeStamp:TimeInterval, duration:TimeInterval, note:String!) {
-        let newTag = AudioTag()
-        newTag.type = TagType.note
-        newTag.timeStamp = timeStamp
-        newTag.duration = duration
-        newTag.arg = note as AnyObject
-        
-        audioFileTags.add(newTag)
-        saveToFile();
-    }
-
-    
-    func addPhoto(_ timeStamp:TimeInterval, duration:TimeInterval, path:String!) {
-        let newTag = AudioTag()
-        newTag.type = TagType.photo
-        newTag.timeStamp = timeStamp
-        newTag.duration = duration
-        newTag.arg = path as AnyObject
-        
-        audioFileTags.add(newTag)
-        saveToFile();
-    }
+//    func addLabel(_ timeStamp:TimeInterval, duration:TimeInterval, label:String!) {
+//        let newTag = AudioTag()
+//        newTag.type = TagType.label
+//        newTag.timeStamp = timeStamp
+//        newTag.duration = duration
+//        newTag.arg = label as AnyObject
+//        
+//        audioFileTags.add(newTag)
+//        saveToFile();
+//    }
+//    
+//    func addImportant(_ timeStamp:TimeInterval, duration:TimeInterval) {
+//        let newTag = AudioTag()
+//        newTag.type = TagType.important
+//        newTag.timeStamp = timeStamp
+//        newTag.duration = duration
+//        
+//        audioFileTags.add(newTag)
+//        saveToFile();
+//    }
+//    
+//    func addNote(_ timeStamp:TimeInterval, duration:TimeInterval, note:String!) {
+//        let newTag = AudioTag()
+//        newTag.type = TagType.note
+//        newTag.timeStamp = timeStamp
+//        newTag.duration = duration
+//        newTag.arg = note as AnyObject
+//        
+//        audioFileTags.add(newTag)
+//        saveToFile();
+//    }
+//
+//    
+//    func addPhoto(_ timeStamp:TimeInterval, duration:TimeInterval, path:String!) {
+//        let newTag = AudioTag()
+//        newTag.type = TagType.photo
+//        newTag.timeStamp = timeStamp
+//        newTag.duration = duration
+//        newTag.arg = path as AnyObject
+//        
+//        audioFileTags.add(newTag)
+//        saveToFile();
+//    }
 }

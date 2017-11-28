@@ -107,8 +107,7 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
     }
     
     func play() {
-        let fileManager = FileManager.default
-        var path = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)!.path
+        var path = RecorderFrameworkManager.sharedInstance.getPath()
         path += file.localFile
         
         if !FileManager.default.fileExists(atPath: path) {
@@ -141,7 +140,6 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
     }
     
     func fillView(){
-        txtTags.text = file.tags
         txtNotes.text = file.notes
         txtEmail.text = file.email
         txtPhoneNumber.text = file.phoneNumber
@@ -242,12 +240,19 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
             self.navigationController?.popViewController(animated: true)
             self.alert(message: "Request sent")
         }
+        RecorderFrameworkManager.sharedInstance.startProcessingActions()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "titleFromFile"{
             (segue.destination as! TitleViewController).delegate = self
             (segue.destination as! TitleViewController).placeholder = placeholder
+        } else if segue.identifier == "tagsFromFile"{
+            let fileManager = FileManager.default
+            var path = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)!.path
+            path += file.localFile
+            self.file.setupWithFile(path)
+            (segue.destination as! FileTagsViewController).file = self.file
         }
     }
     
