@@ -65,8 +65,8 @@ class TagViewController: UIViewController, UITextFieldDelegate, UIPickerViewDele
         case .date:
             if textField == txtArg1{
                 self.performSegue(withIdentifier: "showDatePickerFromTag", sender: self)
-                textField.endEditing(true)
             }
+            self.view.endEditing(true)
             break
         case .images:
             imageType = 0
@@ -74,6 +74,7 @@ class TagViewController: UIViewController, UITextFieldDelegate, UIPickerViewDele
             imagePicker.delegate = self
             imagePicker.sourceType = .photoLibrary
             self.present(imagePicker, animated: true, completion: nil)
+            self.view.endEditing(true)
             break
         case .beforeAfter:
             imageType = 1
@@ -81,6 +82,7 @@ class TagViewController: UIViewController, UITextFieldDelegate, UIPickerViewDele
             imagePicker.delegate = self
             imagePicker.sourceType = .photoLibrary
             self.present(imagePicker, animated: true, completion: nil)
+            self.view.endEditing(true)
             break
         case .panorama:
             imageType = 2
@@ -88,14 +90,17 @@ class TagViewController: UIViewController, UITextFieldDelegate, UIPickerViewDele
             imagePicker.delegate = self
             imagePicker.sourceType = .photoLibrary
             self.present(imagePicker, animated: true, completion: nil)
+            self.view.endEditing(true)
             break
         case .location:
             self.performSegue(withIdentifier: "showLocationFromTag", sender: self)
+            self.view.endEditing(true)
             break
         default:
             
             break
         }
+        
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -308,7 +313,7 @@ class TagViewController: UIViewController, UITextFieldDelegate, UIPickerViewDele
         
         RecorderFrameworkManager.sharedInstance.uploadMetadataImageFile(photoPath, fileId: fileId, completionHandler: { (success, data) -> Void in
             if success {
-                var url = RecorderFrameworkManager.sharedInstance.getPath() + self.filePath.components(separatedBy: ".").first! + "/" + "\(data!)"
+                var url = self.filePath.components(separatedBy: ".").first! + "/" + "\(data!)" + "." + photoPath.components(separatedBy: ".").last!
                 do {
                     try UIImageJPEGRepresentation(image, 0.5)!.write(to: URL(fileURLWithPath: url), options: .atomic)
                 } catch {

@@ -369,9 +369,6 @@ public class RecordItem: NSObject, NSSecureCoding {
                     audioFileTags.add(newTag)
                 }
             }
-            if (dict.object(forKey: "waveRenderVals") != nil){
-                self.waveRenderVals = dict.object(forKey: "waveRenderVals") as! NSArray
-            }
         }
         catch {
             

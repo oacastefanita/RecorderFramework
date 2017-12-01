@@ -770,4 +770,8 @@ public class RecorderFrameworkManager : NSObject {
     public func deleteMetadataFile(_ fileId:String, completionHandler:((Bool, Any?) -> Void)?){
         APIClient.sharedInstance.deleteMetadataFile(fileId, completionHandler:completionHandler)
     }
+    
+    public func folderForItem(_ itemId: String) -> RecordFolder{
+        return RecordingsManager.sharedInstance.folderForItem(itemId)
+    }
 }

@@ -40,6 +40,26 @@ public class RecordingsManager : NSObject {
         return nil
     }
     
+    func folderForItem(_ itemId: String) -> RecordFolder{
+        var folder:RecordFolder! = nil
+        
+        for iterate in RecordingsManager.sharedInstance.recordFolders {
+            if iterate.id == "-99" {
+                continue
+            }
+            for recItem in iterate.recordedItems {
+                if recItem.id == itemId {
+                    folder = iterate
+                    break
+                }
+            }
+            if folder != nil {
+                break
+            }
+        }
+        return folder
+    }
+    
     func deleteRecord(_ recordItem:RecordItem) {
         for folder in recordFolders {
             var index = 0

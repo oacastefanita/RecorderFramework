@@ -50,22 +50,7 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
             fileCreated = true
         }else{
             if !file.fileDownloaded || file.localFile == nil {
-                var folder:RecordFolder! = nil
-                
-                for iterate in RecordingsManager.sharedInstance.recordFolders {
-                    if iterate.id == "-99" {
-                        continue
-                    }
-                    for recItem in iterate.recordedItems {
-                        if recItem == file {
-                            folder = iterate
-                            break
-                        }
-                    }
-                    if folder != nil {
-                        break
-                    }
-                }
+                let folder = RecorderFrameworkManager.sharedInstance.folderForItem(file.id)
                 self.recordingTimeLabel.text = "Downloading"
                 RecorderFrameworkManager.sharedInstance.downloadAudioFile(file, toFolder: folder.id, completionHandler: { (success) in
                     self.recordingTimeLabel.text = "Downloaded"

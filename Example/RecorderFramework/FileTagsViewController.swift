@@ -92,6 +92,11 @@ class FileTagsViewController: UIViewController,UITableViewDelegate, UITableViewD
                 }
                 RecorderFrameworkManager.sharedInstance.updateRecordingMetadata(self.file)
                 RecorderFrameworkManager.sharedInstance.startProcessingActions()
+                let folder = RecorderFrameworkManager.sharedInstance.folderForItem(self.file.id)
+                RecorderFrameworkManager.sharedInstance.downloadAudioFile(self.file, toFolder: folder.id, completionHandler: { (success) in
+                    
+                })
+                self.navigationController?.popViewController(animated: true)
             })
         }else{
             RecorderFrameworkManager.sharedInstance.updateRecordingMetadata(self.file)
