@@ -185,13 +185,12 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
     
     @IBAction func onUpdate(_ sender: Any) {
         self.view.endEditing(true)
-        file.tags = txtTags.text!
-        file.notes = txtNotes.text!
-        file.email = txtEmail.text!
-        file.phoneNumber = txtPhoneNumber.text!
-        file.lastName = txtLastName.text!
-        file.firstName = txtFirstName.text!
-        file.text = txtName.text
+        file.notes = txtNotes.text ?? ""
+        file.email = txtEmail.text ?? ""
+        file.phoneNumber = txtPhoneNumber.text ?? ""
+        file.lastName = txtLastName.text ?? ""
+        file.firstName = txtFirstName.text ?? ""
+        file.text = txtName.text ?? ""
         
         if btnUpdate.titleLabel?.text == "Done"{
             file.id = UUID().uuidString

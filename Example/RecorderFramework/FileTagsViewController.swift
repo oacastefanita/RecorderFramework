@@ -67,6 +67,7 @@ class FileTagsViewController: UIViewController,UITableViewDelegate, UITableViewD
             (segue.destination as! TagViewController).delegate = self
             let path = RecorderFrameworkManager.sharedInstance.getPath()
             (segue.destination as! TagViewController).filePath = path + file.localFile
+            (segue.destination as! TagViewController).fileId = file.id
         } else if segue.identifier == "showViewTagFromTags"{
             (segue.destination as! ViewTagViewController).file = file
             (segue.destination as! ViewTagViewController).tag = selectedTag
@@ -81,7 +82,21 @@ class FileTagsViewController: UIViewController,UITableViewDelegate, UITableViewD
         }
         file.saveToFile()
         tableView.reloadData()
-        RecorderFrameworkManager.sharedInstance.updateRecordingMetadata(self.file)
-        RecorderFrameworkManager.sharedInstance.startProcessingActions()
+        if let id = self.file.metaFileId{
+            RecorderFrameworkManager.sharedInstance.deleteMetadataFile(self.file.metaFileId, completionHandler: { (success, data) -> Void in
+                if success {
+                    
+                }
+                else {
+                    self.alert(message: (data as! AnyObject).description)
+                }
+                RecorderFrameworkManager.sharedInstance.updateRecordingMetadata(self.file)
+                RecorderFrameworkManager.sharedInstance.startProcessingActions()
+            })
+        }else{
+            RecorderFrameworkManager.sharedInstance.updateRecordingMetadata(self.file)
+            RecorderFrameworkManager.sharedInstance.startProcessingActions()
+        }
+        
     }
 }

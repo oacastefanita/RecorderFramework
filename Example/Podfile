@@ -17,6 +17,7 @@ end
 
 target 'RecorderFramework_Example' do
   pod 'RecorderFramework', :path => '../'
+  pod 'FDWaveformView'
   target 'RecorderFramework_Tests' do
     inherit! :search_paths
   end

@@ -14,14 +14,9 @@ import MapKit
 import ModelIO
 import SceneKit
 import SceneKit.ModelIO
+import FDWaveformView
 
-
-struct ReadFile {
-    static var arrayFloatValues:[Float] = []
-    static var points:[CGFloat] = []
-}
-
-class ViewTagViewController: UIViewController,WaveHolderViewDelegate, UITableViewDelegate, UITableViewDataSource,UIDocumentInteractionControllerDelegate{
+class ViewTagViewController: UIViewController,UITableViewDelegate, UITableViewDataSource,UIDocumentInteractionControllerDelegate{
     
     var player: AVPlayer!
     var playerLayer: AVPlayerLayer!
@@ -31,14 +26,7 @@ class ViewTagViewController: UIViewController,WaveHolderViewDelegate, UITableVie
     
     var documentInteractionController: UIDocumentInteractionController!
     
-    var inputOsciloscopLayer:TPOscilloscopeLayer!
-    @IBOutlet weak var playerHolder: WaveHolderView!
-    @IBOutlet var playerCursor:PlayerCursor!
-    @IBOutlet weak var lblRecordItem: UILabel!
-    @IBOutlet weak var waveView: UIView!
-    @IBOutlet weak var waveScrollView: UIScrollView!
-    @IBOutlet weak var cursor: UIImageView!
-    
+    @IBOutlet weak var waveView: FDWaveformView!
     @IBOutlet weak var lblType: UILabel!
     @IBOutlet weak var lblArg1: UILabel!
     @IBOutlet weak var lblArg2: UILabel!
@@ -46,64 +34,34 @@ class ViewTagViewController: UIViewController,WaveHolderViewDelegate, UITableVie
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var sceneView: SCNView!
     var images = [UIImage]()
-    
+    var firstAppearance = true
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        playerCursor = PlayerCursor(frame:CGRect(x: 131, y: -14, width: 42, height: 72))
-        playerCursor.valueView.isHidden = true
-        playerHolder.addSubview(playerCursor)
-
-        playerHolder.cursor = self.cursor
-        playerHolder.scrollView = self.waveScrollView
-        playerHolder.delegate = self
-        
-        self.inputOsciloscopLayer = TPOscilloscopeLayer()
-        inputOsciloscopLayer.frame = CGRect(x:0,y: 0,width: playerHolder.frame.size.width,height: playerHolder.frame.size.height)
-        waveView.layer.addSublayer(inputOsciloscopLayer)
-        
         initAudio()
         
         self.lblType.text = "\(tag.type)"
     }
     
     func initAudio(){
-        let url = URL(string: RecorderFrameworkManager.sharedInstance.getPath() + self.file.localFile)
-        let file = try! AVAudioFile(forReading: url!)//Read File into AVAudioFile
-        let format = AVAudioFormat(commonFormat: .pcmFormatFloat32, sampleRate: file.fileFormat.sampleRate, channels: file.fileFormat.channelCount, interleaved: false)//Format of the file
-        
-        let buf = AVAudioPCMBuffer(pcmFormat: format!, frameCapacity: UInt32(file.length))//Buffer
-        try! file.read(into: buf!)//Read Floats
-        //Store the array of floats in the struct
-        let array = Array(UnsafeBufferPointer(start: buf?.floatChannelData?[0], count:Int("\(buf!.frameLength)")!))
-        ReadFile.arrayFloatValues = Array()
-        var max = Float(0.0)
-        var newArray = Array<Float>()
-        for item in array{
-            var newItem = abs(item)
-            if newItem == 0.0{
-                newItem = 0.000001
-            }
-            if max < newItem{
-                max = newItem
-            }
-            newArray.append(newItem)
+        let url = URL(fileURLWithPath: RecorderFrameworkManager.sharedInstance.getPath() + file.localFile)
+        self.waveView.audioURL = url
+        self.waveView.doesAllowScrubbing = true
+        self.waveView.doesAllowStretch = true
+        self.waveView.doesAllowScroll = true
+        self.waveView.wavesColor = UIColor.black
+        self.waveView.progressColor = UIColor.black
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if firstAppearance{
+            prepareView()
+            firstAppearance = false
         }
-        for item in newArray{
-            var newitem = 1 / (max / item)
-            if newitem >= 1{
-                newitem = 0.999999
-            }
-            ReadFile.arrayFloatValues.append(newitem * 10)
-            print(newitem)
-        }
-        
-        showWaves()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        prepareView()
     }
     
     override func didReceiveMemoryWarning() {
@@ -115,34 +73,18 @@ class ViewTagViewController: UIViewController,WaveHolderViewDelegate, UITableVie
         
     }
     
-    func showWaves() {
-        cursor.frame = CGRect(x: 0,y: cursor.frame.origin.y,width: cursor.frame.size.width,height: cursor.frame.size.height)
-        waveScrollView.contentOffset = CGPoint(x: 0,y: 0)
-        
-        if ReadFile.arrayFloatValues != nil {
-            self.inputOsciloscopLayer.renderVals = ReadFile.arrayFloatValues as! [Any]
-            
-            self.inputOsciloscopLayer.setNeedsDisplay()
-            if inputOsciloscopLayer.renderVals != nil && inputOsciloscopLayer.renderVals.count > 0 {
-                playerHolder.maxXPosition = Int(Float(inputOsciloscopLayer.renderVals.count) * 0.5)
-            }
-        }
-    }
-    
-    func cursorMoved() {
-        
-    }
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return images.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "imageCell", for: indexPath)
+        cell.imageView?.image = images[indexPath.row]
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -194,7 +136,16 @@ class ViewTagViewController: UIViewController,WaveHolderViewDelegate, UITableVie
             self.lblArg2.isHidden = true
             break
         case .images:
-            
+            self.lblArg1.isHidden = true
+            self.lblArg2.isHidden = true
+            for id in (tag.arg as! String).components(separatedBy: ","){
+                var url = RecorderFrameworkManager.sharedInstance.getPath() + file.localFile.components(separatedBy: ".").first! + "/" + id
+                if let image = UIImage(contentsOfFile:url){
+                    images.append(image)
+                }
+            }
+            self.tableView.isHidden = false
+            tableView.reloadData()
             break
         case .audio:
         
@@ -251,7 +202,18 @@ class ViewTagViewController: UIViewController,WaveHolderViewDelegate, UITableVie
             self.lblArg2.isHidden = true
             break
         case .beforeAfter:
-            
+            self.lblArg1.isHidden = true
+            self.lblArg2.isHidden = true
+            self.tableView.isHidden = false
+            var url1 = RecorderFrameworkManager.sharedInstance.getPath() + file.localFile.components(separatedBy: ".").first! + "/" + (tag.arg as? String)!
+            var url2 = RecorderFrameworkManager.sharedInstance.getPath() + file.localFile.components(separatedBy: ".").first! + "/" + (tag.arg2 as? String)!
+            if let image = UIImage(contentsOfFile:url1){
+                images.append(image)
+            }
+            if let image = UIImage(contentsOfFile:url2){
+                images.append(image)
+            }
+            tableView.reloadData()
             break
         case .panorama:
             self.performSegue(withIdentifier: "showPanoramaViewFromTag", sender: self)
@@ -259,13 +221,13 @@ class ViewTagViewController: UIViewController,WaveHolderViewDelegate, UITableVie
         case .productViewer:
             if self.tag.arg != nil{
                 self.lblArg1.text = self.tag.arg as! String
-                RecorderFrameworkManager.sharedInstance.downloadFile(self.tag.arg as! String, atPath: RecorderFrameworkManager.sharedInstance.getPath() + "3d.obj", completionHandler: { (success, data) -> Void in
+                RecorderFrameworkManager.sharedInstance.downloadFile(self.tag.arg as! String, atPath: RecorderFrameworkManager.sharedInstance.getPath() + "/3d.obj", completionHandler: { (success, data) -> Void in
                     if success {
-                        let url = URL(string: RecorderFrameworkManager.sharedInstance.getPath() + "3d.obj")
-                        
+                        let url = URL(string: RecorderFrameworkManager.sharedInstance.getPath() + "/3d.obj")
                         let asset = MDLAsset(url:url!)
                         guard let object = asset.object(at: 0) as? MDLMesh else {
-                            fatalError("Failed to get mesh from asset.")
+//                            fatalError("Failed to get mesh from asset.")
+                            return
                         }
                         let scene = SCNScene()
                         let node = SCNNode(mdlObject: object)
@@ -288,9 +250,9 @@ class ViewTagViewController: UIViewController,WaveHolderViewDelegate, UITableVie
         case .pageFlip:
             if self.tag.arg != nil{
                 self.lblArg1.text = self.tag.arg as! String
-                RecorderFrameworkManager.sharedInstance.downloadFile(self.tag.arg as! String, atPath: RecorderFrameworkManager.sharedInstance.getPath() + "file.pdf", completionHandler: { (success, data) -> Void in
+                RecorderFrameworkManager.sharedInstance.downloadFile(self.tag.arg as! String, atPath: RecorderFrameworkManager.sharedInstance.getPath() + "/file.pdf", completionHandler: { (success, data) -> Void in
                     if success {
-                        let url = URL(fileURLWithPath: RecorderFrameworkManager.sharedInstance.getPath() + "file.pdf")
+                        let url = URL(fileURLWithPath: RecorderFrameworkManager.sharedInstance.getPath() + "/file.pdf")
                         
                         self.documentInteractionController = UIDocumentInteractionController(url: url)
                         self.documentInteractionController?.delegate = self
@@ -303,6 +265,7 @@ class ViewTagViewController: UIViewController,WaveHolderViewDelegate, UITableVie
             }else{
                 self.lblArg1.text = "missing argument"
             }
+            self.lblArg2.isHidden = true
             break
         case .location:
             if let string = self.tag.arg as? String{
@@ -323,7 +286,7 @@ class ViewTagViewController: UIViewController,WaveHolderViewDelegate, UITableVie
             }else{
                 self.lblArg1.text = "missing argument"
             }
-            
+            self.lblArg2.isHidden = true
             break
         case .phoneNumber:
             if self.tag.arg != nil{

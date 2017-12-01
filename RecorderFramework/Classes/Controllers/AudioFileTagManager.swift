@@ -116,6 +116,7 @@ class AudioFileTagManager: NSObject {
                     newTag.timeStamp = (tag as AnyObject).object(forKey: "timeStamp") as! TimeInterval
                     newTag.duration = (tag as AnyObject).object(forKey: "duration") as! TimeInterval
                     newTag.arg = (tag as AnyObject).object(forKey:"arg") as AnyObject
+                    newTag.arg2 = (tag as AnyObject).object(forKey:"arg2") as AnyObject
                     if let value = (tag as AnyObject).object(forKey: "type") as? String
                     {
                         newTag.type = TagType(rawValue: value)!
@@ -145,7 +146,7 @@ class AudioFileTagManager: NSObject {
             if((tag as! AudioTag).arg != nil){
                 newDict.setObject((tag as! AudioTag).arg, forKey: "arg" as NSCopying)
             }
-            if((tag as! AudioTag).arg != nil){
+            if((tag as! AudioTag).arg2 != nil){
                 newDict.setObject((tag as! AudioTag).arg2, forKey: "arg2" as NSCopying)
             }
             newDict.setObject((tag as! AudioTag).type.rawValue, forKey: "type" as NSCopying)

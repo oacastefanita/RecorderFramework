@@ -21,6 +21,7 @@ class TagViewController: UIViewController, UITextFieldDelegate, UIPickerViewDele
     var data = Array<TagType>()
     var filePath: String!
     var maxImages = 0
+    var fileId: String!
     @IBOutlet weak var txtTime: UITextField!
     @IBOutlet weak var txtDureation: UITextField!
     @IBOutlet weak var txtArg1: UITextField!
@@ -298,19 +299,37 @@ class TagViewController: UIViewController, UITextFieldDelegate, UIPickerViewDele
         if self.tag.arg2 == nil{
             self.tag.arg2 = "" as AnyObject
         }
-        
         let photoPath = RecorderFrameworkManager.sharedInstance.getPhotoFilePath(filePath, time: TimeInterval(Double(txtTime.text!)!), index:index)
-        if maxImages == 2 && index == 0 && (self.tag.arg as! String).count > 0{
-            self.tag.arg2 = ((self.tag.arg2 as! String) + ((self.tag.arg2 as! String) == "" ? "":",") + photoPath) as AnyObject
-        }else{
-            self.tag.arg = ((self.tag.arg as! String) + ((self.tag.arg as! String) == "" ? "":",") + photoPath) as AnyObject
-        }
-        
         do {
             try UIImageJPEGRepresentation(image, 0.5)!.write(to: URL(fileURLWithPath: photoPath), options: .atomic)
         } catch {
             print(error)
         }
+        
+        RecorderFrameworkManager.sharedInstance.uploadMetadataImageFile(photoPath, fileId: fileId, completionHandler: { (success, data) -> Void in
+            if success {
+                var url = RecorderFrameworkManager.sharedInstance.getPath() + self.filePath.components(separatedBy: ".").first! + "/" + "\(data!)"
+                do {
+                    try UIImageJPEGRepresentation(image, 0.5)!.write(to: URL(fileURLWithPath: url), options: .atomic)
+                } catch {
+                    print(error)
+                }
+                if self.maxImages == 2 && index == 0 && (self.tag.arg as! String).count > 0{
+                    self.tag.arg2 = ("\(data!)" + "." + photoPath.components(separatedBy: ".").last!) as AnyObject
+                    self.txtArg2.text = "\(data!)" + "." + photoPath.components(separatedBy: ".").last!
+                }else{
+                    self.txtArg1.text = (self.txtArg1.text ?? "") + ","
+                    if self.txtArg1.text?.characters.count == 1{
+                        self.txtArg1.text = ""
+                    }
+                    self.txtArg1.text = self.txtArg1.text! + "\(data!)" + "." + photoPath.components(separatedBy: ".").last!
+                    self.tag.arg = self.txtArg1.text as AnyObject
+                }
+            }
+            else {
+                self.alert(message: (data as! AnyObject).description)
+            }
+        })
     }
     
     func selectedLocation(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {

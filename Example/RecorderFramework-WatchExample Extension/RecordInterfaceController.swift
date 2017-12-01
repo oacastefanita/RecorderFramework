@@ -72,7 +72,7 @@ class RecordInterfaceController: WKInterfaceController {
         let sharedContainer = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)
         let oldPath = sharedContainer?.appendingPathComponent("Recording1.wav")
         
-        var newPath = "/" + (RecordingsManager.sharedInstance.recordFolders.first?.title)! + "/" + recItem.id
+        var newPath = (RecordingsManager.sharedInstance.recordFolders.first?.title)! + "/" + recItem.id
         if !FileManager.default.fileExists(atPath: (sharedContainer?.path)! + newPath) {
             do {
                 try FileManager.default.createDirectory(atPath: (sharedContainer?.path)! + newPath, withIntermediateDirectories: true, attributes: nil)

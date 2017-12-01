@@ -55,7 +55,7 @@ public class RecordItem: NSObject, NSSecureCoding {
     @objc public var audioFileTags:NSMutableArray!
     fileprivate var audioFilePath:String!
     fileprivate var audioMetadataFilePath:String!
-    
+    @objc public var metaFileId: String!
     override public init() {
         super.init()
     }
@@ -150,6 +150,9 @@ public class RecordItem: NSObject, NSSecureCoding {
         if let value = aDecoder.decodeObject(forKey: "fileData") as? Data {
             self.fileData = value
         }
+        if let value = aDecoder.decodeObject(forKey: "metaFileId") as? String {
+            self.metaFileId = value
+        }
     }
     
      public func encode(with aCoder: NSCoder) {
@@ -237,6 +240,9 @@ public class RecordItem: NSObject, NSSecureCoding {
         if let value = self.fileData {
             aCoder.encode(value, forKey: "fileData")
         }
+        if let value = self.metaFileId {
+            aCoder.encode(value, forKey: "metaFileId")
+        }
     }
     
     static public  var supportsSecureCoding : Bool {
@@ -263,6 +269,7 @@ public class RecordItem: NSObject, NSSecureCoding {
         self.tags = item.tags
         self.fromTrash = item.fromTrash
         self.isStar = item.isStar
+        self.metaFileId = item.metaFileId
     }
     
     public func recordingNextAction(_ currentAction:Action!) -> Action! {
@@ -353,6 +360,7 @@ public class RecordItem: NSObject, NSSecureCoding {
                     newTag.timeStamp = (tag as AnyObject).object(forKey: "timeStamp") as! TimeInterval
                     newTag.duration = (tag as AnyObject).object(forKey: "duration") as! TimeInterval
                     newTag.arg = (tag as AnyObject).object(forKey:"arg") as AnyObject
+                    newTag.arg2 = (tag as AnyObject).object(forKey:"arg2") as AnyObject
                     if let value = (tag as AnyObject).object(forKey: "type") as? String
                     {
                         newTag.type = TagType(rawValue: value)!

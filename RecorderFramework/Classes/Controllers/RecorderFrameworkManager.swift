@@ -727,7 +727,7 @@ public class RecorderFrameworkManager : NSObject {
     /// - Returns: documents path string
     public func getPath() -> String{
         let fileManager = FileManager.default
-        var path = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)!.path + "/"
+        var path = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)!.path 
         return path
     }
     
@@ -761,5 +761,13 @@ public class RecorderFrameworkManager : NSObject {
     
     public func downloadFile(_ fromURL:String, atPath:String, completionHandler:((Bool, String) -> Void)?) {
         APIClient.sharedInstance.api.downloadFile(fromURL, atPath: atPath, completionHandler: completionHandler)
+    }
+    
+    public func uploadMetadataImageFile(_ imagePath:String, fileId: String, completionHandler:((Bool, Any?) -> Void)?) {
+        APIClient.sharedInstance.uploadMetadataImageFile(imagePath, fileId: fileId, completionHandler: completionHandler)
+    }
+    
+    public func deleteMetadataFile(_ fileId:String, completionHandler:((Bool, Any?) -> Void)?){
+        APIClient.sharedInstance.deleteMetadataFile(fileId, completionHandler:completionHandler)
     }
 }

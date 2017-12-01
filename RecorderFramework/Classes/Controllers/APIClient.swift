@@ -1071,14 +1071,9 @@ class APIClient : NSObject {
                                 let name = (file.object(forKey: "name") as? String)!
                                 var metaPath = AudioFileTagManager.sharedInstance.getMetadataFilePath(path)
                                 if url.components(separatedBy: ".").last != "json" {
-                                    let fileManager = FileManager.default
-                                    var path = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)!.path
-                                    path = path + ("/" + toFolder + "/")
-                                    
-                                    let end = "__" + name.components(separatedBy: "__").last!
-                                    
-                                    metaPath = metaPath.components(separatedBy: "_metadata").first!
-                                    metaPath = metaPath + end
+                                    metaPath = RecorderFrameworkManager.sharedInstance.getPath() + recordItem.localFile.components(separatedBy: ".").first! + "/" + ((file.object(forKey: "id") as? String)!) + "." + url.components(separatedBy: ".").last!
+                                }else{
+                                    recordItem.metaFileId = (file.object(forKey: "id") as? String)!
                                 }
                                 
                                 APIClient.sharedInstance.downloadFile(url, localPath:metaPath, completionHandler: { (success) -> Void in
@@ -1659,6 +1654,55 @@ class APIClient : NSObject {
         }
     }
     
+    func uploadMetadataImageFile(_ imagePath:String, fileId: String, completionHandler:((Bool, Any?) -> Void)?) {
+        if AppPersistentData.sharedInstance.invalidAPIKey {
+            completionHandler!(false, "Invalid API Key" as AnyObject)
+            return
+        }
+        
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey,"name":fileId+"_metadata_" + UUID().uuidString, "parent_id":fileId]
+        
+        if !FileManager.default.fileExists(atPath: imagePath ){
+            completionHandler!(false, nil)
+            return
+        }
+        
+        api.upload(API_BASE_URL + "create_meta_file", imagesFiles: [imagePath], fieldNames: ["file"], parameters:parameters) { (success, retData) in
+            if success {
+                if let data = retData as? [String:Any] {
+                    if data["status"] != nil && (data["status"] as? String) != "ok" {
+                        if let strError = data["msg"] as? String {
+                            if completionHandler != nil {
+                                completionHandler!(false, strError.localized)
+                            }
+                        }
+                        else {
+                            if completionHandler != nil {
+                                completionHandler!(false, nil)
+                            }
+                        }
+                    }
+                    else {
+                        
+                        if completionHandler != nil {
+                            completionHandler!( true, data["id"])
+                        }
+                    }
+                }
+            }
+            else {
+                if completionHandler != nil {
+                    if retData is String {
+                        completionHandler!(success, retData)
+                    }
+                    else {
+                        completionHandler!(success, "Error occured while uploading file.")
+                    }
+                }
+            }
+        }
+    }
+    
     func uploadMetadataFile(_ recordItem:RecordItem, completionHandler:((Bool, Any?) -> Void)?) {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
@@ -1708,6 +1752,43 @@ class APIClient : NSObject {
                     else {
                         completionHandler!(success, "Error occured while uploading file.")
                     }
+                }
+            }
+        }
+    }
+    
+    func deleteMetadataFile(_ fileId:String, completionHandler:((Bool, Any?) -> Void)?)
+    {
+        if AppPersistentData.sharedInstance.invalidAPIKey {
+            completionHandler!(false, "Invalid API Key" as AnyObject)
+            return
+        }
+        
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "ids":fileId]
+        
+        api.doRequest("delete_meta_files", method: .post, parameters: parameters) { (success, data) in
+            if success {
+                if data!["status"] != nil && (data!["status"] as? String) != "ok" {
+                    if let strError = data!["msg"] as? String {
+                        if completionHandler != nil {
+                            completionHandler!(false, strError.localized)
+                        }
+                    }
+                    else {
+                        if completionHandler != nil {
+                            completionHandler!(false, nil)
+                        }
+                    }
+                }
+                else {
+                    if completionHandler != nil {
+                        completionHandler!( true, nil)
+                    }
+                }
+            }
+            else {
+                if completionHandler != nil {
+                    completionHandler!(success, data!["error"] as? String)
                 }
             }
         }

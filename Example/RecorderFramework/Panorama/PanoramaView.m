@@ -599,5 +599,4 @@ GLKQuaternion GLKQuaternionFromTwoVectors(GLKVector3 u, GLKVector3 v){
 		return CGSizeZero;
 	}
 }
-
 @end

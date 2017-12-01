@@ -45,7 +45,6 @@
 		A2689F8F1FA5051300A3F391 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2689F8E1FA5051300A3F391 /* Extensions.swift */; };
 		A26FCC931FCDE0DE00CBA0D4 /* PanoramaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26FCC921FCDE0DE00CBA0D4 /* PanoramaViewController.swift */; };
 		A26FCC951FCDFDAB00CBA0D4 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A26FCC941FCDFDAB00CBA0D4 /* GLKit.framework */; };
-		A2721DB31FCB1C9900CAE6A9 /* TPOscilloscopeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A2721DB21FCB1C9800CAE6A9 /* TPOscilloscopeLayer.m */; };
 		A2732ECF1FAA5D84004E3A35 /* FoldersInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2732ECE1FAA5D84004E3A35 /* FoldersInterfaceController.swift */; };
 		A2732ED11FAA5E81004E3A35 /* FoldersRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2732ED01FAA5E80004E3A35 /* FoldersRowController.swift */; };
 		A2732ED31FAA6C98004E3A35 /* FilesInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2732ED21FAA6C98004E3A35 /* FilesInterfaceController.swift */; };
@@ -101,8 +100,6 @@
 		A2D6BBF41FB3D0D9003C6CE4 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D6BBF31FB3D0D9003C6CE4 /* RegisterViewController.swift */; };
 		A2D6BBF61FB3D0D9003C6CE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2D6BBF51FB3D0D9003C6CE4 /* Assets.xcassets */; };
 		A2D6BBF91FB3D0D9003C6CE4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2D6BBF71FB3D0D9003C6CE4 /* Main.storyboard */; };
-		A2DEB9C41FCB1E9D00D083F4 /* WaveHolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DEB9C21FCB1E9C00D083F4 /* WaveHolderView.swift */; };
-		A2DEB9C51FCB1E9D00D083F4 /* PlayerCursor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DEB9C31FCB1E9C00D083F4 /* PlayerCursor.swift */; };
 		A2E949411F9FB1BA00FAA5D0 /* EnterCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E949401F9FB1BA00FAA5D0 /* EnterCodeViewController.swift */; };
 		A2F26E6E1FB6E94D00CE2B19 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2F26E6D1FB6E94D00CE2B19 /* StoreKit.framework */; };
 		A2F76A741FA892E300EF05EE /* WatchDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F76A731FA892E300EF05EE /* WatchDataController.swift */; };
@@ -218,8 +215,6 @@
 		A2689F8E1FA5051300A3F391 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A26FCC921FCDE0DE00CBA0D4 /* PanoramaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanoramaViewController.swift; sourceTree = "<group>"; };
 		A26FCC941FCDFDAB00CBA0D4 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
-		A2721DB11FCB1C9800CAE6A9 /* TPOscilloscopeLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPOscilloscopeLayer.h; sourceTree = "<group>"; };
-		A2721DB21FCB1C9800CAE6A9 /* TPOscilloscopeLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPOscilloscopeLayer.m; sourceTree = "<group>"; };
 		A2732ECE1FAA5D84004E3A35 /* FoldersInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoldersInterfaceController.swift; sourceTree = "<group>"; };
 		A2732ED01FAA5E80004E3A35 /* FoldersRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoldersRowController.swift; sourceTree = "<group>"; };
 		A2732ED21FAA6C98004E3A35 /* FilesInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesInterfaceController.swift; sourceTree = "<group>"; };
@@ -289,8 +284,6 @@
 		A2D6BBF81FB3D0D9003C6CE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A2D6BBFA1FB3D0D9003C6CE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A2D6BBFB1FB3D0D9003C6CE4 /* RecorderFramework_MacExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RecorderFramework_MacExample.entitlements; sourceTree = "<group>"; };
-		A2DEB9C21FCB1E9C00D083F4 /* WaveHolderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaveHolderView.swift; sourceTree = "<group>"; };
-		A2DEB9C31FCB1E9C00D083F4 /* PlayerCursor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerCursor.swift; sourceTree = "<group>"; };
 		A2E949401F9FB1BA00FAA5D0 /* EnterCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCodeViewController.swift; sourceTree = "<group>"; };
 		A2F26E6C1FB6E94500CE2B19 /* RecorderFramework-MacExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "RecorderFramework-MacExample.entitlements"; sourceTree = "<group>"; };
 		A2F26E6D1FB6E94D00CE2B19 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -379,8 +372,8 @@
 				607FACE81AFB9204008FA782 /* Tests */,
 				A2B2D1481FA876F400A1FACE /* RecorderFramework-WatchExample */,
 				A2B2D1571FA876F400A1FACE /* RecorderFramework-WatchExample Extension */,
-				A21AD9161FB1EF1500BCDD1F /* RecorderFramework-TVExample */,
 				A2D6BBF01FB3D0D9003C6CE4 /* RecorderFramework-MacExample */,
+				A21AD9161FB1EF1500BCDD1F /* RecorderFramework-TVExample */,
 				607FACD11AFB9204008FA782 /* Products */,
 				7B775D1222EE278438027086 /* Pods */,
 				91A4A99FDAE8352DE6480444 /* Frameworks */,
@@ -404,8 +397,6 @@
 			isa = PBXGroup;
 			children = (
 				A24607A61FCDFF0300F50AEE /* Panorama */,
-				A223D0731FCD992900092FA2 /* LocationManager.swift */,
-				A2721DB01FCB1C9800CAE6A9 /* Wave */,
 				A2AEABE81FB0903D0094DCF8 /* MKStoreKit */,
 				A2689F8E1FA5051300A3F391 /* Extensions.swift */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
@@ -429,6 +420,7 @@
 				A294B2151FCABC3000BA4852 /* ViewTagViewController.swift */,
 				A2A60C921FCD9567000D8F6D /* LocationViewController.swift */,
 				A26FCC921FCDE0DE00CBA0D4 /* PanoramaViewController.swift */,
+				A223D0731FCD992900092FA2 /* LocationManager.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -567,17 +559,6 @@
 				A24607A81FCDFF0300F50AEE /* PanoramaView.m */,
 			);
 			path = Panorama;
-			sourceTree = "<group>";
-		};
-		A2721DB01FCB1C9800CAE6A9 /* Wave */ = {
-			isa = PBXGroup;
-			children = (
-				A2DEB9C31FCB1E9C00D083F4 /* PlayerCursor.swift */,
-				A2DEB9C21FCB1E9C00D083F4 /* WaveHolderView.swift */,
-				A2721DB11FCB1C9800CAE6A9 /* TPOscilloscopeLayer.h */,
-				A2721DB21FCB1C9800CAE6A9 /* TPOscilloscopeLayer.m */,
-			);
-			path = Wave;
 			sourceTree = "<group>";
 		};
 		A2A6254D1FB1FD3D003714C8 /* MKStoreKit */ = {
@@ -1206,11 +1187,13 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-RecorderFramework_Example/Pods-RecorderFramework_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/RecorderFramework-iOS/RecorderFramework.framework",
+				"${BUILT_PRODUCTS_DIR}/FDWaveformView/FDWaveformView.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RecorderFramework.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FDWaveformView.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1268,7 +1251,6 @@
 				A2FE5C301FA74B8F005FD2D1 /* SettingsViewController.swift in Sources */,
 				A2914CC91FC357DA00D672CC /* FileTagsViewController.swift in Sources */,
 				A294B2161FCABC3000BA4852 /* ViewTagViewController.swift in Sources */,
-				A2DEB9C41FCB1E9D00D083F4 /* WaveHolderView.swift in Sources */,
 				A2A60C931FCD9567000D8F6D /* LocationViewController.swift in Sources */,
 				A24C5D191FA79BCD00EE9347 /* ProfileViewController.swift in Sources */,
 				A223D0741FCD992A00092FA2 /* LocationManager.swift in Sources */,
@@ -1278,9 +1260,7 @@
 				A2407C001FC48BC800EBAEC3 /* TagViewController.swift in Sources */,
 				A26FCC931FCDE0DE00CBA0D4 /* PanoramaViewController.swift in Sources */,
 				A23EBB741FA76AA700F9D188 /* DisplayViewController.swift in Sources */,
-				A2DEB9C51FCB1E9D00D083F4 /* PlayerCursor.swift in Sources */,
 				A282D8CC1FA4E83900BD3189 /* TitleViewController.swift in Sources */,
-				A2721DB31FCB1C9900CAE6A9 /* TPOscilloscopeLayer.m in Sources */,
 				A2AE31C01FA0BE7D00CCDC79 /* HomeViewController.swift in Sources */,
 				A2BF106E1FC823850016CFA3 /* DatePickerViewController.swift in Sources */,
 				A23EBB721FA761E200F9D188 /* LanguagesViewController.swift in Sources */,

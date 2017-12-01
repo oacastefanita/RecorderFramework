@@ -10,7 +10,6 @@
 #define RecorderFramework_Bridging_Header_h
 
 #import "MKStoreKit.h"
-#import "TPOscilloscopeLayer.h"
 #import "PanoramaView.h"
 
 #endif /* RecorderFramework_Bridging_Header_h */
