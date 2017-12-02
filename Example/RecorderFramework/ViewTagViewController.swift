@@ -96,6 +96,7 @@ class ViewTagViewController: UIViewController,UITableViewDelegate, UITableViewDa
         self.lblArg2.isHidden = false
         self.tableView.isHidden = true
         self.mapView.isHidden = true
+        self.sceneView.isHidden = true
         switch tag.type {
         case .alert:
             if self.tag.arg != nil{
@@ -216,6 +217,8 @@ class ViewTagViewController: UIViewController,UITableViewDelegate, UITableViewDa
             tableView.reloadData()
             break
         case .panorama:
+            self.lblArg1.isHidden = true
+            self.lblArg2.isHidden = true
             self.performSegue(withIdentifier: "showPanoramaViewFromTag", sender: self)
             break
         case .productViewer:
@@ -236,6 +239,7 @@ class ViewTagViewController: UIViewController,UITableViewDelegate, UITableViewDa
                         self.sceneView.allowsCameraControl = true
                         self.sceneView.scene = scene
                         self.sceneView.backgroundColor = UIColor.yellow
+                        self.sceneView.isHidden = false
                     }
                     else {
                         self.alert(message: (data as! AnyObject).description)

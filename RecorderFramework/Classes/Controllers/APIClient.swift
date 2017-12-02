@@ -1739,6 +1739,9 @@ class APIClient : NSObject {
                     else {
                         
                         if completionHandler != nil {
+                            if path.contains("json"){
+                                recordItem.metaFileId = "\(data["id"]!)"
+                            }
                             completionHandler!( true, nil)
                         }
                     }

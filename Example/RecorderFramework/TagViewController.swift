@@ -313,6 +313,12 @@ class TagViewController: UIViewController, UITextFieldDelegate, UIPickerViewDele
         
         RecorderFrameworkManager.sharedInstance.uploadMetadataImageFile(photoPath, fileId: fileId, completionHandler: { (success, data) -> Void in
             if success {
+                if !FileManager.default.fileExists(atPath: self.filePath.components(separatedBy: ".").first! + "/") {
+                    do {
+                        try FileManager.default.createDirectory(atPath: self.filePath.components(separatedBy: ".").first! + "/", withIntermediateDirectories: true, attributes: nil)
+                    } catch _ {
+                    }
+                }
                 var url = self.filePath.components(separatedBy: ".").first! + "/" + "\(data!)" + "." + photoPath.components(separatedBy: ".").last!
                 do {
                     try UIImageJPEGRepresentation(image, 0.5)!.write(to: URL(fileURLWithPath: url), options: .atomic)

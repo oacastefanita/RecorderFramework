@@ -26,7 +26,7 @@ class LocationViewController: UIViewController, LocationManagerDelegate{
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        var center = MKAnnotationView()
+        var center = MKPinAnnotationView()
         center.frame = CGRect(x:mapView.frame.width/2 - 32, y:mapView.frame.height/2 - 32, width:64, height: 64)
         self.mapView.addSubview(center)
     }
@@ -73,9 +73,6 @@ class LocationViewController: UIViewController, LocationManagerDelegate{
     
     func updatedLocation(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         let newLocation = CLLocation(latitude: latitude, longitude: longitude)
-        let center = CLLocationCoordinate2D(latitude: newLocation.coordinate.latitude, longitude: newLocation.coordinate.longitude)
-        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-        self.mapView.setRegion(region, animated: true)
         lastLocation = newLocation.coordinate
     }
 }

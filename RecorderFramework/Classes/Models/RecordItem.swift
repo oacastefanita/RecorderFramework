@@ -269,7 +269,7 @@ public class RecordItem: NSObject, NSSecureCoding {
         self.tags = item.tags
         self.fromTrash = item.fromTrash
         self.isStar = item.isStar
-        self.metaFileId = item.metaFileId
+//        self.metaFileId = item.metaFileId
     }
     
     public func recordingNextAction(_ currentAction:Action!) -> Action! {

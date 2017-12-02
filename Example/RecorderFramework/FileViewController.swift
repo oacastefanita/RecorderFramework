@@ -22,6 +22,7 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
     @IBOutlet weak var recordingTimeLabel: UILabel!
     @IBOutlet weak var btnRecord: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var btnTags: UIButton!
     
     var file: RecordItem!
     var folder: RecordFolder!
@@ -41,6 +42,7 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        self.btnTags.isEnabled = false
         if file == nil{
             btnUpdate.setTitle("Done", for: .normal)
             file = RecordItem()
@@ -65,6 +67,11 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
         fillView()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(noti:)), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(noti:)), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
+        Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(FileViewController.enableTags), userInfo: nil, repeats: true)
+    }
+    
+    @objc func enableTags(){
+        self.btnTags.isEnabled = true
     }
     
     func checkPermission(){
