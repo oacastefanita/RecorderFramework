@@ -11,7 +11,7 @@ import RecorderFramework
 import AVFoundation
 
 class FileViewController: UIViewController, TitleViewControllerDelegater{
-    @IBOutlet weak var txtTags: UITextField!
+
     @IBOutlet weak var txtNotes: UITextField!
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtPhoneNumber: UITextField!
@@ -20,6 +20,7 @@ class FileViewController: UIViewController, TitleViewControllerDelegater{
     @IBOutlet weak var txtName: UITextField!
     @IBOutlet weak var btnUpdate: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var btnTags: UIButton!
     
     var file: RecordItem!
     var folder: RecordFolder!
@@ -46,34 +47,22 @@ class FileViewController: UIViewController, TitleViewControllerDelegater{
             fileCreated = true
         }else{
             if !file.fileDownloaded || file.localFile == nil {
-                var folder:RecordFolder! = nil
-                
-                for iterate in RecordingsManager.sharedInstance.recordFolders {
-                    if iterate.id == "-99" {
-                        continue
-                    }
-                    for recItem in iterate.recordedItems {
-                        if recItem == file {
-                            folder = iterate
-                            break
-                        }
-                    }
-                    if folder != nil {
-                        break
-                    }
-                }
-//                self.recordingTimeLabel.text = "Downloading"
+                let folder = RecorderFrameworkManager.sharedInstance.folderForItem(file.id)
                 RecorderFrameworkManager.sharedInstance.downloadAudioFile(file, toFolder: folder.id, completionHandler: { (success) in
-//                    self.recordingTimeLabel.text = "Downloaded"
                     self.play()
                 })
             }
             else {
-//                self.recordingTimeLabel.text = "Downloaded"
                 self.play()
             }
         }
         fillView()
+        self.btnTags.isEnabled = false
+        Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(FileViewController.enableTags), userInfo: nil, repeats: true)
+    }
+    
+    @objc func enableTags(){
+        self.btnTags.isEnabled = true
     }
     
     func play() {
@@ -111,7 +100,6 @@ class FileViewController: UIViewController, TitleViewControllerDelegater{
     }
     
     func fillView(){
-        txtTags.text = file.tags
         txtNotes.text = file.notes
         txtEmail.text = file.email
         txtPhoneNumber.text = file.phoneNumber
@@ -152,7 +140,6 @@ class FileViewController: UIViewController, TitleViewControllerDelegater{
     
     @IBAction func onUpdate(_ sender: Any) {
         self.view.endEditing(true)
-        file.tags = txtTags.text!
         file.notes = txtNotes.text!
         file.email = txtEmail.text!
         file.phoneNumber = txtPhoneNumber.text!
@@ -192,6 +179,10 @@ class FileViewController: UIViewController, TitleViewControllerDelegater{
         })
     }
     
+    @IBAction func onTags(_ sender: Any) {
+//        self.performSegue(withIdentifier: "showTagsFromFile", sender: self)
+    }
+    
     func selectedTitle(_ title: String){
         if titleType == 0{
             file.text = title
@@ -214,6 +205,12 @@ class FileViewController: UIViewController, TitleViewControllerDelegater{
         if segue.identifier == "titleFromFile"{
             (segue.destination as! TitleViewController).delegate = self
             (segue.destination as! TitleViewController).placeholder = placeholder
+        } else if segue.identifier == "tagsFromFile"{
+            let fileManager = FileManager.default
+            var path = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)!.path
+            path += file.localFile
+            self.file.setupWithFile(path)
+            (segue.destination as! FileTagsViewController).file = self.file
         }
     }
     

@@ -18,13 +18,21 @@
 		67D5BE920E12852EBB8D4EF1 /* Pods_RecorderFramework_WatchExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 748F834FFABC1EB351E432FB /* Pods_RecorderFramework_WatchExample.framework */; };
 		850FAA7B8BF4FA4255305461 /* Pods_RecorderFramework_MacExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B73DD214B01B20F486E1C762 /* Pods_RecorderFramework_MacExample.framework */; };
 		A20569AB1FABC9010089396F /* UserInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20569AA1FABC9010089396F /* UserInterfaceController.swift */; };
+		A2095CC91FD5887800CF96B3 /* FDWaveformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2095CC61FD5887700CF96B3 /* FDWaveformView.swift */; };
+		A2095CCA1FD5887800CF96B3 /* FDAudioContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2095CC71FD5887700CF96B3 /* FDAudioContext.swift */; };
+		A2095CCB1FD5887800CF96B3 /* FDWaveformRenderOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2095CC81FD5887700CF96B3 /* FDWaveformRenderOperation.swift */; };
+		A2095CD01FD5979200CF96B3 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2095CCD1FD5971000CF96B3 /* LocationManager.swift */; };
+		A2095CD11FD5979500CF96B3 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2095CCC1FD5971000CF96B3 /* LocationViewController.swift */; };
+		A2178B781FD5BD7100370CF7 /* FileTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C7DF721FD583B200F8AFDA /* FileTagsViewController.swift */; };
+		A2178B791FD5BD7500370CF7 /* PanoramaViewM.m in Sources */ = {isa = PBXBuildFile; fileRef = A2095CC31FD5851E00CF96B3 /* PanoramaViewM.m */; };
+		A2178B7A1FD5BD8600370CF7 /* ViewTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C7DF6F1FD583B100F8AFDA /* ViewTagViewController.swift */; };
 		A21AD9181FB1EF1500BCDD1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21AD9171FB1EF1500BCDD1F /* AppDelegate.swift */; };
 		A21AD91D1FB1EF1500BCDD1F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A21AD91B1FB1EF1500BCDD1F /* Main.storyboard */; };
 		A21AD91F1FB1EF1500BCDD1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A21AD91E1FB1EF1500BCDD1F /* Assets.xcassets */; };
-		A223D0741FCD992A00092FA2 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A223D0731FCD992900092FA2 /* LocationManager.swift */; };
 		A22A10491FA1E5F400DAFA40 /* FilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22A10481FA1E5F400DAFA40 /* FilesViewController.swift */; };
 		A22A104B1FA1F00500DAFA40 /* FileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22A104A1FA1F00500DAFA40 /* FileViewController.swift */; };
 		A23A2CB51FA1D84C00E25F87 /* FoldersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23A2CB41FA1D84C00E25F87 /* FoldersViewController.swift */; };
+		A23C56FB1FD6BC9D0038D5F1 /* PanoramaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C7DF731FD583B200F8AFDA /* PanoramaViewController.swift */; };
 		A23EBB721FA761E200F9D188 /* LanguagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23EBB711FA761E200F9D188 /* LanguagesViewController.swift */; };
 		A23EBB741FA76AA700F9D188 /* DisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23EBB731FA76AA700F9D188 /* DisplayViewController.swift */; };
 		A2407C001FC48BC800EBAEC3 /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2407BFF1FC48BC800EBAEC3 /* TagViewController.swift */; };
@@ -61,7 +69,6 @@
 		A2931C281FB103C200B631E2 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2931C271FB103C200B631E2 /* SearchViewController.swift */; };
 		A294B2161FCABC3000BA4852 /* ViewTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A294B2151FCABC3000BA4852 /* ViewTagViewController.swift */; };
 		A297CD891FA8E669004E5B15 /* Pods_RecorderFramework_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A297CD8A1FA8E669004E5B15 /* Pods_RecorderFramework_Example.framework */; };
-		A2A60C931FCD9567000D8F6D /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A60C921FCD9567000D8F6D /* LocationViewController.swift */; };
 		A2A6255C1FB1FD3E003714C8 /* EnterCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A625481FB1FD3C003714C8 /* EnterCodeViewController.swift */; };
 		A2A6255D1FB1FD3E003714C8 /* BuyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A6254A1FB1FD3D003714C8 /* BuyViewController.swift */; };
 		A2A6255E1FB1FD3E003714C8 /* LanguagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A6254B1FB1FD3D003714C8 /* LanguagesViewController.swift */; };
@@ -182,12 +189,18 @@
 		863430D0C86DCE6607C6635E /* Pods_RecorderFramework_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecorderFramework_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1221A40950338952D348F70 /* Pods_RecorderFramework_Example_RecorderFramework_WatchExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecorderFramework_Example_RecorderFramework_WatchExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A20569AA1FABC9010089396F /* UserInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInterfaceController.swift; sourceTree = "<group>"; };
+		A2095CC21FD5851E00CF96B3 /* PanoramaViewM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PanoramaViewM.h; sourceTree = "<group>"; };
+		A2095CC31FD5851E00CF96B3 /* PanoramaViewM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PanoramaViewM.m; sourceTree = "<group>"; };
+		A2095CC61FD5887700CF96B3 /* FDWaveformView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FDWaveformView.swift; sourceTree = "<group>"; };
+		A2095CC71FD5887700CF96B3 /* FDAudioContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FDAudioContext.swift; sourceTree = "<group>"; };
+		A2095CC81FD5887700CF96B3 /* FDWaveformRenderOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FDWaveformRenderOperation.swift; sourceTree = "<group>"; };
+		A2095CCC1FD5971000CF96B3 /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		A2095CCD1FD5971000CF96B3 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		A21AD9151FB1EF1500BCDD1F /* RecorderFramework-TVExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RecorderFramework-TVExample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A21AD9171FB1EF1500BCDD1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A21AD91C1FB1EF1500BCDD1F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A21AD91E1FB1EF1500BCDD1F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A21AD9201FB1EF1500BCDD1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A223D0731FCD992900092FA2 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		A22A10481FA1E5F400DAFA40 /* FilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesViewController.swift; sourceTree = "<group>"; };
 		A22A104A1FA1F00500DAFA40 /* FileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileViewController.swift; sourceTree = "<group>"; };
 		A23A2CB41FA1D84C00E25F87 /* FoldersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersViewController.swift; sourceTree = "<group>"; };
@@ -232,7 +245,6 @@
 		A294B2151FCABC3000BA4852 /* ViewTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTagViewController.swift; sourceTree = "<group>"; };
 		A297CD881FA8E648004E5B15 /* RecorderFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RecorderFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A297CD8A1FA8E669004E5B15 /* Pods_RecorderFramework_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_RecorderFramework_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A2A60C921FCD9567000D8F6D /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		A2A625481FB1FD3C003714C8 /* EnterCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EnterCodeViewController.swift; path = "RecorderFramework-TvExample/EnterCodeViewController.swift"; sourceTree = SOURCE_ROOT; };
 		A2A625491FB1FD3D003714C8 /* RecorderFramework-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RecorderFramework-Bridging-Header.h"; path = "RecorderFramework-TvExample/RecorderFramework-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		A2A6254A1FB1FD3D003714C8 /* BuyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BuyViewController.swift; path = "RecorderFramework-TvExample/BuyViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -274,6 +286,9 @@
 		A2B2D1611FA876F400A1FACE /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		A2BF106D1FC823850016CFA3 /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		A2BF34A21FAB995400C7006F /* FileInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileInterfaceController.swift; sourceTree = "<group>"; };
+		A2C7DF6F1FD583B100F8AFDA /* ViewTagViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewTagViewController.swift; path = "RecorderFramework-TvExample/ViewTagViewController.swift"; sourceTree = SOURCE_ROOT; };
+		A2C7DF721FD583B200F8AFDA /* FileTagsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileTagsViewController.swift; path = "RecorderFramework-TvExample/FileTagsViewController.swift"; sourceTree = SOURCE_ROOT; };
+		A2C7DF731FD583B200F8AFDA /* PanoramaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PanoramaViewController.swift; path = "RecorderFramework-TvExample/PanoramaViewController.swift"; sourceTree = SOURCE_ROOT; };
 		A2D405361FAA76140042E605 /* RecordInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordInterfaceController.swift; sourceTree = "<group>"; };
 		A2D6BBE81FB3B908003C6CE4 /* RecorderFramework-TVExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "RecorderFramework-TVExample.entitlements"; sourceTree = "<group>"; };
 		A2D6BBE91FB3B90E003C6CE4 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS11.1.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -396,6 +411,8 @@
 		607FACD21AFB9204008FA782 /* Example for RecorderFramework */ = {
 			isa = PBXGroup;
 			children = (
+				A2095CCD1FD5971000CF96B3 /* LocationManager.swift */,
+				A2095CCC1FD5971000CF96B3 /* LocationViewController.swift */,
 				A24607A61FCDFF0300F50AEE /* Panorama */,
 				A2AEABE81FB0903D0094DCF8 /* MKStoreKit */,
 				A2689F8E1FA5051300A3F391 /* Extensions.swift */,
@@ -418,9 +435,7 @@
 				A2407BFF1FC48BC800EBAEC3 /* TagViewController.swift */,
 				A2BF106D1FC823850016CFA3 /* DatePickerViewController.swift */,
 				A294B2151FCABC3000BA4852 /* ViewTagViewController.swift */,
-				A2A60C921FCD9567000D8F6D /* LocationViewController.swift */,
 				A26FCC921FCDE0DE00CBA0D4 /* PanoramaViewController.swift */,
-				A223D0731FCD992900092FA2 /* LocationManager.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -513,9 +528,35 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A2095CC11FD5851E00CF96B3 /* Panorama */ = {
+			isa = PBXGroup;
+			children = (
+				A2095CC21FD5851E00CF96B3 /* PanoramaViewM.h */,
+				A2095CC31FD5851E00CF96B3 /* PanoramaViewM.m */,
+			);
+			name = Panorama;
+			path = "RecorderFramework-TvExample/Panorama";
+			sourceTree = SOURCE_ROOT;
+		};
+		A2095CC51FD5887700CF96B3 /* FDWaveForm */ = {
+			isa = PBXGroup;
+			children = (
+				A2095CC61FD5887700CF96B3 /* FDWaveformView.swift */,
+				A2095CC71FD5887700CF96B3 /* FDAudioContext.swift */,
+				A2095CC81FD5887700CF96B3 /* FDWaveformRenderOperation.swift */,
+			);
+			name = FDWaveForm;
+			path = "RecorderFramework-TvExample/FDWaveForm";
+			sourceTree = SOURCE_ROOT;
+		};
 		A21AD9161FB1EF1500BCDD1F /* RecorderFramework-TVExample */ = {
 			isa = PBXGroup;
 			children = (
+				A2095CC51FD5887700CF96B3 /* FDWaveForm */,
+				A2095CC11FD5851E00CF96B3 /* Panorama */,
+				A2C7DF721FD583B200F8AFDA /* FileTagsViewController.swift */,
+				A2C7DF731FD583B200F8AFDA /* PanoramaViewController.swift */,
+				A2C7DF6F1FD583B100F8AFDA /* ViewTagViewController.swift */,
 				A2D6BBE81FB3B908003C6CE4 /* RecorderFramework-TVExample.entitlements */,
 				A2A6254A1FB1FD3D003714C8 /* BuyViewController.swift */,
 				A2A6255B1FB1FD3E003714C8 /* DisplayViewController.swift */,
@@ -1251,9 +1292,8 @@
 				A2FE5C301FA74B8F005FD2D1 /* SettingsViewController.swift in Sources */,
 				A2914CC91FC357DA00D672CC /* FileTagsViewController.swift in Sources */,
 				A294B2161FCABC3000BA4852 /* ViewTagViewController.swift in Sources */,
-				A2A60C931FCD9567000D8F6D /* LocationViewController.swift in Sources */,
 				A24C5D191FA79BCD00EE9347 /* ProfileViewController.swift in Sources */,
-				A223D0741FCD992A00092FA2 /* LocationManager.swift in Sources */,
+				A2095CD11FD5979500CF96B3 /* LocationViewController.swift in Sources */,
 				607FACD81AFB9204008FA782 /* RegisterViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				A22A10491FA1E5F400DAFA40 /* FilesViewController.swift in Sources */,
@@ -1264,6 +1304,7 @@
 				A2AE31C01FA0BE7D00CCDC79 /* HomeViewController.swift in Sources */,
 				A2BF106E1FC823850016CFA3 /* DatePickerViewController.swift in Sources */,
 				A23EBB721FA761E200F9D188 /* LanguagesViewController.swift in Sources */,
+				A2095CD01FD5979200CF96B3 /* LocationManager.swift in Sources */,
 				A24C5D171FA7880300EE9347 /* PhoneNumbersViewController.swift in Sources */,
 				A22A104B1FA1F00500DAFA40 /* FileViewController.swift in Sources */,
 				A24607A91FCDFF0300F50AEE /* PanoramaView.m in Sources */,
@@ -1286,11 +1327,18 @@
 				A2A6255C1FB1FD3E003714C8 /* EnterCodeViewController.swift in Sources */,
 				A2A625621FB1FD3E003714C8 /* SearchViewController.swift in Sources */,
 				A21AD9181FB1EF1500BCDD1F /* AppDelegate.swift in Sources */,
+				A2095CCB1FD5887800CF96B3 /* FDWaveformRenderOperation.swift in Sources */,
+				A23C56FB1FD6BC9D0038D5F1 /* PanoramaViewController.swift in Sources */,
+				A2178B7A1FD5BD8600370CF7 /* ViewTagViewController.swift in Sources */,
 				A2A6255E1FB1FD3E003714C8 /* LanguagesViewController.swift in Sources */,
 				A2A6256C1FB1FD3E003714C8 /* DisplayViewController.swift in Sources */,
+				A2178B781FD5BD7100370CF7 /* FileTagsViewController.swift in Sources */,
 				A2A6255F1FB1FD3E003714C8 /* SettingsViewController.swift in Sources */,
+				A2178B791FD5BD7500370CF7 /* PanoramaViewM.m in Sources */,
+				A2095CC91FD5887800CF96B3 /* FDWaveformView.swift in Sources */,
 				A2A625651FB1FD3E003714C8 /* HomeViewController.swift in Sources */,
 				A2A625671FB1FD3E003714C8 /* FileViewController.swift in Sources */,
+				A2095CCA1FD5887800CF96B3 /* FDAudioContext.swift in Sources */,
 				A2A625631FB1FD3E003714C8 /* TitleViewController.swift in Sources */,
 				A2A625611FB1FD3E003714C8 /* MKStoreKit.m in Sources */,
 				A2A625661FB1FD3E003714C8 /* FilesViewController.swift in Sources */,
