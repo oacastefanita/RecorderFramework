@@ -17,7 +17,6 @@ class FileInterfaceController: WKInterfaceController {
     @IBOutlet var lblPhoneNumber: WKInterfaceLabel!
     @IBOutlet var lblEmail: WKInterfaceLabel!
     @IBOutlet var lblNotes: WKInterfaceLabel!
-    @IBOutlet var lblTags: WKInterfaceLabel!
     @IBOutlet var lblName: WKInterfaceLabel!
     
     var file: RecordItem!
@@ -68,7 +67,6 @@ class FileInterfaceController: WKInterfaceController {
     }
     
     func fillView(){
-        lblTags.setText(file.tags)
         lblNotes.setText(file.notes)
         lblEmail.setText(file.email)
         lblPhoneNumber.setText(file.phoneNumber)
@@ -85,5 +83,13 @@ class FileInterfaceController: WKInterfaceController {
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()
+    }
+    
+    @IBAction func onTags(_ sender: Any) {
+        let fileManager = FileManager.default
+        var path = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)!.path
+        path += file.localFile
+        self.file.setupWithFile(path)
+        self.pushController(withName: "TagsInterfaceController", context: self.file)
     }
 }

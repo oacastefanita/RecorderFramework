@@ -33,6 +33,8 @@
 		A22A104B1FA1F00500DAFA40 /* FileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22A104A1FA1F00500DAFA40 /* FileViewController.swift */; };
 		A23A2CB51FA1D84C00E25F87 /* FoldersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23A2CB41FA1D84C00E25F87 /* FoldersViewController.swift */; };
 		A23C56FB1FD6BC9D0038D5F1 /* PanoramaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C7DF731FD583B200F8AFDA /* PanoramaViewController.swift */; };
+		A23C56FD1FD6CE650038D5F1 /* TagsInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23C56FC1FD6CE650038D5F1 /* TagsInterfaceController.swift */; };
+		A23C56FF1FD6CF3C0038D5F1 /* TagsRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23C56FE1FD6CF3C0038D5F1 /* TagsRowController.swift */; };
 		A23EBB721FA761E200F9D188 /* LanguagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23EBB711FA761E200F9D188 /* LanguagesViewController.swift */; };
 		A23EBB741FA76AA700F9D188 /* DisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23EBB731FA76AA700F9D188 /* DisplayViewController.swift */; };
 		A2407C001FC48BC800EBAEC3 /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2407BFF1FC48BC800EBAEC3 /* TagViewController.swift */; };
@@ -204,6 +206,8 @@
 		A22A10481FA1E5F400DAFA40 /* FilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesViewController.swift; sourceTree = "<group>"; };
 		A22A104A1FA1F00500DAFA40 /* FileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileViewController.swift; sourceTree = "<group>"; };
 		A23A2CB41FA1D84C00E25F87 /* FoldersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersViewController.swift; sourceTree = "<group>"; };
+		A23C56FC1FD6CE650038D5F1 /* TagsInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsInterfaceController.swift; sourceTree = "<group>"; };
+		A23C56FE1FD6CF3C0038D5F1 /* TagsRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsRowController.swift; sourceTree = "<group>"; };
 		A23EBB711FA761E200F9D188 /* LanguagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagesViewController.swift; sourceTree = "<group>"; };
 		A23EBB731FA76AA700F9D188 /* DisplayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayViewController.swift; sourceTree = "<group>"; };
 		A2407BFF1FC48BC800EBAEC3 /* TagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewController.swift; sourceTree = "<group>"; };
@@ -638,6 +642,8 @@
 			isa = PBXGroup;
 			children = (
 				A2AFABE11FAB0E2500510F7D /* RecorderFramework-WatchExample Extension.entitlements */,
+				A23C56FE1FD6CF3C0038D5F1 /* TagsRowController.swift */,
+				A23C56FC1FD6CE650038D5F1 /* TagsInterfaceController.swift */,
 				A20569AA1FABC9010089396F /* UserInterfaceController.swift */,
 				A2D405361FAA76140042E605 /* RecordInterfaceController.swift */,
 				A2BF34A21FAB995400C7006F /* FileInterfaceController.swift */,
@@ -1357,11 +1363,13 @@
 				A2B2D15D1FA876F400A1FACE /* NotificationController.swift in Sources */,
 				A2BF34A31FAB995400C7006F /* FileInterfaceController.swift in Sources */,
 				A2732ECF1FAA5D84004E3A35 /* FoldersInterfaceController.swift in Sources */,
+				A23C56FF1FD6CF3C0038D5F1 /* TagsRowController.swift in Sources */,
 				A2732ED51FAA6CAD004E3A35 /* FilesRowController.swift in Sources */,
 				A2F76A741FA892E300EF05EE /* WatchDataController.swift in Sources */,
 				A2732ED11FAA5E81004E3A35 /* FoldersRowController.swift in Sources */,
 				A2732ED31FAA6C98004E3A35 /* FilesInterfaceController.swift in Sources */,
 				A2B2D15B1FA876F400A1FACE /* ExtensionDelegate.swift in Sources */,
+				A23C56FD1FD6CE650038D5F1 /* TagsInterfaceController.swift in Sources */,
 				A20569AB1FABC9010089396F /* UserInterfaceController.swift in Sources */,
 				A2B2D1591FA876F400A1FACE /* InterfaceController.swift in Sources */,
 				A2D405371FAA76140042E605 /* RecordInterfaceController.swift in Sources */,

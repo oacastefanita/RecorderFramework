@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="13196" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="13529" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
     <device id="watch38" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="watchOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="13051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="13507"/>
     </dependencies>
     <scenes>
         <!--Interface Controller-->
@@ -179,6 +179,40 @@
             </objects>
             <point key="canvasLocation" x="1036" y="-272"/>
         </scene>
+        <!--TagsInterfaceController-->
+        <scene sceneID="jRI-AT-BUq">
+            <objects>
+                <controller identifier="TagsInterfaceController" id="ahN-2W-h77" customClass="TagsInterfaceController" customModule="RecorderFramework_WatchExample_Extension">
+                    <items>
+                        <table alignment="left" id="84K-8p-bYz">
+                            <items>
+                                <tableRow identifier="tagsRow" id="cnS-Rt-zQQ" customClass="TagsRowController" customModule="RecorderFramework_WatchExample_Extension">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" spacing="6" id="0si-hb-8Wj">
+                                        <items>
+                                            <separator height="1" alignment="left" verticalAlignment="center" id="fVn-Ji-2ha">
+                                                <color key="color" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </separator>
+                                            <label alignment="left" text="Title:" id="nwC-Ca-5zF"/>
+                                            <label alignment="left" verticalAlignment="center" text="Label" numberOfLines="0" id="1By-PR-bPd"/>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="separator" destination="fVn-Ji-2ha" id="ijc-Es-qwc"/>
+                                        <outlet property="titleLabel" destination="1By-PR-bPd" id="YQb-Cp-U4q"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                        <label alignment="center" verticalAlignment="center" hidden="YES" text="No Data, Please use the app first" numberOfLines="0" id="NKK-RX-37r"/>
+                    </items>
+                    <connections>
+                        <outlet property="lblNoData" destination="NKK-RX-37r" id="S7o-KZ-aDl"/>
+                        <outlet property="table" destination="84K-8p-bYz" id="0T7-oJ-joK"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="1726" y="-272"/>
+        </scene>
         <!--FileInterfaceController-->
         <scene sceneID="EIM-Ia-K1x">
             <objects>
@@ -191,7 +225,11 @@
                         <label alignment="left" text="Phone number:" id="BZ9-1K-Zfe"/>
                         <label alignment="left" text="Email:" id="wsj-el-3mR"/>
                         <label alignment="left" text="Notes:" id="98E-gp-yrg"/>
-                        <label alignment="left" text="Tags:" id="4dD-6a-aut"/>
+                        <button width="1" alignment="left" title="Tags" id="vUW-Xh-Z9z">
+                            <connections>
+                                <action selector="onTags:" destination="Wkq-YD-la7" id="WLh-eq-q3D"/>
+                            </connections>
+                        </button>
                     </items>
                     <connections>
                         <outlet property="lblDownloading" destination="Mkf-r5-t36" id="2e0-1S-36Z"/>
@@ -201,7 +239,6 @@
                         <outlet property="lblName" destination="Pby-yv-4q3" id="XZ6-z0-LgX"/>
                         <outlet property="lblNotes" destination="98E-gp-yrg" id="oex-OH-O4o"/>
                         <outlet property="lblPhoneNumber" destination="BZ9-1K-Zfe" id="oI7-pw-gOj"/>
-                        <outlet property="lblTags" destination="4dD-6a-aut" id="tYl-Lu-CCf"/>
                     </connections>
                 </controller>
             </objects>
