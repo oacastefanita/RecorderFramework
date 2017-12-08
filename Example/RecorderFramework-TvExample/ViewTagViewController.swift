@@ -252,20 +252,10 @@ class ViewTagViewController: UIViewController,UITableViewDelegate, UITableViewDa
             break
         case .pageFlip:
             if self.tag.arg != nil{
-                self.lblArg1.text = self.tag.arg as! String
-                RecorderFrameworkManager.sharedInstance.downloadFile(self.tag.arg as! String, atPath: RecorderFrameworkManager.sharedInstance.getPath() + "/file.pdf", completionHandler: { (success, data) -> Void in
-                    if success {
-                        let url = URL(fileURLWithPath: RecorderFrameworkManager.sharedInstance.getPath() + "/file.pdf")
-                        
-//                        self.documentInteractionController = UIDocumentInteractionController(url: url)
-//                        self.documentInteractionController?.delegate = self
-//                        self.documentInteractionController?.presentPreview(animated: true)
-                    }
-                    else {
-                        self.alert(message: (data as! AnyObject).description)
-                    }
-                })
-            }else{
+                self.lblArg1.text = "Document viewer not supported in apple tv"
+                self.lblArg2.text = "Document viewer not supported in apple tv"
+            }
+            else{
                 self.lblArg1.text = "missing argument"
             }
             self.lblArg2.isHidden = true
@@ -301,8 +291,10 @@ class ViewTagViewController: UIViewController,UITableViewDelegate, UITableViewDa
             break
         case .socialMedia:
             if self.tag.arg != nil{
-                self.lblArg1.text = self.tag.arg as! String
-            }else{
+                self.lblArg1.text = "HTML embed not supported in apple tv"
+                self.lblArg2.text = "HTML embed not supported in apple tv"
+            }
+            else{
                 self.lblArg1.text = "missing argument"
             }
             self.lblArg2.isHidden = true
