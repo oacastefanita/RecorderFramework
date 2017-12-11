@@ -52,13 +52,14 @@ class WatchKitController: NSObject, WCSessionDelegate{
             
             print("watch does not support WCSession")
         }
-        
-        if(!session!.isReachable){
-            print("not reachable")
-            return
-        }else{
-            print("watch is reachable")
-            
+        if session != nil{
+            if(!session!.isReachable){
+                print("not reachable")
+                return
+            }else{
+                print("watch is reachable")
+                
+            }
         }
     }
     

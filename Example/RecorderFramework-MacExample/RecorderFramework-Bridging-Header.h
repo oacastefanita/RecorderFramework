@@ -10,5 +10,6 @@
 #define RecorderFramework_Bridging_Header_h
 
 #import "MKStoreKit.h"
+#import "JHWaveform.h"
 
 #endif /* RecorderFramework_Bridging_Header_h */

@@ -62,19 +62,35 @@ class AudioFileTagManager: NSObject {
     }
     
     func getPhotoFilePath(_ filePath:String,time:TimeInterval) -> String{
-        
+        var newFilePath = filePath
+        if filePath.contains(RecorderFrameworkManager.sharedInstance.containerName){
+            newFilePath = filePath.replacingOccurrences(of: RecorderFrameworkManager.sharedInstance.containerName, with: "#$#$")
+        }
         let seconds = Int(time)
         let milisec = Int((Float(time) - Float(seconds)) * 1000)
         let newpath = String(format:"__%d_%d.png",seconds, milisec)
-        return filePath.components(separatedBy: ".")[filePath.components(separatedBy: ".").count - 2] + newpath
+        
+        var path = newFilePath.components(separatedBy: ".")[newFilePath.components(separatedBy: ".").count - 2] + newpath
+        if path.contains("#$#$"){
+            path = path.replacingOccurrences(of: "#$#$", with: RecorderFrameworkManager.sharedInstance.containerName)
+        }
+        return path
     }
     
     func getPhotoFilePath(_ filePath:String,time:TimeInterval, index: Int) -> String{
-        
+        var newFilePath = filePath
+        if filePath.contains(RecorderFrameworkManager.sharedInstance.containerName){
+            newFilePath = filePath.replacingOccurrences(of: RecorderFrameworkManager.sharedInstance.containerName, with: "#$#$")
+        }
         let seconds = Int(time)
         let milisec = Int((Float(time) - Float(seconds)) * 1000)
         let newpath = String(format:"__%d_%d_%d.png",seconds, milisec, index)
-        return filePath.components(separatedBy: ".")[filePath.components(separatedBy: ".").count - 2] + newpath
+        
+        var path = newFilePath.components(separatedBy: ".")[newFilePath.components(separatedBy: ".").count - 2] + newpath
+        if path.contains("#$#$"){
+            path = path.replacingOccurrences(of: "#$#$", with: RecorderFrameworkManager.sharedInstance.containerName)
+        }
+        return path
     }
     
     func setupWithFile(_ filePath:String) {

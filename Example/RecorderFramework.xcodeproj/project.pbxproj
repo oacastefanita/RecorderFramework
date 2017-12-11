@@ -23,12 +23,16 @@
 		A2095CCB1FD5887800CF96B3 /* FDWaveformRenderOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2095CC81FD5887700CF96B3 /* FDWaveformRenderOperation.swift */; };
 		A2095CD01FD5979200CF96B3 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2095CCD1FD5971000CF96B3 /* LocationManager.swift */; };
 		A2095CD11FD5979500CF96B3 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2095CCC1FD5971000CF96B3 /* LocationViewController.swift */; };
+		A20B73C61FDAE7CD00E031FC /* FileTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20B73C51FDAE7CD00E031FC /* FileTagsViewController.swift */; };
 		A2178B781FD5BD7100370CF7 /* FileTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C7DF721FD583B200F8AFDA /* FileTagsViewController.swift */; };
 		A2178B791FD5BD7500370CF7 /* PanoramaViewM.m in Sources */ = {isa = PBXBuildFile; fileRef = A2095CC31FD5851E00CF96B3 /* PanoramaViewM.m */; };
 		A2178B7A1FD5BD8600370CF7 /* ViewTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C7DF6F1FD583B100F8AFDA /* ViewTagViewController.swift */; };
 		A21AD9181FB1EF1500BCDD1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21AD9171FB1EF1500BCDD1F /* AppDelegate.swift */; };
 		A21AD91D1FB1EF1500BCDD1F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A21AD91B1FB1EF1500BCDD1F /* Main.storyboard */; };
 		A21AD91F1FB1EF1500BCDD1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A21AD91E1FB1EF1500BCDD1F /* Assets.xcassets */; };
+		A22039B11FDD297B00720845 /* FileTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22039B01FDD297B00720845 /* FileTagViewController.swift */; };
+		A22039B31FDD2EF400720845 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22039B21FDD2EF400720845 /* Extensions.swift */; };
+		A22039B51FDD808A00720845 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A22039B41FDD808A00720845 /* Quartz.framework */; };
 		A22A10491FA1E5F400DAFA40 /* FilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22A10481FA1E5F400DAFA40 /* FilesViewController.swift */; };
 		A22A104B1FA1F00500DAFA40 /* FileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22A104A1FA1F00500DAFA40 /* FileViewController.swift */; };
 		A23A2CB51FA1D84C00E25F87 /* FoldersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23A2CB41FA1D84C00E25F87 /* FoldersViewController.swift */; };
@@ -103,12 +107,25 @@
 		A2B2D1641FA876F400A1FACE /* RecorderFramework-WatchExample.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = A2B2D1471FA876F400A1FACE /* RecorderFramework-WatchExample.app */; };
 		A2BF106E1FC823850016CFA3 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BF106D1FC823850016CFA3 /* DatePickerViewController.swift */; };
 		A2BF34A31FAB995400C7006F /* FileInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BF34A21FAB995400C7006F /* FileInterfaceController.swift */; };
+		A2D3E8121FDE60E7000C0874 /* ViewTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D3E8111FDE60E7000C0874 /* ViewTagViewController.swift */; };
 		A2D405371FAA76140042E605 /* RecordInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D405361FAA76140042E605 /* RecordInterfaceController.swift */; };
 		A2D6BBEA1FB3B90F003C6CE4 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2D6BBE91FB3B90E003C6CE4 /* StoreKit.framework */; };
 		A2D6BBF21FB3D0D9003C6CE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D6BBF11FB3D0D9003C6CE4 /* AppDelegate.swift */; };
 		A2D6BBF41FB3D0D9003C6CE4 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D6BBF31FB3D0D9003C6CE4 /* RegisterViewController.swift */; };
 		A2D6BBF61FB3D0D9003C6CE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2D6BBF51FB3D0D9003C6CE4 /* Assets.xcassets */; };
 		A2D6BBF91FB3D0D9003C6CE4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2D6BBF71FB3D0D9003C6CE4 /* Main.storyboard */; };
+		A2D8BBB41FDE65C200E4F01C /* _JHFVecSampleDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D8BB9A1FDE65C100E4F01C /* _JHFVecSampleDataProvider.m */; };
+		A2D8BBB51FDE65C200E4F01C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A2D8BB9B1FDE65C100E4F01C /* InfoPlist.strings */; };
+		A2D8BBB61FDE65C200E4F01C /* JHWaveform-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A2D8BBA01FDE65C100E4F01C /* JHWaveform-Info.plist */; };
+		A2D8BBB71FDE65C200E4F01C /* JHAudioPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D8BBA11FDE65C100E4F01C /* JHAudioPreviewView.m */; };
+		A2D8BBB81FDE65C200E4F01C /* JHAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D8BBA21FDE65C100E4F01C /* JHAudioPlayer.m */; };
+		A2D8BBB91FDE65C200E4F01C /* JHSampleDataMonoizer.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D8BBA51FDE65C100E4F01C /* JHSampleDataMonoizer.m */; };
+		A2D8BBBA1FDE65C200E4F01C /* _JHAVAssetSampleDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D8BBA81FDE65C100E4F01C /* _JHAVAssetSampleDataProvider.m */; };
+		A2D8BBBB1FDE65C200E4F01C /* JHSignalView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D8BBAA1FDE65C100E4F01C /* JHSignalView.m */; };
+		A2D8BBBC1FDE65C200E4F01C /* _JHBufferedSampleDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D8BBAB1FDE65C100E4F01C /* _JHBufferedSampleDataProvider.m */; };
+		A2D8BBBD1FDE65C200E4F01C /* JHSampleDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D8BBAC1FDE65C100E4F01C /* JHSampleDataProvider.m */; };
+		A2D8BBBE1FDE65C200E4F01C /* JHMonoWaveformView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D8BBAE1FDE65C100E4F01C /* JHMonoWaveformView.m */; };
+		A2D8BBBF1FDE65C200E4F01C /* JHWaterfallView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D8BBB01FDE65C100E4F01C /* JHWaterfallView.m */; };
 		A2E949411F9FB1BA00FAA5D0 /* EnterCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E949401F9FB1BA00FAA5D0 /* EnterCodeViewController.swift */; };
 		A2F26E6E1FB6E94D00CE2B19 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2F26E6D1FB6E94D00CE2B19 /* StoreKit.framework */; };
 		A2F76A741FA892E300EF05EE /* WatchDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F76A731FA892E300EF05EE /* WatchDataController.swift */; };
@@ -198,11 +215,15 @@
 		A2095CC81FD5887700CF96B3 /* FDWaveformRenderOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FDWaveformRenderOperation.swift; sourceTree = "<group>"; };
 		A2095CCC1FD5971000CF96B3 /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		A2095CCD1FD5971000CF96B3 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		A20B73C51FDAE7CD00E031FC /* FileTagsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTagsViewController.swift; sourceTree = "<group>"; };
 		A21AD9151FB1EF1500BCDD1F /* RecorderFramework-TVExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RecorderFramework-TVExample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A21AD9171FB1EF1500BCDD1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A21AD91C1FB1EF1500BCDD1F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A21AD91E1FB1EF1500BCDD1F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A21AD9201FB1EF1500BCDD1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A22039B01FDD297B00720845 /* FileTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTagViewController.swift; sourceTree = "<group>"; };
+		A22039B21FDD2EF400720845 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		A22039B41FDD808A00720845 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/Quartz.framework; sourceTree = DEVELOPER_DIR; };
 		A22A10481FA1E5F400DAFA40 /* FilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesViewController.swift; sourceTree = "<group>"; };
 		A22A104A1FA1F00500DAFA40 /* FileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileViewController.swift; sourceTree = "<group>"; };
 		A23A2CB41FA1D84C00E25F87 /* FoldersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersViewController.swift; sourceTree = "<group>"; };
@@ -293,6 +314,7 @@
 		A2C7DF6F1FD583B100F8AFDA /* ViewTagViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewTagViewController.swift; path = "RecorderFramework-TvExample/ViewTagViewController.swift"; sourceTree = SOURCE_ROOT; };
 		A2C7DF721FD583B200F8AFDA /* FileTagsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileTagsViewController.swift; path = "RecorderFramework-TvExample/FileTagsViewController.swift"; sourceTree = SOURCE_ROOT; };
 		A2C7DF731FD583B200F8AFDA /* PanoramaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PanoramaViewController.swift; path = "RecorderFramework-TvExample/PanoramaViewController.swift"; sourceTree = SOURCE_ROOT; };
+		A2D3E8111FDE60E7000C0874 /* ViewTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTagViewController.swift; sourceTree = "<group>"; };
 		A2D405361FAA76140042E605 /* RecordInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordInterfaceController.swift; sourceTree = "<group>"; };
 		A2D6BBE81FB3B908003C6CE4 /* RecorderFramework-TVExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "RecorderFramework-TVExample.entitlements"; sourceTree = "<group>"; };
 		A2D6BBE91FB3B90E003C6CE4 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS11.1.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -303,6 +325,30 @@
 		A2D6BBF81FB3D0D9003C6CE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A2D6BBFA1FB3D0D9003C6CE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A2D6BBFB1FB3D0D9003C6CE4 /* RecorderFramework_MacExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RecorderFramework_MacExample.entitlements; sourceTree = "<group>"; };
+		A2D8BB9A1FDE65C100E4F01C /* _JHFVecSampleDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _JHFVecSampleDataProvider.m; sourceTree = "<group>"; };
+		A2D8BB9C1FDE65C100E4F01C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A2D8BB9D1FDE65C100E4F01C /* JHSampleDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHSampleDataProvider.h; sourceTree = "<group>"; };
+		A2D8BB9E1FDE65C100E4F01C /* _JHBufferedSampleDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _JHBufferedSampleDataProvider.h; sourceTree = "<group>"; };
+		A2D8BB9F1FDE65C100E4F01C /* JHSignalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHSignalView.h; sourceTree = "<group>"; };
+		A2D8BBA01FDE65C100E4F01C /* JHWaveform-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "JHWaveform-Info.plist"; sourceTree = "<group>"; };
+		A2D8BBA11FDE65C100E4F01C /* JHAudioPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHAudioPreviewView.m; sourceTree = "<group>"; };
+		A2D8BBA21FDE65C100E4F01C /* JHAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHAudioPlayer.m; sourceTree = "<group>"; };
+		A2D8BBA31FDE65C100E4F01C /* JHWaterfallView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHWaterfallView.h; sourceTree = "<group>"; };
+		A2D8BBA41FDE65C100E4F01C /* JHMonoWaveformView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHMonoWaveformView.h; sourceTree = "<group>"; };
+		A2D8BBA51FDE65C100E4F01C /* JHSampleDataMonoizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHSampleDataMonoizer.m; sourceTree = "<group>"; };
+		A2D8BBA71FDE65C100E4F01C /* _JHAVAssetSampleDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _JHAVAssetSampleDataProvider.h; sourceTree = "<group>"; };
+		A2D8BBA81FDE65C100E4F01C /* _JHAVAssetSampleDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _JHAVAssetSampleDataProvider.m; sourceTree = "<group>"; };
+		A2D8BBA91FDE65C100E4F01C /* _JHFVecSampleDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _JHFVecSampleDataProvider.h; sourceTree = "<group>"; };
+		A2D8BBAA1FDE65C100E4F01C /* JHSignalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHSignalView.m; sourceTree = "<group>"; };
+		A2D8BBAB1FDE65C100E4F01C /* _JHBufferedSampleDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _JHBufferedSampleDataProvider.m; sourceTree = "<group>"; };
+		A2D8BBAC1FDE65C100E4F01C /* JHSampleDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHSampleDataProvider.m; sourceTree = "<group>"; };
+		A2D8BBAD1FDE65C100E4F01C /* JHWaveform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHWaveform.h; sourceTree = "<group>"; };
+		A2D8BBAE1FDE65C100E4F01C /* JHMonoWaveformView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHMonoWaveformView.m; sourceTree = "<group>"; };
+		A2D8BBAF1FDE65C100E4F01C /* JHSampleDataMonoizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHSampleDataMonoizer.h; sourceTree = "<group>"; };
+		A2D8BBB01FDE65C100E4F01C /* JHWaterfallView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHWaterfallView.m; sourceTree = "<group>"; };
+		A2D8BBB11FDE65C100E4F01C /* JHWaveform-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JHWaveform-Prefix.pch"; sourceTree = "<group>"; };
+		A2D8BBB21FDE65C100E4F01C /* JHAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHAudioPlayer.h; sourceTree = "<group>"; };
+		A2D8BBB31FDE65C100E4F01C /* JHAudioPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHAudioPreviewView.h; sourceTree = "<group>"; };
 		A2E949401F9FB1BA00FAA5D0 /* EnterCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCodeViewController.swift; sourceTree = "<group>"; };
 		A2F26E6C1FB6E94500CE2B19 /* RecorderFramework-MacExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "RecorderFramework-MacExample.entitlements"; sourceTree = "<group>"; };
 		A2F26E6D1FB6E94D00CE2B19 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -374,6 +420,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A22039B51FDD808A00720845 /* Quartz.framework in Frameworks */,
 				850FAA7B8BF4FA4255305461 /* Pods_RecorderFramework_MacExample.framework in Frameworks */,
 				A2F26E6E1FB6E94D00CE2B19 /* StoreKit.framework in Frameworks */,
 			);
@@ -511,6 +558,7 @@
 		91A4A99FDAE8352DE6480444 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A22039B41FDD808A00720845 /* Quartz.framework */,
 				A24607AC1FCE000300F50AEE /* CoreMotion.framework */,
 				A24607AA1FCDFFFB00F50AEE /* OpenGLES.framework */,
 				A26FCC941FCDFDAB00CBA0D4 /* GLKit.framework */,
@@ -665,6 +713,7 @@
 		A2D6BBF01FB3D0D9003C6CE4 /* RecorderFramework-MacExample */ = {
 			isa = PBXGroup;
 			children = (
+				A2D8BB991FDE65C100E4F01C /* JHWaveform */,
 				A2412DC81FB7865700B7EC7D /* MKStoreKit */,
 				A2412DC71FB7865700B7EC7D /* RecorderFramework-Bridging-Header.h */,
 				A2F26E6C1FB6E94500CE2B19 /* RecorderFramework-MacExample.entitlements */,
@@ -683,12 +732,55 @@
 				A284BB4A1FB8475400D82F49 /* TitleViewController.swift */,
 				A284BB4C1FB84F3400D82F49 /* FilesViewController.swift */,
 				A284BB4E1FB8A00900D82F49 /* FileViewController.swift */,
+				A20B73C51FDAE7CD00E031FC /* FileTagsViewController.swift */,
+				A22039B01FDD297B00720845 /* FileTagViewController.swift */,
+				A2D3E8111FDE60E7000C0874 /* ViewTagViewController.swift */,
 				A2D6BBF51FB3D0D9003C6CE4 /* Assets.xcassets */,
 				A2D6BBF71FB3D0D9003C6CE4 /* Main.storyboard */,
 				A2D6BBFA1FB3D0D9003C6CE4 /* Info.plist */,
 				A2D6BBFB1FB3D0D9003C6CE4 /* RecorderFramework_MacExample.entitlements */,
+				A22039B21FDD2EF400720845 /* Extensions.swift */,
 			);
 			path = "RecorderFramework-MacExample";
+			sourceTree = "<group>";
+		};
+		A2D8BB991FDE65C100E4F01C /* JHWaveform */ = {
+			isa = PBXGroup;
+			children = (
+				A2D8BB9A1FDE65C100E4F01C /* _JHFVecSampleDataProvider.m */,
+				A2D8BB9B1FDE65C100E4F01C /* InfoPlist.strings */,
+				A2D8BB9D1FDE65C100E4F01C /* JHSampleDataProvider.h */,
+				A2D8BB9E1FDE65C100E4F01C /* _JHBufferedSampleDataProvider.h */,
+				A2D8BB9F1FDE65C100E4F01C /* JHSignalView.h */,
+				A2D8BBA01FDE65C100E4F01C /* JHWaveform-Info.plist */,
+				A2D8BBA11FDE65C100E4F01C /* JHAudioPreviewView.m */,
+				A2D8BBA21FDE65C100E4F01C /* JHAudioPlayer.m */,
+				A2D8BBA31FDE65C100E4F01C /* JHWaterfallView.h */,
+				A2D8BBA41FDE65C100E4F01C /* JHMonoWaveformView.h */,
+				A2D8BBA51FDE65C100E4F01C /* JHSampleDataMonoizer.m */,
+				A2D8BBA61FDE65C100E4F01C /* JHSampleDataProvider Private Subclasses */,
+				A2D8BBA91FDE65C100E4F01C /* _JHFVecSampleDataProvider.h */,
+				A2D8BBAA1FDE65C100E4F01C /* JHSignalView.m */,
+				A2D8BBAB1FDE65C100E4F01C /* _JHBufferedSampleDataProvider.m */,
+				A2D8BBAC1FDE65C100E4F01C /* JHSampleDataProvider.m */,
+				A2D8BBAD1FDE65C100E4F01C /* JHWaveform.h */,
+				A2D8BBAE1FDE65C100E4F01C /* JHMonoWaveformView.m */,
+				A2D8BBAF1FDE65C100E4F01C /* JHSampleDataMonoizer.h */,
+				A2D8BBB01FDE65C100E4F01C /* JHWaterfallView.m */,
+				A2D8BBB11FDE65C100E4F01C /* JHWaveform-Prefix.pch */,
+				A2D8BBB21FDE65C100E4F01C /* JHAudioPlayer.h */,
+				A2D8BBB31FDE65C100E4F01C /* JHAudioPreviewView.h */,
+			);
+			path = JHWaveform;
+			sourceTree = "<group>";
+		};
+		A2D8BBA61FDE65C100E4F01C /* JHSampleDataProvider Private Subclasses */ = {
+			isa = PBXGroup;
+			children = (
+				A2D8BBA71FDE65C100E4F01C /* _JHAVAssetSampleDataProvider.h */,
+				A2D8BBA81FDE65C100E4F01C /* _JHAVAssetSampleDataProvider.m */,
+			);
+			path = "JHSampleDataProvider Private Subclasses";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -979,7 +1071,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2412DCC1FB7865700B7EC7D /* MKStoreKitConfigs.plist in Resources */,
+				A2D8BBB51FDE65C200E4F01C /* InfoPlist.strings in Resources */,
 				A2D6BBF61FB3D0D9003C6CE4 /* Assets.xcassets in Resources */,
+				A2D8BBB61FDE65C200E4F01C /* JHWaveform-Info.plist in Resources */,
 				A2D6BBF91FB3D0D9003C6CE4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1380,22 +1474,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2D8BBB71FDE65C200E4F01C /* JHAudioPreviewView.m in Sources */,
 				A2412DC41FB76D9F00B7EC7D /* SearchViewController.swift in Sources */,
+				A2D8BBB41FDE65C200E4F01C /* _JHFVecSampleDataProvider.m in Sources */,
+				A22039B11FDD297B00720845 /* FileTagViewController.swift in Sources */,
 				A2412DD11FB7901700B7EC7D /* PhoneNumbersViewController.swift in Sources */,
 				A284BB4F1FB8A00900D82F49 /* FileViewController.swift in Sources */,
 				A27A2FA21FB441B8000B3E41 /* EnterCodeViewController.swift in Sources */,
+				A20B73C61FDAE7CD00E031FC /* FileTagsViewController.swift in Sources */,
 				A284BB4B1FB8475400D82F49 /* TitleViewController.swift in Sources */,
+				A22039B31FDD2EF400720845 /* Extensions.swift in Sources */,
+				A2D8BBBB1FDE65C200E4F01C /* JHSignalView.m in Sources */,
+				A2D8BBB91FDE65C200E4F01C /* JHSampleDataMonoizer.m in Sources */,
+				A2D8BBBC1FDE65C200E4F01C /* _JHBufferedSampleDataProvider.m in Sources */,
+				A2D8BBBF1FDE65C200E4F01C /* JHWaterfallView.m in Sources */,
 				A284BB491FB8457200D82F49 /* FoldersViewController.swift in Sources */,
+				A2D8BBBD1FDE65C200E4F01C /* JHSampleDataProvider.m in Sources */,
 				A2412DD51FB7944900B7EC7D /* DisplayViewController.swift in Sources */,
 				A2D6BBF41FB3D0D9003C6CE4 /* RegisterViewController.swift in Sources */,
+				A2D8BBBE1FDE65C200E4F01C /* JHMonoWaveformView.m in Sources */,
 				A2D6BBF21FB3D0D9003C6CE4 /* AppDelegate.swift in Sources */,
+				A2D3E8121FDE60E7000C0874 /* ViewTagViewController.swift in Sources */,
 				A27A2FA41FB44CE1000B3E41 /* HomeViewController.swift in Sources */,
+				A2D8BBBA1FDE65C200E4F01C /* _JHAVAssetSampleDataProvider.m in Sources */,
 				A2412DCD1FB7865700B7EC7D /* MKStoreKit.m in Sources */,
 				A2412DCF1FB788FD00B7EC7D /* ProfileViewController.swift in Sources */,
 				A2412DD31FB7925F00B7EC7D /* LanguagesViewController.swift in Sources */,
 				A2412DC61FB7857F00B7EC7D /* BuyViewController.swift in Sources */,
 				A284BB4D1FB84F3400D82F49 /* FilesViewController.swift in Sources */,
 				A284BB471FB82E9000D82F49 /* SettingsViewController.swift in Sources */,
+				A2D8BBB81FDE65C200E4F01C /* JHAudioPlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1458,6 +1566,14 @@
 				A2D6BBF81FB3D0D9003C6CE4 /* Base */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A2D8BB9B1FDE65C100E4F01C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A2D8BB9C1FDE65C100E4F01C /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

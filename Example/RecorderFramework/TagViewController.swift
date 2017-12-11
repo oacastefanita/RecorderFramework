@@ -22,14 +22,14 @@ class TagViewController: UIViewController, UITextFieldDelegate, UIPickerViewDele
     var filePath: String!
     var maxImages = 0
     var fileId: String!
+    var imageType = 0
+    
     @IBOutlet weak var txtTime: UITextField!
     @IBOutlet weak var txtDureation: UITextField!
     @IBOutlet weak var txtArg1: UITextField!
     @IBOutlet weak var txtArg2: UITextField!
     @IBOutlet weak var pkrType: UIPickerView!
-    
-    var imageType = 0
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.

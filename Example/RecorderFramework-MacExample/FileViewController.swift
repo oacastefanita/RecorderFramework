@@ -11,7 +11,6 @@ import RecorderFramework
 import AVFoundation
 
 class FileViewController: NSViewController, TitleViewControllerDelegater, AVAudioRecorderDelegate, NSTextFieldDelegate{
-    @IBOutlet weak var txtTags: NSTextField!
     @IBOutlet weak var txtNotes: NSTextField!
     @IBOutlet weak var txtEmail: NSTextField!
     @IBOutlet weak var txtPhoneNumber: NSTextField!
@@ -105,7 +104,6 @@ class FileViewController: NSViewController, TitleViewControllerDelegater, AVAudi
     }
     
     func fillView(){
-        txtTags.stringValue = file.tags
         txtNotes.stringValue = file.notes
         txtEmail.stringValue = file.email
         txtPhoneNumber.stringValue = file.phoneNumber
@@ -144,7 +142,6 @@ class FileViewController: NSViewController, TitleViewControllerDelegater, AVAudi
     }
     
     @IBAction func onUpdate(_ sender: Any) {
-        file.tags = txtTags.stringValue
         file.notes = txtNotes.stringValue
         file.email = txtEmail.stringValue
         file.phoneNumber = txtPhoneNumber.stringValue
@@ -200,6 +197,12 @@ class FileViewController: NSViewController, TitleViewControllerDelegater, AVAudi
         if segue.identifier!.rawValue == "titleFromFile"{
             (segue.destinationController as! TitleViewController).delegate = self
             (segue.destinationController as! TitleViewController).placeholder = placeholder
+        }else if segue.identifier!.rawValue == "showTagsFromFile"{
+            let fileManager = FileManager.default
+            var path = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)!.path
+            path += file.localFile
+            self.file.setupWithFile(path)
+            (segue.destinationController as! FileTagsViewController).file = self.file
         }
     }
     
