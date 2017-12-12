@@ -11,6 +11,8 @@ import RecorderFramework
 import AVFoundation
 
 class FileViewController: NSViewController, TitleViewControllerDelegater, AVAudioRecorderDelegate, NSTextFieldDelegate{
+    @IBOutlet weak var txtReccurenceDate: NSTextField!
+    @IBOutlet weak var txtReccurenceDays: NSTextField!
     @IBOutlet weak var txtNotes: NSTextField!
     @IBOutlet weak var txtEmail: NSTextField!
     @IBOutlet weak var txtPhoneNumber: NSTextField!
@@ -104,6 +106,8 @@ class FileViewController: NSViewController, TitleViewControllerDelegater, AVAudi
     }
     
     func fillView(){
+        txtReccurenceDate.stringValue = file.remindDate
+        txtReccurenceDays.stringValue = file.remindDays
         txtNotes.stringValue = file.notes
         txtEmail.stringValue = file.email
         txtPhoneNumber.stringValue = file.phoneNumber
@@ -142,6 +146,8 @@ class FileViewController: NSViewController, TitleViewControllerDelegater, AVAudi
     }
     
     @IBAction func onUpdate(_ sender: Any) {
+        file.remindDays = txtReccurenceDays.stringValue
+        file.remindDate = txtReccurenceDate.stringValue
         file.notes = txtNotes.stringValue
         file.email = txtEmail.stringValue
         file.phoneNumber = txtPhoneNumber.stringValue
@@ -157,8 +163,8 @@ class FileViewController: NSViewController, TitleViewControllerDelegater, AVAudi
             return
         }
         
-        let dict = NSMutableDictionary(dictionary: ["id":file.id, "f_name":file.firstName, "l_name":file.lastName, "email":file.email, "notes":file.notes, "phone":file.phoneNumber, "tags":file.tags])
-        RecorderFrameworkManager.sharedInstance.updateRecordingInfo(file, fileInfo: dict)
+        let dict = RecorderFrameworkManager.sharedInstance.createDictFromRecordItem(file)
+        RecorderFrameworkManager.sharedInstance.updateRecordingInfo(file, fileInfo: NSMutableDictionary(dictionary: dict))
         self.view.window?.close()
     }
     

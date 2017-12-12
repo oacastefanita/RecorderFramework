@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="13529" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="13771" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
     <device id="watch38" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="watchOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="13507"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="13756"/>
     </dependencies>
     <scenes>
         <!--Interface Controller-->
@@ -225,6 +225,8 @@
                         <label alignment="left" text="Phone number:" id="BZ9-1K-Zfe"/>
                         <label alignment="left" text="Email:" id="wsj-el-3mR"/>
                         <label alignment="left" text="Notes:" id="98E-gp-yrg"/>
+                        <label alignment="left" text="Reccurence date:" id="XBd-HJ-hGh"/>
+                        <label alignment="left" text="Recurrence days:" id="Mgm-te-d5z"/>
                         <button width="1" alignment="left" title="Tags" id="vUW-Xh-Z9z">
                             <connections>
                                 <action selector="onTags:" destination="Wkq-YD-la7" id="WLh-eq-q3D"/>
@@ -239,6 +241,8 @@
                         <outlet property="lblName" destination="Pby-yv-4q3" id="XZ6-z0-LgX"/>
                         <outlet property="lblNotes" destination="98E-gp-yrg" id="oex-OH-O4o"/>
                         <outlet property="lblPhoneNumber" destination="BZ9-1K-Zfe" id="oI7-pw-gOj"/>
+                        <outlet property="lblReccurenceDate" destination="XBd-HJ-hGh" id="12l-4r-8Se"/>
+                        <outlet property="lblReccurenceDays" destination="Mgm-te-d5z" id="ubG-ya-DxW"/>
                     </connections>
                 </controller>
             </objects>

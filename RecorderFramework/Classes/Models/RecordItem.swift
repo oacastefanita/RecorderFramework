@@ -56,6 +56,10 @@ public class RecordItem: NSObject, NSSecureCoding {
     fileprivate var audioFilePath:String!
     fileprivate var audioMetadataFilePath:String!
     @objc public var metaFileId: String!
+    
+    @objc public var remindDate:String! = ""
+    @objc public var remindDays:String! = ""
+    
     override public init() {
         super.init()
     }
@@ -153,6 +157,12 @@ public class RecordItem: NSObject, NSSecureCoding {
         if let value = aDecoder.decodeObject(forKey: "metaFileId") as? String {
             self.metaFileId = value
         }
+        if let value = aDecoder.decodeObject(forKey: "remindDate") as? String {
+            self.remindDate = value
+        }
+        if let value = aDecoder.decodeObject(forKey: "remindDays") as? String {
+            self.remindDays = value
+        }
     }
     
      public func encode(with aCoder: NSCoder) {
@@ -243,6 +253,12 @@ public class RecordItem: NSObject, NSSecureCoding {
         if let value = self.metaFileId {
             aCoder.encode(value, forKey: "metaFileId")
         }
+        if let value = self.metaFileId {
+            aCoder.encode(value, forKey: "metaFileId")
+        }
+        if let value = self.metaFileId {
+            aCoder.encode(value, forKey: "metaFileId")
+        }
     }
     
     static public  var supportsSecureCoding : Bool {
@@ -269,6 +285,8 @@ public class RecordItem: NSObject, NSSecureCoding {
         self.tags = item.tags
         self.fromTrash = item.fromTrash
         self.isStar = item.isStar
+        self.remindDays = item.remindDays
+        self.remindDate = item.remindDate
 //        self.metaFileId = item.metaFileId
     }
     

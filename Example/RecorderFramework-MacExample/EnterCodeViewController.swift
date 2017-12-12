@@ -11,6 +11,7 @@ import RecorderFramework
 
 class EnterCodeViewController: NSViewController {
     
+    @IBOutlet weak var txtToken: NSTextField!
     @IBOutlet weak var txtCode: NSTextField!
     @IBOutlet weak var btnDone: NSButton!
     
@@ -32,7 +33,7 @@ class EnterCodeViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.txtToken.stringValue = RecorderFrameworkManager.sharedInstance.pushToken
         // Do any additional setup after loading the view.
     }
     

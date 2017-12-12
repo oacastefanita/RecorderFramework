@@ -5,6 +5,7 @@ public class RecorderFrameworkManager : NSObject {
     
     public var isFree = false
     public var containerName:String!
+    public var pushToken:String!
     
     override public init() {
         super.init()
@@ -773,5 +774,9 @@ public class RecorderFrameworkManager : NSObject {
     
     public func folderForItem(_ itemId: String) -> RecordFolder{
         return RecordingsManager.sharedInstance.folderForItem(itemId)
+    }
+    
+    public func createDictFromRecordItem(_ file: RecordItem) -> NSDictionary{
+        return RecorderFactory.createDictFromRecordItem(file)
     }
 }

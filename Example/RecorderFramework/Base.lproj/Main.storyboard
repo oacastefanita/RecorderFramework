@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Rgn-bi-hdd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Rgn-bi-hdd">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -158,12 +158,21 @@
                                     <constraint firstAttribute="width" secondItem="zJ2-sx-3fc" secondAttribute="height" multiplier="1:1" id="6ye-Ve-uLA"/>
                                 </constraints>
                             </webView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gYs-vx-P4f">
+                                <rect key="frame" x="0.0" y="174" width="375" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="gYs-vx-P4f" firstAttribute="top" secondItem="Vd6-Nq-gN8" secondAttribute="bottom" constant="40" id="2tK-PC-o9n"/>
                             <constraint firstItem="0Pk-qN-hIV" firstAttribute="top" secondItem="zJ2-sx-3fc" secondAttribute="bottom" id="FYg-GE-hQP"/>
                             <constraint firstItem="kO4-gD-Zgw" firstAttribute="centerX" secondItem="uap-pf-mp1" secondAttribute="centerX" id="H7L-G3-jVe"/>
                             <constraint firstItem="kO4-gD-Zgw" firstAttribute="top" secondItem="Vd6-Nq-gN8" secondAttribute="bottom" constant="8" id="Or1-5G-PHj"/>
+                            <constraint firstItem="gYs-vx-P4f" firstAttribute="leading" secondItem="uap-pf-mp1" secondAttribute="leading" id="SuN-0X-XW0"/>
+                            <constraint firstAttribute="trailing" secondItem="gYs-vx-P4f" secondAttribute="trailing" id="Wm0-PB-dtt"/>
                             <constraint firstAttribute="trailing" secondItem="zJ2-sx-3fc" secondAttribute="trailing" id="Yvh-Fu-RHO"/>
                             <constraint firstItem="Vd6-Nq-gN8" firstAttribute="top" secondItem="ksP-CS-rGy" secondAttribute="bottom" constant="40" id="dKR-KM-ruj"/>
                             <constraint firstItem="Vd6-Nq-gN8" firstAttribute="leading" secondItem="uap-pf-mp1" secondAttribute="leading" constant="8" id="i8Z-oh-e5W"/>
@@ -174,6 +183,7 @@
                     </view>
                     <connections>
                         <outlet property="txtCode" destination="Vd6-Nq-gN8" id="GKq-CS-igq"/>
+                        <outlet property="txtToken" destination="gYs-vx-P4f" id="Lil-8L-uOO"/>
                         <outlet property="webViewCode" destination="zJ2-sx-3fc" id="VEI-Rt-XHE"/>
                         <segue destination="wvJ-9H-guJ" kind="show" identifier="showHomeFromEnterCode" id="2Tl-Y6-Oim"/>
                     </connections>
@@ -1416,7 +1426,7 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c7s-9u-74x">
-                                        <rect key="frame" x="20" y="140" width="335" height="198"/>
+                                        <rect key="frame" x="20" y="140" width="335" height="274"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="first name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="faO-3d-Dq9">
                                                 <rect key="frame" x="8" y="8" width="319" height="30"/>
@@ -1463,9 +1473,28 @@
                                                     <outlet property="delegate" destination="rnC-AD-rWf" id="19Q-LQ-Sp9"/>
                                                 </connections>
                                             </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="reccurence date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pbw-Zd-6bo">
+                                                <rect key="frame" x="8" y="198" width="319" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="rnC-AD-rWf" id="L0s-iL-dsG"/>
+                                                </connections>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="reccurence days" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZAz-uC-J1G">
+                                                <rect key="frame" x="8" y="236" width="319" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="rnC-AD-rWf" id="crL-eb-QiO"/>
+                                                </connections>
+                                            </textField>
                                         </subviews>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="Pbw-Zd-6bo" firstAttribute="top" secondItem="CMu-7D-6cM" secondAttribute="bottom" constant="8" id="1oi-aQ-hhU"/>
                                             <constraint firstItem="CMu-7D-6cM" firstAttribute="leading" secondItem="c7s-9u-74x" secondAttribute="leading" constant="8" id="BBp-eb-Jwl"/>
                                             <constraint firstItem="SvR-Gr-QQS" firstAttribute="leading" secondItem="c7s-9u-74x" secondAttribute="leading" constant="8" id="HGT-zp-3Eb"/>
                                             <constraint firstAttribute="trailing" secondItem="faO-3d-Dq9" secondAttribute="trailing" constant="8" id="HIX-2b-DWj"/>
@@ -1473,15 +1502,20 @@
                                             <constraint firstItem="CMu-7D-6cM" firstAttribute="top" secondItem="CxA-lb-Pep" secondAttribute="bottom" constant="8" id="NDH-Rv-vf9"/>
                                             <constraint firstItem="YJ4-3Y-J94" firstAttribute="leading" secondItem="c7s-9u-74x" secondAttribute="leading" constant="8" id="Nic-uR-K0D"/>
                                             <constraint firstAttribute="trailing" secondItem="SvR-Gr-QQS" secondAttribute="trailing" constant="8" id="OUU-dt-dwD"/>
-                                            <constraint firstAttribute="bottom" secondItem="CMu-7D-6cM" secondAttribute="bottom" constant="8" id="Pt5-Oq-VbE"/>
+                                            <constraint firstItem="ZAz-uC-J1G" firstAttribute="leading" secondItem="c7s-9u-74x" secondAttribute="leading" constant="8" id="P9E-vY-8fb"/>
+                                            <constraint firstAttribute="bottom" secondItem="ZAz-uC-J1G" secondAttribute="bottom" constant="8" id="VAI-jq-MPf"/>
+                                            <constraint firstItem="ZAz-uC-J1G" firstAttribute="top" secondItem="Pbw-Zd-6bo" secondAttribute="bottom" constant="8" id="W67-op-hMc"/>
                                             <constraint firstItem="CxA-lb-Pep" firstAttribute="leading" secondItem="c7s-9u-74x" secondAttribute="leading" constant="8" id="XHc-zi-JRn"/>
                                             <constraint firstAttribute="trailing" secondItem="CMu-7D-6cM" secondAttribute="trailing" constant="8" id="a0X-gl-Wc6"/>
                                             <constraint firstItem="YJ4-3Y-J94" firstAttribute="top" secondItem="faO-3d-Dq9" secondAttribute="bottom" constant="8" id="aA7-aj-43L"/>
                                             <constraint firstAttribute="trailing" secondItem="CxA-lb-Pep" secondAttribute="trailing" constant="8" id="bi0-U2-qBA"/>
                                             <constraint firstAttribute="trailing" secondItem="YJ4-3Y-J94" secondAttribute="trailing" constant="8" id="btq-i2-2ET"/>
+                                            <constraint firstAttribute="trailing" secondItem="ZAz-uC-J1G" secondAttribute="trailing" constant="8" id="izL-ip-2CV"/>
                                             <constraint firstItem="faO-3d-Dq9" firstAttribute="leading" secondItem="c7s-9u-74x" secondAttribute="leading" constant="8" id="mT3-qe-aGP"/>
                                             <constraint firstItem="CxA-lb-Pep" firstAttribute="top" secondItem="SvR-Gr-QQS" secondAttribute="bottom" constant="8" id="mTw-qw-cfA"/>
                                             <constraint firstItem="faO-3d-Dq9" firstAttribute="top" secondItem="c7s-9u-74x" secondAttribute="top" constant="8" id="o1e-HM-WZe"/>
+                                            <constraint firstItem="Pbw-Zd-6bo" firstAttribute="leading" secondItem="c7s-9u-74x" secondAttribute="leading" constant="8" id="qKj-4v-C0F"/>
+                                            <constraint firstAttribute="trailing" secondItem="Pbw-Zd-6bo" secondAttribute="trailing" constant="8" id="rPw-fe-Kls"/>
                                         </constraints>
                                     </view>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q6n-lo-3BW">
@@ -1510,7 +1544,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e1d-Mb-iCs">
-                                        <rect key="frame" x="20" y="346" width="33" height="30"/>
+                                        <rect key="frame" x="20" y="422" width="33" height="30"/>
                                         <state key="normal" title="Tags"/>
                                         <connections>
                                             <segue destination="I4o-Hs-Xeo" kind="show" identifier="tagsFromFile" id="yAj-9U-WVd"/>
@@ -1569,6 +1603,8 @@
                         <outlet property="txtName" destination="q6n-lo-3BW" id="jcL-jg-DCS"/>
                         <outlet property="txtNotes" destination="CMu-7D-6cM" id="Uvd-1z-DvD"/>
                         <outlet property="txtPhoneNumber" destination="SvR-Gr-QQS" id="N4N-uk-bfv"/>
+                        <outlet property="txtReccuranceDate" destination="Pbw-Zd-6bo" id="U2K-hN-oUp"/>
+                        <outlet property="txtReccuranceDays" destination="ZAz-uC-J1G" id="PCw-DT-m6G"/>
                         <segue destination="G04-zZ-0Yy" kind="show" identifier="titleFromFile" id="hLC-bV-XVH"/>
                     </connections>
                 </viewController>

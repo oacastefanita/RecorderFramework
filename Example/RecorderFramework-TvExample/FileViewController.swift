@@ -12,6 +12,8 @@ import AVFoundation
 
 class FileViewController: UIViewController, TitleViewControllerDelegater{
 
+    @IBOutlet weak var txtReccuranceDate: UITextField!
+    @IBOutlet weak var txtReccuranceDays: UITextField!
     @IBOutlet weak var txtNotes: UITextField!
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtPhoneNumber: UITextField!
@@ -100,6 +102,8 @@ class FileViewController: UIViewController, TitleViewControllerDelegater{
     }
     
     func fillView(){
+        txtReccuranceDate.text = file.remindDate
+        txtReccuranceDays.text = file.remindDays
         txtNotes.text = file.notes
         txtEmail.text = file.email
         txtPhoneNumber.text = file.phoneNumber
@@ -140,6 +144,8 @@ class FileViewController: UIViewController, TitleViewControllerDelegater{
     
     @IBAction func onUpdate(_ sender: Any) {
         self.view.endEditing(true)
+        file.remindDays = txtReccuranceDays.text ?? ""
+        file.remindDate = txtReccuranceDate.text ?? ""
         file.notes = txtNotes.text!
         file.email = txtEmail.text!
         file.phoneNumber = txtPhoneNumber.text!
@@ -155,8 +161,8 @@ class FileViewController: UIViewController, TitleViewControllerDelegater{
             return
         }
         
-        let dict = NSMutableDictionary(dictionary: ["id":file.id, "f_name":file.firstName, "l_name":file.lastName, "email":file.email, "notes":file.notes, "phone":file.phoneNumber, "tags":file.tags])
-        RecorderFrameworkManager.sharedInstance.updateRecordingInfo(file, fileInfo: dict)
+        let dict = RecorderFrameworkManager.sharedInstance.createDictFromRecordItem(file)
+        RecorderFrameworkManager.sharedInstance.updateRecordingInfo(file, fileInfo: NSMutableDictionary(dictionary: dict))
         self.navigationController?.popViewController(animated: true)
         self.alert(message: "Request sent")
     }

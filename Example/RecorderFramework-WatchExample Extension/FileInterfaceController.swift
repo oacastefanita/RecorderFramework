@@ -11,6 +11,8 @@ import Foundation
 import RecorderFramework
 
 class FileInterfaceController: WKInterfaceController {
+    @IBOutlet var lblReccurenceDays: WKInterfaceLabel!
+    @IBOutlet var lblReccurenceDate: WKInterfaceLabel!
     @IBOutlet var lblDownloading: WKInterfaceLabel!
     @IBOutlet var lblFirstName: WKInterfaceLabel!
     @IBOutlet var lblLastName: WKInterfaceLabel!
@@ -73,6 +75,8 @@ class FileInterfaceController: WKInterfaceController {
         lblLastName.setText(file.lastName)
         lblFirstName.setText(file.firstName)
         lblName.setText(file.text)
+        lblReccurenceDate.setText(file.remindDate)
+        lblReccurenceDays.setText(file.remindDays)
     }
     
     override func willActivate() {

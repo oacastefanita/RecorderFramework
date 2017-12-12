@@ -137,12 +137,17 @@ class RecorderFactory: NSObject {
         if let value:String = dict.object(forKey: "is_star") as? String {
             object.isStar = value == "1"
         }
-        
+        if let value:String = dict.object(forKey: "remind_days") as? String {
+            object.remindDate = value
+        }
+        if let value:String = dict.object(forKey: "remind_date") as? String {
+            object.remindDays = value
+        }
         return object
     }
     
     class func createDictFromRecordItem(_ file: RecordItem) -> NSDictionary{
-        let dict = NSDictionary(dictionary: ["folderId":file.folderId, "name":file.text, "id":file.id, "phone":file.phone, "access_number":file.accessNumber, "url":file.url, "share_url":file.shareUrl, "credits":file.credits, "duration":file.duration, "time":file.time,"f_name":file.firstName, "l_name":file.lastName, "email":file.email, "notes":file.notes, "phone":file.phoneNumber, "tags":file.tags])
+        let dict = NSDictionary(dictionary: ["folderId":file.folderId, "name":file.text, "id":file.id, "phone":file.phone, "access_number":file.accessNumber, "url":file.url, "share_url":file.shareUrl, "credits":file.credits, "duration":file.duration, "time":file.time,"f_name":file.firstName, "l_name":file.lastName, "email":file.email, "notes":file.notes, "phone":file.phoneNumber, "tags":file.tags, "remind_date":file.remindDate, "remind_days":file.remindDays])
         return dict
     }
 }
