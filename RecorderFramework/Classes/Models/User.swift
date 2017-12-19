@@ -16,6 +16,7 @@ public class User: NSObject, NSCoding {
     public var playBeep:Bool! = false
     public var maxLenght:String! = ""
     public var imagePath:String! = ""
+    public var timeZone:String! = ""
     
     override public init() {
         super.init()
@@ -42,6 +43,9 @@ public class User: NSObject, NSCoding {
         }
         if let value = aDecoder.decodeObject(forKey: "imagePath") as? String {
             self.imagePath = value
+        }
+        if let value = aDecoder.decodeObject(forKey: "timeZone") as? String {
+            self.timeZone = value
         }
     }
     
@@ -72,6 +76,10 @@ public class User: NSObject, NSCoding {
         
         if let value = self.imagePath {
             aCoder.encode(value, forKey: "imagePath")
+        }
+        
+        if let value = self.timeZone {
+            aCoder.encode(value, forKey: "timeZone")
         }
     }
 }

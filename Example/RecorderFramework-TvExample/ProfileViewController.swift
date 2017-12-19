@@ -16,7 +16,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var txtLastName: UITextField!
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtPic: UITextField!
-    @IBOutlet weak var txtMaxLenght: UITextField!
+    @IBOutlet weak var txtTimezone: UITextField!
     @IBOutlet var btnSegmentPlayBeep : UISegmentedControl!
     @IBOutlet var btnSegmentPublic : UISegmentedControl!
     
@@ -43,7 +43,7 @@ class ProfileViewController: UIViewController {
         params["data[f_name]"] = txtFirstName.text ?? ""
         params["data[l_name]"] = txtLastName.text ?? ""
         params["data[is_public]"] = btnSegmentPublic.selectedSegmentIndex == 1 ? "1":"0"
-        params["data[max_length]"] = "119"
+        params["data[time_zone]"] = txtTimezone.text ?? ""
         params["data[email]"] = txtEmail.text ?? ""
         
         RecorderFrameworkManager.sharedInstance.updateUserProfile(RecorderFrameworkManager.sharedInstance.getUser(), userInfo: params)
@@ -55,7 +55,7 @@ class ProfileViewController: UIViewController {
         txtFirstName.text = RecorderFrameworkManager.sharedInstance.getUser().firstName
         txtLastName.text = RecorderFrameworkManager.sharedInstance.getUser().lastName
         txtEmail.text = RecorderFrameworkManager.sharedInstance.getUser().email
-        txtMaxLenght.text = RecorderFrameworkManager.sharedInstance.getUser().maxLenght
+        txtTimezone.text = "\(RecorderFrameworkManager.sharedInstance.getUser().timeZone!)"
         btnSegmentPlayBeep.selectedSegmentIndex = RecorderFrameworkManager.sharedInstance.getUser().playBeep ? 1:0
         btnSegmentPublic.selectedSegmentIndex = RecorderFrameworkManager.sharedInstance.getUser().isPublic ? 1:0
     }

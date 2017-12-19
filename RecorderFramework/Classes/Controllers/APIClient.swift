@@ -100,8 +100,11 @@ class APIClient : NSObject {
             let carrier = tn.subscriberCellularProvider
             let mcc:String! = (carrier != nil && !carrier!.mobileCountryCode!.isEmpty) ? carrier!.mobileCountryCode : "310"
             parameters["mcc"] = mcc
+            parameters["device_type"] = "phone"
+        #elseif os(OSX)
+            parameters["device_type"] = "mac"
         #endif
-        
+        parameters["time_zone"] = TimeZone.current.secondsFromGMT() / 60
         api.doRequest("verify_phone", method: .post, parameters: parameters) { (success, data) in
             if success {
                 if data!["status"] != nil && (data!["status"] as? String) != "ok" {
@@ -151,7 +154,7 @@ class APIClient : NSObject {
             return
         }
         
-        var parameters:[String : Any] = ["api_key": AppPersistentData.sharedInstance.apiKey]
+        var parameters:[String : Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "reminder":"true"]
         if folderId != nil {
             parameters.updateValue(folderId, forKey: "folder_id")
         }
@@ -1861,34 +1864,7 @@ class APIClient : NSObject {
                 }
                 else {
                     if let profile:NSDictionary = data!["profile"] as? NSDictionary {
-                        let user = User()
-                        
-                        if let value:String = profile.object(forKey: "f_name") as? String {
-                            user.firstName = value
-                        }
-                        if let value:String = profile.object(forKey: "l_name") as? String {
-                            user.lastName = value
-                        }
-                        if let value:String = profile.object(forKey: "email") as? String {
-                            user.email = value
-                        }
-                        if let value:String = profile.object(forKey: "max_length") as? String {
-                            user.maxLenght = value
-                        }
-                        if let value:String = profile.object(forKey: "pic") as? String {
-                            user.imagePath = value
-                        }
-                        if let stringValue:String = profile.object(forKey: "play_beep") as? String {
-                            if let value:Bool = (stringValue == "yes" || stringValue == "true" || stringValue == "1"){
-                                user.playBeep = value
-                            }
-                        }
-                        if let stringValue:String = profile.object(forKey: "is_public") as? String {
-                            if let value:Bool = (stringValue == "yes" || stringValue == "true" || stringValue == "1") {
-                                user.isPublic = value
-                            }
-                        }
-                        AppPersistentData.sharedInstance.user = user
+                        AppPersistentData.sharedInstance.user = RecorderFactory.createUserFromDict(profile)
                         AppPersistentData.sharedInstance.saveData()
                     }
                     

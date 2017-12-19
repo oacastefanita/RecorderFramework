@@ -66,6 +66,7 @@
 		A27A2FA21FB441B8000B3E41 /* EnterCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27A2FA11FB441B8000B3E41 /* EnterCodeViewController.swift */; };
 		A27A2FA41FB44CE1000B3E41 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27A2FA31FB44CE1000B3E41 /* HomeViewController.swift */; };
 		A282D8CC1FA4E83900BD3189 /* TitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A282D8CB1FA4E83900BD3189 /* TitleViewController.swift */; };
+		A2831E361FE589F80076CB8D /* PanoramaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2831E351FE589F80076CB8D /* PanoramaViewController.swift */; };
 		A284BB471FB82E9000D82F49 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A284BB461FB82E9000D82F49 /* SettingsViewController.swift */; };
 		A284BB491FB8457200D82F49 /* FoldersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A284BB481FB8457200D82F49 /* FoldersViewController.swift */; };
 		A284BB4B1FB8475400D82F49 /* TitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A284BB4A1FB8475400D82F49 /* TitleViewController.swift */; };
@@ -260,6 +261,7 @@
 		A27A2FA11FB441B8000B3E41 /* EnterCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCodeViewController.swift; sourceTree = "<group>"; };
 		A27A2FA31FB44CE1000B3E41 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		A282D8CB1FA4E83900BD3189 /* TitleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleViewController.swift; sourceTree = "<group>"; };
+		A2831E351FE589F80076CB8D /* PanoramaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanoramaViewController.swift; sourceTree = "<group>"; };
 		A284BB461FB82E9000D82F49 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A284BB481FB8457200D82F49 /* FoldersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersViewController.swift; sourceTree = "<group>"; };
 		A284BB4A1FB8475400D82F49 /* TitleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleViewController.swift; sourceTree = "<group>"; };
@@ -735,6 +737,7 @@
 				A20B73C51FDAE7CD00E031FC /* FileTagsViewController.swift */,
 				A22039B01FDD297B00720845 /* FileTagViewController.swift */,
 				A2D3E8111FDE60E7000C0874 /* ViewTagViewController.swift */,
+				A2831E351FE589F80076CB8D /* PanoramaViewController.swift */,
 				A2D6BBF51FB3D0D9003C6CE4 /* Assets.xcassets */,
 				A2D6BBF71FB3D0D9003C6CE4 /* Main.storyboard */,
 				A2D6BBFA1FB3D0D9003C6CE4 /* Info.plist */,
@@ -1491,6 +1494,7 @@
 				A2D8BBB91FDE65C200E4F01C /* JHSampleDataMonoizer.m in Sources */,
 				A2D8BBBC1FDE65C200E4F01C /* _JHBufferedSampleDataProvider.m in Sources */,
 				A2D8BBBF1FDE65C200E4F01C /* JHWaterfallView.m in Sources */,
+				A2831E361FE589F80076CB8D /* PanoramaViewController.swift in Sources */,
 				A284BB491FB8457200D82F49 /* FoldersViewController.swift in Sources */,
 				A2D8BBBD1FDE65C200E4F01C /* JHSampleDataProvider.m in Sources */,
 				A2412DD51FB7944900B7EC7D /* DisplayViewController.swift in Sources */,

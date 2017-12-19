@@ -1743,11 +1743,39 @@
                         <outlet property="tableViewHolder" destination="qfu-8g-ecA" id="MJG-Ce-pw6"/>
                         <outlet property="waveViewHolder" destination="pp2-gs-eFr" id="0tN-h0-BFt"/>
                         <outlet property="webView" destination="pg5-TD-NBz" id="boS-Aj-Wcd"/>
+                        <segue destination="6sM-si-dEI" kind="show" identifier="showPanoramaFromViewTag" id="Mno-0e-jJ2"/>
                     </connections>
                 </viewController>
                 <customObject id="owt-il-trH" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="578.5" y="3601.5"/>
+        </scene>
+        <!--Panorama View Controller-->
+        <scene sceneID="yJi-2r-Ngt">
+            <objects>
+                <viewController id="6sM-si-dEI" customClass="PanoramaViewController" customModule="RecorderFramework_MacExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="9S0-KC-VFn">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <sceneView translatesAutoresizingMaskIntoConstraints="NO" id="tOS-mx-6kw">
+                                <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                            </sceneView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="tOS-mx-6kw" secondAttribute="bottom" id="4Kh-Jk-kWl"/>
+                            <constraint firstAttribute="trailing" secondItem="tOS-mx-6kw" secondAttribute="trailing" id="EM4-Aj-cKZ"/>
+                            <constraint firstItem="tOS-mx-6kw" firstAttribute="top" secondItem="9S0-KC-VFn" secondAttribute="top" id="H3S-ps-fta"/>
+                            <constraint firstItem="tOS-mx-6kw" firstAttribute="leading" secondItem="9S0-KC-VFn" secondAttribute="leading" id="OSF-CG-jT0"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="sceneView" destination="tOS-mx-6kw" id="MXQ-Im-j2p"/>
+                    </connections>
+                </viewController>
+                <customObject id="dMG-NP-vRU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1192" y="3524"/>
         </scene>
         <!--File View Controller-->
         <scene sceneID="Q5t-2V-zgW">
@@ -2360,7 +2388,7 @@
                         <subviews>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nnF-lN-dZt">
                                 <rect key="frame" x="20" y="258" width="410" height="22"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="zte-YD-65a">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="first name" drawsBackground="YES" id="zte-YD-65a">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -2368,7 +2396,7 @@
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AOz-fn-Oqv">
                                 <rect key="frame" x="20" y="226" width="410" height="22"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="pGB-pl-6e2">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="last name" drawsBackground="YES" id="pGB-pl-6e2">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -2376,7 +2404,7 @@
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dC6-wn-1G7">
                                 <rect key="frame" x="20" y="194" width="410" height="22"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="B0s-Of-sBK">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="email" drawsBackground="YES" id="B0s-Of-sBK">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -2384,7 +2412,7 @@
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MXd-0p-3mF">
                                 <rect key="frame" x="20" y="162" width="410" height="22"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="f9x-zR-tyd">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="minutes to utc" drawsBackground="YES" id="f9x-zR-tyd">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -2441,7 +2469,7 @@
                         <outlet property="txtEmail" destination="dC6-wn-1G7" id="pDi-mx-5V9"/>
                         <outlet property="txtFirstName" destination="nnF-lN-dZt" id="Bge-W6-kex"/>
                         <outlet property="txtLastName" destination="AOz-fn-Oqv" id="v8b-n3-wET"/>
-                        <outlet property="txtMaxLenght" destination="MXd-0p-3mF" id="6TW-a7-e2e"/>
+                        <outlet property="txtTimezone" destination="MXd-0p-3mF" id="vJ1-Jc-eQc"/>
                     </connections>
                 </viewController>
                 <customObject id="ttb-dn-Jqh" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

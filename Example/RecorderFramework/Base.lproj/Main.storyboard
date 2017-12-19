@@ -159,15 +159,23 @@
                                 </constraints>
                             </webView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gYs-vx-P4f">
-                                <rect key="frame" x="0.0" y="174" width="375" height="30"/>
+                                <rect key="frame" x="0.0" y="214" width="375" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Token" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="klo-wQ-Usb">
+                                <rect key="frame" x="0.0" y="189.5" width="46" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="gYs-vx-P4f" firstAttribute="top" secondItem="Vd6-Nq-gN8" secondAttribute="bottom" constant="40" id="2tK-PC-o9n"/>
+                            <constraint firstItem="gYs-vx-P4f" firstAttribute="top" secondItem="Vd6-Nq-gN8" secondAttribute="bottom" constant="80" id="2tK-PC-o9n"/>
+                            <constraint firstItem="klo-wQ-Usb" firstAttribute="leading" secondItem="uap-pf-mp1" secondAttribute="leading" id="B7j-lE-lob"/>
+                            <constraint firstItem="gYs-vx-P4f" firstAttribute="top" secondItem="klo-wQ-Usb" secondAttribute="bottom" constant="4" id="D9j-pg-Cjs"/>
                             <constraint firstItem="0Pk-qN-hIV" firstAttribute="top" secondItem="zJ2-sx-3fc" secondAttribute="bottom" id="FYg-GE-hQP"/>
                             <constraint firstItem="kO4-gD-Zgw" firstAttribute="centerX" secondItem="uap-pf-mp1" secondAttribute="centerX" id="H7L-G3-jVe"/>
                             <constraint firstItem="kO4-gD-Zgw" firstAttribute="top" secondItem="Vd6-Nq-gN8" secondAttribute="bottom" constant="8" id="Or1-5G-PHj"/>
@@ -666,7 +674,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gLx-UN-fXi">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="minutes offset UTC" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gLx-UN-fXi">
                                 <rect key="frame" x="8" y="186" width="359" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -733,7 +741,7 @@
                         <outlet property="txtEmail" destination="eDE-5N-Sl6" id="ig6-8O-BuX"/>
                         <outlet property="txtFirstName" destination="dR6-WR-8on" id="eEs-NI-Lf9"/>
                         <outlet property="txtLastName" destination="Xvw-BI-Ezb" id="Zic-Ff-jc3"/>
-                        <outlet property="txtMaxLenght" destination="gLx-UN-fXi" id="q92-Lr-AFC"/>
+                        <outlet property="txtTimezone" destination="gLx-UN-fXi" id="doL-BH-nt3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1fW-Go-MVd" userLabel="First Responder" sceneMemberID="firstResponder"/>

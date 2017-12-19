@@ -33,7 +33,7 @@ class EnterCodeViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.txtToken.stringValue = RecorderFrameworkManager.sharedInstance.pushToken
+        self.txtToken.stringValue = AppPersistentData.sharedInstance.notificationToken
         // Do any additional setup after loading the view.
     }
     

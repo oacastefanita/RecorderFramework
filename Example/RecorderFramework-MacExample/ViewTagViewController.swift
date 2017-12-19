@@ -183,7 +183,7 @@ class ViewTagViewController: NSViewController,NSTableViewDelegate, NSTableViewDa
         case .panorama:
             self.lblArg1.isHidden = true
             self.lblArg2.isHidden = true
-//            self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(rawValue: "showPanoramaViewFromTag"), sender: self)
+            self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(rawValue: "showPanoramaFromViewTag"), sender: self)
             break
         case .productViewer:
             if self.tag.arg != nil{

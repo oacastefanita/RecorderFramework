@@ -27,7 +27,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         for i in 0..<deviceToken.count {
             newToken += String(format: "%02.2hhx", deviceToken[i] as CVarArg)
         }
-        RecorderFrameworkManager.sharedInstance.pushToken = newToken
+        AppPersistentData.sharedInstance.notificationToken  = newToken
     }
     
     func application(_ application: NSApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {

@@ -15,7 +15,7 @@ class UserInterfaceController: WKInterfaceController {
     @IBOutlet var lblFirstName: WKInterfaceLabel!
     @IBOutlet var lblLastName: WKInterfaceLabel!
     @IBOutlet var lblEmail: WKInterfaceLabel!
-    @IBOutlet var lblNumber: WKInterfaceLabel!
+    @IBOutlet var lblTimezone: WKInterfaceLabel!
     @IBOutlet var lblPlayBeep: WKInterfaceLabel!
     @IBOutlet var lblIsPublic: WKInterfaceLabel!
     
@@ -40,5 +40,6 @@ class UserInterfaceController: WKInterfaceController {
         lblEmail.setText(RecorderFrameworkManager.sharedInstance.getUser().email)
         lblPlayBeep.setText("Play Beep: " + RecorderFrameworkManager.sharedInstance.getUser().playBeep.description)
         lblIsPublic.setText("Public: " + RecorderFrameworkManager.sharedInstance.getUser().isPublic.description)
+        lblTimezone.setText("UTC +" + RecorderFrameworkManager.sharedInstance.getUser().timeZone)
     }
 }

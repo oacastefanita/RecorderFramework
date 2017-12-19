@@ -12,12 +12,11 @@ import RecorderFramework
 class EnterCodeViewController: UIViewController,UITextFieldDelegate {
     
     @IBOutlet weak var txtCode: UITextField!
-//    @IBOutlet weak var webViewCode: UIWebView!
+    @IBOutlet weak var txtToken: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-//        webViewCode.loadRequest(URLRequest(url: URL(string: "https://app2.virtualbrix.net/rapi/get_sms_code/?api_key=55ff840813b9f55ff840813be0")!))
+        self.txtToken.text = AppPersistentData.sharedInstance.notificationToken
     }
     
     override func viewDidAppear(_ animated: Bool) {

@@ -5,7 +5,6 @@ public class RecorderFrameworkManager : NSObject {
     
     public var isFree = false
     public var containerName:String!
-    public var pushToken:String!
     
     override public init() {
         super.init()
@@ -227,11 +226,11 @@ public class RecorderFrameworkManager : NSObject {
     /// Get current user
     ///
     /// - Returns: current user
-    public func getUser() -> User{
+    public func getUser() -> User!{
         #if os(iOS)
         WatchKitController.sharedInstance.sendUser()
         #endif
-        return AppPersistentData.sharedInstance.user
+        return AppPersistentData.sharedInstance.user!
     }
     
     /// Set current user

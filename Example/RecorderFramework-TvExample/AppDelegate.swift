@@ -8,9 +8,10 @@
 
 import UIKit
 import RecorderFramework
+import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
 
@@ -19,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         RecorderFrameworkManager.sharedInstance.containerName = "group.com.codebluestudio.Recorder"
         MKStoreKit.shared().startProductRequest()
+        self.requestNotificationsPermission()
         return true
     }
 
@@ -44,6 +46,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        
+        var newToken: String = ""
+        for i in 0..<deviceToken.count {
+            newToken    += String(format: "%02.2hhx", deviceToken[i] as CVarArg)
+        }
+        AppPersistentData.sharedInstance.notificationToken = newToken
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print(error)
+    }
+    
+    func requestNotificationsPermission(){
+        if #available(tvOS 11.0, *) {
+            let center = UNUserNotificationCenter.current()
+            center.delegate = self
+            center.requestAuthorization(options: [.sound, .alert, .badge], completionHandler: {
+                (granted, error) in
+                if error == nil {
+                    UIApplication.shared.registerForRemoteNotifications()
+                }
+            })
+        } else {
+            print("Push service is not supported below tvOS 10.x.x")
+        }
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
+        print(userInfo)
+    }
 }
 

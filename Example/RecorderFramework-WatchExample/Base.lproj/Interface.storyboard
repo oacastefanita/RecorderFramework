@@ -58,8 +58,8 @@
                         <outlet property="lblFirstName" destination="SBE-nF-1Nz" id="J6w-Tx-t88"/>
                         <outlet property="lblIsPublic" destination="b85-NK-TSE" id="fu4-Bm-pJ3"/>
                         <outlet property="lblLastName" destination="coj-gI-GyN" id="7et-Cb-kkg"/>
-                        <outlet property="lblNumber" destination="BdS-CY-zYT" id="J3v-m9-8tr"/>
                         <outlet property="lblPlayBeep" destination="r4l-0D-ocG" id="pWZ-Jk-qNg"/>
+                        <outlet property="lblTimezone" destination="BdS-CY-zYT" id="hYt-as-BjD"/>
                     </connections>
                 </controller>
             </objects>

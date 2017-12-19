@@ -16,7 +16,7 @@ class ProfileViewController: NSViewController {
     @IBOutlet weak var txtLastName: NSTextField!
     @IBOutlet weak var txtEmail: NSTextField!
     @IBOutlet weak var txtPic: NSTextField!
-    @IBOutlet weak var txtMaxLenght: NSTextField!
+    @IBOutlet weak var txtTimezone: NSTextField!
     @IBOutlet weak var btnPlayBell: NSButton!
     @IBOutlet weak var btnPublic: NSButton!
     
@@ -31,7 +31,7 @@ class ProfileViewController: NSViewController {
         params["data[f_name]"] = txtFirstName.stringValue ?? ""
         params["data[l_name]"] = txtLastName.stringValue ?? ""
         params["data[is_public]"] = btnPublic.state == NSControl.StateValue(rawValue: 1)
-        params["data[max_length]"] = "119"
+        params["data[time_zone]"] = txtTimezone.stringValue ?? ""
         params["data[email]"] = txtEmail.stringValue ?? ""
         RecorderFrameworkManager.sharedInstance.updateUserProfile(RecorderFrameworkManager.sharedInstance.getUser(), userInfo: params)
         self.view.window?.close()
@@ -41,7 +41,7 @@ class ProfileViewController: NSViewController {
         txtFirstName.stringValue = RecorderFrameworkManager.sharedInstance.getUser().firstName
         txtLastName.stringValue = RecorderFrameworkManager.sharedInstance.getUser().lastName
         txtEmail.stringValue = RecorderFrameworkManager.sharedInstance.getUser().email
-        txtMaxLenght.stringValue = RecorderFrameworkManager.sharedInstance.getUser().maxLenght
+        txtTimezone.stringValue = RecorderFrameworkManager.sharedInstance.getUser().timeZone
         btnPlayBell.state = NSControl.StateValue(rawValue: RecorderFrameworkManager.sharedInstance.getUser().playBeep == true ? 1 : 0)
         btnPublic.state = NSControl.StateValue(rawValue: RecorderFrameworkManager.sharedInstance.getUser().isPublic == true ? 1 : 0)
     }

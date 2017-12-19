@@ -175,20 +175,41 @@
                                     <action selector="onDone:" destination="SnC-nm-VoB" eventType="touchUpInside" id="ifs-aA-GrK"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Token" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Otk-aA-mxU">
+                                <rect key="frame" x="908" y="493" width="103" height="46"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hRr-9C-05o">
+                                <rect key="frame" x="110" y="559" width="1700" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="QxV-hE-PcE"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="4Lq-UA-ztx" firstAttribute="top" secondItem="9yQ-yP-ev7" secondAttribute="bottom" constant="8" id="12A-1s-BeG"/>
+                            <constraint firstItem="UFy-QF-TpB" firstAttribute="trailing" secondItem="hRr-9C-05o" secondAttribute="trailing" constant="20" id="8CS-md-dLn"/>
                             <constraint firstItem="9yQ-yP-ev7" firstAttribute="top" secondItem="D7u-wZ-oaq" secondAttribute="bottom" constant="40" id="AmE-xn-4w1"/>
                             <constraint firstItem="4Lq-UA-ztx" firstAttribute="centerX" secondItem="pFM-8V-2wR" secondAttribute="centerX" id="BDz-dn-o4E"/>
+                            <constraint firstItem="Otk-aA-mxU" firstAttribute="top" secondItem="4Lq-UA-ztx" secondAttribute="bottom" constant="100" id="RBB-KL-1UX"/>
+                            <constraint firstItem="hRr-9C-05o" firstAttribute="leading" secondItem="UFy-QF-TpB" secondAttribute="leading" constant="20" id="VQi-jK-Tf5"/>
                             <constraint firstItem="9yQ-yP-ev7" firstAttribute="leading" secondItem="pFM-8V-2wR" secondAttribute="leading" constant="8" id="cFI-1a-u1u"/>
+                            <constraint firstItem="hRr-9C-05o" firstAttribute="top" secondItem="Otk-aA-mxU" secondAttribute="bottom" constant="20" id="dP8-7u-aHI"/>
                             <constraint firstAttribute="trailing" secondItem="9yQ-yP-ev7" secondAttribute="trailing" constant="8" id="gkA-K1-Qbq"/>
+                            <constraint firstItem="Otk-aA-mxU" firstAttribute="centerX" secondItem="pFM-8V-2wR" secondAttribute="centerX" id="nC0-fe-tqY"/>
                             <constraint firstItem="4Lq-UA-ztx" firstAttribute="top" secondItem="9yQ-yP-ev7" secondAttribute="bottom" constant="8" id="y8h-Vb-l8D"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="UFy-QF-TpB"/>
                     </view>
                     <connections>
                         <outlet property="txtCode" destination="9yQ-yP-ev7" id="uGK-O4-tQ9"/>
+                        <outlet property="txtToken" destination="hRr-9C-05o" id="jKO-Ib-48V"/>
                         <segue destination="3q9-xb-jWK" kind="show" identifier="showHomeFromEnterCode" id="y7R-82-lCH">
                             <nil key="action"/>
                         </segue>
@@ -865,7 +886,7 @@
                         <outlet property="txtEmail" destination="8wg-gw-a9i" id="zYs-yl-RRh"/>
                         <outlet property="txtFirstName" destination="jHw-gn-gTw" id="oZm-Ys-zth"/>
                         <outlet property="txtLastName" destination="LqQ-c5-xj5" id="ABi-95-FH3"/>
-                        <outlet property="txtMaxLenght" destination="a1f-i8-yVd" id="8mu-9K-OnC"/>
+                        <outlet property="txtTimezone" destination="a1f-i8-yVd" id="fIc-cj-hAq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ENC-uG-4Oq" userLabel="First Responder" sceneMemberID="firstResponder"/>

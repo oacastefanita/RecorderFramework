@@ -35,12 +35,15 @@ class RecorderFactory: NSObject {
                 object.isPublic = value
             }
         }
+        if let value:String = dict.object(forKey: "time_zone") as? String {
+            object.timeZone = value
+        }
         
         return object
     }
     
     class func createDictFromUser(_ user: User) -> NSDictionary{
-        let dict = NSMutableDictionary(dictionary: ["l_name":user.lastName ?? "", "f_name":user.firstName ?? "", "email":user.email ?? "", "max_length":user.maxLenght ?? "", "pic":user.imagePath ?? "", "play_beep":user.playBeep ?? "", "is_public":user.isPublic ?? ""])
+        let dict = NSMutableDictionary(dictionary: ["l_name":user.lastName ?? "", "f_name":user.firstName ?? "", "email":user.email ?? "", "max_length":user.maxLenght ?? "", "pic":user.imagePath ?? "", "play_beep":user.playBeep ?? "", "is_public":user.isPublic ?? "", "time_zone": user.timeZone])
         return dict
     }
 
