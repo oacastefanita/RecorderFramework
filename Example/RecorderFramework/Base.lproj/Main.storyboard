@@ -1212,15 +1212,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A3K-gd-3JP" customClass="FDWaveformView" customModule="FDWaveformView">
+                                <rect key="frame" x="0.0" y="72" width="375" height="70"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="nNU-J1-uPp"/>
+                                </constraints>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XlM-av-GHx">
                                 <rect key="frame" x="168.5" y="150" width="37.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8wI-ql-hte">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arg 1" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8wI-ql-hte">
                                 <rect key="frame" x="24" y="179" width="327" height="21"/>
-                                <string key="text"> asas dsaads as dasd sa dasd sa aas das dasdasasd asd asdsad asdasd sa dasd asdsad dsaasd asd  asas dsaads as dasd sa dasd sa aas das dasdasasd asd asdsad asdasd sa dasd asdsad dsaasd asd  asas dsaads as dasd sa dasd sa aas das dasdasasd asd asdsad asdasd sa dasd asdsad dsaasd asd  asas dsaads as dasd sa dasd sa aas das dasdasasd asd asdsad asdasd sa dasd asdsad dsaasd asd </string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1237,22 +1243,15 @@
                             <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N6j-4b-HV7">
                                 <rect key="frame" x="8" y="239" width="359" height="420"/>
                             </sceneKitView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A3K-gd-3JP" customClass="FDWaveformView" customModule="FDWaveformView">
-                                <rect key="frame" x="0.0" y="72" width="375" height="70"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="nNU-J1-uPp"/>
-                                </constraints>
-                            </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="128" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Tr4-0M-3pP">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="160" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="Tr4-0M-3pP">
                                 <rect key="frame" x="8" y="237" width="359" height="422"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="imageCell" id="TuA-4g-bv8">
-                                        <rect key="frame" x="0.0" y="28" width="359" height="128"/>
+                                        <rect key="frame" x="0.0" y="1" width="359" height="160"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TuA-4g-bv8" id="eW7-hP-4hD">
-                                            <rect key="frame" x="0.0" y="0.0" width="359" height="128"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="359" height="160"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1614,6 +1613,7 @@
                         <outlet property="txtReccuranceDate" destination="Pbw-Zd-6bo" id="U2K-hN-oUp"/>
                         <outlet property="txtReccuranceDays" destination="ZAz-uC-J1G" id="PCw-DT-m6G"/>
                         <segue destination="G04-zZ-0Yy" kind="show" identifier="titleFromFile" id="hLC-bV-XVH"/>
+                        <segue destination="P9J-NP-6OT" kind="show" identifier="showDateFromFile" id="Lwo-vA-DKq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J1T-lo-fuV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1623,6 +1623,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="bA4-ER-KEw"/>
+        <segue reference="Lwo-vA-DKq"/>
         <segue reference="C7U-gp-LW3"/>
         <segue reference="hLC-bV-XVH"/>
     </inferredMetricsTieBreakers>

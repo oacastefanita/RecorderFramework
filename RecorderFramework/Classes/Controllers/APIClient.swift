@@ -86,9 +86,9 @@ class APIClient : NSObject {
     }
     
     func sendVerificationCode(_ code:NSString, completionHandler:((Bool, Any?) -> Void)?) {
-        var appCode = "pro"
-        if RecorderFrameworkManager.sharedInstance.isFree{
-            appCode = "free"
+        var appCode = "rec"
+        if RecorderFrameworkManager.sharedInstance.isRecorder{
+            appCode = "rem"
         }
         
         let deviceToken =  AppPersistentData.sharedInstance.notificationToken == nil ? "Simulator" : AppPersistentData.sharedInstance.notificationToken
@@ -100,7 +100,7 @@ class APIClient : NSObject {
             let carrier = tn.subscriberCellularProvider
             let mcc:String! = (carrier != nil && !carrier!.mobileCountryCode!.isEmpty) ? carrier!.mobileCountryCode : "310"
             parameters["mcc"] = mcc
-            parameters["device_type"] = "phone"
+            parameters["device_type"] = "ios"
         #elseif os(OSX)
             parameters["device_type"] = "mac"
         #endif

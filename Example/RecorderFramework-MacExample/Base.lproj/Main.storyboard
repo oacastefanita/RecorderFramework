@@ -1898,14 +1898,6 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ERG-97-Njb">
-                                        <rect key="frame" x="0.0" y="117" width="549" height="22"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Reccurence date" drawsBackground="YES" id="bvY-7o-RLo">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
                                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wmK-xZ-WJH">
                                         <rect key="frame" x="0.0" y="221" width="549" height="22"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Last Name" drawsBackground="YES" id="qsM-Ke-BdV">
@@ -1915,7 +1907,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EM1-6Y-Ej9">
-                                        <rect key="frame" x="14" y="43" width="69" height="32"/>
+                                        <rect key="frame" x="14" y="42" width="69" height="32"/>
                                         <buttonCell key="cell" type="push" title="Tags" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="VJK-Ha-iAD">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -1925,34 +1917,46 @@
                                         </connections>
                                     </button>
                                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Xv1-Kc-ndh">
-                                        <rect key="frame" x="0.0" y="91" width="549" height="22"/>
+                                        <rect key="frame" x="0.0" y="90" width="549" height="22"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Reccurence days" drawsBackground="YES" id="PQV-ff-JGI">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
+                                    <datePicker verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Fl7-Sk-RdQ">
+                                        <rect key="frame" x="0.0" y="116" width="552" height="27"/>
+                                        <datePickerCell key="cell" borderStyle="bezel" alignment="left" id="kp0-ak-mxA">
+                                            <font key="font" metaFont="system"/>
+                                            <date key="date" timeIntervalSinceReferenceDate="-595929600">
+                                                <!--1982-02-12 16:00:00 +0000-->
+                                            </date>
+                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <datePickerElements key="datePickerElements" year="YES" month="YES" day="YES" hour="YES" minute="YES"/>
+                                        </datePickerCell>
+                                    </datePicker>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="wmK-xZ-WJH" secondAttribute="trailing" id="14P-tq-U72"/>
+                                    <constraint firstItem="Fl7-Sk-RdQ" firstAttribute="leading" secondItem="ItB-0I-UmG" secondAttribute="leading" id="9OW-K9-hhT"/>
                                     <constraint firstItem="xEC-vq-JEk" firstAttribute="leading" secondItem="ItB-0I-UmG" secondAttribute="leading" id="Cix-j0-J4p"/>
                                     <constraint firstItem="cP1-l8-XAB" firstAttribute="top" secondItem="u2l-Ez-2S2" secondAttribute="bottom" constant="4" id="DgB-h7-7sZ"/>
                                     <constraint firstItem="Xv1-Kc-ndh" firstAttribute="leading" secondItem="ItB-0I-UmG" secondAttribute="leading" id="G8t-Ke-PFG"/>
                                     <constraint firstAttribute="trailing" secondItem="xZB-8J-HSv" secondAttribute="trailing" id="GBE-Vu-6wQ"/>
+                                    <constraint firstItem="Fl7-Sk-RdQ" firstAttribute="top" secondItem="cP1-l8-XAB" secondAttribute="bottom" constant="4" id="ITY-Wz-bXU"/>
                                     <constraint firstItem="u2l-Ez-2S2" firstAttribute="leading" secondItem="ItB-0I-UmG" secondAttribute="leading" id="LEh-MM-nKT"/>
-                                    <constraint firstAttribute="trailing" secondItem="ERG-97-Njb" secondAttribute="trailing" id="Rao-Ji-ArV"/>
-                                    <constraint firstItem="Xv1-Kc-ndh" firstAttribute="top" secondItem="ERG-97-Njb" secondAttribute="bottom" constant="4" id="VNY-WO-v58"/>
                                     <constraint firstItem="xZB-8J-HSv" firstAttribute="top" secondItem="wmK-xZ-WJH" secondAttribute="bottom" constant="4" id="Z6c-pY-nrS"/>
+                                    <constraint firstItem="Xv1-Kc-ndh" firstAttribute="top" secondItem="Fl7-Sk-RdQ" secondAttribute="bottom" constant="4" id="fek-X0-xbk"/>
                                     <constraint firstItem="u2l-Ez-2S2" firstAttribute="top" secondItem="xZB-8J-HSv" secondAttribute="bottom" constant="4" id="i8s-78-zt0"/>
                                     <constraint firstAttribute="trailing" secondItem="u2l-Ez-2S2" secondAttribute="trailing" id="ibI-ca-crQ"/>
                                     <constraint firstAttribute="trailing" secondItem="xEC-vq-JEk" secondAttribute="trailing" id="lwh-Y1-F0l"/>
                                     <constraint firstAttribute="trailing" secondItem="cP1-l8-XAB" secondAttribute="trailing" id="o6i-j0-bYq"/>
-                                    <constraint firstItem="ERG-97-Njb" firstAttribute="top" secondItem="cP1-l8-XAB" secondAttribute="bottom" constant="4" id="pvl-lL-Enb"/>
                                     <constraint firstItem="xZB-8J-HSv" firstAttribute="leading" secondItem="ItB-0I-UmG" secondAttribute="leading" id="qdT-pq-pLk"/>
+                                    <constraint firstAttribute="trailing" secondItem="Fl7-Sk-RdQ" secondAttribute="trailing" id="rkt-PJ-Bu3"/>
                                     <constraint firstAttribute="trailing" secondItem="Xv1-Kc-ndh" secondAttribute="trailing" id="uDP-qv-3iv"/>
                                     <constraint firstItem="wmK-xZ-WJH" firstAttribute="leading" secondItem="ItB-0I-UmG" secondAttribute="leading" id="wgi-Yn-mba"/>
                                     <constraint firstItem="EM1-6Y-Ej9" firstAttribute="top" secondItem="Xv1-Kc-ndh" secondAttribute="bottom" constant="20" id="wlr-j4-rrT"/>
-                                    <constraint firstItem="ERG-97-Njb" firstAttribute="leading" secondItem="ItB-0I-UmG" secondAttribute="leading" id="wwn-ya-ijV"/>
                                     <constraint firstItem="EM1-6Y-Ej9" firstAttribute="leading" secondItem="ItB-0I-UmG" secondAttribute="leading" constant="20" id="xnC-Ro-Jgl"/>
                                     <constraint firstItem="xEC-vq-JEk" firstAttribute="top" secondItem="ItB-0I-UmG" secondAttribute="top" id="xri-en-qLD"/>
                                     <constraint firstItem="wmK-xZ-WJH" firstAttribute="top" secondItem="xEC-vq-JEk" secondAttribute="bottom" constant="4" id="xzb-qy-a6M"/>
@@ -2010,6 +2014,7 @@
                     <connections>
                         <outlet property="btnRecord" destination="EpR-3L-jRB" id="JFm-Uv-3L4"/>
                         <outlet property="btnUpdate" destination="NFQ-Gq-yf2" id="GNa-bE-Tr2"/>
+                        <outlet property="datePicker" destination="Fl7-Sk-RdQ" id="Alm-SA-oFs"/>
                         <outlet property="recordingTimeLabel" destination="kbc-sl-KOF" id="UlD-1u-47b"/>
                         <outlet property="txtEmail" destination="u2l-Ez-2S2" id="8Ld-5h-Enm"/>
                         <outlet property="txtFirstName" destination="xEC-vq-JEk" id="a94-wl-6wq"/>
@@ -2017,7 +2022,6 @@
                         <outlet property="txtName" destination="E6P-72-PzP" id="gtL-wm-ty0"/>
                         <outlet property="txtNotes" destination="cP1-l8-XAB" id="hmQ-LX-crB"/>
                         <outlet property="txtPhoneNumber" destination="xZB-8J-HSv" id="ael-IP-Bfs"/>
-                        <outlet property="txtReccurenceDate" destination="ERG-97-Njb" id="67L-7w-OEC"/>
                         <outlet property="txtReccurenceDays" destination="Xv1-Kc-ndh" id="Jmw-PR-hjX"/>
                         <segue destination="KPN-8v-4AX" kind="show" identifier="titleFromFile" id="N58-IZ-W2L"/>
                     </connections>

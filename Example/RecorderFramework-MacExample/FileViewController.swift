@@ -11,7 +11,7 @@ import RecorderFramework
 import AVFoundation
 
 class FileViewController: NSViewController, TitleViewControllerDelegater, AVAudioRecorderDelegate, NSTextFieldDelegate{
-    @IBOutlet weak var txtReccurenceDate: NSTextField!
+    @IBOutlet weak var datePicker: NSDatePicker!
     @IBOutlet weak var txtReccurenceDays: NSTextField!
     @IBOutlet weak var txtNotes: NSTextField!
     @IBOutlet weak var txtEmail: NSTextField!
@@ -106,7 +106,9 @@ class FileViewController: NSViewController, TitleViewControllerDelegater, AVAudi
     }
     
     func fillView(){
-        txtReccurenceDate.stringValue = file.remindDate
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        datePicker.dateValue = dateFormatter.date(from: file.remindDate)!
         txtReccurenceDays.stringValue = file.remindDays
         txtNotes.stringValue = file.notes
         txtEmail.stringValue = file.email
@@ -146,8 +148,11 @@ class FileViewController: NSViewController, TitleViewControllerDelegater, AVAudi
     }
     
     @IBAction func onUpdate(_ sender: Any) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        
         file.remindDays = txtReccurenceDays.stringValue
-        file.remindDate = txtReccurenceDate.stringValue
+        file.remindDate = dateFormatter.string(from: datePicker.dateValue)
         file.notes = txtNotes.stringValue
         file.email = txtEmail.stringValue
         file.phoneNumber = txtPhoneNumber.stringValue

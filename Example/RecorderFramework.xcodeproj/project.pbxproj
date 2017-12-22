@@ -106,6 +106,7 @@
 		A2B2D15D1FA876F400A1FACE /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B2D15C1FA876F400A1FACE /* NotificationController.swift */; };
 		A2B2D15F1FA876F400A1FACE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2B2D15E1FA876F400A1FACE /* Assets.xcassets */; };
 		A2B2D1641FA876F400A1FACE /* RecorderFramework-WatchExample.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = A2B2D1471FA876F400A1FACE /* RecorderFramework-WatchExample.app */; };
+		A2B3B8A91FEC0787002D5335 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A2B3B8A81FEC0787002D5335 /* GoogleService-Info.plist */; };
 		A2BF106E1FC823850016CFA3 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BF106D1FC823850016CFA3 /* DatePickerViewController.swift */; };
 		A2BF34A31FAB995400C7006F /* FileInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BF34A21FAB995400C7006F /* FileInterfaceController.swift */; };
 		A2D3E8121FDE60E7000C0874 /* ViewTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D3E8111FDE60E7000C0874 /* ViewTagViewController.swift */; };
@@ -311,6 +312,7 @@
 		A2B2D15E1FA876F400A1FACE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A2B2D1601FA876F400A1FACE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A2B2D1611FA876F400A1FACE /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		A2B3B8A81FEC0787002D5335 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A2BF106D1FC823850016CFA3 /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		A2BF34A21FAB995400C7006F /* FileInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileInterfaceController.swift; sourceTree = "<group>"; };
 		A2C7DF6F1FD583B100F8AFDA /* ViewTagViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewTagViewController.swift; path = "RecorderFramework-TvExample/ViewTagViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -464,6 +466,7 @@
 		607FACD21AFB9204008FA782 /* Example for RecorderFramework */ = {
 			isa = PBXGroup;
 			children = (
+				A2B3B8A81FEC0787002D5335 /* GoogleService-Info.plist */,
 				A2095CCD1FD5971000CF96B3 /* LocationManager.swift */,
 				A2095CCC1FD5971000CF96B3 /* LocationViewController.swift */,
 				A24607A61FCDFF0300F50AEE /* Panorama */,
@@ -800,6 +803,7 @@
 				D7A8A64611F359A54D67610F /* [CP] Embed Pods Frameworks */,
 				AAFC3663300DCF22080F81CE /* [CP] Copy Pods Resources */,
 				A2B2D16C1FA876F400A1FACE /* Embed Watch Content */,
+				A2B3B8A71FEBFDE5002D5335 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1033,6 +1037,7 @@
 			files = (
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
+				A2B3B8A91FEC0787002D5335 /* GoogleService-Info.plist in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 				A2AEABEC1FB0903D0094DCF8 /* MKStoreKitConfigs.plist in Resources */,
 			);
@@ -1262,6 +1267,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RecorderFramework-TVExample/Pods-RecorderFramework-TVExample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		A2B3B8A71FEBFDE5002D5335 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "SCRIPT_SRC=$(find \"$PROJECT_DIR\" -name 'BugseeAgent' | head -1)\nif [ ! \"${SCRIPT_SRC}\" ]; then\necho \"Error: BugseeAgent script not found.\"\necho \"If you link Bugsee.framework from outside the project folder, please copy the script\"\necho \"into your main project directory or manually update SCRIPT_SRC variable with the right path\"\nexit 1\nfi\n/usr/bin/python \"${SCRIPT_SRC}\" 4c279461-6c62-4851-b884-e7e105985a18";
+		};
 		AAFC3663300DCF22080F81CE /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1335,12 +1353,16 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/RecorderFramework-iOS/RecorderFramework.framework",
 				"${BUILT_PRODUCTS_DIR}/FDWaveformView/FDWaveformView.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RecorderFramework.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FDWaveformView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1689,7 +1711,7 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.codebluestudio.Recorder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3ea4c958-ddb8-4f10-aa4d-3795af08e474";
+				PROVISIONING_PROFILE = "4bf2ed60-9c67-4ea8-9e58-1231e2c8b452";
 				PROVISIONING_PROFILE_SPECIFIER = "Recorder dev";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/stefanitaoaca/Environments/RecorderFramework/repository/Example/RecorderFramework/RecorderFramework-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
@@ -1713,7 +1735,7 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.codebluestudio.Recorder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5961f631-5a14-4ea5-b339-cae1871bd4aa";
+				PROVISIONING_PROFILE = "cd51923e-b9e8-442a-a06f-8e2c723332b2";
 				PROVISIONING_PROFILE_SPECIFIER = "Recorder AppStore";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/stefanitaoaca/Environments/RecorderFramework/repository/Example/RecorderFramework/RecorderFramework-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
@@ -1955,7 +1977,7 @@
 				INFOPLIST_FILE = "RecorderFramework-WatchExample/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codebluestudio.Recorder.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9ed65b88-9586-453d-802f-40bf1c3ebb19";
+				PROVISIONING_PROFILE = "6c6feb40-15b0-465e-a3a8-58888bdaa4f3";
 				PROVISIONING_PROFILE_SPECIFIER = "Recorder Watch Dev";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;

@@ -10,7 +10,8 @@ import UIKit
 import RecorderFramework
 import AVFoundation
 
-class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudioRecorderDelegate, UITextFieldDelegate{
+class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudioRecorderDelegate, UITextFieldDelegate, DatePickerViewControllerDelegate{
+    
     @IBOutlet weak var txtReccuranceDate: UITextField!
     @IBOutlet weak var txtReccuranceDays: UITextField!
     @IBOutlet weak var txtNotes: UITextField!
@@ -143,6 +144,13 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
         txtName.text = file.text
     }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == txtReccuranceDate{
+            self.performSegue(withIdentifier: "showDateFromFile", sender: self)
+            textField.endEditing(true)
+        }
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.endEditing(true)
         return true
@@ -249,6 +257,9 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
             path += file.localFile
             self.file.setupWithFile(path)
             (segue.destination as! FileTagsViewController).file = self.file
+        } else if segue.identifier == "showDateFromFile"{
+            (segue.destination as! DatePickerViewController).delegate = self
+            (segue.destination as! DatePickerViewController).showHours = true
         }
     }
     
@@ -371,5 +382,11 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
         var contentInset:UIEdgeInsets = scrollView.contentInset
         contentInset.bottom = keyboardFrame.size.height
         scrollView.contentInset = contentInset
+    }
+    
+    func selectedDate(_ date: Date) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        txtReccuranceDate.text = dateFormatter.string(from: date)
     }
 }

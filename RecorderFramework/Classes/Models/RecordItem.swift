@@ -157,10 +157,10 @@ public class RecordItem: NSObject, NSSecureCoding {
         if let value = aDecoder.decodeObject(forKey: "metaFileId") as? String {
             self.metaFileId = value
         }
-        if let value = aDecoder.decodeObject(forKey: "remindDate") as? String {
+        if let value = aDecoder.decodeObject(forKey: "remind_date") as? String {
             self.remindDate = value
         }
-        if let value = aDecoder.decodeObject(forKey: "remindDays") as? String {
+        if let value = aDecoder.decodeObject(forKey: "remind_days") as? String {
             self.remindDays = value
         }
     }

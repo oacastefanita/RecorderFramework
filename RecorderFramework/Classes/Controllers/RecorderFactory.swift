@@ -141,10 +141,14 @@ class RecorderFactory: NSObject {
             object.isStar = value == "1"
         }
         if let value:String = dict.object(forKey: "remind_days") as? String {
-            object.remindDate = value
+            object.remindDays = value
         }
         if let value:String = dict.object(forKey: "remind_date") as? String {
-            object.remindDays = value
+            let timeInterval = Int(AppPersistentData.sharedInstance.user.timeZone)! * -60
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            let newDate = dateFormatter.date(from: value)?.addingTimeInterval(TimeInterval(timeInterval))
+            object.remindDate = dateFormatter.string(from: newDate!)
         }
         return object
     }

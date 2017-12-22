@@ -16,11 +16,16 @@ class DatePickerViewController: UIViewController, UIPickerViewDelegate{
     @IBOutlet weak var pkrDate: UIDatePicker!
     var delegate: DatePickerViewControllerDelegate!
     var date = Date()
+    var showHours = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         pkrDate.addTarget(self, action: #selector(dateChanged), for: .valueChanged)
+        if showHours{
+            pkrDate.datePickerMode = .dateAndTime
+            pkrDate.minuteInterval = 5
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {

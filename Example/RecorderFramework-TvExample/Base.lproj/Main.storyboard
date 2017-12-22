@@ -1317,7 +1317,7 @@
                                                     <outlet property="delegate" destination="tiJ-I5-Si5" id="MSH-Wc-TTt"/>
                                                 </connections>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="reccurence days" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z7Q-sM-7c4">
+                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="reccurence days" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z7Q-sM-7c4">
                                                 <rect key="frame" x="8" y="432" width="1632" height="60"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="60" id="uqB-RU-ZX9"/>
@@ -1341,7 +1341,7 @@
                                                     <segue destination="wSW-zJ-ElN" kind="show" identifier="tagsFromFile" id="8Jj-U4-hQ0"/>
                                                 </connections>
                                             </button>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="reccurence date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sz4-d0-YRd">
+                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="reccurence date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sz4-d0-YRd">
                                                 <rect key="frame" x="8" y="364" width="1632" height="60"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="60" id="RNz-U4-PAL"/>
