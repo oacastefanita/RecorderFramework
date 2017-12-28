@@ -5,6 +5,7 @@ public class RecorderFrameworkManager : NSObject {
     
     public var isRecorder = false
     public var containerName:String!
+    public var macSN:String!
     
     override public init() {
         super.init()

@@ -107,8 +107,8 @@ class FileViewController: NSViewController, TitleViewControllerDelegater, AVAudi
     
     func fillView(){
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
-        datePicker.dateValue = dateFormatter.date(from: file.remindDate)!
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        datePicker.dateValue = (dateFormatter.date(from: file.remindDate) != nil) ? dateFormatter.date(from: file.remindDate)! : Date()
         txtReccurenceDays.stringValue = file.remindDays
         txtNotes.stringValue = file.notes
         txtEmail.stringValue = file.email

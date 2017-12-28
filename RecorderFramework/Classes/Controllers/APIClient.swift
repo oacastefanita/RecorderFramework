@@ -98,11 +98,15 @@ class APIClient : NSObject {
         #if os(iOS)
             let tn = CTTelephonyNetworkInfo();
             let carrier = tn.subscriberCellularProvider
-            let mcc:String! = (carrier != nil && !carrier!.mobileCountryCode!.isEmpty) ? carrier!.mobileCountryCode : "310"
+            var mcc = "310"
+            if carrier != nil && carrier!.mobileCountryCode != nil{
+                mcc = (carrier != nil && !carrier!.mobileCountryCode!.isEmpty) ? carrier!.mobileCountryCode! : "310"
+            }
             parameters["mcc"] = mcc
             parameters["device_type"] = "ios"
         #elseif os(OSX)
             parameters["device_type"] = "mac"
+            parameters["device_id"] = RecorderFrameworkManager.sharedInstance.macSN
         #endif
         parameters["time_zone"] = TimeZone.current.secondsFromGMT() / 60
         api.doRequest("verify_phone", method: .post, parameters: parameters) { (success, data) in

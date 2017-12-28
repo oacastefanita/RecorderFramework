@@ -25,6 +25,20 @@
 			<key>ConsumableId</key>
 			<string>com.werockapps.Recorder1000</string>
 		</dict>
+		<key>com.werockapps.RecorderPremium</key>
+		<dict>
+			<key>ConsumableCount</key>
+			<integer>1</integer>
+			<key>ConsumableId</key>
+			<string>com.werockapps.RecorderPremium</string>
+		</dict>
+		<key>com.werockapps.RecorderPro</key>
+		<dict>
+			<key>ConsumableCount</key>
+			<integer>1</integer>
+			<key>ConsumableId</key>
+			<string>com.werockapps.RecorderPro</string>
+		</dict>
 	</dict>
 	<key>SharedSecret</key>
 	<string>ad4028657563419bbee853bbfae7d106</string>

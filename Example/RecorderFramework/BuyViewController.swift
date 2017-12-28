@@ -44,4 +44,46 @@ class BuyViewController: UIViewController{
             
         }
     }
+    
+    @IBAction func buyPremium(){
+        MKStoreKit.shared().initiatePaymentRequestForProduct(withIdentifier: "com.werockapps.RecorderPremium")
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.mkStoreKitProductPurchased, object: nil, queue: OperationQueue()) {note in
+            if let receipt = self.getReceipt() {
+                
+            }
+        }
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.mkStoreKitRestoringPurchasesFailed, object: nil, queue: OperationQueue()) {note in
+           
+        }
+    }
+    
+    @IBAction func buyPro(){
+        MKStoreKit.shared().initiatePaymentRequestForProduct(withIdentifier: "com.werockapps.RecorderPro")
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.mkStoreKitProductPurchased, object: nil, queue: OperationQueue()) {note in
+            if let receipt = self.getReceipt() {
+                
+            }
+        }
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.mkStoreKitRestoringPurchasesFailed, object: nil, queue: OperationQueue()) {note in
+            
+        }
+    }
+    
+    func getReceipt() -> String? {
+        let receiptURL = Bundle.main.appStoreReceiptURL
+        
+        var receiptError:NSError?
+        if let isPresent = (receiptURL as NSURL?)?.checkResourceIsReachableAndReturnError(&receiptError) {
+            if !isPresent {
+                return nil
+            }
+        }
+        
+        if let receiptData = try? Data(contentsOf: receiptURL!) {
+            return NSString.init(data: receiptData.base64EncodedData(options: NSData.Base64EncodingOptions(rawValue: 0)), encoding: String.Encoding.utf8.rawValue) as? String
+        }
+        else {
+            return nil
+        }
+    }
 }
