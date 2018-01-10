@@ -24,6 +24,21 @@ class HomeViewController: UIViewController{
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func onRecordCall(_ sender: Any) {
+        for phoneNumber in AppPersistentData.sharedInstance.phoneNumbers{
+            if phoneNumber.isDefault{
+                if let url = URL(string: "tel://\(phoneNumber.phoneNumber!)"), UIApplication.shared.canOpenURL(url) {
+                    if #available(iOS 10, *) {
+                        UIApplication.shared.open(url)
+                    } else {
+                        UIApplication.shared.openURL(url)
+                    }
+                }
+                break
+            }
+        }
+    }
+    
     @IBAction func onGetFolders(_ sender: Any) {
         RecorderFrameworkManager.sharedInstance.getFolders({ (success, data) -> Void in
             self.performSegue(withIdentifier: "showFoldersFromHome", sender: self)

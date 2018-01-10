@@ -26,7 +26,7 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>WKCompanionAppBundleIdentifier</key>
-	<string>com.codebluestudio.Recorder</string>
+	<string>com.werockapps.CallRecorder</string>
 	<key>WKWatchKitApp</key>
 	<true/>
 </dict>

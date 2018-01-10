@@ -43,12 +43,20 @@ class PhoneNumbersViewController: UIViewController,UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  tableView.dequeueReusableCell(withIdentifier: "titleCell", for: indexPath)
-        cell.textLabel?.text = RecorderFrameworkManager.sharedInstance.getPhoneNumbers()[indexPath.row].number
+        cell.textLabel?.text = RecorderFrameworkManager.sharedInstance.getPhoneNumbers()[indexPath.row].phoneNumber
         cell.detailTextLabel?.text = ""
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        tableView.deselectRow(at: indexPath as IndexPath, animated: false)
+        for phoneNumber in AppPersistentData.sharedInstance.phoneNumbers{
+            if phoneNumber.isDefault{
+                phoneNumber.isDefault = false
+            }
+        }
+        
+        (AppPersistentData.sharedInstance.phoneNumbers[indexPath.row] as PhoneNumber).isDefault = true
+
     }
 }

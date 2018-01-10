@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         RecorderFrameworkManager.sharedInstance.containerName = "group.com.codebluestudio.Recorder"
-        RecorderFrameworkManager.sharedInstance.isRecorder = true
+        RecorderFrameworkManager.sharedInstance.isRecorder = false
         MKStoreKit.shared().startProductRequest()
         requestNotificationsPermission()
         Bugsee.launch(token :"4c279461-6c62-4851-b884-e7e105985a18")
