@@ -220,7 +220,7 @@ public class RecorderFrameworkManager : NSObject {
     ///
     /// - Parameter user: user object
     /// - Returns: NSDictionary with user data
-    public func createUserFromDict(_ user: User) -> NSDictionary{
+    public func createDictFromUser(_ user: User) -> NSDictionary{
         return RecorderFactory.createDictFromUser(user)
     }
     
