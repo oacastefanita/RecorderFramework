@@ -46,7 +46,7 @@ class ProfileViewController: UIViewController {
         params["data[time_zone]"] = txtTimezone.text ?? ""
         params["data[email]"] = txtEmail.text ?? ""
         
-        RecorderFrameworkManager.sharedInstance.updateUserProfile(RecorderFrameworkManager.sharedInstance.getUser(), userInfo: params)
+        RecorderFrameworkManager.sharedInstance.updateUserProfile(userInfo: params)
         self.navigationController?.popViewController(animated: true)
         self.alert(message: "Request sent")
     }
