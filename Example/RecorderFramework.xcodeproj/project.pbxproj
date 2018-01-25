@@ -1713,7 +1713,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "dbfbfdae-2e95-43c2-884e-8b978226aa0c";
 				PROVISIONING_PROFILE_SPECIFIER = "CallRec New Dev Profile";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/stefanitaoaca/Environments/RecorderFramework/repository/Example/RecorderFramework/RecorderFramework-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "RecorderFramework/RecorderFramework-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -1737,7 +1737,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "eb7e5d86-85c0-4549-9213-b44524e318e3";
 				PROVISIONING_PROFILE_SPECIFIER = "call rec appstore";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/stefanitaoaca/Environments/RecorderFramework/repository/Example/RecorderFramework/RecorderFramework-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "RecorderFramework/RecorderFramework-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;

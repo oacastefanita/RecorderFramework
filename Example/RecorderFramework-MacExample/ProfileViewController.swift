@@ -33,7 +33,7 @@ class ProfileViewController: NSViewController {
         params["data[is_public]"] = btnPublic.state == NSControl.StateValue(rawValue: 1)
         params["data[time_zone]"] = txtTimezone.stringValue ?? ""
         params["data[email]"] = txtEmail.stringValue ?? ""
-        RecorderFrameworkManager.sharedInstance.updateUserProfile(RecorderFrameworkManager.sharedInstance.getUser(), userInfo: params)
+        RecorderFrameworkManager.sharedInstance.updateUserProfile(userInfo: params)
         self.view.window?.close()
     }
     

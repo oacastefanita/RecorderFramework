@@ -216,6 +216,14 @@ public class RecorderFrameworkManager : NSObject {
         return RecorderFactory.createUserFromDict(dict)
     }
     
+    /// Create NSDictionary from User object
+    ///
+    /// - Parameter user: user object
+    /// - Returns: NSDictionary with user data
+    public func createDictFromUser(_ user: User) -> NSDictionary{
+        return RecorderFactory.createDictFromUser(user)
+    }
+    
     /// Create User object from NSDictionary
     ///
     /// - Parameter dict: dict with data
@@ -685,10 +693,9 @@ public class RecorderFrameworkManager : NSObject {
     /// Update user profile
     ///
     /// - Parameters:
-    ///   - user: User object to be updated
     ///   - userInfo: NSDictionary containing new user info
-    public func updateUserProfile(_ user:User, userInfo:NSMutableDictionary) {
-        ActionsSyncManager.sharedInstance.updateUserProfile(user, userInfo: userInfo)
+    public func updateUserProfile(userInfo:NSMutableDictionary) {
+        ActionsSyncManager.sharedInstance.updateUserProfile(userInfo: userInfo)
     }
     
     /// Reorder folders

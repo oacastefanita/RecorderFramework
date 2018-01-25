@@ -322,11 +322,11 @@ protocol CustomActionDelegate {
         //AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeFolderReorder);
     }
     
-    func updateUserProfile(_ user:User, userInfo:NSMutableDictionary) {
+    func updateUserProfile(userInfo:NSMutableDictionary) {
         let action = Action()
         action.timeStamp = Date().timeIntervalSince1970
         action.type = ActionType.updateUserProfile
-        action.arg3 = userInfo;
+        action.arg3 = userInfo
         actions.append(action)
         
         self.saveActions()
