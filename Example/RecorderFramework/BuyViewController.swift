@@ -13,6 +13,7 @@ class BuyViewController: UIViewController{
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(BuyViewController.purchaseSucessful), name: NSNotification.Name.mkStoreKitProductPurchased, object: nil)
     }
     
     @IBAction func buy100(){
@@ -46,26 +47,16 @@ class BuyViewController: UIViewController{
     }
     
     @IBAction func buyPremium(){
-        MKStoreKit.shared().initiatePaymentRequestForProduct(withIdentifier: "com.werockapps.RecorderPremium")
-        NotificationCenter.default.addObserver(forName: NSNotification.Name.mkStoreKitProductPurchased, object: nil, queue: OperationQueue()) {note in
-            if let receipt = self.getReceipt() {
-                
-            }
-        }
-        NotificationCenter.default.addObserver(forName: NSNotification.Name.mkStoreKitRestoringPurchasesFailed, object: nil, queue: OperationQueue()) {note in
-           
-        }
+        MKStoreKit.shared().initiatePaymentRequestForProduct(withIdentifier: "com.werockapps.CallRecorderPremium")
     }
     
     @IBAction func buyPro(){
-        MKStoreKit.shared().initiatePaymentRequestForProduct(withIdentifier: "com.werockapps.RecorderPro")
-        NotificationCenter.default.addObserver(forName: NSNotification.Name.mkStoreKitProductPurchased, object: nil, queue: OperationQueue()) {note in
-            if let receipt = self.getReceipt() {
-                
-            }
-        }
-        NotificationCenter.default.addObserver(forName: NSNotification.Name.mkStoreKitRestoringPurchasesFailed, object: nil, queue: OperationQueue()) {note in
-            
+        MKStoreKit.shared().initiatePaymentRequestForProduct(withIdentifier: "com.werockapps.CallRecorderPro")
+    }
+    
+    @objc func purchaseSucessful(){
+        if let receipt = self.getReceipt() {
+            RecorderFrameworkManager.sharedInstance.buyCredits(0, reciept: receipt)
         }
     }
     

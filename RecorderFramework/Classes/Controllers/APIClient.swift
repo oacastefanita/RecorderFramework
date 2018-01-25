@@ -1069,6 +1069,16 @@ class APIClient : NSObject {
                     if !isWav && !isMP3 {
                         recordItem.localFile = recordItem.localFile + ".wav"
                     }
+                    var fileSize = UInt64(0)
+                    do {
+                        let attr = try FileManager.default.attributesOfItem(atPath: path)
+                        fileSize = attr[FileAttributeKey.size] as! UInt64
+                    } catch {
+                        print("Error: \(error)")
+                    }
+                    recordItem.fileSize = "\(fileSize/1000)"
+                    
+                    
                     NSLog(path)
                     self.getMetadataFiles(recordItem, completionHandler: { (success, files) -> Void in
                         if success && files != nil {
@@ -1346,8 +1356,12 @@ class APIClient : NSObject {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
         }
+        var appCode = "rec"
+        if RecorderFrameworkManager.sharedInstance.isRecorder{
+            appCode = "rem"
+        }
         
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "amount" : credits, "reciept" : receipt] as [String : Any]
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "app":appCode, "reciept" : receipt] as [String : Any]
         
         api.doRequest("buy_credits", method: .post, parameters: parameters) { (success, data) in
             if success {

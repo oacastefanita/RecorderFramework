@@ -28,6 +28,7 @@ public class RecordItem: NSObject, NSSecureCoding {
     @objc public var lastAccessedTime:String! = ""
     @objc public var fileDownloaded = false
     @objc public var localFile:String! = ""
+    @objc public var fileSize:String! = ""
     
     @objc public var localMetadataFile:String! = ""
     @objc public var metadataFilePath:String! = ""
@@ -163,6 +164,9 @@ public class RecordItem: NSObject, NSSecureCoding {
         if let value = aDecoder.decodeObject(forKey: "remind_days") as? String {
             self.remindDays = value
         }
+        if let value = aDecoder.decodeObject(forKey: "fileSize") as? String {
+            self.fileSize = value
+        }
     }
     
      public func encode(with aCoder: NSCoder) {
@@ -259,6 +263,9 @@ public class RecordItem: NSObject, NSSecureCoding {
         if let value = self.metaFileId {
             aCoder.encode(value, forKey: "metaFileId")
         }
+        if let value = self.fileSize {
+            aCoder.encode(value, forKey: "fileSize")
+        }
     }
     
     static public  var supportsSecureCoding : Bool {
@@ -287,7 +294,7 @@ public class RecordItem: NSObject, NSSecureCoding {
         self.isStar = item.isStar
         self.remindDays = item.remindDays
         self.remindDate = item.remindDate
-//        self.metaFileId = item.metaFileId
+        self.fileSize = item.fileSize
     }
     
     public func recordingNextAction(_ currentAction:Action!) -> Action! {

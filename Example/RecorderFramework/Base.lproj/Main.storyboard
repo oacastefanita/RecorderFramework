@@ -400,36 +400,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ti-Ku-LEC">
-                                <rect key="frame" x="159.5" y="72" width="55" height="30"/>
-                                <state key="normal" title="buy 100"/>
-                                <connections>
-                                    <action selector="buy100" destination="9OT-9x-Fh5" eventType="touchUpInside" id="Qo9-cM-Rpr"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AwK-uK-cse">
-                                <rect key="frame" x="158.5" y="110" width="58" height="30"/>
-                                <state key="normal" title="buy 300"/>
-                                <connections>
-                                    <action selector="buy300" destination="9OT-9x-Fh5" eventType="touchUpInside" id="u0D-ay-ggO"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BZt-rc-wLy">
-                                <rect key="frame" x="155.5" y="148" width="64" height="30"/>
-                                <state key="normal" title="buy 1000"/>
-                                <connections>
-                                    <action selector="buy1000" destination="9OT-9x-Fh5" eventType="touchUpInside" id="tw7-mr-uye"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="he6-Ho-DAr">
-                                <rect key="frame" x="142" y="186" width="90" height="30"/>
+                                <rect key="frame" x="142" y="114" width="90" height="30"/>
                                 <state key="normal" title="buy premium"/>
                                 <connections>
                                     <action selector="buyPremium" destination="9OT-9x-Fh5" eventType="touchUpInside" id="jbU-MX-q1v"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A50-m3-c8j">
-                                <rect key="frame" x="160.5" y="224" width="53" height="30"/>
+                                <rect key="frame" x="160.5" y="152" width="53" height="30"/>
                                 <state key="normal" title="buy pro"/>
                                 <connections>
                                     <action selector="buyPro" destination="9OT-9x-Fh5" eventType="touchUpInside" id="cCj-c3-VMK"/>
@@ -440,14 +419,8 @@
                         <constraints>
                             <constraint firstItem="A50-m3-c8j" firstAttribute="top" secondItem="he6-Ho-DAr" secondAttribute="bottom" constant="8" id="9iR-dk-0Yy"/>
                             <constraint firstItem="A50-m3-c8j" firstAttribute="centerX" secondItem="Ejk-YG-e8M" secondAttribute="centerX" id="KYg-vY-akr"/>
-                            <constraint firstItem="AwK-uK-cse" firstAttribute="centerX" secondItem="Ejk-YG-e8M" secondAttribute="centerX" id="Rks-7H-baV"/>
                             <constraint firstItem="he6-Ho-DAr" firstAttribute="centerX" secondItem="Ejk-YG-e8M" secondAttribute="centerX" id="Z0D-eM-AU7"/>
-                            <constraint firstItem="BZt-rc-wLy" firstAttribute="centerX" secondItem="Ejk-YG-e8M" secondAttribute="centerX" id="aGr-IU-4wi"/>
-                            <constraint firstItem="4Ti-Ku-LEC" firstAttribute="centerX" secondItem="Ejk-YG-e8M" secondAttribute="centerX" id="dfL-Cl-dHE"/>
-                            <constraint firstItem="4Ti-Ku-LEC" firstAttribute="top" secondItem="Qux-yc-Scn" secondAttribute="bottom" constant="8" id="esL-X2-TNm"/>
-                            <constraint firstItem="he6-Ho-DAr" firstAttribute="top" secondItem="BZt-rc-wLy" secondAttribute="bottom" constant="8" id="mfX-NJ-y6E"/>
-                            <constraint firstItem="AwK-uK-cse" firstAttribute="top" secondItem="4Ti-Ku-LEC" secondAttribute="bottom" constant="8" id="wxT-5R-inf"/>
-                            <constraint firstItem="BZt-rc-wLy" firstAttribute="top" secondItem="AwK-uK-cse" secondAttribute="bottom" constant="8" id="zq2-uF-s6h"/>
+                            <constraint firstItem="he6-Ho-DAr" firstAttribute="top" secondItem="Qux-yc-Scn" secondAttribute="bottom" constant="50" id="ihC-gm-qrV"/>
                         </constraints>
                     </view>
                 </viewController>
