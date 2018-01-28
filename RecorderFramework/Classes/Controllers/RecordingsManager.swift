@@ -31,7 +31,7 @@ public class RecordingsManager : NSObject {
         return recordFolder
     }
     
-    func getFolderWithId(_ folderId:String!) -> RecordFolder! {
+    @objc public func getFolderWithId(_ folderId:String!) -> RecordFolder! {
         for folder in recordFolders {
             if folder.id == folderId {
                 return folder
@@ -40,7 +40,7 @@ public class RecordingsManager : NSObject {
         return nil
     }
     
-    func folderForItem(_ itemId: String) -> RecordFolder{
+    @objc public func folderForItem(_ itemId: String) -> RecordFolder{
         var folder:RecordFolder! = nil
         
         for iterate in RecordingsManager.sharedInstance.recordFolders {
@@ -89,7 +89,7 @@ public class RecordingsManager : NSObject {
     }
     
     
-    func getRecordingById(_ id:String) -> RecordItem! {
+    @objc public func getRecordingById(_ id:String) -> RecordItem! {
         for folder in recordFolders {
             for item in folder.recordedItems {
                 if item.id == id {
