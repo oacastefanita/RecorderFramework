@@ -8,12 +8,12 @@
 
 import Foundation
 
-class TranslationManager : NSObject  {
-    static let sharedInstance = TranslationManager()
+public class TranslationManager : NSObject  {
+    @objc public static let sharedInstance = TranslationManager()
     
-    var languages:Array<Language>
-    var translations:NSDictionary
-    var currentLanguage:String!
+    @objc public var languages:Array<Language>
+    @objc public var translations:NSDictionary
+    @objc public var currentLanguage:String!
     
     override init() {
         self.translations = NSDictionary()
