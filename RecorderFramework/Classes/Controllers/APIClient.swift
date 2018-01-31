@@ -162,6 +162,7 @@ class APIClient : NSObject {
         if folderId != nil {
             parameters.updateValue(folderId, forKey: "folder_id")
         }
+        parameters["source"] = "all"
         
         api.doRequest("get_files", method: .post, parameters: parameters) { (success, data) in
             if success {
@@ -954,7 +955,6 @@ class APIClient : NSObject {
         }
         
         var parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "data": "{\"name\":\"\(recordItem!.text!)\",\"notes\":\"\(recordItem!.notes!)\",\"tags\":\"\(recordItem!.tags)\"}"]
-        parameters["source"] = "all"
         
         api.upload(API_BASE_URL + "create_file", imagesFiles: [path], fieldNames: ["file"], parameters:parameters) { (success, retData) in
             if success {
