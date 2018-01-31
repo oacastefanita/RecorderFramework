@@ -105,7 +105,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KEO-Pq-Rau" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6694" y="1163"/>
+            <point key="canvasLocation" x="7316" y="1128"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Nis-Ar-HNJ">
@@ -1305,7 +1305,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fPD-4F-8oa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6300" y="-1612.4437781109445"/>
+            <point key="canvasLocation" x="6300" y="-1612"/>
         </scene>
         <!--Panorama View Controller-->
         <scene sceneID="AVW-au-EZM">
@@ -1323,7 +1323,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lCO-uc-LUA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7177" y="-1610"/>
+            <point key="canvasLocation" x="7316" y="-1612"/>
         </scene>
         <!--Date Picker View Controller-->
         <scene sceneID="ouC-He-zXc">
@@ -1366,7 +1366,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sZA-Hi-Svv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7177" y="-725"/>
+            <point key="canvasLocation" x="7316" y="-865"/>
         </scene>
         <!--File View Controller-->
         <scene sceneID="ldG-Fc-PFT">
@@ -1618,7 +1618,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J1T-lo-fuV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4501.6000000000004" y="26.53673163418291"/>
+            <point key="canvasLocation" x="4518" y="27"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
