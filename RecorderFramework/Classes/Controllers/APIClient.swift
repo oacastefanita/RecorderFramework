@@ -1073,7 +1073,6 @@ class APIClient : NSObject {
                     }
                     recordItem.fileSize = "\(fileSize/1000)"
                     
-                    
                     NSLog(path)
                     self.getMetadataFiles(recordItem, completionHandler: { (success, files) -> Void in
                         if success && files != nil {
@@ -1119,7 +1118,14 @@ class APIClient : NSObject {
             if !isWav && !isMP3 {
                 recordItem.localFile = recordItem.localFile + ".wav"
             }
-            
+            var fileSize = UInt64(0)
+            do {
+                let attr = try FileManager.default.attributesOfItem(atPath: path)
+                fileSize = attr[FileAttributeKey.size] as! UInt64
+            } catch {
+                print("Error: \(error)")
+            }
+            recordItem.fileSize = "\(fileSize/1000)"
             if completionHandler != nil {
                 completionHandler!(true)
             }
