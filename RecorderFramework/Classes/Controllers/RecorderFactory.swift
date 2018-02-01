@@ -150,11 +150,14 @@ class RecorderFactory: NSObject {
             let newDate = dateFormatter.date(from: value)?.addingTimeInterval(TimeInterval(timeInterval))
             object.remindDate = dateFormatter.string(from: newDate!)
         }
+        if let value:String = dict.object(forKey: "free") as? String {
+            object.isFree = value == "1"
+        }
         return object
     }
     
     class func createDictFromRecordItem(_ file: RecordItem) -> NSDictionary{
-        let dict = NSDictionary(dictionary: ["folderId":file.folderId, "name":file.text, "id":file.id, "phone":file.phone, "access_number":file.accessNumber, "url":file.url, "share_url":file.shareUrl, "credits":file.credits, "duration":file.duration, "time":file.time,"f_name":file.firstName, "l_name":file.lastName, "email":file.email, "notes":file.notes, "phone":file.phoneNumber, "tags":file.tags, "remind_date":file.remindDate, "remind_days":file.remindDays])
+        let dict = NSDictionary(dictionary: ["folderId":file.folderId, "name":file.text, "id":file.id, "phone":file.phone, "access_number":file.accessNumber, "url":file.url, "share_url":file.shareUrl, "credits":file.credits, "duration":file.duration, "time":file.time,"f_name":file.firstName, "l_name":file.lastName, "email":file.email, "notes":file.notes, "phone":file.phoneNumber, "tags":file.tags, "remind_date":file.remindDate, "remind_days":file.remindDays, "free":file.isFree ? "1":"0"])
         return dict
     }
 }

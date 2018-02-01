@@ -48,6 +48,7 @@ public class RecordItem: NSObject, NSSecureCoding {
     @objc public var tags: String = ""
     
     @objc public var isStar = false
+    @objc public var isFree = false
     
     @objc public var fileData: Data! // for airdrop
     
@@ -167,6 +168,9 @@ public class RecordItem: NSObject, NSSecureCoding {
         if let value = aDecoder.decodeObject(forKey: "fileSize") as? String {
             self.fileSize = value
         }
+        if let value = aDecoder.decodeObject(forKey: "isFree") as? String {
+            self.isFree = NSString(string: value).boolValue
+        }
     }
     
      public func encode(with aCoder: NSCoder) {
@@ -266,6 +270,7 @@ public class RecordItem: NSObject, NSSecureCoding {
         if let value = self.fileSize {
             aCoder.encode(value, forKey: "fileSize")
         }
+        aCoder.encode(isFree ? "true" : "false", forKey: "isFree")
     }
     
     static public  var supportsSecureCoding : Bool {
@@ -295,6 +300,7 @@ public class RecordItem: NSObject, NSSecureCoding {
         self.remindDays = item.remindDays
         self.remindDate = item.remindDate
         self.fileSize = item.fileSize
+        self.isFree = item.isFree
     }
     
     public func recordingNextAction(_ currentAction:Action!) -> Action! {
