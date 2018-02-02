@@ -178,13 +178,12 @@ public class AlertController: NSObject, UIAlertViewDelegate {
     }
     public var textDelegate:TextAlertControllerDelegate!
     public var alertView:UIAlertView!
-    
     public var tag = 0
     
-    public class func showTextFieldAlert(_ sender:UIViewController, title:String, accept:String?, reject:String?) -> AlertController {
+    public class func showTextFieldAlert(_ sender:UIViewController, title:String, placeholder: String = "Current password",accept:String?, reject:String?, isSecure:Bool = true) -> AlertController {
         let instance = AlertController()
         
-        instance.showTextFieldAlert(sender, title: title, accept: accept, reject: reject)
+        instance.showTextFieldAlert(sender, title: title, placeholder: placeholder, accept: accept, reject: reject, isSecure:isSecure)
         
         return instance
     }
@@ -241,7 +240,7 @@ public class AlertController: NSObject, UIAlertViewDelegate {
         }
     }
     
-    public func showTextFieldAlert (_ sender:UIViewController, title:String, accept:String?, reject:String?) {
+    public func showTextFieldAlert (_ sender:UIViewController, title:String, placeholder: String = "Current password", accept:String?, reject:String?, isSecure:Bool = true) {
         if (UIDevice.current.systemVersion as NSString).floatValue < 8.0 {
             alertView = UIAlertView()
             if let _accept = accept {
@@ -273,8 +272,8 @@ public class AlertController: NSObject, UIAlertViewDelegate {
                 }))
             }
             alert.addTextField(configurationHandler: {(_ textField: UITextField) -> Void in
-                textField.placeholder = "Current password"
-                textField.isSecureTextEntry = true
+                textField.placeholder = placeholder
+                textField.isSecureTextEntry = isSecure
             })
             
             sender.present(alert, animated: true, completion: nil)
