@@ -396,7 +396,9 @@ public class RecordItem: NSObject, NSSecureCoding {
                     newTag.arg2 = (tag as AnyObject).object(forKey:"arg2") as AnyObject
                     if let value = (tag as AnyObject).object(forKey: "type") as? String
                     {
-                        newTag.type = TagType(rawValue: value.lowercased())!
+                        if let type = TagType(rawValue: value.lowercased()) {
+                            newTag.type = type
+                        }
                     }
 
                     audioFileTags.add(newTag)
