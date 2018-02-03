@@ -398,10 +398,10 @@ public class RecordItem: NSObject, NSSecureCoding {
                     {
                         if let type = TagType(rawValue: value.lowercased()) {
                             newTag.type = type
+                            audioFileTags.add(newTag) //add tag only if valid tag type
                         }
                     }
 
-                    audioFileTags.add(newTag)
                 }
             }
         }
