@@ -1336,6 +1336,7 @@ class APIClient : NSObject {
                         if let value:String = data!["app"] as? String {
                             AppPersistentData.sharedInstance.app = value
                         }
+                        AppPersistentData.sharedInstance.user.timeZone = "\(TimeZone.current.secondsFromGMT() / 60)"
                         AppPersistentData.sharedInstance.saveData()
                     }
                     
@@ -1884,6 +1885,7 @@ class APIClient : NSObject {
                 else {
                     if let profile:NSDictionary = data!["profile"] as? NSDictionary {
                         AppPersistentData.sharedInstance.user = RecorderFactory.createUserFromDict(profile)
+                        AppPersistentData.sharedInstance.user.timeZone = "\(TimeZone.current.secondsFromGMT() / 60)"
                         AppPersistentData.sharedInstance.saveData()
                     }
                     
