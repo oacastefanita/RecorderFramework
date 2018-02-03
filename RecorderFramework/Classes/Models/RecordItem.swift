@@ -299,7 +299,9 @@ public class RecordItem: NSObject, NSSecureCoding {
         self.isStar = item.isStar
         self.remindDays = item.remindDays
         self.remindDate = item.remindDate
-        self.fileSize = item.fileSize
+        if item.fileSize != nil && !item.fileSize.isEmpty {
+            self.fileSize = item.fileSize
+        }
         self.isFree = item.isFree
     }
     
