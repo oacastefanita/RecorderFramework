@@ -299,7 +299,9 @@ public class RecordItem: NSObject, NSSecureCoding {
         self.isStar = item.isStar
         self.remindDays = item.remindDays
         self.remindDate = item.remindDate
-        self.fileSize = item.fileSize
+        if item.fileSize != nil && !item.fileSize.isEmpty {
+            self.fileSize = item.fileSize
+        }
         self.isFree = item.isFree
     }
     
@@ -394,10 +396,12 @@ public class RecordItem: NSObject, NSSecureCoding {
                     newTag.arg2 = (tag as AnyObject).object(forKey:"arg2") as AnyObject
                     if let value = (tag as AnyObject).object(forKey: "type") as? String
                     {
-                        newTag.type = TagType(rawValue: value)!
+                        if let type = TagType(rawValue: value.lowercased()) {
+                            newTag.type = type
+                            audioFileTags.add(newTag) //add tag only if valid tag type
+                        }
                     }
 
-                    audioFileTags.add(newTag)
                 }
             }
         }
