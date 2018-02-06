@@ -43,7 +43,8 @@ class RecorderFactory: NSObject {
     }
     
     class func createDictFromUser(_ user: User) -> NSDictionary{
-        let dict = NSMutableDictionary(dictionary: ["l_name":user.lastName ?? "", "f_name":user.firstName ?? "", "email":user.email ?? "", "max_length":user.maxLenght ?? "", "pic":user.imagePath ?? "", "play_beep":user.playBeep ?? "", "is_public":user.isPublic ?? "", "time_zone": user.timeZone])
+        let dictNew = NSMutableDictionary(dictionary: ["l_name":user.lastName ?? "", "f_name":user.firstName ?? "", "email":user.email ?? "", "max_length":user.maxLenght ?? "", "pic":user.imagePath ?? "", "play_beep":user.playBeep ?? "", "is_public":user.isPublic ?? "", "time_zone": user.timeZone])
+        let dict = NSMutableDictionary(dictionary: ["data":dictNew])
         return dict
     }
 
