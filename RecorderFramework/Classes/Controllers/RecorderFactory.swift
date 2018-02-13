@@ -115,9 +115,9 @@ class RecorderFactory: NSObject {
         if let value:String = dict.object(forKey: "duration") as? String {
             object.duration = value
         }
-        if let value:String = dict.object(forKey: "time") as? String {
-            object.time = value
-            object.lastAccessedTime = value
+        if let value:Int = dict.object(forKey: "time") as? Int {
+            object.time = "\(value)"
+            object.lastAccessedTime = "\(value)"
         }
         if let value:String = dict.object(forKey: "f_name") as? String {
             object.firstName = value

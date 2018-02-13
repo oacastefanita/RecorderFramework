@@ -287,7 +287,6 @@ public class RecordItem: NSObject, NSSecureCoding {
         }
         self.url = item.url
         self.credits = item.credits
-        self.time = item.time
         self.duration = item.duration
         self.firstName = item.firstName
         self.lastName = item.lastName
@@ -301,6 +300,9 @@ public class RecordItem: NSObject, NSSecureCoding {
         self.remindDate = item.remindDate
         if item.fileSize != nil && !item.fileSize.isEmpty {
             self.fileSize = item.fileSize
+        }
+        if item.time != nil && !item.time.isEmpty {
+            self.time = item.time
         }
         self.isFree = item.isFree
     }
