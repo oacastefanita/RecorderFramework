@@ -152,7 +152,7 @@ class APIClient : NSObject {
         }
     }
     
-    func getRecordings(_ folderId:String!, completionHandler:((Bool, Any?) -> Void)?) {
+    func getRecordings(_ folderId:String!, lastFileId: String! = nil, less: Bool = false, completionHandler:((Bool, Any?) -> Void)?) {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
@@ -163,6 +163,10 @@ class APIClient : NSObject {
             parameters.updateValue(folderId, forKey: "folder_id")
         }
         parameters["source"] = "all"
+        if lastFileId != nil{
+            parameters["id"] = lastFileId
+            parameters["op"] = less ? "less" : "grater"
+        }
         
         api.doRequest("get_files", method: .post, parameters: parameters) { (success, data) in
             if success {
@@ -1129,6 +1133,43 @@ class APIClient : NSObject {
             if completionHandler != nil {
                 completionHandler!(true)
             }
+            
+        }
+    }
+    
+    func defaultFolderSync(_ completionHandler:((Bool) -> Void)?) {
+        if AppPersistentData.sharedInstance.invalidAPIKey {
+            completionHandler!(false)
+            return
+        }
+        
+        if mainSyncInProgress {
+            if completionHandler != nil {
+                completionHandler!(false)
+            }
+            return
+        }
+        if AppPersistentData.sharedInstance.apiKey == nil {
+            mainSyncInProgress = false
+            if completionHandler != nil {
+                completionHandler!(false)
+            }
+            return
+        }
+        var lastRecording:RecordItem!
+        if let folder = RecordingsManager.sharedInstance.recordFolders.first{
+            if let rec = folder.recordedItems.first{
+                lastRecording = rec
+            }
+        }
+        if lastRecording != nil {
+            APIClient.sharedInstance.getRecordings("0", lastFileId: lastRecording.id, completionHandler:{ (success, data) -> Void in
+                RecordingsManager.sharedInstance.updateAllFilesFolder()
+                if completionHandler != nil {
+                    completionHandler!(success)
+                }
+            })
+        }else{
             
         }
     }

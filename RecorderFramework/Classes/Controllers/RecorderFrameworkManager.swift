@@ -363,8 +363,8 @@ public class RecorderFrameworkManager : NSObject {
     /// - Parameters:
     ///   - folderId: folder id
     ///   - completionHandler: block to be called upon receiving the server's response
-    public func getRecordings(_ folderId:String!, completionHandler:((Bool, Any?) -> Void)?) {
-        APIClient.sharedInstance.getRecordings(folderId, completionHandler: completionHandler)
+    public func getRecordings(_ folderId:String!, lastFileId: String! = nil, less: Bool = false, completionHandler:((Bool, Any?) -> Void)?) {
+        APIClient.sharedInstance.getRecordings(folderId, lastFileId: lastFileId, less:less,  completionHandler: completionHandler)
     }
     
     /// Get phone numbers
