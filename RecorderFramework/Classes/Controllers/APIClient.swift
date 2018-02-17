@@ -212,17 +212,8 @@ class APIClient : NSObject {
                             if(on == nil){
                                 on = true
                             }
-                            //
-                            //                        if AFNetworkReachabilityManager.sharedManager().reachableViaWiFi || on! {
-                            //                            if synchedItem.url != nil && !synchedItem.url.isEmpty && !synchedItem.fileDownloaded {
-                            //                                APIClient.sharedInstance.downloadAudioFile(synchedItem, toFolder:recordFolder.title, completionHandler:{ (Bool success) -> Void in
-                            //                                    AppPersistentData.sharedInstance.saveData()
-                            //                                });
-                            //                            }
-                            //                        }
                         }
                         
-                        recordFolder.keepOnlyItemsWithIds(allIds);
                         RecordingsManager.sharedInstance.updateAllFilesFolder()
                         AppPersistentData.sharedInstance.saveData()
                     }
