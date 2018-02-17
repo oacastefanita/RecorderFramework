@@ -723,6 +723,13 @@ public class RecorderFrameworkManager : NSObject {
         return RecordingsManager.sharedInstance.syncRecordingItem(recordItem, folder:folder)
     }
     
+    /// New Recordings Sync
+    ///
+    /// - Parameter completionHandler: block to be called upon receiving the server's response
+    public func defaultFolderSync(_ completionHandler:((Bool) -> Void)?) {
+        APIClient.sharedInstance.defaultFolderSync(completionHandler)
+    }
+    
     /// Main Sync
     ///
     /// - Parameter completionHandler: block to be called upon receiving the server's response
