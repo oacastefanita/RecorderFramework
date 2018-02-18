@@ -166,8 +166,8 @@ public class RecordingsManager : NSObject {
                 }
             }
         }
-        
         folder.recordedItems.append(recordItem)
+        folder.recordedItems.sort { Int($0.id)! > Int($1.id)! }
         return recordItem
     }
     
