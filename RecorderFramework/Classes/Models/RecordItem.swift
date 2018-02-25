@@ -281,10 +281,10 @@ public class RecordItem: NSObject, NSSecureCoding {
         self.folderId = item.folderId
         self.text = item.text
         self.accessNumber = item.accessNumber
-        if self.url != item.url {
-            fileDownloaded = false
-            localFile = nil
-        }
+//        if self.url != item.url {
+//            fileDownloaded = false
+//            localFile = nil
+//        }
         self.url = item.url
         self.credits = item.credits
         self.duration = item.duration
