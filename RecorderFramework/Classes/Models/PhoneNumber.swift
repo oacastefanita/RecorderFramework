@@ -15,6 +15,7 @@ public class PhoneNumber: NSObject, NSCoding {
     public var prefix: String!
     public var flag: String!
     public var country: String!
+    public var city: String!
     public var isDefault = false
     
     override public init() {
@@ -25,6 +26,7 @@ public class PhoneNumber: NSObject, NSCoding {
         self.prefix = ""
         self.flag = ""
         self.country = ""
+        self.city = ""
         self.isDefault = false
     }
     
@@ -46,6 +48,9 @@ public class PhoneNumber: NSObject, NSCoding {
         }
         if let value = aDecoder.decodeObject(forKey: "country") as? String {
             self.country = value
+        }
+        if let value = aDecoder.decodeObject(forKey: "city") as? String {
+            self.city = value
         }
         if let value = aDecoder.decodeObject(forKey: "isDefault") as? String {
             self.isDefault = NSString(string: value).boolValue
@@ -70,6 +75,9 @@ public class PhoneNumber: NSObject, NSCoding {
         }
         if let value = self.country {
             aCoder.encode(value, forKey: "country")
+        }
+        if let value = self.city {
+            aCoder.encode(value, forKey: "city")
         }
         
         aCoder.encode(isDefault ? "true" : "false", forKey: "isDefault")

@@ -285,6 +285,9 @@ class APIClient : NSObject {
                             if let value:String = number.object(forKey: "country") as? String {
                                 phoneNumber.country = value
                             }
+                            if let value:String = number.object(forKey: "city") as? String {
+                                phoneNumber.city = value
+                            }
                             
                             AppPersistentData.sharedInstance.phoneNumbers.append(phoneNumber)
                         }
