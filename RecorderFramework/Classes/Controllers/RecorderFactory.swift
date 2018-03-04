@@ -35,10 +35,12 @@ class RecorderFactory: NSObject {
                 object.isPublic = value
             }
         }
-        if let value:String = dict.object(forKey: "time_zone") as? String {
-            object.timeZone = value
+        if let value:String = dict.object(forKey: "plan") as? String {
+            object.plan = value
         }
-        
+        if let value:Int = dict.object(forKey: "time") as? Int {
+            object.time = value
+        }
         return object
     }
     
