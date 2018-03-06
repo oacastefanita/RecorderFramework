@@ -1924,6 +1924,13 @@ class APIClient : NSObject {
                         AppPersistentData.sharedInstance.saveData()
                     }
                     
+                    if let url:String = data!["share_url"] as? String {
+                        AppPersistentData.sharedInstance.shareUrl = url
+                    }
+                    if let url:String = data!["rate_url"] as? String {
+                        AppPersistentData.sharedInstance.rateUrl = url
+                    }
+                    
                     if completionHandler != nil {
                         completionHandler!( true, nil)
                     }

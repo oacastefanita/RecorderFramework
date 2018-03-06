@@ -35,6 +35,9 @@ public class AppPersistentData : NSObject {
     @objc public var receivedNotification = false
     @objc public var messageID:String!
     
+    @objc public var shareUrl:String!
+    @objc public var rateUrl:String!
+    
     override init() {
         phoneNumbers = Array<PhoneNumber>()
         serverMessages = Array<ServerMessage>()
@@ -109,6 +112,13 @@ public class AppPersistentData : NSObject {
             defaults.setValue(NSKeyedArchiver.archivedData(withRootObject: user),  forKey: "user")
         }
         
+        if(shareUrl != nil){
+            defaults.setValue(shareUrl, forKey: "shareUrl");
+        }
+        if(rateUrl != nil){
+            defaults.setValue(rateUrl, forKey: "rateUrl");
+        }
+        
         defaults.set(passOn , forKey: "passwordpref");
         
         defaults.synchronize()
@@ -154,6 +164,12 @@ public class AppPersistentData : NSObject {
         
         if let data = defaults.value(forKey: "user") as? Data {
             user = NSKeyedUnarchiver.unarchiveObject(with: data) as! User
+        }
+        if let value:String = defaults.value(forKey: "shareUrl") as? String {
+            shareUrl = value
+        }
+        if let value:String = defaults.value(forKey: "rateUrl") as? String {
+            rateUrl = value
         }
         
         passOn = defaults.bool(forKey: "passwordpref")
