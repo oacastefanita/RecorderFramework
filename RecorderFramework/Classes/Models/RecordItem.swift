@@ -61,6 +61,7 @@ public class RecordItem: NSObject, NSSecureCoding {
     
     @objc public var remindDate:String! = ""
     @objc public var remindDays:String! = ""
+    @objc public var updated:String! = ""
     
     override public init() {
         super.init()
@@ -171,6 +172,9 @@ public class RecordItem: NSObject, NSSecureCoding {
         if let value = aDecoder.decodeObject(forKey: "isFree") as? String {
             self.isFree = NSString(string: value).boolValue
         }
+        if let value = aDecoder.decodeObject(forKey: "updated") as? String {
+            self.updated = value
+        }
     }
     
      public func encode(with aCoder: NSCoder) {
@@ -204,6 +208,10 @@ public class RecordItem: NSObject, NSSecureCoding {
         
         if let value = self.time {
             aCoder.encode(value, forKey: "time")
+        }
+        
+        if let value = self.updated {
+            aCoder.encode(value, forKey: "updated")
         }
         
         if let value = self.lastAccessedTime {
@@ -303,6 +311,9 @@ public class RecordItem: NSObject, NSSecureCoding {
         }
         if item.time != nil && !item.time.isEmpty {
             self.time = item.time
+        }
+        if item.updated != nil && !item.updated.isEmpty {
+            self.updated = item.updated
         }
         self.isFree = item.isFree
     }

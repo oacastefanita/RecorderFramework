@@ -156,6 +156,9 @@ class RecorderFactory: NSObject {
         if let value:String = dict.object(forKey: "free") as? String {
             object.isFree = value == "1"
         }
+        if let value:Int = dict.object(forKey: "updated") as? Int {
+            object.updated = "\(value)"
+        }
         return object
     }
     
