@@ -151,7 +151,11 @@ class RecorderFactory: NSObject {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
             let newDate = dateFormatter.date(from: value)?.addingTimeInterval(TimeInterval(timeInterval))
-            object.remindDate = dateFormatter.string(from: newDate!)
+            if newDate != nil{
+                object.remindDate = dateFormatter.string(from: newDate!)
+            }else{
+                object.remindDate = ""
+            }
         }
         if let value:String = dict.object(forKey: "free") as? String {
             object.isFree = value == "1"
