@@ -1994,8 +1994,8 @@ class APIClient : NSObject {
         }
         
         let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey]
-        
-        api.upload(API_BASE_URL + "update_profile_img", imagesFiles: [path], fieldNames: ["file"], parameters:parameters, mimeType: "image/jpeg") { (success, retData) in
+        var url = API_BASE_URL.replacingOccurrences(of: "rapi/", with: "upload/update_profile_img")
+        api.upload(url, imagesFiles: [path], fieldNames: ["file"], parameters:parameters, mimeType: "image/jpeg") { (success, retData) in
             if success {
                 if let data = retData as? [String:Any] {
                     if data["status"] != nil && (data["status"] as? String) != "ok" {
