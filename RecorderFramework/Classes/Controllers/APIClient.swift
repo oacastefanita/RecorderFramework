@@ -1088,6 +1088,7 @@ class APIClient : NSObject {
                                 APIClient.sharedInstance.downloadFile(url, localPath:metaPath, completionHandler: { (success) -> Void in
                                     if(success){
                                         recordItem.setupWithFile(path)
+                                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: kNotificationRecordingsUpdated), object: nil)
                                         AppPersistentData.sharedInstance.saveData()
                                     }
                                 })
