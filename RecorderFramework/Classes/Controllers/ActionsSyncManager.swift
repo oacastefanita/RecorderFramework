@@ -547,7 +547,7 @@ protocol CustomActionDelegate {
         case ActionType.createFolder:
             let recordFolder = RecordingsManager.sharedInstance.getFolderByLinkedAction(action!.id)
             if recordFolder != nil {
-                APIClient.sharedInstance.createFolder(recordFolder!.title! as NSString, localID:recordFolder!.id! as NSString, completionHandler: { (success, data) -> Void in
+                APIClient.sharedInstance.createFolder(recordFolder!.title!, localID:recordFolder!.id!, completionHandler: { (success, data) -> Void in
                     if success {
                         self.removeAction(action!.id)
                         self.saveActions()

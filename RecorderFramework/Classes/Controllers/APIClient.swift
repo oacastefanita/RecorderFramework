@@ -33,7 +33,7 @@ class APIClient : NSObject {
         }
     }
     
-    func register(_ number:NSString, completionHandler:((Bool, Any?) -> Void)?)
+    func register(_ number:String, completionHandler:((Bool, Any?) -> Void)?)
     {
         let parameters = ["phone": number, "token": "55942ee3894f51000530894"]
         api.doRequest("register_phone", method: .post, parameters: parameters) { (success, data) in
@@ -76,7 +76,7 @@ class APIClient : NSObject {
         }
     }
     
-    func sendVerificationCode(_ code:NSString, completionHandler:((Bool, Any?) -> Void)?) {
+    func sendVerificationCode(_ code:String, completionHandler:((Bool, Any?) -> Void)?) {
         var appCode = "rec"
         if RecorderFrameworkManager.sharedInstance.isRecorder{
             appCode = "rem"
@@ -441,14 +441,14 @@ class APIClient : NSObject {
         }
     }
     
-    func createFolder(_ name:NSString, localID:NSString, completionHandler:((Bool, Any?) -> Void)?)
+    func createFolder(_ name:String, localID:String, completionHandler:((Bool, Any?) -> Void)?)
     {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
         }
         
-        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "name" : name] as [String : Any!]
+        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey!, "name" : name] as [String : Any]
         
         api.doRequest("create_folder", method: .post, parameters: parameters) { (success, data) in
             if success {
@@ -509,7 +509,7 @@ class APIClient : NSObject {
             return
         }
         
-        var parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "id" : folderId]
+        var parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "id" : folderId]
         if moveTo != nil && moveTo != ""{
             parameters["move_to"] = moveTo
         }
@@ -552,7 +552,7 @@ class APIClient : NSObject {
         }
         
         var params = parameters
-        params["api_key"] = AppPersistentData.sharedInstance.apiKey
+        params["api_key"] = AppPersistentData.sharedInstance.apiKey!
         
         api.doRequest("update_folders_order", method: .post, parameters: params) { (success, data) in
             if success {
@@ -591,7 +591,7 @@ class APIClient : NSObject {
             return
         }
         
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "id" : folderId, "name" : name]
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "id" : folderId, "name" : name]
         
         api.doRequest("update_folder", method: .post, parameters: parameters) { (success, data) in
             if success {
@@ -627,7 +627,7 @@ class APIClient : NSObject {
             return
         }
         
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "id" : folderId, "pass" : pass, ]
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "id" : folderId, "pass" : pass, ]
         
         api.doRequest("update_folder", method: .post, parameters: parameters) { (success, data) in
             if success {
@@ -663,7 +663,7 @@ class APIClient : NSObject {
             return
         }
         
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "ids" : recordItemId, "action" : removeForever ? "remove_forever" : ""]
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "ids" : recordItemId, "action" : removeForever ? "remove_forever" : ""]
         
         api.doRequest("delete_files", method: .post, parameters: parameters) { (success, data) in
             if success {
@@ -699,7 +699,7 @@ class APIClient : NSObject {
             return
         }
         
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "id" : recordItem.id, "folder_id" : folderId]
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "id" : recordItem.id, "folder_id" : folderId]
         
         api.doRequest("update_file", method: .post, parameters: parameters) { (success, data) in
             if success {
@@ -735,7 +735,7 @@ class APIClient : NSObject {
             return
         }
         
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "id" : recordItem.id, "folder_id" : folderId]
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "id" : recordItem.id, "folder_id" : folderId]
         
         api.doRequest("recover_file", method: .post, parameters: parameters) { (success, data) in
             if success {
@@ -774,7 +774,7 @@ class APIClient : NSObject {
         //parameters.setObject(AppPersistentData.sharedInstance.apiKey, forKey: "api_key" as NSCopying)
         
         var params = parameters
-        params["api_key"] = AppPersistentData.sharedInstance.apiKey
+        params["api_key"] = AppPersistentData.sharedInstance.apiKey!
         
         api.doRequest("update_file", method: .post, parameters: params) { (success, data) in
             if success {
@@ -811,7 +811,7 @@ class APIClient : NSObject {
         }
         
         var params = [String:Any]()
-        params["api_key"] = AppPersistentData.sharedInstance.apiKey
+        params["api_key"] = AppPersistentData.sharedInstance.apiKey!
         params["type"] = isFile ? "file" : "folder"
         params["id"] = entityId
         params["star"] = star ? 1 : 0
@@ -851,7 +851,7 @@ class APIClient : NSObject {
         }
         
         var params = [String:Any]()
-        params["api_key"] = AppPersistentData.sharedInstance.apiKey
+        params["api_key"] = AppPersistentData.sharedInstance.apiKey!
         params["id"] = entityId
         
         api.doRequest("clone_file", method: .post, parameters: params) { (success, data) in
@@ -888,7 +888,7 @@ class APIClient : NSObject {
             return
         }
         
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "id" : recordItem.id, "name":name]
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "id" : recordItem.id!, "name":name]
         
         api.doRequest("update_file", method: .post, parameters: parameters) { (success, data) in
             if success {
@@ -942,7 +942,7 @@ class APIClient : NSObject {
             return
         }
         
-        var parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "data": "{\"name\":\"\(recordItem!.text!)\",\"notes\":\"\(recordItem!.notes!)\",\"tags\":\"\(recordItem!.tags)\"}"]
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "data": "{\"name\":\"\(recordItem!.text!)\",\"notes\":\"\(recordItem!.notes!)\",\"tags\":\"\(recordItem!.tags)\"}"]
         
         api.upload(API_BASE_URL + "create_file", imagesFiles: [path], fieldNames: ["file"], parameters:parameters) { (success, retData) in
             if success {
@@ -991,7 +991,7 @@ class APIClient : NSObject {
         }
         
         var url = fileUrl as String
-        url += "?api_key=" + AppPersistentData.sharedInstance.apiKey
+        url += "?api_key=" + AppPersistentData.sharedInstance.apiKey!
         
         api.downloadFile(url, atPath: localPath) { (success, data) in
             if completionHandler != nil {
@@ -1259,7 +1259,7 @@ class APIClient : NSObject {
             return
         }
         
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "play_beep" : playBeep ? "yes" : "no"]
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "play_beep" : playBeep ? "yes" : "no"]
         
         api.doRequest("update_settings", method: .post, parameters: parameters) { (success, data) in
             if success {
@@ -1295,7 +1295,7 @@ class APIClient : NSObject {
             return
         }
         
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "app" : free ? "free" : "pro"]
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "app" : free ? "free" : "pro"]
         
         api.doRequest("update_user", method: .post, parameters: parameters) { (success, data) in
             if success {
@@ -1332,7 +1332,7 @@ class APIClient : NSObject {
             return
         }
         
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey]
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!]
         
         api.doRequest("get_settings", method: .post, parameters: parameters) { (success, data) in
             if success {
@@ -1389,7 +1389,7 @@ class APIClient : NSObject {
             appCode = "rem"
         }
         
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "app":appCode, "reciept" : receipt] as [String : Any]
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "app":appCode, "reciept" : receipt] as [String : Any]
         
         api.doRequest("buy_credits", method: .post, parameters: parameters) { (success, data) in
             if success {
@@ -1425,7 +1425,7 @@ class APIClient : NSObject {
             return
         }
         
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "device_token" : token]
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "device_token" : token]
         
         api.doRequest("update_device_token", method: .post, parameters: parameters) { (success, data) in
             if success {
@@ -1461,7 +1461,7 @@ class APIClient : NSObject {
             return
         }
         
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "device" : token, "title" : "Title", "body" : "body"]
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "device" : token, "title" : "Title", "body" : "body"]
         
         api.doRequest("notify_user", method: .post, parameters: parameters) { (success, data) in
             if success {
@@ -1497,7 +1497,7 @@ class APIClient : NSObject {
             return
         }
         
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "title" : "Title", "body" : "body"];
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "title" : "Title", "body" : "body"];
         
         api.doRequest("add_msg", method: .post, parameters: parameters) { (success, data) in
             if success {
@@ -1534,7 +1534,7 @@ class APIClient : NSObject {
             return
         }
         
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "language": language]
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "language": language]
         
         api.doRequest("get_translations", method: .post, parameters: parameters) { (success, data) in
             if success {
@@ -1570,7 +1570,7 @@ class APIClient : NSObject {
             return
         }
         
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey]
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!]
         
         api.doRequest("get_languages", method: .post, parameters: parameters) { (success, data) in
             if success {
@@ -1632,7 +1632,7 @@ class APIClient : NSObject {
             }
         }
         
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey]
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!]
         
         api.doRequest("get_msgs", method: .post, parameters: parameters) { (success, data) in
             if success {
@@ -1709,7 +1709,7 @@ class APIClient : NSObject {
             return
         }
         
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey,"name":fileId+"_metadata_" + UUID().uuidString, "parent_id":fileId]
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!,"name":fileId+"_metadata_" + UUID().uuidString, "parent_id":fileId]
         
         if !FileManager.default.fileExists(atPath: imagePath ){
             completionHandler!(false, nil)
@@ -1758,7 +1758,7 @@ class APIClient : NSObject {
             return
         }
         
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey,"name":(recordItem.text)+"_metadata", "parent_id":(recordItem.id)]
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!,"name":(recordItem.text!)+"_metadata", "parent_id":(recordItem.id!)]
         
         let fileManager = FileManager.default
         var path = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)!.path
@@ -1816,7 +1816,7 @@ class APIClient : NSObject {
             return
         }
         
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "ids":fileId]
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "ids":fileId]
         
         api.doRequest("delete_meta_files", method: .post, parameters: parameters) { (success, data) in
             if success {
@@ -1853,7 +1853,7 @@ class APIClient : NSObject {
             return
         }
         
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "parent_id":(recordItem.id)]
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "parent_id":(recordItem.id!)]
         
         api.doRequest("get_meta_files", method: .post, parameters: parameters) { (success, data) in
             if success {
@@ -1892,7 +1892,7 @@ class APIClient : NSObject {
             return
         }
         
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey]
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!]
         
         api.doRequest("get_profile", method: .post, parameters: parameters) { (success, data) in
             if success {
@@ -1943,7 +1943,7 @@ class APIClient : NSObject {
         }
         
         var parameters = params
-        parameters["api_key"] = AppPersistentData.sharedInstance.apiKey
+        parameters["api_key"] = AppPersistentData.sharedInstance.apiKey!
         
         api.doRequest("update_profile", method: .post, parameters: parameters) { (success, data) in
             if success {
@@ -1984,7 +1984,7 @@ class APIClient : NSObject {
             return
         }
         
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey]
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!]
         var url = API_BASE_URL.replacingOccurrences(of: "rapi/", with: "upload/update_profile_img")
         api.upload(url, imagesFiles: [path], fieldNames: ["file"], parameters:parameters, mimeType: "image/jpeg") { (success, retData) in
             if success {

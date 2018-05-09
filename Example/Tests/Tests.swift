@@ -20,12 +20,12 @@ class Tests: XCTestCase {
         super.tearDown()
     }
     
-//    func testContainerName() {
-//        // This is an example of a functional test case.
-//        let obj = RecorderFrameworkManager.sharedInstance.containerName
-//        XCTAssertEqual(obj, "group.com.codebluestudio.Recorder")
-//    }
-//    
+    func testContainerName() {
+        // This is an example of a functional test case.
+        let obj = RecorderFrameworkManager.sharedInstance.containerName
+        XCTAssertEqual(obj, "group.com.codebluestudio.Recorder")
+    }
+    
     func testGetFolders(){
         let promise = expectation(description: "Folder created")
         RecorderFrameworkManager.sharedInstance.getFolders({ (success, data) -> Void in

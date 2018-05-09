@@ -299,7 +299,7 @@ public class RecorderFrameworkManager : NSObject {
     ///   - number: phone number to be registered
     ///   - completionHandler: block to be called upon receiving the server's response
     public func register(_ number:String, completionHandler:((Bool, Any?) -> Void)?){
-        APIClient.sharedInstance.register(number as! NSString, completionHandler: completionHandler)
+        APIClient.sharedInstance.register(number, completionHandler: completionHandler)
     }
     
     /// Send the verification code received via SMS
@@ -308,7 +308,7 @@ public class RecorderFrameworkManager : NSObject {
     ///   - code: code received via sms
     ///   - completionHandler: block to be called upon receiving the server's response
     public func sendVerificationCode(_ code:String, completionHandler:((Bool, Any?) -> Void)?) {
-        APIClient.sharedInstance.sendVerificationCode(code as! NSString, completionHandler: completionHandler)
+        APIClient.sharedInstance.sendVerificationCode(code, completionHandler: completionHandler)
     }
     
     /// Get folders
@@ -356,7 +356,7 @@ public class RecorderFrameworkManager : NSObject {
     ///   - localID: local id of folder
     ///   - completionHandler: block to be called upon receiving the server's response
     public func createFolder(_ name:String!, localID:String!, completionHandler:((Bool, Any?) -> Void)?){
-        APIClient.sharedInstance.createFolder(name as NSString, localID: localID as NSString, completionHandler: completionHandler)
+        APIClient.sharedInstance.createFolder(name, localID: localID, completionHandler: completionHandler)
     }
     
     /// Delete folder
