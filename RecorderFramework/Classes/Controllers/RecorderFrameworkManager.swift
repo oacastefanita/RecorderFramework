@@ -91,46 +91,6 @@ public class RecorderFrameworkManager : NSObject {
         AudioFileTagManager.sharedInstance.updateWaveRenderVals(waveRenderVals)
     }
     
-//    /// Add label tag
-//    ///
-//    /// - Parameters:
-//    ///   - timeStamp: tag time stamp
-//    ///   - duration: tag duration
-//    ///   - label: label text
-//    public func addLabel(_ timeStamp:TimeInterval, duration:TimeInterval, label:String!) {
-//        AudioFileTagManager.sharedInstance.addLabel(timeStamp, duration: duration, label: label)
-//    }
-//    
-//    /// Add important tag
-//    ///
-//    /// - Parameters:
-//    ///   - timeStamp: tag time stamp
-//    ///   - duration: tag duration
-//    public func addImportant(_ timeStamp:TimeInterval, duration:TimeInterval) {
-//        AudioFileTagManager.sharedInstance.addImportant(timeStamp, duration: duration)
-//    }
-//    
-//    /// Add note tag
-//    ///
-//    /// - Parameters:
-//    ///   - timeStamp: tag time stamp
-//    ///   - duration: tag duration
-//    ///   - note: note text
-//    public func addNote(_ timeStamp:TimeInterval, duration:TimeInterval, note:String!) {
-//        AudioFileTagManager.sharedInstance.addNote(timeStamp, duration: duration, note: note)
-//    }
-//    
-//    
-//    /// Add Photo tag
-//    ///
-//    /// - Parameters:
-//    ///   - timeStamp: tag time stamp
-//    ///   - duration: tag duration
-//    ///   - path: photo path
-//    public func addPhoto(_ timeStamp:TimeInterval, duration:TimeInterval, path:String!) {
-//        AudioFileTagManager.sharedInstance.addPhoto(timeStamp, duration: duration, path: path)
-//    }
-    
     /// Get current translations language
     ///
     /// - Returns: current translations language
@@ -395,7 +355,7 @@ public class RecorderFrameworkManager : NSObject {
     ///   - name: folder name
     ///   - localID: local id of folder
     ///   - completionHandler: block to be called upon receiving the server's response
-    public func createFolder(_ name:String, localID:String, completionHandler:((Bool, Any?) -> Void)?){
+    public func createFolder(_ name:String!, localID:String!, completionHandler:((Bool, Any?) -> Void)?){
         APIClient.sharedInstance.createFolder(name as NSString, localID: localID as NSString, completionHandler: completionHandler)
     }
     
@@ -774,22 +734,47 @@ public class RecorderFrameworkManager : NSObject {
         ActionsSyncManager.sharedInstance.updateRecordingMetadata(recordItem)
     }
     
+    /// Download file
+    ///
+    /// - Parameters:
+    ///   - fromURL: file URL address
+    ///   - atPath: path for file
+    ///   - completionHandler: block to be called upon receiving the server's response
     public func downloadFile(_ fromURL:String, atPath:String, completionHandler:((Bool, String) -> Void)?) {
         APIClient.sharedInstance.api.downloadFile(fromURL, atPath: atPath, completionHandler: completionHandler)
     }
     
+    /// Upload metadata image file
+    ///
+    /// - Parameters:
+    ///   - imagePath: local path of the image
+    ///   - fileId: file id of the image
+    ///   - completionHandler: block to be called upon receiving the server's response
     public func uploadMetadataImageFile(_ imagePath:String, fileId: String, completionHandler:((Bool, Any?) -> Void)?) {
         APIClient.sharedInstance.uploadMetadataImageFile(imagePath, fileId: fileId, completionHandler: completionHandler)
     }
     
+    /// Delete metadata file
+    ///
+    /// - Parameters:
+    ///   - fileId: id of the file to be deleted
+    ///   - completionHandler: block to be called upon receiving the server's response
     public func deleteMetadataFile(_ fileId:String, completionHandler:((Bool, Any?) -> Void)?){
         APIClient.sharedInstance.deleteMetadataFile(fileId, completionHandler:completionHandler)
     }
     
+    /// Folder for item
+    ///
+    /// - Parameter itemId: folder id
+    /// - Returns: RecordFolder object with desired id
     public func folderForItem(_ itemId: String) -> RecordFolder{
         return RecordingsManager.sharedInstance.folderForItem(itemId)
     }
     
+    /// Create NSDictionary from record item
+    ///
+    /// - Parameter file: RecordItem to create NSDictionary from
+    /// - Returns: NSDictionary object filled with data from RecordItem
     public func createDictFromRecordItem(_ file: RecordItem) -> NSDictionary{
         return RecorderFactory.createDictFromRecordItem(file)
     }

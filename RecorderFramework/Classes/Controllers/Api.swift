@@ -96,15 +96,15 @@ class Api: NSObject {
         
         var jsonString = ""
         if parameters != nil {
-            jsonString = "\(parameters)"
-            do {
-                let postData : Data = try JSONSerialization.data(withJSONObject: parameters!, options: JSONSerialization.WritingOptions.prettyPrinted)
-                jsonString = NSString(data: postData, encoding: String.Encoding.utf8.rawValue)! as String
-            }
-            catch {
-                jsonString = ""
-                print(error)
-            }
+            jsonString = "\(parameters!)"
+//            do {
+//                let postData : Data = try JSONSerialization.data(withJSONObject: parameters!, options: JSONSerialization.WritingOptions.prettyPrinted)
+//                jsonString = NSString(data: postData, encoding: String.Encoding.utf8.rawValue)! as String
+//            }
+//            catch {
+//                jsonString = ""
+//                print(error)
+//            }
         }
         
         if let headers = UserDefaults.standard.dictionary(forKey: "api_custom_headers") as? [String : String] {

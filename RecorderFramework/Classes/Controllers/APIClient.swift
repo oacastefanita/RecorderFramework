@@ -28,17 +28,8 @@ class APIClient : NSObject {
     override init() {
         super.init()
         api.completionHandlerLog = { (req, resp) in
-            //            var logLevel = ""
-            //            if (UserDefaults.standard.string(forKey: "logLevelPreference") != nil){
-            //                logLevel = UserDefaults.standard.string(forKey: "logLevelPreference")!
-            //            }
-            //            if logLevel == "5"{
-            //                self.mixpanel.track("ServerLog", properties:["Request": req, "Response": resp])
-            //            }
-            //            else {
-            print(req)
-            print(resp)
-            //            }
+        print(req)
+        print(resp)
         }
     }
     
@@ -91,16 +82,15 @@ class APIClient : NSObject {
             appCode = "rem"
         }
         
-        let deviceToken =  AppPersistentData.sharedInstance.notificationToken == nil ? "Simulator" : AppPersistentData.sharedInstance.notificationToken
-        var parameters = ["phone": AppPersistentData.sharedInstance.phone,"mcc":"310" ,"code": code, "token": "55942ee3894f51000530894", "app": appCode, "device_token":deviceToken!] as [String : Any]
-        //        var parameters = [("phone", AppPersistentData.sharedInstance.phone), ("code": code), ("mcc": (carrier != nil && !carrier!.mobileCountryCode!.isEmpty) ? carrier!.mobileCountryCode : "310"), ("token": "55942ee3894f51000530894"), ("app": appCode), ("device_token": AppPersistentData.sharedInstance.notificationToken == nil ? "Simulator" : AppPersistentData.sharedInstance.notificationToken)] //"226" "310" carrier.mobileCountryCode
+        let deviceToken =  AppPersistentData.sharedInstance.notificationToken == nil ? "Simulator" : AppPersistentData.sharedInstance.notificationToken!
+        var parameters = ["phone": AppPersistentData.sharedInstance.phone!,"mcc":"300" ,"code": code, "token": "55942ee3894f51000530894", "app": appCode, "device_token":deviceToken] as [String : Any]
         
         #if os(iOS)
             let tn = CTTelephonyNetworkInfo();
             let carrier = tn.subscriberCellularProvider
-            var mcc = "310"
+            var mcc = "300"
             if carrier != nil && carrier!.mobileCountryCode != nil{
-                mcc = (carrier != nil && !carrier!.mobileCountryCode!.isEmpty) ? carrier!.mobileCountryCode! : "310"
+                mcc = (carrier != nil && !carrier!.mobileCountryCode!.isEmpty) ? carrier!.mobileCountryCode! : "300"
             }
             parameters["mcc"] = mcc
             parameters["device_type"] = "ios"
@@ -158,13 +148,13 @@ class APIClient : NSObject {
             return
         }
         
-        var parameters:[String : Any] = ["api_key": AppPersistentData.sharedInstance.apiKey, "reminder":"true"]
+        var parameters:[String : Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "reminder":"true"]
         if folderId != nil {
             parameters.updateValue(folderId, forKey: "folder_id")
         }
         parameters["source"] = "all"
         if lastFileId != nil{
-            parameters["id"] = lastFileId
+            parameters["id"] = lastFileId!
             parameters["op"] = less ? "less" : "grater"
         }
         
@@ -238,7 +228,7 @@ class APIClient : NSObject {
             return
         }
         
-        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey]
+        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey!]
         var defaultPhone = " "
         for phoneNumber in AppPersistentData.sharedInstance.phoneNumbers{
             if phoneNumber.isDefault{
@@ -458,7 +448,7 @@ class APIClient : NSObject {
             return
         }
         
-        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "name" : name] as [String : Any]
+        let parameters = ["api_key": AppPersistentData.sharedInstance.apiKey, "name" : name] as [String : Any!]
         
         api.doRequest("create_folder", method: .post, parameters: parameters) { (success, data) in
             if success {

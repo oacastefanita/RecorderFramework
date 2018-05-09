@@ -402,9 +402,6 @@ protocol CustomActionDelegate {
         
         switch(action!.type) {
         case ActionType.deleteRecording:
-            
-            //            let recordItem = RecordingsManager.sharedInstance.getRecordingById(action!.arg1)
-            //            if recordItem != nil {
             APIClient.sharedInstance.deleteRecording(action!.arg1, removeForever:action!.arg2 == "true", completionHandler: { (success, data) -> Void in
                 if !success {
                     self.actionsFailed += 1
@@ -416,15 +413,9 @@ protocol CustomActionDelegate {
                 self.processActions(newActions)
                 
             })
-            //            }
-            //            else {
-            //                self.removeAction(action!.id)
-            //                processActions(newActions)
-            //            }
             
             break
         case ActionType.moveRecording:
-            
             let recordItem = RecordingsManager.sharedInstance.getRecordingById(action!.arg1)
             if recordItem != nil {
                 APIClient.sharedInstance.moveRecording(recordItem!, folderId:action!.arg2, completionHandler: { (success, data) -> Void in
@@ -445,7 +436,6 @@ protocol CustomActionDelegate {
             
             break
         case ActionType.recoverRecording:
-            
             let recordItem = RecordingsManager.sharedInstance.getRecordingById(action!.arg1)
             if recordItem != nil {
                 APIClient.sharedInstance.recoverRecording(recordItem!, folderId:action!.arg2, completionHandler: { (success, data) -> Void in
@@ -559,15 +549,6 @@ protocol CustomActionDelegate {
             if recordFolder != nil {
                 APIClient.sharedInstance.createFolder(recordFolder!.title! as NSString, localID:recordFolder!.id! as NSString, completionHandler: { (success, data) -> Void in
                     if success {
-                        //                        var index = 0
-                        //                        for recItem in RecordingsManager.sharedInstance.recordFolders {
-                        //                            if recItem.linkedActionId != nil && recItem.linkedActionId == recordFolder.linkedActionId {
-                        //                                RecordingsManager.sharedInstance.recordFolders.removeAtIndex(index)
-                        //                                AppPersistentData.sharedInstance.saveData()
-                        //                                break
-                        //                            }
-                        //                            index++
-                        //                        }
                         self.removeAction(action!.id)
                         self.saveActions()
                     }
@@ -741,7 +722,6 @@ protocol CustomActionDelegate {
     }
     
     // MARK: helpers
-    
     func getActionById(_ actionID:String) -> Action! {
         for action in actions {
             if action.id == actionID {

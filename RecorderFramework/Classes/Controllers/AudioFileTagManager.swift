@@ -189,48 +189,4 @@ class AudioFileTagManager: NSObject {
         self.waveRenderVals = waveRenderVals
         saveToFile();
     }
-    
-//    func addLabel(_ timeStamp:TimeInterval, duration:TimeInterval, label:String!) {
-//        let newTag = AudioTag()
-//        newTag.type = TagType.label
-//        newTag.timeStamp = timeStamp
-//        newTag.duration = duration
-//        newTag.arg = label as AnyObject
-//        
-//        audioFileTags.add(newTag)
-//        saveToFile();
-//    }
-//    
-//    func addImportant(_ timeStamp:TimeInterval, duration:TimeInterval) {
-//        let newTag = AudioTag()
-//        newTag.type = TagType.important
-//        newTag.timeStamp = timeStamp
-//        newTag.duration = duration
-//        
-//        audioFileTags.add(newTag)
-//        saveToFile();
-//    }
-//    
-//    func addNote(_ timeStamp:TimeInterval, duration:TimeInterval, note:String!) {
-//        let newTag = AudioTag()
-//        newTag.type = TagType.note
-//        newTag.timeStamp = timeStamp
-//        newTag.duration = duration
-//        newTag.arg = note as AnyObject
-//        
-//        audioFileTags.add(newTag)
-//        saveToFile();
-//    }
-//
-//    
-//    func addPhoto(_ timeStamp:TimeInterval, duration:TimeInterval, path:String!) {
-//        let newTag = AudioTag()
-//        newTag.type = TagType.photo
-//        newTag.timeStamp = timeStamp
-//        newTag.duration = duration
-//        newTag.arg = path as AnyObject
-//        
-//        audioFileTags.add(newTag)
-//        saveToFile();
-//    }
 }

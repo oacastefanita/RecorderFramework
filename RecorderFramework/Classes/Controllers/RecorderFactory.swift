@@ -45,7 +45,11 @@ class RecorderFactory: NSObject {
     }
     
     class func createDictFromUser(_ user: User) -> NSDictionary{
-        let dictNew = NSMutableDictionary(dictionary: ["l_name":user.lastName ?? "", "f_name":user.firstName ?? "", "email":user.email ?? "", "max_length":user.maxLenght ?? "", "pic":user.imagePath ?? "", "play_beep":user.playBeep ?? "", "is_public":user.isPublic ?? "", "time_zone": user.timeZone])
+        let dictNew = NSMutableDictionary(dictionary: ["l_name":user.lastName ?? "", "f_name":user.firstName ?? "", "email":user.email ?? "", "max_length":user.maxLenght ?? ""])
+        dictNew["time_zone"] = user.timeZone
+        dictNew["is_public"] = user.isPublic ?? ""
+        dictNew["play_beep"] = user.playBeep ?? ""
+        dictNew["pic"] = user.imagePath ?? ""
         let dict = NSMutableDictionary(dictionary: ["data":dictNew])
         return dict
     }
@@ -79,7 +83,9 @@ class RecorderFactory: NSObject {
     }
     
     class func createDictFromRecordFolder(_ folder: RecordFolder) -> NSDictionary{
-        let dict = NSMutableDictionary(dictionary: ["id":folder.id ?? "", "name":folder.title ?? "", "created":folder.created ?? "", "pass":folder.password ?? "", "folder_order":folder.folderOrder ?? ""])
+        let dict = NSMutableDictionary(dictionary: ["id":folder.id ?? "", "name":folder.title ?? "", "created":folder.created ?? ""])
+        dict["folder_order"] = folder.folderOrder ?? ""
+        dict["pass"] = folder.password ?? ""
         var array = [NSDictionary]()
         for file in folder.recordedItems{
             array.append(RecorderFactory.createDictFromRecordItem(file))

@@ -1,26 +1,32 @@
 use_frameworks!
+
+def standard_pods
+    pod 'RecorderFramework', :path => '../'
+end
+
 target 'RecorderFramework-MacExample’ do
-  pod 'RecorderFramework', :path => '../'
+  standard_pods
 end
 
 target 'RecorderFramework-TVExample’ do
-  pod 'RecorderFramework', :path => '../'
+  standard_pods
 end
 
 target 'RecorderFramework-WatchExample’ do
-  pod 'RecorderFramework', :path => '../'
+  standard_pods
 end
 
 target 'RecorderFramework-WatchExample Extension’ do
-  pod 'RecorderFramework', :path => '../'
+  standard_pods
 end
 
 target 'RecorderFramework_Example' do
-  pod 'RecorderFramework', :path => '../'
+  standard_pods
   pod 'FDWaveformView'
   pod 'Bugsee'
   pod 'Firebase/Core'
-  target 'RecorderFramework_Tests' do
-    inherit! :search_paths
-  end
 end
+
+target 'RecorderFramework_Tests' do
+    standard_pods
+ end

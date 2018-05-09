@@ -3,6 +3,12 @@ import XCTest
 import RecorderFramework
 
 class Tests: XCTestCase {
+    var folderName = "UnitTestFolder"
+    var folderId: String!
+    
+    var recordingName = "UnitTestFile"
+    var recordingId: String!
+    
     
     override func setUp() {
         super.setUp()
@@ -14,16 +20,35 @@ class Tests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
+//    func testContainerName() {
+//        // This is an example of a functional test case.
+//        let obj = RecorderFrameworkManager.sharedInstance.containerName
+//        XCTAssertEqual(obj, "group.com.codebluestudio.Recorder")
+//    }
+//    
+    func testGetFolders(){
+        let promise = expectation(description: "Folder created")
+        RecorderFrameworkManager.sharedInstance.getFolders({ (success, data) -> Void in
+            if success{
+                promise.fulfill()
+            }else{
+                XCTFail("Error: \(data)")
+            }
+        })
+        waitForExpectations(timeout: 20, handler: nil)
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure() {
-            // Put the code you want to measure the time of here.
-        }
+    func testCreateFolder(){
+        let promise = expectation(description: "Folder created")
+        
+        RecorderFrameworkManager.sharedInstance.createFolder(folderName, localID: "", completionHandler: { (success, data) -> Void in
+            if success {
+                promise.fulfill()
+            }
+            else {
+                XCTFail("Error: \(data)")
+            }
+        })
+        waitForExpectations(timeout: 20, handler: nil)
     }
-    
 }
