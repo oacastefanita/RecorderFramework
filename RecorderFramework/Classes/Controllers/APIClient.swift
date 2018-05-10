@@ -16,12 +16,12 @@ let API_BASE_URL = "https://app2.virtualbrix.net/rapi/"
     import Cocoa
 #endif
 
-class APIClient : NSObject {
+public class APIClient : NSObject {
     
     var mainSyncInProgress:Bool = false
     var mainSyncErrors:Int = 0
     
-    @objc static let sharedInstance = APIClient()
+    @objc public  static let sharedInstance = APIClient()
     
     var api = Api(baseURL: API_BASE_URL)
     
@@ -490,8 +490,14 @@ class APIClient : NSObject {
                     }
                     _ = RecordingsManager.sharedInstance.syncItem(recordFolder!)
                     
-                    if completionHandler != nil {
-                        completionHandler!( true, nil)
+                    if let value:NSNumber = data!["id"] as? NSNumber {
+                        if completionHandler != nil {
+                            completionHandler!( true, value)
+                        }
+                    }else{
+                        if completionHandler != nil {
+                            completionHandler!( true, nil)
+                        }
                     }
                 }
             }
@@ -503,7 +509,7 @@ class APIClient : NSObject {
         }
     }
     
-    func deleteFolder(_ folderId:String, moveTo:String!, completionHandler:((Bool, Any?) -> Void)?) {
+    public func deleteFolder(_ folderId:String, moveTo:String!, completionHandler:((Bool, Any?) -> Void)?) {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
@@ -621,7 +627,7 @@ class APIClient : NSObject {
         }
     }
     
-    func addPasswordToFolder(_ folderId:String, pass:String, completionHandler:((Bool, Any?) -> Void)?) {
+    public func addPasswordToFolder(_ folderId:String, pass:String, completionHandler:((Bool, Any?) -> Void)?) {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
