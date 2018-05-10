@@ -24,7 +24,6 @@ target 'RecorderFramework_Example' do
   standard_pods
   pod 'FDWaveformView'
   pod 'Bugsee'
-  pod 'Firebase/Core'
 end
 
 target 'RecorderFramework_Tests' do

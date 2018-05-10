@@ -41,9 +41,18 @@ class Tests: XCTestCase {
     func testCreateFolder(){
         let promise = expectation(description: "Folder created")
         
-        RecorderFrameworkManager.sharedInstance.createFolder(folderName, localID: "", completionHandler: { (success, data) -> Void in
+        RecorderFrameworkManager.sharedInstance.createFolder(folderName, localID: "987", completionHandler: { (success, data) -> Void in
             if success {
-                promise.fulfill()
+                RecorderFrameworkManager.sharedInstance.getFolders({ (success, data) -> Void in
+                    if success{
+                        for folder in data as! [RecordFolder]{
+                            
+                        }
+                        promise.fulfill()
+                    }else{
+                        XCTFail("Error: \(data)")
+                    }
+                })
             }
             else {
                 XCTFail("Error: \(data)")

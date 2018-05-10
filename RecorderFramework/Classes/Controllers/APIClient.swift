@@ -429,7 +429,7 @@ class APIClient : NSObject {
                     }
                     
                     if completionHandler != nil {
-                        completionHandler!( true, nil)
+                        completionHandler!( true, RecordingsManager.sharedInstance.recordFolders)
                     }
                 }
             }

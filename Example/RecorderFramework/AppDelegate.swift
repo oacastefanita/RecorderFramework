@@ -10,7 +10,6 @@ import UIKit
 import UserNotifications
 import RecorderFramework
 import Bugsee
-import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
@@ -24,7 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         MKStoreKit.shared().startProductRequest()
         requestNotificationsPermission()
         Bugsee.launch(token :"4c279461-6c62-4851-b884-e7e105985a18")
-        FirebaseApp.configure()
         return true
     }
 
