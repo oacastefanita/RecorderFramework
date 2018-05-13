@@ -2,7 +2,7 @@ import UIKit
 import XCTest
 import RecorderFramework
 
-class Tests: XCTestCase {
+class FolderTests: XCTestCase {
     var folderName = "UnitTestFolder"
     var folderId: String!
     

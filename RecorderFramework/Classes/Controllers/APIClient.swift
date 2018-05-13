@@ -1929,7 +1929,7 @@ public class APIClient : NSObject {
                     }
                     
                     if completionHandler != nil {
-                        completionHandler!( true, nil)
+                        completionHandler!( true, data)
                     }
                 }
             }
@@ -1941,7 +1941,7 @@ public class APIClient : NSObject {
         }
     }
     
-    func updateProfile(params:[String:Any], completionHandler:((Bool, Any?) -> Void)?)
+    public func updateProfile(params:[String:Any], completionHandler:((Bool, Any?) -> Void)?)
     {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)

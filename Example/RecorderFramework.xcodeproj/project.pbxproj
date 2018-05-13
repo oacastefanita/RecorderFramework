@@ -14,7 +14,7 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
-		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		607FACEC1AFB9204008FA782 /* FolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* FolderTests.swift */; };
 		67D5BE920E12852EBB8D4EF1 /* Pods_RecorderFramework_WatchExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 748F834FFABC1EB351E432FB /* Pods_RecorderFramework_WatchExample.framework */; };
 		850FAA7B8BF4FA4255305461 /* Pods_RecorderFramework_MacExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B73DD214B01B20F486E1C762 /* Pods_RecorderFramework_MacExample.framework */; };
 		A20569AB1FABC9010089396F /* UserInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20569AA1FABC9010089396F /* UserInterfaceController.swift */; };
@@ -24,6 +24,7 @@
 		A2095CD01FD5979200CF96B3 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2095CCD1FD5971000CF96B3 /* LocationManager.swift */; };
 		A2095CD11FD5979500CF96B3 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2095CCC1FD5971000CF96B3 /* LocationViewController.swift */; };
 		A20B73C61FDAE7CD00E031FC /* FileTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20B73C51FDAE7CD00E031FC /* FileTagsViewController.swift */; };
+		A21314F020A8D0B900014D7C /* ProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21314EE20A8CFA100014D7C /* ProfileTests.swift */; };
 		A2178B781FD5BD7100370CF7 /* FileTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C7DF721FD583B200F8AFDA /* FileTagsViewController.swift */; };
 		A2178B791FD5BD7500370CF7 /* PanoramaViewM.m in Sources */ = {isa = PBXBuildFile; fileRef = A2095CC31FD5851E00CF96B3 /* PanoramaViewM.m */; };
 		A2178B7A1FD5BD8600370CF7 /* ViewTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C7DF6F1FD583B100F8AFDA /* ViewTagViewController.swift */; };
@@ -204,7 +205,7 @@
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* RecorderFramework_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecorderFramework_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		607FACEB1AFB9204008FA782 /* FolderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderTests.swift; sourceTree = "<group>"; };
 		7020D5B4D20C656FA427624E /* Pods-RecorderFramework-MacExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecorderFramework-MacExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-RecorderFramework-MacExample/Pods-RecorderFramework-MacExample.release.xcconfig"; sourceTree = "<group>"; };
 		748F834FFABC1EB351E432FB /* Pods_RecorderFramework_WatchExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecorderFramework_WatchExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		863430D0C86DCE6607C6635E /* Pods_RecorderFramework_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecorderFramework_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -218,6 +219,7 @@
 		A2095CCC1FD5971000CF96B3 /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		A2095CCD1FD5971000CF96B3 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		A20B73C51FDAE7CD00E031FC /* FileTagsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTagsViewController.swift; sourceTree = "<group>"; };
+		A21314EE20A8CFA100014D7C /* ProfileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTests.swift; sourceTree = "<group>"; };
 		A21AD9151FB1EF1500BCDD1F /* RecorderFramework-TVExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RecorderFramework-TVExample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A21AD9171FB1EF1500BCDD1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A21AD91C1FB1EF1500BCDD1F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -513,7 +515,8 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				607FACEB1AFB9204008FA782 /* Tests.swift */,
+				607FACEB1AFB9204008FA782 /* FolderTests.swift */,
+				A21314EE20A8CFA100014D7C /* ProfileTests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -1444,7 +1447,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
+				607FACEC1AFB9204008FA782 /* FolderTests.swift in Sources */,
+				A21314F020A8D0B900014D7C /* ProfileTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
