@@ -591,7 +591,7 @@ public class APIClient : NSObject {
         }
     }
     
-    func renameFolder(_ folderId:String, name:String, completionHandler:((Bool, Any?) -> Void)?) {
+    public func renameFolder(_ folderId:String, name:String, completionHandler:((Bool, Any?) -> Void)?) {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
@@ -2023,6 +2023,44 @@ public class APIClient : NSObject {
                     else {
                         completionHandler!(success, "Error occured while uploading file.")
                     }
+                }
+            }
+        }
+    }
+    
+    public func verifyFolderPass(_ pass:String, folderId:String, completionHandler:((Bool, Any?) -> Void)?) {
+        if AppPersistentData.sharedInstance.invalidAPIKey {
+            completionHandler!(false, "Invalid API Key" as AnyObject)
+            return
+        }
+        
+        var parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!]
+        parameters["id"] = folderId
+        parameters["pass"] = pass
+        
+        api.doRequest("verify_folder_pass", method: .post, parameters: parameters) { (success, data) in
+            if success {
+                if data!["status"] != nil && (data!["status"] as? String) != "ok" {
+                    if let strError = data!["msg"] as? String {
+                        if completionHandler != nil {
+                            completionHandler!(false, strError.localized)
+                        }
+                    }
+                    else {
+                        if completionHandler != nil {
+                            completionHandler!(false, nil)
+                        }
+                    }
+                }
+                else {
+                    if completionHandler != nil {
+                        completionHandler!( true, nil)
+                    }
+                }
+            }
+            else {
+                if completionHandler != nil {
+                    completionHandler!(success, data!["error"] as? String)
                 }
             }
         }

@@ -778,4 +778,14 @@ public class RecorderFrameworkManager : NSObject {
     public func createDictFromRecordItem(_ file: RecordItem) -> NSDictionary{
         return RecorderFactory.createDictFromRecordItem(file)
     }
+    
+    /// Verify folder Password
+    ///
+    /// - Parameters:
+    ///   - pass: password to verify
+    ///   - folderId: folder id
+    ///   - completionHandler: block to be called upon receiving the server's response
+    public func verifyFolderPass(_ pass:String, folderId:String, completionHandler:((Bool, Any?) -> Void)?) {
+        APIClient.sharedInstance.verifyFolderPass(pass, folderId: folderId, completionHandler: completionHandler)
+    }
 }

@@ -12,12 +12,19 @@ class Tests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        if let id = UserDefaults.standard.value(forKey: "testFolderId") as? String {
+            self.folderId = id
+        }
+        if let id = UserDefaults.standard.value(forKey: "testRecordingId") as? String {
+            self.recordingId = id
+        }
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
+        UserDefaults.standard.set(self.folderId, forKey: "testFolderId")
+        UserDefaults.standard.set(self.recordingId, forKey: "testRecordingId")
+        UserDefaults.standard.synchronize()
     }
     
     func test1ContainerName() {
@@ -74,25 +81,14 @@ class Tests: XCTestCase {
     
     func test4AddPassToFolder(){
         let promise = expectation(description: "Added password")
-        let newPass = "Pass Test"
+        let newPass = "PassTest"
         APIClient.sharedInstance.addPasswordToFolder(self.folderId, pass:newPass, completionHandler: { (success, data) -> Void in
             if success {
-                RecorderFrameworkManager.sharedInstance.getFolders({ (success, data) -> Void in
-                    if success{
-                        var found = false
-                        for folder in data as! [RecordFolder]{
-                            if folder.id == "\(self.folderId)"{
-                                if folder.password == newPass{
-                                    promise.fulfill()
-                                    found = true
-                                    break
-                                }
-                            }
-                        }
-                        if found == false{
-                            XCTFail("Error: \(data)")
-                        }
-                    }else{
+                APIClient.sharedInstance.verifyFolderPass(newPass,folderId: self.folderId, completionHandler: { (success, data) -> Void in
+                    if success {
+                        promise.fulfill()
+                    }
+                    else {
                         XCTFail("Error: \(data)")
                     }
                 })
@@ -104,7 +100,38 @@ class Tests: XCTestCase {
         waitForExpectations(timeout: 30, handler: nil)
     }
     
-    func test5DeleteFolder(){
+    func test5RenameFolder(){
+        let promise = expectation(description: "Rename folder")
+        let newName = folderName + "renamed"
+        APIClient.sharedInstance.renameFolder(self.folderId, name:newName, completionHandler: { (success, data) -> Void in
+        if success {
+            RecorderFrameworkManager.sharedInstance.getFolders({ (success, data) -> Void in
+                if success{
+                    var found = false
+                    for folder in data as! [RecordFolder]{
+                        if folder.id == self.folderId!{
+                            if folder.title == newName{
+                                promise.fulfill()
+                                found = true
+                                break
+                            }
+                        }
+                    }
+                    if found == false{
+                        XCTFail("Error: \(data)")
+                    }
+                }else{
+                    XCTFail("Error: \(data)")
+                }
+            })
+        }else {
+            XCTFail("Error: \(data)")
+        }
+        })
+        waitForExpectations(timeout: 30, handler: nil)
+    }
+    
+    func test6DeleteFolder(){
         let promise = expectation(description: "Folder Deleted")
         
         APIClient.sharedInstance.deleteFolder(self.folderId, moveTo:"", completionHandler: { (success, data) -> Void in
