@@ -94,6 +94,10 @@
 		A2A6256A1FB1FD3E003714C8 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A625591FB1FD3E003714C8 /* ProfileViewController.swift */; };
 		A2A6256B1FB1FD3E003714C8 /* PhoneNumbersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A6255A1FB1FD3E003714C8 /* PhoneNumbersViewController.swift */; };
 		A2A6256C1FB1FD3E003714C8 /* DisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A6255B1FB1FD3E003714C8 /* DisplayViewController.swift */; };
+		A2ADD8BD20A987C1005C6CD2 /* RegisterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2ADD8BC20A987C1005C6CD2 /* RegisterTests.swift */; };
+		A2ADD8BF20A9A836005C6CD2 /* FileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2ADD8BE20A9A836005C6CD2 /* FileTests.swift */; };
+		A2ADD8CE20A9D4F4005C6CD2 /* Test.wav in Resources */ = {isa = PBXBuildFile; fileRef = A2ADD8CD20A9D4F4005C6CD2 /* Test.wav */; };
+		A2ADD8CF20A9DC68005C6CD2 /* Test.wav in Resources */ = {isa = PBXBuildFile; fileRef = A2ADD8CD20A9D4F4005C6CD2 /* Test.wav */; };
 		A2AE31C01FA0BE7D00CCDC79 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AE31BF1FA0BE7D00CCDC79 /* HomeViewController.swift */; };
 		A2AEABEC1FB0903D0094DCF8 /* MKStoreKitConfigs.plist in Resources */ = {isa = PBXBuildFile; fileRef = A2AEABE91FB0903D0094DCF8 /* MKStoreKitConfigs.plist */; };
 		A2AEABED1FB0903D0094DCF8 /* MKStoreKit.m in Sources */ = {isa = PBXBuildFile; fileRef = A2AEABEB1FB0903D0094DCF8 /* MKStoreKit.m */; };
@@ -294,6 +298,9 @@
 		A2A625591FB1FD3E003714C8 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = "RecorderFramework-TvExample/ProfileViewController.swift"; sourceTree = SOURCE_ROOT; };
 		A2A6255A1FB1FD3E003714C8 /* PhoneNumbersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhoneNumbersViewController.swift; path = "RecorderFramework-TvExample/PhoneNumbersViewController.swift"; sourceTree = SOURCE_ROOT; };
 		A2A6255B1FB1FD3E003714C8 /* DisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DisplayViewController.swift; path = "RecorderFramework-TvExample/DisplayViewController.swift"; sourceTree = SOURCE_ROOT; };
+		A2ADD8BC20A987C1005C6CD2 /* RegisterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTests.swift; sourceTree = "<group>"; };
+		A2ADD8BE20A9A836005C6CD2 /* FileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTests.swift; sourceTree = "<group>"; };
+		A2ADD8CD20A9D4F4005C6CD2 /* Test.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Test.wav; sourceTree = "<group>"; };
 		A2AE31BF1FA0BE7D00CCDC79 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		A2AEABE91FB0903D0094DCF8 /* MKStoreKitConfigs.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MKStoreKitConfigs.plist; sourceTree = "<group>"; };
 		A2AEABEA1FB0903D0094DCF8 /* MKStoreKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKStoreKit.h; sourceTree = "<group>"; };
@@ -515,8 +522,10 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				607FACEB1AFB9204008FA782 /* FolderTests.swift */,
+				A2ADD8BC20A987C1005C6CD2 /* RegisterTests.swift */,
 				A21314EE20A8CFA100014D7C /* ProfileTests.swift */,
+				607FACEB1AFB9204008FA782 /* FolderTests.swift */,
+				A2ADD8BE20A9A836005C6CD2 /* FileTests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -525,6 +534,7 @@
 		607FACE91AFB9204008FA782 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A2ADD8CD20A9D4F4005C6CD2 /* Test.wav */,
 				607FACEA1AFB9204008FA782 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -1042,6 +1052,7 @@
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				A2B3B8A91FEC0787002D5335 /* GoogleService-Info.plist in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
+				A2ADD8CF20A9DC68005C6CD2 /* Test.wav in Resources */,
 				A2AEABEC1FB0903D0094DCF8 /* MKStoreKitConfigs.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1050,6 +1061,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2ADD8CE20A9D4F4005C6CD2 /* Test.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1448,7 +1460,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACEC1AFB9204008FA782 /* FolderTests.swift in Sources */,
+				A2ADD8BF20A9A836005C6CD2 /* FileTests.swift in Sources */,
 				A21314F020A8D0B900014D7C /* ProfileTests.swift in Sources */,
+				A2ADD8BD20A987C1005C6CD2 /* RegisterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -64,7 +64,7 @@ public class APIClient : NSObject {
                     AppPersistentData.sharedInstance.saveData()
                     
                     if completionHandler != nil {
-                        completionHandler!(true, nil)
+                        completionHandler!(true, AppPersistentData.sharedInstance.verificationCode)
                     }
                 }
             }
@@ -120,7 +120,7 @@ public class APIClient : NSObject {
                         AppPersistentData.sharedInstance.saveData()
                         
                         if completionHandler != nil {
-                            completionHandler!( true, nil)
+                            completionHandler!( true, data)
                         }
                     } else{
                         if completionHandler != nil {
@@ -663,7 +663,7 @@ public class APIClient : NSObject {
         }
     }
     
-    func deleteRecording(_ recordItemId:String, removeForever:Bool, completionHandler:((Bool, Any?) -> Void)?) {
+    public func deleteRecording(_ recordItemId:String, removeForever:Bool, completionHandler:((Bool, Any?) -> Void)?) {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
@@ -771,7 +771,7 @@ public class APIClient : NSObject {
         }
     }
     
-    func updateRecordingInfo(_ recordItem:RecordItem ,parameters:[String:Any], completionHandler:((Bool, Any?) -> Void)?) {
+    public func updateRecordingInfo(_ recordItem:RecordItem ,parameters:[String:Any], completionHandler:((Bool, Any?) -> Void)?) {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
@@ -924,7 +924,7 @@ public class APIClient : NSObject {
         }
     }
     
-    func uploadRecording(_ recordItem:RecordItem!, completionHandler:((Bool, Any?) -> Void)?) {
+    public func uploadRecording(_ recordItem:RecordItem!, completionHandler:((Bool, Any?) -> Void)?) {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
@@ -971,7 +971,7 @@ public class APIClient : NSObject {
                         }
                         
                         if completionHandler != nil {
-                            completionHandler!( true, nil)
+                            completionHandler!( true, recordItem.id)
                         }
                     }
                 }

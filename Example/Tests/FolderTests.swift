@@ -54,7 +54,7 @@ class FolderTests: XCTestCase {
                         if success{
                             var found = false
                             for folder in data as! [RecordFolder]{
-                                if folder.id == "\(folderId)"{
+                                if folder.id == "\(folderId)" && folder.title == self.folderName{
                                     self.folderId = folder.id
                                     promise.fulfill()
                                     found = true
