@@ -1128,7 +1128,7 @@ public class APIClient : NSObject {
         }
     }
     
-    func defaultFolderSync(_ completionHandler:((Bool) -> Void)?) {
+    public func defaultFolderSync(_ completionHandler:((Bool) -> Void)?) {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false)
             return

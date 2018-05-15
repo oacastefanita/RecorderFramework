@@ -81,8 +81,8 @@ class FileTests: XCTestCase {
             recordItem.remindDays = "UnitTestDaysUpdate"
             recordItem.remindDate = "UnitTestDateUpdate"
             recordItem.notes = "UnitTestNoteUpdate"
-            recordItem.email = "Unit@Test.comUpdate"
-            recordItem.phoneNumber = "+40727272727Update"
+            recordItem.email = "UnitUpdatet@Test.com"
+            recordItem.phoneNumber = "+40772727272"
             recordItem.lastName = "UnitTestLastNameUpdate"
             recordItem.firstName = "UnitTestFirstNameUpdate"
             recordItem.text = "UnitTestTextUpdate"
@@ -91,7 +91,21 @@ class FileTests: XCTestCase {
             let promise = expectation(description: "Update file")
             APIClient.sharedInstance.updateRecordingInfo(recordItem, parameters:dict as! [String : Any], completionHandler: { (success, data) -> Void in
                 if(success){
-                    promise.fulfill()
+                    RecorderFrameworkManager.sharedInstance.defaultFolderSync { (success) -> Void in
+                        if success {
+                            if let newRec = RecordingsManager.sharedInstance.getRecordingById(self.fileId){
+                                if newRec.remindDays == "UnitTestDaysUpdate" && newRec.remindDate == "UnitTestDateUpdate" && newRec.notes == "UnitTestNoteUpdate" && newRec.email == "UnitUpdatet@Test.com" && newRec.phoneNumber == "+40772727272" && newRec.lastName == "UnitTestLastNameUpdate" && newRec.firstName == "UnitTestFirstNameUpdate" && newRec.text == "UnitTestTextUpdate"{
+                                    promise.fulfill()
+                                }else{
+                                    XCTFail("Error: incorrect data")
+                                }
+                            }else{
+                                XCTFail("Error: no recording")
+                            }
+                        }else{
+                            XCTFail("Error: \(data)")
+                        }
+                    }
                 } else{
                     XCTFail("Error: \(data)")
                 }
@@ -104,7 +118,31 @@ class FileTests: XCTestCase {
         
     }
     
-    func test3Delete() {
+    func test3Star() {
+        let promise = expectation(description: "Star file")
+        RecorderFrameworkManager.sharedInstance.star(true, entityId: self.fileId, isFile: true, completionHandler: { (success, data) -> Void in
+            if(success){
+                promise.fulfill()
+            } else{
+                XCTFail("Error: \(data)")
+            }
+        })
+        waitForExpectations(timeout: 30, handler: nil)
+    }
+    
+    func test4Clone() {
+        let promise = expectation(description: "Clone file")
+        RecorderFrameworkManager.sharedInstance.cloneFile(entityId: self.fileId, completionHandler: { (success, data) -> Void in
+            if(success){
+                promise.fulfill()
+            } else{
+                XCTFail("Error: \(data)")
+            }
+        })
+        waitForExpectations(timeout: 30, handler: nil)
+    }
+    
+    func test5Delete() {
         let promise = expectation(description: "Delete file")
         APIClient.sharedInstance.deleteRecording(self.fileId, removeForever: true, completionHandler: { (success, data) -> Void in
             if(success){
