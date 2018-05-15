@@ -12,17 +12,23 @@ import RecorderFramework
 
 class FileTests: XCTestCase {
     var fileId = ""
+    var folderId: String!
+    var folderName = "UnitTestFolder"
     
     override func setUp() {
         super.setUp()
         if let id = UserDefaults.standard.value(forKey: "testFileId") as? String {
             self.fileId = id
         }
+        if let id = UserDefaults.standard.value(forKey: "testFolderId") as? String {
+            self.folderId = id
+        }
     }
     
     override func tearDown() {
         super.tearDown()
         UserDefaults.standard.set(self.fileId, forKey: "testFileId")
+        UserDefaults.standard.set(self.folderId, forKey: "testFolderId")
         UserDefaults.standard.synchronize()
     }
     
@@ -142,7 +148,48 @@ class FileTests: XCTestCase {
         waitForExpectations(timeout: 30, handler: nil)
     }
     
-    func test5Delete() {
+    func test5Move() {
+        let promise = expectation(description: "Move file")
+        
+        RecorderFrameworkManager.sharedInstance.createFolder(folderName, localID: "", completionHandler: { (success, data) -> Void in
+            if success {
+                if let folderId = data as? NSNumber{
+                    self.folderId = "\(folderId)"
+                    var recordItem = RecordItem()
+                    recordItem.id = self.fileId
+                    APIClient.sharedInstance.moveRecording(recordItem, folderId:"\(folderId)", completionHandler: { (success, data) -> Void in
+                        if(success){
+                            APIClient.sharedInstance.deleteRecording(self.fileId, removeForever: false, completionHandler: { (success, data) -> Void in
+                                if(success){
+                                    APIClient.sharedInstance.recoverRecording(recordItem, folderId:"\(folderId)", completionHandler: { (success, data) -> Void in
+                                        if success {
+                                            promise.fulfill()
+                                        }
+                                        else {
+                                            XCTFail("Error: \(data)")
+                                        }
+                                    })
+                                } else{
+                                    XCTFail("Error: \(data)")
+                                }
+                            })
+                        } else{
+                            XCTFail("Error: \(data)")
+                        }
+                    })
+                }else{
+                    XCTFail("Error: \(data)")
+                }
+            } else {
+                XCTFail("Error: \(data)")
+            }
+        })
+        
+        
+        waitForExpectations(timeout: 60, handler: nil)
+    }
+    
+    func test6Delete() {
         let promise = expectation(description: "Delete file")
         APIClient.sharedInstance.deleteRecording(self.fileId, removeForever: true, completionHandler: { (success, data) -> Void in
             if(success){
@@ -151,6 +198,21 @@ class FileTests: XCTestCase {
                 XCTFail("Error: \(data)")
             }
         })
+        waitForExpectations(timeout: 30, handler: nil)
+    }
+    
+    func test7DeleteFolder(){
+        let promise = expectation(description: "Folder Deleted")
+        
+        APIClient.sharedInstance.deleteFolder(self.folderId, moveTo:"", completionHandler: { (success, data) -> Void in
+            if success {
+                promise.fulfill()
+            }
+            else {
+                XCTFail("Error: \(data)")
+            }
+        })
+        
         waitForExpectations(timeout: 30, handler: nil)
     }
 }
