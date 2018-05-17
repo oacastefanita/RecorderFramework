@@ -24,6 +24,8 @@
 		A2095CD01FD5979200CF96B3 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2095CCD1FD5971000CF96B3 /* LocationManager.swift */; };
 		A2095CD11FD5979500CF96B3 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2095CCC1FD5971000CF96B3 /* LocationViewController.swift */; };
 		A20B73C61FDAE7CD00E031FC /* FileTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20B73C51FDAE7CD00E031FC /* FileTagsViewController.swift */; };
+		A20D17FC20AE0EEE00839717 /* UnitTest.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A20D17FB20AE0EEE00839717 /* UnitTest.jpg */; };
+		A20D17FD20AE0EF700839717 /* UnitTest.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A20D17FB20AE0EEE00839717 /* UnitTest.jpg */; };
 		A21314F020A8D0B900014D7C /* ProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21314EE20A8CFA100014D7C /* ProfileTests.swift */; };
 		A2178B781FD5BD7100370CF7 /* FileTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C7DF721FD583B200F8AFDA /* FileTagsViewController.swift */; };
 		A2178B791FD5BD7500370CF7 /* PanoramaViewM.m in Sources */ = {isa = PBXBuildFile; fileRef = A2095CC31FD5851E00CF96B3 /* PanoramaViewM.m */; };
@@ -223,6 +225,7 @@
 		A2095CCC1FD5971000CF96B3 /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		A2095CCD1FD5971000CF96B3 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		A20B73C51FDAE7CD00E031FC /* FileTagsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTagsViewController.swift; sourceTree = "<group>"; };
+		A20D17FB20AE0EEE00839717 /* UnitTest.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = UnitTest.jpg; sourceTree = "<group>"; };
 		A21314EE20A8CFA100014D7C /* ProfileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTests.swift; sourceTree = "<group>"; };
 		A21AD9151FB1EF1500BCDD1F /* RecorderFramework-TVExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RecorderFramework-TVExample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A21AD9171FB1EF1500BCDD1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -534,6 +537,7 @@
 		607FACE91AFB9204008FA782 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A20D17FB20AE0EEE00839717 /* UnitTest.jpg */,
 				A2ADD8CD20A9D4F4005C6CD2 /* Test.wav */,
 				607FACEA1AFB9204008FA782 /* Info.plist */,
 			);
@@ -1051,6 +1055,7 @@
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				A2B3B8A91FEC0787002D5335 /* GoogleService-Info.plist in Resources */,
+				A20D17FC20AE0EEE00839717 /* UnitTest.jpg in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 				A2ADD8CF20A9DC68005C6CD2 /* Test.wav in Resources */,
 				A2AEABEC1FB0903D0094DCF8 /* MKStoreKitConfigs.plist in Resources */,
@@ -1062,6 +1067,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2ADD8CE20A9D4F4005C6CD2 /* Test.wav in Resources */,
+				A20D17FD20AE0EF700839717 /* UnitTest.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

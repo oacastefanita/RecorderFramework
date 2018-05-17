@@ -1373,7 +1373,7 @@ public class APIClient : NSObject {
                     }
                     
                     if completionHandler != nil {
-                        completionHandler!( true, nil)
+                        completionHandler!( true, data!["settings"])
                     }
                 }
             }
@@ -1497,13 +1497,13 @@ public class APIClient : NSObject {
         }
     }
     
-    func addMessage(_ token:String, completionHandler:((Bool, Any?) -> Void)?) {
+    func addMessage(_ token:String, title:String, message:String,completionHandler:((Bool, Any?) -> Void)?) {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
         }
         
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "title" : "Title", "body" : "body"];
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "title" : title, "body" : message];
         
         api.doRequest("add_msg", method: .post, parameters: parameters) { (success, data) in
             if success {
@@ -1610,7 +1610,7 @@ public class APIClient : NSObject {
                     }
                     
                     if completionHandler != nil {
-                        completionHandler!( true, nil)
+                        completionHandler!( true, TranslationManager.sharedInstance.languages)
                     }
                 }
             }
@@ -1697,7 +1697,7 @@ public class APIClient : NSObject {
                     }
                     
                     if completionHandler != nil {
-                        completionHandler!( true, nil)
+                        completionHandler!( true, AppPersistentData.sharedInstance.serverMessages)
                     }
                 }
             }

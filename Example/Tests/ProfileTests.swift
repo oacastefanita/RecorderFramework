@@ -55,4 +55,111 @@ class ProfileTests: XCTestCase {
         
         waitForExpectations(timeout: 30, handler: nil)
     }
+    
+    func test2GetLanguages() {
+        let promise = expectation(description: "Get languages and translations")
+        RecorderFrameworkManager.sharedInstance.getLanguages({(success, data) -> Void in
+            if success{
+                if let array = data as? Array<Language>{
+                    let expectedTranslations = array.count
+                    var successfulTranslations = 0
+                    for language in array{ RecorderFrameworkManager.sharedInstance.getTranslations(language.code, completionHandler:{(success, data) -> Void in
+                            if success{
+                                successfulTranslations = successfulTranslations + 1
+                                if successfulTranslations == expectedTranslations{
+                                    promise.fulfill()
+                                }
+                            }else{
+                                XCTFail("Error: \(data)")
+                            }
+                        })
+                    }
+                }
+            }else{
+                XCTFail("Error: \(data)")
+            }
+        })
+        
+        waitForExpectations(timeout: 30, handler: nil)
+    }
+    
+    func test3GetPhoneNumbers() {
+        let promise = expectation(description: "Get profile numbers")
+        RecorderFrameworkManager.sharedInstance.getPhoneNumbers({(success, data) -> Void in
+            if success{
+                promise.fulfill()
+            }else{
+                XCTFail("Error: \(data)")
+            }
+        })
+        
+        waitForExpectations(timeout: 30, handler: nil)
+    }
+    
+    func test4Settings() {
+        let promise = expectation(description: "Update settings")
+        RecorderFrameworkManager.sharedInstance.updateSettings(true, completionHandler: { (success, data) -> Void in
+            if success {
+                RecorderFrameworkManager.sharedInstance.getSettings({ (success, data) -> Void in
+                    if success {
+                        if let dict = data as? NSDictionary{
+                            if let value:String = dict.object(forKey: "play_beep") as? String {
+                                if value != "no"{
+                                    promise.fulfill()
+                                }
+                            }
+                        }
+                    }
+                    else {
+                        XCTFail("Error: \(data)")
+                    }
+                })
+            }
+            else {
+                
+            }
+        })
+        waitForExpectations(timeout: 30, handler: nil)
+    }
+    
+    func test5UpdateToken() {
+        let promise = expectation(description: "Update token")
+        RecorderFrameworkManager.sharedInstance.updateToken("NewTokenForUnitTest",completionHandler:{(success, data) -> Void in
+            if success{
+                promise.fulfill()
+            }else{
+                XCTFail("Error: \(data)")
+            }
+        })
+        
+        waitForExpectations(timeout: 30, handler: nil)
+    }
+    
+    func test5AddMessage() {
+        let promise = expectation(description: "Add Message")
+        RecorderFrameworkManager.sharedInstance.addMessage("Taskdaskljd as3290ru48f3u4estTOken",title:"UnitTest",message:"UnitTestBody",completionHandler:{(success, data) -> Void in
+            if success{
+                if let id = data as? String{
+                    RecorderFrameworkManager.sharedInstance.getMessages({ (success, data) -> Void in
+                        if success {
+                            if let array = data as? Array<ServerMessage>{
+                                for item in array{
+                                    if item.id == id{
+                                        promise.fulfill()
+                                    }
+                                }
+                            }
+                        }
+                        else {
+                            XCTFail("Error: \(data)")
+                        }
+                    })
+                }
+            }else{
+                XCTFail("Error: \(data)")
+            }
+        })
+        
+        waitForExpectations(timeout: 30, handler: nil)
+    }
 }

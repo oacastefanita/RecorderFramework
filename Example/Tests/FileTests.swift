@@ -148,7 +148,31 @@ class FileTests: XCTestCase {
         waitForExpectations(timeout: 30, handler: nil)
     }
     
-    func test5Move() {
+    func test5UploadMetadata() {
+        let promise = expectation(description: "Upload file")
+        
+        if let photoPath = Bundle.main.url(forResource: "UnitTest", withExtension: "jpg"){
+            RecorderFrameworkManager.sharedInstance.uploadMetadataImageFile(photoPath.path, fileId: self.fileId, completionHandler: { (success, data) -> Void in
+                if(success){
+                    RecorderFrameworkManager.sharedInstance.deleteMetadataFile("\(data!)", completionHandler: { (success, data) -> Void in
+                        if success {
+                            promise.fulfill()
+                        }
+                        else {
+                            XCTFail("Error: \(data)")
+                        }
+                    })
+                    
+                } else{
+                    XCTFail("Error: \(data)")
+                }
+            })
+        }
+        
+        waitForExpectations(timeout: 30, handler: nil)
+    }
+    
+    func test6Move() {
         let promise = expectation(description: "Move file")
         
         RecorderFrameworkManager.sharedInstance.createFolder(folderName, localID: "", completionHandler: { (success, data) -> Void in
@@ -189,7 +213,7 @@ class FileTests: XCTestCase {
         waitForExpectations(timeout: 60, handler: nil)
     }
     
-    func test6Delete() {
+    func test7Delete() {
         let promise = expectation(description: "Delete file")
         APIClient.sharedInstance.deleteRecording(self.fileId, removeForever: true, completionHandler: { (success, data) -> Void in
             if(success){
@@ -201,7 +225,7 @@ class FileTests: XCTestCase {
         waitForExpectations(timeout: 30, handler: nil)
     }
     
-    func test7DeleteFolder(){
+    func test8DeleteFolder(){
         let promise = expectation(description: "Folder Deleted")
         
         APIClient.sharedInstance.deleteFolder(self.folderId, moveTo:"", completionHandler: { (success, data) -> Void in
