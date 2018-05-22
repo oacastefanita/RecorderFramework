@@ -875,8 +875,14 @@ public class APIClient : NSObject {
                     }
                 }
                 else {
-                    if completionHandler != nil {
-                        completionHandler!( true, nil)
+                    if let id = data!["id"]{
+                        if completionHandler != nil {
+                            completionHandler!( true, "\(id)")
+                        }
+                    }else{
+                        if completionHandler != nil {
+                            completionHandler!( true, nil)
+                        }
                     }
                 }
             }
@@ -1431,7 +1437,7 @@ public class APIClient : NSObject {
             return
         }
         
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "device_token" : token]
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "device_token" : token, "device_type" : "ios"]
         
         api.doRequest("update_device_token", method: .post, parameters: parameters) { (success, data) in
             if success {
@@ -1520,9 +1526,16 @@ public class APIClient : NSObject {
                     }
                 }
                 else {
-                    if completionHandler != nil {
-                        completionHandler!( true, nil)
+                    if let id = data!["id"]{
+                        if completionHandler != nil {
+                            completionHandler!( true, "\(id)")
+                        }
+                    }else{
+                        if completionHandler != nil {
+                            completionHandler!( true, nil)
+                        }
                     }
+                    
                 }
             }
             else {
@@ -1631,12 +1644,12 @@ public class APIClient : NSObject {
         
         let defaults = UserDefaults.standard
         let lastTime = defaults.object(forKey: "messageTime")
-        if lastTime != nil{
-            if ((lastTime as! NSNumber).intValue - (Date().timeIntervalSince1970 as NSNumber).intValue) < 24 * 60 * 60{
-                completionHandler!( true, nil)
-                return
-            }
-        }
+//        if lastTime != nil{
+//            if ((lastTime as! NSNumber).intValue - (Date().timeIntervalSince1970 as NSNumber).intValue) < 24 * 60 * 60{
+//                completionHandler!( true, nil)
+//                return
+//            }
+//        }
         
         let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!]
         
@@ -1722,7 +1735,7 @@ public class APIClient : NSObject {
             return
         }
         
-        api.upload(API_BASE_URL + "create_meta_file", imagesFiles: [imagePath], fieldNames: ["file"], parameters:parameters) { (success, retData) in
+        api.upload(API_BASE_URL + "upload_meta_file", imagesFiles: [imagePath], fieldNames: ["file"], parameters:parameters) { (success, retData) in
             if success {
                 if let data = retData as? [String:Any] {
                     if data["status"] != nil && (data["status"] as? String) != "ok" {
@@ -1776,7 +1789,7 @@ public class APIClient : NSObject {
             return
         }       
         
-        api.upload(API_BASE_URL + "create_meta_file", imagesFiles: [path], fieldNames: ["file"], parameters:parameters) { (success, retData) in
+        api.upload(API_BASE_URL + "upload_meta_file", imagesFiles: [path], fieldNames: ["file"], parameters:parameters) { (success, retData) in
             if success {
                 if let data = retData as? [String:Any] {
                     if data["status"] != nil && (data["status"] as? String) != "ok" {

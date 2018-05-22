@@ -140,7 +140,13 @@ class FileTests: XCTestCase {
         let promise = expectation(description: "Clone file")
         RecorderFrameworkManager.sharedInstance.cloneFile(entityId: self.fileId, completionHandler: { (success, data) -> Void in
             if(success){
-                promise.fulfill()
+                APIClient.sharedInstance.deleteRecording(data as! String, removeForever: true, completionHandler: { (success, data) -> Void in
+                    if(success){
+                        promise.fulfill()
+                    } else{
+                        XCTFail("Error: \(data)")
+                    }
+                })
             } else{
                 XCTFail("Error: \(data)")
             }

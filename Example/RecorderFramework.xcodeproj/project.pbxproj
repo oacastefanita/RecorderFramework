@@ -18,6 +18,7 @@
 		67D5BE920E12852EBB8D4EF1 /* Pods_RecorderFramework_WatchExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 748F834FFABC1EB351E432FB /* Pods_RecorderFramework_WatchExample.framework */; };
 		850FAA7B8BF4FA4255305461 /* Pods_RecorderFramework_MacExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B73DD214B01B20F486E1C762 /* Pods_RecorderFramework_MacExample.framework */; };
 		A20569AB1FABC9010089396F /* UserInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20569AA1FABC9010089396F /* UserInterfaceController.swift */; };
+		A2063B1B20B3076E0000E66A /* ProfileTestsUnsucessfull.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2063B1A20B3076E0000E66A /* ProfileTestsUnsucessfull.swift */; };
 		A2095CC91FD5887800CF96B3 /* FDWaveformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2095CC61FD5887700CF96B3 /* FDWaveformView.swift */; };
 		A2095CCA1FD5887800CF96B3 /* FDAudioContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2095CC71FD5887700CF96B3 /* FDAudioContext.swift */; };
 		A2095CCB1FD5887800CF96B3 /* FDWaveformRenderOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2095CC81FD5887700CF96B3 /* FDWaveformRenderOperation.swift */; };
@@ -114,6 +115,7 @@
 		A2B2D15F1FA876F400A1FACE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2B2D15E1FA876F400A1FACE /* Assets.xcassets */; };
 		A2B2D1641FA876F400A1FACE /* RecorderFramework-WatchExample.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = A2B2D1471FA876F400A1FACE /* RecorderFramework-WatchExample.app */; };
 		A2B3B8A91FEC0787002D5335 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A2B3B8A81FEC0787002D5335 /* GoogleService-Info.plist */; };
+		A2B962F120B1F9B6002B9EF2 /* RegisterTestsUnsuccessful.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B962F020B1F9B5002B9EF2 /* RegisterTestsUnsuccessful.swift */; };
 		A2BF106E1FC823850016CFA3 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BF106D1FC823850016CFA3 /* DatePickerViewController.swift */; };
 		A2BF34A31FAB995400C7006F /* FileInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BF34A21FAB995400C7006F /* FileInterfaceController.swift */; };
 		A2D3E8121FDE60E7000C0874 /* ViewTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D3E8111FDE60E7000C0874 /* ViewTagViewController.swift */; };
@@ -217,6 +219,7 @@
 		863430D0C86DCE6607C6635E /* Pods_RecorderFramework_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecorderFramework_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1221A40950338952D348F70 /* Pods_RecorderFramework_Example_RecorderFramework_WatchExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecorderFramework_Example_RecorderFramework_WatchExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A20569AA1FABC9010089396F /* UserInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInterfaceController.swift; sourceTree = "<group>"; };
+		A2063B1A20B3076E0000E66A /* ProfileTestsUnsucessfull.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTestsUnsucessfull.swift; sourceTree = "<group>"; };
 		A2095CC21FD5851E00CF96B3 /* PanoramaViewM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PanoramaViewM.h; sourceTree = "<group>"; };
 		A2095CC31FD5851E00CF96B3 /* PanoramaViewM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PanoramaViewM.m; sourceTree = "<group>"; };
 		A2095CC61FD5887700CF96B3 /* FDWaveformView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FDWaveformView.swift; sourceTree = "<group>"; };
@@ -325,6 +328,7 @@
 		A2B2D1601FA876F400A1FACE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A2B2D1611FA876F400A1FACE /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		A2B3B8A81FEC0787002D5335 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A2B962F020B1F9B5002B9EF2 /* RegisterTestsUnsuccessful.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterTestsUnsuccessful.swift; sourceTree = "<group>"; };
 		A2BF106D1FC823850016CFA3 /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		A2BF34A21FAB995400C7006F /* FileInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileInterfaceController.swift; sourceTree = "<group>"; };
 		A2C7DF6F1FD583B100F8AFDA /* ViewTagViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewTagViewController.swift; path = "RecorderFramework-TvExample/ViewTagViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -525,6 +529,8 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				A2063B1A20B3076E0000E66A /* ProfileTestsUnsucessfull.swift */,
+				A2B962F020B1F9B5002B9EF2 /* RegisterTestsUnsuccessful.swift */,
 				A2ADD8BC20A987C1005C6CD2 /* RegisterTests.swift */,
 				A21314EE20A8CFA100014D7C /* ProfileTests.swift */,
 				607FACEB1AFB9204008FA782 /* FolderTests.swift */,
@@ -1446,6 +1452,7 @@
 				A2095CD11FD5979500CF96B3 /* LocationViewController.swift in Sources */,
 				607FACD81AFB9204008FA782 /* RegisterViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				A2063B1B20B3076E0000E66A /* ProfileTestsUnsucessfull.swift in Sources */,
 				A22A10491FA1E5F400DAFA40 /* FilesViewController.swift in Sources */,
 				A2407C001FC48BC800EBAEC3 /* TagViewController.swift in Sources */,
 				A26FCC931FCDE0DE00CBA0D4 /* PanoramaViewController.swift in Sources */,
@@ -1467,6 +1474,7 @@
 			files = (
 				607FACEC1AFB9204008FA782 /* FolderTests.swift in Sources */,
 				A2ADD8BF20A9A836005C6CD2 /* FileTests.swift in Sources */,
+				A2B962F120B1F9B6002B9EF2 /* RegisterTestsUnsuccessful.swift in Sources */,
 				A21314F020A8D0B900014D7C /* ProfileTests.swift in Sources */,
 				A2ADD8BD20A987C1005C6CD2 /* RegisterTests.swift in Sources */,
 			);
