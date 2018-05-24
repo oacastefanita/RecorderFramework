@@ -155,7 +155,7 @@ class FileTests: XCTestCase {
     }
     
     func test5UploadMetadata() {
-        let promise = expectation(description: "Upload file")
+        let promise = expectation(description: "Upload metadata file")
         
         if let photoPath = Bundle.main.url(forResource: "UnitTest", withExtension: "jpg"){
             RecorderFrameworkManager.sharedInstance.uploadMetadataImageFile(photoPath.path, fileId: self.fileId, completionHandler: { (success, data) -> Void in
@@ -232,7 +232,7 @@ class FileTests: XCTestCase {
     }
     
     func test8DeleteFolder(){
-        let promise = expectation(description: "Folder Deleted")
+        let promise = expectation(description: "Delete folder")
         
         APIClient.sharedInstance.deleteFolder(self.folderId, moveTo:"", completionHandler: { (success, data) -> Void in
             if success {

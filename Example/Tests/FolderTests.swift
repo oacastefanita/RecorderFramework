@@ -34,7 +34,7 @@ class FolderTests: XCTestCase {
     }
     
     func test2GetFolders(){
-        let promise = expectation(description: "Folder created")
+        let promise = expectation(description: "Get folders")
         RecorderFrameworkManager.sharedInstance.getFolders({ (success, data) -> Void in
             if success{
                 promise.fulfill()
@@ -46,7 +46,7 @@ class FolderTests: XCTestCase {
     }
     
     func test3CreateFolder(){
-        let promise = expectation(description: "Folder created")
+        let promise = expectation(description: "Create folder")
         RecorderFrameworkManager.sharedInstance.createFolder(folderName, localID: "", completionHandler: { (success, data) -> Void in
             if success {
                 if let folderId = data as? NSNumber{
@@ -80,7 +80,7 @@ class FolderTests: XCTestCase {
     }
     
     func test4AddPassToFolder(){
-        let promise = expectation(description: "Added password")
+        let promise = expectation(description: "Add password")
         let newPass = "PassTest"
         APIClient.sharedInstance.addPasswordToFolder(self.folderId, pass:newPass, completionHandler: { (success, data) -> Void in
             if success {
@@ -132,7 +132,7 @@ class FolderTests: XCTestCase {
     }
     
     func test6DeleteFolder(){
-        let promise = expectation(description: "Folder Deleted")
+        let promise = expectation(description: "Delete folder")
         
         APIClient.sharedInstance.deleteFolder(self.folderId, moveTo:"", completionHandler: { (success, data) -> Void in
             if success {

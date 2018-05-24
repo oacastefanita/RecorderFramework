@@ -18,7 +18,6 @@
 		67D5BE920E12852EBB8D4EF1 /* Pods_RecorderFramework_WatchExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 748F834FFABC1EB351E432FB /* Pods_RecorderFramework_WatchExample.framework */; };
 		850FAA7B8BF4FA4255305461 /* Pods_RecorderFramework_MacExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B73DD214B01B20F486E1C762 /* Pods_RecorderFramework_MacExample.framework */; };
 		A20569AB1FABC9010089396F /* UserInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20569AA1FABC9010089396F /* UserInterfaceController.swift */; };
-		A2063B1B20B3076E0000E66A /* ProfileTestsUnsucessfull.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2063B1A20B3076E0000E66A /* ProfileTestsUnsucessfull.swift */; };
 		A2095CC91FD5887800CF96B3 /* FDWaveformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2095CC61FD5887700CF96B3 /* FDWaveformView.swift */; };
 		A2095CCA1FD5887800CF96B3 /* FDAudioContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2095CC71FD5887700CF96B3 /* FDAudioContext.swift */; };
 		A2095CCB1FD5887800CF96B3 /* FDWaveformRenderOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2095CC81FD5887700CF96B3 /* FDWaveformRenderOperation.swift */; };
@@ -139,6 +138,9 @@
 		A2D8BBBF1FDE65C200E4F01C /* JHWaterfallView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D8BBB01FDE65C100E4F01C /* JHWaterfallView.m */; };
 		A2E949411F9FB1BA00FAA5D0 /* EnterCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E949401F9FB1BA00FAA5D0 /* EnterCodeViewController.swift */; };
 		A2F26E6E1FB6E94D00CE2B19 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2F26E6D1FB6E94D00CE2B19 /* StoreKit.framework */; };
+		A2F6506720B4116300411854 /* ProfileTestsUnsucessfull.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2063B1A20B3076E0000E66A /* ProfileTestsUnsucessfull.swift */; };
+		A2F6507E20B41AC100411854 /* FolderTestsUnsucessfull.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F6507D20B41AC100411854 /* FolderTestsUnsucessfull.swift */; };
+		A2F6508020B43A1D00411854 /* FileTestsUnsucessfull.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F6507F20B43A1D00411854 /* FileTestsUnsucessfull.swift */; };
 		A2F76A741FA892E300EF05EE /* WatchDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F76A731FA892E300EF05EE /* WatchDataController.swift */; };
 		A2FE5C301FA74B8F005FD2D1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FE5C2F1FA74B8F005FD2D1 /* SettingsViewController.swift */; };
 		E0E736F45E40C1C8CF080258 /* Pods_RecorderFramework_WatchExample_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F599AB697E3B38936AB05FB5 /* Pods_RecorderFramework_WatchExample_Extension.framework */; };
@@ -372,6 +374,8 @@
 		A2E949401F9FB1BA00FAA5D0 /* EnterCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCodeViewController.swift; sourceTree = "<group>"; };
 		A2F26E6C1FB6E94500CE2B19 /* RecorderFramework-MacExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "RecorderFramework-MacExample.entitlements"; sourceTree = "<group>"; };
 		A2F26E6D1FB6E94D00CE2B19 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
+		A2F6507D20B41AC100411854 /* FolderTestsUnsucessfull.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderTestsUnsucessfull.swift; sourceTree = "<group>"; };
+		A2F6507F20B43A1D00411854 /* FileTestsUnsucessfull.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileTestsUnsucessfull.swift; sourceTree = "<group>"; };
 		A2F76A731FA892E300EF05EE /* WatchDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchDataController.swift; sourceTree = "<group>"; };
 		A2FE5C2F1FA74B8F005FD2D1 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		AB5C69A6C572070C50B37B86 /* Pods-RecorderFramework_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecorderFramework_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-RecorderFramework_Example/Pods-RecorderFramework_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -529,8 +533,10 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				A2063B1A20B3076E0000E66A /* ProfileTestsUnsucessfull.swift */,
+				A2F6507F20B43A1D00411854 /* FileTestsUnsucessfull.swift */,
 				A2B962F020B1F9B5002B9EF2 /* RegisterTestsUnsuccessful.swift */,
+				A2063B1A20B3076E0000E66A /* ProfileTestsUnsucessfull.swift */,
+				A2F6507D20B41AC100411854 /* FolderTestsUnsucessfull.swift */,
 				A2ADD8BC20A987C1005C6CD2 /* RegisterTests.swift */,
 				A21314EE20A8CFA100014D7C /* ProfileTests.swift */,
 				607FACEB1AFB9204008FA782 /* FolderTests.swift */,
@@ -1452,7 +1458,6 @@
 				A2095CD11FD5979500CF96B3 /* LocationViewController.swift in Sources */,
 				607FACD81AFB9204008FA782 /* RegisterViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
-				A2063B1B20B3076E0000E66A /* ProfileTestsUnsucessfull.swift in Sources */,
 				A22A10491FA1E5F400DAFA40 /* FilesViewController.swift in Sources */,
 				A2407C001FC48BC800EBAEC3 /* TagViewController.swift in Sources */,
 				A26FCC931FCDE0DE00CBA0D4 /* PanoramaViewController.swift in Sources */,
@@ -1477,6 +1482,9 @@
 				A2B962F120B1F9B6002B9EF2 /* RegisterTestsUnsuccessful.swift in Sources */,
 				A21314F020A8D0B900014D7C /* ProfileTests.swift in Sources */,
 				A2ADD8BD20A987C1005C6CD2 /* RegisterTests.swift in Sources */,
+				A2F6508020B43A1D00411854 /* FileTestsUnsucessfull.swift in Sources */,
+				A2F6506720B4116300411854 /* ProfileTestsUnsucessfull.swift in Sources */,
+				A2F6507E20B41AC100411854 /* FolderTestsUnsucessfull.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

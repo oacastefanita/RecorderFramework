@@ -20,11 +20,11 @@ class RegisterTestsUnsuccessful: XCTestCase {
     }
     
     func test1RegisterWrongNumber() {
-        let promise = expectation(description: "Register wrong phone")
+        let promise = expectation(description: "Register phone fail")
         
         RecorderFrameworkManager.sharedInstance.register("1234567890", completionHandler: { (success, data) -> Void in
             if success {
-                XCTFail("Error: phone numbers is invalid, server should not accept it")
+                XCTFail("Error: Phone number is invalid, server should not accept it")
             }
             else {
                 if( (data as! String) == "Please enter valid Phone Number , alongwith country code"){
@@ -37,7 +37,7 @@ class RegisterTestsUnsuccessful: XCTestCase {
     }
     
     func test1RegisterWrongCode() {
-        let promise = expectation(description: "Register wrong phone")
+        let promise = expectation(description: "Register send code fail")
         
         RecorderFrameworkManager.sharedInstance.register("+40727272727", completionHandler: { (success, data) -> Void in
             if success {

@@ -28,7 +28,7 @@ class ProfileTests: XCTestCase {
         params["data[time_zone]"] = "60"
         params["data[email]"] = "unit@test.com"
         
-        let promise = expectation(description: "Profile updated")
+        let promise = expectation(description: "Update profile")
         APIClient.sharedInstance.updateProfile(params: params as! [String : Any], completionHandler: { (success, data) -> Void in
             if success{
                 RecorderFrameworkManager.sharedInstance.getProfile({ (success, data) -> Void in
@@ -63,7 +63,8 @@ class ProfileTests: XCTestCase {
                 if let array = data as? Array<Language>{
                     let expectedTranslations = array.count
                     var successfulTranslations = 0
-                    for language in array{ RecorderFrameworkManager.sharedInstance.getTranslations(language.code, completionHandler:{(success, data) -> Void in
+                    for language in array{
+                        RecorderFrameworkManager.sharedInstance.getTranslations(language.code, completionHandler:{(success, data) -> Void in
                             if success{
                                 successfulTranslations = successfulTranslations + 1
                                 if successfulTranslations == expectedTranslations{
@@ -137,7 +138,7 @@ class ProfileTests: XCTestCase {
     
     func test5AddMessage() {
         let promise = expectation(description: "Add Message")
-        RecorderFrameworkManager.sharedInstance.addMessage("Taskdaskljd as3290ru48f3u4estTOken",title:"UnitTest",message:"UnitTestBody",completionHandler:{(success, data) -> Void in
+        RecorderFrameworkManager.sharedInstance.addMessage("NewTokenForUnitTest",title:"UnitTest",message:"UnitTestBody",completionHandler:{(success, data) -> Void in
             if success{
                 if let id = data as? String{
                     RecorderFrameworkManager.sharedInstance.getMessages({ (success, data) -> Void in
