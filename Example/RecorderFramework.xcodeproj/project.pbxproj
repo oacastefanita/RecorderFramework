@@ -75,6 +75,7 @@
 		A284BB4B1FB8475400D82F49 /* TitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A284BB4A1FB8475400D82F49 /* TitleViewController.swift */; };
 		A284BB4D1FB84F3400D82F49 /* FilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A284BB4C1FB84F3400D82F49 /* FilesViewController.swift */; };
 		A284BB4F1FB8A00900D82F49 /* FileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A284BB4E1FB8A00900D82F49 /* FileViewController.swift */; };
+		A288D15E20B823090047B18D /* FrameworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A288D15D20B823090047B18D /* FrameworkTests.swift */; };
 		A2914CC91FC357DA00D672CC /* FileTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2914CC81FC357DA00D672CC /* FileTagsViewController.swift */; };
 		A2931C281FB103C200B631E2 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2931C271FB103C200B631E2 /* SearchViewController.swift */; };
 		A294B2161FCABC3000BA4852 /* ViewTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A294B2151FCABC3000BA4852 /* ViewTagViewController.swift */; };
@@ -282,6 +283,7 @@
 		A284BB4A1FB8475400D82F49 /* TitleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleViewController.swift; sourceTree = "<group>"; };
 		A284BB4C1FB84F3400D82F49 /* FilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesViewController.swift; sourceTree = "<group>"; };
 		A284BB4E1FB8A00900D82F49 /* FileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileViewController.swift; sourceTree = "<group>"; };
+		A288D15D20B823090047B18D /* FrameworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameworkTests.swift; sourceTree = "<group>"; };
 		A2914CC81FC357DA00D672CC /* FileTagsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTagsViewController.swift; sourceTree = "<group>"; };
 		A2931C271FB103C200B631E2 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		A294B2151FCABC3000BA4852 /* ViewTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTagViewController.swift; sourceTree = "<group>"; };
@@ -541,6 +543,7 @@
 				A21314EE20A8CFA100014D7C /* ProfileTests.swift */,
 				607FACEB1AFB9204008FA782 /* FolderTests.swift */,
 				A2ADD8BE20A9A836005C6CD2 /* FileTests.swift */,
+				A288D15D20B823090047B18D /* FrameworkTests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -1484,6 +1487,7 @@
 				A2ADD8BD20A987C1005C6CD2 /* RegisterTests.swift in Sources */,
 				A2F6508020B43A1D00411854 /* FileTestsUnsucessfull.swift in Sources */,
 				A2F6506720B4116300411854 /* ProfileTestsUnsucessfull.swift in Sources */,
+				A288D15E20B823090047B18D /* FrameworkTests.swift in Sources */,
 				A2F6507E20B41AC100411854 /* FolderTestsUnsucessfull.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
