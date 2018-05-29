@@ -135,32 +135,4 @@ class ProfileTests: XCTestCase {
         
         waitForExpectations(timeout: 30, handler: nil)
     }
-    
-    func test5AddMessage() {
-        let promise = expectation(description: "Add Message")
-        RecorderFrameworkManager.sharedInstance.addMessage("NewTokenForUnitTest",title:"UnitTest",message:"UnitTestBody",completionHandler:{(success, data) -> Void in
-            if success{
-                if let id = data as? String{
-                    RecorderFrameworkManager.sharedInstance.getMessages({ (success, data) -> Void in
-                        if success {
-                            if let array = data as? Array<ServerMessage>{
-                                for item in array{
-                                    if item.id == id{
-                                        promise.fulfill()
-                                    }
-                                }
-                            }
-                        }
-                        else {
-                            XCTFail("Error: \(data)")
-                        }
-                    })
-                }
-            }else{
-                XCTFail("Error: \(data)")
-            }
-        })
-        
-        waitForExpectations(timeout: 30, handler: nil)
-    }
 }

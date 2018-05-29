@@ -82,46 +82,7 @@ class ProfileTestsUnsucessfull: XCTestCase {
         waitForExpectations(timeout: 30, handler: nil)
     }
     
-    func test4AddEmptyTitleMessage() {
-        let promise = expectation(description: "Add message fail")
-        RecorderFrameworkManager.sharedInstance.addMessage("NewTokenForUnitTest",title:"",message:"UnitTestBody",completionHandler:{(success, data) -> Void in
-            if success {
-                XCTFail("Error: Title is invalid, server should not accept it")
-            }else {
-                promise.fulfill()
-            }
-        })
-        
-        waitForExpectations(timeout: 30, handler: nil)
-    }
-    
-    func test5AddEmptyBodyMessage() {
-        let promise = expectation(description: "Add message fail")
-        RecorderFrameworkManager.sharedInstance.addMessage("NewTokenForUnitTest",title:"UnitTestTitle",message:"",completionHandler:{(success, data) -> Void in
-            if success {
-                XCTFail("Error: Body is invalid, server should not accept it")
-            }else {
-                promise.fulfill()
-            }
-        })
-        
-        waitForExpectations(timeout: 30, handler: nil)
-    }
-    
-    func test6AddEmptyTokenMessage() {
-        let promise = expectation(description: "Add message fail")
-        RecorderFrameworkManager.sharedInstance.addMessage("",title:"UnitTestTitle",message:"UnitTestMessage",completionHandler:{(success, data) -> Void in
-            if success {
-                XCTFail("Error: Token is invalid, server should not accept it")
-            }else {
-                promise.fulfill()
-            }
-        })
-        
-        waitForExpectations(timeout: 30, handler: nil)
-    }
-    
-    func test7UpdateToken() {
+    func test4UpdateToken() {
         let promise = expectation(description: "Update token fail")
         RecorderFrameworkManager.sharedInstance.updateToken("",completionHandler:{(success, data) -> Void in
             if success{
@@ -134,7 +95,7 @@ class ProfileTestsUnsucessfull: XCTestCase {
         waitForExpectations(timeout: 30, handler: nil)
     }
     
-    func test8GetTranslations(){
+    func test5GetTranslations(){
         let promise = expectation(description: "Get translation fail")
         RecorderFrameworkManager.sharedInstance.getTranslations("", completionHandler:{(success, data) -> Void in
             if success{

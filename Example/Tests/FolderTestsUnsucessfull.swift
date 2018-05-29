@@ -143,7 +143,22 @@ class FolderTestsUnsucessfull: XCTestCase {
         waitForExpectations(timeout: 30, handler: nil)
     }
     
-    func test8DeleteFolder(){
+    func test8DeleteFolderNoId(){
+        let promise = expectation(description: "Folder delete fail")
+        
+        APIClient.sharedInstance.deleteFolder(self.folderId, moveTo:"65468752785", completionHandler: { (success, data) -> Void in
+            if success {
+                XCTFail("Error: Id is invalid, server should not accept it")
+            }
+            else {
+                promise.fulfill()
+            }
+        })
+        
+        waitForExpectations(timeout: 30, handler: nil)
+    }
+    
+    func test9DeleteFolder(){
         let promise = expectation(description: "Folder Delete")
         
         APIClient.sharedInstance.deleteFolder(self.folderId, moveTo:"", completionHandler: { (success, data) -> Void in

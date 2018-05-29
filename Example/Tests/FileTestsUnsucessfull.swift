@@ -237,7 +237,21 @@ class FileTestsUnsucessfull: XCTestCase {
         waitForExpectations(timeout: 60, handler: nil)
     }
     
-    func test9DeleteFail() {
+    func test9GetMetadata() {
+        let promise = expectation(description: "Get metadata files fail")
+        let recordItem = RecordItem()
+        recordItem.id = "12349789764589745"
+        APIClient.sharedInstance.getMetadataFiles(recordItem, completionHandler: { (success, data) -> Void in
+            if(success){
+                XCTFail("Error: Id is invalid, server should not accept it")
+            } else{
+                promise.fulfill()
+            }
+        })
+        waitForExpectations(timeout: 30, handler: nil)
+    }
+    
+    func test10DeleteFail() {
         let promise = expectation(description: "Delete file fail")
         APIClient.sharedInstance.deleteRecording("", removeForever: true, completionHandler: { (success, data) -> Void in
             if(success){
@@ -249,7 +263,7 @@ class FileTestsUnsucessfull: XCTestCase {
         waitForExpectations(timeout: 30, handler: nil)
     }
     
-    func test10Delete() {
+    func test11Delete() {
         let promise = expectation(description: "Delete file")
         APIClient.sharedInstance.deleteRecording(self.fileId, removeForever: true, completionHandler: { (success, data) -> Void in
             if(success){
@@ -261,7 +275,37 @@ class FileTestsUnsucessfull: XCTestCase {
         waitForExpectations(timeout: 30, handler: nil)
     }
     
-    func test11DeleteFolderFail(){
+    func test12Recover(){
+        let promise = expectation(description: "Recover file fail")
+        let recordItem = RecordItem()
+        recordItem.id = "12349789764589745"
+        APIClient.sharedInstance.recoverRecording(recordItem, folderId:"\(folderId)", completionHandler: { (success, data) -> Void in
+            if success {
+                promise.fulfill()
+            }
+            else {
+                XCTFail("Error: \(data)")
+            }
+        })
+        waitForExpectations(timeout: 30, handler: nil)
+    }
+    
+    func test13Recover(){
+        let promise = expectation(description: "Recover file fail")
+        let recordItem = RecordItem()
+        recordItem.id = self.fileId
+        APIClient.sharedInstance.recoverRecording(recordItem, folderId:"112346798451", completionHandler: { (success, data) -> Void in
+            if success {
+                promise.fulfill()
+            }
+            else {
+                XCTFail("Error: \(data)")
+            }
+        })
+        waitForExpectations(timeout: 30, handler: nil)
+    }
+    
+    func test14DeleteFolderFail(){
         let promise = expectation(description: "Delete folder fail")
         
         APIClient.sharedInstance.deleteFolder("", moveTo:"", completionHandler: { (success, data) -> Void in
@@ -276,7 +320,7 @@ class FileTestsUnsucessfull: XCTestCase {
         waitForExpectations(timeout: 30, handler: nil)
     }
     
-    func test12DeleteFolder(){
+    func test15DeleteFolder(){
         let promise = expectation(description: "Delete folder")
         
         APIClient.sharedInstance.deleteFolder(self.folderId, moveTo:"", completionHandler: { (success, data) -> Void in

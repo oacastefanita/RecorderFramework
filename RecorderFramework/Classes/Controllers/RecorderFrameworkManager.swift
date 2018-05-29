@@ -788,15 +788,4 @@ public class RecorderFrameworkManager : NSObject {
     public func verifyFolderPass(_ pass:String, folderId:String, completionHandler:((Bool, Any?) -> Void)?) {
         APIClient.sharedInstance.verifyFolderPass(pass, folderId: folderId, completionHandler: completionHandler)
     }
-    
-    /// Add new message
-    ///
-    /// - Parameters:
-    ///   - token: user token
-    ///   - title: message title
-    ///   - message: message body
-    ///   - completionHandler: block to be called upon receiving the server's response
-    public func addMessage(_ token:String, title:String, message:String,completionHandler:((Bool, Any?) -> Void)?) {
-        APIClient.sharedInstance.addMessage(token, title: title, message: message, completionHandler: completionHandler)
-    }
 }

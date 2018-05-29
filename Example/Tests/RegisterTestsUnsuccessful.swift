@@ -59,4 +59,21 @@ class RegisterTestsUnsuccessful: XCTestCase {
         
         waitForExpectations(timeout: 30, handler: nil)
     }
+    
+    func test3RegisterWrongToken() {
+        let promise = expectation(description: "Register phone fail")
+        
+        APIClient.sharedInstance.register("1234567890", token:"", completionHandler: { (success, data) -> Void in
+            if success {
+                XCTFail("Error: Phone number is invalid, server should not accept it")
+            }
+            else {
+                if( (data as! String) == "Please enter valid Phone Number , alongwith country code"){
+                    promise.fulfill()
+                }
+            }
+        })
+        
+        waitForExpectations(timeout: 30, handler: nil)
+    }
 }

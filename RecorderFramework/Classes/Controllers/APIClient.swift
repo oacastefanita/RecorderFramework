@@ -33,9 +33,9 @@ public class APIClient : NSObject {
         }
     }
     
-    func register(_ number:String, completionHandler:((Bool, Any?) -> Void)?)
+    public func register(_ number:String, token:String = "55942ee3894f51000530894",completionHandler:((Bool, Any?) -> Void)?)
     {
-        let parameters = ["phone": number, "token": "55942ee3894f51000530894"]
+        let parameters = ["phone": number, "token": token]
         api.doRequest("register_phone", method: .post, parameters: parameters) { (success, data) in
             if success {
                 if data!["status"] != nil && (data!["status"] as? String) != "ok" {
@@ -99,6 +99,51 @@ public class APIClient : NSObject {
             parameters["device_id"] = RecorderFrameworkManager.sharedInstance.macSN
         #endif
         parameters["time_zone"] = TimeZone.current.secondsFromGMT() / 60
+        api.doRequest("verify_phone", method: .post, parameters: parameters) { (success, data) in
+            if success {
+                if data!["status"] != nil && (data!["status"] as? String) != "ok" {
+                    if let strError = data!["msg"] as? String {
+                        if completionHandler != nil {
+                            completionHandler!(false, strError.localized)
+                        }
+                    }
+                    else {
+                        if completionHandler != nil {
+                            completionHandler!(false, nil)
+                        }
+                    }
+                }
+                else {
+                    if let value:String = data!["api_key"] as? String  {
+                        AppPersistentData.sharedInstance.apiKey = value
+                        AppPersistentData.sharedInstance.invalidAPIKey = false
+                        AppPersistentData.sharedInstance.saveData()
+                        
+                        if completionHandler != nil {
+                            completionHandler!( true, data)
+                        }
+                    } else{
+                        if completionHandler != nil {
+                            if let strError:String = data!["msg"] as? String  {
+                                completionHandler!(false, strError.localized as AnyObject)
+                            }
+                            else {
+                                completionHandler!(false, nil)
+                            }
+                        }
+                    }
+                }
+            }
+            else {
+                if completionHandler != nil {
+                    completionHandler!(success, data!["error"] as? String)
+                }
+            }
+        }
+    }
+    
+    // for unit tests
+    public func sendVerificationCode(_ parameters: [String: Any] ,completionHandler:((Bool, Any?) -> Void)?) {
         api.doRequest("verify_phone", method: .post, parameters: parameters) { (success, data) in
             if success {
                 if data!["status"] != nil && (data!["status"] as? String) != "ok" {
@@ -208,6 +253,40 @@ public class APIClient : NSObject {
                         AppPersistentData.sharedInstance.saveData()
                     }
                     
+                    if completionHandler != nil {
+                        completionHandler!( true, nil)
+                    }
+                }
+            }
+            else {
+                if completionHandler != nil {
+                    completionHandler!(success, data!["error"] as? String)
+                }
+            }
+        }
+        
+    }
+    
+    func getRecordings(parameters: [String:Any], completionHandler:((Bool, Any?) -> Void)?) {
+        if AppPersistentData.sharedInstance.invalidAPIKey {
+            completionHandler!(false, "Invalid API Key" as AnyObject)
+            return
+        }
+        api.doRequest("get_files", method: .post, parameters: parameters) { (success, data) in
+            if success {
+                if data!["status"] != nil && (data!["status"] as? String) != "ok" {
+                    if let strError = data!["msg"] as? String {
+                        if completionHandler != nil {
+                            completionHandler!(false, strError.localized)
+                        }
+                    }
+                    else {
+                        if completionHandler != nil {
+                            completionHandler!(false, nil)
+                        }
+                    }
+                }
+                else {
                     if completionHandler != nil {
                         completionHandler!( true, nil)
                     }
@@ -810,6 +889,7 @@ public class APIClient : NSObject {
         }
     }
     
+    //create unit test method
     func star(_ star:Bool, entityId:String, isFile:Bool, completionHandler:((Bool, Any?) -> Void)?) {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
@@ -823,6 +903,39 @@ public class APIClient : NSObject {
         params["star"] = star ? 1 : 0
         
         api.doRequest("update_star", method: .post, parameters: params) { (success, data) in
+            if success {
+                if data!["status"] != nil && (data!["status"] as? String) != "ok" {
+                    if let strError = data!["msg"] as? String {
+                        if completionHandler != nil {
+                            completionHandler!(false, strError.localized)
+                        }
+                    }
+                    else {
+                        if completionHandler != nil {
+                            completionHandler!(false, nil)
+                        }
+                    }
+                }
+                else {
+                    if completionHandler != nil {
+                        completionHandler!( true, nil)
+                    }
+                }
+            }
+            else {
+                if completionHandler != nil {
+                    completionHandler!(success, data!["error"] as? String)
+                }
+            }
+        }
+    }
+    
+    public func star(_ parameters:[String:Any], completionHandler:((Bool, Any?) -> Void)?) {
+        if AppPersistentData.sharedInstance.invalidAPIKey {
+            completionHandler!(false, "Invalid API Key" as AnyObject)
+            return
+        }
+        api.doRequest("update_star", method: .post, parameters: parameters) { (success, data) in
             if success {
                 if data!["status"] != nil && (data!["status"] as? String) != "ok" {
                     if let strError = data!["msg"] as? String {
@@ -1431,6 +1544,40 @@ public class APIClient : NSObject {
         }
     }
     
+    public func buyCredits(_ parameters:[String: Any], completionHandler:((Bool, Any?) -> Void)?) {
+        if AppPersistentData.sharedInstance.invalidAPIKey {
+            completionHandler!(false, "Invalid API Key" as AnyObject)
+            return
+        }
+
+        api.doRequest("buy_credits", method: .post, parameters: parameters) { (success, data) in
+            if success {
+                if data!["status"] != nil && (data!["status"] as? String) != "ok" {
+                    if let strError = data!["msg"] as? String {
+                        if completionHandler != nil {
+                            completionHandler!(false, strError.localized)
+                        }
+                    }
+                    else {
+                        if completionHandler != nil {
+                            completionHandler!(false, nil)
+                        }
+                    }
+                }
+                else {
+                    if completionHandler != nil {
+                        completionHandler!( true, nil)
+                    }
+                }
+            }
+            else {
+                if completionHandler != nil {
+                    completionHandler!(success, data!["error"] as? String)
+                }
+            }
+        }
+    }
+    
     func updateToken(_ token:String, completionHandler:((Bool, Any?) -> Void)?) {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
@@ -1438,6 +1585,40 @@ public class APIClient : NSObject {
         }
         
         let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "device_token" : token, "device_type" : "ios"]
+        
+        api.doRequest("update_device_token", method: .post, parameters: parameters) { (success, data) in
+            if success {
+                if data!["status"] != nil && (data!["status"] as? String) != "ok" {
+                    if let strError = data!["msg"] as? String {
+                        if completionHandler != nil {
+                            completionHandler!(false, strError.localized)
+                        }
+                    }
+                    else {
+                        if completionHandler != nil {
+                            completionHandler!(false, nil)
+                        }
+                    }
+                }
+                else {
+                    if completionHandler != nil {
+                        completionHandler!( true, nil)
+                    }
+                }
+            }
+            else {
+                if completionHandler != nil {
+                    completionHandler!(success, data!["error"] as? String)
+                }
+            }
+        }
+    }
+    
+    public func updateToken(_ parameters:[String:Any], completionHandler:((Bool, Any?) -> Void)?) {
+        if AppPersistentData.sharedInstance.invalidAPIKey {
+            completionHandler!(false, "Invalid API Key" as AnyObject)
+            return
+        }
         
         api.doRequest("update_device_token", method: .post, parameters: parameters) { (success, data) in
             if success {
@@ -1493,49 +1674,6 @@ public class APIClient : NSObject {
                     if completionHandler != nil {
                         completionHandler!( true, nil)
                     }
-                }
-            }
-            else {
-                if completionHandler != nil {
-                    completionHandler!(success, data!["error"] as? String)
-                }
-            }
-        }
-    }
-    
-    func addMessage(_ token:String, title:String, message:String,completionHandler:((Bool, Any?) -> Void)?) {
-        if AppPersistentData.sharedInstance.invalidAPIKey {
-            completionHandler!(false, "Invalid API Key" as AnyObject)
-            return
-        }
-        
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "title" : title, "body" : message];
-        
-        api.doRequest("add_msg", method: .post, parameters: parameters) { (success, data) in
-            if success {
-                if data!["status"] != nil && (data!["status"] as? String) != "ok" {
-                    if let strError = data!["msg"] as? String {
-                        if completionHandler != nil {
-                            completionHandler!(false, strError.localized)
-                        }
-                    }
-                    else {
-                        if completionHandler != nil {
-                            completionHandler!(false, nil)
-                        }
-                    }
-                }
-                else {
-                    if let id = data!["id"]{
-                        if completionHandler != nil {
-                            completionHandler!( true, "\(id)")
-                        }
-                    }else{
-                        if completionHandler != nil {
-                            completionHandler!( true, nil)
-                        }
-                    }
-                    
                 }
             }
             else {
@@ -1864,8 +2002,8 @@ public class APIClient : NSObject {
             }
         }
     }
-    
-    func getMetadataFiles(_ recordItem:RecordItem, completionHandler:((Bool, Any?) -> Void)?)
+
+    public func getMetadataFiles(_ recordItem:RecordItem, completionHandler:((Bool, Any?) -> Void)?)
     {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
