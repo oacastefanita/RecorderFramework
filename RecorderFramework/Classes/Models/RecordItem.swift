@@ -177,7 +177,7 @@ public class RecordItem: NSObject, NSSecureCoding {
         }
     }
     
-     public func encode(with aCoder: NSCoder) {
+    public func encode(with aCoder: NSCoder) {
         if let value = self.folderId {
             aCoder.encode(value, forKey: "folderId")
         }
@@ -289,10 +289,10 @@ public class RecordItem: NSObject, NSSecureCoding {
         self.folderId = item.folderId
         self.text = item.text
         self.accessNumber = item.accessNumber
-//        if self.url != item.url {
-//            fileDownloaded = false
-//            localFile = nil
-//        }
+        //        if self.url != item.url {
+        //            fileDownloaded = false
+        //            localFile = nil
+        //        }
         self.url = item.url
         self.credits = item.credits
         self.duration = item.duration
@@ -368,12 +368,15 @@ public class RecordItem: NSObject, NSSecureCoding {
     }
     
     public func setupWithFile(_ filePath:String) {
+        
         audioFilePath = filePath
         audioMetadataFilePath = filePath.components(separatedBy: ".")[filePath.components(separatedBy: ".").count - 2] + "_metadata.json"
         
         audioFileTags = NSMutableArray()
         //        definedLabels = NSMutableArray()
-        
+        if filePath.components(separatedBy: ".").count == 3{
+            return
+        }
         //check if file exists
         if(!FileManager.default.fileExists(atPath: audioMetadataFilePath)) {
             let file = NSDictionary();
@@ -382,7 +385,9 @@ public class RecordItem: NSObject, NSSecureCoding {
             let outputStream = OutputStream(toFileAtPath: audioMetadataFilePath, append: false)
             outputStream?.open()
             
-            JSONSerialization.writeJSONObject(file, to: outputStream!, options: JSONSerialization.WritingOptions.prettyPrinted, error: nil)
+            var error:ErrorPointer
+            JSONSerialization.writeJSONObject(file, to: outputStream!, options: JSONSerialization.WritingOptions.prettyPrinted, error: error)
+            
             
             outputStream?.close()
             
@@ -403,10 +408,21 @@ public class RecordItem: NSObject, NSSecureCoding {
                 let tags = dict.object(forKey: "tags") as! NSArray
                 for tag in tags {
                     let newTag = AudioTag()
-                    newTag.timeStamp = (tag as AnyObject).object(forKey: "timeStamp") as! TimeInterval
-                    newTag.duration = (tag as AnyObject).object(forKey: "duration") as! TimeInterval
-                    newTag.arg = (tag as AnyObject).object(forKey:"arg") as AnyObject
-                    newTag.arg2 = (tag as AnyObject).object(forKey:"arg2") as AnyObject
+                    if let timeStamp = (tag as AnyObject).object(forKey: "timeStamp") as? TimeInterval
+                    {
+                        newTag.timeStamp = timeStamp
+                    }
+                    if let duration = (tag as AnyObject).object(forKey: "duration") as? TimeInterval{
+                        newTag.duration = duration
+                    }
+                    
+                    if let arg = (tag as AnyObject).object(forKey:"arg") as? AnyObject{
+                        newTag.arg = arg
+                    }
+                    
+                    if let arg2 = (tag as AnyObject).object(forKey:"arg2") as? AnyObject{
+                        newTag.arg2 = arg2
+                    }
                     if let value = (tag as AnyObject).object(forKey: "type") as? String
                     {
                         if let type = TagType(rawValue: value.lowercased()) {
@@ -414,7 +430,7 @@ public class RecordItem: NSObject, NSSecureCoding {
                             audioFileTags.add(newTag) //add tag only if valid tag type
                         }
                     }
-
+                    
                 }
             }
         }
@@ -460,20 +476,20 @@ public class RecordItem: NSObject, NSSecureCoding {
     }
     
     //MARK: activity item
-//    public func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
-//        return Data()
-//    }
-//
-//    public func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivityType?) -> Any? {
-//        return self.securelyArchiveRootObject();
-//    }
-//
-//    public func activityViewController(_ activityViewController: UIActivityViewController, thumbnailImageForActivityType activityType: UIActivityType?, suggestedSize size: CGSize) -> UIImage! {
-//        return UIImage(named: "airdroppreview")
-//    }
-//
-//    public func activityViewController(_ activityViewController: UIActivityViewController, dataTypeIdentifierForActivityType activityType: UIActivityType?) -> String {
-//        return "com.werockapps.callrec"
-//    }
+    //    public func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
+    //        return Data()
+    //    }
+    //
+    //    public func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivityType?) -> Any? {
+    //        return self.securelyArchiveRootObject();
+    //    }
+    //
+    //    public func activityViewController(_ activityViewController: UIActivityViewController, thumbnailImageForActivityType activityType: UIActivityType?, suggestedSize size: CGSize) -> UIImage! {
+    //        return UIImage(named: "airdroppreview")
+    //    }
+    //
+    //    public func activityViewController(_ activityViewController: UIActivityViewController, dataTypeIdentifierForActivityType activityType: UIActivityType?) -> String {
+    //        return "com.werockapps.callrec"
+    //    }
 }
 
