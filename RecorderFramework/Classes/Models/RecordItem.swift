@@ -411,18 +411,27 @@ public class RecordItem: NSObject, NSSecureCoding {
                     if let timeStamp = (tag as AnyObject).object(forKey: "timeStamp") as? TimeInterval
                     {
                         newTag.timeStamp = timeStamp
+                    }else{
+                        continue
                     }
                     if let duration = (tag as AnyObject).object(forKey: "duration") as? TimeInterval{
                         newTag.duration = duration
+                    }else{
+                        continue
                     }
                     
                     if let arg = (tag as AnyObject).object(forKey:"arg") as? AnyObject{
                         newTag.arg = arg
+                    }else{
+                        continue
                     }
                     
                     if let arg2 = (tag as AnyObject).object(forKey:"arg2") as? AnyObject{
                         newTag.arg2 = arg2
+                    }else{
+                        continue
                     }
+                    
                     if let value = (tag as AnyObject).object(forKey: "type") as? String
                     {
                         if let type = TagType(rawValue: value.lowercased()) {
