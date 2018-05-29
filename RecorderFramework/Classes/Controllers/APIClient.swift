@@ -143,7 +143,7 @@ public class APIClient : NSObject {
     }
     
     // for unit tests
-    public func sendVerificationCode(_ parameters: [String: Any] ,completionHandler:((Bool, Any?) -> Void)?) {
+    public func sendVerificationCode(parameters: [String: Any] ,completionHandler:((Bool, Any?) -> Void)?) {
         api.doRequest("verify_phone", method: .post, parameters: parameters) { (success, data) in
             if success {
                 if data!["status"] != nil && (data!["status"] as? String) != "ok" {
@@ -267,7 +267,7 @@ public class APIClient : NSObject {
         
     }
     
-    func getRecordings(parameters: [String:Any], completionHandler:((Bool, Any?) -> Void)?) {
+    public func getRecordings(parameters: [String:Any], completionHandler:((Bool, Any?) -> Void)?) {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return

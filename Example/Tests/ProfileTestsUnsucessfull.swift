@@ -106,4 +106,31 @@ class ProfileTestsUnsucessfull: XCTestCase {
         })
         waitForExpectations(timeout: 30, handler: nil)
     }
+    
+    func test6BuyCreditsWrongReceipt(){
+        let promise = expectation(description: "Buy credits fail")
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "app":"rec", "reciept" : ""] as [String : Any]
+        APIClient.sharedInstance.buyCredits(parameters, completionHandler:{(success, data) -> Void in
+            if success{
+                XCTFail("Error: Receipt is invalid, server should not accept it")
+            }else{
+                promise.fulfill()
+            }
+        })
+        waitForExpectations(timeout: 30, handler: nil)
+    }
+    
+    func test7UpdateTokenNoType() {
+        let promise = expectation(description: "Update token fail")
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "device_token" : "23432432sdfsdf4dsfsdfdsfsd ", "device_type" : ""]
+        APIClient.sharedInstance.updateToken(parameters,completionHandler:{(success, data) -> Void in
+            if success{
+                XCTFail("Error: Token is invalid, server should not accept it")
+            }else{
+                promise.fulfill()
+            }
+        })
+        
+        waitForExpectations(timeout: 30, handler: nil)
+    }
 }

@@ -19,7 +19,7 @@ class RegisterTestsUnsuccessful: XCTestCase {
         super.tearDown()
     }
     
-    func test1RegisterWrongNumber() {
+    func test01RegisterWrongNumber() {
         let promise = expectation(description: "Register phone fail")
         
         RecorderFrameworkManager.sharedInstance.register("1234567890", completionHandler: { (success, data) -> Void in
@@ -36,7 +36,7 @@ class RegisterTestsUnsuccessful: XCTestCase {
         waitForExpectations(timeout: 30, handler: nil)
     }
     
-    func test1RegisterWrongCode() {
+    func test02RegisterWrongCode() {
         let promise = expectation(description: "Register send code fail")
         
         RecorderFrameworkManager.sharedInstance.register("+40727272727", completionHandler: { (success, data) -> Void in
@@ -60,7 +60,7 @@ class RegisterTestsUnsuccessful: XCTestCase {
         waitForExpectations(timeout: 30, handler: nil)
     }
     
-    func test3RegisterWrongToken() {
+    func test03RegisterWrongToken() {
         let promise = expectation(description: "Register phone fail")
         
         APIClient.sharedInstance.register("1234567890", token:"", completionHandler: { (success, data) -> Void in
@@ -74,6 +74,401 @@ class RegisterTestsUnsuccessful: XCTestCase {
             }
         })
         
+        waitForExpectations(timeout: 30, handler: nil)
+    }
+    
+    func test04RegisterWrongPhone(){
+        let promise = expectation(description: "Send code fail")
+        RecorderFrameworkManager.sharedInstance.register("+40727272727", completionHandler: { (success, data) -> Void in
+            if success {
+               var code = data as! String
+                var appCode = "rec"
+                if RecorderFrameworkManager.sharedInstance.isRecorder{
+                    appCode = "rem"
+                }
+                
+                let deviceToken =  AppPersistentData.sharedInstance.notificationToken == nil ? "Simulator" : AppPersistentData.sharedInstance.notificationToken!
+                var parameters = ["phone": "987654321","mcc":"300" ,"code": code, "token": "55942ee3894f51000530894", "app": appCode, "device_token":deviceToken] as [String : Any]
+                
+                #if os(iOS)
+                var mcc = "300"
+                parameters["mcc"] = mcc
+                parameters["device_type"] = "ios"
+                #elseif os(OSX)
+                parameters["device_type"] = "mac"
+                parameters["device_id"] = RecorderFrameworkManager.sharedInstance.macSN
+                #endif
+                parameters["time_zone"] = TimeZone.current.secondsFromGMT() / 60
+                
+                APIClient.sharedInstance.sendVerificationCode(parameters:parameters, completionHandler: { (success, data) -> Void in
+                    if success {
+                        XCTFail("Error: Code is invalid, server should not accept it")
+                    } else {
+                        promise.fulfill()
+                    }
+                })
+            }
+            else {
+                XCTFail("Error: \(data)")
+            }
+        })
+        waitForExpectations(timeout: 30, handler: nil)
+    }
+    
+    func test05RegisterEmptyPhone(){
+        let promise = expectation(description: "Send code fail")
+        RecorderFrameworkManager.sharedInstance.register("+40727272727", completionHandler: { (success, data) -> Void in
+            if success {
+                var code = data as! String
+                var appCode = "rec"
+                if RecorderFrameworkManager.sharedInstance.isRecorder{
+                    appCode = "rem"
+                }
+                
+                let deviceToken =  AppPersistentData.sharedInstance.notificationToken == nil ? "Simulator" : AppPersistentData.sharedInstance.notificationToken!
+                var parameters = ["phone": "","mcc":"300" ,"code": code, "token": "55942ee3894f51000530894", "app": appCode, "device_token":deviceToken] as [String : Any]
+                
+                #if os(iOS)
+                var mcc = "300"
+                parameters["mcc"] = mcc
+                parameters["device_type"] = "ios"
+                #elseif os(OSX)
+                parameters["device_type"] = "mac"
+                parameters["device_id"] = RecorderFrameworkManager.sharedInstance.macSN
+                #endif
+                parameters["time_zone"] = TimeZone.current.secondsFromGMT() / 60
+                
+                APIClient.sharedInstance.sendVerificationCode(parameters:parameters, completionHandler: { (success, data) -> Void in
+                    if success {
+                        XCTFail("Error: Code is invalid, server should not accept it")
+                    } else {
+                        promise.fulfill()
+                    }
+                })
+            }
+            else {
+                XCTFail("Error: \(data)")
+            }
+        })
+        waitForExpectations(timeout: 30, handler: nil)
+    }
+    
+    func test06RegisterEmptyToken(){
+        let promise = expectation(description: "Send code fail")
+        RecorderFrameworkManager.sharedInstance.register("+40727272727", completionHandler: { (success, data) -> Void in
+            if success {
+                var code = data as! String
+                var appCode = "rec"
+                if RecorderFrameworkManager.sharedInstance.isRecorder{
+                    appCode = "rem"
+                }
+                
+                let deviceToken =  AppPersistentData.sharedInstance.notificationToken == nil ? "Simulator" : AppPersistentData.sharedInstance.notificationToken!
+                var parameters = ["phone": AppPersistentData.sharedInstance.phone!,"mcc":"300" ,"code": code, "token": "", "app": appCode, "device_token":deviceToken] as [String : Any]
+                
+                #if os(iOS)
+                var mcc = "300"
+                parameters["mcc"] = mcc
+                parameters["device_type"] = "ios"
+                #elseif os(OSX)
+                parameters["device_type"] = "mac"
+                parameters["device_id"] = RecorderFrameworkManager.sharedInstance.macSN
+                #endif
+                parameters["time_zone"] = TimeZone.current.secondsFromGMT() / 60
+                
+                APIClient.sharedInstance.sendVerificationCode(parameters:parameters, completionHandler: { (success, data) -> Void in
+                    if success {
+                        XCTFail("Error: Code is invalid, server should not accept it")
+                    } else {
+                        promise.fulfill()
+                    }
+                })
+            }
+            else {
+                XCTFail("Error: \(data)")
+            }
+        })
+        waitForExpectations(timeout: 30, handler: nil)
+    }
+    
+    func test07RegisterWrongToken(){
+        let promise = expectation(description: "Send code fail")
+        RecorderFrameworkManager.sharedInstance.register("+40727272727", completionHandler: { (success, data) -> Void in
+            if success {
+                var code = data as! String
+                var appCode = "rec"
+                if RecorderFrameworkManager.sharedInstance.isRecorder{
+                    appCode = "rem"
+                }
+                
+                let deviceToken =  AppPersistentData.sharedInstance.notificationToken == nil ? "Simulator" : AppPersistentData.sharedInstance.notificationToken!
+                var parameters = ["phone": AppPersistentData.sharedInstance.phone!,"mcc":"300" ,"code": code, "token": "559 asd42ee3894f5100 as0530894", "app": appCode, "device_token":deviceToken] as [String : Any]
+                
+                #if os(iOS)
+                var mcc = "300"
+                parameters["mcc"] = mcc
+                parameters["device_type"] = "ios"
+                #elseif os(OSX)
+                parameters["device_type"] = "mac"
+                parameters["device_id"] = RecorderFrameworkManager.sharedInstance.macSN
+                #endif
+                parameters["time_zone"] = TimeZone.current.secondsFromGMT() / 60
+                
+                APIClient.sharedInstance.sendVerificationCode(parameters:parameters, completionHandler: { (success, data) -> Void in
+                    if success {
+                        XCTFail("Error: Code is invalid, server should not accept it")
+                    } else {
+                        promise.fulfill()
+                    }
+                })
+            }
+            else {
+                XCTFail("Error: \(data)")
+            }
+        })
+        waitForExpectations(timeout: 30, handler: nil)
+    }
+    
+    func test08RegisterWrongApp(){
+        let promise = expectation(description: "Send code fail")
+        RecorderFrameworkManager.sharedInstance.register("+40727272727", completionHandler: { (success, data) -> Void in
+            if success {
+                var code = data as! String
+                var appCode = "wtf"
+                let deviceToken =  AppPersistentData.sharedInstance.notificationToken == nil ? "Simulator" : AppPersistentData.sharedInstance.notificationToken!
+                var parameters = ["phone": AppPersistentData.sharedInstance.phone!,"mcc":"300" ,"code": code, "token": "55942ee3894f51000530894", "app": appCode, "device_token":deviceToken] as [String : Any]
+                
+                #if os(iOS)
+                var mcc = "300"
+                parameters["mcc"] = mcc
+                parameters["device_type"] = "ios"
+                #elseif os(OSX)
+                parameters["device_type"] = "mac"
+                parameters["device_id"] = RecorderFrameworkManager.sharedInstance.macSN
+                #endif
+                parameters["time_zone"] = TimeZone.current.secondsFromGMT() / 60
+                
+                APIClient.sharedInstance.sendVerificationCode(parameters:parameters, completionHandler: { (success, data) -> Void in
+                    if success {
+                        XCTFail("Error: Code is invalid, server should not accept it")
+                    } else {
+                        promise.fulfill()
+                    }
+                })
+            }
+            else {
+                XCTFail("Error: \(data)")
+            }
+        })
+        waitForExpectations(timeout: 30, handler: nil)
+    }
+    
+    func test09RegisterEmptyApp(){
+        let promise = expectation(description: "Send code fail")
+        RecorderFrameworkManager.sharedInstance.register("+40727272727", completionHandler: { (success, data) -> Void in
+            if success {
+                var code = data as! String
+                var appCode = ""
+                let deviceToken =  AppPersistentData.sharedInstance.notificationToken == nil ? "Simulator" : AppPersistentData.sharedInstance.notificationToken!
+                var parameters = ["phone": AppPersistentData.sharedInstance.phone!,"mcc":"300" ,"code": code, "token": "55942ee3894f51000530894", "app": appCode, "device_token":deviceToken] as [String : Any]
+                
+                #if os(iOS)
+                var mcc = "300"
+                parameters["mcc"] = mcc
+                parameters["device_type"] = "ios"
+                #elseif os(OSX)
+                parameters["device_type"] = "mac"
+                parameters["device_id"] = RecorderFrameworkManager.sharedInstance.macSN
+                #endif
+                parameters["time_zone"] = TimeZone.current.secondsFromGMT() / 60
+                
+                APIClient.sharedInstance.sendVerificationCode(parameters:parameters, completionHandler: { (success, data) -> Void in
+                    if success {
+                        XCTFail("Error: Code is invalid, server should not accept it")
+                    } else {
+                        promise.fulfill()
+                    }
+                })
+            }
+            else {
+                XCTFail("Error: \(data)")
+            }
+        })
+        waitForExpectations(timeout: 30, handler: nil)
+    }
+    
+    func test10RegisterEmptyDeviceToken(){
+        let promise = expectation(description: "Send code fail")
+        RecorderFrameworkManager.sharedInstance.register("+40727272727", completionHandler: { (success, data) -> Void in
+            if success {
+                var code = data as! String
+                var appCode = "rec"
+                if RecorderFrameworkManager.sharedInstance.isRecorder{
+                    appCode = "rem"
+                }
+                
+                var parameters = ["phone": AppPersistentData.sharedInstance.phone!,"mcc":"300" ,"code": code, "token": "55942ee3894f51000530894", "app": appCode, "device_token":""] as [String : Any]
+                
+                #if os(iOS)
+                var mcc = "300"
+                parameters["mcc"] = mcc
+                parameters["device_type"] = "ios"
+                #elseif os(OSX)
+                parameters["device_type"] = "mac"
+                parameters["device_id"] = RecorderFrameworkManager.sharedInstance.macSN
+                #endif
+                parameters["time_zone"] = TimeZone.current.secondsFromGMT() / 60
+                
+                APIClient.sharedInstance.sendVerificationCode(parameters:parameters, completionHandler: { (success, data) -> Void in
+                    if success {
+                        XCTFail("Error: Code is invalid, server should not accept it")
+                    } else {
+                        promise.fulfill()
+                    }
+                })
+            }
+            else {
+                XCTFail("Error: \(data)")
+            }
+        })
+        waitForExpectations(timeout: 30, handler: nil)
+    }
+    
+    func test11RegisterEmptyDeviceType(){
+        let promise = expectation(description: "Send code fail")
+        RecorderFrameworkManager.sharedInstance.register("+40727272727", completionHandler: { (success, data) -> Void in
+            if success {
+                var code = data as! String
+                var appCode = "rec"
+                if RecorderFrameworkManager.sharedInstance.isRecorder{
+                    appCode = "rem"
+                }
+                
+                let deviceToken =  AppPersistentData.sharedInstance.notificationToken == nil ? "Simulator" : AppPersistentData.sharedInstance.notificationToken!
+                var parameters = ["phone": AppPersistentData.sharedInstance.phone!,"mcc":"300" ,"code": code, "token": "55942ee3894f51000530894", "app": appCode, "device_token":deviceToken] as [String : Any]
+                
+                var mcc = "300"
+                parameters["mcc"] = mcc
+                parameters["device_type"] = ""
+
+                parameters["time_zone"] = TimeZone.current.secondsFromGMT() / 60
+                
+                APIClient.sharedInstance.sendVerificationCode(parameters:parameters, completionHandler: { (success, data) -> Void in
+                    if success {
+                        XCTFail("Error: Code is invalid, server should not accept it")
+                    } else {
+                        promise.fulfill()
+                    }
+                })
+            }
+            else {
+                XCTFail("Error: \(data)")
+            }
+        })
+        waitForExpectations(timeout: 30, handler: nil)
+    }
+    
+    func test12RegisterWrongDeviceType(){
+        let promise = expectation(description: "Send code fail")
+        RecorderFrameworkManager.sharedInstance.register("+40727272727", completionHandler: { (success, data) -> Void in
+            if success {
+                var code = data as! String
+                var appCode = "rec"
+                if RecorderFrameworkManager.sharedInstance.isRecorder{
+                    appCode = "rem"
+                }
+                
+                let deviceToken =  AppPersistentData.sharedInstance.notificationToken == nil ? "Simulator" : AppPersistentData.sharedInstance.notificationToken!
+                var parameters = ["phone": AppPersistentData.sharedInstance.phone!,"mcc":"300" ,"code": code, "token": "55942ee3894f51000530894", "app": appCode, "device_token":deviceToken] as [String : Any]
+                var mcc = "300"
+                parameters["mcc"] = mcc
+                parameters["device_type"] = "asdada"
+
+                parameters["time_zone"] = TimeZone.current.secondsFromGMT() / 60
+                
+                APIClient.sharedInstance.sendVerificationCode(parameters:parameters, completionHandler: { (success, data) -> Void in
+                    if success {
+                        XCTFail("Error: Code is invalid, server should not accept it")
+                    } else {
+                        promise.fulfill()
+                    }
+                })
+            }
+            else {
+                XCTFail("Error: \(data)")
+            }
+        })
+        waitForExpectations(timeout: 30, handler: nil)
+    }
+    
+    func test13RegisterEmptyDeviceIdMac(){
+        let promise = expectation(description: "Send code fail")
+        RecorderFrameworkManager.sharedInstance.register("+40727272727", completionHandler: { (success, data) -> Void in
+            if success {
+                var code = data as! String
+                var appCode = "rec"
+                if RecorderFrameworkManager.sharedInstance.isRecorder{
+                    appCode = "rem"
+                }
+                
+                let deviceToken =  AppPersistentData.sharedInstance.notificationToken == nil ? "Simulator" : AppPersistentData.sharedInstance.notificationToken!
+                var parameters = ["phone": AppPersistentData.sharedInstance.phone!,"mcc":"300" ,"code": code, "token": "55942ee3894f51000530894", "app": appCode, "device_token":deviceToken] as [String : Any]
+
+                parameters["device_type"] = "mac"
+                parameters["device_id"] = ""
+
+                parameters["time_zone"] = TimeZone.current.secondsFromGMT() / 60
+                
+                APIClient.sharedInstance.sendVerificationCode(parameters:parameters, completionHandler: { (success, data) -> Void in
+                    if success {
+                        XCTFail("Error: Code is invalid, server should not accept it")
+                    } else {
+                        promise.fulfill()
+                    }
+                })
+            }
+            else {
+                XCTFail("Error: \(data)")
+            }
+        })
+        waitForExpectations(timeout: 30, handler: nil)
+    }
+    
+    func test14RegisterWrongTimeZone(){
+        let promise = expectation(description: "Send code fail")
+        RecorderFrameworkManager.sharedInstance.register("+40727272727", completionHandler: { (success, data) -> Void in
+            if success {
+                var code = data as! String
+                var appCode = "rec"
+                if RecorderFrameworkManager.sharedInstance.isRecorder{
+                    appCode = "rem"
+                }
+                
+                let deviceToken =  AppPersistentData.sharedInstance.notificationToken == nil ? "Simulator" : AppPersistentData.sharedInstance.notificationToken!
+                var parameters = ["phone": AppPersistentData.sharedInstance.phone!,"mcc":"300" ,"code": code, "token": "55942ee3894f51000530894", "app": appCode, "device_token":deviceToken] as [String : Any]
+                
+                #if os(iOS)
+                var mcc = "300"
+                parameters["mcc"] = mcc
+                parameters["device_type"] = "ios"
+                #elseif os(OSX)
+                parameters["device_type"] = "mac"
+                parameters["device_id"] = RecorderFrameworkManager.sharedInstance.macSN
+                #endif
+                parameters["time_zone"] = "asdasd"
+                
+                APIClient.sharedInstance.sendVerificationCode(parameters:parameters, completionHandler: { (success, data) -> Void in
+                    if success {
+                        XCTFail("Error: Code is invalid, server should not accept it")
+                    } else {
+                        promise.fulfill()
+                    }
+                })
+            }
+            else {
+                XCTFail("Error: \(data)")
+            }
+        })
         waitForExpectations(timeout: 30, handler: nil)
     }
 }
