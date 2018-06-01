@@ -5,12 +5,18 @@
 [![License](https://img.shields.io/cocoapods/l/RecorderFramework.svg?style=flat)](http://cocoapods.org/pods/RecorderFramework)
 [![Platform](https://img.shields.io/cocoapods/p/RecorderFramework.svg?style=flat)](http://cocoapods.org/pods/RecorderFramework)
 
+## System requirements
+
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ## Requirements
-
+Minimum deployment target for iOS  is 10.0
+Minimum deployment target for watchOS  is 3.2
+Minimum deployment target for tvOS  is 10.13
+Minimum deployment target for macOS  is 10.12
 ## Installation
 
 RecorderFramework is available through [CocoaPods](http://cocoapods.org). To install
