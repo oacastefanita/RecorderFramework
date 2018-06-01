@@ -7,9 +7,13 @@
 
 ## Requirements
 Minimum deployment target for iOS  is 10.0.
+
 Minimum deployment target for watchOS  is 3.2.
+
 Minimum deployment target for tvOS  is 10.13.
+
 Minimum deployment target for macOS  is 10.12.
+
 
 ## Installation
 
@@ -34,9 +38,12 @@ Add the following code to "didFinishLaunchingWithOptions" method in AppDelegate.
 RecorderFrameworkManager.sharedInstance.containerName = "group.com.codebluestudio.Recorder"
 ```
 ### Push notifications
-To set up a shared app group
-Open the Capabilities tab of your project in Xcode
-Enable the Push notifications capability
+To set up a shared app group.
+
+Open the Capabilities tab of your project in Xcode.
+
+Enable the Push notifications capability.
+
 
 Import UserNotifications  in AppDelegate and request notification permission in "didFinishLaunchingWithOptions"
 ```swift
@@ -53,6 +60,7 @@ center.requestAuthorization(options: [.sound, .alert, .badge]) { (granted, error
   }
 }
 ```
+
 Add the following code to "didFailToRegisterForRemoteNotificationsWithError" method in AppDelegate
 ```swift
 var newToken: String = ""
