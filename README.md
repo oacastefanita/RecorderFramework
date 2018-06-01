@@ -66,6 +66,33 @@ AppPersistentData.sharedInstance.notificationToken = newToken
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
+# Register Example
+```swift
+RecorderFrameworkManager.sharedInstance.register("+15417543010", completionHandler: { (success, data) -> Void in
+  if success {
+    //handle successfull registration
+  }else {
+    //display error
+  }
+})
+```
+After a successfull registration a SMS,containing the registration code, will be sent to the registered phone number
+```swift
+RecorderFrameworkManager.sharedInstance.sendVerificationCode("12345", completionHandler: { (success, data) -> Void in
+  if success {
+    //Call main Sync to retrieve all the required data from the server
+    RecorderFrameworkManager.sharedInstance.mainSync { (success) -> Void in
+      if success {
+      
+      }else{
+      //display error
+      }
+    }
+  }else{
+      //display error
+  }
+})
+```
 
 ## Author
 
