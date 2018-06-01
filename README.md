@@ -5,10 +5,6 @@
 [![License](https://img.shields.io/cocoapods/l/RecorderFramework.svg?style=flat)](http://cocoapods.org/pods/RecorderFramework)
 [![Platform](https://img.shields.io/cocoapods/p/RecorderFramework.svg?style=flat)](http://cocoapods.org/pods/RecorderFramework)
 
-## Example
-
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
-
 ## Requirements
 Minimum deployment target for iOS  is 10.0.
 Minimum deployment target for watchOS  is 3.2.
@@ -23,6 +19,53 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod "RecorderFramework"
 ```
+
+### Create App Group 
+To set up a shared app group
+Open the Capabilities tab of your project in Xcode.
+Enable the App Groups capability. This adds an entitlement file (if needed) to the selected target and adds the com.apple.security.application-groups entitlement to that file.e information, see Configuring App Groups in App Distribution Guide.
+
+Import RecorderFramework  in AppDelegate. 
+```swift
+import RecorderFramework
+```
+Add the following code to "didFinishLaunchingWithOptions" method in AppDelegate. 
+```swift
+RecorderFrameworkManager.sharedInstance.containerName = "group.com.codebluestudio.Recorder"
+```
+### Push notifications
+To set up a shared app group
+Open the Capabilities tab of your project in Xcode
+Enable the Push notifications capability
+
+Import UserNotifications  in AppDelegate and request notification permission in "didFinishLaunchingWithOptions"
+```swift
+import UserNotifications
+```
+```swift
+let center  = UNUserNotificationCenter.current()
+center.delegate = self
+center.requestAuthorization(options: [.sound, .alert, .badge]) { (granted, error) in
+  if error == nil{
+    DispatchQueue.main.async {
+      UIApplication.shared.registerForRemoteNotifications()
+    }
+  }
+}
+```
+Add the following code to "didFailToRegisterForRemoteNotificationsWithError" method in AppDelegate
+```swift
+var newToken: String = ""
+for i in 0..<deviceToken.count {
+  newToken += String(format: "%02.2hhx", deviceToken[i] as CVarArg)
+}
+AppPersistentData.sharedInstance.notificationToken = newToken
+```
+
+## Example
+
+To run the example project, clone the repo, and run `pod install` from the Example directory first.
+
 
 ## Author
 
