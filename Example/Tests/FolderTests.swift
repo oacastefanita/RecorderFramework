@@ -9,7 +9,6 @@ class FolderTests: XCTestCase {
     var recordingName = "UnitTestFile"
     var recordingId: String!
     
-    
     override func setUp() {
         super.setUp()
         if let id = UserDefaults.standard.value(forKey: "testFolderId") as? String {
@@ -130,7 +129,7 @@ class FolderTests: XCTestCase {
         })
         waitForExpectations(timeout: 30, handler: nil)
     }
-    
+    //cleanup
     func test6DeleteFolder(){
         let promise = expectation(description: "Delete folder")
         

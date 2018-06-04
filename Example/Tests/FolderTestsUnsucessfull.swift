@@ -3,18 +3,22 @@ import XCTest
 import RecorderFramework
 
 class FolderTestsUnsucessfull: XCTestCase {
+    //new folder name and id
     var folderName = "UnitTestFolder"
     var folderId: String!
     
+    //new recording name and it
     var recordingName = "UnitTestFile"
     var recordingId: String!
     
     
     override func setUp() {
         super.setUp()
+        //retrieve folder id
         if let id = UserDefaults.standard.value(forKey: "testFolderId") as? String {
             self.folderId = id
         }
+        //retrieve recording id
         if let id = UserDefaults.standard.value(forKey: "testRecordingId") as? String {
             self.recordingId = id
         }
@@ -22,6 +26,7 @@ class FolderTestsUnsucessfull: XCTestCase {
     
     override func tearDown() {
         super.tearDown()
+        //save folder id and recording id
         UserDefaults.standard.set(self.folderId, forKey: "testFolderId")
         UserDefaults.standard.set(self.recordingId, forKey: "testRecordingId")
         UserDefaults.standard.synchronize()
@@ -29,6 +34,7 @@ class FolderTestsUnsucessfull: XCTestCase {
     
     func test1CreateFolderEmptyTitle(){
         let promise = expectation(description: "Folder create fail")
+        //empty title parameter
         RecorderFrameworkManager.sharedInstance.createFolder("", localID: "", completionHandler: { (success, data) -> Void in
             if success {
                 XCTFail("Error: Name is invalid, server should not accept it")
@@ -74,36 +80,9 @@ class FolderTestsUnsucessfull: XCTestCase {
         waitForExpectations(timeout: 30, handler: nil)
     }
     
-//    func test3AddPassWithoutFolderId(){
-//        let promise = expectation(description: "Add Pass fail")
-//        let newPass = "UnitTestPass"
-//        APIClient.sharedInstance.addPasswordToFolder("", pass:newPass, completionHandler: { (success, data) -> Void in
-//            if success {
-//                XCTFail("Error: Id is invalid, server should not accept it")
-//            }
-//            else {
-//                promise.fulfill()
-//            }
-//        })
-//        waitForExpectations(timeout: 30, handler: nil)
-//    }
-    
-//    func test4AddEmptyPassToFolder(){
-//        let promise = expectation(description: "Add Pass failed")
-//        let newPass = ""
-//        APIClient.sharedInstance.addPasswordToFolder(self.folderId, pass:newPass, completionHandler: { (success, data) -> Void in
-//            if success {
-//                XCTFail("Error: Pass is invalid, server should not accept it")
-//            }
-//            else {
-//                promise.fulfill()
-//            }
-//        })
-//        waitForExpectations(timeout: 30, handler: nil)
-//    }
-    
-    func test5RenameFolderEmpty(){
+    func test5RenameFolderEmptyTitle(){
         let promise = expectation(description: "Rename folder fail")
+        //empty name parameter
         APIClient.sharedInstance.renameFolder(self.folderId, name:"", completionHandler: { (success, data) -> Void in
             if success {
                 XCTFail("Error: Name is invalid, server should not accept it")
@@ -115,8 +94,9 @@ class FolderTestsUnsucessfull: XCTestCase {
         waitForExpectations(timeout: 30, handler: nil)
     }
     
-    func test6RenameFolderNoId(){
+    func test6RenameFolderEmptyId(){
         let promise = expectation(description: "Rename folder fail")
+        //empty folder id
         APIClient.sharedInstance.renameFolder("", name:"UnitTestRename", completionHandler: { (success, data) -> Void in
             if success {
                 XCTFail("Error: Id is invalid, server should not accept it")
@@ -128,9 +108,9 @@ class FolderTestsUnsucessfull: XCTestCase {
         waitForExpectations(timeout: 30, handler: nil)
     }
     
-    func test7DeleteFolderNoId(){
+    func test7DeleteFolderEmptyId(){
         let promise = expectation(description: "Folder delete fail")
-        
+        //empty id
         APIClient.sharedInstance.deleteFolder("", moveTo:"", completionHandler: { (success, data) -> Void in
             if success {
                 XCTFail("Error: Id is invalid, server should not accept it")
@@ -143,9 +123,9 @@ class FolderTestsUnsucessfull: XCTestCase {
         waitForExpectations(timeout: 30, handler: nil)
     }
     
-    func test8DeleteFolderNoId(){
+    func test8DeleteFolderEmptyId(){
         let promise = expectation(description: "Folder delete fail")
-        
+        //wrong moveTo id
         APIClient.sharedInstance.deleteFolder(self.folderId, moveTo:"65468752785", completionHandler: { (success, data) -> Void in
             if success {
                 XCTFail("Error: Id is invalid, server should not accept it")
@@ -160,7 +140,6 @@ class FolderTestsUnsucessfull: XCTestCase {
     
     func test9DeleteFolder(){
         let promise = expectation(description: "Folder Delete")
-        
         APIClient.sharedInstance.deleteFolder(self.folderId, moveTo:"", completionHandler: { (success, data) -> Void in
             if success {
                 promise.fulfill()

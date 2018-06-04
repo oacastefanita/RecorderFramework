@@ -26,7 +26,7 @@ class ProfileTestsUnsucessfull: XCTestCase {
         params["data[l_name]"] = "Unit test Last name"
         params["data[is_public]"] = "1"
         params["data[time_zone]"] = "60"
-        params["data[email]"] = "fakeEmail"
+        params["data[email]"] = "fakeEmail"//wrong
         
         let promise = expectation(description: "Profile update fail")
         APIClient.sharedInstance.updateProfile(params: params as! [String : Any], completionHandler: { (success, data) -> Void in
@@ -43,7 +43,7 @@ class ProfileTestsUnsucessfull: XCTestCase {
     func test2ProfileUpdateEmptyFirstName() {
         let params = NSMutableDictionary()
         params["data[play_beep]"] = "1"
-        params["data[f_name]"] = ""
+        params["data[f_name]"] = ""//empty
         params["data[l_name]"] = "Unit test Last name"
         params["data[is_public]"] = "1"
         params["data[time_zone]"] = "60"
@@ -65,7 +65,7 @@ class ProfileTestsUnsucessfull: XCTestCase {
         let params = NSMutableDictionary()
         params["data[play_beep]"] = "1"
         params["data[f_name]"] = "Unit test First name"
-        params["data[l_name]"] = ""
+        params["data[l_name]"] = ""//empty
         params["data[is_public]"] = "1"
         params["data[time_zone]"] = "60"
         params["data[email]"] = "unitTest@email.com"
@@ -82,8 +82,9 @@ class ProfileTestsUnsucessfull: XCTestCase {
         waitForExpectations(timeout: 30, handler: nil)
     }
     
-    func test4UpdateToken() {
+    func test4UpdateEmptyToken() {
         let promise = expectation(description: "Update token fail")
+        //empty token
         RecorderFrameworkManager.sharedInstance.updateToken("",completionHandler:{(success, data) -> Void in
             if success{
                 XCTFail("Error: Token is invalid, server should not accept it")
@@ -95,8 +96,9 @@ class ProfileTestsUnsucessfull: XCTestCase {
         waitForExpectations(timeout: 30, handler: nil)
     }
     
-    func test5GetTranslations(){
+    func test5GetTranslationsEmptyLanguage(){
         let promise = expectation(description: "Get translation fail")
+        //empty language
         RecorderFrameworkManager.sharedInstance.getTranslations("", completionHandler:{(success, data) -> Void in
             if success{
                 XCTFail("Error: Id is invalid, server should not accept it")
@@ -109,6 +111,7 @@ class ProfileTestsUnsucessfull: XCTestCase {
     
     func test6BuyCreditsWrongReceipt(){
         let promise = expectation(description: "Buy credits fail")
+        //empty receipt
         let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "app":"rec", "reciept" : ""] as [String : Any]
         APIClient.sharedInstance.buyCredits(parameters, completionHandler:{(success, data) -> Void in
             if success{
@@ -120,9 +123,9 @@ class ProfileTestsUnsucessfull: XCTestCase {
         waitForExpectations(timeout: 30, handler: nil)
     }
     
-    func test7UpdateTokenNoType() {
+    func test7UpdateTokenEmptyType() {
         let promise = expectation(description: "Update token fail")
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "device_token" : "23432432sdfsdf4dsfsdfdsfsd ", "device_type" : ""]
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "device_token" : "23432432sdfsdf4dsfsdfdsfsd ", "device_type" : ""]//empty device_type
         APIClient.sharedInstance.updateToken(parameters,completionHandler:{(success, data) -> Void in
             if success{
                 XCTFail("Error: Token is invalid, server should not accept it")

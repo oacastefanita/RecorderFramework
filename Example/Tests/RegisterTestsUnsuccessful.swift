@@ -21,7 +21,7 @@ class RegisterTestsUnsuccessful: XCTestCase {
     
     func test01RegisterWrongNumber() {
         let promise = expectation(description: "Register phone fail")
-        
+        //wrong phone
         RecorderFrameworkManager.sharedInstance.register("1234567890", completionHandler: { (success, data) -> Void in
             if success {
                 XCTFail("Error: Phone number is invalid, server should not accept it")
@@ -41,6 +41,7 @@ class RegisterTestsUnsuccessful: XCTestCase {
         
         RecorderFrameworkManager.sharedInstance.register("+40727272727", completionHandler: { (success, data) -> Void in
             if success {
+               //wrong registration code
                 RecorderFrameworkManager.sharedInstance.sendVerificationCode("1234", completionHandler: { (success, data) -> Void in
                     if success {
                         XCTFail("Error: Code is invalid, server should not accept it")
@@ -62,7 +63,7 @@ class RegisterTestsUnsuccessful: XCTestCase {
     
     func test03RegisterWrongToken() {
         let promise = expectation(description: "Register phone fail")
-        
+        //empty token
         APIClient.sharedInstance.register("1234567890", token:"", completionHandler: { (success, data) -> Void in
             if success {
                 XCTFail("Error: Phone number is invalid, server should not accept it")
@@ -88,6 +89,7 @@ class RegisterTestsUnsuccessful: XCTestCase {
                 }
                 
                 let deviceToken =  AppPersistentData.sharedInstance.notificationToken == nil ? "Simulator" : AppPersistentData.sharedInstance.notificationToken!
+                //wrong phone
                 var parameters = ["phone": "987654321","mcc":"300" ,"code": code, "token": "55942ee3894f51000530894", "app": appCode, "device_token":deviceToken] as [String : Any]
                 
                 #if os(iOS)
@@ -126,6 +128,7 @@ class RegisterTestsUnsuccessful: XCTestCase {
                 }
                 
                 let deviceToken =  AppPersistentData.sharedInstance.notificationToken == nil ? "Simulator" : AppPersistentData.sharedInstance.notificationToken!
+                //empty phone
                 var parameters = ["phone": "","mcc":"300" ,"code": code, "token": "55942ee3894f51000530894", "app": appCode, "device_token":deviceToken] as [String : Any]
                 
                 #if os(iOS)
@@ -164,6 +167,7 @@ class RegisterTestsUnsuccessful: XCTestCase {
                 }
                 
                 let deviceToken =  AppPersistentData.sharedInstance.notificationToken == nil ? "Simulator" : AppPersistentData.sharedInstance.notificationToken!
+                //empty token
                 var parameters = ["phone": AppPersistentData.sharedInstance.phone!,"mcc":"300" ,"code": code, "token": "", "app": appCode, "device_token":deviceToken] as [String : Any]
                 
                 #if os(iOS)
@@ -202,6 +206,7 @@ class RegisterTestsUnsuccessful: XCTestCase {
                 }
                 
                 let deviceToken =  AppPersistentData.sharedInstance.notificationToken == nil ? "Simulator" : AppPersistentData.sharedInstance.notificationToken!
+                //wrong token
                 var parameters = ["phone": AppPersistentData.sharedInstance.phone!,"mcc":"300" ,"code": code, "token": "559 asd42ee3894f5100 as0530894", "app": appCode, "device_token":deviceToken] as [String : Any]
                 
                 #if os(iOS)
@@ -234,6 +239,7 @@ class RegisterTestsUnsuccessful: XCTestCase {
         RecorderFrameworkManager.sharedInstance.register("+40727272727", completionHandler: { (success, data) -> Void in
             if success {
                 var code = data as! String
+                //wrong app code
                 var appCode = "wtf"
                 let deviceToken =  AppPersistentData.sharedInstance.notificationToken == nil ? "Simulator" : AppPersistentData.sharedInstance.notificationToken!
                 var parameters = ["phone": AppPersistentData.sharedInstance.phone!,"mcc":"300" ,"code": code, "token": "55942ee3894f51000530894", "app": appCode, "device_token":deviceToken] as [String : Any]
@@ -268,6 +274,7 @@ class RegisterTestsUnsuccessful: XCTestCase {
         RecorderFrameworkManager.sharedInstance.register("+40727272727", completionHandler: { (success, data) -> Void in
             if success {
                 var code = data as! String
+                // empty app
                 var appCode = ""
                 let deviceToken =  AppPersistentData.sharedInstance.notificationToken == nil ? "Simulator" : AppPersistentData.sharedInstance.notificationToken!
                 var parameters = ["phone": AppPersistentData.sharedInstance.phone!,"mcc":"300" ,"code": code, "token": "55942ee3894f51000530894", "app": appCode, "device_token":deviceToken] as [String : Any]
@@ -349,7 +356,7 @@ class RegisterTestsUnsuccessful: XCTestCase {
                 
                 var mcc = "300"
                 parameters["mcc"] = mcc
-                parameters["device_type"] = ""
+                parameters["device_type"] = ""//empty
 
                 parameters["time_zone"] = TimeZone.current.secondsFromGMT() / 60
                 
@@ -382,7 +389,7 @@ class RegisterTestsUnsuccessful: XCTestCase {
                 var parameters = ["phone": AppPersistentData.sharedInstance.phone!,"mcc":"300" ,"code": code, "token": "55942ee3894f51000530894", "app": appCode, "device_token":deviceToken] as [String : Any]
                 var mcc = "300"
                 parameters["mcc"] = mcc
-                parameters["device_type"] = "asdada"
+                parameters["device_type"] = "asdada"//wrong
 
                 parameters["time_zone"] = TimeZone.current.secondsFromGMT() / 60
                 
@@ -415,7 +422,7 @@ class RegisterTestsUnsuccessful: XCTestCase {
                 var parameters = ["phone": AppPersistentData.sharedInstance.phone!,"mcc":"300" ,"code": code, "token": "55942ee3894f51000530894", "app": appCode, "device_token":deviceToken] as [String : Any]
 
                 parameters["device_type"] = "mac"
-                parameters["device_id"] = ""
+                parameters["device_id"] = ""//empty
 
                 parameters["time_zone"] = TimeZone.current.secondsFromGMT() / 60
                 
@@ -455,7 +462,7 @@ class RegisterTestsUnsuccessful: XCTestCase {
                 parameters["device_type"] = "mac"
                 parameters["device_id"] = RecorderFrameworkManager.sharedInstance.macSN
                 #endif
-                parameters["time_zone"] = "asdasd"
+                parameters["time_zone"] = "asdasd"//wrong
                 
                 APIClient.sharedInstance.sendVerificationCode(parameters:parameters, completionHandler: { (success, data) -> Void in
                     if success {

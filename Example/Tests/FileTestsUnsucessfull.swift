@@ -6,20 +6,24 @@
 //  Copyright © 2018 CocoaPods. All rights reserved.
 //
 
+//NOTE: test all file, do not run separate tests
+
 import UIKit
 import XCTest
 import RecorderFramework
 
 class FileTestsUnsucessfull: XCTestCase {
-    var fileId = ""
-    var folderId: String!
-    var folderName = "UnitTestFolder"
+    var fileId = "" //newly created file id
+    var folderId: String! // newly created folder id
+    var folderName = "UnitTestFolder" // name of the new folder
     
     override func setUp() {
         super.setUp()
+        //get file id
         if let id = UserDefaults.standard.value(forKey: "testFileId") as? String {
             self.fileId = id
         }
+        // get folder it
         if let id = UserDefaults.standard.value(forKey: "testFolderId") as? String {
             self.folderId = id
         }
@@ -27,12 +31,14 @@ class FileTestsUnsucessfull: XCTestCase {
     
     override func tearDown() {
         super.tearDown()
+        //save file id and folder id
         UserDefaults.standard.set(self.fileId, forKey: "testFileId")
         UserDefaults.standard.set(self.folderId, forKey: "testFolderId")
         UserDefaults.standard.synchronize()
     }
     
     func test01Create() {
+        //create record item to use in future tests
         let recordItem = RecordItem()
         recordItem.remindDays = "UnitTestDays"
         recordItem.remindDate = "UnitTestDate"
@@ -87,7 +93,7 @@ class FileTestsUnsucessfull: XCTestCase {
             recordItem.remindDays = "UnitTestDaysUpdate"
             recordItem.remindDate = "UnitTestDateUpdate"
             recordItem.notes = "UnitTestNoteUpdate"
-            recordItem.email = "BAD EMAIL"
+            recordItem.email = "BAD EMAIL"//Bad email address
             recordItem.phoneNumber = "+40772727272"
             recordItem.lastName = "UnitTestLastNameUpdate"
             recordItem.firstName = "UnitTestFirstNameUpdate"
@@ -113,7 +119,7 @@ class FileTestsUnsucessfull: XCTestCase {
     
     func test03UpdateWrongRemindDays() {
         if let recordItem = RecordingsManager.sharedInstance.getRecordingById(self.fileId){
-            recordItem.remindDays = "asdasfgdsf"
+            recordItem.remindDays = "asdasfgdsf"//wrong remind date
             recordItem.remindDate = "UnitTestDateUpdate"
             recordItem.notes = "UnitTestNoteUpdate"
             recordItem.email = "email@example.com"
@@ -143,7 +149,7 @@ class FileTestsUnsucessfull: XCTestCase {
     func test04UpdateWrongRemindDate() {
         if let recordItem = RecordingsManager.sharedInstance.getRecordingById(self.fileId){
             recordItem.remindDays = "5"
-            recordItem.remindDate = "asdasfa"
+            recordItem.remindDate = "asdasfa"//wrong remind date
             recordItem.notes = "UnitTestNoteUpdate"
             recordItem.email = "email@example.com"
             recordItem.phoneNumber = "+40772727272"
@@ -171,6 +177,7 @@ class FileTestsUnsucessfull: XCTestCase {
     
     func test05StarWrongId() {
         let promise = expectation(description: "Star file fail")
+        //no entity id
         RecorderFrameworkManager.sharedInstance.star(true, entityId: "", isFile: true, completionHandler: { (success, data) -> Void in
             if success {
                 XCTFail("Error: Id is invalid, server should not accept it")
@@ -187,7 +194,7 @@ class FileTestsUnsucessfull: XCTestCase {
         var params = [String:Any]()
         params["api_key"] = AppPersistentData.sharedInstance.apiKey!
         params["id"] = self.fileId
-        params["type"] = "nope"
+        params["type"] = "nope"//wrong type
         params["star"] = 1
         APIClient.sharedInstance.star(params, completionHandler: { (success, data) -> Void in
             if success {
@@ -200,8 +207,9 @@ class FileTestsUnsucessfull: XCTestCase {
         waitForExpectations(timeout: 30, handler: nil)
     }
     
-    func test07Clone() {
+    func test07CloneWrongEntityId() {
         let promise = expectation(description: "Clone file fail")
+        //no entity id
         RecorderFrameworkManager.sharedInstance.cloneFile(entityId: "", completionHandler: { (success, data) -> Void in
             if success {
                 XCTFail("Error: Id is invalid, server should not accept it")
@@ -213,10 +221,11 @@ class FileTestsUnsucessfull: XCTestCase {
         waitForExpectations(timeout: 30, handler: nil)
     }
     
-    func test08MoveWrongFolder() {
+    func test08MoveWrongFolderId() {
         let promise = expectation(description: "Move file fail")
         let recordItem = RecordItem()
         recordItem.id = self.fileId
+        //wrong folder id
         APIClient.sharedInstance.moveRecording(recordItem, folderId:"asdjasid asiod", completionHandler: { (success, data) -> Void in
             if success {
                 XCTFail("Error: Id is invalid, server should not accept it")
@@ -228,14 +237,15 @@ class FileTestsUnsucessfull: XCTestCase {
         waitForExpectations(timeout: 60, handler: nil)
     }
     
-    func test09MoveWrongId() {
+    func test09MoveWrongFileId() {
         let promise = expectation(description: "Move file fail")
+        //create folder to move file to
         RecorderFrameworkManager.sharedInstance.createFolder(folderName, localID: "", completionHandler: { (success, data) -> Void in
             if success {
                 if let folderId = data as? NSNumber{
                     self.folderId = "\(folderId)"
                     let recordItem = RecordItem()
-                    recordItem.id = "asdasdas"
+                    recordItem.id = "asdasdas"//wrong file id
                     APIClient.sharedInstance.moveRecording(recordItem, folderId:self.folderId, completionHandler: { (success, data) -> Void in
                         if success {
                             XCTFail("Error: Id is invalid, server should not accept it")
@@ -255,10 +265,10 @@ class FileTestsUnsucessfull: XCTestCase {
         waitForExpectations(timeout: 60, handler: nil)
     }
     
-    func test10GetMetadata() {
+    func test10GetMetadataWrongFileId() {
         let promise = expectation(description: "Get metadata files fail")
         let recordItem = RecordItem()
-        recordItem.id = "12349789764589745"
+        recordItem.id = "12349789764589745"//wrong id
         APIClient.sharedInstance.getMetadataFiles(recordItem, completionHandler: { (success, data) -> Void in
             if(success){
                 XCTFail("Error: Id is invalid, server should not accept it")
@@ -269,8 +279,9 @@ class FileTestsUnsucessfull: XCTestCase {
         waitForExpectations(timeout: 30, handler: nil)
     }
     
-    func test11DeleteFail() {
+    func test11DeleteWrongFileId() {
         let promise = expectation(description: "Delete file fail")
+        //no id provided
         APIClient.sharedInstance.deleteRecording("", removeForever: true, completionHandler: { (success, data) -> Void in
             if(success){
                 XCTFail("Error: Id is invalid, server should not accept it")
@@ -293,10 +304,10 @@ class FileTestsUnsucessfull: XCTestCase {
         waitForExpectations(timeout: 30, handler: nil)
     }
     
-    func test13RecoverWrongId(){
+    func test13RecoverWrongFileId(){
         let promise = expectation(description: "Recover file fail")
         let recordItem = RecordItem()
-        recordItem.id = "12349789764589745"
+        recordItem.id = "12349789764589745"//wrong file id
         APIClient.sharedInstance.recoverRecording(recordItem, folderId:"\(folderId)", completionHandler: { (success, data) -> Void in
             if success {
                 promise.fulfill()
@@ -308,10 +319,11 @@ class FileTestsUnsucessfull: XCTestCase {
         waitForExpectations(timeout: 30, handler: nil)
     }
     
-    func test14RecoverWrongFolder(){
+    func test14RecoverWrongFolderId(){
         let promise = expectation(description: "Recover file fail")
         let recordItem = RecordItem()
         recordItem.id = self.fileId
+        //wrong folder id
         APIClient.sharedInstance.recoverRecording(recordItem, folderId:"112346798451", completionHandler: { (success, data) -> Void in
             if success {
                 promise.fulfill()
@@ -323,9 +335,9 @@ class FileTestsUnsucessfull: XCTestCase {
         waitForExpectations(timeout: 30, handler: nil)
     }
     
-    func test15DeleteFolderFail(){
+    func test15DeleteFolderWrongFolderId(){
         let promise = expectation(description: "Delete folder fail")
-        
+        //empty folder id
         APIClient.sharedInstance.deleteFolder("", moveTo:"", completionHandler: { (success, data) -> Void in
             if success {
                 XCTFail("Error: Id is invalid, server should not accept it")
@@ -340,7 +352,7 @@ class FileTestsUnsucessfull: XCTestCase {
     
     func test16DeleteFolder(){
         let promise = expectation(description: "Delete folder")
-        
+        //delete folder
         APIClient.sharedInstance.deleteFolder(self.folderId, moveTo:"", completionHandler: { (success, data) -> Void in
             if success {
                 promise.fulfill()
@@ -360,8 +372,7 @@ class FileTestsUnsucessfull: XCTestCase {
         if folderId != nil {
             parameters.updateValue(folderId, forKey: "folder_id")
         }
-        parameters["source"] = "9887"
-        
+        parameters["source"] = "9887"//wrong source
         APIClient.sharedInstance.getRecordings(parameters:parameters, completionHandler: { (success, data) -> Void in
             if success {
                 XCTFail("Error: \(data)")
@@ -382,7 +393,7 @@ class FileTestsUnsucessfull: XCTestCase {
             parameters.updateValue(folderId, forKey: "folder_id")
         }
         parameters["source"] = "all"
-        parameters["id"] = "987465132"
+        parameters["id"] = "987465132"//wrong id
         parameters["op"] = "less"
         
         APIClient.sharedInstance.getRecordings(parameters:parameters, completionHandler: { (success, data) -> Void in

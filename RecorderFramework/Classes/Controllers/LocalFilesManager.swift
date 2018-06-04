@@ -70,9 +70,7 @@ class LocalFilesManager: NSObject {
                 }
             }
         }
-        //
         
-        //
         // handle manual actions
         if NSString(string: UserDefaults.standard.object(forKey: "localStorageManualOn") as! String).boolValue {
             let recList = getAllFiles(0)
@@ -182,8 +180,6 @@ class LocalFilesManager: NSObject {
                         
                     }
                 }
-                
-                //item.localFile = nil
             }
             return
         }
@@ -224,13 +220,7 @@ class LocalFilesManager: NSObject {
                     if FileManager.default.fileExists(atPath: path) {
                         self.remainingFileSize -= (try! Data(contentsOf: URL(fileURLWithPath: path))).count
                     }
-
-//                    APIClient.sharedInstance.downloadFile(item!.metadataFilePath, localPath:item!.localMetadataFile, completionHandler: { (Bool success) -> Void in
-//                        if success {
-//
-//                        }
-                        self.downloadFiles(newFiles)
-//                    })
+                    self.downloadFiles(newFiles)
                 })
             }
         }
@@ -266,9 +256,6 @@ class LocalFilesManager: NSObject {
             recList = recList.sorted(by: { (obj1:RecordItem, obj2:RecordItem) -> Bool in
                 return mode == 1 ? Int(obj1.lastAccessedTime) < Int(obj2.lastAccessedTime) : Int(obj1.time) < Int(obj2.time)
             })
-//            recList = recList.sort() { (RecordItem obj1, RecordItem obj2) -> Bool in
-//                return mode == 1 ? obj1.lastAccessedTime.Int() < obj2.lastAccessedTime.Int() : obj1.time.Int() < obj2.time.Int()
-//            }
         }
         
         return recList

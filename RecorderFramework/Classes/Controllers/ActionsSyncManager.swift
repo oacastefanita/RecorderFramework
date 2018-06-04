@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Grif. All rights reserved.
 //
 
+//All public action types
 @objc public enum ActionType : Int {
     case deleteRecording
     case renameRecording
@@ -128,8 +129,6 @@ protocol CustomActionDelegate {
         
         self.saveActions()
         self.startProcessingActions()
-        
-        //AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeFolderCreated);
     }
     
     func deleteFolder(_ recordFolder:RecordFolder, moveToFolder:String!) {
@@ -147,8 +146,6 @@ protocol CustomActionDelegate {
         actions.append(action)
         self.saveActions()
         self.startProcessingActions()
-        
-        //AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeFolderDeleted);
     }
     
     func renameFolder(_ recordFolder:RecordFolder) {
@@ -161,8 +158,6 @@ protocol CustomActionDelegate {
         
         self.saveActions()
         self.startProcessingActions()
-        
-        //AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeFolderRenamed);
     }
     
     func addPasswordToFolder(_ recordFolder:RecordFolder) {
@@ -175,8 +170,6 @@ protocol CustomActionDelegate {
         
         self.saveActions()
         self.startProcessingActions()
-        
-        //AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeFolderRenamed);
     }
     
     
@@ -198,8 +191,6 @@ protocol CustomActionDelegate {
         
         self.saveActions()
         self.startProcessingActions()
-        
-        //AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeRecordItemDeleted);
     }
     
     func deleteRecordings(_ recordItemIds:String, forever:Bool) {
@@ -219,8 +210,6 @@ protocol CustomActionDelegate {
         
         self.saveActions()
         self.startProcessingActions()
-        
-        //AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeRecordItemDeleted);
     }
     
     func moveRecording(_ recordItem:RecordItem, folderId:String) {
@@ -254,8 +243,6 @@ protocol CustomActionDelegate {
         actions.append(action)
         
         self.saveActions()
-        
-        //AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeRecordItemMoved);
     }
     
     func recoverRecording(_ recordItem:RecordItem, folderId:String) {
@@ -267,8 +254,6 @@ protocol CustomActionDelegate {
         actions.append(action)
         
         self.saveActions()
-        
-        //AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeRecordItemMoved);
     }
     
     func renameRecording(_ recordItem:RecordItem) {
@@ -281,8 +266,6 @@ protocol CustomActionDelegate {
         
         self.saveActions()
         self.startProcessingActions()
-        
-        //AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeRecordItemRenamed);
     }
     
     @objc func uploadRecording(_ recordItem:RecordItem) {
@@ -307,7 +290,6 @@ protocol CustomActionDelegate {
         
         self.saveActions()
         self.startProcessingActions()
-        //AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeFolderReorder);
     }
     
     func updateRecordingMetadata(_ recordItem:RecordItem) {
@@ -319,7 +301,6 @@ protocol CustomActionDelegate {
         
         self.saveActions()
         self.startProcessingActions()
-        //AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeFolderReorder);
     }
     
     func updateUserProfile(userInfo:NSMutableDictionary) {
@@ -331,7 +312,6 @@ protocol CustomActionDelegate {
         
         self.saveActions()
         self.startProcessingActions()
-        //AnaliticsManager.sharedInstance().addEvent(kAnaliticsEventTypeFolderReorder);
     }
     
     func reorderFolders(_ parameters:NSMutableDictionary) {
@@ -363,11 +343,6 @@ protocol CustomActionDelegate {
         if AppPersistentData.sharedInstance.apiKey == nil {
             return
         }
-        //        var on = NSUserDefaults.standardUserDefaults().objectForKey("3GSync") as? Bool
-        //        if(on == nil){
-        //            on = false
-        //        }
-        //        if AFNetworkReachabilityManager.sharedManager().reachableViaWiFi || on! {
         if syncInProgress {
             return
         }
@@ -376,20 +351,12 @@ protocol CustomActionDelegate {
             syncInProgress = true
             self.processActions(self.actions)
         }
-        //        }
     }
     
     func processActions( _ workingActions:[Action] ) {
         if workingActions.count == 0 {
             syncInProgress = false
             self.saveActions()
-            //            if actionsFailed > 0 {
-            //                var message = (NSString(format: "%d action failed at last sync session", actionsFailed) as String).localized
-            //                if actionsFailed > 1 {
-            //                    message = (NSString(format: "%d actions failed at last sync session", actionsFailed) as String).localized
-            //                }
-            //                AlertController.showAlert(self.currentController, title: "Actions failed".localized, message: message, accept: "OK".localized, reject: nil)
-            //            }
             APIClient.sharedInstance.mainSync({ (success) -> Void in
                 NotificationCenter.default.post(name: Notification.Name(rawValue: kNotificationRecordingsUpdated), object: nil)
             })

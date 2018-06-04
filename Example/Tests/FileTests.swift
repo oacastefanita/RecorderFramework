@@ -218,7 +218,7 @@ class FileTests: XCTestCase {
         
         waitForExpectations(timeout: 60, handler: nil)
     }
-    
+    //clean up
     func test7Delete() {
         let promise = expectation(description: "Delete file")
         APIClient.sharedInstance.deleteRecording(self.fileId, removeForever: true, completionHandler: { (success, data) -> Void in
