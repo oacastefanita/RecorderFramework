@@ -1,11 +1,6 @@
 # RecorderFramework
 <img src="https://github.com/oacastefanita/RecorderFramework/blob/master/Example/RecorderFramework/Images.xcassets/AppIcon.appiconset/Icon-App-83.5x83.5%402x.png" alt="RecorderFramework"/>
 
-[![CI Status](http://img.shields.io/travis/oacastefanita/RecorderFramework.svg?style=flat)](https://travis-ci.org/oacastefanita/RecorderFramework)
-[![Version](https://img.shields.io/cocoapods/v/RecorderFramework.svg?style=flat)](http://cocoapods.org/pods/RecorderFramework)
-[![License](https://img.shields.io/cocoapods/l/RecorderFramework.svg?style=flat)](http://cocoapods.org/pods/RecorderFramework)
-[![Platform](https://img.shields.io/cocoapods/p/RecorderFramework.svg?style=flat)](http://cocoapods.org/pods/RecorderFramework)
-
 ## Requirements
 Minimum deployment target for iOS  is 10.0.
 
@@ -165,11 +160,24 @@ if let selectedFolder = RecordingsManager.sharedInstance.getFolderWithId(folderI
 }
 ```
 
+Star folder
+```swift
+if let selectedFolder = RecordingsManager.sharedInstance.getFolderWithId(folderId){
+  RecorderFrameworkManager.sharedInstance.star(true, entityId: selectedFolder.id, isFile: false, completionHandler: { (success, data) -> Void in
+    if success {
+
+    }else{
+      //display error
+    }
+  })
+}
+```
+
 Delete folder
 ```swift
 if let selectedFolder = RecordingsManager.sharedInstance.getFolderWithId(folderId){
   RecorderFrameworkManager.sharedInstance.deleteFolder(selectedFolder, moveToFolder: "")
-  RecordingsManager.sharedInstance.recordFolders.remove(at: RecordingsManager.sharedInstance.recordFolders.indexOf(selectedFolder)!)
+  RecordingsManager.sharedInstance.recordFolders.remove(at:     RecordingsManager.sharedInstance.recordFolders.indexOf(selectedFolder)!)
 }
 ```
 
@@ -177,7 +185,7 @@ if let selectedFolder = RecordingsManager.sharedInstance.getFolderWithId(folderI
 Retrieve files from server 
 ```swift
 RecorderFrameworkManager.sharedInstance.getRecordings(folderId, completionHandler: ({ (success, data) -> Void in
-if success {
+  if success {
 
   }else{
       //display error
@@ -200,6 +208,64 @@ if let selectedItem = RecordingsManager.sharedInstance.getRecordingById(recordin
   RecorderFrameworkManager.sharedInstance.saveData()
 }
 ```
+
+Move recording
+```swift
+if let selectedItem = RecordingsManager.sharedInstance.getRecordingById("recordingId") as? RecordItem{
+  if let selectedFolder = RecordingsManager.sharedInstance.getFolderWithId("folderId"){
+    RecorderFrameworkManager.sharedInstance.moveRecording(selectedItem, folderId: selectedFolder.id)
+    RecorderFrameworkManager.sharedInstance.saveData()
+  }
+}
+```
+
+Recover recording
+```swift
+if let selectedItem = RecordingsManager.sharedInstance.getRecordingById("recordingId") as? RecordItem{
+  if let selectedFolder = RecordingsManager.sharedInstance.getFolderWithId("folderId"){
+    RecorderFrameworkManager.sharedInstance.recoverRecording(selectedItem, folderId: selectedFolder.id)
+    RecorderFrameworkManager.sharedInstance.saveData()
+  }
+}
+```
+
+Star recording
+```swift
+if let selectedItem = RecordingsManager.sharedInstance.getRecordingById(recordingId) as? RecordItem{
+  RecorderFrameworkManager.sharedInstance.star(true, entityId: selectedItem.id, isFile: true, completionHandler: { (success, data) -> Void in
+    if success {
+
+    }else{
+      //display error
+    }
+  })
+}
+```
+
+Upload recording
+```swift
+file.fileDownloaded = true
+let fileManager = FileManager.default
+let sharedContainer = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)
+let oldPath = sharedContainer?.appendingPathComponent("Recording1.wav")
+var newPath = "/" + (RecordingsManager.sharedInstance.recordFolders.first?.title)! + "/" + file.id
+if !FileManager.default.fileExists(atPath: (sharedContainer?.path)! + newPath) {
+  do {
+    try FileManager.default.createDirectory(atPath: (sharedContainer?.path)! + newPath, withIntermediateDirectories: true, attributes: nil)
+  } catch _ {
+  }
+}
+newPath = newPath + "/" + file.id + ".wav"
+ do {
+  try fileManager.moveItem(atPath: (oldPath?.path)!, toPath: (sharedContainer?.path)! + newPath)
+  file.localFile = newPath
+  } catch let error as NSError {
+    print("Ooops! Something went wrong: \(error)")
+  }
+RecorderFrameworkManager.sharedInstance.uploadRecording(file)
+RecorderFrameworkManager.sharedInstance.saveData()
+ ```  
+        
 ## Author
 
 Samer Bazzi
