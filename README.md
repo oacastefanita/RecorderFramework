@@ -68,7 +68,9 @@ AppPersistentData.sharedInstance.notificationToken = newToken
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-# Register Example
+All public methods of the Framework have XCode standard documentation, use alt + click on any method to see it's documentation
+
+### Register Example
 ```swift
 RecorderFrameworkManager.sharedInstance.register("+15417543010", completionHandler: { (success, data) -> Void in
   if success {
@@ -95,7 +97,7 @@ RecorderFrameworkManager.sharedInstance.sendVerificationCode("12345", completion
   }
 })
 ```
-
+### Sync 
 After a successfull registration call the mainSync in order to retrieve all necessary data from the server
 
 ```swift
@@ -107,8 +109,29 @@ RecorderFrameworkManager.sharedInstance.mainSync { (success) -> Void in
   }
 }
 ```
+### Other sync methods
+```swift
+RecorderFrameworkManager.sharedInstance.defaultFolderSync { (success) -> Void in
+  if success {
+
+  }else{
+      //display error
+  }  
+}
+```
 
 
+### Folder methods
+Retrieve folders from server 
+```swift
+RecorderFrameworkManager.sharedInstance.getFolders({ (success, data) -> Void in
+  if success {
+
+  }else{
+      //display error
+  }
+})
+```
 
 In order to create a folder use the createFolder method of the Framework
 ```swift
@@ -121,10 +144,36 @@ RecorderFrameworkManager.sharedInstance.createFolder(title, localID: "", complet
 })
 ```
 
+Add password to folder
+```swift
+if let selectedFolder = RecordingsManager.sharedInstance.getFolderWithId(folderId){
+  selectedFolder.password = "MyPassword"
+  RecorderFrameworkManager.sharedInstance.addPasswordToFolder(selectedFolder)
+  RecorderFrameworkManager.sharedInstance.saveData()
+}
+NOTE: in order to remove password from folder set the password to empty string
+
+```
+
+Rename folder
+```swift
+Rename folder
+if let selectedFolder = RecordingsManager.sharedInstance.getFolderWithId(folderId){
+  selectedFolder.title = "NewName"
+  RecorderFrameworkManager.sharedInstance.renameFolder(selectedFolder)
+  RecorderFrameworkManager.sharedInstance.saveData()
+}
+```
 
 ## Author
 
-oacastefanita, oacastefanita@gmail.com
+Samer Bazzi
+Selectinventory, Inc
+380 N Old Woodward Ave #240
+Birmingham, MI MI 48009
+United States
+Tel. 1-313-522-5710
+selectinventory@gmail.com
 
 ## License
 
