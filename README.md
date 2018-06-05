@@ -1,4 +1,5 @@
 # RecorderFramework
+<img src="https://github.com/oacastefanita/RecorderFramework/blob/master/Example/RecorderFramework/Images.xcassets/AppIcon.appiconset/Icon-App-83.5x83.5%402x.png" alt="RecorderFramework"/>
 
 [![CI Status](http://img.shields.io/travis/oacastefanita/RecorderFramework.svg?style=flat)](https://travis-ci.org/oacastefanita/RecorderFramework)
 [![Version](https://img.shields.io/cocoapods/v/RecorderFramework.svg?style=flat)](http://cocoapods.org/pods/RecorderFramework)
