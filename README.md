@@ -157,7 +157,6 @@ NOTE: in order to remove password from folder set the password to empty string
 
 Rename folder
 ```swift
-Rename folder
 if let selectedFolder = RecordingsManager.sharedInstance.getFolderWithId(folderId){
   selectedFolder.title = "NewName"
   RecorderFrameworkManager.sharedInstance.renameFolder(selectedFolder)
@@ -165,6 +164,41 @@ if let selectedFolder = RecordingsManager.sharedInstance.getFolderWithId(folderI
 }
 ```
 
+Delete folder
+```swift
+if let selectedFolder = RecordingsManager.sharedInstance.getFolderWithId(folderId){
+  RecorderFrameworkManager.sharedInstance.deleteFolder(selectedFolder, moveToFolder: "")
+  RecordingsManager.sharedInstance.recordFolders.remove(at: RecordingsManager.sharedInstance.recordFolders.indexOf(selectedFolder)!)
+}
+```
+
+### File methods
+Retrieve files from server 
+```swift
+RecorderFrameworkManager.sharedInstance.getRecordings(folderId, completionHandler: ({ (success, data) -> Void in
+if success {
+
+  }else{
+      //display error
+  }         
+}))
+```
+Delete file
+```swift
+if let selectedItem = RecordingsManager.sharedInstance.getRecordingById(recordingId) as? RecordItem{
+  RecorderFrameworkManager.sharedInstance.deleteRecording(selectedItem,forever: true)
+  RecorderFrameworkManager.sharedInstance.startProcessingActions()
+}
+```
+
+Rename recording
+```swift
+if let selectedItem = RecordingsManager.sharedInstance.getRecordingById(recordingId) as? RecordItem{
+  selectedItem.text = "NewTitle"
+  RecorderFrameworkManager.sharedInstance.renameRecording(selectedItem)
+  RecorderFrameworkManager.sharedInstance.saveData()
+}
+```
 ## Author
 
 Samer Bazzi
