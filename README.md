@@ -25,8 +25,7 @@ pod "RecorderFramework"
 ```
 
 ### Create App Group 
-To set up a shared app group
-Open the Capabilities tab of your project in Xcode.
+To set up a shared app group open the Capabilities tab of your project in Xcode.
 Enable the App Groups capability. This adds an entitlement file (if needed) to the selected target and adds the com.apple.security.application-groups entitlement to that file.e information, see Configuring App Groups in App Distribution Guide.
 
 Import RecorderFramework  in AppDelegate. 
@@ -38,12 +37,7 @@ Add the following code to "didFinishLaunchingWithOptions" method in AppDelegate.
 RecorderFrameworkManager.sharedInstance.containerName = "group.com.codebluestudio.Recorder"
 ```
 ### Push notifications
-To set up a shared app group.
-
-Open the Capabilities tab of your project in Xcode.
-
-Enable the Push notifications capability.
-
+To enable push notifications open the Capabilities tab of your project in Xcode. Enable the Push notifications capability.
 
 Import UserNotifications  in AppDelegate and request notification permission in "didFinishLaunchingWithOptions"
 ```swift
@@ -84,7 +78,7 @@ RecorderFrameworkManager.sharedInstance.register("+15417543010", completionHandl
   }
 })
 ```
-After a successfull registration a SMS,containing the registration code, will be sent to the registered phone number
+After a successfull registration a SMS,containing the registration code, will be sent to the registered phone number. Send registration code to the server.
 ```swift
 RecorderFrameworkManager.sharedInstance.sendVerificationCode("12345", completionHandler: { (success, data) -> Void in
   if success {
@@ -101,6 +95,32 @@ RecorderFrameworkManager.sharedInstance.sendVerificationCode("12345", completion
   }
 })
 ```
+
+After a successfull registration call the mainSync in order to retrieve all necessary data from the server
+
+```swift
+RecorderFrameworkManager.sharedInstance.mainSync { (success) -> Void in
+  if success {
+
+  }else{
+      //display error
+  }
+}
+```
+
+
+
+In order to create a folder use the createFolder method of the Framework
+```swift
+RecorderFrameworkManager.sharedInstance.createFolder(title, localID: "", completionHandler: { (success, data) -> Void in
+  if success {
+
+  }else{
+      //display error
+  }
+})
+```
+
 
 ## Author
 
