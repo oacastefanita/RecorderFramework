@@ -15,8 +15,6 @@ public class RecordFolder: NSObject, NSCoding {
     @objc public var folderOrder:Int = 0
     @objc public var password: String!
     
-    //var linkedActionId: String!
-    
     @objc public var type:StorageType = StorageType.keepLocally
     @objc public var recordedItems = [RecordItem]()
     
@@ -41,10 +39,6 @@ public class RecordFolder: NSObject, NSCoding {
             self.password = value
         }
         
-        //        if let value = aDecoder.decodeObjectForKey("linkedActionId") as? String {
-        //            self.linkedActionId = value
-        //        }
-        
         if let data = aDecoder.decodeObject(forKey: "recordItems") as? Data {
             recordedItems = NSKeyedUnarchiver.unarchiveObject(with: data) as! Array<RecordItem>
         }
@@ -65,9 +59,6 @@ public class RecordFolder: NSObject, NSCoding {
         if let value = self.password {
             aCoder.encode(value, forKey: "password")
         }
-        //        if let value = self.linkedActionId {
-        //            aCoder.encodeObject(value, forKey: "linkedActionId")
-        //        }
         
         let data = NSKeyedArchiver.archivedData(withRootObject: recordedItems)
         aCoder.encode(data, forKey: "recordItems")

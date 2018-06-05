@@ -122,10 +122,6 @@ public class RecordItem: NSObject, NSSecureCoding {
             }
         }
         
-        //        if let value = aDecoder.decodeObjectForKey("linkedActionId") as? String {
-        //            self.linkedActionId = value
-        //        }
-        
         if let value = aDecoder.decodeObject(forKey: "shareUrl") as? String {
             self.shareUrl = value
         }
@@ -231,10 +227,6 @@ public class RecordItem: NSObject, NSSecureCoding {
             aCoder.encode(data, forKey: "waveRenderVals")
         }
         
-        //        if let value = self.linkedActionId {
-        //            aCoder.encodeObject(value, forKey: "linkedActionId")
-        //        }
-        
         if let value = self.shareUrl {
             aCoder.encode(value, forKey: "shareUrl")
         }
@@ -289,10 +281,6 @@ public class RecordItem: NSObject, NSSecureCoding {
         self.folderId = item.folderId
         self.text = item.text
         self.accessNumber = item.accessNumber
-        //        if self.url != item.url {
-        //            fileDownloaded = false
-        //            localFile = nil
-        //        }
         self.url = item.url
         self.credits = item.credits
         self.duration = item.duration
@@ -483,22 +471,5 @@ public class RecordItem: NSObject, NSSecureCoding {
         
         outputStream?.close()
     }
-    
-    //MARK: activity item
-    //    public func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
-    //        return Data()
-    //    }
-    //
-    //    public func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivityType?) -> Any? {
-    //        return self.securelyArchiveRootObject();
-    //    }
-    //
-    //    public func activityViewController(_ activityViewController: UIActivityViewController, thumbnailImageForActivityType activityType: UIActivityType?, suggestedSize size: CGSize) -> UIImage! {
-    //        return UIImage(named: "airdroppreview")
-    //    }
-    //
-    //    public func activityViewController(_ activityViewController: UIActivityViewController, dataTypeIdentifierForActivityType activityType: UIActivityType?) -> String {
-    //        return "com.werockapps.callrec"
-    //    }
 }
 
