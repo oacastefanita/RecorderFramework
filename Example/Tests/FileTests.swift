@@ -34,8 +34,8 @@ class FileTests: XCTestCase {
     
     func test1Create() {
         let recordItem = RecordItem()
-        recordItem.remindDays = "UnitTestDays"
-        recordItem.remindDate = "UnitTestDate"
+        recordItem.remindDays = "5"
+        recordItem.remindDate = "2018-10-10 10:10:10"
         recordItem.notes = "UnitTestNote"
         recordItem.email = "Unit@Test.com"
         recordItem.phoneNumber = "+40727272727"
@@ -84,8 +84,8 @@ class FileTests: XCTestCase {
     
     func test2Update() {
         if let recordItem = RecordingsManager.sharedInstance.getRecordingById(self.fileId){
-            recordItem.remindDays = "UnitTestDaysUpdate"
-            recordItem.remindDate = "UnitTestDateUpdate"
+            recordItem.remindDays = "5"
+            recordItem.remindDate = "2018-10-10 10:10:10"
             recordItem.notes = "UnitTestNoteUpdate"
             recordItem.email = "UnitUpdatet@Test.com"
             recordItem.phoneNumber = "+40772727272"
@@ -98,9 +98,8 @@ class FileTests: XCTestCase {
             APIClient.sharedInstance.updateRecordingInfo(recordItem, parameters:dict as! [String : Any], completionHandler: { (success, data) -> Void in
                 if(success){
                     RecorderFrameworkManager.sharedInstance.defaultFolderSync { (success) -> Void in
-                        if success {
                             if let newRec = RecordingsManager.sharedInstance.getRecordingById(self.fileId){
-                                if newRec.remindDays == "UnitTestDaysUpdate" && newRec.remindDate == "UnitTestDateUpdate" && newRec.notes == "UnitTestNoteUpdate" && newRec.email == "UnitUpdatet@Test.com" && newRec.phoneNumber == "+40772727272" && newRec.lastName == "UnitTestLastNameUpdate" && newRec.firstName == "UnitTestFirstNameUpdate" && newRec.text == "UnitTestTextUpdate"{
+                                if newRec.remindDays == "5" && newRec.remindDate == "2018-10-10 10:10:10" && newRec.notes == "UnitTestNoteUpdate" && newRec.email == "UnitUpdatet@Test.com" && newRec.phoneNumber == "+40772727272" && newRec.lastName == "UnitTestLastNameUpdate" && newRec.firstName == "UnitTestFirstNameUpdate" && newRec.text == "UnitTestTextUpdate"{
                                     promise.fulfill()
                                 }else{
                                     XCTFail("Error: incorrect data")
@@ -108,9 +107,6 @@ class FileTests: XCTestCase {
                             }else{
                                 XCTFail("Error: no recording")
                             }
-                        }else{
-                            XCTFail("Error: \(data)")
-                        }
                     }
                 } else{
                     XCTFail("Error: \(data)")

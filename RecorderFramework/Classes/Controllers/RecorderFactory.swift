@@ -41,6 +41,9 @@ public class RecorderFactory: NSObject {
         if let value:Int = dict.object(forKey: "time") as? Int {
             object.time = value
         }
+        if let value:String = dict.object(forKey: "pin_code") as? String {
+            object.pin = value
+        }
         return object
     }
     
@@ -50,6 +53,7 @@ public class RecorderFactory: NSObject {
         dictNew["is_public"] = user.isPublic ?? ""
         dictNew["play_beep"] = user.playBeep ?? ""
         dictNew["pic"] = user.imagePath ?? ""
+        dictNew["pin_code"] = user.pin ?? ""
         let dict = NSMutableDictionary(dictionary: ["data":dictNew])
         return dict
     }
@@ -168,6 +172,9 @@ public class RecorderFactory: NSObject {
         }
         if let value:Int = dict.object(forKey: "updated") as? Int {
             object.updated = "\(value)"
+        }
+        if let value:String = dict.object(forKey: "text") as? String {
+            object.text = value
         }
         return object
     }

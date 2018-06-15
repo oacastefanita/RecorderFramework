@@ -62,7 +62,6 @@ public class RecordItem: NSObject, NSSecureCoding {
     @objc public var remindDate:String! = ""
     @objc public var remindDays:String! = ""
     @objc public var updated:String! = ""
-    
     override public init() {
         super.init()
     }
@@ -171,6 +170,9 @@ public class RecordItem: NSObject, NSSecureCoding {
         if let value = aDecoder.decodeObject(forKey: "updated") as? String {
             self.updated = value
         }
+        if let value = aDecoder.decodeObject(forKey: "text") as? String {
+            self.text = value
+        }
     }
     
     public func encode(with aCoder: NSCoder) {
@@ -271,6 +273,9 @@ public class RecordItem: NSObject, NSSecureCoding {
             aCoder.encode(value, forKey: "fileSize")
         }
         aCoder.encode(isFree ? "true" : "false", forKey: "isFree")
+        if let value = self.text {
+            aCoder.encode(value, forKey: "text")
+        }
     }
     
     static public  var supportsSecureCoding : Bool {
@@ -304,6 +309,7 @@ public class RecordItem: NSObject, NSSecureCoding {
             self.updated = item.updated
         }
         self.isFree = item.isFree
+        self.text = item.text
     }
     
     public func recordingNextAction(_ currentAction:Action!) -> Action! {

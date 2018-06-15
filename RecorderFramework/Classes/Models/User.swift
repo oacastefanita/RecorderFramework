@@ -19,6 +19,7 @@ public class User: NSObject, NSCoding {
     public var timeZone:String! = ""
     public var plan:String! = ""
     public var time:Int! = 0
+    public var pin:String! = ""
     
     override public init() {
         super.init()
@@ -54,6 +55,9 @@ public class User: NSObject, NSCoding {
         }
         if let value = aDecoder.decodeObject(forKey: "time") as? Int {
             self.time = value
+        }
+        if let value = aDecoder.decodeObject(forKey: "pin") as? String {
+            self.pin = value
         }
     }
     
@@ -96,6 +100,10 @@ public class User: NSObject, NSCoding {
         
         if let value = self.time {
             aCoder.encode(value, forKey: "time")
+        }
+        
+        if let value = self.pin {
+            aCoder.encode(value, forKey: "pin")
         }
     }
 }

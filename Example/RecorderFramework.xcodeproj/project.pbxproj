@@ -97,6 +97,7 @@
 		A2A6256A1FB1FD3E003714C8 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A625591FB1FD3E003714C8 /* ProfileViewController.swift */; };
 		A2A6256B1FB1FD3E003714C8 /* PhoneNumbersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A6255A1FB1FD3E003714C8 /* PhoneNumbersViewController.swift */; };
 		A2A6256C1FB1FD3E003714C8 /* DisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A6255B1FB1FD3E003714C8 /* DisplayViewController.swift */; };
+		A2A9FD3020D3DFB800421E2B /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2A9FD2F20D3DFB800421E2B /* StoreKit.framework */; };
 		A2ADD8BD20A987C1005C6CD2 /* RegisterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2ADD8BC20A987C1005C6CD2 /* RegisterTests.swift */; };
 		A2ADD8BF20A9A836005C6CD2 /* FileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2ADD8BE20A9A836005C6CD2 /* FileTests.swift */; };
 		A2ADD8CE20A9D4F4005C6CD2 /* Test.wav in Resources */ = {isa = PBXBuildFile; fileRef = A2ADD8CD20A9D4F4005C6CD2 /* Test.wav */; };
@@ -105,7 +106,6 @@
 		A2AEABEC1FB0903D0094DCF8 /* MKStoreKitConfigs.plist in Resources */ = {isa = PBXBuildFile; fileRef = A2AEABE91FB0903D0094DCF8 /* MKStoreKitConfigs.plist */; };
 		A2AEABED1FB0903D0094DCF8 /* MKStoreKit.m in Sources */ = {isa = PBXBuildFile; fileRef = A2AEABEB1FB0903D0094DCF8 /* MKStoreKit.m */; };
 		A2AEABEF1FB090E80094DCF8 /* BuyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AEABEE1FB090E80094DCF8 /* BuyViewController.swift */; };
-		A2AEABF11FB0944C0094DCF8 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AEABF01FB0944C0094DCF8 /* StoreKit.framework */; };
 		A2B2D14B1FA876F400A1FACE /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2B2D1491FA876F400A1FACE /* Interface.storyboard */; };
 		A2B2D14D1FA876F400A1FACE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2B2D14C1FA876F400A1FACE /* Assets.xcassets */; };
 		A2B2D1541FA876F400A1FACE /* RecorderFramework-WatchExample Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A2B2D1531FA876F400A1FACE /* RecorderFramework-WatchExample Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -308,6 +308,7 @@
 		A2A625591FB1FD3E003714C8 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = "RecorderFramework-TvExample/ProfileViewController.swift"; sourceTree = SOURCE_ROOT; };
 		A2A6255A1FB1FD3E003714C8 /* PhoneNumbersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhoneNumbersViewController.swift; path = "RecorderFramework-TvExample/PhoneNumbersViewController.swift"; sourceTree = SOURCE_ROOT; };
 		A2A6255B1FB1FD3E003714C8 /* DisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DisplayViewController.swift; path = "RecorderFramework-TvExample/DisplayViewController.swift"; sourceTree = SOURCE_ROOT; };
+		A2A9FD2F20D3DFB800421E2B /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		A2ADD8BC20A987C1005C6CD2 /* RegisterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTests.swift; sourceTree = "<group>"; };
 		A2ADD8BE20A9A836005C6CD2 /* FileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTests.swift; sourceTree = "<group>"; };
 		A2ADD8CD20A9D4F4005C6CD2 /* Test.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Test.wav; sourceTree = "<group>"; };
@@ -316,7 +317,6 @@
 		A2AEABEA1FB0903D0094DCF8 /* MKStoreKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKStoreKit.h; sourceTree = "<group>"; };
 		A2AEABEB1FB0903D0094DCF8 /* MKStoreKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKStoreKit.m; sourceTree = "<group>"; };
 		A2AEABEE1FB090E80094DCF8 /* BuyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyViewController.swift; sourceTree = "<group>"; };
-		A2AEABF01FB0944C0094DCF8 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		A2AFABDF1FAB0E1200510F7D /* RecorderFramework_Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RecorderFramework_Example.entitlements; sourceTree = "<group>"; };
 		A2AFABE01FAB0E1D00510F7D /* RecorderFramework-WatchExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "RecorderFramework-WatchExample.entitlements"; sourceTree = "<group>"; };
 		A2AFABE11FAB0E2500510F7D /* RecorderFramework-WatchExample Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "RecorderFramework-WatchExample Extension.entitlements"; sourceTree = "<group>"; };
@@ -411,9 +411,9 @@
 				A24607AD1FCE000300F50AEE /* CoreMotion.framework in Frameworks */,
 				A24607AB1FCDFFFB00F50AEE /* OpenGLES.framework in Frameworks */,
 				A26FCC951FCDFDAB00CBA0D4 /* GLKit.framework in Frameworks */,
+				A2A9FD3020D3DFB800421E2B /* StoreKit.framework in Frameworks */,
 				A241726E1FB3DBED00247212 /* AddressBook.framework in Frameworks */,
 				A297CD891FA8E669004E5B15 /* Pods_RecorderFramework_Example.framework in Frameworks */,
-				A2AEABF11FB0944C0094DCF8 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -595,6 +595,7 @@
 		91A4A99FDAE8352DE6480444 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A2A9FD2F20D3DFB800421E2B /* StoreKit.framework */,
 				A22039B41FDD808A00720845 /* Quartz.framework */,
 				A24607AC1FCE000300F50AEE /* CoreMotion.framework */,
 				A24607AA1FCDFFFB00F50AEE /* OpenGLES.framework */,
@@ -602,7 +603,6 @@
 				A2F26E6D1FB6E94D00CE2B19 /* StoreKit.framework */,
 				A241726D1FB3DBED00247212 /* AddressBook.framework */,
 				A2D6BBE91FB3B90E003C6CE4 /* StoreKit.framework */,
-				A2AEABF01FB0944C0094DCF8 /* StoreKit.framework */,
 				A297CD8A1FA8E669004E5B15 /* Pods_RecorderFramework_Example.framework */,
 				A297CD881FA8E648004E5B15 /* RecorderFramework.framework */,
 				863430D0C86DCE6607C6635E /* Pods_RecorderFramework_Example.framework */,
@@ -1756,7 +1756,7 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.werockapps.CallRecorder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "dbfbfdae-2e95-43c2-884e-8b978226aa0c";
+				PROVISIONING_PROFILE = "11ae406f-ee04-49a2-b1dd-6159455dcadd";
 				PROVISIONING_PROFILE_SPECIFIER = "CallRec New Dev Profile";
 				SWIFT_OBJC_BRIDGING_HEADER = "RecorderFramework/RecorderFramework-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
@@ -1771,7 +1771,7 @@
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = RecorderFramework_Example.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Boohead, Inc. (UB5EDUN3Q5)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Boohead, Inc. (UB5EDUN3Q5)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = UB5EDUN3Q5;
 				INFOPLIST_FILE = RecorderFramework/Info.plist;
@@ -1780,7 +1780,7 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.werockapps.CallRecorder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "eb7e5d86-85c0-4549-9213-b44524e318e3";
+				PROVISIONING_PROFILE = "d6e395e3-4ecb-430e-8319-2f44d7c1025f";
 				PROVISIONING_PROFILE_SPECIFIER = "call rec appstore";
 				SWIFT_OBJC_BRIDGING_HEADER = "RecorderFramework/RecorderFramework-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
