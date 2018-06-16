@@ -11,10 +11,32 @@ import UserNotifications
 import RecorderFramework
 import Bugsee
 
+enum ShortcutIdentifier: String {
+    case startRecording = "Record"
+    case defaultFolder = "DefaultFolder"
+    case lastFolder = "LastFolder"
+    case settings = "Settings"
+    
+    // MARK: Initializers
+    
+    init?(fullType: String) {
+        guard let last = fullType.components(separatedBy: ".").last else { return nil }
+        
+        self.init(rawValue: last)
+    }
+    
+    // MARK: Properties
+    
+    var type: String {
+        return Bundle.main.bundleIdentifier! + ".\(self.rawValue)"
+    }
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
+    var launchedShortcutItem: UIApplicationShortcutItem?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -23,6 +45,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         MKStoreKit.shared().startProductRequest()
         requestNotificationsPermission()
         Bugsee.launch(token :"4c279461-6c62-4851-b884-e7e105985a18")
+        
+        // If a shortcut was launched, display its information and take the appropriate action
+        if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
+            
+            launchedShortcutItem = shortcutItem
+        }
         return true
     }
 
@@ -42,6 +70,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        guard let shortcut = launchedShortcutItem else { return }
+        
+        handleShortCutItem(shortcutItem: shortcut)
+        
+        launchedShortcutItem = nil
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -91,11 +124,48 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
     
-    func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        let handledShortCutItem = handleShortCutItem(shortcutItem: shortcutItem)
         
-        // Handle quick actions
-        completionHandler(true)
+        completionHandler(handledShortCutItem)
+    }
+    
+    func handleShortCutItem(shortcutItem: UIApplicationShortcutItem) -> Bool {
+        var handled = false
         
+        // Verify that the provided `shortcutItem`'s `type` is one handled by the application.
+        guard ShortcutIdentifier(fullType: shortcutItem.type) != nil else { return false }
+        
+        guard let shortCutType = shortcutItem.type as String? else { return false }
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        var vc = UIViewController()
+        
+        switch (shortCutType) {
+        case ShortcutIdentifier.startRecording.type:
+            // Handle shortcut 1
+            handled = true
+            break
+        case ShortcutIdentifier.defaultFolder.type:
+            // Handle shortcut 2
+            handled = true
+            break
+        case ShortcutIdentifier.lastFolder.type:
+            // Handle shortcut 3
+            handled = true
+            break
+        case ShortcutIdentifier.settings.type:
+            // Handle shortcut 4
+            handled = true
+            break
+        default:
+            break
+        }
+        
+        // Display the selected view controller
+//        window!.rootViewController?.present(vc, animated: true, completion: nil)
+        
+        return handled
     }
 }
 

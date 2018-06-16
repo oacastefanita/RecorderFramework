@@ -977,7 +977,7 @@
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = JR2XB652YC;
+						DevelopmentTeam = UB5EDUN3Q5;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						TestTargetID = 607FACCF1AFB9204008FA782;
@@ -1748,16 +1748,17 @@
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = RecorderFramework_Example.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Stefanita Oaca (23RETXK7ZK)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Stefanita Oaca (23RETXK7ZK)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = UB5EDUN3Q5;
 				INFOPLIST_FILE = RecorderFramework/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = com.werockapps.CallRecorder;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codebluestudio.Recorder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "11ae406f-ee04-49a2-b1dd-6159455dcadd";
-				PROVISIONING_PROFILE_SPECIFIER = "CallRec New Dev Profile";
+				PROVISIONING_PROFILE = "8aa2a324-e508-43e8-8c08-2d0a806948bd";
+				PROVISIONING_PROFILE_SPECIFIER = "Recorder dev";
 				SWIFT_OBJC_BRIDGING_HEADER = "RecorderFramework/RecorderFramework-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 			};
@@ -1778,10 +1779,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = com.werockapps.CallRecorder;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codebluestudio.Recorder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d6e395e3-4ecb-430e-8319-2f44d7c1025f";
-				PROVISIONING_PROFILE_SPECIFIER = "call rec appstore";
+				PROVISIONING_PROFILE = "5961f631-5a14-4ea5-b339-cae1871bd4aa";
+				PROVISIONING_PROFILE_SPECIFIER = "Recorder AppStore";
 				SWIFT_OBJC_BRIDGING_HEADER = "RecorderFramework/RecorderFramework-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 			};
@@ -1793,7 +1794,7 @@
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = JR2XB652YC;
+				DEVELOPMENT_TEAM = UB5EDUN3Q5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1939,10 +1940,10 @@
 					"\"RecorderFramework\"",
 					"-Obj-c",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.werockapps.CallRecorder.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codebluestudio.Recorder.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
-				PROVISIONING_PROFILE = "fd12265a-ec06-47d0-840e-d0dbe9833163";
-				PROVISIONING_PROFILE_SPECIFIER = "CallRecorder Watch Extension Dev";
+				PROVISIONING_PROFILE = "fd0c6c77-26c9-4874-b7b5-897c570d5491";
+				PROVISIONING_PROFILE_SPECIFIER = "Recorder Watch Extension Dev";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1985,10 +1986,10 @@
 					"\"RecorderFramework\"",
 					"-Obj-c",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.werockapps.CallRecorder.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codebluestudio.Recorder.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
-				PROVISIONING_PROFILE = "12b1f2d7-4e66-41ca-a10d-c7ebce27b52a";
-				PROVISIONING_PROFILE_SPECIFIER = "CallRecorder Watch Extension AppStore";
+				PROVISIONING_PROFILE = "71e16f17-729a-47ab-9e07-d37c47a908ba";
+				PROVISIONING_PROFILE_SPECIFIER = "Recorder Watch Extension Appstore";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
@@ -2022,10 +2023,10 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = RecorderFramework_WatchExample_Extension;
 				INFOPLIST_FILE = "RecorderFramework-WatchExample/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = com.werockapps.CallRecorder.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codebluestudio.Recorder.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d283c1c7-6946-4ffd-9b18-e07c531cd91d";
-				PROVISIONING_PROFILE_SPECIFIER = "CallRecorder Watch Dev";
+				PROVISIONING_PROFILE = "6c6feb40-15b0-465e-a3a8-58888bdaa4f3";
+				PROVISIONING_PROFILE_SPECIFIER = "Recorder Watch Dev";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -2060,10 +2061,10 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = RecorderFramework_WatchExample_Extension;
 				INFOPLIST_FILE = "RecorderFramework-WatchExample/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = com.werockapps.CallRecorder.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codebluestudio.Recorder.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a3d38cf5-2ea3-407d-911c-a96f57760eef";
-				PROVISIONING_PROFILE_SPECIFIER = "CallRecorder Watch AppStore";
+				PROVISIONING_PROFILE = "5807c048-1615-4c7d-aeed-0e2a8e1b8c95";
+				PROVISIONING_PROFILE_SPECIFIER = "Recorder watch AppStore";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
