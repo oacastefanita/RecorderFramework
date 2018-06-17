@@ -11,6 +11,7 @@ import RecorderFramework
 
 class LanguagesViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
     var selectedObject: AnyObject!
+    var selectedLanguage:Language!
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -50,6 +51,7 @@ class LanguagesViewController: UIViewController,UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+       selectedLanguage = RecorderFrameworkManager.sharedInstance.getLanguages()[indexPath.row]
         RecorderFrameworkManager.sharedInstance.getTranslations(RecorderFrameworkManager.sharedInstance.getLanguages()[indexPath.row].code, completionHandler: { (success, data) -> Void in
             if success {
                 self.selectedObject = data as AnyObject
@@ -64,6 +66,7 @@ class LanguagesViewController: UIViewController,UITableViewDelegate, UITableView
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showTranslationsFromLanguages"{
             (segue.destination as! DisplayViewController).object = selectedObject
+            (segue.destination as! DisplayViewController).objectTitle = selectedLanguage.name
         }
     }
 

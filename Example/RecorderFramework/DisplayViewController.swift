@@ -14,10 +14,12 @@ class DisplayViewController: UIViewController{
     @IBOutlet weak var textView: UITextView!
     
     var object: AnyObject!
+    var objectTitle:String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         textView.text = object.description
+        self.title = objectTitle ?? ""
     }
     
     override func viewDidAppear(_ animated: Bool) {

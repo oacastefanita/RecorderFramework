@@ -12,10 +12,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Register View Controller-->
+        <!--Register Phone-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="RegisterViewController" customModule="RecorderFramework_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Register Phone" id="vXZ-lx-hvc" customClass="RegisterViewController" customModule="RecorderFramework_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -28,7 +28,7 @@
                                 <rect key="frame" x="8" y="104" width="359" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                 <connections>
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="qlb-5o-qte"/>
                                 </connections>
@@ -50,7 +50,7 @@
                             <constraint firstItem="4Cy-4T-NI1" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="uRU-gU-V3v"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="iZB-tf-oZ4"/>
+                    <navigationItem key="navigationItem" title="Register Phone" id="iZB-tf-oZ4"/>
                     <connections>
                         <outlet property="btnDone" destination="4Cy-4T-NI1" id="XXL-QF-8FZ"/>
                         <outlet property="txtPhone" destination="zgK-Kr-bwt" id="xbd-Cx-xKi"/>
@@ -123,10 +123,10 @@
             </objects>
             <point key="canvasLocation" x="-903" y="27"/>
         </scene>
-        <!--Enter Code View Controller-->
+        <!--Verify Code-->
         <scene sceneID="LY0-mL-fGm">
             <objects>
-                <viewController id="Vwp-ka-caa" customClass="EnterCodeViewController" customModule="RecorderFramework_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Verify Code" id="Vwp-ka-caa" customClass="EnterCodeViewController" customModule="RecorderFramework_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ksP-CS-rGy"/>
                         <viewControllerLayoutGuide type="bottom" id="0Pk-qN-hIV"/>
@@ -139,7 +139,7 @@
                                 <rect key="frame" x="8" y="104" width="359" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                 <connections>
                                     <outlet property="delegate" destination="Vwp-ka-caa" id="gLs-Zi-Gzc"/>
                                 </connections>
@@ -519,10 +519,10 @@
             </objects>
             <point key="canvasLocation" x="2533.5999999999999" y="26.53673163418291"/>
         </scene>
-        <!--Languages View Controller-->
+        <!--Languages-->
         <scene sceneID="B32-ol-pZy">
             <objects>
-                <viewController id="ohe-i0-Zke" customClass="LanguagesViewController" customModule="RecorderFramework_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Languages" id="ohe-i0-Zke" customClass="LanguagesViewController" customModule="RecorderFramework_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="YO5-zu-Egi"/>
                         <viewControllerLayoutGuide type="bottom" id="wR3-ng-lqs"/>
@@ -658,97 +658,123 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dR6-WR-8on">
-                                <rect key="frame" x="8" y="72" width="359" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dR6-WR-8on">
+                                <rect key="frame" x="8" y="223" width="359" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Ip0-sC-l5k" id="Tua-rm-miJ"/>
+                                </connections>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xvw-BI-Ezb">
-                                <rect key="frame" x="8" y="110" width="359" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xvw-BI-Ezb">
+                                <rect key="frame" x="8" y="261" width="359" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Ip0-sC-l5k" id="c5K-Xo-lLy"/>
+                                </connections>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eDE-5N-Sl6">
-                                <rect key="frame" x="8" y="148" width="359" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eDE-5N-Sl6">
+                                <rect key="frame" x="8" y="299" width="359" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Ip0-sC-l5k" id="baX-rZ-WSq"/>
+                                </connections>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3lj-Th-AVC">
-                                <rect key="frame" x="8" y="186" width="359" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="PIN" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yUx-vh-HMb">
+                                <rect key="frame" x="8" y="337" width="359" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Ip0-sC-l5k" id="hkW-u9-OVp"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="minutes offset UTC" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gLx-UN-fXi">
-                                <rect key="frame" x="8" y="186" width="359" height="30"/>
+                                <rect key="frame" x="8" y="375" width="359" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Ip0-sC-l5k" id="zWz-V9-BZx"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="play beep" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kV0-0C-SDq">
-                                <rect key="frame" x="80.5" y="229" width="74.5" height="21"/>
+                                <rect key="frame" x="80.5" y="418" width="74.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QVx-RV-PoZ">
-                                <rect key="frame" x="163" y="224" width="51" height="31"/>
+                                <rect key="frame" x="163" y="413" width="51" height="31"/>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NsO-2N-I8a">
-                                <rect key="frame" x="163" y="263" width="51" height="31"/>
+                                <rect key="frame" x="163" y="452" width="51" height="31"/>
                             </switch>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xjQ-Ja-Ce2">
-                                <rect key="frame" x="170" y="302" width="35" height="30"/>
+                                <rect key="frame" x="170" y="491" width="35" height="30"/>
                                 <state key="normal" title="done"/>
                                 <connections>
                                     <action selector="onDone:" destination="Ip0-sC-l5k" eventType="touchUpInside" id="jG9-YM-d56"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="public" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YgI-rM-rBi">
-                                <rect key="frame" x="108.5" y="268.5" width="46.5" height="20.5"/>
+                                <rect key="frame" x="108.5" y="457.5" width="46.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Bgo-LQ-bNA">
+                                <rect key="frame" x="116" y="72" width="143" height="143"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Bgo-LQ-bNA" secondAttribute="height" multiplier="1:1" id="JBM-zc-UJl"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="NsO-2N-I8a" firstAttribute="top" secondItem="QVx-RV-PoZ" secondAttribute="bottom" constant="8" id="0T5-tI-xSW"/>
                             <constraint firstItem="YgI-rM-rBi" firstAttribute="centerY" secondItem="NsO-2N-I8a" secondAttribute="centerY" id="1n6-wd-b0E"/>
+                            <constraint firstAttribute="trailing" secondItem="yUx-vh-HMb" secondAttribute="trailing" constant="8" id="1zu-y5-CSN"/>
                             <constraint firstItem="gLx-UN-fXi" firstAttribute="leading" secondItem="u1L-hu-IUV" secondAttribute="leading" constant="8" id="3Db-JP-TpB"/>
                             <constraint firstAttribute="trailing" secondItem="eDE-5N-Sl6" secondAttribute="trailing" constant="8" id="7Ss-aw-xb7"/>
+                            <constraint firstItem="Bgo-LQ-bNA" firstAttribute="leading" secondItem="u1L-hu-IUV" secondAttribute="leadingMargin" constant="100" id="7sX-rP-1Zf"/>
                             <constraint firstItem="Xvw-BI-Ezb" firstAttribute="leading" secondItem="u1L-hu-IUV" secondAttribute="leading" constant="8" id="ACP-m7-oLQ"/>
+                            <constraint firstItem="yUx-vh-HMb" firstAttribute="leading" secondItem="u1L-hu-IUV" secondAttribute="leading" constant="8" id="DaA-Ns-ffx"/>
                             <constraint firstItem="NsO-2N-I8a" firstAttribute="centerX" secondItem="u1L-hu-IUV" secondAttribute="centerX" id="HGX-HM-wPE"/>
-                            <constraint firstItem="3lj-Th-AVC" firstAttribute="top" secondItem="eDE-5N-Sl6" secondAttribute="bottom" constant="8" id="IYL-R4-cyC"/>
+                            <constraint firstItem="dR6-WR-8on" firstAttribute="top" secondItem="Bgo-LQ-bNA" secondAttribute="bottom" constant="8" id="HH7-jF-3PX"/>
                             <constraint firstItem="xjQ-Ja-Ce2" firstAttribute="top" secondItem="NsO-2N-I8a" secondAttribute="bottom" constant="8" id="KmG-zd-Kgw"/>
                             <constraint firstItem="QVx-RV-PoZ" firstAttribute="centerX" secondItem="u1L-hu-IUV" secondAttribute="centerX" id="Ndz-IC-VK8"/>
                             <constraint firstItem="dR6-WR-8on" firstAttribute="leading" secondItem="u1L-hu-IUV" secondAttribute="leading" constant="8" id="Nsv-dC-zcb"/>
                             <constraint firstItem="kV0-0C-SDq" firstAttribute="centerY" secondItem="QVx-RV-PoZ" secondAttribute="centerY" id="OCF-4j-tVS"/>
                             <constraint firstItem="xjQ-Ja-Ce2" firstAttribute="centerX" secondItem="u1L-hu-IUV" secondAttribute="centerX" id="PtH-wP-RlD"/>
                             <constraint firstItem="eDE-5N-Sl6" firstAttribute="top" secondItem="Xvw-BI-Ezb" secondAttribute="bottom" constant="8" id="Qpy-SO-2ae"/>
-                            <constraint firstItem="dR6-WR-8on" firstAttribute="top" secondItem="yUj-MN-k7O" secondAttribute="bottom" constant="8" id="Qsr-KZ-MDc"/>
                             <constraint firstAttribute="trailing" secondItem="Xvw-BI-Ezb" secondAttribute="trailing" constant="8" id="R0U-9O-o7D"/>
-                            <constraint firstItem="3lj-Th-AVC" firstAttribute="leading" secondItem="u1L-hu-IUV" secondAttribute="leading" constant="8" id="Up1-cR-rZS"/>
-                            <constraint firstItem="QVx-RV-PoZ" firstAttribute="top" secondItem="3lj-Th-AVC" secondAttribute="bottom" constant="8" id="XDi-I7-sTF"/>
+                            <constraint firstItem="QVx-RV-PoZ" firstAttribute="top" secondItem="gLx-UN-fXi" secondAttribute="bottom" constant="8" id="UWf-RI-NVt"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Bgo-LQ-bNA" secondAttribute="trailing" constant="100" id="Vzd-o0-rIV"/>
+                            <constraint firstItem="Bgo-LQ-bNA" firstAttribute="top" secondItem="yUj-MN-k7O" secondAttribute="bottom" constant="8" id="XYF-5E-MqN"/>
                             <constraint firstItem="QVx-RV-PoZ" firstAttribute="leading" secondItem="kV0-0C-SDq" secondAttribute="trailing" constant="8" id="XyY-BT-R2z"/>
                             <constraint firstAttribute="trailing" secondItem="gLx-UN-fXi" secondAttribute="trailing" constant="8" id="e3S-02-CMS"/>
                             <constraint firstItem="Xvw-BI-Ezb" firstAttribute="top" secondItem="dR6-WR-8on" secondAttribute="bottom" constant="8" id="keh-rU-Lne"/>
                             <constraint firstAttribute="trailing" secondItem="dR6-WR-8on" secondAttribute="trailing" constant="8" id="l5P-kZ-dbB"/>
-                            <constraint firstItem="gLx-UN-fXi" firstAttribute="top" secondItem="eDE-5N-Sl6" secondAttribute="bottom" constant="8" id="o9t-MA-su8"/>
                             <constraint firstItem="eDE-5N-Sl6" firstAttribute="leading" secondItem="u1L-hu-IUV" secondAttribute="leading" constant="8" id="paD-fy-VPF"/>
-                            <constraint firstAttribute="trailing" secondItem="3lj-Th-AVC" secondAttribute="trailing" constant="8" id="q48-Gq-hZq"/>
+                            <constraint firstItem="gLx-UN-fXi" firstAttribute="top" secondItem="yUx-vh-HMb" secondAttribute="bottom" constant="8" id="rhn-f8-yS0"/>
+                            <constraint firstItem="yUx-vh-HMb" firstAttribute="top" secondItem="eDE-5N-Sl6" secondAttribute="bottom" constant="8" id="saj-ZF-isA"/>
                             <constraint firstItem="NsO-2N-I8a" firstAttribute="leading" secondItem="YgI-rM-rBi" secondAttribute="trailing" constant="8" id="uie-Ai-IoU"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="imgPic" destination="Bgo-LQ-bNA" id="JKt-eO-cKz"/>
                         <outlet property="swtPlayBell" destination="QVx-RV-PoZ" id="po2-Fa-gto"/>
                         <outlet property="swtPublic" destination="NsO-2N-I8a" id="abg-s0-EKE"/>
                         <outlet property="txtEmail" destination="eDE-5N-Sl6" id="ig6-8O-BuX"/>
                         <outlet property="txtFirstName" destination="dR6-WR-8on" id="eEs-NI-Lf9"/>
                         <outlet property="txtLastName" destination="Xvw-BI-Ezb" id="Zic-Ff-jc3"/>
+                        <outlet property="txtPin" destination="yUx-vh-HMb" id="Yt2-uR-Ggm"/>
                         <outlet property="txtTimezone" destination="gLx-UN-fXi" id="doL-BH-nt3"/>
                     </connections>
                 </viewController>
@@ -756,10 +782,10 @@
             </objects>
             <point key="canvasLocation" x="2533.5999999999999" y="3111.9940029985009"/>
         </scene>
-        <!--Display View Controller-->
+        <!--Translations-->
         <scene sceneID="jel-qo-VoZ">
             <objects>
-                <viewController id="O1M-M6-QLo" customClass="DisplayViewController" customModule="RecorderFramework_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Translations" id="O1M-M6-QLo" customClass="DisplayViewController" customModule="RecorderFramework_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IBI-Ju-Ovt"/>
                         <viewControllerLayoutGuide type="bottom" id="Gh9-4N-HaE"/>
@@ -1632,7 +1658,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="bA4-ER-KEw"/>
         <segue reference="Lwo-vA-DKq"/>
-        <segue reference="C7U-gp-LW3"/>
+        <segue reference="pwT-Ny-e12"/>
         <segue reference="8zy-MB-s7l"/>
     </inferredMetricsTieBreakers>
 </document>
