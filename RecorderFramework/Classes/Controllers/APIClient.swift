@@ -1444,13 +1444,13 @@ public class APIClient : NSObject {
         }
     }
     
-    func updateSettings(_ playBeep:Bool, filePersmission:String = "public",completionHandler:((Bool, Any?) -> Void)?) {
+    func updateSettings(_ playBeep:Bool, filesPersmission:Bool = true,completionHandler:((Bool, Any?) -> Void)?) {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
         }
         
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "play_beep" : playBeep ? "yes" : "no", "files_permission" : filePersmission]
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "play_beep" : playBeep ? "yes" : "no", "files_permission" : filesPersmission ? "public":"private"]
         
         api.doRequest("update_settings", method: .post, parameters: parameters) { (success, data) in
             if success {

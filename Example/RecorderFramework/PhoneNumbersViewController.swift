@@ -55,8 +55,16 @@ class PhoneNumbersViewController: UIViewController,UITableViewDelegate, UITableV
                 phoneNumber.isDefault = false
             }
         }
-        
+        selectedObject = AppPersistentData.sharedInstance.phoneNumbers[indexPath.row]
         (AppPersistentData.sharedInstance.phoneNumbers[indexPath.row] as PhoneNumber).isDefault = true
-
+        self.performSegue(withIdentifier: "showNumberDetailsFromNumbers", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showNumberDetailsFromNumbers"{
+            (segue.destination as! DisplayViewController).object = selectedObject
+            (segue.destination as! DisplayViewController).objectTitle = "Phone number details
+            "
+        }
     }
 }

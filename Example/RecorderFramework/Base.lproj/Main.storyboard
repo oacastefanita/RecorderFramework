@@ -583,10 +583,10 @@
             </objects>
             <point key="canvasLocation" x="2534" y="1556"/>
         </scene>
-        <!--Phone Numbers View Controller-->
+        <!--Phone numbers-->
         <scene sceneID="7cH-oI-Uc7">
             <objects>
-                <viewController id="hNC-HA-dxa" customClass="PhoneNumbersViewController" customModule="RecorderFramework_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Phone numbers" id="hNC-HA-dxa" customClass="PhoneNumbersViewController" customModule="RecorderFramework_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7bU-6l-5pa"/>
                         <viewControllerLayoutGuide type="bottom" id="OYT-rO-to3"/>
@@ -640,6 +640,7 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="zlq-Af-OAa" id="IQ8-ef-mq2"/>
+                        <segue destination="O1M-M6-QLo" kind="show" identifier="showNumberDetailsFromNumbers" id="VKW-jF-H0v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Goa-6i-SFg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -817,10 +818,10 @@
             </objects>
             <point key="canvasLocation" x="3662" y="1556"/>
         </scene>
-        <!--Settings View Controller-->
+        <!--Settings-->
         <scene sceneID="JIH-BR-DA3">
             <objects>
-                <viewController id="uua-S5-cTI" customClass="SettingsViewController" customModule="RecorderFramework_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Settings" id="uua-S5-cTI" customClass="SettingsViewController" customModule="RecorderFramework_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vqE-li-MGg"/>
                         <viewControllerLayoutGuide type="bottom" id="wfV-Il-gQd"/>
@@ -835,14 +836,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="File Permission: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="siA-nF-P9X">
-                                <rect key="frame" x="16" y="109" width="124" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Files Public:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="siA-nF-P9X">
+                                <rect key="frame" x="16" y="117" width="91" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="app:  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZdE-hX-51D">
-                                <rect key="frame" x="16" y="138" width="42.5" height="21"/>
+                                <rect key="frame" x="16" y="154" width="42.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -851,32 +852,38 @@
                                 <rect key="frame" x="100" y="75" width="51" height="31"/>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="credits: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CCW-6q-uw6">
-                                <rect key="frame" x="16" y="167" width="61.5" height="21"/>
+                                <rect key="frame" x="16" y="183" width="61.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ObF-gA-P4U">
-                                <rect key="frame" x="16" y="283" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ObF-gA-P4U">
+                                <rect key="frame" x="169" y="224" width="37" height="30"/>
                                 <state key="normal" title="Done"/>
                                 <connections>
                                     <action selector="onUpdate:" destination="uua-S5-cTI" eventType="touchUpInside" id="azU-1B-4Tk"/>
                                 </connections>
                             </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9qQ-Ij-DVG">
+                                <rect key="frame" x="115" y="112" width="51" height="31"/>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="9qQ-Ij-DVG" firstAttribute="centerY" secondItem="siA-nF-P9X" secondAttribute="centerY" id="54X-ds-Bv4"/>
                             <constraint firstItem="hNN-Sr-1UN" firstAttribute="leading" secondItem="ina-3F-dEY" secondAttribute="leading" constant="16" id="8QR-FW-Cxe"/>
                             <constraint firstItem="4or-BA-NAf" firstAttribute="leading" secondItem="hNN-Sr-1UN" secondAttribute="trailing" constant="8" id="9gG-C3-VGI"/>
-                            <constraint firstItem="siA-nF-P9X" firstAttribute="top" secondItem="hNN-Sr-1UN" secondAttribute="bottom" constant="8" id="A9Y-cS-rqD"/>
+                            <constraint firstItem="siA-nF-P9X" firstAttribute="top" secondItem="hNN-Sr-1UN" secondAttribute="bottom" constant="16" id="A9Y-cS-rqD"/>
                             <constraint firstItem="siA-nF-P9X" firstAttribute="leading" secondItem="ina-3F-dEY" secondAttribute="leading" constant="16" id="WcS-ws-Y8a"/>
                             <constraint firstItem="ZdE-hX-51D" firstAttribute="leading" secondItem="ina-3F-dEY" secondAttribute="leading" constant="16" id="a7r-N1-gBM"/>
+                            <constraint firstItem="ObF-gA-P4U" firstAttribute="top" secondItem="CCW-6q-uw6" secondAttribute="bottom" constant="20" id="iap-fX-XJm"/>
                             <constraint firstItem="CCW-6q-uw6" firstAttribute="leading" secondItem="ina-3F-dEY" secondAttribute="leading" constant="16" id="qEI-fd-Cd7"/>
                             <constraint firstItem="4or-BA-NAf" firstAttribute="centerY" secondItem="hNN-Sr-1UN" secondAttribute="centerY" id="quH-eJ-kcA"/>
+                            <constraint firstItem="ObF-gA-P4U" firstAttribute="centerX" secondItem="ina-3F-dEY" secondAttribute="centerX" id="r0b-nl-YYc"/>
                             <constraint firstItem="CCW-6q-uw6" firstAttribute="top" secondItem="ZdE-hX-51D" secondAttribute="bottom" constant="8" id="tT1-ok-LFs"/>
-                            <constraint firstItem="ZdE-hX-51D" firstAttribute="top" secondItem="siA-nF-P9X" secondAttribute="bottom" constant="8" id="uHf-g1-DUh"/>
+                            <constraint firstItem="ZdE-hX-51D" firstAttribute="top" secondItem="siA-nF-P9X" secondAttribute="bottom" constant="16" id="uHf-g1-DUh"/>
                             <constraint firstItem="hNN-Sr-1UN" firstAttribute="top" secondItem="vqE-li-MGg" secondAttribute="bottom" constant="16" id="uOm-9M-LKN"/>
+                            <constraint firstItem="9qQ-Ij-DVG" firstAttribute="leading" secondItem="siA-nF-P9X" secondAttribute="trailing" constant="8" id="ver-L2-v77"/>
                         </constraints>
                     </view>
                     <connections>
@@ -884,6 +891,7 @@
                         <outlet property="lblCredits" destination="CCW-6q-uw6" id="F1j-ps-GaE"/>
                         <outlet property="lblFilePermission" destination="siA-nF-P9X" id="HRk-vL-m2F"/>
                         <outlet property="swcBeep" destination="4or-BA-NAf" id="pCP-2H-Kpv"/>
+                        <outlet property="swcFilePermission" destination="9qQ-Ij-DVG" id="FfR-Zu-fEl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gb9-IU-Ais" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1658,7 +1666,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="bA4-ER-KEw"/>
         <segue reference="Lwo-vA-DKq"/>
-        <segue reference="pwT-Ny-e12"/>
+        <segue reference="VKW-jF-H0v"/>
         <segue reference="8zy-MB-s7l"/>
     </inferredMetricsTieBreakers>
 </document>

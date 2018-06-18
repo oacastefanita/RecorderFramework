@@ -11,6 +11,7 @@ import RecorderFramework
 class SettingsViewController: UIViewController{
 
     @IBOutlet weak var swcBeep: UISwitch!
+    @IBOutlet weak var swcFilePermission: UISwitch!
     @IBOutlet weak var lblFilePermission: UILabel!
     @IBOutlet weak var lblApp: UILabel!
     @IBOutlet weak var lblCredits: UILabel!
@@ -35,7 +36,7 @@ class SettingsViewController: UIViewController{
     
     func loadViewData(){
         swcBeep.isOn = RecorderFrameworkManager.sharedInstance.getUser().playBeep        
-        lblFilePermission.text = lblFilePermission.text! + RecorderFrameworkManager.sharedInstance.getFilePermission()!
+        swcFilePermission.isOn = RecorderFrameworkManager.sharedInstance.getFilePermission() == "public"
         lblApp.text = lblApp.text! + RecorderFrameworkManager.sharedInstance.getApp()!
         lblCredits.text = lblCredits.text! + "\(RecorderFrameworkManager.sharedInstance.getCredits())"
     }
@@ -44,7 +45,7 @@ class SettingsViewController: UIViewController{
         updateSettings()
     }
     func updateSettings(){
-        RecorderFrameworkManager.sharedInstance.updateSettings(swcBeep.isOn, completionHandler: { (success, data) -> Void in
+        RecorderFrameworkManager.sharedInstance.updateSettings(swcBeep.isOn,filesPersmission: swcFilePermission.isOn, completionHandler: { (success, data) -> Void in
             if success {
                 self.navigationController?.popViewController(animated: true)
                 self.alert(message: "Request sent")

@@ -502,8 +502,8 @@ public class RecorderFrameworkManager : NSObject {
     /// - Parameters:
     ///   - playBeep: Boolean indicator of playbeep value
     ///   - completionHandler: block to be called upon receiving the server's response
-    public func updateSettings(_ playBeep:Bool, completionHandler:((Bool, Any?) -> Void)?) {
-        APIClient.sharedInstance.updateSettings(playBeep, completionHandler: completionHandler)
+    public func updateSettings(_ playBeep:Bool, filesPersmission:Bool = true, completionHandler:((Bool, Any?) -> Void)?) {
+        APIClient.sharedInstance.updateSettings(playBeep, filesPersmission:filesPersmission, completionHandler: completionHandler)
     }
     
     /// Update user

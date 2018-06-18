@@ -19,6 +19,15 @@ class DisplayViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         textView.text = object.description
+        if let number = object as? PhoneNumber{
+            textView.text = ""
+            textView.text = "Phone number: " + number.phoneNumber + "\n"
+            textView.text = textView.text + "Number: " + number.number + "\n"
+            textView.text = textView.text + "Prefix: " + number.prefix + "\n"
+            textView.text = textView.text + "Friendly Name: " + number.friendlyNumber + "\n"
+            textView.text = textView.text + "City: " + number.city + "\n"
+            textView.text = textView.text + "Country: " + number.country + "\n"
+        }
         self.title = objectTitle ?? ""
     }
     
