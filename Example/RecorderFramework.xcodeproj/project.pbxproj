@@ -98,6 +98,7 @@
 		A2A6256B1FB1FD3E003714C8 /* PhoneNumbersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A6255A1FB1FD3E003714C8 /* PhoneNumbersViewController.swift */; };
 		A2A6256C1FB1FD3E003714C8 /* DisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A6255B1FB1FD3E003714C8 /* DisplayViewController.swift */; };
 		A2A9FD3020D3DFB800421E2B /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2A9FD2F20D3DFB800421E2B /* StoreKit.framework */; };
+		A2AB90C220DACC1E00FFABD4 /* MoveToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AB90C120DACC1E00FFABD4 /* MoveToViewController.swift */; };
 		A2ADD8BD20A987C1005C6CD2 /* RegisterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2ADD8BC20A987C1005C6CD2 /* RegisterTests.swift */; };
 		A2ADD8BF20A9A836005C6CD2 /* FileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2ADD8BE20A9A836005C6CD2 /* FileTests.swift */; };
 		A2ADD8CE20A9D4F4005C6CD2 /* Test.wav in Resources */ = {isa = PBXBuildFile; fileRef = A2ADD8CD20A9D4F4005C6CD2 /* Test.wav */; };
@@ -309,6 +310,7 @@
 		A2A6255A1FB1FD3E003714C8 /* PhoneNumbersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhoneNumbersViewController.swift; path = "RecorderFramework-TvExample/PhoneNumbersViewController.swift"; sourceTree = SOURCE_ROOT; };
 		A2A6255B1FB1FD3E003714C8 /* DisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DisplayViewController.swift; path = "RecorderFramework-TvExample/DisplayViewController.swift"; sourceTree = SOURCE_ROOT; };
 		A2A9FD2F20D3DFB800421E2B /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		A2AB90C120DACC1E00FFABD4 /* MoveToViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveToViewController.swift; sourceTree = "<group>"; };
 		A2ADD8BC20A987C1005C6CD2 /* RegisterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTests.swift; sourceTree = "<group>"; };
 		A2ADD8BE20A9A836005C6CD2 /* FileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTests.swift; sourceTree = "<group>"; };
 		A2ADD8CD20A9D4F4005C6CD2 /* Test.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Test.wav; sourceTree = "<group>"; };
@@ -514,6 +516,7 @@
 				A2BF106D1FC823850016CFA3 /* DatePickerViewController.swift */,
 				A294B2151FCABC3000BA4852 /* ViewTagViewController.swift */,
 				A26FCC921FCDE0DE00CBA0D4 /* PanoramaViewController.swift */,
+				A2AB90C120DACC1E00FFABD4 /* MoveToViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -1452,6 +1455,7 @@
 				A2AEABEF1FB090E80094DCF8 /* BuyViewController.swift in Sources */,
 				A2AEABED1FB0903D0094DCF8 /* MKStoreKit.m in Sources */,
 				A2931C281FB103C200B631E2 /* SearchViewController.swift in Sources */,
+				A2AB90C220DACC1E00FFABD4 /* MoveToViewController.swift in Sources */,
 				A2689F8F1FA5051300A3F391 /* Extensions.swift in Sources */,
 				A23A2CB51FA1D84C00E25F87 /* FoldersViewController.swift in Sources */,
 				A2FE5C301FA74B8F005FD2D1 /* SettingsViewController.swift in Sources */,

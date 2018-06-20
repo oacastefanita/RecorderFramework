@@ -181,9 +181,7 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
     }
     
     @IBAction func onMove(_ sender: Any) {
-        titleType = 1
-        placeholder = "Folder id"
-        self.performSegue(withIdentifier: "titleFromFile", sender: self)
+        self.performSegue(withIdentifier: "showMoveToFromFile", sender: self)
     }
     
     @IBAction func onUpdate(_ sender: Any) {
@@ -260,6 +258,8 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
         } else if segue.identifier == "showDateFromFile"{
             (segue.destination as! DatePickerViewController).delegate = self
             (segue.destination as! DatePickerViewController).showHours = true
+        } else if segue.identifier == "showMoveToFromFile"{
+            (segue.destination as! MoveToViewController).file = self.file
         }
     }
     
