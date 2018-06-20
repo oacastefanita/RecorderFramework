@@ -10,7 +10,7 @@ import Foundation
 import RecorderFramework
 
 class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
-    var objects = [SearchResult]()
+    var objects = [RecordItem]()
     var selectedFile: RecordItem!
     @IBOutlet weak var txtSearch: UITextField!
     @IBOutlet weak var tableView: UITableView!
@@ -45,7 +45,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  tableView.dequeueReusableCell(withIdentifier: "titleCell", for: indexPath)
-        let recordItem = objects[indexPath.row].recordItem!
+        let recordItem = objects[indexPath.row]
         if recordItem.text != nil && !recordItem.text.isEmpty {
             cell.textLabel?.text = recordItem.text
         }
@@ -61,13 +61,17 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        selectedFile = objects[indexPath.row].recordItem!
+        selectedFile = objects[indexPath.row]
         self.performSegue(withIdentifier: "showFileDetailsFromSearch", sender: self)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        objects = RecorderFrameworkManager.sharedInstance.searchRecordings(textField.text!)
-        tableView.reloadData()
+        RecorderFrameworkManager.sharedInstance.searchRecordings(query: textField.text!, completionHandler:  ({ (success, data) -> Void in
+            if success && data != nil{
+                self.objects = data as! [RecordItem]
+                self.tableView.reloadData()
+            }
+        }))
         return true
     }
     

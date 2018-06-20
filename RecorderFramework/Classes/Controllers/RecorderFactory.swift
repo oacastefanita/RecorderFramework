@@ -73,7 +73,7 @@ public class RecorderFactory: NSObject {
         if let value:String = dict.object(forKey: "pass") as? String {
             object.password  = value
         }
-        if let value:String = dict.object(forKey: "folder_order") as? String {
+        if let value:String = dict.object(forKey: "order_id") as? String {
             object.folderOrder  = Int(value)!
         }
         object.recordedItems = [RecordItem]()
@@ -176,11 +176,14 @@ public class RecorderFactory: NSObject {
         if let value:String = dict.object(forKey: "text") as? String {
             object.text = value
         }
+        if let value:String = dict.object(forKey: "order_id") as? String {
+            object.fileOrder  = Int(value)!
+        }
         return object
     }
     
     public class func createDictFromRecordItem(_ file: RecordItem) -> NSDictionary{
-        let dict = NSDictionary(dictionary: ["folderId":file.folderId, "name":file.text, "id":file.id, "access_number":file.accessNumber, "url":file.url, "share_url":file.shareUrl, "credits":file.credits, "duration":file.duration, "time":file.time,"f_name":file.firstName, "l_name":file.lastName, "email":file.email, "notes":file.notes, "phone":file.phoneNumber, "tags":file.tags, "remind_date":file.remindDate, "remind_days":file.remindDays, "free":file.isFree ? "1":"0"])
+        let dict = NSDictionary(dictionary: ["folderId":file.folderId, "name":file.text, "id":file.id, "access_number":file.accessNumber, "url":file.url, "share_url":file.shareUrl, "credits":file.credits, "duration":file.duration, "time":file.time,"f_name":file.firstName, "l_name":file.lastName, "email":file.email, "notes":file.notes, "phone":file.phoneNumber, "tags":file.tags, "remind_date":file.remindDate, "remind_days":file.remindDays, "free":file.isFree ? "1":"0","text":file.text, "order_id":file.fileOrder])
         return dict
     }
 }

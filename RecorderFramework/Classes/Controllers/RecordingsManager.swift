@@ -157,7 +157,7 @@ public class RecordingsManager : NSObject {
     }
     
     func syncRecordingItem(_ recordItem:RecordItem, folder:RecordFolder) -> RecordItem {
-        
+        folder.recordedItems.sort { $0.fileOrder > $1.fileOrder }
         for recFolder in recordFolders {
             for existingItem in recFolder.recordedItems {
                 if existingItem.id == recordItem.id {
@@ -167,7 +167,7 @@ public class RecordingsManager : NSObject {
             }
         }
         folder.recordedItems.append(recordItem)
-        folder.recordedItems.sort { Int($0.id)! > Int($1.id)! }
+        folder.recordedItems.sort { $0.fileOrder > $1.fileOrder }
         return recordItem
     }
     
@@ -288,7 +288,7 @@ public class RecordingsManager : NSObject {
     }
     
     func sortByFolderOrder() {
-        recordFolders.sorted { (r1, r2) -> Bool in
+        recordFolders = recordFolders.sorted { (r1, r2) -> Bool in
             if r1.id == "0" {
                 return true
             }

@@ -323,8 +323,17 @@ public class RecorderFrameworkManager : NSObject {
     /// - Parameters:
     ///   - folderId: folder id
     ///   - completionHandler: block to be called upon receiving the server's response
-    public func getRecordings(_ folderId:String!, lastFileId: String! = nil, less: Bool = false, completionHandler:((Bool, Any?) -> Void)?) {
-        APIClient.sharedInstance.getRecordings(folderId, lastFileId: lastFileId, less:less,  completionHandler: completionHandler)
+    public func getRecordings(_ folderId:String!, lastFileId: String! = nil, less: Bool = false, q:String! = nil, completionHandler:((Bool, Any?) -> Void)?) {
+        APIClient.sharedInstance.getRecordings(folderId, lastFileId: lastFileId, less:less, q:q, completionHandler: completionHandler)
+    }
+    
+    /// Search recordings
+    ///
+    /// - Parameters:
+    ///   - q: search string
+    ///   - completionHandler: block to be called upon receiving the server's response
+    public func searchRecordings(query: String, completionHandler:((Bool, Any?) -> Void)?){
+        APIClient.sharedInstance.searchRecordings(query, completionHandler: completionHandler)
     }
     
     /// Get phone numbers
@@ -369,12 +378,12 @@ public class RecorderFrameworkManager : NSObject {
         APIClient.sharedInstance.deleteFolder(folderId, moveTo: moveTo, completionHandler: completionHandler)
     }
     
-    /// Reorder folders
+    /// Reorder folders or files
     ///
     /// - Parameters:
     ///   - parameters: reorder parameters
     ///   - completionHandler: block to be called upon receiving the server's response
-    public func reorderFolders(_ parameters:[String:Any], completionHandler:((Bool, Any?) -> Void)?) {
+    public func reorderItems(_ parameters:[String:Any], completionHandler:((Bool, Any?) -> Void)?) {
         APIClient.sharedInstance.reorderFolders(parameters, completionHandler: completionHandler)
     }
     

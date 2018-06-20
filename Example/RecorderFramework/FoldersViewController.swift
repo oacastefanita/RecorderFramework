@@ -12,6 +12,7 @@ import RecorderFramework
 class FoldersViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, TitleViewControllerDelegater {
     var selectedIndex = 0
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var btnReorder: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -57,12 +58,46 @@ class FoldersViewController: UIViewController,UITableViewDelegate, UITableViewDa
         }))
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if indexPath.row == 0 || indexPath.row == 1 || indexPath.row == RecorderFrameworkManager.sharedInstance.getFolders().count - 1{
+            return false
+        }
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return .none
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        var folders = RecorderFrameworkManager.sharedInstance.getFolders()
+        let item = RecorderFrameworkManager.sharedInstance.getFolders()[sourceIndexPath.row]
+        folders.remove(at: sourceIndexPath.row)
+        folders.insert(item, at: destinationIndexPath.row)
+        let parameters = ["type":"folder","id":item.id!,"top_id": folders[folders.indexOf(item)! + 1].id!] as [String : Any]
+        RecorderFrameworkManager.sharedInstance.reorderItems(parameters, completionHandler: ({(success, response) -> Void in
+            
+            }))
+    }
+    
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        if indexPath.row == 0 || indexPath.row == 1 || indexPath.row == RecorderFrameworkManager.sharedInstance.getFolders().count - 1{
+            return false
+        }
+        return true
+    }
+    
     @IBAction func onCreate(_ sender: Any) {
         self.performSegue(withIdentifier: "createFolderFromFolders", sender: self)
     }
     
     @IBAction func onReorder(_ sender: Any) {
-        
+        self.tableView.isEditing = !self.tableView.isEditing
+        if tableView.isEditing{
+            self.btnReorder.setTitle("Done", for: .normal)
+        }else{
+            self.btnReorder.setTitle("Reorder Folders", for: .normal)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -319,10 +319,10 @@
             </objects>
             <point key="canvasLocation" x="1676" y="29"/>
         </scene>
-        <!--Search View Controller-->
+        <!--Search-->
         <scene sceneID="k0Y-Y3-u6h">
             <objects>
-                <viewController id="iyz-sR-1pL" customClass="SearchViewController" customModule="RecorderFramework_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Search" id="iyz-sR-1pL" customClass="SearchViewController" customModule="RecorderFramework_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="OBu-J4-mR8"/>
                         <viewControllerLayoutGuide type="bottom" id="cXL-KI-G2Y"/>
@@ -396,10 +396,10 @@
             </objects>
             <point key="canvasLocation" x="2573.5999999999999" y="-1597.1514242878561"/>
         </scene>
-        <!--Buy View Controller-->
+        <!--Upgrade-->
         <scene sceneID="scv-MI-1fN">
             <objects>
-                <viewController id="9OT-9x-Fh5" customClass="BuyViewController" customModule="RecorderFramework_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Upgrade" id="9OT-9x-Fh5" customClass="BuyViewController" customModule="RecorderFramework_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Qux-yc-Scn"/>
                         <viewControllerLayoutGuide type="bottom" id="GTh-6u-sy1"/>
@@ -489,7 +489,7 @@
                                     <action selector="onCreate:" destination="eLX-BJ-Gjz" eventType="touchUpInside" id="SWg-0s-ekq"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ouL-3L-er1">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ouL-3L-er1">
                                 <rect key="frame" x="250" y="72" width="101" height="30"/>
                                 <state key="normal" title="Rorder Folders"/>
                                 <connections>
@@ -510,6 +510,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btnReorder" destination="ouL-3L-er1" id="Ff2-PU-pJm"/>
                         <outlet property="tableView" destination="jaW-gV-C1p" id="V2a-Rt-bg9"/>
                         <segue destination="6Qh-J4-ptr" kind="show" identifier="showFilesFromFolders" id="5HZ-OU-DSS"/>
                         <segue destination="G04-zZ-0Yy" kind="show" identifier="createFolderFromFolders" id="8zy-MB-s7l"/>
@@ -911,7 +912,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="t9V-xg-fDG">
-                                <rect key="frame" x="0.0" y="110" width="375" height="557"/>
+                                <rect key="frame" x="0.0" y="125" width="375" height="542"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="titleCell" textLabel="vcf-vy-Aqb" detailTextLabel="wwi-9X-etd" style="IBUITableViewCellStyleSubtitle" id="c2f-9I-HrR">
@@ -944,61 +945,95 @@
                                     <outlet property="delegate" destination="6Qh-J4-ptr" id="44x-vY-0rt"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H2Y-59-wwj">
-                                <rect key="frame" x="0.0" y="72" width="45" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="H2Y-59-wwj">
+                                <rect key="frame" x="2" y="72" width="60" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="FiW-ss-K1p"/>
+                                </constraints>
                                 <state key="normal" title="Delete"/>
                                 <connections>
                                     <action selector="onDelete:" destination="6Qh-J4-ptr" eventType="touchUpInside" id="31T-me-y8D"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MCt-cw-9NS">
-                                <rect key="frame" x="53" y="72" width="56" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="MCt-cw-9NS">
+                                <rect key="frame" x="64" y="72" width="60.5" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="PYB-Ox-tic"/>
+                                </constraints>
                                 <state key="normal" title="Rename"/>
                                 <connections>
                                     <action selector="onRename:" destination="6Qh-J4-ptr" eventType="touchUpInside" id="yEp-mN-MMV"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KpZ-6S-M2b">
-                                <rect key="frame" x="117" y="72" width="64" height="30"/>
-                                <state key="normal" title="Add pass"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="KpZ-6S-M2b">
+                                <rect key="frame" x="126.5" y="72" width="60" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="zZO-1l-9f4"/>
+                                </constraints>
+                                <state key="normal" title="Add  pass"/>
                                 <connections>
                                     <action selector="onAddPassword:" destination="6Qh-J4-ptr" eventType="touchUpInside" id="9gW-Mp-ZsM"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mxt-ZH-Dlw">
-                                <rect key="frame" x="189" y="72" width="80" height="30"/>
-                                <state key="normal" title="Check pass"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="mxt-ZH-Dlw">
+                                <rect key="frame" x="188.5" y="72" width="60" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="Hfj-jc-Nq8"/>
+                                </constraints>
+                                <state key="normal" title="Check  pass"/>
                                 <connections>
                                     <action selector="onCheckPassword:" destination="6Qh-J4-ptr" eventType="touchUpInside" id="gFA-Aq-yi7"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r9a-aa-PUh">
-                                <rect key="frame" x="277" y="72" width="61" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="r9a-aa-PUh">
+                                <rect key="frame" x="250.5" y="72" width="60.5" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="tlf-eE-Cx4"/>
+                                </constraints>
                                 <state key="normal" title="New Rec"/>
                                 <connections>
                                     <action selector="onNewRecording:" destination="6Qh-J4-ptr" eventType="touchUpInside" id="TiC-DL-huh"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="YEx-PG-qnQ">
+                                <rect key="frame" x="313" y="72" width="60" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="hi0-Fw-f87"/>
+                                </constraints>
+                                <state key="normal" title="Reorder"/>
+                                <connections>
+                                    <action selector="onReorder:" destination="6Qh-J4-ptr" eventType="touchUpInside" id="w7T-Fw-9gl"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="H2Y-59-wwj" firstAttribute="leading" secondItem="UYu-t0-qu2" secondAttribute="leading" id="2Al-Zu-ugi"/>
-                            <constraint firstItem="KpZ-6S-M2b" firstAttribute="leading" secondItem="MCt-cw-9NS" secondAttribute="trailing" constant="8" id="Bx5-OA-xUZ"/>
+                            <constraint firstItem="H2Y-59-wwj" firstAttribute="leading" secondItem="UYu-t0-qu2" secondAttribute="leading" constant="2" id="2Al-Zu-ugi"/>
+                            <constraint firstItem="MCt-cw-9NS" firstAttribute="width" secondItem="H2Y-59-wwj" secondAttribute="width" id="36m-7S-8b2"/>
+                            <constraint firstItem="KpZ-6S-M2b" firstAttribute="leading" secondItem="MCt-cw-9NS" secondAttribute="trailing" constant="2" id="Bx5-OA-xUZ"/>
+                            <constraint firstItem="mxt-ZH-Dlw" firstAttribute="width" secondItem="H2Y-59-wwj" secondAttribute="width" id="Cn5-vv-wTh"/>
+                            <constraint firstItem="r9a-aa-PUh" firstAttribute="width" secondItem="H2Y-59-wwj" secondAttribute="width" id="HJS-wc-Dfe"/>
                             <constraint firstItem="Mvm-xd-3uB" firstAttribute="top" secondItem="t9V-xg-fDG" secondAttribute="bottom" id="M2A-U4-Sjh"/>
                             <constraint firstItem="t9V-xg-fDG" firstAttribute="top" secondItem="H2Y-59-wwj" secondAttribute="bottom" constant="8" id="MRL-Yd-cnr"/>
                             <constraint firstItem="KpZ-6S-M2b" firstAttribute="top" secondItem="Npe-fK-9FO" secondAttribute="bottom" constant="8" id="SvF-tU-ecc"/>
                             <constraint firstAttribute="trailing" secondItem="t9V-xg-fDG" secondAttribute="trailing" id="UBc-bL-dWz"/>
-                            <constraint firstItem="MCt-cw-9NS" firstAttribute="leading" secondItem="H2Y-59-wwj" secondAttribute="trailing" constant="8" id="bjS-Yh-k1Y"/>
+                            <constraint firstAttribute="trailing" secondItem="YEx-PG-qnQ" secondAttribute="trailing" constant="2" id="XIi-8a-hdI"/>
+                            <constraint firstItem="YEx-PG-qnQ" firstAttribute="leading" secondItem="r9a-aa-PUh" secondAttribute="trailing" constant="2" id="XKS-O9-wdn"/>
+                            <constraint firstItem="YEx-PG-qnQ" firstAttribute="top" secondItem="Npe-fK-9FO" secondAttribute="bottom" constant="8" id="a2R-fK-7Jl"/>
+                            <constraint firstItem="MCt-cw-9NS" firstAttribute="leading" secondItem="H2Y-59-wwj" secondAttribute="trailing" constant="2" id="bjS-Yh-k1Y"/>
                             <constraint firstItem="t9V-xg-fDG" firstAttribute="leading" secondItem="UYu-t0-qu2" secondAttribute="leading" id="bkb-ak-s5g"/>
                             <constraint firstItem="r9a-aa-PUh" firstAttribute="top" secondItem="Npe-fK-9FO" secondAttribute="bottom" constant="8" id="c8z-jg-3tw"/>
-                            <constraint firstItem="mxt-ZH-Dlw" firstAttribute="leading" secondItem="KpZ-6S-M2b" secondAttribute="trailing" constant="8" id="cdq-u3-ZkF"/>
+                            <constraint firstItem="mxt-ZH-Dlw" firstAttribute="leading" secondItem="KpZ-6S-M2b" secondAttribute="trailing" constant="2" id="cdq-u3-ZkF"/>
                             <constraint firstItem="mxt-ZH-Dlw" firstAttribute="top" secondItem="Npe-fK-9FO" secondAttribute="bottom" constant="8" id="gGu-pq-iOO"/>
-                            <constraint firstItem="r9a-aa-PUh" firstAttribute="leading" secondItem="mxt-ZH-Dlw" secondAttribute="trailing" constant="8" id="nDI-yA-fAM"/>
+                            <constraint firstItem="YEx-PG-qnQ" firstAttribute="width" secondItem="H2Y-59-wwj" secondAttribute="width" id="gjS-q2-Nvg"/>
+                            <constraint firstItem="KpZ-6S-M2b" firstAttribute="width" secondItem="H2Y-59-wwj" secondAttribute="width" id="iMX-Gy-AZO"/>
+                            <constraint firstItem="r9a-aa-PUh" firstAttribute="leading" secondItem="mxt-ZH-Dlw" secondAttribute="trailing" constant="2" id="nDI-yA-fAM"/>
                             <constraint firstItem="H2Y-59-wwj" firstAttribute="top" secondItem="Npe-fK-9FO" secondAttribute="bottom" constant="8" id="tI8-pA-RVs"/>
                             <constraint firstItem="MCt-cw-9NS" firstAttribute="top" secondItem="Npe-fK-9FO" secondAttribute="bottom" constant="8" id="wba-gD-4w5"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btnReorder" destination="YEx-PG-qnQ" id="lDs-pP-ZZY"/>
                         <outlet property="tableView" destination="t9V-xg-fDG" id="R24-wM-y8x"/>
                         <segue destination="rnC-AD-rWf" kind="show" identifier="showFileFromFiles" id="bA4-ER-KEw"/>
                         <segue destination="G04-zZ-0Yy" kind="show" identifier="titleFromFiles" id="ePg-Zz-p0I"/>
@@ -1667,6 +1702,6 @@
         <segue reference="bA4-ER-KEw"/>
         <segue reference="Lwo-vA-DKq"/>
         <segue reference="VKW-jF-H0v"/>
-        <segue reference="8zy-MB-s7l"/>
+        <segue reference="ePg-Zz-p0I"/>
     </inferredMetricsTieBreakers>
 </document>

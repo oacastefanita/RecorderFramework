@@ -18,6 +18,7 @@ class FilesViewController: UIViewController,UITableViewDelegate, UITableViewData
     var placeholder = ""
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var btnReorder: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -122,6 +123,50 @@ class FilesViewController: UIViewController,UITableViewDelegate, UITableViewData
             RecorderFrameworkManager.sharedInstance.renameFolder(RecordingsManager.sharedInstance.recordFolders[selectedFolder])
             self.navigationController?.popViewController(animated: true)
             self.alert(message: "Request sent")
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return .none
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        var files = RecordingsManager.sharedInstance.recordFolders[selectedFolder].recordedItems
+        let item = RecordingsManager.sharedInstance.recordFolders[selectedFolder].recordedItems[sourceIndexPath.row]
+        files.remove(at: sourceIndexPath.row)
+        files.insert(item, at: destinationIndexPath.row)
+        var topItemIndex = files.indexOf(item)!
+        var parameters = ["type":"file","id":item.id!] as [String : Any]
+        if topItemIndex > 0{
+            topItemIndex = topItemIndex - 1
+            if topItemIndex == 0 {
+                parameters["top_id"] = 0
+            }else{
+                parameters["top_id"] = files[topItemIndex].id!
+            }
+        }else{
+            parameters["top_id"] = 0
+        }
+        parameters["folder_id"] = RecordingsManager.sharedInstance.recordFolders[selectedFolder].id!
+        RecorderFrameworkManager.sharedInstance.reorderItems(parameters, completionHandler: ({(success, response) -> Void in
+            
+        }))
+    }
+    
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    @IBAction func onReorder(_ sender: Any) {
+        self.tableView.isEditing = !self.tableView.isEditing
+        if tableView.isEditing{
+            self.btnReorder.setTitle("Done", for: .normal)
+        }else{
+            self.btnReorder.setTitle("Reorder", for: .normal)
         }
     }
 }

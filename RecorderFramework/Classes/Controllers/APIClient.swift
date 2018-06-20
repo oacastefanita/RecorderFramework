@@ -318,6 +318,94 @@ public class APIClient : NSObject {
         
     }
     
+    func searchRecordings(_ q:String, completionHandler:((Bool, Any?) -> Void)?) {
+        if AppPersistentData.sharedInstance.invalidAPIKey {
+            completionHandler!(false, "Invalid API Key" as AnyObject)
+            return
+        }
+        
+        var parameters:[String : Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "reminder":"true"]
+        parameters["q"] = q
+        /*
+         
+         folder_id=all  //get all files
+         folder_id=trash //get deleted files source=all  // all or app2 or do not set source param
+         pass=1234  //required for private folders
+         reminder=true // for getting file reminders
+         q=hello //search transcription text
+         id=10,
+         op=less , default is 'greater'
+         
+         */
+        api.doRequest("get_files", method: .post, parameters: parameters) { (success, data) in
+            if success {
+                if data!["status"] != nil && (data!["status"] as? String) != "ok" {
+                    if let strError = data!["msg"] as? String {
+                        if completionHandler != nil {
+                            completionHandler!(false, strError.localized)
+                        }
+                    }
+                    else {
+                        if completionHandler != nil {
+                            completionHandler!(false, nil)
+                        }
+                    }
+                }
+                else {
+                    /*
+                     {
+                     "status": "ok",
+                     "files": [
+                     {
+                     "id": "12",
+                     "access_number": "",
+                     "name": "Untitled4",
+                     "f_name": "",
+                     "l_name": "",
+                     "email": "",
+                     "phone": "",
+                     "notes": "notes",
+                     "meta": "",
+                     "source": "",
+                     "url": "https://app2.virtualbrix.net/records/player/file/32/557931e49b4f9_1434005988_71056787.mp3",
+                     "credits": "0",
+                     "duration": "1",
+                     "time": "1434005988",
+                     "share_url": "https://app2.virtualbrix.net/records/player/file/32/557931e49b4f9_1434005988_71056787.mp3",
+                     "download_url": "https://app2.virtualbrix.net/records/player/file/32/download/557931e49b4f9_1434005988_71056787.mp3"
+                     }
+                     ],
+                     "credits": 993
+                     }
+                     
+                     */
+                    if let calls:Array<NSDictionary> = data!["files"] as? Array<NSDictionary> {
+
+                        var items = [RecordItem]()
+                        for call in calls {
+                            let item = RecorderFactory.createRecordItemFromDict(call)
+                            items.append(item)
+                        }
+                        if completionHandler != nil {
+                            completionHandler!( true, items)
+                        }
+                        return
+                    }
+                    
+                    if completionHandler != nil {
+                        completionHandler!( true, nil)
+                    }
+                }
+            }
+            else {
+                if completionHandler != nil {
+                    completionHandler!(success, data!["error"] as? String)
+                }
+            }
+        }
+        
+    }
+    
     public func getRecordings(parameters: [String:Any], completionHandler:((Bool, Any?) -> Void)?) {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
@@ -694,7 +782,7 @@ public class APIClient : NSObject {
         var params = parameters
         params["api_key"] = AppPersistentData.sharedInstance.apiKey!
         
-        api.doRequest("update_folders_order", method: .post, parameters: params) { (success, data) in
+        api.doRequest("update_order", method: .post, parameters: params) { (success, data) in
             if success {
                 if data!["status"] != nil && (data!["status"] as? String) != "ok" {
                     if let strError = data!["msg"] as? String {

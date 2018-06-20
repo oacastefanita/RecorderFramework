@@ -63,8 +63,7 @@ class PhoneNumbersViewController: UIViewController,UITableViewDelegate, UITableV
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showNumberDetailsFromNumbers"{
             (segue.destination as! DisplayViewController).object = selectedObject
-            (segue.destination as! DisplayViewController).objectTitle = "Phone number details
-            "
+            (segue.destination as! DisplayViewController).objectTitle = "Phone number details"
         }
     }
 }
