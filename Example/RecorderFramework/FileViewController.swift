@@ -25,6 +25,8 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
     @IBOutlet weak var btnRecord: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var btnTags: UIButton!
+    @IBOutlet weak var btnStar: UIButton!
+    @IBOutlet weak var btnRecover: UIButton!
     
     var file: RecordItem!
     var folder: RecordFolder!
@@ -142,6 +144,8 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
         txtLastName.text = file.lastName
         txtFirstName.text = file.firstName
         txtName.text = file.text
+        btnStar.setTitle(file.isStar ? "Unstar":"Star", for: .normal)
+        btnRecover.isHidden = (folder.id! != "trash")
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {

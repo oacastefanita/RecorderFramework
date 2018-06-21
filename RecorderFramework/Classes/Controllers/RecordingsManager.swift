@@ -158,13 +158,25 @@ public class RecordingsManager : NSObject {
     
     func syncRecordingItem(_ recordItem:RecordItem, folder:RecordFolder) -> RecordItem {
         folder.recordedItems.sort { $0.fileOrder > $1.fileOrder }
+        var fileInOtherFolder: RecordItem? = nil
+        var oldFolder:RecordFolder? = nil
         for recFolder in recordFolders {
             for existingItem in recFolder.recordedItems {
-                if existingItem.id == recordItem.id {
-                    existingItem.update(recordItem)
-                    return existingItem
+                if existingItem.id == recordItem.id{
+                    if folder.id == recFolder.id{
+                        existingItem.update(recordItem)
+                        return existingItem
+                    }else{
+                        fileInOtherFolder = existingItem
+                        oldFolder = recFolder
+                    }
+                    
                 }
             }
+        }
+        if fileInOtherFolder != nil && oldFolder != nil{
+            deleteRecordingItem((fileInOtherFolder?.id)!)
+            fileInOtherFolder!.update(recordItem)
         }
         folder.recordedItems.append(recordItem)
         folder.recordedItems.sort { $0.fileOrder > $1.fileOrder }

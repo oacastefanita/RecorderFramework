@@ -1740,6 +1740,8 @@
                     </view>
                     <connections>
                         <outlet property="btnRecord" destination="dpI-y0-yJl" id="VuT-hN-oQg"/>
+                        <outlet property="btnRecover" destination="1Cr-ea-hOh" id="d6l-yV-h2l"/>
+                        <outlet property="btnStar" destination="tTO-0y-N4P" id="4ei-ex-pq7"/>
                         <outlet property="btnTags" destination="e1d-Mb-iCs" id="sqq-dg-E21"/>
                         <outlet property="btnUpdate" destination="Abd-mn-vDq" id="IvO-vp-Zjy"/>
                         <outlet property="recordingTimeLabel" destination="5MA-5a-sxT" id="emz-po-FIN"/>
