@@ -39,7 +39,7 @@ class ViewTagViewController: UIViewController,UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         initAudio()
         
-        self.lblType.text = "\(tag.type)"
+        self.lblType.text = "Type: \(tag.type)"
     }
     
     func initAudio(){
@@ -92,6 +92,7 @@ class ViewTagViewController: UIViewController,UITableViewDelegate, UITableViewDa
     }
     
     func prepareView(){
+        self.title = self.tag.type.rawValue
         self.lblArg1.isHidden = false
         self.lblArg2.isHidden = false
         self.tableView.isHidden = true
@@ -100,7 +101,7 @@ class ViewTagViewController: UIViewController,UITableViewDelegate, UITableViewDa
         switch tag.type {
         case .alert:
             if self.tag.arg != nil{
-                self.lblArg1.text = self.tag.arg as! String
+                self.lblArg1.text = "Alert: " + (self.tag.arg as! String)
             }else{
                 self.lblArg1.text = "missing argument"
             }
@@ -114,7 +115,7 @@ class ViewTagViewController: UIViewController,UITableViewDelegate, UITableViewDa
             break
         case .note:
             if self.tag.arg != nil{
-                self.lblArg1.text = self.tag.arg as! String
+                self.lblArg1.text = "Note: " + (self.tag.arg as! String)
             }else{
                 self.lblArg1.text = "missing argument"
             }
@@ -122,7 +123,7 @@ class ViewTagViewController: UIViewController,UITableViewDelegate, UITableViewDa
             break
         case .todo:
             if self.tag.arg != nil{
-                self.lblArg1.text = self.tag.arg as! String
+                self.lblArg1.text = "Todo: " + (self.tag.arg as! String)
             }else{
                 self.lblArg1.text = "missing argument"
             }
@@ -130,7 +131,7 @@ class ViewTagViewController: UIViewController,UITableViewDelegate, UITableViewDa
             break
         case .date:
             if self.tag.arg != nil{
-                self.lblArg1.text = self.tag.arg as! String
+                self.lblArg1.text = "Date: " + (self.tag.arg as! String)
             }else{
                 self.lblArg1.text = "missing argument"
             }
@@ -196,7 +197,7 @@ class ViewTagViewController: UIViewController,UITableViewDelegate, UITableViewDa
             break
         case .tags:
             if self.tag.arg != nil{
-                self.lblArg1.text = self.tag.arg as! String
+                self.lblArg1.text = "Tag: " + (self.tag.arg as! String)
             }else{
                 self.lblArg1.text = "missing argument"
             }
@@ -294,7 +295,7 @@ class ViewTagViewController: UIViewController,UITableViewDelegate, UITableViewDa
             break
         case .phoneNumber:
             if self.tag.arg != nil{
-                self.lblArg1.text = self.tag.arg as! String
+                self.lblArg1.text = "Number" + (self.tag.arg as! String)
             }else{
                 self.lblArg1.text = "missing argument"
             }

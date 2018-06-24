@@ -47,6 +47,7 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.btnTags.isEnabled = false
+        
         if file == nil{
             btnUpdate.setTitle("Done", for: .normal)
             file = RecordItem()
@@ -54,17 +55,20 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
             checkPermission()
             folder.recordedItems.append(file)
             fileCreated = true
+            self.title = "New recording"
         }else{
+            self.title = file.text
+            btnRecord.isHidden = true
             if !file.fileDownloaded || file.localFile == nil {
                 let folder = RecorderFrameworkManager.sharedInstance.folderForItem(file.id)
-                self.recordingTimeLabel.text = "Downloading"
+                self.recordingTimeLabel.text = "Downloading file."
                 RecorderFrameworkManager.sharedInstance.downloadAudioFile(file, toFolder: folder.id, completionHandler: { (success) in
-                    self.recordingTimeLabel.text = "Downloaded"
+                    self.recordingTimeLabel.text = "File downloaded"
                     self.play()
                 })
             }
             else {
-                self.recordingTimeLabel.text = "Downloaded"
+                self.recordingTimeLabel.text = "File downloaded"
                 self.play()
             }
         }
@@ -162,7 +166,7 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
     
     @IBAction func onRename(_ sender: Any) {
         titleType = 0
-        placeholder = "new name id"
+        placeholder = "new name"
         self.performSegue(withIdentifier: "titleFromFile", sender: self)
     }
     

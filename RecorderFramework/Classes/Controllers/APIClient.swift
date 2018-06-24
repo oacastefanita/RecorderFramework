@@ -1339,35 +1339,7 @@ public class APIClient : NSObject {
                         print("Error: \(error)")
                     }
                     recordItem.fileSize = "\(fileSize/1000)"
-                    
-                    NSLog(path)
-                    self.getMetadataFiles(recordItem, completionHandler: { (success, files) -> Void in
-                        if success && files != nil {
-                            let allFiles = files as! Array<NSDictionary>
-                            for file in allFiles{
-                                let url = (file.object(forKey: "file") as? String)!
-                                let name = (file.object(forKey: "name") as? String)!
-                                var metaPath = AudioFileTagManager.sharedInstance.getMetadataFilePath(path)
-                                if url.components(separatedBy: ".").last != "json" {
-                                    metaPath = RecorderFrameworkManager.sharedInstance.getPath() + recordItem.localFile.components(separatedBy: ".").first! + "/" + ((file.object(forKey: "id") as? String)!) + "." + url.components(separatedBy: ".").last!
-                                }else{
-                                    recordItem.metaFileId = (file.object(forKey: "id") as? String)!
-                                }
-                                
-                                APIClient.sharedInstance.downloadFile(url, localPath:metaPath, completionHandler: { (success) -> Void in
-                                    if(success){
-                                        recordItem.setupWithFile(path)
-                                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: kNotificationRecordingsUpdated), object: nil)
-                                        AppPersistentData.sharedInstance.saveData()
-                                    }
-                                })
-                            }
-                        }
-                    })
-                    
-                    if completionHandler != nil {
-                        completionHandler!(true)
-                    }
+                    self.getMetadataForRecordItem(recordItem,path:path, completionHandler: completionHandler)
                 }
             })
         }
@@ -1394,11 +1366,35 @@ public class APIClient : NSObject {
                 print("Error: \(error)")
             }
             recordItem.fileSize = "\(fileSize/1000)"
-            if completionHandler != nil {
-                completionHandler!(true)
-            }
-            
+            self.getMetadataForRecordItem(recordItem,path:path, completionHandler: completionHandler)
         }
+    }
+    
+    func getMetadataForRecordItem(_ recordItem: RecordItem, path: String, completionHandler:((Bool) -> Void)?){
+        NSLog(path)
+        self.getMetadataFiles(recordItem, completionHandler: { (success, files) -> Void in
+            if success && files != nil {
+                let allFiles = files as! Array<NSDictionary>
+                for file in allFiles{
+                    let url = (file.object(forKey: "file") as? String)!
+                    let name = (file.object(forKey: "name") as? String)!
+                    var metaPath = AudioFileTagManager.sharedInstance.getMetadataFilePath(path)
+                    if url.components(separatedBy: ".").last != "json" {
+                        metaPath = RecorderFrameworkManager.sharedInstance.getPath() + recordItem.localFile.components(separatedBy: ".").first! + "/" + ((file.object(forKey: "id") as? String)!) + "." + url.components(separatedBy: ".").last!
+                    }else{
+                        recordItem.metaFileId = (file.object(forKey: "id") as? String)!
+                    }
+                    
+                    APIClient.sharedInstance.downloadFile(url, localPath:metaPath, completionHandler: { (success) -> Void in
+                        if(success){
+                            recordItem.setupWithFile(path)
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: kNotificationRecordingsUpdated), object: nil)
+                            AppPersistentData.sharedInstance.saveData()
+                        }
+                    })
+                }
+            }
+        })
     }
     
     public func defaultFolderSync(_ completionHandler:((Bool) -> Void)?) {

@@ -23,6 +23,7 @@ class FilesViewController: UIViewController,UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        self.title = RecordingsManager.sharedInstance.recordFolders[selectedFolder].title
     }
     
     override func viewDidAppear(_ animated: Bool) {
