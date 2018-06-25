@@ -9,6 +9,7 @@
 import UIKit
 import RecorderFramework
 import AVFoundation
+import FDWaveformView
 
 class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudioRecorderDelegate, UITextFieldDelegate, DatePickerViewControllerDelegate{
     
@@ -27,6 +28,7 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
     @IBOutlet weak var btnTags: UIButton!
     @IBOutlet weak var btnStar: UIButton!
     @IBOutlet weak var btnRecover: UIButton!
+    @IBOutlet weak var waveView: FDWaveformView!
     
     var file: RecordItem!
     var folder: RecordFolder!
@@ -64,11 +66,13 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
                 self.recordingTimeLabel.text = "Downloading file."
                 RecorderFrameworkManager.sharedInstance.downloadAudioFile(file, toFolder: folder.id, completionHandler: { (success) in
                     self.recordingTimeLabel.text = "File downloaded"
+                    self.initAudio()
                     self.play()
                 })
             }
             else {
                 self.recordingTimeLabel.text = "File downloaded"
+                self.initAudio()
                 self.play()
             }
         }
@@ -80,6 +84,16 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
     
     @objc func enableTags(){
         self.btnTags.isEnabled = true
+    }
+    
+    func initAudio(){
+        let url = URL(fileURLWithPath: RecorderFrameworkManager.sharedInstance.getPath() + file.localFile)
+        self.waveView.audioURL = url
+        self.waveView.doesAllowScrubbing = true
+        self.waveView.doesAllowStretch = true
+        self.waveView.doesAllowScroll = true
+        self.waveView.wavesColor = UIColor.black
+        self.waveView.progressColor = UIColor.black
     }
     
     func checkPermission(){
@@ -128,6 +142,9 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
         catch {
             
         }
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -268,6 +285,8 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
             (segue.destination as! DatePickerViewController).showHours = true
         } else if segue.identifier == "showMoveToFromFile"{
             (segue.destination as! MoveToViewController).file = self.file
+        } else if segue.identifier == "showTrimFromFile"{
+            (segue.destination as! TrimViewController).file = self.file
         }
     }
     

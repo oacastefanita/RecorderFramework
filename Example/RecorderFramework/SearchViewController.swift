@@ -66,6 +66,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
         RecorderFrameworkManager.sharedInstance.searchRecordings(query: textField.text!, completionHandler:  ({ (success, data) -> Void in
             if success && data != nil{
                 self.objects = data as! [RecordItem]

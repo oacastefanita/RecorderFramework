@@ -59,6 +59,7 @@
 		A24607AD1FCE000300F50AEE /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A24607AC1FCE000300F50AEE /* CoreMotion.framework */; };
 		A24C5D171FA7880300EE9347 /* PhoneNumbersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24C5D161FA7880300EE9347 /* PhoneNumbersViewController.swift */; };
 		A24C5D191FA79BCD00EE9347 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24C5D181FA79BCD00EE9347 /* ProfileViewController.swift */; };
+		A257092220E0253F00D759E7 /* TrimViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A257092120E0253F00D759E7 /* TrimViewController.swift */; };
 		A2689F8F1FA5051300A3F391 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2689F8E1FA5051300A3F391 /* Extensions.swift */; };
 		A26FCC931FCDE0DE00CBA0D4 /* PanoramaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26FCC921FCDE0DE00CBA0D4 /* PanoramaViewController.swift */; };
 		A26FCC951FCDFDAB00CBA0D4 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A26FCC941FCDFDAB00CBA0D4 /* GLKit.framework */; };
@@ -76,6 +77,7 @@
 		A284BB4D1FB84F3400D82F49 /* FilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A284BB4C1FB84F3400D82F49 /* FilesViewController.swift */; };
 		A284BB4F1FB8A00900D82F49 /* FileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A284BB4E1FB8A00900D82F49 /* FileViewController.swift */; };
 		A288D15E20B823090047B18D /* FrameworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A288D15D20B823090047B18D /* FrameworkTests.swift */; };
+		A28B443620E0ED3E0072C33C /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28B443520E0ED3E0072C33C /* MessagesViewController.swift */; };
 		A2914CC91FC357DA00D672CC /* FileTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2914CC81FC357DA00D672CC /* FileTagsViewController.swift */; };
 		A2931C281FB103C200B631E2 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2931C271FB103C200B631E2 /* SearchViewController.swift */; };
 		A294B2161FCABC3000BA4852 /* ViewTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A294B2151FCABC3000BA4852 /* ViewTagViewController.swift */; };
@@ -267,6 +269,7 @@
 		A24607AC1FCE000300F50AEE /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		A24C5D161FA7880300EE9347 /* PhoneNumbersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumbersViewController.swift; sourceTree = "<group>"; };
 		A24C5D181FA79BCD00EE9347 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		A257092120E0253F00D759E7 /* TrimViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrimViewController.swift; sourceTree = "<group>"; };
 		A258F5BB1FB0958200DB1073 /* RecorderFramework-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RecorderFramework-Bridging-Header.h"; sourceTree = "<group>"; };
 		A2689F8E1FA5051300A3F391 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A26FCC921FCDE0DE00CBA0D4 /* PanoramaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanoramaViewController.swift; sourceTree = "<group>"; };
@@ -285,6 +288,7 @@
 		A284BB4C1FB84F3400D82F49 /* FilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesViewController.swift; sourceTree = "<group>"; };
 		A284BB4E1FB8A00900D82F49 /* FileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileViewController.swift; sourceTree = "<group>"; };
 		A288D15D20B823090047B18D /* FrameworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameworkTests.swift; sourceTree = "<group>"; };
+		A28B443520E0ED3E0072C33C /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		A2914CC81FC357DA00D672CC /* FileTagsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTagsViewController.swift; sourceTree = "<group>"; };
 		A2931C271FB103C200B631E2 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		A294B2151FCABC3000BA4852 /* ViewTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTagViewController.swift; sourceTree = "<group>"; };
@@ -517,6 +521,8 @@
 				A294B2151FCABC3000BA4852 /* ViewTagViewController.swift */,
 				A26FCC921FCDE0DE00CBA0D4 /* PanoramaViewController.swift */,
 				A2AB90C120DACC1E00FFABD4 /* MoveToViewController.swift */,
+				A257092120E0253F00D759E7 /* TrimViewController.swift */,
+				A28B443520E0ED3E0072C33C /* MessagesViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -1464,6 +1470,7 @@
 				A24C5D191FA79BCD00EE9347 /* ProfileViewController.swift in Sources */,
 				A2095CD11FD5979500CF96B3 /* LocationViewController.swift in Sources */,
 				607FACD81AFB9204008FA782 /* RegisterViewController.swift in Sources */,
+				A257092220E0253F00D759E7 /* TrimViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				A22A10491FA1E5F400DAFA40 /* FilesViewController.swift in Sources */,
 				A2407C001FC48BC800EBAEC3 /* TagViewController.swift in Sources */,
@@ -1472,6 +1479,7 @@
 				A282D8CC1FA4E83900BD3189 /* TitleViewController.swift in Sources */,
 				A2AE31C01FA0BE7D00CCDC79 /* HomeViewController.swift in Sources */,
 				A2BF106E1FC823850016CFA3 /* DatePickerViewController.swift in Sources */,
+				A28B443620E0ED3E0072C33C /* MessagesViewController.swift in Sources */,
 				A23EBB721FA761E200F9D188 /* LanguagesViewController.swift in Sources */,
 				A2095CD01FD5979200CF96B3 /* LocationManager.swift in Sources */,
 				A24C5D171FA7880300EE9347 /* PhoneNumbersViewController.swift in Sources */,

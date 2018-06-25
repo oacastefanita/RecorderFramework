@@ -1215,6 +1215,9 @@ public class APIClient : NSObject {
         }
         
         var parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "data": "{\"name\":\"\(recordItem!.text!)\",\"notes\":\"\(recordItem!.notes!)\",\"tags\":\"\(recordItem!.tags)\"}"]
+        if recordItem.id != nil{
+            parameters["id"] = recordItem.id
+        }
         
         var source = "rec"
         if RecorderFrameworkManager.sharedInstance.isRecorder{
@@ -1339,7 +1342,10 @@ public class APIClient : NSObject {
                         print("Error: \(error)")
                     }
                     recordItem.fileSize = "\(fileSize/1000)"
-                    self.getMetadataForRecordItem(recordItem,path:path, completionHandler: completionHandler)
+                    self.getMetadataForRecordItem(recordItem,path:path, masterCompletionHandler: nil)
+                    completionHandler!(true)
+                }else{
+                    completionHandler!(false)
                 }
             })
         }
@@ -1366,11 +1372,12 @@ public class APIClient : NSObject {
                 print("Error: \(error)")
             }
             recordItem.fileSize = "\(fileSize/1000)"
-            self.getMetadataForRecordItem(recordItem,path:path, completionHandler: completionHandler)
+            self.getMetadataForRecordItem(recordItem,path:path, masterCompletionHandler: nil)
+            completionHandler!(true)
         }
     }
     
-    func getMetadataForRecordItem(_ recordItem: RecordItem, path: String, completionHandler:((Bool) -> Void)?){
+    func getMetadataForRecordItem(_ recordItem: RecordItem, path: String, masterCompletionHandler:((Bool) -> Void)?){
         NSLog(path)
         self.getMetadataFiles(recordItem, completionHandler: { (success, files) -> Void in
             if success && files != nil {
@@ -1392,6 +1399,14 @@ public class APIClient : NSObject {
                             AppPersistentData.sharedInstance.saveData()
                         }
                     })
+                    if masterCompletionHandler != nil{
+                        masterCompletionHandler!(true)
+                    }
+                }
+            }
+            else{
+                if masterCompletionHandler != nil{
+                    masterCompletionHandler!(false)
                 }
             }
         })

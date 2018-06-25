@@ -109,11 +109,15 @@ class FilesViewController: UIViewController,UITableViewDelegate, UITableViewData
     
     func selectedTitle(_ title: String){
         if titleType == 0{
-            if RecordingsManager.sharedInstance.recordFolders[selectedFolder].password == title{
-                self.alert(message: "Password is correct")
-            }else{
-                self.alert(message: "Password is incorrect")
-            }
+            
+            RecorderFrameworkManager.sharedInstance.verifyFolderPass(title, folderId: RecordingsManager.sharedInstance.recordFolders[selectedFolder].id, completionHandler: ({(success, response) -> Void in
+                if success{
+                    self.alert(message: "Password is correct")
+                }else{
+                    self.alert(message: "Password is incorrect")
+                }
+            }))
+            
         }else if titleType == 1{
             RecordingsManager.sharedInstance.recordFolders[selectedFolder].password = title
             RecorderFrameworkManager.sharedInstance.addPasswordToFolder(RecordingsManager.sharedInstance.recordFolders[selectedFolder])
