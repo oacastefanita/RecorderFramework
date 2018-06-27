@@ -110,6 +110,9 @@ class TrimViewController: UIViewController {
                    self.deleteFileAtPath(oldPath)
                     RecorderFrameworkManager.sharedInstance.uploadRecording(self.file)
                     RecorderFrameworkManager.sharedInstance.saveData()
+                    DispatchQueue.main.async {
+                        self.navigationController?.popToRootViewController(animated: true)
+                    }
                 }
             })
         } else {

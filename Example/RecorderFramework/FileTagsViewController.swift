@@ -96,11 +96,12 @@ class FileTagsViewController: UIViewController,UITableViewDelegate, UITableViewD
                 RecorderFrameworkManager.sharedInstance.downloadAudioFile(self.file, toFolder: folder.id, completionHandler: { (success) in
                     
                 })
-                self.navigationController?.popViewController(animated: true)
+                self.navigationController?.popToRootViewController(animated: true)
             })
         }else{
             RecorderFrameworkManager.sharedInstance.updateRecordingMetadata(self.file)
             RecorderFrameworkManager.sharedInstance.startProcessingActions()
+            self.navigationController?.popToRootViewController(animated: true)
         }
         
     }

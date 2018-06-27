@@ -52,7 +52,7 @@ class MoveToViewController: UIViewController,UITableViewDelegate, UITableViewDat
         tableView.deselectRow(at: indexPath, animated: true)
         RecorderFrameworkManager.sharedInstance.moveRecording(file, folderId: RecorderFrameworkManager.sharedInstance.getFolders()[indexPath.row].id)
         RecorderFrameworkManager.sharedInstance.startProcessingActions()
-        self.navigationController?.popViewController(animated: true)
+        self.navigationController?.popToRootViewController(animated: true)
         self.alert(message: "Request sent")
     }
 }

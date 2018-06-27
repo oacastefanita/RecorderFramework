@@ -96,6 +96,7 @@ class FoldersViewController: UIViewController,UITableViewDelegate, UITableViewDa
         if tableView.isEditing{
             self.btnReorder.setTitle("Done", for: .normal)
         }else{
+            self.navigationController?.popToRootViewController(animated: true)
             self.btnReorder.setTitle("Reorder Folders", for: .normal)
         }
     }
@@ -112,7 +113,7 @@ class FoldersViewController: UIViewController,UITableViewDelegate, UITableViewDa
     func selectedTitle(_ title: String){
         RecorderFrameworkManager.sharedInstance.createFolder(title, localID: "", completionHandler: { (success, data) -> Void in
             if success {
-                self.navigationController?.popViewController(animated: true)
+                self.navigationController?.popToRootViewController(animated: true)
             }
             else {
                 self.alert(message: (data as AnyObject).description)

@@ -190,7 +190,7 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
     @IBAction func onClone(_ sender: Any) {
         RecorderFrameworkManager.sharedInstance.cloneFile(entityId: file.id, completionHandler: { (success, data) -> Void in
             if success {
-                self.navigationController?.popViewController(animated: true)
+                self.navigationController?.popToRootViewController(animated: true)
                 self.alert(message: "Request sent")
             }
             else {
@@ -223,27 +223,27 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
         if btnUpdate.titleLabel?.text == "Done"{
             file.id = UUID().uuidString
             doSaveCurrentRecording()
+            self.navigationController?.popToRootViewController(animated: true)
             self.alert(message: "Request sent")
-            self.navigationController?.popViewController(animated: true)
             return
         }
         
         let dict = RecorderFrameworkManager.sharedInstance.createDictFromRecordItem(file)
         RecorderFrameworkManager.sharedInstance.updateRecordingInfo(file, fileInfo: NSMutableDictionary(dictionary: dict))
-        self.navigationController?.popViewController(animated: true)
+        self.navigationController?.popToRootViewController(animated: true)
         self.alert(message: "Request sent")
     }
     
     @IBAction func onDelete(_ sender: Any) {
         RecorderFrameworkManager.sharedInstance.deleteRecording(file, forever: true)
-        self.navigationController?.popViewController(animated: true)
+        self.navigationController?.popToRootViewController(animated: true)
         self.alert(message: "Request sent")
     }
     
     @IBAction func onStar(_ sender: Any) {
         RecorderFrameworkManager.sharedInstance.star(true, entityId: file.id, isFile: true, completionHandler: { (success, data) -> Void in
             if success {
-                self.navigationController?.popViewController(animated: true)
+                self.navigationController?.popToRootViewController(animated: true)
                 self.alert(message: "Request sent")
             }
             else {
@@ -256,15 +256,16 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
         if titleType == 0{
             file.text = title
             RecorderFrameworkManager.sharedInstance.renameRecording(file)
-            self.navigationController?.popViewController(animated: true)
+            self.navigationController?.popToRootViewController(animated: true)
             self.alert(message: "Request sent")
+            
         }else if titleType == 1{
             RecorderFrameworkManager.sharedInstance.moveRecording(file, folderId: title)
-            self.navigationController?.popViewController(animated: true)
+            self.navigationController?.popToRootViewController(animated: true)
             self.alert(message: "Request sent")
         }else{
             RecorderFrameworkManager.sharedInstance.recoverRecording(file, folderId: title)
-            self.navigationController?.popViewController(animated: true)
+            self.navigationController?.popToRootViewController(animated: true)
             self.alert(message: "Request sent")
         }
         RecorderFrameworkManager.sharedInstance.startProcessingActions()

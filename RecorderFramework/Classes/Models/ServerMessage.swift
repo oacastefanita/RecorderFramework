@@ -67,5 +67,10 @@ public class ServerMessage: NSObject, NSCoding {
         }
         aCoder.encode(read ? "true" : "false", forKey: "read")
     }
+    
+    override public var description: String{
+        return "Title: \(self.title!)\nBody: \(self.body!)"
+        
+    }
 }
 

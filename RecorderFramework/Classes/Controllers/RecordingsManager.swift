@@ -163,7 +163,7 @@ public class RecordingsManager : NSObject {
         for recFolder in recordFolders {
             for existingItem in recFolder.recordedItems {
                 if existingItem.id == recordItem.id{
-                    if folder.id == recFolder.id{
+                    if folder.id == recFolder.id  && existingItem.updated == recordItem.updated{
                         existingItem.update(recordItem)
                         return existingItem
                     }else{
@@ -186,6 +186,9 @@ public class RecordingsManager : NSObject {
     func deleteRecordingItem(_ recordItemId:String) {
         
         for recFolder in recordFolders {
+            if recFolder.id == "-99"{
+                continue
+            }
             for existingItem in recFolder.recordedItems {
                 if existingItem.id == recordItemId {
                     recFolder.recordedItems.remove(at: recFolder.recordedItems.index(of: existingItem)!)

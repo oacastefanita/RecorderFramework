@@ -123,6 +123,22 @@
             </objects>
             <point key="canvasLocation" x="-903" y="27"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="PnF-xc-FzX">
+            <objects>
+                <navigationController id="plu-rf-SAJ" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gex-yS-y2b">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="wvJ-9H-guJ" kind="relationship" relationship="rootViewController" id="c9w-79-maR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xUS-oQ-doX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1225" y="-688"/>
+        </scene>
         <!--Verify Code-->
         <scene sceneID="LY0-mL-fGm">
             <objects>
@@ -201,7 +217,7 @@
                         <outlet property="txtCode" destination="Vd6-Nq-gN8" id="GKq-CS-igq"/>
                         <outlet property="txtToken" destination="gYs-vx-P4f" id="Lil-8L-uOO"/>
                         <outlet property="webViewCode" destination="zJ2-sx-3fc" id="VEI-Rt-XHE"/>
-                        <segue destination="wvJ-9H-guJ" kind="show" identifier="showHomeFromEnterCode" id="2Tl-Y6-Oim"/>
+                        <segue destination="plu-rf-SAJ" kind="presentation" identifier="showHomeFromEnterCode" id="yXG-Am-ubm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eri-1I-ukL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -306,6 +322,7 @@
                             <constraint firstItem="8wj-2K-S9U" firstAttribute="centerX" secondItem="rZ7-JD-gUE" secondAttribute="centerX" id="p6b-RH-dWu"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Home" id="OZO-IM-Lde"/>
                     <connections>
                         <segue destination="eLX-BJ-Gjz" kind="show" identifier="showFoldersFromHome" id="ZiG-Sl-aqp"/>
                         <segue destination="uua-S5-cTI" kind="show" identifier="showSettingsFromHome" id="fQ7-g0-Hoe"/>
@@ -1993,9 +2010,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="bA4-ER-KEw"/>
+        <segue reference="VCW-3U-8x8"/>
         <segue reference="Lwo-vA-DKq"/>
-        <segue reference="CSF-Tg-21a"/>
-        <segue reference="hLC-bV-XVH"/>
+        <segue reference="C7U-gp-LW3"/>
+        <segue reference="ePg-Zz-p0I"/>
     </inferredMetricsTieBreakers>
 </document>

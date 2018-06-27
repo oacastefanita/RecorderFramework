@@ -51,7 +51,7 @@ class MessagesViewController: UIViewController,UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath as IndexPath, animated: false)
-        selectedObject = messages[indexPath.row]
+        selectedObject = messages[indexPath.row].description as AnyObject
         self.performSegue(withIdentifier: "showMessageDetailsFromMessages", sender: self)
     }
     
