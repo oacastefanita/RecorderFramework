@@ -32,6 +32,27 @@ class WatchKitController: NSObject, WCSessionDelegate{
         
     }
     
+    public func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]){
+        if let user = applicationContext["user"] {
+            RecorderFrameworkManager.sharedInstance.setUser(RecorderFrameworkManager.sharedInstance.createUserFromDict(user as! NSDictionary))
+        }
+        if let key = applicationContext["api_key"] {
+            RecorderFrameworkManager.sharedInstance.setApiKey(key as! String)
+        }
+        if let phone = applicationContext["phone"] {
+            RecorderFrameworkManager.sharedInstance.setDefaultPhone(phone as! String)
+        }
+        if let folders = applicationContext["folders"]{
+            var foldersArray = Array<RecordFolder>()
+            for folder in (folders as! Array<NSDictionary>){
+                foldersArray.append(RecorderFrameworkManager.sharedInstance.createRecordFolderFromDict(folder))
+            }
+            RecorderFrameworkManager.sharedInstance.setFolders(foldersArray)
+        }
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: kNotificationContextUpdated), object: nil)
+        RecorderFrameworkManager.sharedInstance.saveData()
+    }
+    
     #if os(iOS)
     func sessionDidBecomeInactive(_ session: WCSession) {
     }
@@ -118,6 +139,26 @@ class WatchKitController: NSObject, WCSessionDelegate{
             return
         }
         context["user"] = RecorderFactory.createDictFromUser(AppPersistentData.sharedInstance.user)
+        do {
+            try session?.updateApplicationContext(
+                context
+            )
+        } catch let error as NSError {
+            NSLog("Updating the context failed: " + error.localizedDescription)
+        }
+    }
+    
+    /// Add default phone to the context and send the new context
+    func sendPhone(){
+        if !sessionActive(){
+            return
+        }
+        for phoneNumber in AppPersistentData.sharedInstance.phoneNumbers{
+            if phoneNumber.isDefault{
+                context["phone"] = phoneNumber.phoneNumber
+                break
+            }
+        }
         do {
             try session?.updateApplicationContext(
                 context

@@ -155,6 +155,7 @@ public class Utils:NSObject {
 
 public let kNotificationRecordingsUpdated = "RecordingsUpdated"
 public let kNotificationCameFromBackground = "CameFromBackground"
+public let kNotificationContextUpdated = "ContextUpdated"
 
 #if os(iOS)
 public protocol AlertControllerDelegate{

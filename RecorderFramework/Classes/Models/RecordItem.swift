@@ -370,7 +370,13 @@ public class RecordItem: NSObject, NSSecureCoding {
     public func setupWithFile(_ filePath:String) {
         
         audioFilePath = filePath
-        audioMetadataFilePath = filePath.components(separatedBy: ".")[filePath.components(separatedBy: ".").count - 2] + "_metadata.json"
+        if filePath.components(separatedBy: ".").count >= 2{
+            audioMetadataFilePath = filePath.components(separatedBy: ".")[filePath.components(separatedBy: ".").count - 2] + "_metadata.json"
+        }
+        else{
+            return
+        }
+        
         
         audioFileTags = NSMutableArray()
         //        definedLabels = NSMutableArray()

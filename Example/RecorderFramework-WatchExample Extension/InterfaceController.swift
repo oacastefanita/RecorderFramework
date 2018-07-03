@@ -16,17 +16,12 @@ class InterfaceController: WKInterfaceController {
     @IBOutlet var btnNewRecording: WKInterfaceButton!
     @IBOutlet var btnUser: WKInterfaceButton!
     @IBOutlet var btnFolders: WKInterfaceButton!
+    @IBOutlet var btnCall: WKInterfaceButton!
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-        
+        refreshUI()
         // Configure interface objects here.
-        if RecorderFrameworkManager.sharedInstance.getApiKey() == nil{
-            self.btnNewRecording.setHidden(true)
-            self.btnUser.setHidden(true)
-            self.btnFolders.setHidden(true)
-        }else{
-            lblNoData.setHidden(true)
-        }
+         NotificationCenter.default.addObserver(self, selector: #selector(InterfaceController.refreshUI), name: NSNotification.Name(rawValue: kNotificationContextUpdated), object: nil)
     }
     
     override func willActivate() {
@@ -39,4 +34,26 @@ class InterfaceController: WKInterfaceController {
         super.didDeactivate()
     }
 
+    @objc func refreshUI(){
+        if RecorderFrameworkManager.sharedInstance.getApiKey() == nil{
+            self.btnNewRecording.setHidden(true)
+            self.btnUser.setHidden(true)
+            self.btnFolders.setHidden(true)
+            lblNoData.setHidden(false)
+        }else{
+            lblNoData.setHidden(true)
+            self.btnNewRecording.setHidden(false)
+            self.btnUser.setHidden(false)
+            self.btnFolders.setHidden(false)
+        }
+        self.btnCall.setHidden(AppPersistentData.sharedInstance.phone == nil)
+    }
+    
+    @IBAction func onCall(_ sender: Any) {
+        if AppPersistentData.sharedInstance.phone != nil{
+            if let url = URL(string: "tel://\(AppPersistentData.sharedInstance.phone!)") {
+                WKExtension.shared().openSystemURL(url)
+            }
+        }
+    }
 }

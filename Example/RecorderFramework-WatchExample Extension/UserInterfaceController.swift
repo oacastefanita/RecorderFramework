@@ -18,6 +18,7 @@ class UserInterfaceController: WKInterfaceController {
     @IBOutlet var lblTimezone: WKInterfaceLabel!
     @IBOutlet var lblPlayBeep: WKInterfaceLabel!
     @IBOutlet var lblIsPublic: WKInterfaceLabel!
+    @IBOutlet var lblPin: WKInterfaceLabel!
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
@@ -41,5 +42,6 @@ class UserInterfaceController: WKInterfaceController {
         lblPlayBeep.setText("Play Beep: " + RecorderFrameworkManager.sharedInstance.getUser().playBeep.description)
         lblIsPublic.setText("Public: " + RecorderFrameworkManager.sharedInstance.getUser().isPublic.description)
         lblTimezone.setText("UTC +" + RecorderFrameworkManager.sharedInstance.getUser().timeZone)
+        lblPin.setText("Pin: " + RecorderFrameworkManager.sharedInstance.getUser().pin)
     }
 }

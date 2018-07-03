@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="13771" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14113" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
     <device id="watch38" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="watchOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="13756"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14033"/>
     </dependencies>
     <scenes>
         <!--Interface Controller-->
@@ -30,8 +30,14 @@
                                 <segue destination="bzL-kw-eCw" kind="push" id="38r-KB-HLk"/>
                             </connections>
                         </button>
+                        <button width="1" alignment="left" title="Call" id="Q20-Uy-4dB">
+                            <connections>
+                                <action selector="onCall:" destination="AgC-eL-Hgc" id="bAU-V9-A8h"/>
+                            </connections>
+                        </button>
                     </items>
                     <connections>
+                        <outlet property="btnCall" destination="Q20-Uy-4dB" id="D6Q-s8-JC5"/>
                         <outlet property="btnFolders" destination="JXh-Ou-wvP" id="ayy-B2-qpT"/>
                         <outlet property="btnNewRecording" destination="GZc-fT-3bi" id="a2E-gc-qKT"/>
                         <outlet property="btnUser" destination="1xF-KH-EzJ" id="lRc-1b-7Ig"/>
@@ -52,12 +58,14 @@
                         <label alignment="left" text="Number" id="BdS-CY-zYT"/>
                         <label alignment="left" text="PlayBeep:" id="r4l-0D-ocG"/>
                         <label alignment="left" text="IsPublic" id="b85-NK-TSE"/>
+                        <label alignment="left" text="Pin:" id="6Hc-bT-000"/>
                     </items>
                     <connections>
                         <outlet property="lblEmail" destination="jdt-di-eJZ" id="21U-ee-Lam"/>
                         <outlet property="lblFirstName" destination="SBE-nF-1Nz" id="J6w-Tx-t88"/>
                         <outlet property="lblIsPublic" destination="b85-NK-TSE" id="fu4-Bm-pJ3"/>
                         <outlet property="lblLastName" destination="coj-gI-GyN" id="7et-Cb-kkg"/>
+                        <outlet property="lblPin" destination="6Hc-bT-000" id="r4c-QG-67c"/>
                         <outlet property="lblPlayBeep" destination="r4l-0D-ocG" id="pWZ-Jk-qNg"/>
                         <outlet property="lblTimezone" destination="BdS-CY-zYT" id="hYt-as-BjD"/>
                     </connections>

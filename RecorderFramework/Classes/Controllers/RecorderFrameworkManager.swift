@@ -196,9 +196,6 @@ public class RecorderFrameworkManager : NSObject {
     ///
     /// - Returns: current user
     public func getUser() -> User!{
-        #if os(iOS)
-        WatchKitController.sharedInstance.sendUser()
-        #endif
         return AppPersistentData.sharedInstance.user!
     }
     
@@ -224,6 +221,16 @@ public class RecorderFrameworkManager : NSObject {
     /// - Parameter key: new API Key
     public func setApiKey(_ key:String){
         AppPersistentData.sharedInstance.apiKey = key
+        #if os(iOS)
+        WatchKitController.sharedInstance.sendApiKey()
+        #endif
+    }
+    
+    /// Set new default phone
+    ///
+    /// - Parameter key: new API Key
+    public func setDefaultPhone(_ phone:String){
+        AppPersistentData.sharedInstance.phone = phone
     }
     
     /// Get file permission
@@ -279,10 +286,6 @@ public class RecorderFrameworkManager : NSObject {
     ///
     /// - Returns: Folder Objects Array
     public func getFolders() -> Array<RecordFolder>{
-        #if os(iOS)
-        WatchKitController.sharedInstance.sendFolders()
-        WatchKitController.sharedInstance.sendApiKey()
-        #endif
         return RecordingsManager.sharedInstance.recordFolders
     }
     

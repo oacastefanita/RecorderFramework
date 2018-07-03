@@ -81,6 +81,7 @@
 		A2914CC91FC357DA00D672CC /* FileTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2914CC81FC357DA00D672CC /* FileTagsViewController.swift */; };
 		A2931C281FB103C200B631E2 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2931C271FB103C200B631E2 /* SearchViewController.swift */; };
 		A294B2161FCABC3000BA4852 /* ViewTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A294B2151FCABC3000BA4852 /* ViewTagViewController.swift */; };
+		A296096320EB4DCC00AF13B4 /* WatchConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A296096220EB4DCC00AF13B4 /* WatchConnectivity.framework */; };
 		A297CD891FA8E669004E5B15 /* Pods_RecorderFramework_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A297CD8A1FA8E669004E5B15 /* Pods_RecorderFramework_Example.framework */; };
 		A2A6255C1FB1FD3E003714C8 /* EnterCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A625481FB1FD3C003714C8 /* EnterCodeViewController.swift */; };
 		A2A6255D1FB1FD3E003714C8 /* BuyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A6254A1FB1FD3D003714C8 /* BuyViewController.swift */; };
@@ -145,7 +146,6 @@
 		A2F6506720B4116300411854 /* ProfileTestsUnsucessfull.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2063B1A20B3076E0000E66A /* ProfileTestsUnsucessfull.swift */; };
 		A2F6507E20B41AC100411854 /* FolderTestsUnsucessfull.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F6507D20B41AC100411854 /* FolderTestsUnsucessfull.swift */; };
 		A2F6508020B43A1D00411854 /* FileTestsUnsucessfull.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F6507F20B43A1D00411854 /* FileTestsUnsucessfull.swift */; };
-		A2F76A741FA892E300EF05EE /* WatchDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F76A731FA892E300EF05EE /* WatchDataController.swift */; };
 		A2FE5C301FA74B8F005FD2D1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FE5C2F1FA74B8F005FD2D1 /* SettingsViewController.swift */; };
 		E0E736F45E40C1C8CF080258 /* Pods_RecorderFramework_WatchExample_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F599AB697E3B38936AB05FB5 /* Pods_RecorderFramework_WatchExample_Extension.framework */; };
 /* End PBXBuildFile section */
@@ -292,6 +292,7 @@
 		A2914CC81FC357DA00D672CC /* FileTagsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTagsViewController.swift; sourceTree = "<group>"; };
 		A2931C271FB103C200B631E2 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		A294B2151FCABC3000BA4852 /* ViewTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTagViewController.swift; sourceTree = "<group>"; };
+		A296096220EB4DCC00AF13B4 /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS4.3.sdk/System/Library/Frameworks/WatchConnectivity.framework; sourceTree = DEVELOPER_DIR; };
 		A297CD881FA8E648004E5B15 /* RecorderFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RecorderFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A297CD8A1FA8E669004E5B15 /* Pods_RecorderFramework_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_RecorderFramework_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2A625481FB1FD3C003714C8 /* EnterCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EnterCodeViewController.swift; path = "RecorderFramework-TvExample/EnterCodeViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -384,7 +385,6 @@
 		A2F26E6D1FB6E94D00CE2B19 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
 		A2F6507D20B41AC100411854 /* FolderTestsUnsucessfull.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderTestsUnsucessfull.swift; sourceTree = "<group>"; };
 		A2F6507F20B43A1D00411854 /* FileTestsUnsucessfull.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileTestsUnsucessfull.swift; sourceTree = "<group>"; };
-		A2F76A731FA892E300EF05EE /* WatchDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchDataController.swift; sourceTree = "<group>"; };
 		A2FE5C2F1FA74B8F005FD2D1 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		AB5C69A6C572070C50B37B86 /* Pods-RecorderFramework_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecorderFramework_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-RecorderFramework_Example/Pods-RecorderFramework_Example.release.xcconfig"; sourceTree = "<group>"; };
 		ABC895D75AB12A66762E3FA0 /* Pods_RecorderFramework_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecorderFramework_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -444,6 +444,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A296096320EB4DCC00AF13B4 /* WatchConnectivity.framework in Frameworks */,
 				E0E736F45E40C1C8CF080258 /* Pods_RecorderFramework_WatchExample_Extension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -604,6 +605,7 @@
 		91A4A99FDAE8352DE6480444 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A296096220EB4DCC00AF13B4 /* WatchConnectivity.framework */,
 				A2A9FD2F20D3DFB800421E2B /* StoreKit.framework */,
 				A22039B41FDD808A00720845 /* Quartz.framework */,
 				A24607AC1FCE000300F50AEE /* CoreMotion.framework */,
@@ -748,7 +750,6 @@
 				A2B2D1581FA876F400A1FACE /* InterfaceController.swift */,
 				A2B2D15A1FA876F400A1FACE /* ExtensionDelegate.swift */,
 				A2B2D15C1FA876F400A1FACE /* NotificationController.swift */,
-				A2F76A731FA892E300EF05EE /* WatchDataController.swift */,
 				A2B2D15E1FA876F400A1FACE /* Assets.xcassets */,
 				A2B2D1601FA876F400A1FACE /* Info.plist */,
 				A2B2D1611FA876F400A1FACE /* PushNotificationPayload.apns */,
@@ -1544,7 +1545,6 @@
 				A2732ECF1FAA5D84004E3A35 /* FoldersInterfaceController.swift in Sources */,
 				A23C56FF1FD6CF3C0038D5F1 /* TagsRowController.swift in Sources */,
 				A2732ED51FAA6CAD004E3A35 /* FilesRowController.swift in Sources */,
-				A2F76A741FA892E300EF05EE /* WatchDataController.swift in Sources */,
 				A2732ED11FAA5E81004E3A35 /* FoldersRowController.swift in Sources */,
 				A2732ED31FAA6C98004E3A35 /* FilesInterfaceController.swift in Sources */,
 				A2B2D15B1FA876F400A1FACE /* ExtensionDelegate.swift in Sources */,
@@ -1769,7 +1769,7 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.codebluestudio.Recorder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8aa2a324-e508-43e8-8c08-2d0a806948bd";
+				PROVISIONING_PROFILE = "725b8cae-cef0-41a8-9b7f-0e08e3c24b2f";
 				PROVISIONING_PROFILE_SPECIFIER = "Recorder dev";
 				SWIFT_OBJC_BRIDGING_HEADER = "RecorderFramework/RecorderFramework-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
@@ -1793,7 +1793,7 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.codebluestudio.Recorder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5961f631-5a14-4ea5-b339-cae1871bd4aa";
+				PROVISIONING_PROFILE = "cd51923e-b9e8-442a-a06f-8e2c723332b2";
 				PROVISIONING_PROFILE_SPECIFIER = "Recorder AppStore";
 				SWIFT_OBJC_BRIDGING_HEADER = "RecorderFramework/RecorderFramework-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
@@ -1954,7 +1954,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.codebluestudio.Recorder.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
-				PROVISIONING_PROFILE = "fd0c6c77-26c9-4874-b7b5-897c570d5491";
+				PROVISIONING_PROFILE = "b7e86e37-f172-4600-8e3a-136f44c3ab38";
 				PROVISIONING_PROFILE_SPECIFIER = "Recorder Watch Extension Dev";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -2037,7 +2037,7 @@
 				INFOPLIST_FILE = "RecorderFramework-WatchExample/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codebluestudio.Recorder.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6c6feb40-15b0-465e-a3a8-58888bdaa4f3";
+				PROVISIONING_PROFILE = "2aa834da-226b-4a8f-84fc-bd2a25b8918a";
 				PROVISIONING_PROFILE_SPECIFIER = "Recorder Watch Dev";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;

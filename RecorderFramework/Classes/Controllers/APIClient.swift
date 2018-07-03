@@ -124,7 +124,9 @@ public class APIClient : NSObject {
                         AppPersistentData.sharedInstance.apiKey = value
                         AppPersistentData.sharedInstance.invalidAPIKey = false
                         AppPersistentData.sharedInstance.saveData()
-                        
+                        #if os(iOS)
+                        WatchKitController.sharedInstance.sendApiKey()
+                        #endif
                         if completionHandler != nil {
                             completionHandler!( true, data)
                         }
@@ -513,6 +515,9 @@ public class APIClient : NSObject {
                         if !found{
                             AppPersistentData.sharedInstance.phoneNumbers.first!.isDefault = true
                         }
+                        #if os(iOS)
+                        WatchKitController.sharedInstance.sendPhone()
+                        #endif
                     }
                     var downloadsCompleted = 0
                     for phoneNumber in  AppPersistentData.sharedInstance.phoneNumbers {
@@ -645,7 +650,9 @@ public class APIClient : NSObject {
                         RecordingsManager.sharedInstance.updateTrashFolder()
                         RecordingsManager.sharedInstance.sortByFolderOrder()
                     }
-                    
+                    #if os(iOS)
+                    WatchKitController.sharedInstance.sendFolders()
+                    #endif
                     if completionHandler != nil {
                         completionHandler!( true, RecordingsManager.sharedInstance.recordFolders)
                     }
@@ -2246,6 +2253,10 @@ public class APIClient : NSObject {
                         AppPersistentData.sharedInstance.user = RecorderFactory.createUserFromDict(profile)
                         AppPersistentData.sharedInstance.user.timeZone = "\(TimeZone.current.secondsFromGMT() / 60)"
                         AppPersistentData.sharedInstance.saveData()
+                        
+                        #if os(iOS)
+                        WatchKitController.sharedInstance.sendUser()
+                        #endif
                     }
                     
                     if let url:String = data!["share_url"] as? String {
