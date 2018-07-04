@@ -57,6 +57,7 @@
 		A24607A91FCDFF0300F50AEE /* PanoramaView.m in Sources */ = {isa = PBXBuildFile; fileRef = A24607A81FCDFF0300F50AEE /* PanoramaView.m */; };
 		A24607AB1FCDFFFB00F50AEE /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A24607AA1FCDFFFB00F50AEE /* OpenGLES.framework */; };
 		A24607AD1FCE000300F50AEE /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A24607AC1FCE000300F50AEE /* CoreMotion.framework */; };
+		A246233E20ED3EBB004B763C /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A246233D20ED3EBB004B763C /* MessagesViewController.swift */; };
 		A24C5D171FA7880300EE9347 /* PhoneNumbersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24C5D161FA7880300EE9347 /* PhoneNumbersViewController.swift */; };
 		A24C5D191FA79BCD00EE9347 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24C5D181FA79BCD00EE9347 /* ProfileViewController.swift */; };
 		A257092220E0253F00D759E7 /* TrimViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A257092120E0253F00D759E7 /* TrimViewController.swift */; };
@@ -267,6 +268,7 @@
 		A24607A81FCDFF0300F50AEE /* PanoramaView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PanoramaView.m; sourceTree = "<group>"; };
 		A24607AA1FCDFFFB00F50AEE /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		A24607AC1FCE000300F50AEE /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		A246233D20ED3EBB004B763C /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		A24C5D161FA7880300EE9347 /* PhoneNumbersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumbersViewController.swift; sourceTree = "<group>"; };
 		A24C5D181FA79BCD00EE9347 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A257092120E0253F00D759E7 /* TrimViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrimViewController.swift; sourceTree = "<group>"; };
@@ -788,6 +790,7 @@
 				A2D6BBFA1FB3D0D9003C6CE4 /* Info.plist */,
 				A2D6BBFB1FB3D0D9003C6CE4 /* RecorderFramework_MacExample.entitlements */,
 				A22039B21FDD2EF400720845 /* Extensions.swift */,
+				A246233D20ED3EBB004B763C /* MessagesViewController.swift */,
 			);
 			path = "RecorderFramework-MacExample";
 			sourceTree = "<group>";
@@ -1573,6 +1576,7 @@
 				A2D8BBB91FDE65C200E4F01C /* JHSampleDataMonoizer.m in Sources */,
 				A2D8BBBC1FDE65C200E4F01C /* _JHBufferedSampleDataProvider.m in Sources */,
 				A2D8BBBF1FDE65C200E4F01C /* JHWaterfallView.m in Sources */,
+				A246233E20ED3EBB004B763C /* MessagesViewController.swift in Sources */,
 				A2831E361FE589F80076CB8D /* PanoramaViewController.swift in Sources */,
 				A284BB491FB8457200D82F49 /* FoldersViewController.swift in Sources */,
 				A2D8BBBD1FDE65C200E4F01C /* JHSampleDataProvider.m in Sources */,

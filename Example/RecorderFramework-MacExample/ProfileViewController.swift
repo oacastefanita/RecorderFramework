@@ -17,6 +17,7 @@ class ProfileViewController: NSViewController {
     @IBOutlet weak var txtEmail: NSTextField!
     @IBOutlet weak var txtPic: NSTextField!
     @IBOutlet weak var txtTimezone: NSTextField!
+    @IBOutlet weak var txtPin: NSTextField!
     @IBOutlet weak var btnPlayBell: NSButton!
     @IBOutlet weak var btnPublic: NSButton!
     
@@ -33,6 +34,7 @@ class ProfileViewController: NSViewController {
         params["data[is_public]"] = btnPublic.state == NSControl.StateValue(rawValue: 1)
         params["data[time_zone]"] = txtTimezone.stringValue ?? ""
         params["data[email]"] = txtEmail.stringValue ?? ""
+        params["data[pin]"] = txtPin.stringValue ?? ""
         RecorderFrameworkManager.sharedInstance.updateUserProfile(userInfo: params)
         self.view.window?.close()
     }
@@ -42,6 +44,7 @@ class ProfileViewController: NSViewController {
         txtLastName.stringValue = RecorderFrameworkManager.sharedInstance.getUser().lastName
         txtEmail.stringValue = RecorderFrameworkManager.sharedInstance.getUser().email
         txtTimezone.stringValue = RecorderFrameworkManager.sharedInstance.getUser().timeZone
+        txtPin.stringValue = RecorderFrameworkManager.sharedInstance.getUser().pin
         btnPlayBell.state = NSControl.StateValue(rawValue: RecorderFrameworkManager.sharedInstance.getUser().playBeep == true ? 1 : 0)
         btnPublic.state = NSControl.StateValue(rawValue: RecorderFrameworkManager.sharedInstance.getUser().isPublic == true ? 1 : 0)
     }

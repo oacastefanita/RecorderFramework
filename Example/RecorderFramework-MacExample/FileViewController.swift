@@ -67,6 +67,9 @@ class FileViewController: NSViewController, TitleViewControllerDelegater, AVAudi
                     }
                 }
                 self.recordingTimeLabel.stringValue = "Downloading"
+                if folder == nil{
+                    folder = RecorderFrameworkManager.sharedInstance.folderForItem(file.id)
+                }
                 RecorderFrameworkManager.sharedInstance.downloadAudioFile(file, toFolder: folder.id, completionHandler: { (success) in
                     self.recordingTimeLabel.stringValue = "Downloaded"
                     self.play()

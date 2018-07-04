@@ -11,7 +11,7 @@ import RecorderFramework
 
 class SearchViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource, NSTextFieldDelegate {
     
-    var objects = [SearchResult]()
+    var objects = [RecordItem]()
     var selectedFile: RecordItem!
     
     @IBOutlet weak var txtSearch: NSTextField!
@@ -35,7 +35,7 @@ class SearchViewController: NSViewController, NSTableViewDelegate, NSTableViewDa
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "resultCell"), owner: self) as! NSTableCellView
-        let recordItem = objects[row].recordItem!
+        let recordItem = objects[row]
         if recordItem.text != nil && !recordItem.text.isEmpty {
             cell.textField?.stringValue = recordItem.text
         }
@@ -51,11 +51,24 @@ class SearchViewController: NSViewController, NSTableViewDelegate, NSTableViewDa
     
     func tableViewSelectionDidChange(_ notification: Notification) {
         let row = tableView.selectedRowIndexes.first!
+        selectedFile = objects[row]
+        self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(rawValue: "showFileDetailsFromSearch"), sender: self)
     }
     
     override func controlTextDidEndEditing(_ obj: Notification) {
         let textField = obj.object as! NSTextField
-        objects = RecorderFrameworkManager.sharedInstance.searchRecordings(textField.stringValue)
+        RecorderFrameworkManager.sharedInstance.searchRecordings(query: textField.stringValue, completionHandler:  ({ (success, data) -> Void in
+            if success && data != nil{
+                self.objects = data as! [RecordItem]
+                self.tableView.reloadData()
+            }
+        }))
         tableView.reloadData()
+    }
+    
+    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+        if segue.identifier!.rawValue == "showFileDetailsFromSearch"{
+            (segue.destinationController as! FileViewController).file = selectedFile
+        }
     }
 }

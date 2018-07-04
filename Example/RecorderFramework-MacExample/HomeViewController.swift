@@ -43,6 +43,8 @@ class HomeViewController: NSViewController {
     @IBAction func onGetMessages(_ sender: Any) {
         RecorderFrameworkManager.sharedInstance.getMessages({ (success, data) -> Void in
             if success && data != nil {
+                self.selectedObject = data as AnyObject
+                self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(rawValue: "showMessagesFromHome"), sender: self)
                 
             }
             else if data != nil{
@@ -91,6 +93,10 @@ class HomeViewController: NSViewController {
         if segue.identifier != nil{
             if segue.identifier!.rawValue == "showTranslationsFromLanguages"{
                 //            (segue.destination as! DisplayViewController).object = selectedObject
+            }else{
+                if segue.identifier!.rawValue == "showMessagesFromHome"{
+                    (segue.destinationController as! MessagesViewController).messages = selectedObject as! [ServerMessage]
+                }
             }
         }
     }

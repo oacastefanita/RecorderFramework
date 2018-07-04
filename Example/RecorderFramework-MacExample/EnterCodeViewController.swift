@@ -14,6 +14,9 @@ class EnterCodeViewController: NSViewController {
     @IBOutlet weak var txtToken: NSTextField!
     @IBOutlet weak var txtCode: NSTextField!
     @IBOutlet weak var btnDone: NSButton!
+    @IBOutlet weak var lblCode: NSTextField!
+    
+    var code:String!
     
     @IBAction func onDone(_ sender:Any){
         RecorderFrameworkManager.sharedInstance.sendVerificationCode(self.txtCode.stringValue, completionHandler: { (success, data) -> Void in
@@ -34,6 +37,7 @@ class EnterCodeViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.txtToken.stringValue = AppPersistentData.sharedInstance.notificationToken
+        self.lblCode.stringValue = code
         // Do any additional setup after loading the view.
     }
     
