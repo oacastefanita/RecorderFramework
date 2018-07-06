@@ -16,6 +16,7 @@ class FilesViewController: NSViewController, NSTableViewDelegate, NSTableViewDat
     var titleType = 0
     
     var placeholder = ""
+    let dragDropTypeId = "public.data"
     
     @IBOutlet weak var tableView: NSTableView!
     
@@ -27,6 +28,7 @@ class FilesViewController: NSViewController, NSTableViewDelegate, NSTableViewDat
     
     override func viewWillAppear() {
         super.viewWillAppear()
+        tableView.registerForDraggedTypes( [NSPasteboard.PasteboardType(rawValue: dragDropTypeId)])
         RecorderFrameworkManager.sharedInstance.deleteRecordingItem("Delete")
         tableView.reloadData()
     }
@@ -62,6 +64,89 @@ class FilesViewController: NSViewController, NSTableViewDelegate, NSTableViewDat
         selectedFile = RecordingsManager.sharedInstance.recordFolders[selectedFolder].recordedItems[row]
         self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(rawValue: "showFileFromFiles"), sender: self)
         self.view.window?.close()
+    }
+    
+    func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> NSPasteboardWriting? {
+        let item = NSPasteboardItem()
+        item.setString(String(row), forType: NSPasteboard.PasteboardType(rawValue: dragDropTypeId))
+        return item
+    }
+    
+    func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
+        if dropOperation == .above {
+            return .move
+        }
+        return []
+    }
+    
+    func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
+        var oldIndexes = [Int]()
+        info.enumerateDraggingItems(options: [], for: tableView, classes: [NSPasteboardItem.self], searchOptions: [:]) {(draggingItem: NSDraggingItem!, idx: Int, stop: UnsafeMutablePointer<ObjCBool>) -> Void in
+            
+            if let str = (draggingItem.item as! NSPasteboardItem).string(forType: NSPasteboard.PasteboardType(rawValue: "public.data")), let index = Int(str) {
+                oldIndexes.append(index)
+            }
+        }
+        
+        
+        var oldIndexOffset = 0
+        var newIndexOffset = 0
+        
+        // For simplicity, the code below uses `tableView.moveRowAtIndex` to move rows around directly.
+        // You may want to move rows in your content array and then call `tableView.reloadData()` instead.
+        tableView.beginUpdates()
+        for oldIndex in oldIndexes {
+            if oldIndex < row {
+                var files = RecordingsManager.sharedInstance.recordFolders[selectedFolder].recordedItems
+                let item = RecordingsManager.sharedInstance.recordFolders[selectedFolder].recordedItems[oldIndex + oldIndexOffset]
+                files.remove(at: oldIndex + oldIndexOffset)
+                files.insert(item, at: row - 1)
+                var topItemIndex = files.indexOf(item)!
+                var parameters = ["type":"file","id":item.id!] as [String : Any]
+                if topItemIndex > 0{
+                    topItemIndex = topItemIndex - 1
+                    if topItemIndex == 0 {
+                        parameters["top_id"] = 0
+                    }else{
+                        parameters["top_id"] = files[topItemIndex].id!
+                    }
+                }else{
+                    parameters["top_id"] = 0
+                }
+                parameters["folder_id"] = RecordingsManager.sharedInstance.recordFolders[selectedFolder].id!
+                RecorderFrameworkManager.sharedInstance.reorderItems(parameters, completionHandler: ({(success, response) -> Void in
+                    
+                }))
+                tableView.moveRow(at: oldIndex + oldIndexOffset, to: row - 1)
+                oldIndexOffset -= 1
+            } else {
+                var files = RecordingsManager.sharedInstance.recordFolders[selectedFolder].recordedItems
+                let item = RecordingsManager.sharedInstance.recordFolders[selectedFolder].recordedItems[oldIndex]
+                files.remove(at: oldIndex)
+                files.insert(item, at: row + newIndexOffset)
+                var topItemIndex = files.indexOf(item)!
+                var parameters = ["type":"file","id":item.id!] as [String : Any]
+                if topItemIndex > 0{
+                    topItemIndex = topItemIndex - 1
+                    if topItemIndex == 0 {
+                        parameters["top_id"] = 0
+                    }else{
+                        parameters["top_id"] = files[topItemIndex].id!
+                    }
+                }else{
+                    parameters["top_id"] = 0
+                }
+                parameters["folder_id"] = RecordingsManager.sharedInstance.recordFolders[selectedFolder].id!
+                RecorderFrameworkManager.sharedInstance.reorderItems(parameters, completionHandler: ({(success, response) -> Void in
+                    
+                }))
+                tableView.moveRow(at: oldIndex, to: row + newIndexOffset)
+                newIndexOffset += 1
+            }
+        }
+        tableView.endUpdates()
+        
+        return true
     }
     
     @IBAction func onNewRecording(_ sender: Any) {

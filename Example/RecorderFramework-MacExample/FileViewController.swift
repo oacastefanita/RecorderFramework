@@ -9,8 +9,11 @@
 import Cocoa
 import RecorderFramework
 import AVFoundation
+import AVKit
 
 class FileViewController: NSViewController, TitleViewControllerDelegater, AVAudioRecorderDelegate, NSTextFieldDelegate{
+    
+    @IBOutlet weak var waveViewHolder: NSView!
     @IBOutlet weak var datePicker: NSDatePicker!
     @IBOutlet weak var txtReccurenceDays: NSTextField!
     @IBOutlet weak var txtNotes: NSTextField!
@@ -22,6 +25,7 @@ class FileViewController: NSViewController, TitleViewControllerDelegater, AVAudi
     @IBOutlet weak var btnUpdate: NSButton!
     
     @IBOutlet weak var btnRecord: NSButton!
+    @IBOutlet weak var btnRecover: NSButton!
     @IBOutlet weak var recordingTimeLabel: NSTextField!
     
     var file: RecordItem!
@@ -29,9 +33,9 @@ class FileViewController: NSViewController, TitleViewControllerDelegater, AVAudi
     var titleType = 0
     var player:AVAudioPlayer!
     var recording = false
-    
     var fileCreated = false
     
+    var waveView: JHAudioPreviewView!
     //Variables
     var audioRecorder: AVAudioRecorder!
     var meterTimer:Timer!
@@ -108,6 +112,23 @@ class FileViewController: NSViewController, TitleViewControllerDelegater, AVAudi
         }
     }
     
+    func renderAudio() {
+        waveView = JHAudioPreviewView()
+        waveView.frame = waveViewHolder.bounds
+        waveViewHolder.addSubview(waveView)
+        
+        let fileManager = FileManager.default
+        var path = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)!.path
+        path += file.localFile
+        
+        if !FileManager.default.fileExists(atPath: path) {
+            return
+        }
+        let url = URL(fileURLWithPath: path)
+        let player = AVPlayer(url: url)
+        waveView.player = player
+    }
+    
     func fillView(){
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -119,6 +140,8 @@ class FileViewController: NSViewController, TitleViewControllerDelegater, AVAudi
         txtLastName.stringValue = file.lastName
         txtFirstName.stringValue = file.firstName
         txtName.stringValue = file.text
+        btnRecover.isHidden = (folder.id! != "trash")
+        renderAudio()
     }
     
     @IBAction func onRename(_ sender: Any) {

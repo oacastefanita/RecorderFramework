@@ -13,6 +13,7 @@ class EnterCodeViewController: UIViewController,UITextFieldDelegate {
     
     @IBOutlet weak var txtToken: UITextField!
     @IBOutlet weak var txtCode: UITextField!
+    @IBOutlet weak var webViewCode: UIWebView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
