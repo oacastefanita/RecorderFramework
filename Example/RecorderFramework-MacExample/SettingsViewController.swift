@@ -31,6 +31,7 @@ class SettingsViewController: NSViewController{
     @IBAction func onUpdate(_ sender: Any) {
         updateSettings()
     }
+    
     func updateSettings(){
         RecorderFrameworkManager.sharedInstance.updateSettings(swcBeep.state == NSControl.StateValue(rawValue: 1),filesPersmission: swcFilePermission.state == NSControl.StateValue(rawValue: 1), completionHandler: { (success, data) -> Void in
             if success {

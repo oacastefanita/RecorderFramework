@@ -12,13 +12,15 @@ import RecorderFramework
 class FoldersViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource, TitleViewControllerDelegater {
     
     var selectedIndex = 0
+    let dragDropTypeId = "public.data"
     
     @IBOutlet weak var tableView: NSTableView!
+    @IBOutlet weak var btnReorder: NSButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Do any additional setup after loading the view.
+        tableView.registerForDraggedTypes( [NSPasteboard.PasteboardType(rawValue: dragDropTypeId)])
     }
     
     override var representedObject: Any? {
@@ -47,6 +49,65 @@ class FoldersViewController: NSViewController, NSTableViewDelegate, NSTableViewD
         }))
     }
     
+    func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> NSPasteboardWriting? {
+        let item = NSPasteboardItem()
+        item.setString(String(row), forType: NSPasteboard.PasteboardType(rawValue: dragDropTypeId))
+        return item
+    }
+    
+    func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
+        if dropOperation == .above {
+            return .move
+        }
+        return []
+    }
+    
+    func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
+        var oldIndexes = [Int]()
+        info.enumerateDraggingItems(options: [], for: tableView, classes: [NSPasteboardItem.self], searchOptions: [:]) {(draggingItem: NSDraggingItem!, idx: Int, stop: UnsafeMutablePointer<ObjCBool>) -> Void in
+            
+            if let str = (draggingItem.item as! NSPasteboardItem).string(forType: NSPasteboard.PasteboardType(rawValue: "public.data")), let index = Int(str) {
+                oldIndexes.append(index)
+            }
+        }
+            
+        
+        var oldIndexOffset = 0
+        var newIndexOffset = 0
+        
+        // For simplicity, the code below uses `tableView.moveRowAtIndex` to move rows around directly.
+        // You may want to move rows in your content array and then call `tableView.reloadData()` instead.
+        tableView.beginUpdates()
+        for oldIndex in oldIndexes {
+            if oldIndex < row {
+                var folders = RecorderFrameworkManager.sharedInstance.getFolders()
+                let item = RecorderFrameworkManager.sharedInstance.getFolders()[oldIndex + oldIndexOffset]
+                folders.remove(at: oldIndex + oldIndexOffset)
+                folders.insert(item, at: row - 1)
+                let parameters = ["type":"folder","id":item.id!,"top_id": folders[folders.indexOf(item)! + 1].id!] as [String : Any]
+                RecorderFrameworkManager.sharedInstance.reorderItems(parameters, completionHandler: ({(success, response) -> Void in
+                    
+                }))
+                tableView.moveRow(at: oldIndex + oldIndexOffset, to: row - 1)
+                oldIndexOffset -= 1
+            } else {
+                var folders = RecorderFrameworkManager.sharedInstance.getFolders()
+                let item = RecorderFrameworkManager.sharedInstance.getFolders()[oldIndex]
+                folders.remove(at: oldIndex)
+                folders.insert(item, at: row + newIndexOffset)
+                let parameters = ["type":"folder","id":item.id!,"top_id": folders[folders.indexOf(item)! + 1].id!] as [String : Any]
+                RecorderFrameworkManager.sharedInstance.reorderItems(parameters, completionHandler: ({(success, response) -> Void in
+                    
+                }))
+                tableView.moveRow(at: oldIndex, to: row + newIndexOffset)
+                newIndexOffset += 1
+            }
+        }
+        tableView.endUpdates()
+         
+        return true
+    }
+    
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         if segue.identifier != nil{
             if segue.identifier!.rawValue == "showFilesFromFolders"{
@@ -60,6 +121,16 @@ class FoldersViewController: NSViewController, NSTableViewDelegate, NSTableViewD
     
     @IBAction func onCreate(_ sender: Any) {
         self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(rawValue: "createFolderFromFolders"), sender: self)
+    }
+    
+    @IBAction func onReorder(_ sender: Any) {
+        self.tableView.allowsColumnReordering = !self.tableView.allowsColumnReordering
+        if tableView.allowsColumnReordering{
+            self.btnReorder.stringValue = "Done"
+        }else{
+            self.btnReorder.stringValue = "Reorder Folders"
+            self.view.window?.close()
+        }
     }
     
     func selectedTitle(_ title: String){

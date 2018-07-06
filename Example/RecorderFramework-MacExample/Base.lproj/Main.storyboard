@@ -707,10 +707,10 @@
             </objects>
             <point key="canvasLocation" x="75" y="250"/>
         </scene>
-        <!--Register View Controller-->
+        <!--Register Phone-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="RegisterViewController" customModule="RecorderFramework_MacExample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Register Phone" id="XfG-lQ-9wD" customClass="RegisterViewController" customModule="RecorderFramework_MacExample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -752,10 +752,10 @@
             </objects>
             <point key="canvasLocation" x="75" y="655"/>
         </scene>
-        <!--Enter Code View Controller-->
+        <!--Verify Code-->
         <scene sceneID="1pU-Pd-mIz">
             <objects>
-                <viewController id="k2D-UM-ERI" customClass="EnterCodeViewController" customModule="RecorderFramework_MacExample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Verify Code" id="k2D-UM-ERI" customClass="EnterCodeViewController" customModule="RecorderFramework_MacExample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="bgO-os-6ny">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -952,10 +952,10 @@
             </objects>
             <point key="canvasLocation" x="69" y="1511"/>
         </scene>
-        <!--Search View Controller-->
+        <!--Search-->
         <scene sceneID="ORZ-ME-Rgc">
             <objects>
-                <viewController id="RqQ-MR-L7h" customClass="SearchViewController" customModule="RecorderFramework_MacExample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Search" id="RqQ-MR-L7h" customClass="SearchViewController" customModule="RecorderFramework_MacExample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Ogc-gb-VcW">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1101,10 +1101,10 @@
             </objects>
             <point key="canvasLocation" x="-464" y="3063"/>
         </scene>
-        <!--Folders View Controller-->
+        <!--Folders-->
         <scene sceneID="Xgz-pg-vXy">
             <objects>
-                <viewController id="hUw-Qt-0EB" customClass="FoldersViewController" customModule="RecorderFramework_MacExample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Folders" id="hUw-Qt-0EB" customClass="FoldersViewController" customModule="RecorderFramework_MacExample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="mYf-gs-jRH">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1182,6 +1182,17 @@
                                     <action selector="onCreate:" target="hUw-Qt-0EB" id="tss-vW-o2t"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PjN-hm-7E1">
+                                <rect key="frame" x="351" y="262" width="89" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Reorder" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hpy-y7-27X">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="onReorder:" target="hUw-Qt-0EB" id="BcF-ae-jwK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="5Cs-Pr-SkD" firstAttribute="top" secondItem="mPw-DS-uXC" secondAttribute="bottom" constant="8" id="I3c-5c-cZK"/>
@@ -1193,6 +1204,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btnReorder" destination="PjN-hm-7E1" id="RYo-DG-sz3"/>
                         <outlet property="tableView" destination="Nn5-Xj-nms" id="v2m-T6-74p"/>
                         <segue destination="KPN-8v-4AX" kind="show" identifier="createFolderFromFolders" id="ihm-qb-R15"/>
                         <segue destination="fgw-aX-Y9Y" kind="show" identifier="showFilesFromFolders" id="zOd-11-fuk"/>
@@ -2054,10 +2066,10 @@
             </objects>
             <point key="canvasLocation" x="-99.5" y="2607"/>
         </scene>
-        <!--Phone Numbers View Controller-->
+        <!--Phone Numbers-->
         <scene sceneID="FAL-jH-n9u">
             <objects>
-                <viewController id="9zf-q8-Q2K" customClass="PhoneNumbersViewController" customModule="RecorderFramework_MacExample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Phone Numbers" id="9zf-q8-Q2K" customClass="PhoneNumbersViewController" customModule="RecorderFramework_MacExample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="y8J-4E-OIZ">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2141,10 +2153,10 @@
             </objects>
             <point key="canvasLocation" x="1640" y="2065"/>
         </scene>
-        <!--Messages View Controller-->
+        <!--Messages-->
         <scene sceneID="TWr-tL-OVt">
             <objects>
-                <viewController id="UVo-LC-Eef" customClass="MessagesViewController" customModule="RecorderFramework_MacExample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Messages" id="UVo-LC-Eef" customClass="MessagesViewController" customModule="RecorderFramework_MacExample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="dSI-wB-F9I">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2229,10 +2241,10 @@
             </objects>
             <point key="canvasLocation" x="3728" y="2065"/>
         </scene>
-        <!--Languages View Controller-->
+        <!--Languages-->
         <scene sceneID="2eq-bb-t0a">
             <objects>
-                <viewController id="1GT-ZY-jn0" customClass="LanguagesViewController" customModule="RecorderFramework_MacExample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Languages" id="1GT-ZY-jn0" customClass="LanguagesViewController" customModule="RecorderFramework_MacExample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="5jd-Ex-Lgb">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2367,10 +2379,10 @@
             </objects>
             <point key="canvasLocation" x="2674" y="2065"/>
         </scene>
-        <!--Settings View Controller-->
+        <!--Settings-->
         <scene sceneID="qOo-Ld-ivo">
             <objects>
-                <viewController id="Dr3-cR-ZuM" customClass="SettingsViewController" customModule="RecorderFramework_MacExample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Settings" id="Dr3-cR-ZuM" customClass="SettingsViewController" customModule="RecorderFramework_MacExample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="KTt-Ip-BzQ">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2440,10 +2452,10 @@
             </objects>
             <point key="canvasLocation" x="3201" y="2066"/>
         </scene>
-        <!--Buy View Controller-->
+        <!--Upgrade-->
         <scene sceneID="9jh-nN-3e1">
             <objects>
-                <viewController id="40E-oP-nTX" customClass="BuyViewController" customModule="RecorderFramework_MacExample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Upgrade" id="40E-oP-nTX" customClass="BuyViewController" customModule="RecorderFramework_MacExample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="C5y-MU-QUG">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2493,10 +2505,10 @@
             </objects>
             <point key="canvasLocation" x="624" y="2066"/>
         </scene>
-        <!--Profile View Controller-->
+        <!--Profile-->
         <scene sceneID="eJ1-Re-bGI">
             <objects>
-                <viewController id="NBa-s2-kDN" customClass="ProfileViewController" customModule="RecorderFramework_MacExample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Profile" id="NBa-s2-kDN" customClass="ProfileViewController" customModule="RecorderFramework_MacExample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="RMo-3x-g2r">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
