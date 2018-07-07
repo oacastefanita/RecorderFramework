@@ -1463,6 +1463,76 @@
             </objects>
             <point key="canvasLocation" x="60" y="3063"/>
         </scene>
+        <!--Trim View Controller-->
+        <scene sceneID="OeM-0K-dY7">
+            <objects>
+                <viewController id="AU9-Kc-7qc" customClass="TrimViewController" customModule="RecorderFramework_MacExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="va8-ac-jNl">
+                        <rect key="frame" x="0.0" y="0.0" width="469" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="09O-TB-N8m">
+                                <rect key="frame" x="0.0" y="228" width="469" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="5HN-Ad-qzZ"/>
+                                    <constraint firstAttribute="width" constant="469" id="m95-yt-Mcr"/>
+                                </constraints>
+                            </customView>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EIs-CQ-wGQ">
+                                <rect key="frame" x="0.0" y="198" width="150" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="RDO-ww-C8a"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="From" drawsBackground="YES" id="24u-gh-qiI">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xhR-yB-X1z">
+                                <rect key="frame" x="0.0" y="168" width="150" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="K9u-e9-7iO"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="To" drawsBackground="YES" id="jVD-D7-59B">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Nop-ya-3HZ">
+                                <rect key="frame" x="-6" y="132" width="67" height="32"/>
+                                <buttonCell key="cell" type="push" title="Trim" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fG6-h3-uKg">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="trim:" target="AU9-Kc-7qc" id="W4h-C9-6sO"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="xhR-yB-X1z" firstAttribute="leading" secondItem="va8-ac-jNl" secondAttribute="leading" id="MoN-Ph-IaL"/>
+                            <constraint firstItem="xhR-yB-X1z" firstAttribute="top" secondItem="EIs-CQ-wGQ" secondAttribute="bottom" constant="8" id="QNw-Jy-3dA"/>
+                            <constraint firstItem="09O-TB-N8m" firstAttribute="leading" secondItem="va8-ac-jNl" secondAttribute="leading" id="W5w-iS-Pr7"/>
+                            <constraint firstItem="09O-TB-N8m" firstAttribute="top" secondItem="va8-ac-jNl" secondAttribute="top" constant="8" id="bWf-A4-FcU"/>
+                            <constraint firstItem="Nop-ya-3HZ" firstAttribute="top" secondItem="xhR-yB-X1z" secondAttribute="bottom" constant="8" id="heE-cP-EqQ"/>
+                            <constraint firstItem="EIs-CQ-wGQ" firstAttribute="top" secondItem="09O-TB-N8m" secondAttribute="bottom" constant="8" id="jbb-gk-gTj"/>
+                            <constraint firstItem="Nop-ya-3HZ" firstAttribute="leading" secondItem="va8-ac-jNl" secondAttribute="leading" id="shx-A7-WRy"/>
+                            <constraint firstAttribute="trailing" secondItem="09O-TB-N8m" secondAttribute="trailing" id="u76-lc-2kS"/>
+                            <constraint firstItem="EIs-CQ-wGQ" firstAttribute="leading" secondItem="va8-ac-jNl" secondAttribute="leading" id="w1j-ST-otD"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="txtFrom" destination="EIs-CQ-wGQ" id="8b8-sO-IX2"/>
+                        <outlet property="txtTo" destination="xhR-yB-X1z" id="um8-aH-rUf"/>
+                        <outlet property="waveViewHolder" destination="09O-TB-N8m" id="TEP-4q-aAZ"/>
+                    </connections>
+                </viewController>
+                <customObject id="uHO-fm-MgR" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="544" y="3062"/>
+        </scene>
         <!--File Tag View Controller-->
         <scene sceneID="VX3-GM-CYl">
             <objects>
@@ -1970,6 +2040,17 @@
                                             <datePickerElements key="datePickerElements" year="YES" month="YES" day="YES" hour="YES" minute="YES"/>
                                         </datePickerCell>
                                     </datePicker>
+                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Jp-bj-gtR">
+                                        <rect key="frame" x="64" y="3" width="67" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="push" title="Trim" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cTC-hE-s93">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <segue destination="AU9-Kc-7qc" kind="show" identifier="showTrimFromFile" id="i8X-Hv-XwP"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="wmK-xZ-WJH" secondAttribute="trailing" id="14P-tq-U72"/>

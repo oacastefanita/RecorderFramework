@@ -81,6 +81,7 @@
 		A28B443620E0ED3E0072C33C /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28B443520E0ED3E0072C33C /* MessagesViewController.swift */; };
 		A2914CC91FC357DA00D672CC /* FileTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2914CC81FC357DA00D672CC /* FileTagsViewController.swift */; };
 		A2931C281FB103C200B631E2 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2931C271FB103C200B631E2 /* SearchViewController.swift */; };
+		A294466720F09DB200516CB4 /* TrimViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A294466620F09DB200516CB4 /* TrimViewController.swift */; };
 		A294B2161FCABC3000BA4852 /* ViewTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A294B2151FCABC3000BA4852 /* ViewTagViewController.swift */; };
 		A296096320EB4DCC00AF13B4 /* WatchConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A296096220EB4DCC00AF13B4 /* WatchConnectivity.framework */; };
 		A297CD891FA8E669004E5B15 /* Pods_RecorderFramework_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A297CD8A1FA8E669004E5B15 /* Pods_RecorderFramework_Example.framework */; };
@@ -293,6 +294,7 @@
 		A28B443520E0ED3E0072C33C /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		A2914CC81FC357DA00D672CC /* FileTagsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTagsViewController.swift; sourceTree = "<group>"; };
 		A2931C271FB103C200B631E2 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		A294466620F09DB200516CB4 /* TrimViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrimViewController.swift; sourceTree = "<group>"; };
 		A294B2151FCABC3000BA4852 /* ViewTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTagViewController.swift; sourceTree = "<group>"; };
 		A296096220EB4DCC00AF13B4 /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS4.3.sdk/System/Library/Frameworks/WatchConnectivity.framework; sourceTree = DEVELOPER_DIR; };
 		A297CD881FA8E648004E5B15 /* RecorderFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RecorderFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -785,12 +787,13 @@
 				A22039B01FDD297B00720845 /* FileTagViewController.swift */,
 				A2D3E8111FDE60E7000C0874 /* ViewTagViewController.swift */,
 				A2831E351FE589F80076CB8D /* PanoramaViewController.swift */,
+				A246233D20ED3EBB004B763C /* MessagesViewController.swift */,
+				A294466620F09DB200516CB4 /* TrimViewController.swift */,
 				A2D6BBF51FB3D0D9003C6CE4 /* Assets.xcassets */,
 				A2D6BBF71FB3D0D9003C6CE4 /* Main.storyboard */,
 				A2D6BBFA1FB3D0D9003C6CE4 /* Info.plist */,
 				A2D6BBFB1FB3D0D9003C6CE4 /* RecorderFramework_MacExample.entitlements */,
 				A22039B21FDD2EF400720845 /* Extensions.swift */,
-				A246233D20ED3EBB004B763C /* MessagesViewController.swift */,
 			);
 			path = "RecorderFramework-MacExample";
 			sourceTree = "<group>";
@@ -1593,6 +1596,7 @@
 				A2412DC61FB7857F00B7EC7D /* BuyViewController.swift in Sources */,
 				A284BB4D1FB84F3400D82F49 /* FilesViewController.swift in Sources */,
 				A284BB471FB82E9000D82F49 /* SettingsViewController.swift in Sources */,
+				A294466720F09DB200516CB4 /* TrimViewController.swift in Sources */,
 				A2D8BBB81FDE65C200E4F01C /* JHAudioPlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

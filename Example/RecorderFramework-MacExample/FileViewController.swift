@@ -241,6 +241,13 @@ class FileViewController: NSViewController, TitleViewControllerDelegater, AVAudi
             self.file.setupWithFile(path)
             (segue.destinationController as! FileTagsViewController).file = self.file
         }
+        else if segue.identifier!.rawValue == "showTrimFromFile"{
+            let fileManager = FileManager.default
+            var path = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)!.path
+            path += file.localFile
+            self.file.setupWithFile(path)
+            (segue.destinationController as! TrimViewController).file = self.file
+        }
     }
     
     @IBAction func audioRecorderAction(_ sender: Any) {
