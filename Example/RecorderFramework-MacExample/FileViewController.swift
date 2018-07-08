@@ -25,6 +25,7 @@ class FileViewController: NSViewController, TitleViewControllerDelegater, AVAudi
     @IBOutlet weak var btnUpdate: NSButton!
     
     @IBOutlet weak var btnRecord: NSButton!
+    @IBOutlet weak var btnStar: NSButton!
     @IBOutlet weak var btnRecover: NSButton!
     @IBOutlet weak var recordingTimeLabel: NSTextField!
     
@@ -141,6 +142,7 @@ class FileViewController: NSViewController, TitleViewControllerDelegater, AVAudi
         txtFirstName.stringValue = file.firstName
         txtName.stringValue = file.text
         btnRecover.isHidden = (folder.id! != "trash")
+        btnStar.title = (file.isStar ? "Unstar":"Star")
         renderAudio()
     }
     
@@ -205,7 +207,7 @@ class FileViewController: NSViewController, TitleViewControllerDelegater, AVAudi
     }
     
     @IBAction func onStar(_ sender: Any) {
-        RecorderFrameworkManager.sharedInstance.star(true, entityId: file.id, isFile: true, completionHandler: { (success, data) -> Void in
+        RecorderFrameworkManager.sharedInstance.star(!file.isStar, entityId: file.id, isFile: true, completionHandler: { (success, data) -> Void in
             if success {
                 self.view.window?.close()
             }
@@ -247,6 +249,8 @@ class FileViewController: NSViewController, TitleViewControllerDelegater, AVAudi
             path += file.localFile
             self.file.setupWithFile(path)
             (segue.destinationController as! TrimViewController).file = self.file
+        }else if segue.identifier!.rawValue == "showFolderSelectionFromFile"{
+            (segue.destinationController as! SelectFolderViewController).file = self.file
         }
     }
     

@@ -144,6 +144,7 @@
 		A2D8BBBE1FDE65C200E4F01C /* JHMonoWaveformView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D8BBAE1FDE65C100E4F01C /* JHMonoWaveformView.m */; };
 		A2D8BBBF1FDE65C200E4F01C /* JHWaterfallView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D8BBB01FDE65C100E4F01C /* JHWaterfallView.m */; };
 		A2E949411F9FB1BA00FAA5D0 /* EnterCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E949401F9FB1BA00FAA5D0 /* EnterCodeViewController.swift */; };
+		A2F1472D20F1F53D00F5ECC3 /* SelectFolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F1472C20F1F53D00F5ECC3 /* SelectFolderViewController.swift */; };
 		A2F26E6E1FB6E94D00CE2B19 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2F26E6D1FB6E94D00CE2B19 /* StoreKit.framework */; };
 		A2F6506720B4116300411854 /* ProfileTestsUnsucessfull.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2063B1A20B3076E0000E66A /* ProfileTestsUnsucessfull.swift */; };
 		A2F6507E20B41AC100411854 /* FolderTestsUnsucessfull.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F6507D20B41AC100411854 /* FolderTestsUnsucessfull.swift */; };
@@ -385,6 +386,7 @@
 		A2D8BBB21FDE65C100E4F01C /* JHAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHAudioPlayer.h; sourceTree = "<group>"; };
 		A2D8BBB31FDE65C100E4F01C /* JHAudioPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHAudioPreviewView.h; sourceTree = "<group>"; };
 		A2E949401F9FB1BA00FAA5D0 /* EnterCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCodeViewController.swift; sourceTree = "<group>"; };
+		A2F1472C20F1F53D00F5ECC3 /* SelectFolderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectFolderViewController.swift; sourceTree = "<group>"; };
 		A2F26E6C1FB6E94500CE2B19 /* RecorderFramework-MacExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "RecorderFramework-MacExample.entitlements"; sourceTree = "<group>"; };
 		A2F26E6D1FB6E94D00CE2B19 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
 		A2F6507D20B41AC100411854 /* FolderTestsUnsucessfull.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderTestsUnsucessfull.swift; sourceTree = "<group>"; };
@@ -789,6 +791,7 @@
 				A2831E351FE589F80076CB8D /* PanoramaViewController.swift */,
 				A246233D20ED3EBB004B763C /* MessagesViewController.swift */,
 				A294466620F09DB200516CB4 /* TrimViewController.swift */,
+				A2F1472C20F1F53D00F5ECC3 /* SelectFolderViewController.swift */,
 				A2D6BBF51FB3D0D9003C6CE4 /* Assets.xcassets */,
 				A2D6BBF71FB3D0D9003C6CE4 /* Main.storyboard */,
 				A2D6BBFA1FB3D0D9003C6CE4 /* Info.plist */,
@@ -1565,6 +1568,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2F1472D20F1F53D00F5ECC3 /* SelectFolderViewController.swift in Sources */,
 				A2D8BBB71FDE65C200E4F01C /* JHAudioPreviewView.m in Sources */,
 				A2412DC41FB76D9F00B7EC7D /* SearchViewController.swift in Sources */,
 				A2D8BBB41FDE65C200E4F01C /* _JHFVecSampleDataProvider.m in Sources */,
