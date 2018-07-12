@@ -13,6 +13,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
     
     @IBOutlet weak var txtPhone: UITextField!
     @IBOutlet weak var btnDone: UIButton!
+    var code = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -30,6 +31,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
     @IBAction func onDone(_ sender: Any) {
         RecorderFrameworkManager.sharedInstance.register(self.txtPhone.text!, completionHandler: { (success, data) -> Void in
             if success {
+                self.code = data as! String
                 self.performSegue(withIdentifier: "showEnterCodeFromRegister", sender: self)
             }
             else {
@@ -41,6 +43,12 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.endEditing(true)
         return true
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showEnterCodeFromRegister"{
+            (segue.destination as! EnterCodeViewController).code = self.code
+        }
     }
 }
 

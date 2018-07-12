@@ -17,6 +17,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtPic: UITextField!
     @IBOutlet weak var txtTimezone: UITextField!
+    @IBOutlet weak var txtPin: UITextField!
     @IBOutlet var btnSegmentPlayBeep : UISegmentedControl!
     @IBOutlet var btnSegmentPublic : UISegmentedControl!
     
@@ -45,6 +46,7 @@ class ProfileViewController: UIViewController {
         params["data[is_public]"] = btnSegmentPublic.selectedSegmentIndex == 1 ? "1":"0"
         params["data[time_zone]"] = txtTimezone.text ?? ""
         params["data[email]"] = txtEmail.text ?? ""
+        params["data[pin]"] = txtPin.text ?? ""
         
         RecorderFrameworkManager.sharedInstance.updateUserProfile(userInfo: params)
         self.navigationController?.popViewController(animated: true)
@@ -58,6 +60,7 @@ class ProfileViewController: UIViewController {
         txtTimezone.text = "\(RecorderFrameworkManager.sharedInstance.getUser().timeZone!)"
         btnSegmentPlayBeep.selectedSegmentIndex = RecorderFrameworkManager.sharedInstance.getUser().playBeep ? 1:0
         btnSegmentPublic.selectedSegmentIndex = RecorderFrameworkManager.sharedInstance.getUser().isPublic ? 1:0
+        txtPin.text = RecorderFrameworkManager.sharedInstance.getUser().pin
     }
     
     

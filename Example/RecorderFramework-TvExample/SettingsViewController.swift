@@ -11,6 +11,7 @@ import RecorderFramework
 class SettingsViewController: UIViewController{
 
     @IBOutlet var btnSegmentBeep : UISegmentedControl!
+    @IBOutlet var btnFilePermission : UISegmentedControl!
     @IBOutlet weak var lblFilePermission: UILabel!
     @IBOutlet weak var lblApp: UILabel!
     @IBOutlet weak var lblCredits: UILabel!
@@ -35,8 +36,7 @@ class SettingsViewController: UIViewController{
     
     func loadViewData(){
         btnSegmentBeep.selectedSegmentIndex = RecorderFrameworkManager.sharedInstance.getUser().playBeep ? 1:0
-        
-        lblFilePermission.text = lblFilePermission.text! + RecorderFrameworkManager.sharedInstance.getFilePermission()!
+        btnFilePermission.selectedSegmentIndex = RecorderFrameworkManager.sharedInstance.getFilePermission() == "public" ? 1:0
         lblApp.text = lblApp.text! + RecorderFrameworkManager.sharedInstance.getApp()!
         lblCredits.text = lblCredits.text! + "\(RecorderFrameworkManager.sharedInstance.getCredits())"
     }
@@ -45,7 +45,7 @@ class SettingsViewController: UIViewController{
         updateSettings()
     }
     func updateSettings(){
-        RecorderFrameworkManager.sharedInstance.updateSettings(btnSegmentBeep.selectedSegmentIndex == 1, completionHandler: { (success, data) -> Void in
+        RecorderFrameworkManager.sharedInstance.updateSettings(btnSegmentBeep.selectedSegmentIndex == 1,filesPersmission: btnFilePermission.selectedSegmentIndex == 1, completionHandler: { (success, data) -> Void in
             if success {
                 self.navigationController?.popViewController(animated: true)
                 self.alert(message: "Request sent")

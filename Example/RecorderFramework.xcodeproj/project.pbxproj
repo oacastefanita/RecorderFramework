@@ -70,6 +70,7 @@
 		A2732ED51FAA6CAD004E3A35 /* FilesRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2732ED41FAA6CAD004E3A35 /* FilesRowController.swift */; };
 		A27A2FA21FB441B8000B3E41 /* EnterCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27A2FA11FB441B8000B3E41 /* EnterCodeViewController.swift */; };
 		A27A2FA41FB44CE1000B3E41 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27A2FA31FB44CE1000B3E41 /* HomeViewController.swift */; };
+		A27DB9DF20F7EFE70076ABB5 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27DB9DE20F7EFE70076ABB5 /* MessagesViewController.swift */; };
 		A282D8CC1FA4E83900BD3189 /* TitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A282D8CB1FA4E83900BD3189 /* TitleViewController.swift */; };
 		A2831E361FE589F80076CB8D /* PanoramaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2831E351FE589F80076CB8D /* PanoramaViewController.swift */; };
 		A284BB471FB82E9000D82F49 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A284BB461FB82E9000D82F49 /* SettingsViewController.swift */; };
@@ -284,6 +285,7 @@
 		A2732ED41FAA6CAD004E3A35 /* FilesRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesRowController.swift; sourceTree = "<group>"; };
 		A27A2FA11FB441B8000B3E41 /* EnterCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCodeViewController.swift; sourceTree = "<group>"; };
 		A27A2FA31FB44CE1000B3E41 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		A27DB9DE20F7EFE70076ABB5 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MessagesViewController.swift; path = "RecorderFramework-TvExample/MessagesViewController.swift"; sourceTree = SOURCE_ROOT; };
 		A282D8CB1FA4E83900BD3189 /* TitleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleViewController.swift; sourceTree = "<group>"; };
 		A2831E351FE589F80076CB8D /* PanoramaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanoramaViewController.swift; sourceTree = "<group>"; };
 		A284BB461FB82E9000D82F49 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -685,6 +687,7 @@
 				A21AD91B1FB1EF1500BCDD1F /* Main.storyboard */,
 				A21AD91E1FB1EF1500BCDD1F /* Assets.xcassets */,
 				A21AD9201FB1EF1500BCDD1F /* Info.plist */,
+				A27DB9DE20F7EFE70076ABB5 /* MessagesViewController.swift */,
 			);
 			path = "RecorderFramework-TVExample";
 			sourceTree = "<group>";
@@ -1533,6 +1536,7 @@
 				A2095CC91FD5887800CF96B3 /* FDWaveformView.swift in Sources */,
 				A2A625651FB1FD3E003714C8 /* HomeViewController.swift in Sources */,
 				A2A625671FB1FD3E003714C8 /* FileViewController.swift in Sources */,
+				A27DB9DF20F7EFE70076ABB5 /* MessagesViewController.swift in Sources */,
 				A2095CCA1FD5887800CF96B3 /* FDAudioContext.swift in Sources */,
 				A2A625631FB1FD3E003714C8 /* TitleViewController.swift in Sources */,
 				A2A625611FB1FD3E003714C8 /* MKStoreKit.m in Sources */,

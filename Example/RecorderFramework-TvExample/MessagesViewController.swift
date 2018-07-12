@@ -1,17 +1,18 @@
 //
-//  PhoneNumbersViewController.swift
-//  RecorderFramework_Example
+//  MessagesViewController.swift
+//  RecorderFramework-TVExample
 //
-//  Created by Stefanita Oaca on 30/10/2017.
-//  Copyright © 2017 CocoaPods. All rights reserved.
+//  Created by Stefanita Oaca on 12/07/2018.
+//  Copyright © 2018 CocoaPods. All rights reserved.
 //
 
 import UIKit
 import RecorderFramework
 
-class PhoneNumbersViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
+class MessagesViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
     var selectedObject: AnyObject!
     @IBOutlet weak var tableView: UITableView!
+    var messages = [ServerMessage]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,32 +39,27 @@ class PhoneNumbersViewController: UIViewController,UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return RecorderFrameworkManager.sharedInstance.getPhoneNumbers().count
+        return messages.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  tableView.dequeueReusableCell(withIdentifier: "titleCell", for: indexPath)
-        cell.textLabel?.text = RecorderFrameworkManager.sharedInstance.getPhoneNumbers()[indexPath.row].phoneNumber
-        cell.detailTextLabel?.text = ""
+        cell.textLabel?.text = messages[indexPath.row].title
+        cell.detailTextLabel?.text = messages[indexPath.row].body
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath as IndexPath, animated: false)
-        for phoneNumber in AppPersistentData.sharedInstance.phoneNumbers{
-            if phoneNumber.isDefault{
-                phoneNumber.isDefault = false
-            }
-        }
-        selectedObject = AppPersistentData.sharedInstance.phoneNumbers[indexPath.row]
-        (AppPersistentData.sharedInstance.phoneNumbers[indexPath.row] as PhoneNumber).isDefault = true
-        self.performSegue(withIdentifier: "showNumberDetailsFromNumbers", sender: self)
+        selectedObject = messages[indexPath.row].description as AnyObject
+        self.performSegue(withIdentifier: "showMessageDetailsFromMessages", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showNumberDetailsFromNumbers"{
+        if segue.identifier == "showMessageDetailsFromMessages"{
             (segue.destination as! DisplayViewController).object = selectedObject
-            (segue.destination as! DisplayViewController).objectTitle = "Phone number details"
+            (segue.destination as! DisplayViewController).objectTitle = "Message details"
         }
     }
 }
+

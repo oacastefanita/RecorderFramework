@@ -102,6 +102,9 @@ public class APIClient : NSObject {
         #elseif os(OSX)
             parameters["device_type"] = "mac"
             parameters["device_id"] = RecorderFrameworkManager.sharedInstance.macSN // device identifier for pn
+        #elseif os(tvOS)
+            parameters["mcc"] = "300"
+            parameters["device_type"] = "ios"
         #endif
         parameters["time_zone"] = TimeZone.current.secondsFromGMT() / 60 // used to determine when to send pn for remind date
         api.doRequest("verify_phone", method: .post, parameters: parameters) { (success, data) in

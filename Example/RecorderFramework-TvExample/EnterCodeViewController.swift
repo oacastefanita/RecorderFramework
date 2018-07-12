@@ -13,10 +13,14 @@ class EnterCodeViewController: UIViewController,UITextFieldDelegate {
     
     @IBOutlet weak var txtCode: UITextField!
     @IBOutlet weak var txtToken: UITextField!
+    @IBOutlet weak var txtSMSCode: UITextField!
+    
+    var code: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.txtToken.text = AppPersistentData.sharedInstance.notificationToken
+        self.txtSMSCode.text = code
     }
     
     override func viewDidAppear(_ animated: Bool) {
