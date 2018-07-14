@@ -23,6 +23,7 @@ class FileViewController: UIViewController, TitleViewControllerDelegater{
     @IBOutlet weak var btnUpdate: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var btnTags: UIButton!
+    @IBOutlet weak var btnStar: UIButton!
     
     var file: RecordItem!
     var folder: RecordFolder!
@@ -110,6 +111,7 @@ class FileViewController: UIViewController, TitleViewControllerDelegater{
         txtLastName.text = file.lastName
         txtFirstName.text = file.firstName
         txtName.text = file.text
+        btnStar.setTitle(file.isStar ? "Unstar":"Star", for: .normal)
     }
     
     @IBAction func onRename(_ sender: Any) {
