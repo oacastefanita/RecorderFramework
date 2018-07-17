@@ -141,7 +141,7 @@ class FileViewController: UIViewController, TitleViewControllerDelegater{
     @IBAction func onMove(_ sender: Any) {
         titleType = 1
         placeholder = "Folder id"
-        self.performSegue(withIdentifier: "titleFromFile", sender: self)
+        self.performSegue(withIdentifier: "moveFromFile", sender: self)
     }
     
     @IBAction func onUpdate(_ sender: Any) {
@@ -219,6 +219,8 @@ class FileViewController: UIViewController, TitleViewControllerDelegater{
             path += file.localFile
             self.file.setupWithFile(path)
             (segue.destination as! FileTagsViewController).file = self.file
+        } else if segue.identifier == "moveFromFile"{
+            (segue.destination as! MoveToViewController).file = self.file
         }
     }
     

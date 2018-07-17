@@ -32,7 +32,6 @@
 		A2178B7A1FD5BD8600370CF7 /* ViewTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C7DF6F1FD583B100F8AFDA /* ViewTagViewController.swift */; };
 		A21AD9181FB1EF1500BCDD1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21AD9171FB1EF1500BCDD1F /* AppDelegate.swift */; };
 		A21AD91D1FB1EF1500BCDD1F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A21AD91B1FB1EF1500BCDD1F /* Main.storyboard */; };
-		A21AD91F1FB1EF1500BCDD1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A21AD91E1FB1EF1500BCDD1F /* Assets.xcassets */; };
 		A22039B11FDD297B00720845 /* FileTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22039B01FDD297B00720845 /* FileTagViewController.swift */; };
 		A22039B31FDD2EF400720845 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22039B21FDD2EF400720845 /* Extensions.swift */; };
 		A22039B51FDD808A00720845 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A22039B41FDD808A00720845 /* Quartz.framework */; };
@@ -78,6 +77,8 @@
 		A284BB4B1FB8475400D82F49 /* TitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A284BB4A1FB8475400D82F49 /* TitleViewController.swift */; };
 		A284BB4D1FB84F3400D82F49 /* FilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A284BB4C1FB84F3400D82F49 /* FilesViewController.swift */; };
 		A284BB4F1FB8A00900D82F49 /* FileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A284BB4E1FB8A00900D82F49 /* FileViewController.swift */; };
+		A287099E20FA372800525769 /* MoveToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A287099D20FA372800525769 /* MoveToViewController.swift */; };
+		A28709A020FBC2B200525769 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A287099F20FBC2B200525769 /* Assets.xcassets */; };
 		A288D15E20B823090047B18D /* FrameworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A288D15D20B823090047B18D /* FrameworkTests.swift */; };
 		A28B443620E0ED3E0072C33C /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28B443520E0ED3E0072C33C /* MessagesViewController.swift */; };
 		A2914CC91FC357DA00D672CC /* FileTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2914CC81FC357DA00D672CC /* FileTagsViewController.swift */; };
@@ -243,7 +244,6 @@
 		A21AD9151FB1EF1500BCDD1F /* RecorderFramework-TVExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RecorderFramework-TVExample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A21AD9171FB1EF1500BCDD1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A21AD91C1FB1EF1500BCDD1F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		A21AD91E1FB1EF1500BCDD1F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A21AD9201FB1EF1500BCDD1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A22039B01FDD297B00720845 /* FileTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTagViewController.swift; sourceTree = "<group>"; };
 		A22039B21FDD2EF400720845 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -293,6 +293,8 @@
 		A284BB4A1FB8475400D82F49 /* TitleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleViewController.swift; sourceTree = "<group>"; };
 		A284BB4C1FB84F3400D82F49 /* FilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesViewController.swift; sourceTree = "<group>"; };
 		A284BB4E1FB8A00900D82F49 /* FileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileViewController.swift; sourceTree = "<group>"; };
+		A287099D20FA372800525769 /* MoveToViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MoveToViewController.swift; path = "RecorderFramework-TvExample/MoveToViewController.swift"; sourceTree = SOURCE_ROOT; };
+		A287099F20FBC2B200525769 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "RecorderFramework-TvExample/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
 		A288D15D20B823090047B18D /* FrameworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameworkTests.swift; sourceTree = "<group>"; };
 		A28B443520E0ED3E0072C33C /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		A2914CC81FC357DA00D672CC /* FileTagsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTagsViewController.swift; sourceTree = "<group>"; };
@@ -660,10 +662,12 @@
 		A21AD9161FB1EF1500BCDD1F /* RecorderFramework-TVExample */ = {
 			isa = PBXGroup;
 			children = (
+				A287099F20FBC2B200525769 /* Assets.xcassets */,
 				A2095CC51FD5887700CF96B3 /* FDWaveForm */,
 				A2095CC11FD5851E00CF96B3 /* Panorama */,
 				A2C7DF721FD583B200F8AFDA /* FileTagsViewController.swift */,
 				A2C7DF731FD583B200F8AFDA /* PanoramaViewController.swift */,
+				A287099D20FA372800525769 /* MoveToViewController.swift */,
 				A2C7DF6F1FD583B100F8AFDA /* ViewTagViewController.swift */,
 				A2D6BBE81FB3B908003C6CE4 /* RecorderFramework-TVExample.entitlements */,
 				A2A6254A1FB1FD3D003714C8 /* BuyViewController.swift */,
@@ -685,7 +689,6 @@
 				A2A625521FB1FD3D003714C8 /* TitleViewController.swift */,
 				A21AD9171FB1EF1500BCDD1F /* AppDelegate.swift */,
 				A21AD91B1FB1EF1500BCDD1F /* Main.storyboard */,
-				A21AD91E1FB1EF1500BCDD1F /* Assets.xcassets */,
 				A21AD9201FB1EF1500BCDD1F /* Info.plist */,
 				A27DB9DE20F7EFE70076ABB5 /* MessagesViewController.swift */,
 			);
@@ -1113,7 +1116,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2A625601FB1FD3E003714C8 /* MKStoreKitConfigs.plist in Resources */,
-				A21AD91F1FB1EF1500BCDD1F /* Assets.xcassets in Resources */,
+				A28709A020FBC2B200525769 /* Assets.xcassets in Resources */,
 				A21AD91D1FB1EF1500BCDD1F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1525,6 +1528,7 @@
 				A2A6255C1FB1FD3E003714C8 /* EnterCodeViewController.swift in Sources */,
 				A2A625621FB1FD3E003714C8 /* SearchViewController.swift in Sources */,
 				A21AD9181FB1EF1500BCDD1F /* AppDelegate.swift in Sources */,
+				A287099E20FA372800525769 /* MoveToViewController.swift in Sources */,
 				A2095CCB1FD5887800CF96B3 /* FDWaveformRenderOperation.swift in Sources */,
 				A23C56FB1FD6BC9D0038D5F1 /* PanoramaViewController.swift in Sources */,
 				A2178B7A1FD5BD8600370CF7 /* ViewTagViewController.swift in Sources */,
@@ -1889,6 +1893,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codebluestudio.Recorder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "5ef519b5-2adb-4700-bb92-681f797c0c8c";
 				PROVISIONING_PROFILE_SPECIFIER = "Recorder TV dev";
 				SDKROOT = appletvos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1925,7 +1930,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codebluestudio.Recorder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "59d4ad50-32b3-43b1-a033-597049987217";
 				PROVISIONING_PROFILE_SPECIFIER = "Recorder TV appstore";
 				SDKROOT = appletvos;
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/stefanitaoaca/Environments/RecorderFramework/repository/Example/RecorderFramework-TvExample/RecorderFramework-Bridging-Header.h";

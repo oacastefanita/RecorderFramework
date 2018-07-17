@@ -77,7 +77,7 @@ class FoldersViewController: UIViewController,UITableViewDelegate, UITableViewDa
     func selectedTitle(_ title: String){
         RecorderFrameworkManager.sharedInstance.createFolder(title, localID: "", completionHandler: { (success, data) -> Void in
             if success {
-                self.navigationController?.popViewController(animated: true)
+                self.navigationController?.popToRootViewController(animated: true)
             }
             else {
                 self.alert(message: (data as AnyObject).description)
