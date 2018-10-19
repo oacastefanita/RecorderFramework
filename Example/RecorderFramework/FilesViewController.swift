@@ -157,6 +157,7 @@ class FilesViewController: UIViewController,UITableViewDelegate, UITableViewData
             parameters["top_id"] = 0
         }
         parameters["folder_id"] = RecordingsManager.sharedInstance.recordFolders[selectedFolder].id!
+        onReorder(nil)
         RecorderFrameworkManager.sharedInstance.reorderItems(parameters, completionHandler: ({(success, response) -> Void in
             
         }))
@@ -166,7 +167,7 @@ class FilesViewController: UIViewController,UITableViewDelegate, UITableViewData
         return true
     }
     
-    @IBAction func onReorder(_ sender: Any) {
+    @IBAction func onReorder(_ sender: Any?) {
         self.tableView.isEditing = !self.tableView.isEditing
         if tableView.isEditing{
             self.btnReorder.setTitle("Done", for: .normal)

@@ -390,7 +390,7 @@ class FileTestsUnsucessfull: XCTestCase {
         
         var parameters:[String : Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "reminder":"true"]
         if folderId != nil {
-            parameters.updateValue(folderId, forKey: "folder_id")
+            parameters.updateValue(folderId!, forKey: "folder_id")
         }
         parameters["source"] = "all"
         parameters["id"] = "987465132"//wrong id

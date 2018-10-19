@@ -28,6 +28,7 @@ public class RecordingsManager : NSObject {
         }
         
         recordFolders.append(recordFolder)
+        RecorderFrameworkManager.sharedInstance.saveData()
         return recordFolder
     }
     
@@ -81,6 +82,7 @@ public class RecordingsManager : NSObject {
                     }
                     
                     folder.recordedItems.remove(at: index)
+                    RecorderFrameworkManager.sharedInstance.saveData()
                     return
                 }
                 index += 1
@@ -180,6 +182,7 @@ public class RecordingsManager : NSObject {
         }
         folder.recordedItems.append(recordItem)
         folder.recordedItems.sort { $0.fileOrder > $1.fileOrder }
+        RecorderFrameworkManager.sharedInstance.saveData()
         return recordItem
     }
     
@@ -192,6 +195,7 @@ public class RecordingsManager : NSObject {
             for existingItem in recFolder.recordedItems {
                 if existingItem.id == recordItemId {
                     recFolder.recordedItems.remove(at: recFolder.recordedItems.index(of: existingItem)!)
+                    RecorderFrameworkManager.sharedInstance.saveData()
                     return
                 }
             }

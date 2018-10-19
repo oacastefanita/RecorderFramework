@@ -151,6 +151,13 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
         super.viewDidAppear(animated)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if player != nil && player.isPlaying{
+            player.stop()
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -166,7 +173,9 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
         txtFirstName.text = file.firstName
         txtName.text = file.text
         btnStar.setTitle(file.isStar ? "Unstar":"Star", for: .normal)
-        btnRecover.isHidden = (folder.id! != "trash")
+        if folder != nil{
+            btnRecover.isHidden = (folder.id! != "trash")
+        }
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -182,12 +191,18 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
     }
     
     @IBAction func onRename(_ sender: Any) {
+        if file.id == "Delete"{
+            return
+        }
         titleType = 0
         placeholder = "new name"
         self.performSegue(withIdentifier: "titleFromFile", sender: self)
     }
     
     @IBAction func onClone(_ sender: Any) {
+        if file.id == "Delete"{
+            return
+        }
         RecorderFrameworkManager.sharedInstance.cloneFile(entityId: file.id, completionHandler: { (success, data) -> Void in
             if success {
                 self.navigationController?.popToRootViewController(animated: true)
@@ -200,12 +215,18 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
     }
     
     @IBAction func onRecover(_ sender: Any) {
+        if file.id == "Delete"{
+            return
+        }
         titleType = 2
         placeholder = "item id"
         self.performSegue(withIdentifier: "titleFromFile", sender: self)
     }
     
     @IBAction func onMove(_ sender: Any) {
+        if file.id == "Delete"{
+            return
+        }
         self.performSegue(withIdentifier: "showMoveToFromFile", sender: self)
     }
     
@@ -235,12 +256,19 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
     }
     
     @IBAction func onDelete(_ sender: Any) {
+        if file.id == "Delete"{
+            return
+        }
         RecorderFrameworkManager.sharedInstance.deleteRecording(file, forever: true)
+        folder.recordedItems.remove(at: folder.recordedItems.indexOf(file)!)
         self.navigationController?.popToRootViewController(animated: true)
         self.alert(message: "Request sent")
     }
     
     @IBAction func onStar(_ sender: Any) {
+        if file.id == "Delete"{
+            return
+        }
         RecorderFrameworkManager.sharedInstance.star(true, entityId: file.id, isFile: true, completionHandler: { (success, data) -> Void in
             if success {
                 self.navigationController?.popToRootViewController(animated: true)

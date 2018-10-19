@@ -36,6 +36,17 @@ public class APIClient : NSObject {
     //default token used by server = 55942ee3894f51000530894
     public func register(_ number:String, token:String = "55942ee3894f51000530894",completionHandler:((Bool, Any?) -> Void)?)
     {
+        let charcterSet  = NSCharacterSet(charactersIn: "+0123456789").inverted
+        let inputString = number.components(separatedBy: charcterSet)
+        let filtered = inputString.joined(separator: "")
+        if  !(number == filtered && number.first == "+"){
+            if completionHandler != nil {
+                completionHandler!(false, "invalid phone number")
+            }
+            return
+        }
+        
+        
         let parameters = ["phone": number, "token": token]
         api.doRequest("register_phone", method: .post, parameters: parameters) { (success, data) in
             if success {
@@ -99,6 +110,7 @@ public class APIClient : NSObject {
             }
             parameters["mcc"] = mcc
             parameters["device_type"] = "ios"
+            parameters["device_id"] = deviceToken
         #elseif os(OSX)
             parameters["device_type"] = "mac"
             parameters["device_id"] = RecorderFrameworkManager.sharedInstance.macSN // device identifier for pn
@@ -924,6 +936,7 @@ public class APIClient : NSObject {
                     if completionHandler != nil {
                         completionHandler!( true, nil)
                     }
+                RecordingsManager.sharedInstance.deleteRecordingItem(recordItemId)
                 }
             }
             else {

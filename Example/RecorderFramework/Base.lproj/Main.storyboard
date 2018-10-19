@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Rgn-bi-hdd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Rgn-bi-hdd">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -33,8 +30,8 @@
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="qlb-5o-qte"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Cy-4T-NI1">
-                                <rect key="frame" x="151.5" y="142" width="71" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Cy-4T-NI1">
+                                <rect key="frame" x="152" y="167" width="71" height="30"/>
                                 <state key="normal" title="Send SMS"/>
                                 <connections>
                                     <action selector="onDone:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="BBH-JR-vtK"/>
@@ -83,7 +80,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8od-l5-brN">
-                                <rect key="frame" x="168.5" y="142" width="37" height="30"/>
+                                <rect key="frame" x="169" y="142" width="37" height="30"/>
                                 <state key="normal" title="Done"/>
                                 <connections>
                                     <action selector="onDone:" destination="G04-zZ-0Yy" eventType="touchUpInside" id="uct-rg-BaR"/>
@@ -237,35 +234,35 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hps-SP-jaB">
-                                <rect key="frame" x="161.5" y="72" width="51" height="30"/>
+                                <rect key="frame" x="162" y="72" width="51" height="30"/>
                                 <state key="normal" title="Folders"/>
                                 <connections>
                                     <action selector="onGetFolders:" destination="wvJ-9H-guJ" eventType="touchUpInside" id="pKo-Jo-yJ1"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pLU-Ax-nNq">
-                                <rect key="frame" x="158.5" y="110" width="57" height="30"/>
+                                <rect key="frame" x="159" y="110" width="57" height="30"/>
                                 <state key="normal" title="Settings"/>
                                 <connections>
                                     <action selector="onGetSettings:" destination="wvJ-9H-guJ" eventType="touchUpInside" id="50A-Gg-wIv"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8wj-2K-S9U">
-                                <rect key="frame" x="152" y="148" width="70" height="30"/>
+                                <rect key="frame" x="152.5" y="148" width="70" height="30"/>
                                 <state key="normal" title="Messages"/>
                                 <connections>
                                     <action selector="onGetMessages:" destination="wvJ-9H-guJ" eventType="touchUpInside" id="f7E-Bx-aj0"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nwp-yd-9Te">
-                                <rect key="frame" x="149" y="186" width="76" height="30"/>
+                                <rect key="frame" x="149.5" y="186" width="76" height="30"/>
                                 <state key="normal" title="Languages"/>
                                 <connections>
                                     <action selector="onGetLanguages:" destination="wvJ-9H-guJ" eventType="touchUpInside" id="3zG-dW-KzP"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="56n-3I-hbN">
-                                <rect key="frame" x="132" y="224" width="110" height="30"/>
+                                <rect key="frame" x="132.5" y="224" width="110" height="30"/>
                                 <state key="normal" title="Phone Numbers"/>
                                 <connections>
                                     <action selector="onGetPhoneNumbers:" destination="wvJ-9H-guJ" eventType="touchUpInside" id="76M-bL-XA6"/>
@@ -286,14 +283,14 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kc6-CR-E5d">
-                                <rect key="frame" x="163" y="338" width="48" height="30"/>
+                                <rect key="frame" x="163.5" y="338" width="48" height="30"/>
                                 <state key="normal" title="Search"/>
                                 <connections>
                                     <segue destination="iyz-sR-1pL" kind="show" id="9Ge-Ar-30m"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ORX-p2-C10">
-                                <rect key="frame" x="148.5" y="376" width="79" height="30"/>
+                                <rect key="frame" x="148" y="376" width="79" height="30"/>
                                 <state key="normal" title="Record Call"/>
                                 <connections>
                                     <action selector="onRecordCall:" destination="wvJ-9H-guJ" eventType="touchUpInside" id="oWq-DA-o0f"/>
@@ -427,14 +424,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="he6-Ho-DAr">
-                                <rect key="frame" x="142" y="114" width="90" height="30"/>
+                                <rect key="frame" x="142.5" y="114" width="90" height="30"/>
                                 <state key="normal" title="buy premium"/>
                                 <connections>
                                     <action selector="buyPremium" destination="9OT-9x-Fh5" eventType="touchUpInside" id="jbU-MX-q1v"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A50-m3-c8j">
-                                <rect key="frame" x="160.5" y="152" width="53" height="30"/>
+                                <rect key="frame" x="161" y="152" width="53" height="30"/>
                                 <state key="normal" title="buy pro"/>
                                 <connections>
                                     <action selector="buyPro" destination="9OT-9x-Fh5" eventType="touchUpInside" id="cCj-c3-VMK"/>
@@ -878,7 +875,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="eQ8-Gg-FEV">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="eQ8-Gg-FEV">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1172,7 +1169,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uA5-5D-k5F">
-                                <rect key="frame" x="158.5" y="637" width="57" height="30"/>
+                                <rect key="frame" x="159" y="637" width="57" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="BUc-qO-J9l"/>
                                 </constraints>
@@ -1268,7 +1265,7 @@
                                 </connections>
                             </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="taK-ZD-bUb">
-                                <rect key="frame" x="166" y="72" width="42" height="24"/>
+                                <rect key="frame" x="166.5" y="72" width="42" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1388,7 +1385,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XlM-av-GHx">
-                                <rect key="frame" x="168.5" y="150" width="37.5" height="21"/>
+                                <rect key="frame" x="169" y="150" width="37.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1512,7 +1509,7 @@
                                 </date>
                             </datePicker>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWQ-wS-uhb">
-                                <rect key="frame" x="168.5" y="308" width="37" height="30"/>
+                                <rect key="frame" x="169" y="308" width="37" height="30"/>
                                 <state key="normal" title="Done"/>
                                 <connections>
                                     <action selector="onDone:" destination="P9J-NP-6OT" eventType="touchUpInside" id="QVS-aN-Z3h"/>
@@ -2012,7 +2009,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="VCW-3U-8x8"/>
         <segue reference="Lwo-vA-DKq"/>
-        <segue reference="C7U-gp-LW3"/>
+        <segue reference="CSF-Tg-21a"/>
         <segue reference="ePg-Zz-p0I"/>
     </inferredMetricsTieBreakers>
 </document>
