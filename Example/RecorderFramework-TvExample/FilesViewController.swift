@@ -117,7 +117,7 @@ class FilesViewController: UIViewController,UITableViewDelegate, UITableViewData
             RecorderFrameworkManager.sharedInstance.addPasswordToFolder(RecordingsManager.sharedInstance.recordFolders[selectedFolder])
             self.navigationController?.popToRootViewController(animated: true)
             self.alert(message: "Request sent")
-        }else{
+        }else{ 
             RecordingsManager.sharedInstance.recordFolders[selectedFolder].title = title
             RecorderFrameworkManager.sharedInstance.renameFolder(RecordingsManager.sharedInstance.recordFolders[selectedFolder])
             self.navigationController?.popToRootViewController(animated: true)

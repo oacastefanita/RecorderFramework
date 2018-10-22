@@ -1247,7 +1247,7 @@ public class APIClient : NSObject {
             source = "rem"
         }
         parameters["source"] = source
-        
+        print(parameters.description)
         api.upload(API_BASE_URL + "create_file", imagesFiles: [path], fieldNames: ["file"], parameters:parameters) { (success, retData) in
             if success {
                 if let data = retData as? [String:Any] {

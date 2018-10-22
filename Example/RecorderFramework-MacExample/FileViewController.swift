@@ -88,6 +88,13 @@ class FileViewController: NSViewController, TitleViewControllerDelegater, AVAudi
         fillView()
     }
     
+    override func viewDidDisappear() {
+        super.viewWillDisappear()
+        if player != nil && player.isPlaying{
+            player.stop()
+        }
+    }
+    
     func play() {
         let fileManager = FileManager.default
         var path = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)!.path

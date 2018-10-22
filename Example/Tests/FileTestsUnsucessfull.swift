@@ -48,8 +48,6 @@ class FileTestsUnsucessfull: XCTestCase {
         recordItem.lastName = "UnitTestLastName"
         recordItem.firstName = "UnitTestFirstName"
         recordItem.text = "UnitTestText"
-        recordItem.id = UUID().uuidString
-        self.fileId = recordItem.id
         
         let oldPath = Bundle.main.url(forResource: "Test", withExtension: "wav")
         let fileManager = FileManager.default
@@ -189,23 +187,6 @@ class FileTestsUnsucessfull: XCTestCase {
         waitForExpectations(timeout: 30, handler: nil)
     }
     
-    func test06StarWrongType() {
-        let promise = expectation(description: "Star file fail")
-        var params = [String:Any]()
-        params["api_key"] = AppPersistentData.sharedInstance.apiKey!
-        params["id"] = self.fileId
-        params["type"] = "nope"//wrong type
-        params["star"] = 1
-        APIClient.sharedInstance.star(params, completionHandler: { (success, data) -> Void in
-            if success {
-                XCTFail("Error: Id is invalid, server should not accept it")
-            }
-            else {
-                promise.fulfill()
-            }
-        })
-        waitForExpectations(timeout: 30, handler: nil)
-    }
     
     func test07CloneWrongEntityId() {
         let promise = expectation(description: "Clone file fail")
@@ -226,7 +207,7 @@ class FileTestsUnsucessfull: XCTestCase {
         let recordItem = RecordItem()
         recordItem.id = self.fileId
         //wrong folder id
-        APIClient.sharedInstance.moveRecording(recordItem, folderId:"asdjasid asiod", completionHandler: { (success, data) -> Void in
+        APIClient.sharedInstance.moveRecording(recordItem, folderId:"asfsadasjdioaso", completionHandler: { (success, data) -> Void in
             if success {
                 XCTFail("Error: Id is invalid, server should not accept it")
             }
@@ -245,7 +226,7 @@ class FileTestsUnsucessfull: XCTestCase {
                 if let folderId = data as? NSNumber{
                     self.folderId = "\(folderId)"
                     let recordItem = RecordItem()
-                    recordItem.id = "asdasdas"//wrong file id
+                    recordItem.id = "4232423423as"//wrong file id
                     APIClient.sharedInstance.moveRecording(recordItem, folderId:self.folderId, completionHandler: { (success, data) -> Void in
                         if success {
                             XCTFail("Error: Id is invalid, server should not accept it")

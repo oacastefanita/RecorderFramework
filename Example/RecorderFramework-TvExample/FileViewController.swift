@@ -64,6 +64,14 @@ class FileViewController: UIViewController, TitleViewControllerDelegater{
         Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(FileViewController.enableTags), userInfo: nil, repeats: true)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if player != nil && player.isPlaying{
+            player.stop()
+        }
+    }
+
+    
     @objc func enableTags(){
         self.btnTags.isEnabled = true
     }

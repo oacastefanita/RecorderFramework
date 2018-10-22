@@ -20,7 +20,10 @@ class FileTagsViewController: NSViewController, NSTableViewDelegate, NSTableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        if file.audioFileTags == nil{
+            file.audioFileTags = NSMutableArray()
+        }
+
         // Do any additional setup after loading the view.
     }
     
