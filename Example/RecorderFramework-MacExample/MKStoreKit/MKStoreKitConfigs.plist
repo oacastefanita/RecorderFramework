@@ -2,31 +2,24 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Consumables</key>
+	<key>Others</key>
 	<dict>
-		<key>com.werockapps.Recorder100</key>
+		<key>com.werockapps.RecorderMacPremium</key>
 		<dict>
 			<key>ConsumableCount</key>
 			<integer>1</integer>
 			<key>ConsumableId</key>
-			<string>com.werockapps.Recorder100</string>
+			<string>com.werockapps.RecorderMacPremium</string>
 		</dict>
-		<key>com.werockapps.Recorder300</key>
+		<key>com.werockapps.RecorderMacPro</key>
 		<dict>
 			<key>ConsumableCount</key>
 			<integer>1</integer>
 			<key>ConsumableId</key>
-			<string>com.werockapps.Recorder300</string>
-		</dict>
-		<key>com.werockapps.Recorder1000</key>
-		<dict>
-			<key>ConsumableCount</key>
-			<integer>1</integer>
-			<key>ConsumableId</key>
-			<string>com.werockapps.Recorder1000</string>
+			<string>com.werockapps.RecorderMacPro</string>
 		</dict>
 	</dict>
 	<key>SharedSecret</key>
-	<string>ad4028657563419bbee853bbfae7d106</string>
+	<string>5e6850747fbc463b919b8c79d9893a46</string>
 </dict>
 </plist>

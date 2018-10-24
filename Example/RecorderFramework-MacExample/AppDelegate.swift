@@ -17,6 +17,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         RecorderFrameworkManager.sharedInstance.containerName = "group.com.codebluestudio.Recorder"
         RecorderFrameworkManager.sharedInstance.macSN = String.macSerialNumber()
         NSApp.registerForRemoteNotifications(matching: .alert)
+        MKStoreKit.shared().startProductRequest()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

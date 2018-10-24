@@ -195,9 +195,9 @@ class FilesViewController: NSViewController, NSTableViewDelegate, NSTableViewDat
         if titleType == 0{
             if(RecordingsManager.sharedInstance.recordFolders[selectedFolder].password != nil){
                 if RecordingsManager.sharedInstance.recordFolders[selectedFolder].password == title{
-                    //                self.alert(message: "Password is correct")
+                    self.showAlert(title: "Success", body: "Passwords is correct")
                 }else{
-                    //                self.alert(message: "Password is incorrect")
+                    self.showAlert(title: "Error", body: "Password is incorrect")
                 }
             }
         }else if titleType == 1{

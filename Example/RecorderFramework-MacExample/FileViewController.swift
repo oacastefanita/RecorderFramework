@@ -26,6 +26,8 @@ class FileViewController: NSViewController, TitleViewControllerDelegater, AVAudi
     
     @IBOutlet weak var btnRecord: NSButton!
     @IBOutlet weak var btnStar: NSButton!
+    @IBOutlet weak var btnTags: NSButton!
+    @IBOutlet weak var btnTrim: NSButton!
     @IBOutlet weak var btnRecover: NSButton!
     @IBOutlet weak var recordingTimeLabel: NSTextField!
     
@@ -85,6 +87,7 @@ class FileViewController: NSViewController, TitleViewControllerDelegater, AVAudi
                 self.play()
             }
         }
+        Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(FileViewController.enableTags), userInfo: nil, repeats: true)
         fillView()
     }
     
@@ -93,6 +96,11 @@ class FileViewController: NSViewController, TitleViewControllerDelegater, AVAudi
         if player != nil && player.isPlaying{
             player.stop()
         }
+    }
+    
+    @objc func enableTags(){
+        self.btnTags.isEnabled = true
+        self.btnTrim.isEnabled = true
     }
     
     func play() {
@@ -148,7 +156,9 @@ class FileViewController: NSViewController, TitleViewControllerDelegater, AVAudi
         txtLastName.stringValue = file.lastName
         txtFirstName.stringValue = file.firstName
         txtName.stringValue = file.text
-        btnRecover.isHidden = (folder.id! != "trash")
+        if folder != nil{
+            btnRecover.isHidden = (folder.id! != "trash")
+        }
         btnStar.title = (file.isStar ? "Unstar":"Star")
         renderAudio()
     }

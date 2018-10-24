@@ -9,6 +9,19 @@
 import Foundation
 import AppKit
 
+extension NSViewController{
+    func showAlert(title: String, body: String){
+        let a: NSAlert = NSAlert()
+        a.messageText = title
+        a.informativeText = body
+        a.addButton(withTitle: "Ok")
+        
+        a.beginSheetModal(for: self.view.window!, completionHandler: { (modalResponse: NSApplication.ModalResponse) -> Void in
+            
+        })
+    }
+}
+
 func iterateEnum<T: Hashable>(_: T.Type) -> AnyIterator<T> {
     var i = 0
     return AnyIterator {

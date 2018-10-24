@@ -371,7 +371,8 @@ public class RecordItem: NSObject, NSSecureCoding {
         
         audioFilePath = filePath
         if filePath.components(separatedBy: ".").count >= 2{
-            audioMetadataFilePath = filePath.components(separatedBy: ".")[filePath.components(separatedBy: ".").count - 2] + "_metadata.json"
+            var components = filePath.components(separatedBy: ".").dropLast()
+            audioMetadataFilePath = components.joined(separator: ".") + "_metadata.json"
         }
         else{
             return

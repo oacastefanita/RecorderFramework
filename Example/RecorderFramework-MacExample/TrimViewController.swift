@@ -70,10 +70,11 @@ class TrimViewController: NSViewController{
             let duration = CMTimeGetSeconds(asset.duration)
             if duration < Float64(txtFrom.stringValue)! {
                 print("sound is not long enough")
+                self.showAlert(title: "Error", body: "Sound is not long enough")
                 return
             }
             if duration < Float64(txtTo.stringValue)! +  Float64(txtFrom.stringValue)!{
-                print("sound is not long enough")
+                self.showAlert(title: "Error", body: "Sound is not long enough")
                 return
             }
             // e.g. the first 5 seconds

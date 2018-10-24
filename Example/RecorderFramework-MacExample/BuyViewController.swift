@@ -11,33 +11,40 @@ import RecorderFramework
 
 class BuyViewController: NSViewController{
     
-    @IBAction func buy100(_ sender: Any){
-        MKStoreKit.shared().initiatePaymentRequestForProduct(withIdentifier: "com.werockapps.Recorder100")
-        NotificationCenter.default.addObserver(forName: NSNotification.Name.mkStoreKitProductPurchased, object: nil, queue: OperationQueue()) {note in
-            RecorderFrameworkManager.sharedInstance.buy100(reciept: "com.werockapps.Recorder100")
-        }
-        NotificationCenter.default.addObserver(forName: NSNotification.Name.mkStoreKitRestoringPurchasesFailed, object: nil, queue: OperationQueue()) {note in
-            
+    override func viewWillAppear() {
+        super.viewWillAppear()
+        NotificationCenter.default.addObserver(self, selector: #selector(BuyViewController.purchaseSucessful), name: NSNotification.Name.mkStoreKitProductPurchased, object: nil)
+    }
+    
+    @IBAction func buyPro(_ sender: Any){
+        MKStoreKit.shared().initiatePaymentRequestForProduct(withIdentifier: "com.werockapps.RecorderMacPro")
+    }
+    
+    @IBAction func buyPremium(_ sender: Any){
+        MKStoreKit.shared().initiatePaymentRequestForProduct(withIdentifier: "com.werockapps.RecorderMacPremium")
+    }
+    
+    @objc func purchaseSucessful(){
+        if let receipt = self.getReceipt() {
+            RecorderFrameworkManager.sharedInstance.buyCredits(0, reciept: receipt)
         }
     }
     
-    @IBAction func buy300(_ sender: Any){
-        MKStoreKit.shared().initiatePaymentRequestForProduct(withIdentifier: "com.werockapps.Recorder300")
-        NotificationCenter.default.addObserver(forName: NSNotification.Name.mkStoreKitProductPurchased, object: nil, queue: OperationQueue()) {note in
-            RecorderFrameworkManager.sharedInstance.buy100(reciept: "com.werockapps.Recorder300")
+    func getReceipt() -> String? {
+        let receiptURL = Bundle.main.appStoreReceiptURL
+        
+        var receiptError:NSError?
+        if let isPresent = (receiptURL as NSURL?)?.checkResourceIsReachableAndReturnError(&receiptError) {
+            if !isPresent {
+                return nil
+            }
         }
-        NotificationCenter.default.addObserver(forName: NSNotification.Name.mkStoreKitRestoringPurchasesFailed, object: nil, queue: OperationQueue()) {note in
-            
+        
+        if let receiptData = try? Data(contentsOf: receiptURL!) {
+            return NSString.init(data: receiptData.base64EncodedData(options: NSData.Base64EncodingOptions(rawValue: 0)), encoding: String.Encoding.utf8.rawValue) as? String
         }
-    }
-    
-    @IBAction func buy1000(_ sender: Any){
-        MKStoreKit.shared().initiatePaymentRequestForProduct(withIdentifier: "com.werockapps.Recorder1000")
-        NotificationCenter.default.addObserver(forName: NSNotification.Name.mkStoreKitProductPurchased, object: nil, queue: OperationQueue()) {note in
-            RecorderFrameworkManager.sharedInstance.buy100(reciept: "com.werockapps.Recorder1000")
-        }
-        NotificationCenter.default.addObserver(forName: NSNotification.Name.mkStoreKitRestoringPurchasesFailed, object: nil, queue: OperationQueue()) {note in
-            
+        else {
+            return nil
         }
     }
 }

@@ -48,6 +48,8 @@ class FileTestsUnsucessfull: XCTestCase {
         recordItem.lastName = "UnitTestLastName"
         recordItem.firstName = "UnitTestFirstName"
         recordItem.text = "UnitTestText"
+        recordItem.id = UUID().uuidString
+        self.fileId = recordItem.id
         
         let oldPath = Bundle.main.url(forResource: "Test", withExtension: "wav")
         let fileManager = FileManager.default
@@ -207,7 +209,7 @@ class FileTestsUnsucessfull: XCTestCase {
         let recordItem = RecordItem()
         recordItem.id = self.fileId
         //wrong folder id
-        APIClient.sharedInstance.moveRecording(recordItem, folderId:"asfsadasjdioaso", completionHandler: { (success, data) -> Void in
+        APIClient.sharedInstance.moveRecording(recordItem, folderId:"23423423423", completionHandler: { (success, data) -> Void in
             if success {
                 XCTFail("Error: Id is invalid, server should not accept it")
             }

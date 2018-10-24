@@ -1238,9 +1238,9 @@ public class APIClient : NSObject {
         }
         
         var parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "data": "{\"name\":\"\(recordItem!.text!)\",\"notes\":\"\(recordItem!.notes!)\",\"tags\":\"\(recordItem!.tags)\"}"]
-        if recordItem.id != nil{
-            parameters["id"] = recordItem.id
-        }
+//        
+//        var parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "data": "{\"name\":\"\(recordItem!.text!)\",\"notes\":\"\(recordItem!.notes!)\",\"tags\":\"\(recordItem!.tags)\"}"]
+//        if recordItem.id != nil{
         
         var source = "rec"
         if RecorderFrameworkManager.sharedInstance.isRecorder{

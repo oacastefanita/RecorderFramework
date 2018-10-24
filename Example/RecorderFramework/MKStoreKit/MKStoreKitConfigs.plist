@@ -4,27 +4,6 @@
 <dict>
 	<key>Consumables</key>
 	<dict>
-		<key>com.werockapps.CallRecorder100</key>
-		<dict>
-			<key>ConsumableCount</key>
-			<integer>1</integer>
-			<key>ConsumableId</key>
-			<string>com.werockapps.CallRecorder100</string>
-		</dict>
-		<key>com.werockapps.CallRecorder300</key>
-		<dict>
-			<key>ConsumableCount</key>
-			<integer>1</integer>
-			<key>ConsumableId</key>
-			<string>com.werockapps.CallRecorder300</string>
-		</dict>
-		<key>com.werockapps.CallRecorder1000</key>
-		<dict>
-			<key>ConsumableCount</key>
-			<integer>1</integer>
-			<key>ConsumableId</key>
-			<string>com.werockapps.CallRecorder1000</string>
-		</dict>
 		<key>com.werockapps.CallRecorderPremium</key>
 		<dict>
 			<key>ConsumableCount</key>

@@ -27,9 +27,7 @@ class RegisterTestsUnsuccessful: XCTestCase {
                 XCTFail("Error: Phone number is invalid, server should not accept it")
             }
             else {
-                if( (data as! String) == "Please enter valid Phone Number , alongwith country code"){
-                    promise.fulfill()
-                }
+                promise.fulfill()
             }
         })
         

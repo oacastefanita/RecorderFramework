@@ -34,7 +34,7 @@ TODO: Add long description of the pod here.
   s.osx.deployment_target  = '10.12'
 
   s.source_files = 'RecorderFramework/Classes/**/*'
-  
+  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.0' }
   # s.resource_bundles = {
   #   'RecorderFramework' => ['RecorderFramework/Assets/*.png']
   # }

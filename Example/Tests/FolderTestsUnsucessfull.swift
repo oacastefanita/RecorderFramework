@@ -123,7 +123,7 @@ class FolderTestsUnsucessfull: XCTestCase {
         waitForExpectations(timeout: 30, handler: nil)
     }
     
-    func test8DeleteFolderEmptyId(){
+    func test8DeleteFolderWrongMoveToId(){
         let promise = expectation(description: "Folder delete fail")
         //wrong moveTo id
         APIClient.sharedInstance.deleteFolder(self.folderId, moveTo:"65468752785", completionHandler: { (success, data) -> Void in

@@ -38,6 +38,7 @@
 		A22A10491FA1E5F400DAFA40 /* FilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22A10481FA1E5F400DAFA40 /* FilesViewController.swift */; };
 		A22A104B1FA1F00500DAFA40 /* FileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22A104A1FA1F00500DAFA40 /* FileViewController.swift */; };
 		A23A2CB51FA1D84C00E25F87 /* FoldersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23A2CB41FA1D84C00E25F87 /* FoldersViewController.swift */; };
+		A23BE10E217F35A30084E3C4 /* MKStoreKitConfigs.plist in Resources */ = {isa = PBXBuildFile; fileRef = A2412DC91FB7865700B7EC7D /* MKStoreKitConfigs.plist */; };
 		A23C56FB1FD6BC9D0038D5F1 /* PanoramaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C7DF731FD583B200F8AFDA /* PanoramaViewController.swift */; };
 		A23C56FD1FD6CE650038D5F1 /* TagsInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23C56FC1FD6CE650038D5F1 /* TagsInterfaceController.swift */; };
 		A23C56FF1FD6CF3C0038D5F1 /* TagsRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23C56FE1FD6CF3C0038D5F1 /* TagsRowController.swift */; };
@@ -46,7 +47,6 @@
 		A2407C001FC48BC800EBAEC3 /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2407BFF1FC48BC800EBAEC3 /* TagViewController.swift */; };
 		A2412DC41FB76D9F00B7EC7D /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2412DC31FB76D9F00B7EC7D /* SearchViewController.swift */; };
 		A2412DC61FB7857F00B7EC7D /* BuyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2412DC51FB7857F00B7EC7D /* BuyViewController.swift */; };
-		A2412DCC1FB7865700B7EC7D /* MKStoreKitConfigs.plist in Resources */ = {isa = PBXBuildFile; fileRef = A2412DC91FB7865700B7EC7D /* MKStoreKitConfigs.plist */; };
 		A2412DCD1FB7865700B7EC7D /* MKStoreKit.m in Sources */ = {isa = PBXBuildFile; fileRef = A2412DCB1FB7865700B7EC7D /* MKStoreKit.m */; };
 		A2412DCF1FB788FD00B7EC7D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2412DCE1FB788FD00B7EC7D /* ProfileViewController.swift */; };
 		A2412DD11FB7901700B7EC7D /* PhoneNumbersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2412DD01FB7901700B7EC7D /* PhoneNumbersViewController.swift */; };
@@ -1136,7 +1136,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A2412DCC1FB7865700B7EC7D /* MKStoreKitConfigs.plist in Resources */,
+				A23BE10E217F35A30084E3C4 /* MKStoreKitConfigs.plist in Resources */,
 				A2D8BBB51FDE65C200E4F01C /* InfoPlist.strings in Resources */,
 				A2D6BBF61FB3D0D9003C6CE4 /* Assets.xcassets in Resources */,
 				A2D8BBB61FDE65C200E4F01C /* JHWaveform-Info.plist in Resources */,
