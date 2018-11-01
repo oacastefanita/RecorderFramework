@@ -781,14 +781,7 @@ public class APIClient : NSObject {
             return
         }
         
-        var parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "data": "{\"name\":\"\(recordItem!.text!)\",\"notes\":\"\(recordItem!.notes!)\",\"tags\":\"\(recordItem!.tags)\"}"]
-        var source = "rec"
-        if RecorderFrameworkManager.sharedInstance.isRecorder{
-            source = "rem"
-        }
-        parameters["source"] = source
-        print(parameters.description)
-        api.upload(API_BASE_URL + ServerPaths.createFile.rawValue, imagesFiles: [path], fieldNames: ["file"], parameters:parameters) { (success, retData) in
+        api.upload(API_BASE_URL + ServerPaths.createFile.rawValue, imagesFiles: [path], fieldNames: ["file"], parameters:APIRequestParametersController.createUploadRecordingParameters(recordItem: recordItem)) { (success, retData) in
             if success {
                 if let data = retData as? [String:Any] {
                     //{"status":"ok","msg":”File Uploaded Successfully",”id”:”1”}
@@ -1093,9 +1086,7 @@ public class APIClient : NSObject {
             return
         }
         
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "play_beep" : playBeep ? "yes" : "no", "files_permission" : filesPersmission ? "public":"private"]
-        
-        api.doRequest(ServerPaths.updateSettings.rawValue, method: .post, parameters: parameters) { (success, data) in
+        api.doRequest(ServerPaths.updateSettings.rawValue, method: .post, parameters: APIRequestParametersController.createUpdateSettingsParameters(playBeep: playBeep, filesPersmission: filesPersmission)) { (success, data) in
             if success {
                 if completionHandler != nil {
                     completionHandler!( true, nil)
@@ -1114,12 +1105,7 @@ public class APIClient : NSObject {
             return
         }
         
-        var parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "app" : free ? "free" : "pro"]
-        if timezone != nil{
-            parameters["timezone"] = timezone
-        }
-        
-        api.doRequest(ServerPaths.updateUser.rawValue, method: .post, parameters: parameters) { (success, data) in
+        api.doRequest(ServerPaths.updateUser.rawValue, method: .post, parameters: APIRequestParametersController.createUpdateUserParameters(free:free, timezone:timezone)) { (success, data) in
             if success {
                 if completionHandler != nil {
                     completionHandler!( true, nil)
@@ -1139,9 +1125,7 @@ public class APIClient : NSObject {
             return
         }
         
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!]
-        
-        api.doRequest(ServerPaths.getSettings.rawValue, method: .post, parameters: parameters) { (success, data) in
+        api.doRequest(ServerPaths.getSettings.rawValue, method: .post, parameters: APIRequestParametersController.createDefaultParameters()) { (success, data) in
             if success {
                 if let settings:NSDictionary = data!["settings"] as? NSDictionary {
                     if let value:String = settings.object(forKey: "play_beep") as? String {
@@ -1176,14 +1160,8 @@ public class APIClient : NSObject {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
         }
-        var appCode = "rec"
-        if RecorderFrameworkManager.sharedInstance.isRecorder{
-            appCode = "rem"
-        }
         
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "app":appCode, "reciept" : receipt] as [String : Any]
-        
-        api.doRequest(ServerPaths.buyCredits.rawValue, method: .post, parameters: parameters) { (success, data) in
+        api.doRequest(ServerPaths.buyCredits.rawValue, method: .post, parameters: APIRequestParametersController.createBuyCreditsParameters(credits: credits, receipt: receipt)) { (success, data) in
             if success {
                 if completionHandler != nil {
                     completionHandler!( true, nil)
@@ -1196,6 +1174,7 @@ public class APIClient : NSObject {
         }
     }
     
+    //for unit tests
     public func buyCredits(_ parameters:[String: Any], completionHandler:((Bool, Any?) -> Void)?) {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
@@ -1221,9 +1200,7 @@ public class APIClient : NSObject {
             return
         }
         
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "device_token" : token, "device_type" : "ios"]
-        
-        api.doRequest(ServerPaths.updateDeviceToken.rawValue, method: .post, parameters: parameters) { (success, data) in
+        api.doRequest(ServerPaths.updateDeviceToken.rawValue, method: .post, parameters: APIRequestParametersController.createUpdateTokenParameters(token: token)) { (success, data) in
             if success {
                 if completionHandler != nil {
                     completionHandler!( true, nil)
@@ -1236,6 +1213,7 @@ public class APIClient : NSObject {
         }
     }
     
+    //for unit tests
     public func updateToken(_ parameters:[String:Any], completionHandler:((Bool, Any?) -> Void)?) {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
@@ -1261,9 +1239,7 @@ public class APIClient : NSObject {
             return
         }
         
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "device" : token, "title" : "Title", "body" : "body"]
-        
-        api.doRequest(ServerPaths.notifyUser.rawValue, method: .post, parameters: parameters) { (success, data) in
+        api.doRequest(ServerPaths.notifyUser.rawValue, method: .post, parameters: APIRequestParametersController.createNotifyUserParameters(token:token)) { (success, data) in
             if success {
                 if completionHandler != nil {
                     completionHandler!( true, nil)
@@ -1283,9 +1259,7 @@ public class APIClient : NSObject {
             return
         }
         
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "language": language]
-        
-        api.doRequest(ServerPaths.getTranslations.rawValue, method: .post, parameters: parameters) { (success, data) in
+        api.doRequest(ServerPaths.getTranslations.rawValue, method: .post, parameters: APIRequestParametersController.createGetTranslationsParameters(language: language)) { (success, data) in
             if success {
                 if completionHandler != nil {
                     completionHandler!( true, data)
@@ -1304,9 +1278,7 @@ public class APIClient : NSObject {
             return
         }
         
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!]
-        
-        api.doRequest(ServerPaths.getLanguages.rawValue, method: .post, parameters: parameters) { (success, data) in
+        api.doRequest(ServerPaths.getLanguages.rawValue, method: .post, parameters: APIRequestParametersController.createDefaultParameters()) { (success, data) in
             if success {
                 if let calls:Array<NSDictionary> = data!["languages"] as? Array<NSDictionary> {
                     TranslationManager.sharedInstance.languages = Array()
@@ -1341,12 +1313,10 @@ public class APIClient : NSObject {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
         }
-        
         let defaults = UserDefaults.standard
         let lastTime = defaults.object(forKey: "messageTime")
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!]
-        
-        api.doRequest(ServerPaths.getMessages.rawValue, method: .post, parameters: parameters) { (success, data) in
+
+        api.doRequest(ServerPaths.getMessages.rawValue, method: .post, parameters: APIRequestParametersController.createDefaultParameters()) { (success, data) in
             if success {
                 if let msgs:Array<NSDictionary> = data!["msgs"] as? Array<NSDictionary> {
                     defaults.set(NSNumber(value: NSDate().timeIntervalSince1970), forKey: "messageTime")
@@ -1405,17 +1375,12 @@ public class APIClient : NSObject {
             return
         }
         
-        var parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!,"name":fileId+"_metadata_" + UUID().uuidString, "parent_id":fileId]
-        if oldId != nil{
-            parameters["id"] = oldId!
-        }
-        
         if !FileManager.default.fileExists(atPath: imagePath ){
             completionHandler!(false, nil)
             return
         }
         
-        api.upload(API_BASE_URL + ServerPaths.uploadMetaFile.rawValue, imagesFiles: [imagePath], fieldNames: ["file"], parameters:parameters) { (success, retData) in
+        api.upload(API_BASE_URL + ServerPaths.uploadMetaFile.rawValue, imagesFiles: [imagePath], fieldNames: ["file"], parameters:APIRequestParametersController.createUploadImageMetadataFileParameters(imagePath: imagePath, fileId: fileId, oldId: oldId)) { (success, retData) in
             if success {
                 if let data = retData as? [String:Any] {
                     if completionHandler != nil {
@@ -1440,10 +1405,7 @@ public class APIClient : NSObject {
             return
         }
         
-        var parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!,"name":(recordItem.text!)+"_metadata", "parent_id":(recordItem.id!)]
-        if oldId != nil{
-            parameters["id"] = oldId!
-        }
+        
         let fileManager = FileManager.default
         var path = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)!.path
         path += recordItem.localFile
@@ -1454,7 +1416,7 @@ public class APIClient : NSObject {
             return
         }       
         
-        api.upload(API_BASE_URL + ServerPaths.uploadMetaFile.rawValue, imagesFiles: [path], fieldNames: ["file"], parameters:parameters) { (success, retData) in
+        api.upload(API_BASE_URL + ServerPaths.uploadMetaFile.rawValue, imagesFiles: [path], fieldNames: ["file"], parameters:APIRequestParametersController.createUploadMetadataFileParameters(recordItem: recordItem, oldId: oldId)) { (success, retData) in
             if success {
                 if let data = retData as? [String:Any] {
                     if completionHandler != nil {
@@ -1483,12 +1445,7 @@ public class APIClient : NSObject {
             return
         }
         
-        var parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "ids":fileId]
-        if parentId != nil{
-            parameters["parent_id"] = parentId
-        }
-        
-        api.doRequest(ServerPaths.deleteMetaFiles.rawValue, method: .post, parameters: parameters) { (success, data) in
+        api.doRequest(ServerPaths.deleteMetaFiles.rawValue, method: .post, parameters: APIRequestParametersController.createDeleteMetadataFileParameters(fileId: fileId, parentId: parentId)) { (success, data) in
             if success {
                 if completionHandler != nil {
                     completionHandler!( true, nil)
@@ -1508,9 +1465,7 @@ public class APIClient : NSObject {
             return
         }
         
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "parent_id":(recordItem.id!)]
-        
-        api.doRequest(ServerPaths.getMetaFiles.rawValue, method: .post, parameters: parameters) { (success, data) in
+        api.doRequest(ServerPaths.getMetaFiles.rawValue, method: .post, parameters: APIRequestParametersController.createGetMetadataFilesParameters(recordItem: recordItem)) { (success, data) in
             if success {
                 if completionHandler != nil {
                     completionHandler!( true, data?["meta_files"])
@@ -1531,10 +1486,7 @@ public class APIClient : NSObject {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
         }
-        
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!]
-        
-        api.doRequest(ServerPaths.getProfile.rawValue, method: .post, parameters: parameters) { (success, data) in
+        api.doRequest(ServerPaths.getProfile.rawValue, method: .post, parameters: APIRequestParametersController.createDefaultParameters()) { (success, data) in
             if success {
                 if let profile:NSDictionary = data!["profile"] as? NSDictionary {
                     AppPersistentData.sharedInstance.user = RecorderFactory.createUserFromDict(profile)
@@ -1563,6 +1515,7 @@ public class APIClient : NSObject {
         }
     }
     
+    //for unit tests
     public func updateProfile(params:[String:Any], completionHandler:((Bool, Any?) -> Void)?)
     {
         if AppPersistentData.sharedInstance.invalidAPIKey {
@@ -1596,10 +1549,9 @@ public class APIClient : NSObject {
             completionHandler!(false, nil)
             return
         }
-        
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!]
+
         var url = API_BASE_URL.replacingOccurrences(of: "rapi/", with: ServerPaths.updateProfileImg.rawValue)
-        api.upload(url, imagesFiles: [path], fieldNames: ["file"], parameters:parameters, mimeType: "image/jpeg") { (success, retData) in
+        api.upload(url, imagesFiles: [path], fieldNames: ["file"], parameters:APIRequestParametersController.createDefaultParameters(), mimeType: "image/jpeg") { (success, retData) in
             if success {
                 if let data = retData as? [String:Any] {
                     if completionHandler != nil {
@@ -1625,11 +1577,7 @@ public class APIClient : NSObject {
             return
         }
         
-        var parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!]
-        parameters["id"] = folderId
-        parameters["pass"] = pass
-        
-        api.doRequest(ServerPaths.verifyFolderPass.rawValue, method: .post, parameters: parameters) { (success, data) in
+        api.doRequest(ServerPaths.verifyFolderPass.rawValue, method: .post, parameters: APIRequestParametersController.createVerifyFolderPassParameters(pass: pass, folderId: folderId)) { (success, data) in
             if success {
                 if completionHandler != nil {
                     completionHandler!( true, nil)

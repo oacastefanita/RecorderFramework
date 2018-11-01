@@ -141,4 +141,88 @@ public class APIRequestParametersController: NSObject {
         let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "id" : recordItem.id!, "name":name]
         return parameters
     }
+    
+    public class func createUploadRecordingParameters(recordItem:RecordItem) -> [String : Any]{
+        var parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "data": "{\"name\":\"\(recordItem.text!)\",\"notes\":\"\(recordItem.notes!)\",\"tags\":\"\(recordItem.tags)\"}"]
+        var source = "rec"
+        if RecorderFrameworkManager.sharedInstance.isRecorder{
+            source = "rem"
+        }
+        parameters["source"] = source
+        return parameters
+    }
+    
+    public class func createUpdateSettingsParameters(playBeep:Bool, filesPersmission:Bool = true) -> [String : Any]{
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "play_beep" : playBeep ? "yes" : "no", "files_permission" : filesPersmission ? "public":"private"]
+        return parameters
+    }
+    
+    public class func createUpdateUserParameters(free:Bool, timezone:String! = nil) -> [String : Any]{
+        var parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "app" : free ? "free" : "pro"]
+        if timezone != nil{
+            parameters["timezone"] = timezone
+        }
+        return parameters
+    }
+    
+    public class func createBuyCreditsParameters(credits:Int, receipt:String) -> [String : Any]{
+        var appCode = "rec"
+        if RecorderFrameworkManager.sharedInstance.isRecorder{
+            appCode = "rem"
+        }
+        
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "app":appCode, "reciept" : receipt] as [String : Any]
+        return parameters
+    }
+    
+    public class func createUpdateTokenParameters(token:String) -> [String : Any]{
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "device_token" : token, "device_type" : "ios"]
+        return parameters
+    }
+    
+    public class func createNotifyUserParameters(token:String) -> [String : Any]{
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "device" : token, "title" : "Title", "body" : "body"]
+        return parameters
+    }
+    
+    public class func createGetTranslationsParameters(language:String) -> [String : Any]{
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "language": language]
+        return parameters
+    }
+    
+    public class func createUploadImageMetadataFileParameters(imagePath:String, fileId: String, oldId:String! = nil) -> [String : Any]{
+        var parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!,"name":fileId+"_metadata_" + UUID().uuidString, "parent_id":fileId]
+        if oldId != nil{
+            parameters["id"] = oldId!
+        }
+        return parameters
+    }
+    
+    public class func createUploadMetadataFileParameters(recordItem:RecordItem, oldId:String! = nil) -> [String : Any]{
+        var parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!,"name":(recordItem.text!)+"_metadata", "parent_id":(recordItem.id!)]
+        if oldId != nil{
+            parameters["id"] = oldId!
+        }
+        return parameters
+    }
+    
+    public class func createDeleteMetadataFileParameters(fileId:String, parentId: String! = nil) -> [String : Any]{
+        var parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "ids":fileId]
+        if parentId != nil{
+            parameters["parent_id"] = parentId
+        }
+        return parameters
+    }
+    
+    public class func createGetMetadataFilesParameters(recordItem:RecordItem) -> [String : Any]{
+        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "parent_id":(recordItem.id!)]
+        return parameters
+    }
+    
+    public class func createVerifyFolderPassParameters(pass:String, folderId:String) -> [String : Any]{
+        var parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!]
+        parameters["id"] = folderId
+        parameters["pass"] = pass
+        return parameters
+    }
 }
