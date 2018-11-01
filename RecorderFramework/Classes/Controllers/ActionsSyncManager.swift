@@ -83,13 +83,13 @@ protocol CustomActionDelegate {
     func handle(action:Action, completionHandler:((Bool, AnyObject?) -> Void)?)
 }
 
-
+//Actions manager is used to cache all user actions for an item in case of no internet connection and start sending them to the server when the internet connection is restored
 @objc class ActionsSyncManager : NSObject {
     @objc public static let sharedInstance = ActionsSyncManager()
     
-    @objc public var actions = [Action]()
+    @objc public var actions = [Action]()// curent list of actions
     @objc public var syncInProgress = false
-    @objc public var actionsFailed:Int = 0
+    @objc public var actionsFailed:Int = 0//number of actions that have failed
     
     var delegate:CustomActionDelegate!
     
@@ -97,13 +97,18 @@ protocol CustomActionDelegate {
         super.init()
         #if os(iOS)
         AFNetworkReachabilityManager.shared().startMonitoring()
-        
         AFNetworkReachabilityManager.shared().setReachabilityStatusChange { (status) -> Void in
             if status == AFNetworkReachabilityStatus.reachableViaWiFi || status == AFNetworkReachabilityStatus.reachableViaWWAN {
                 self.startProcessingActions()
             }
         }
         #endif
+    }
+    
+    func addAction(_ action: Action){
+        actions.append(action)
+        self.saveActions()
+        self.startProcessingActions()
     }
     
     // MARK: credits
@@ -113,10 +118,7 @@ protocol CustomActionDelegate {
         action.type = ActionType.buyCredits
         action.arg1 = "\(credits)"
         action.arg2 = reciept
-        actions.append(action)
-        
-        self.saveActions()
-        self.startProcessingActions()
+        addAction(action)
     }
     
     // MARK: folder actions
@@ -125,10 +127,7 @@ protocol CustomActionDelegate {
         action.timeStamp = Date().timeIntervalSince1970
         action.type = ActionType.createFolder
         action.arg1 = recordFolder.id
-        actions.append(action)
-        
-        self.saveActions()
-        self.startProcessingActions()
+        addAction(action)
     }
     
     func deleteFolder(_ recordFolder:RecordFolder, moveToFolder:String!) {
@@ -143,9 +142,7 @@ protocol CustomActionDelegate {
                 i -= 1
             }
         }
-        actions.append(action)
-        self.saveActions()
-        self.startProcessingActions()
+        addAction(action)
     }
     
     func renameFolder(_ recordFolder:RecordFolder) {
@@ -154,10 +151,7 @@ protocol CustomActionDelegate {
         action.type = ActionType.renameFolder
         action.arg1 = recordFolder.id
         action.arg2 = recordFolder.title
-        actions.append(action)
-        
-        self.saveActions()
-        self.startProcessingActions()
+        addAction(action)
     }
     
     func addPasswordToFolder(_ recordFolder:RecordFolder) {
@@ -166,10 +160,7 @@ protocol CustomActionDelegate {
         action.type = ActionType.addPasswordToFolder
         action.arg1 = recordFolder.id
         action.arg2 = recordFolder.password
-        actions.append(action)
-        
-        self.saveActions()
-        self.startProcessingActions()
+        addAction(action)
     }
     
     
@@ -186,11 +177,7 @@ protocol CustomActionDelegate {
                 i -= 1
             }
         }
-        
-        actions.append(action)
-        
-        self.saveActions()
-        self.startProcessingActions()
+        addAction(action)
     }
     
     func deleteRecordings(_ recordItemIds:String, forever:Bool) {
@@ -205,11 +192,7 @@ protocol CustomActionDelegate {
                 i -= 1
             }
         }
-        
-        actions.append(action)
-        
-        self.saveActions()
-        self.startProcessingActions()
+        addAction(action)
     }
     
     func moveRecording(_ recordItem:RecordItem, folderId:String) {
@@ -240,9 +223,7 @@ protocol CustomActionDelegate {
         action.type = ActionType.moveRecording
         action.arg1 = recordItem.id
         action.arg2 = folderId
-        actions.append(action)
-        
-        self.saveActions()
+        addAction(action)
     }
     
     func recoverRecording(_ recordItem:RecordItem, folderId:String) {
@@ -251,9 +232,7 @@ protocol CustomActionDelegate {
         action.type = ActionType.recoverRecording
         action.arg1 = recordItem.id
         action.arg2 = folderId
-        actions.append(action)
-        
-        self.saveActions()
+        addAction(action)
     }
     
     func renameRecording(_ recordItem:RecordItem) {
@@ -262,10 +241,7 @@ protocol CustomActionDelegate {
         action.type = ActionType.renameRecording
         action.arg1 = recordItem.id
         action.arg2 = recordItem.text
-        actions.append(action)
-        
-        self.saveActions()
-        self.startProcessingActions()
+        addAction(action)
     }
     
     @objc func uploadRecording(_ recordItem:RecordItem) {
@@ -274,10 +250,7 @@ protocol CustomActionDelegate {
         action.type = ActionType.uploadRecording
         action.arg1 = recordItem.id
         action.arg2 = recordItem.text
-        actions.append(action)
-        
-        self.saveActions()
-        self.startProcessingActions()
+        addAction(action)
     }
     
     func updateRecordingInfo(_ recordItem:RecordItem, fileInfo:NSMutableDictionary) {
@@ -286,10 +259,7 @@ protocol CustomActionDelegate {
         action.type = ActionType.updateFileInfo
         action.arg1 = recordItem.id
         action.arg3 = fileInfo;
-        actions.append(action)
-        
-        self.saveActions()
-        self.startProcessingActions()
+        addAction(action)
     }
     
     func updateRecordingMetadata(_ recordItem:RecordItem) {
@@ -297,10 +267,7 @@ protocol CustomActionDelegate {
         action.timeStamp = Date().timeIntervalSince1970
         action.type = ActionType.uploadMetadata
         action.arg1 = recordItem.id
-        actions.append(action)
-        
-        self.saveActions()
-        self.startProcessingActions()
+        addAction(action)
     }
     
     func updateUserProfile(userInfo:NSMutableDictionary) {
@@ -308,10 +275,7 @@ protocol CustomActionDelegate {
         action.timeStamp = Date().timeIntervalSince1970
         action.type = ActionType.updateUserProfile
         action.arg3 = userInfo
-        actions.append(action)
-        
-        self.saveActions()
-        self.startProcessingActions()
+        addAction(action)
     }
     
     func reorderFolders(_ parameters:NSMutableDictionary) {
@@ -320,9 +284,7 @@ protocol CustomActionDelegate {
         action.timeStamp = Date().timeIntervalSince1970
         action.type = ActionType.reorderFolders
         action.arg3 = parameters
-        actions.append(action)
-        self.saveActions()
-        self.startProcessingActions()
+        addAction(action)
     }
     
     func customAction(arg1:String?, arg2:String?, arg3:NSMutableDictionary?) {
@@ -332,9 +294,7 @@ protocol CustomActionDelegate {
         action.arg3 = arg3
         action.timeStamp = Date().timeIntervalSince1970
         action.type = ActionType.custom
-        actions.append(action)
-        self.saveActions()
-        self.startProcessingActions()
+        addAction(action)
     }
     
     // MARK: processing
@@ -351,6 +311,22 @@ protocol CustomActionDelegate {
             syncInProgress = true
             self.processActions(self.actions)
         }
+    }
+    
+    func moveToNextActionFrom(_ action:Action?, success:Bool, newActions:[Action]){
+        if !success {
+            self.actionsFailed += 1
+        }
+        else {
+            self.removeAction(action!.id)
+            self.saveActions()
+        }
+        self.processActions(newActions)
+    }
+    
+    func actionNotFound(_ action: Action?, newActions:[Action]){
+        self.removeAction(action!.id)
+        processActions(newActions)
     }
     
     func processActions( _ workingActions:[Action] ) {
@@ -370,15 +346,7 @@ protocol CustomActionDelegate {
         switch(action!.type) {
         case ActionType.deleteRecording:
             APIClient.sharedInstance.deleteRecording(action!.arg1, removeForever:action!.arg2 == "true", completionHandler: { (success, data) -> Void in
-                if !success {
-                    self.actionsFailed += 1
-                }
-                else {
-                    self.removeAction(action!.id)
-                    self.saveActions()
-                }
-                self.processActions(newActions)
-                
+                self.moveToNextActionFrom(action, success: success, newActions: newActions)
             })
             
             break
@@ -386,19 +354,11 @@ protocol CustomActionDelegate {
             let recordItem = RecordingsManager.sharedInstance.getRecordingById(action!.arg1)
             if recordItem != nil {
                 APIClient.sharedInstance.moveRecording(recordItem!, folderId:action!.arg2, completionHandler: { (success, data) -> Void in
-                    if !success {
-                        self.actionsFailed += 1
-                    }
-                    else {
-                        self.removeAction(action!.id)
-                        self.saveActions()
-                    }
-                    self.processActions(newActions)
+                    self.moveToNextActionFrom(action, success: success, newActions: newActions)
                 })
             }
             else {
-                self.removeAction(action!.id)
-                processActions(newActions)
+                actionNotFound(action, newActions: newActions)
             }
             
             break
@@ -406,45 +366,27 @@ protocol CustomActionDelegate {
             let recordItem = RecordingsManager.sharedInstance.getRecordingById(action!.arg1)
             if recordItem != nil {
                 APIClient.sharedInstance.recoverRecording(recordItem!, folderId:action!.arg2, completionHandler: { (success, data) -> Void in
-                    if !success {
-                        self.actionsFailed += 1
-                    }
-                    else {
-                        self.removeAction(action!.id)
-                        self.saveActions()
-                    }
-                    self.processActions(newActions)
+                    self.moveToNextActionFrom(action, success: success, newActions: newActions)
                 })
             }
             else {
-                self.removeAction(action!.id)
-                processActions(newActions)
+                actionNotFound(action, newActions: newActions)
             }
             
             break
         case ActionType.renameRecording:
-            
             let recordItem = RecordingsManager.sharedInstance.getRecordingById(action!.arg1)
             if recordItem != nil {
                 APIClient.sharedInstance.renameRecording(recordItem!, name:action!.arg2, completionHandler: { (success, data) -> Void in
-                    if !success {
-                        self.actionsFailed += 1
-                    }
-                    else {
-                        self.removeAction(action!.id)
-                        self.saveActions()
-                    }
-                    self.processActions(newActions)
+                    self.moveToNextActionFrom(action, success: success, newActions: newActions)
                 })
             }
             else {
-                self.removeAction(action!.id)
-                processActions(newActions)
+                actionNotFound(action, newActions: newActions)
             }
             
             break
         case ActionType.uploadRecording:
-            
             var on = UserDefaults.standard.object(forKey: "3GSync") as? Bool
             if(on == nil){
                 on = true
@@ -461,14 +403,7 @@ protocol CustomActionDelegate {
                 APIClient.sharedInstance.uploadRecording(recordItem!, completionHandler: { (success, data) -> Void in
                     if(success){
                         APIClient.sharedInstance.uploadMetadataFile(recordItem!, completionHandler: { (success, data) -> Void in
-                            if !success {
-                                self.actionsFailed += 1
-                            }
-                            else {
-                                self.removeAction(action!.id)
-                                self.saveActions()
-                            }
-                            self.processActions(newActions)
+                            self.moveToNextActionFrom(action, success: success, newActions: newActions)
                         })
                     } else{
                         self.actionsFailed += 1
@@ -477,8 +412,7 @@ protocol CustomActionDelegate {
                 })
             }
             else {
-                self.removeAction(action!.id)
-                processActions(newActions)
+                actionNotFound(action, newActions: newActions)
             }
             break
             
@@ -496,95 +430,51 @@ protocol CustomActionDelegate {
             let recordItem = RecordingsManager.sharedInstance.getRecordingById(action!.arg1)
             if recordItem != nil {
                 APIClient.sharedInstance.uploadMetadataFile(recordItem!, completionHandler: { (success, data) -> Void in
-                    if !success {
-                        self.actionsFailed += 1
-                    }
-                    else {
-                        self.removeAction(action!.id)
-                        self.saveActions()
-                    }
-                    self.processActions(newActions)
+                    self.moveToNextActionFrom(action, success: success, newActions: newActions)
                 })
             }
             else {
-                self.removeAction(action!.id)
-                processActions(newActions)
-            }
+                actionNotFound(action, newActions: newActions)            }
             break
         case ActionType.createFolder:
             let recordFolder = RecordingsManager.sharedInstance.getFolderByLinkedAction(action!.id)
             if recordFolder != nil {
                 APIClient.sharedInstance.createFolder(recordFolder!.title!, localID:recordFolder!.id!, completionHandler: { (success, data) -> Void in
-                    if success {
-                        self.removeAction(action!.id)
-                        self.saveActions()
-                    }
-                    else {
-                        self.actionsFailed += 1
-                    }
-                    self.processActions(newActions)
-                    
+                    self.moveToNextActionFrom(action, success: success, newActions: newActions)
                     NotificationCenter.default.post(name: Notification.Name(rawValue: kNotificationRecordingsUpdated), object: nil)
                 })
             }
             else {
-                self.removeAction(action!.id)
-                processActions(newActions)
+                actionNotFound(action, newActions: newActions)
             }
             break
         case ActionType.renameFolder:
             let recordFolder = RecordingsManager.sharedInstance.getFolderByLinkedAction(action!.id)
             if recordFolder != nil {
                 APIClient.sharedInstance.renameFolder((recordFolder?.id)!, name:action!.arg2, completionHandler: { (success, data) -> Void in
-                    if success {
-                        self.removeAction(action!.id)
-                        self.saveActions()
-                    }
-                    else {
-                        self.actionsFailed += 1
-                    }
-                    self.processActions(newActions)
-                    
+                    self.moveToNextActionFrom(action, success: success, newActions: newActions)
                     NotificationCenter.default.post(name: Notification.Name(rawValue: kNotificationRecordingsUpdated), object: nil)
                 })
             }
             else {
-                self.removeAction(action!.id)
-                processActions(newActions)
+                actionNotFound(action, newActions: newActions)
             }
             break
         case ActionType.addPasswordToFolder:
             let recordFolder = RecordingsManager.sharedInstance.getFolderByLinkedAction(action!.id)
             if recordFolder != nil {
                 APIClient.sharedInstance.addPasswordToFolder((recordFolder?.id)!, pass:action!.arg2, completionHandler: { (success, data) -> Void in
-                    if success {
-                        self.removeAction(action!.id)
-                        self.saveActions()
-                    }
-                    else {
-                        self.actionsFailed += 1
-                    }
-                    self.processActions(newActions)
-                    
+                    self.moveToNextActionFrom(action, success: success, newActions: newActions)
                     NotificationCenter.default.post(name: Notification.Name(rawValue: kNotificationRecordingsUpdated), object: nil)
                 })
             }
             else {
-                self.removeAction(action!.id)
-                processActions(newActions)
+                actionNotFound(action, newActions: newActions)
             }
             break
         case ActionType.deleteFolder:
             APIClient.sharedInstance.deleteFolder(action!.arg1, moveTo:action!.arg2, completionHandler: { (success, data) -> Void in
-                if success {
-                    self.removeAction(action!.id)
-                    self.saveActions()
-                }
-                else {
-                    self.actionsFailed += 1
-                }
-                self.processActions(newActions)
-                
+                self.moveToNextActionFrom(action, success: success, newActions: newActions)
                 NotificationCenter.default.post(name: Notification.Name(rawValue: kNotificationRecordingsUpdated), object: nil)
             })
             break
@@ -606,31 +496,17 @@ protocol CustomActionDelegate {
             let recordItem = RecordingsManager.sharedInstance.getRecordingById(action!.arg1)
             if recordItem != nil {
                 APIClient.sharedInstance.updateRecordingInfo(recordItem!, parameters: action!.arg3 as! [String : Any], completionHandler: { (success, data) -> Void in
-                    if !success {
-                        self.actionsFailed += 1
-                    }
-                    else {
-                        self.removeAction(action!.id)
-                        self.saveActions()
-                    }
-                    self.processActions(newActions)
+                    self.moveToNextActionFrom(action, success: success, newActions: newActions)
                 })
             }
             else {
-                self.removeAction(action!.id)
-                processActions(newActions)
+                actionNotFound(action, newActions: newActions)
             }
             break
             
         case ActionType.buyCredits:
             APIClient.sharedInstance.buyCredits((action!.arg1 as NSString).integerValue, receipt:action!.arg2, completionHandler: { (success, data) -> Void in
-                if success {
-                    self.removeAction(action!.id)
-                    self.saveActions()
-                }
-                else {
-                    self.actionsFailed += 1
-                }
+                self.moveToNextActionFrom(action, success: success, newActions: newActions)
                 self.processActions(newActions)
                 
             })
@@ -638,29 +514,28 @@ protocol CustomActionDelegate {
         case ActionType.custom:
             if delegate != nil {
                 delegate.handle(action: action!, completionHandler: { (success, data) -> Void in
-                    if success {
-                        self.removeAction(action!.id)
-                        self.saveActions()
-                    }
-                    else {
-                        self.actionsFailed += 1
-                    }
-                    self.processActions(newActions)
+                    self.moveToNextActionFrom(action, success: success, newActions: newActions)
                 })
             }
             break
         case ActionType.updateUserProfile:
             APIClient.sharedInstance.updateProfile(params: action!.arg3 as! [String : Any], completionHandler: { (success, data) -> Void in
-                if !success {
-                    self.actionsFailed += 1
-                }
-                else {
-                    self.removeAction(action!.id)
-                    self.saveActions()
-                }
-                self.processActions(newActions)
+                self.moveToNextActionFrom(action, success: success, newActions: newActions)
             })
             break
+        }
+    }
+    
+    //MARK: actions manipulation
+    func saveActions() {
+        let data = NSKeyedArchiver.archivedData(withRootObject: actions)
+        UserDefaults.standard.set(data, forKey: "actions")
+    }
+    
+    func loadActions() {
+        let defaults = UserDefaults.standard
+        if let data = defaults.object(forKey: "actions") as? Data {
+            actions = NSKeyedUnarchiver.unarchiveObject(with: data) as! [Action]
         }
     }
     
@@ -675,20 +550,6 @@ protocol CustomActionDelegate {
         }
     }
     
-    
-    func saveActions() {
-        let data = NSKeyedArchiver.archivedData(withRootObject: actions)
-        UserDefaults.standard.set(data, forKey: "actions")
-    }
-    
-    func loadActions() {
-        let defaults = UserDefaults.standard
-        if let data = defaults.object(forKey: "actions") as? Data {
-            actions = NSKeyedUnarchiver.unarchiveObject(with: data) as! [Action]
-        }
-    }
-    
-    // MARK: helpers
     func getActionById(_ actionID:String) -> Action! {
         for action in actions {
             if action.id == actionID {
