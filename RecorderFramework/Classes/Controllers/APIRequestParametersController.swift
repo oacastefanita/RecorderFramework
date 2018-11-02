@@ -10,10 +10,44 @@ import CoreTelephony
 import Cocoa
 #endif
 
+public enum ServerReuqestKeys : String {
+    case phone = "phone"
+    case token = "token"
+    case mcc = "mcc"
+    case app = "app"
+    case deviceToken = "device_token"
+    case deviceId = "device_id"
+    case deviceType = "device_type"
+    case timeZone = "time_zone"
+    case apiKey = "api_key"
+    case reminder = "reminder"
+    case folderId = "folder_id"
+    case source = "source"
+    case id = "id"
+    case operation = "op"
+    case pass = "pass"
+    case query = "q"
+    case name = "name"
+    case moveTo = "move_to"
+    case ids = "ids"
+    case action = "action"
+    case type = "type"
+    case star = "star"
+    case play_beep = "play_beep"
+    case files_permission = "files_permission"
+    case reciept = "reciept"
+    case title = "title"
+    case body = "body"
+    case language = "language"
+    case parentId = "parent_id"
+    case device = "device"
+    case code = "code"
+}
+
 public class APIRequestParametersController: NSObject {
     
     public class func createRegisterParameters(phone: String, token:String) -> [String : Any]{
-        return ["phone": phone, "token": token]
+        return [ServerReuqestKeys.phone.rawValue: phone, ServerReuqestKeys.token.rawValue: token]
     }
     
     public class func createSendVerificationCodeParameters(code: String) -> [String : Any]{
@@ -25,7 +59,7 @@ public class APIRequestParametersController: NSObject {
         
         //no notifications on iOS simulator
         let deviceToken =  AppPersistentData.sharedInstance.notificationToken == nil ? "Simulator" : AppPersistentData.sharedInstance.notificationToken! //used for push notifications
-        var parameters = ["phone": AppPersistentData.sharedInstance.phone!,"mcc":"300" ,"code": code, "token": "55942ee3894f51000530894", "app": appCode, "device_token":deviceToken] as [String : Any]
+        var parameters = [ServerReuqestKeys.phone.rawValue: AppPersistentData.sharedInstance.phone!,ServerReuqestKeys.mcc.rawValue:"300" ,ServerReuqestKeys.code.rawValue: code, ServerReuqestKeys.token.rawValue: defaultToken, ServerReuqestKeys.app.rawValue: appCode, ServerReuqestKeys.deviceToken.rawValue:deviceToken] as [String : Any]
         //default token used by server = 55942ee3894f51000530894
         #if os(iOS)
         // find country code by using the phone carrie, default value 300
@@ -35,132 +69,132 @@ public class APIRequestParametersController: NSObject {
         if carrier != nil && carrier!.mobileCountryCode != nil{
             mcc = (carrier != nil && !carrier!.mobileCountryCode!.isEmpty) ? carrier!.mobileCountryCode! : "300"
         }
-        parameters["mcc"] = mcc
-        parameters["device_type"] = "ios"
-        parameters["device_id"] = deviceToken
+        parameters[ServerReuqestKeys.mcc.rawValue] = mcc
+        parameters[ServerReuqestKeys.deviceType.rawValue] = "ios"
+        parameters[ServerReuqestKeys.deviceId.rawValue] = deviceToken
         #elseif os(OSX)
-        parameters["device_type"] = "mac"
-        parameters["device_id"] = RecorderFrameworkManager.sharedInstance.macSN // device identifier for pn
+        parameters[ServerReuqestKeys.deviceType.rawValue] = "mac"
+        parameters[ServerReuqestKeys.deviceId.rawValue] = RecorderFrameworkManager.sharedInstance.macSN // device identifier for pn
         #elseif os(tvOS)
-        parameters["mcc"] = "300"
-        parameters["device_type"] = "ios"
+        parameters[ServerReuqestKeys.mcc.rawValue] = "300"
+        parameters[ServerReuqestKeys.deviceType.rawValue] = "ios"
         #endif
-        parameters["time_zone"] = TimeZone.current.secondsFromGMT() / 60 // used to determine when to send pn for remind date
+        parameters[ServerReuqestKeys.timeZone.rawValue] = TimeZone.current.secondsFromGMT() / 60 // used to determine when to send pn for remind date
         return parameters
     }
     
     public class func createGetRecordingsParameters( folderId:String!, lastFileId: String! = nil, less: Bool = false, pass:String! = nil, q:String! = nil) -> [String : Any]{
-        var parameters:[String : Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "reminder":"true"]
+        var parameters:[String : Any] = [ServerReuqestKeys.apiKey.rawValue: AppPersistentData.sharedInstance.apiKey!, ServerReuqestKeys.reminder.rawValue:"true"]
         if folderId != nil {
-            parameters.updateValue(folderId!, forKey: "folder_id")
+            parameters.updateValue(folderId!, forKey: ServerReuqestKeys.folderId.rawValue)
         }
         
-        parameters["source"] = "all"
+        parameters[ServerReuqestKeys.source.rawValue] = "all"
         if lastFileId != nil{
-            parameters["id"] = lastFileId!
-            parameters["op"] = less ? "less" : "grater"
+            parameters[ServerReuqestKeys.id.rawValue] = lastFileId!
+            parameters[ServerReuqestKeys.operation.rawValue] = less ? "less" : "grater"
         }
         if pass != nil{
-            parameters["pass"] = pass!
+            parameters[ServerReuqestKeys.pass.rawValue] = pass!
         }
         
         if q != nil{
-            parameters["q"] = q!
+            parameters[ServerReuqestKeys.query.rawValue] = q!
         }
         return parameters
     }
     
     public class func createSearchRecordingsParameters(q:String) -> [String : Any]{
-        var parameters:[String : Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "reminder":"true"]
-        parameters["q"] = q
+        var parameters:[String : Any] = [ServerReuqestKeys.apiKey.rawValue: AppPersistentData.sharedInstance.apiKey!, ServerReuqestKeys.reminder.rawValue:"true"]
+        parameters[ServerReuqestKeys.query.rawValue] = q
         return parameters
     }
     
     public class func createDefaultParameters() -> [String : Any]{
-        return ["api_key": AppPersistentData.sharedInstance.apiKey!]
+        return [ServerReuqestKeys.apiKey.rawValue: AppPersistentData.sharedInstance.apiKey!]
     }
     
     public class func createCreateFolderParameters(name:String, localID:String , pass:String! = nil) -> [String : Any]{
-        var parameters = ["api_key": AppPersistentData.sharedInstance.apiKey!, "name" : name] as [String : Any]
+        var parameters = [ServerReuqestKeys.apiKey.rawValue: AppPersistentData.sharedInstance.apiKey!,ServerReuqestKeys.name.rawValue : name] as [String : Any]
         if pass != nil{
-            parameters["pass"] = pass
+            parameters[ServerReuqestKeys.pass.rawValue] = pass
         }
         return parameters
     }
     
     public class func createDeleteFoldersParameters(folderId:String, moveTo:String!) -> [String : Any]{
-        var parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "id" : folderId]
+        var parameters:[String:Any] = [ServerReuqestKeys.apiKey.rawValue: AppPersistentData.sharedInstance.apiKey!, ServerReuqestKeys.id.rawValue : folderId]
         if moveTo != nil && moveTo != ""{
-            parameters["move_to"] = moveTo
+            parameters[ServerReuqestKeys.moveTo.rawValue] = moveTo
         }
         return parameters
     }
     
     public class func createRenameFolderParameters(folderId:String, name:String) -> [String : Any]{
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "id" : folderId, "name" : name]
+        let parameters:[String:Any] = [ServerReuqestKeys.apiKey.rawValue: AppPersistentData.sharedInstance.apiKey!, ServerReuqestKeys.id.rawValue : folderId, ServerReuqestKeys.name.rawValue : name]
         return parameters
     }
     
     public class func createDeleteRecordingParameters(recordItemId:String, removeForever:Bool) -> [String : Any]{
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "ids" : recordItemId, "action" : removeForever ? "remove_forever" : ""]
+        let parameters:[String:Any] = [ServerReuqestKeys.apiKey.rawValue: AppPersistentData.sharedInstance.apiKey!, ServerReuqestKeys.ids.rawValue : recordItemId, ServerReuqestKeys.action.rawValue : removeForever ? "remove_forever" : ""]
         return parameters
     }
     
     public class func createAddPassToFolderParameters(folderId:String, pass:String) -> [String : Any]{
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "id" : folderId, "pass" : pass]
+        let parameters:[String:Any] = [ServerReuqestKeys.apiKey.rawValue: AppPersistentData.sharedInstance.apiKey!, ServerReuqestKeys.id.rawValue : folderId, ServerReuqestKeys.pass.rawValue : pass]
         return parameters
     }
     
     public class func createMoveRecordingParameters(recordItem:RecordItem, folderId:String) -> [String : Any]{
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "id" : recordItem.id!, "folder_id" : folderId]
+        let parameters:[String:Any] = [ServerReuqestKeys.apiKey.rawValue: AppPersistentData.sharedInstance.apiKey!, ServerReuqestKeys.id.rawValue : recordItem.id!, ServerReuqestKeys.folderId.rawValue : folderId]
         return parameters
     }
     
     public class func createRecoverRecordingParameters(recordItem:RecordItem, folderId:String) -> [String : Any]{
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "id" : recordItem.id, "folder_id" : folderId]
+        let parameters:[String:Any] = [ServerReuqestKeys.apiKey.rawValue: AppPersistentData.sharedInstance.apiKey!, ServerReuqestKeys.id.rawValue : recordItem.id, ServerReuqestKeys.folderId.rawValue : folderId]
         return parameters
     }
     
     public class func createStarItemParameters(star:Bool, entityId:String, isFile:Bool) -> [String : Any]{
         var params = [String:Any]()
-        params["api_key"] = AppPersistentData.sharedInstance.apiKey!
-        params["type"] = isFile ? "file" : "folder"
-        params["id"] = entityId
-        params["star"] = star ? 1 : 0
+        params[ServerReuqestKeys.apiKey.rawValue] = AppPersistentData.sharedInstance.apiKey!
+        params[ServerReuqestKeys.type.rawValue] = isFile ? "file" : "folder"
+        params[ServerReuqestKeys.id.rawValue] = entityId
+        params[ServerReuqestKeys.star.rawValue] = star ? 1 : 0
         return params
     }
     
     public class func createCloneFileParameters(entityId:String) -> [String : Any]{
         var params = [String:Any]()
-        params["api_key"] = AppPersistentData.sharedInstance.apiKey!
-        params["id"] = entityId
+        params[ServerReuqestKeys.apiKey.rawValue] = AppPersistentData.sharedInstance.apiKey!
+        params[ServerReuqestKeys.id.rawValue] = entityId
         return params
     }
     
     public class func createRenameRecordingParameters(recordItem:RecordItem, name:String) -> [String : Any]{
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "id" : recordItem.id!, "name":name]
+        let parameters:[String:Any] = [ServerReuqestKeys.apiKey.rawValue: AppPersistentData.sharedInstance.apiKey!, ServerReuqestKeys.id.rawValue : recordItem.id!, ServerReuqestKeys.name.rawValue:name]
         return parameters
     }
     
     public class func createUploadRecordingParameters(recordItem:RecordItem) -> [String : Any]{
-        var parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "data": "{\"name\":\"\(recordItem.text!)\",\"notes\":\"\(recordItem.notes!)\",\"tags\":\"\(recordItem.tags)\"}"]
+        var parameters:[String:Any] = [ServerReuqestKeys.apiKey.rawValue: AppPersistentData.sharedInstance.apiKey!, "data": "{\"name\":\"\(recordItem.text!)\",\"notes\":\"\(recordItem.notes!)\",\"tags\":\"\(recordItem.tags)\"}"]
         var source = "rec"
         if RecorderFrameworkManager.sharedInstance.isRecorder{
             source = "rem"
         }
-        parameters["source"] = source
+        parameters[ServerReuqestKeys.source.rawValue] = source
         return parameters
     }
     
     public class func createUpdateSettingsParameters(playBeep:Bool, filesPersmission:Bool = true) -> [String : Any]{
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "play_beep" : playBeep ? "yes" : "no", "files_permission" : filesPersmission ? "public":"private"]
+        let parameters:[String:Any] = [ServerReuqestKeys.apiKey.rawValue: AppPersistentData.sharedInstance.apiKey!, ServerReuqestKeys.play_beep.rawValue : playBeep ? "yes" : "no", ServerReuqestKeys.files_permission.rawValue : filesPersmission ? "public":"private"]
         return parameters
     }
     
     public class func createUpdateUserParameters(free:Bool, timezone:String! = nil) -> [String : Any]{
-        var parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "app" : free ? "free" : "pro"]
+        var parameters:[String:Any] = [ServerReuqestKeys.apiKey.rawValue: AppPersistentData.sharedInstance.apiKey!, ServerReuqestKeys.app.rawValue : free ? "free" : "pro"]
         if timezone != nil{
-            parameters["timezone"] = timezone
+            parameters[ServerReuqestKeys.timeZone.rawValue] = timezone
         }
         return parameters
     }
@@ -171,58 +205,58 @@ public class APIRequestParametersController: NSObject {
             appCode = "rem"
         }
         
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "app":appCode, "reciept" : receipt] as [String : Any]
+        let parameters:[String:Any] = [ServerReuqestKeys.apiKey.rawValue: AppPersistentData.sharedInstance.apiKey!, ServerReuqestKeys.app.rawValue:appCode, ServerReuqestKeys.reciept.rawValue : receipt] as [String : Any]
         return parameters
     }
     
     public class func createUpdateTokenParameters(token:String) -> [String : Any]{
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "device_token" : token, "device_type" : "ios"]
+        let parameters:[String:Any] = [ServerReuqestKeys.apiKey.rawValue: AppPersistentData.sharedInstance.apiKey!, ServerReuqestKeys.deviceToken.rawValue : token, ServerReuqestKeys.deviceType.rawValue : "ios"]
         return parameters
     }
     
     public class func createNotifyUserParameters(token:String) -> [String : Any]{
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "device" : token, "title" : "Title", "body" : "body"]
+        let parameters:[String:Any] = [ServerReuqestKeys.apiKey.rawValue: AppPersistentData.sharedInstance.apiKey!, ServerReuqestKeys.device.rawValue : token, ServerReuqestKeys.title.rawValue : "Title", ServerReuqestKeys.body.rawValue : "body"]
         return parameters
     }
     
     public class func createGetTranslationsParameters(language:String) -> [String : Any]{
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "language": language]
+        let parameters:[String:Any] = [ServerReuqestKeys.apiKey.rawValue: AppPersistentData.sharedInstance.apiKey!, ServerReuqestKeys.language.rawValue: language]
         return parameters
     }
     
     public class func createUploadImageMetadataFileParameters(imagePath:String, fileId: String, oldId:String! = nil) -> [String : Any]{
-        var parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!,"name":fileId+"_metadata_" + UUID().uuidString, "parent_id":fileId]
+        var parameters:[String:Any] = [ServerReuqestKeys.apiKey.rawValue: AppPersistentData.sharedInstance.apiKey!,ServerReuqestKeys.name.rawValue:fileId+"_metadata_" + UUID().uuidString, ServerReuqestKeys.parentId.rawValue:fileId]
         if oldId != nil{
-            parameters["id"] = oldId!
+            parameters[ServerReuqestKeys.id.rawValue] = oldId!
         }
         return parameters
     }
     
     public class func createUploadMetadataFileParameters(recordItem:RecordItem, oldId:String! = nil) -> [String : Any]{
-        var parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!,"name":(recordItem.text!)+"_metadata", "parent_id":(recordItem.id!)]
+        var parameters:[String:Any] = [ServerReuqestKeys.apiKey.rawValue: AppPersistentData.sharedInstance.apiKey!,ServerReuqestKeys.name.rawValue:(recordItem.text!)+"_metadata", ServerReuqestKeys.parentId.rawValue:(recordItem.id!)]
         if oldId != nil{
-            parameters["id"] = oldId!
+            parameters[ServerReuqestKeys.id.rawValue] = oldId!
         }
         return parameters
     }
     
     public class func createDeleteMetadataFileParameters(fileId:String, parentId: String! = nil) -> [String : Any]{
-        var parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "ids":fileId]
+        var parameters:[String:Any] = [ServerReuqestKeys.apiKey.rawValue: AppPersistentData.sharedInstance.apiKey!, ServerReuqestKeys.ids.rawValue:fileId]
         if parentId != nil{
-            parameters["parent_id"] = parentId
+            parameters[ServerReuqestKeys.parentId.rawValue] = parentId
         }
         return parameters
     }
     
     public class func createGetMetadataFilesParameters(recordItem:RecordItem) -> [String : Any]{
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "parent_id":(recordItem.id!)]
+        let parameters:[String:Any] = [ServerReuqestKeys.apiKey.rawValue: AppPersistentData.sharedInstance.apiKey!, ServerReuqestKeys.parentId.rawValue:(recordItem.id!)]
         return parameters
     }
     
     public class func createVerifyFolderPassParameters(pass:String, folderId:String) -> [String : Any]{
-        var parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!]
-        parameters["id"] = folderId
-        parameters["pass"] = pass
+        var parameters:[String:Any] = [ServerReuqestKeys.apiKey.rawValue: AppPersistentData.sharedInstance.apiKey!]
+        parameters[ServerReuqestKeys.id.rawValue] = folderId
+        parameters[ServerReuqestKeys.pass.rawValue] = pass
         return parameters
     }
 }
