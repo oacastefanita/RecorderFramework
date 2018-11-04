@@ -24,45 +24,34 @@ public class RecordItem: NSObject, NSSecureCoding {
     @objc public var credits:String! = ""
     @objc public var duration:String! = ""
     @objc public var time:String! = ""
-    
     @objc public var lastAccessedTime:String! = ""
     @objc public var fileDownloaded = false
     @objc public var localFile:String! = ""
     @objc public var fileSize:String! = ""
-    
     @objc public var localMetadataFile:String! = ""
     @objc public var metadataFilePath:String! = ""
-    
     @objc public var fromTrash = false
-    
     @objc public var waveRenderVals:NSArray!
-    
-    //var linkedActionId: String!
     @objc public var shareUrl:String! = ""
-    
     @objc public var firstName: String! = ""
     @objc public var lastName: String! = ""
     @objc public var phoneNumber: String! = ""
     @objc public var email: String! = ""
     @objc public var notes: String! = ""
     @objc public var tags: String = ""
-    
     @objc public var isStar = false
     @objc public var isFree = false
-    
     @objc public var fileData: Data! // for airdrop
-    
     @objc public var storageType:StorageType = StorageType.auto
-    
     @objc public var audioFileTags:NSMutableArray!
     fileprivate var audioFilePath:String!
     fileprivate var audioMetadataFilePath:String!
     @objc public var metaFileId: String!
-    
     @objc public var remindDate:String! = ""
     @objc public var remindDays:String! = ""
     @objc public var updated:String! = ""
     @objc public var fileOrder:Int = 0
+    
     override public init() {
         super.init()
     }
@@ -101,7 +90,6 @@ public class RecordItem: NSObject, NSSecureCoding {
         else {
             self.lastAccessedTime = self.time
         }
-        
         if let value = aDecoder.decodeObject(forKey: "localFile") as? String {
             self.localFile = value
         }
@@ -111,25 +99,20 @@ public class RecordItem: NSObject, NSSecureCoding {
         if let value = aDecoder.decodeObject(forKey: "fromTrash") as? String {
             self.fromTrash = NSString(string: value).boolValue
         }
-        
         if let value = aDecoder.decodeObject(forKey: "isStar") as? String {
             self.isStar = NSString(string: value).boolValue
         }
-        
         if let data = aDecoder.decodeObject(forKey: "waveRenderVals") as? Data {
             if data.count > 0{
                 waveRenderVals = NSKeyedUnarchiver.unarchiveObject(with: data) as! NSArray
             }
         }
-        
         if let value = aDecoder.decodeObject(forKey: "shareUrl") as? String {
             self.shareUrl = value
         }
-        
         if let value: AnyObject = aDecoder.decodeObject(forKey: "storageType") as? NSNumber{
             self.storageType = StorageType(rawValue: value.intValue)!
         }
-        
         if let value = aDecoder.decodeObject(forKey: "firstName") as? String {
             self.firstName = value
         }
@@ -145,11 +128,9 @@ public class RecordItem: NSObject, NSSecureCoding {
         if let value = aDecoder.decodeObject(forKey: "notes") as? String {
             self.notes = value
         }
-        
         if let value = aDecoder.decodeObject(forKey: "tags") as? String {
             self.tags = value
         }
-        
         if let value = aDecoder.decodeObject(forKey: "fileData") as? Data {
             self.fileData = value
         }
@@ -183,84 +164,58 @@ public class RecordItem: NSObject, NSSecureCoding {
         if let value = self.folderId {
             aCoder.encode(value, forKey: "folderId")
         }
-        
         if let value = self.text {
             aCoder.encode(value, forKey: "title")
         }
-        
         if let value = self.id {
             aCoder.encode(value, forKey: "id")
         }
-        
         if let value = self.accessNumber {
             aCoder.encode(value, forKey: "accessNumber")
         }
-        
         if let value = self.url {
             aCoder.encode(value, forKey: "url")
         }
-        
         if let value = self.credits {
             aCoder.encode(value, forKey: "credits")
         }
-        
         if let value = self.duration {
             aCoder.encode(value, forKey: "duration")
         }
-        
         if let value = self.time {
             aCoder.encode(value, forKey: "time")
         }
-        
         if let value = self.updated {
             aCoder.encode(value, forKey: "updated")
         }
-        
         if let value = self.lastAccessedTime {
             aCoder.encode(value, forKey: "lastAccessedTime")
         }
-        
         if let value = self.localFile {
             aCoder.encode(value, forKey: "localFile")
         }
-        
-        aCoder.encode(fileDownloaded ? "true" : "false", forKey: "fileDownloaded")
-        aCoder.encode(fromTrash ? "true" : "false", forKey: "fromTrash")
-        aCoder.encode(isStar ? "true" : "false", forKey: "isStar")
-        
         if waveRenderVals != nil {
             let data = NSKeyedArchiver.archivedData(withRootObject: waveRenderVals)
             aCoder.encode(data, forKey: "waveRenderVals")
         }
-        
         if let value = self.shareUrl {
             aCoder.encode(value, forKey: "shareUrl")
         }
-        
-        aCoder.encode( NSNumber(value:self.storageType.rawValue), forKey: "storageType")
-        
         if let value = self.firstName {
             aCoder.encode(value, forKey: "firstName")
         }
-        
         if let value = self.lastName {
             aCoder.encode(value, forKey: "lastName")
         }
-        
         if let value = self.phoneNumber {
             aCoder.encode(value, forKey: "phoneNumber")
         }
-        
         if let value = self.email {
             aCoder.encode(value, forKey: "email")
         }
-        
         if let value = self.notes {
             aCoder.encode(value, forKey: "notes")
         }
-        
-        aCoder.encode(tags, forKey: "tags")
-        
         if let value = self.fileData {
             aCoder.encode(value, forKey: "fileData")
         }
@@ -276,10 +231,15 @@ public class RecordItem: NSObject, NSSecureCoding {
         if let value = self.fileSize {
             aCoder.encode(value, forKey: "fileSize")
         }
-        aCoder.encode(isFree ? "true" : "false", forKey: "isFree")
         if let value = self.text {
             aCoder.encode(value, forKey: "text")
         }
+        aCoder.encode(fileDownloaded ? "true" : "false", forKey: "fileDownloaded")
+        aCoder.encode(fromTrash ? "true" : "false", forKey: "fromTrash")
+        aCoder.encode(isStar ? "true" : "false", forKey: "isStar")
+        aCoder.encode( NSNumber(value:self.storageType.rawValue), forKey: "storageType")
+        aCoder.encode(tags, forKey: "tags")
+        aCoder.encode(isFree ? "true" : "false", forKey: "isFree")
         aCoder.encode(self.fileOrder, forKey: "fileOrder")
     }
     
@@ -288,6 +248,15 @@ public class RecordItem: NSObject, NSSecureCoding {
     }
     
     public func update(_ item:RecordItem) {
+        if item.fileSize != nil && !item.fileSize.isEmpty {
+            self.fileSize = item.fileSize
+        }
+        if item.time != nil && !item.time.isEmpty {
+            self.time = item.time
+        }
+        if item.updated != nil && !item.updated.isEmpty {
+            self.updated = item.updated
+        }
         self.folderId = item.folderId
         self.text = item.text
         self.accessNumber = item.accessNumber
@@ -304,15 +273,6 @@ public class RecordItem: NSObject, NSSecureCoding {
         self.isStar = item.isStar
         self.remindDays = item.remindDays
         self.remindDate = item.remindDate
-        if item.fileSize != nil && !item.fileSize.isEmpty {
-            self.fileSize = item.fileSize
-        }
-        if item.time != nil && !item.time.isEmpty {
-            self.time = item.time
-        }
-        if item.updated != nil && !item.updated.isEmpty {
-            self.updated = item.updated
-        }
         self.isFree = item.isFree
         self.text = item.text
         self.fileOrder = item.fileOrder
@@ -330,7 +290,6 @@ public class RecordItem: NSObject, NSSecureCoding {
                 }
             }
         }
-        
         return nil
     }
     
@@ -342,7 +301,6 @@ public class RecordItem: NSObject, NSSecureCoding {
         let fileManager = FileManager.default
         var path = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)!.path
         path += self.localFile
-        
         if FileManager.default.fileExists(atPath: path) {
             self.fileData = try? Data(contentsOf: URL(fileURLWithPath: path))
         }
@@ -368,7 +326,6 @@ public class RecordItem: NSObject, NSSecureCoding {
     }
     
     public func setupWithFile(_ filePath:String) {
-        
         audioFilePath = filePath
         if filePath.components(separatedBy: ".").count >= 2{
             var components = filePath.components(separatedBy: ".").dropLast()
@@ -378,9 +335,7 @@ public class RecordItem: NSObject, NSSecureCoding {
             return
         }
         
-        
         audioFileTags = NSMutableArray()
-        //        definedLabels = NSMutableArray()
         if filePath.components(separatedBy: ".").count == 3{
             return
         }
@@ -388,16 +343,11 @@ public class RecordItem: NSObject, NSSecureCoding {
         if(!FileManager.default.fileExists(atPath: audioMetadataFilePath)) {
             let file = NSDictionary();
             file.write(toFile: audioMetadataFilePath, atomically: true);
-            
             let outputStream = OutputStream(toFileAtPath: audioMetadataFilePath, append: false)
             outputStream?.open()
-            
             var error:ErrorPointer
             JSONSerialization.writeJSONObject(file, to: outputStream!, options: JSONSerialization.WritingOptions.prettyPrinted, error: error)
-            
-            
             outputStream?.close()
-            
         } else {
             print("plist already exits at path.")
         }
@@ -446,7 +396,6 @@ public class RecordItem: NSObject, NSSecureCoding {
                             audioFileTags.add(newTag) //add tag only if valid tag type
                         }
                     }
-                    
                 }
             }
         }
@@ -491,4 +440,3 @@ public class RecordItem: NSObject, NSSecureCoding {
         outputStream?.close()
     }
 }
-

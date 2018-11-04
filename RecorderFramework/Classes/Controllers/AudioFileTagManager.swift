@@ -6,44 +6,15 @@
 //  Copyright (c) 2015 Grif. All rights reserved.
 //
 
-
-public enum TagType : String {
-    case note = "note"
-    case todo = "todo"
-    case date = "date"
-    case alert = "alert"
-    case images = "images"
-    case audio = "audio"
-    case video = "video"
-    case tags = "tags"
-    case beforeAfter = "beforeAfter"
-    case panorama = "panorama"
-    case productViewer = "productViewer"
-    case pageFlip = "pageFlip"
-    case location = "location"
-    case phoneNumber = "phoneNumber"
-    case socialMedia = "socialMedia"
-    case imageURL = "imageURL"
-    case htmlEmbed = "htmlEmbed"
-}
-
-public class AudioTag: NSObject {
-    public var type:TagType = TagType.note
-    public var timeStamp:TimeInterval!
-    public var duration:TimeInterval!
-    public var arg:AnyObject!
-    public var arg2:AnyObject!
-}
-
 class AudioFileTagManager: NSObject {
     static let sharedInstance = AudioFileTagManager()
-
+    
+    var waveRenderVals:NSArray!
+    var definedLabels:NSMutableArray!
     var audioFileTags:NSMutableArray!
+    
     fileprivate var audioFilePath:String!
     fileprivate var audioMetadataFilePath:String!
-    var waveRenderVals:NSArray!
-    
-    var definedLabels:NSMutableArray!
     
     func removeMetadataFile(_ filePath:String){
         let metaPath = filePath.components(separatedBy: ".")[filePath.components(separatedBy: ".").count - 2] + "_metadata.json"
@@ -96,47 +67,20 @@ class AudioFileTagManager: NSObject {
     func setupWithFile(_ filePath:String) {
         audioFilePath = filePath
         audioMetadataFilePath = filePath.components(separatedBy: ".")[filePath.components(separatedBy: ".").count - 2] + "_metadata.json"
-        
         audioFileTags = NSMutableArray()
-//        definedLabels = NSMutableArray()
-        
-        //check if file exists
-        if(!FileManager.default.fileExists(atPath: audioMetadataFilePath)) {
-            let file = NSDictionary();
-            file.write(toFile: audioMetadataFilePath, atomically: true);
-            
-            let outputStream = OutputStream(toFileAtPath: audioMetadataFilePath, append: false)
-            outputStream?.open()
-            
-            JSONSerialization.writeJSONObject(file, to: outputStream!, options: JSONSerialization.WritingOptions.prettyPrinted, error: nil)
-            
-            outputStream?.close()
-            
-        } else {
-            print("plist already exits at path.")
-        }
+        checkAndCreateAudioMetadataFile()
         
         let jsonData: Data = try! Data(contentsOf: URL(fileURLWithPath: audioMetadataFilePath))
         if jsonData.count == 0{
             return
         }
+        
         do {
             let dict = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
-            
-            audioFileTags = NSMutableArray()
-            
             if (dict.object(forKey: "tags") != nil){
                 let tags = dict.object(forKey: "tags") as! NSArray
                 for tag in tags {
-                    let newTag = AudioTag()
-                    newTag.timeStamp = (tag as AnyObject).object(forKey: "timeStamp") as! TimeInterval
-                    newTag.duration = (tag as AnyObject).object(forKey: "duration") as! TimeInterval
-                    newTag.arg = (tag as AnyObject).object(forKey:"arg") as AnyObject
-                    newTag.arg2 = (tag as AnyObject).object(forKey:"arg2") as AnyObject
-                    if let value = (tag as AnyObject).object(forKey: "type") as? String
-                    {
-                        newTag.type = TagType(rawValue: value)!
-                    }
+                    let newTag = RecorderFactory.createAudioTagFromDict(tag as! NSDictionary)
                     audioFileTags.add(newTag)
                 }
             }
@@ -149,24 +93,19 @@ class AudioFileTagManager: NSObject {
         }
     }
     
+    func checkAndCreateAudioMetadataFile(){
+        //check if file exists
+        if(!FileManager.default.fileExists(atPath: audioMetadataFilePath)) {
+            writeDictAtPath(dict: NSDictionary(), path: audioMetadataFilePath)
+        } else {
+            print("file already exits at path.")
+        }
+    }
+    
     public func saveToFile(){
         let tags = NSMutableArray()
         for tag in audioFileTags {
-            let newDict = NSMutableDictionary()
-            if((tag as! AudioTag).timeStamp != nil){
-                newDict.setObject((tag as! AudioTag).timeStamp, forKey: "timeStamp" as NSCopying)
-            }
-            if((tag as! AudioTag).duration != nil){
-                newDict.setObject((tag as! AudioTag).duration, forKey: "duration" as NSCopying)
-            }
-            if((tag as! AudioTag).arg != nil){
-                newDict.setObject((tag as! AudioTag).arg, forKey: "arg" as NSCopying)
-            }
-            if((tag as! AudioTag).arg2 != nil){
-                newDict.setObject((tag as! AudioTag).arg2, forKey: "arg2" as NSCopying)
-            }
-            newDict.setObject((tag as! AudioTag).type.rawValue, forKey: "type" as NSCopying)
-
+            let newDict = RecorderFactory.createDictFromAudioTag(tag as! AudioTag)
             tags.add(newDict);
         }
         
@@ -177,11 +116,13 @@ class AudioFileTagManager: NSObject {
             myDict.setObject(self.waveRenderVals, forKey: "waveRenderVals" as NSCopying)
         }
         
-        let outputStream = OutputStream(toFileAtPath: audioMetadataFilePath, append: false)
+        writeDictAtPath(dict: myDict, path: audioMetadataFilePath)
+    }
+    
+    func writeDictAtPath(dict: NSDictionary, path: String){
+        let outputStream = OutputStream(toFileAtPath: path, append: false)
         outputStream?.open()
-        
-        JSONSerialization.writeJSONObject(myDict, to: outputStream!, options: JSONSerialization.WritingOptions.prettyPrinted, error: nil)
-        
+        JSONSerialization.writeJSONObject(dict, to: outputStream!, options: JSONSerialization.WritingOptions.prettyPrinted, error: nil)
         outputStream?.close()
     }
     

@@ -82,7 +82,6 @@ public class RecorderFactory: NSObject {
                 object.recordedItems.append(RecorderFactory.createRecordItemFromDict(dict))
             }
         }
-        
         return object
     }
     
@@ -188,5 +187,37 @@ public class RecorderFactory: NSObject {
     public class func createDictFromRecordItem(_ file: RecordItem) -> NSDictionary{
         let dict = NSDictionary(dictionary: ["folderId":file.folderId, "name":file.text, "id":file.id, "access_number":file.accessNumber, "url":file.url, "share_url":file.shareUrl, "credits":file.credits, "duration":file.duration, "time":file.time,"f_name":file.firstName, "l_name":file.lastName, "email":file.email, "notes":file.notes, "phone":file.phoneNumber, "tags":file.tags, "remind_date":file.remindDate, "remind_days":file.remindDays, "free":file.isFree ? "1":"0","text":file.text, "order_id":file.fileOrder])
         return dict
+    }
+    
+    public class func createAudioTagFromDict(_ dict: NSDictionary) -> AudioTag{
+        let newTag = AudioTag()
+        newTag.timeStamp = dict.object(forKey: "timeStamp") as! TimeInterval
+        newTag.duration = dict.object(forKey: "duration") as! TimeInterval
+        newTag.arg = dict.object(forKey:"arg") as AnyObject
+        newTag.arg2 = dict.object(forKey:"arg2") as AnyObject
+        if let value = dict.object(forKey: "type") as? String
+        {
+            newTag.type = TagType(rawValue: value)!
+        }
+        return newTag
+    }
+    
+    public class func createDictFromAudioTag(_ tag: AudioTag) -> NSMutableDictionary{
+        let newDict = NSMutableDictionary()
+        if((tag as! AudioTag).timeStamp != nil){
+            newDict.setObject((tag as! AudioTag).timeStamp, forKey: "timeStamp" as NSCopying)
+        }
+        if((tag as! AudioTag).duration != nil){
+            newDict.setObject((tag as! AudioTag).duration, forKey: "duration" as NSCopying)
+        }
+        if((tag as! AudioTag).arg != nil){
+            newDict.setObject((tag as! AudioTag).arg, forKey: "arg" as NSCopying)
+        }
+        if((tag as! AudioTag).arg2 != nil){
+            newDict.setObject((tag as! AudioTag).arg2, forKey: "arg2" as NSCopying)
+        }
+        newDict.setObject((tag as! AudioTag).type.rawValue, forKey: "type" as NSCopying)
+        
+        return newDict
     }
 }

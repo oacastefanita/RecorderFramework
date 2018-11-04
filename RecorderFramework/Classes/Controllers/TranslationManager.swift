@@ -18,27 +18,22 @@ public class TranslationManager : NSObject  {
     override init() {
         self.translations = NSDictionary()
         self.languages = Array()
-        
         super.init()
-        
         loadData()
     }
     
     func saveData() {
         let defaults = UserDefaults.standard
-        
         defaults.set(translations, forKey: "translations");
-        
         if(currentLanguage != nil){
             defaults.setValue(currentLanguage, forKey: "currentLanguage");
         }
-
         defaults.synchronize()
     }
     
     func loadData() {
         let defaults = UserDefaults.standard
-        
+
         if let value:NSDictionary = defaults.value(forKey: "translations") as? NSDictionary {
             translations = value
         }

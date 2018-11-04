@@ -100,9 +100,8 @@ class LocalFilesManager: NSObject {
                 }
             }
         }
-        //
         
-        
+        //handle max files size
         handleFileSize = NSString(string: UserDefaults.standard.object(forKey: "localStorageMaxSizeOn") as! String).boolValue
         if handleFileSize {
             remainingFileSize = UserDefaults.standard.integer(forKey: "localStorageMaxSize") * 1000000
@@ -257,7 +256,6 @@ class LocalFilesManager: NSObject {
                 return mode == 1 ? Int(obj1.lastAccessedTime) < Int(obj2.lastAccessedTime) : Int(obj1.time) < Int(obj2.time)
             })
         }
-        
         return recList
     }
 }

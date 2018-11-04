@@ -20,29 +20,30 @@ public class AppPersistentData : NSObject {
     
     // settings
     @objc public var user:User! = User()
-    @objc public var passOn = false
-    @objc public var filePermission:String!
-    public var credits:Int!
-    @objc public var app:String!
-    
     @objc public var phoneNumbers:Array<PhoneNumber>
     @objc public var serverMessages:Array<ServerMessage>
-    
-    @objc public var justReseted = false
-    @objc public var free = false
-    
-    // settings
-    @objc public var receivedNotification = false
-    @objc public var messageID:String!
-    
+    public var credits:Int!
     @objc public var shareUrl:String!
     @objc public var rateUrl:String!
     
+    @objc public var justReseted = false
+    @objc public var free = false
+    @objc public var passOn = false
+    @objc public var filePermission:String!
+    @objc public var app:String!
+    
+    // notification
+    @objc public var receivedNotification = false
+    @objc public var messageID:String!
+
     override init() {
         phoneNumbers = Array<PhoneNumber>()
-        serverMessages = Array<ServerMessage>()
+        serverMessages = Array<ServerMessage>()   
         super.init()
-        
+        loadSettings()
+    }
+    
+    @objc func loadSettings() {
         //manual storage
         let manualOn = UserDefaults.standard.object(forKey: "localStorageManualOn") as? String
         if manualOn == nil{

@@ -19,7 +19,6 @@ public class RecordingsManager : NSObject {
     }
     
     func syncItem(_ recordFolder:RecordFolder) -> RecordFolder {
-        
         for existingItem in recordFolders {
             if existingItem.id == recordFolder.id {
                 existingItem.update(recordFolder)
@@ -354,4 +353,3 @@ public class RecordingsManager : NSObject {
         recordFolders = local
     }
 }
-

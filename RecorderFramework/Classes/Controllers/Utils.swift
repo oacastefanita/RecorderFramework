@@ -44,14 +44,6 @@ public extension String {
     }
 }
 
-//extension NSRange {
-//    func toRange(string: String) -> Range<String.Index> {
-//        let startIndex = advanceBy(string.startIndex, location)
-//        let endIndex = advance(startIndex, length)
-//        return startIndex..<endIndex
-//    }
-//}
-
 public extension Array {
     public func contains<T>(_ obj: T) -> Bool where T : Equatable {
         return self.filter({$0 as? T == obj}).count > 0

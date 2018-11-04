@@ -69,39 +69,30 @@ public class User: NSObject, NSCoding {
         if let value = self.lastName {
             aCoder.encode(value, forKey: "lastName")
         }
-        
         if let value = self.email {
             aCoder.encode(value, forKey: "email")
         }
-        
         if let value = self.isPublic {
             aCoder.encode(value, forKey: "isPublic")
         }
-        
         if let value = self.playBeep {
             aCoder.encode(value, forKey: "playBeep")
         }
-        
         if let value = self.maxLenght {
             aCoder.encode(value, forKey: "maxLenght")
         }
-        
         if let value = self.imagePath {
             aCoder.encode(value, forKey: "imagePath")
         }
-        
         if let value = self.timeZone {
             aCoder.encode(value, forKey: "timeZone")
         }
-        
         if let value = self.plan {
             aCoder.encode(value, forKey: "plan")
         }
-        
         if let value = self.time {
             aCoder.encode(value, forKey: "time")
         }
-        
         if let value = self.pin {
             aCoder.encode(value, forKey: "pin")
         }
