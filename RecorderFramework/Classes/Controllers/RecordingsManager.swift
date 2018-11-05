@@ -352,4 +352,49 @@ public class RecordingsManager : NSObject {
         }
         recordFolders = local
     }
-}
+    
+    class func checkAndCreateDefaultFolders(){
+        var foundDefault = false
+        var foundAllFiles = false
+        var foundTrash = false
+        for recordFolder in RecordingsManager.sharedInstance.recordFolders {
+            if recordFolder.id == "0" {
+                foundDefault = true
+                if foundAllFiles && foundDefault && foundTrash{
+                    break
+                }
+            }
+            if recordFolder.id == "-99" {
+                foundAllFiles = true
+                if foundAllFiles && foundDefault && foundTrash{
+                    break
+                }
+            }
+            if recordFolder.id == "trash" {
+                foundTrash = true
+                if foundAllFiles && foundDefault && foundTrash{
+                    break
+                }
+            }
+        }
+        
+        if !foundDefault {
+            let defaultFolder = RecordFolder()
+            defaultFolder.id = "0"
+            defaultFolder.title = "New Call Recordings".localized
+            RecordingsManager.sharedInstance.recordFolders.insert(defaultFolder, at: 0)
+        }
+        if !foundAllFiles {
+            let defaultFolder = RecordFolder()
+            defaultFolder.id = "-99"
+            defaultFolder.title = "All Files".localized
+            RecordingsManager.sharedInstance.recordFolders.insert(defaultFolder, at: 1)
+        }
+        if !foundTrash {
+            let defaultFolder = RecordFolder()
+            defaultFolder.id = "trash"
+            defaultFolder.title = "Trash".localized
+            RecordingsManager.sharedInstance.recordFolders.insert(defaultFolder, at: 2)
+        }
+    }
+} 

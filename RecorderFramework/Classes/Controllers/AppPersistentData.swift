@@ -31,6 +31,7 @@ public class AppPersistentData : NSObject {
     @objc public var passOn = false
     @objc public var filePermission:String!
     @objc public var app:String!
+    @objc public var defaultPhone:String!
     
     // notification
     @objc public var receivedNotification = false
@@ -80,7 +81,9 @@ public class AppPersistentData : NSObject {
     
     @objc func saveData() {
         let defaults = UserDefaults.standard
-        
+        if(defaultPhone != nil){
+            defaults.setValue(phone.aesEncrypt(), forKey: "defaultPhone");
+        }
         if(phone != nil){
             defaults.setValue(phone.aesEncrypt(), forKey: "phone");
         }
@@ -127,6 +130,10 @@ public class AppPersistentData : NSObject {
     
     func loadData() {
         let defaults = UserDefaults.standard
+        
+        if let value:String = defaults.value(forKey: "defaultPhone") as? String {
+            defaultPhone = value.aesDecrypt()
+        }
         
         if let value:String = defaults.value(forKey: "phone") as? String {
             phone = value.aesDecrypt()
@@ -204,6 +211,26 @@ public class AppPersistentData : NSObject {
     /// - Returns: boolean value if phone is verified
     public func verified() -> Bool {
         return !(AppPersistentData.sharedInstance.apiKey == nil || AppPersistentData.sharedInstance.apiKey.isEmpty)
+    }
+    
+    class func checkForDefaultPhoneNumber(){
+        if AppPersistentData.sharedInstance.phoneNumbers.count > 0{
+            var found = false
+            for phoneNumber in AppPersistentData.sharedInstance.phoneNumbers{
+                if phoneNumber.phoneNumber == AppPersistentData.sharedInstance.defaultPhone{
+                    phoneNumber.isDefault = true
+                    found = true
+                    break
+                }
+            }
+            
+            if !found{
+                AppPersistentData.sharedInstance.phoneNumbers.first!.isDefault = true
+            }
+            #if os(iOS)
+            WatchKitController.sharedInstance.sendPhone()
+            #endif
+        }
     }
 }
 

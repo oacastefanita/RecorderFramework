@@ -220,4 +220,117 @@ public class RecorderFactory: NSObject {
         
         return newDict
     }
+    
+    public class func createPhoneNumberFromDict(_ number: NSDictionary) -> PhoneNumber{
+        let phoneNumber = PhoneNumber()
+        if let value:String = number.object(forKey: "phone_number") as? String {
+            phoneNumber.phoneNumber = value
+        }
+        if let value:String = number.object(forKey: "number") as? String {
+            phoneNumber.number = value
+        }
+        if let value:String = number.object(forKey: "prefix") as? String {
+            phoneNumber.prefix = value
+        }
+        if let value:String = number.object(forKey: "friendly_name") as? String {
+            phoneNumber.friendlyNumber = value
+        }
+        if let value:String = number.object(forKey: "flag") as? String {
+            phoneNumber.flag = value
+        }
+        if let value:String = number.object(forKey: "country") as? String {
+            phoneNumber.country = value
+        }
+        if let value:String = number.object(forKey: "city") as? String {
+            phoneNumber.city = value
+        }
+        return phoneNumber
+    }
+    
+    public class func createLanguageFromDict(_ language: NSDictionary) -> Language{
+        let item:Language = Language()
+        
+        if let value:String = language.object(forKey: "name") as? String {
+            item.name = value
+        }
+        if let value:String = language.object(forKey: "code") as? String {
+            item.code = value
+        }
+        return item
+    }
+    
+    public class func createMessageFromDict(_ msg: NSDictionary) -> ServerMessage{
+        let item:ServerMessage = ServerMessage()
+        
+        if let value:String = msg.object(forKey: "id") as? String {
+            item.id = value
+        }
+        if let value:String = msg.object(forKey: "title") as? String {
+            item.title = value
+        }
+        if let value:String = msg.object(forKey: "body") as? String {
+            item.body = value
+        }
+        if let value:String = msg.object(forKey: "time") as? String {
+            item.time = value
+        }
+        
+        var found = false
+        for msg in AppPersistentData.sharedInstance.serverMessages{
+            if msg.id == item.id{
+                found = true
+                break
+            }
+        }
+        let defaults = UserDefaults.standard
+        let lastTime = defaults.object(forKey: "messageTime")
+
+        if !found{
+            item.read = false
+            if lastTime == nil{
+                item.read = true
+            }
+            AppPersistentData.sharedInstance.serverMessages.append(item)
+        }
+        return item
+    }
+    
+    public class func fillAppPersistentDataFromDict(_ dict: NSDictionary){
+        if let profile:NSDictionary = dict["profile"] as? NSDictionary {
+            AppPersistentData.sharedInstance.user = RecorderFactory.createUserFromDict(profile)
+            AppPersistentData.sharedInstance.user.timeZone = "\(TimeZone.current.secondsFromGMT() / 60)"
+            
+            #if os(iOS)
+            WatchKitController.sharedInstance.sendUser()
+            #endif
+        }
+        if let value:String = dict.object(forKey: "play_beep") as? String {
+            AppPersistentData.sharedInstance.user.playBeep = value == "no" ? false:true
+        }
+        if let value:String = dict.object(forKey: "files_permission") as? String {
+            AppPersistentData.sharedInstance.filePermission = value
+        }
+        if let value:Int = dict["credits"] as? Int {
+            AppPersistentData.sharedInstance.credits = value
+        }
+        if let value:String = dict["app"] as? String {
+            AppPersistentData.sharedInstance.app = value
+        }
+        if let url:String = dict["share_url"] as? String {
+            AppPersistentData.sharedInstance.shareUrl = url
+        }
+        if let url:String = dict["rate_url"] as? String {
+            AppPersistentData.sharedInstance.rateUrl = url
+        }
+        if let value = dict["phone"] as? String {
+            AppPersistentData.sharedInstance.phone = value
+        }
+        if let value = dict["api_key"] as? String {
+            AppPersistentData.sharedInstance.apiKey = value
+        }
+        if let value = dict["code"] as? String {
+            AppPersistentData.sharedInstance.verificationCode = value
+        }
+        AppPersistentData.sharedInstance.saveData()
+    }
 }

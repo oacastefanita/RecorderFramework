@@ -87,17 +87,7 @@ public class APIClient : NSObject {
         
         api.doRequest(ServerPaths.registerPhone.rawValue, method: .post, parameters: APIRequestParametersController.createRegisterParameters(phone: number, token:token)) { (success, data) in
             if success {
-                if let value = data!["phone"] as? String {
-                    AppPersistentData.sharedInstance.phone = value
-                }
-                if let value = data!["api_key"] as? String {
-                    AppPersistentData.sharedInstance.apiKey = value
-                }
-                if let value = data!["code"] as? String {
-                    AppPersistentData.sharedInstance.verificationCode = value
-                }
-                AppPersistentData.sharedInstance.saveData()
-                
+                RecorderFactory.fillAppPersistentDataFromDict(data as! NSDictionary)
                 if completionHandler != nil {
                     completionHandler!(true, AppPersistentData.sharedInstance.verificationCode)
                 }
@@ -194,17 +184,10 @@ public class APIClient : NSObject {
                     
                     for call in calls {
                         let item = RecorderFactory.createRecordItemFromDict(call)
-                        if folderId == "trash"{
-                            item.fromTrash = true
-                        }
+                        item.fromTrash = folderId == "trash"
                         allIds.append(item.id)
                         
                         _ = RecordingsManager.sharedInstance.syncRecordingItem(item, folder:recordFolder)
-                        
-                        var on = UserDefaults.standard.object(forKey: "3GSync") as? Bool
-                        if(on == nil){
-                            on = true
-                        }
                     }
                     
                     RecordingsManager.sharedInstance.updateAllFilesFolder()
@@ -279,10 +262,9 @@ public class APIClient : NSObject {
             return
         }
         
-        var defaultPhone = " "
         for phoneNumber in AppPersistentData.sharedInstance.phoneNumbers{
             if phoneNumber.isDefault{
-                defaultPhone = phoneNumber.phoneNumber
+                AppPersistentData.sharedInstance.defaultPhone = phoneNumber.phoneNumber
                 break
             }
         }
@@ -291,51 +273,13 @@ public class APIClient : NSObject {
         api.doRequest(ServerPaths.getPhones.rawValue, method: .post, parameters: APIRequestParametersController.createDefaultParameters()) { (success, data) in
             if success {
                 if let numbers:Array<NSDictionary> = data!["root"] as? Array<NSDictionary> {
-                    
                     for number in numbers {
-                        let phoneNumber = PhoneNumber()
-                        if let value:String = number.object(forKey: "phone_number") as? String {
-                            phoneNumber.phoneNumber = value
-                        }
-                        if let value:String = number.object(forKey: "number") as? String {
-                            phoneNumber.number = value
-                        }
-                        if let value:String = number.object(forKey: "prefix") as? String {
-                            phoneNumber.prefix = value
-                        }
-                        if let value:String = number.object(forKey: "friendly_name") as? String {
-                            phoneNumber.friendlyNumber = value
-                        }
-                        if let value:String = number.object(forKey: "flag") as? String {
-                            phoneNumber.flag = value
-                        }
-                        if let value:String = number.object(forKey: "country") as? String {
-                            phoneNumber.country = value
-                        }
-                        if let value:String = number.object(forKey: "city") as? String {
-                            phoneNumber.city = value
-                        }
-                        
+                        let phoneNumber = RecorderFactory.createPhoneNumberFromDict(number)
                         AppPersistentData.sharedInstance.phoneNumbers.append(phoneNumber)
                     }
                 }
-                if AppPersistentData.sharedInstance.phoneNumbers.count > 0{
-                    var found = false
-                    for phoneNumber in AppPersistentData.sharedInstance.phoneNumbers{
-                        if phoneNumber.phoneNumber == defaultPhone{
-                            phoneNumber.isDefault = true
-                            found = true
-                            break
-                        }
-                    }
-                    
-                    if !found{
-                        AppPersistentData.sharedInstance.phoneNumbers.first!.isDefault = true
-                    }
-                    #if os(iOS)
-                    WatchKitController.sharedInstance.sendPhone()
-                    #endif
-                }
+                AppPersistentData.checkForDefaultPhoneNumber()
+                
                 var downloadsCompleted = 0
                 for phoneNumber in  AppPersistentData.sharedInstance.phoneNumbers {
                     let fileManager = FileManager.default
@@ -389,59 +333,13 @@ public class APIClient : NSObject {
         }
         
         api.doRequest(ServerPaths.getFolders.rawValue, method: .post, parameters: APIRequestParametersController.createDefaultParameters()) { (success, data) in
-            var foundDefault = false
-            var foundAllFiles = false
-            var foundTrash = false
-            for recordFolder in RecordingsManager.sharedInstance.recordFolders {
-                if recordFolder.id == "0" {
-                    foundDefault = true
-                    if foundAllFiles && foundDefault && foundTrash{
-                        break
-                    }
-                }
-                if recordFolder.id == "-99" {
-                    foundAllFiles = true
-                    if foundAllFiles && foundDefault && foundTrash{
-                        break
-                    }
-                }
-                if recordFolder.id == "trash" {
-                    foundTrash = true
-                    if foundAllFiles && foundDefault && foundTrash{
-                        break
-                    }
-                }
-            }
-            
-            if !foundDefault {
-                let defaultFolder = RecordFolder()
-                defaultFolder.id = "0"
-                defaultFolder.title = "New Call Recordings".localized
-                RecordingsManager.sharedInstance.recordFolders.insert(defaultFolder, at: 0)
-            }
-            if !foundAllFiles {
-                let defaultFolder = RecordFolder()
-                defaultFolder.id = "-99"
-                defaultFolder.title = "All Files".localized
-                RecordingsManager.sharedInstance.recordFolders.insert(defaultFolder, at: 1)
-            }
-            if !foundTrash {
-                let defaultFolder = RecordFolder()
-                defaultFolder.id = "trash"
-                defaultFolder.title = "Trash".localized
-                RecordingsManager.sharedInstance.recordFolders.insert(defaultFolder, at: 2)
-            }
-            
+            RecordingsManager.checkAndCreateDefaultFolders()
             if success {
                 if let folders:Array<NSDictionary> = data!["folders"] as? Array<NSDictionary> {
-                    var ids:Array<String> = Array<String>()
-                    ids.append("0")
-                    ids.append("-99")
-                    ids.append("trash")
+                    var ids:Array<String> = ["0","-99","trash"]//all 3 default ids
                     for folder in folders {
                         let recordFolder = RecorderFactory.createRecordFolderFromDict(folder)
                         ids.append(recordFolder.id)
-                        
                         _ = RecordingsManager.sharedInstance.syncItem(recordFolder)
                     }
                     RecordingsManager.sharedInstance.keepOnlyItemsWithIds(ids);
@@ -521,7 +419,6 @@ public class APIClient : NSObject {
         api.doRequest(ServerPaths.deleteFolder.rawValue, method: .post, parameters: APIRequestParametersController.createDeleteFoldersParameters(folderId:folderId, moveTo:moveTo)) { (success, data) in
             if success {
                 if completionHandler != nil {
-                    //{"status":"ok","msg":"Deleted Successfully"}
                     completionHandler!( true, nil)
                     APIClient.sharedInstance.updateFolders({ (success) -> Void in
                         NotificationCenter.default.post(name: NSNotification.Name(rawValue: kNotificationRecordingsUpdated), object: nil)
@@ -1128,20 +1025,7 @@ public class APIClient : NSObject {
         api.doRequest(ServerPaths.getSettings.rawValue, method: .post, parameters: APIRequestParametersController.createDefaultParameters()) { (success, data) in
             if success {
                 if let settings:NSDictionary = data!["settings"] as? NSDictionary {
-                    if let value:String = settings.object(forKey: "play_beep") as? String {
-                        AppPersistentData.sharedInstance.user.playBeep = value == "no" ? false:true
-                    }
-                    if let value:String = settings.object(forKey: "files_permission") as? String {
-                        AppPersistentData.sharedInstance.filePermission = value
-                    }
-                    if let value:Int = data!["credits"] as? Int {
-                        AppPersistentData.sharedInstance.credits = value
-                    }
-                    if let value:String = data!["app"] as? String {
-                        AppPersistentData.sharedInstance.app = value
-                    }
-                    AppPersistentData.sharedInstance.user.timeZone = "\(TimeZone.current.secondsFromGMT() / 60)"
-                    AppPersistentData.sharedInstance.saveData()
+                    RecorderFactory.fillAppPersistentDataFromDict(settings)
                 }
                 
                 if completionHandler != nil {
@@ -1283,14 +1167,7 @@ public class APIClient : NSObject {
                 if let calls:Array<NSDictionary> = data!["languages"] as? Array<NSDictionary> {
                     TranslationManager.sharedInstance.languages = Array()
                     for call in calls {
-                        let item:Language = Language()
-                        
-                        if let value:String = call.object(forKey: "name") as? String {
-                            item.name = value
-                        }
-                        if let value:String = call.object(forKey: "code") as? String {
-                            item.code = value
-                        }
+                        let item = RecorderFactory.createLanguageFromDict(call)
                         TranslationManager.sharedInstance.languages.append(item)
                     }
                     AppPersistentData.sharedInstance.saveData()
@@ -1313,46 +1190,13 @@ public class APIClient : NSObject {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
         }
-        let defaults = UserDefaults.standard
-        let lastTime = defaults.object(forKey: "messageTime")
-
         api.doRequest(ServerPaths.getMessages.rawValue, method: .post, parameters: APIRequestParametersController.createDefaultParameters()) { (success, data) in
             if success {
                 if let msgs:Array<NSDictionary> = data!["msgs"] as? Array<NSDictionary> {
-                    defaults.set(NSNumber(value: NSDate().timeIntervalSince1970), forKey: "messageTime")
+                    UserDefaults.standard.set(NSNumber(value: NSDate().timeIntervalSince1970), forKey: "messageTime")
                     
                     for msg in msgs {
-                        let item:ServerMessage = ServerMessage()
-                        
-                        if let value:String = msg.object(forKey: "id") as? String {
-                            item.id = value
-                        }
-                        if let value:String = msg.object(forKey: "title") as? String {
-                            item.title = value
-                        }
-                        if let value:String = msg.object(forKey: "body") as? String {
-                            item.body = value
-                        }
-                        if let value:String = msg.object(forKey: "time") as? String {
-                            item.time = value
-                        }
-                        
-                        var found = false
-                        for msg in AppPersistentData.sharedInstance.serverMessages{
-                            if msg.id == item.id{
-                                found = true
-                                break
-                            }
-                        }
-                        
-                        if !found{
-                            item.read = false
-                            if lastTime == nil{
-                                item.read = true
-                            }
-                            AppPersistentData.sharedInstance.serverMessages.append(item)
-                        }
-                        
+                        RecorderFactory.createMessageFromDict(msg)
                     }
                     AppPersistentData.sharedInstance.serverMessages.sort { $0.time < $1.time }
                     AppPersistentData.sharedInstance.saveData()
@@ -1488,22 +1332,7 @@ public class APIClient : NSObject {
         }
         api.doRequest(ServerPaths.getProfile.rawValue, method: .post, parameters: APIRequestParametersController.createDefaultParameters()) { (success, data) in
             if success {
-                if let profile:NSDictionary = data!["profile"] as? NSDictionary {
-                    AppPersistentData.sharedInstance.user = RecorderFactory.createUserFromDict(profile)
-                    AppPersistentData.sharedInstance.user.timeZone = "\(TimeZone.current.secondsFromGMT() / 60)"
-                    AppPersistentData.sharedInstance.saveData()
-                    
-                    #if os(iOS)
-                    WatchKitController.sharedInstance.sendUser()
-                    #endif
-                }
-                
-                if let url:String = data!["share_url"] as? String {
-                    AppPersistentData.sharedInstance.shareUrl = url
-                }
-                if let url:String = data!["rate_url"] as? String {
-                    AppPersistentData.sharedInstance.rateUrl = url
-                }
+                RecorderFactory.fillAppPersistentDataFromDict(data as! NSDictionary)
                 if completionHandler != nil {
                     completionHandler!( true, data)
                 }
