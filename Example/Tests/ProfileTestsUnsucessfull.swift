@@ -112,7 +112,8 @@ class ProfileTestsUnsucessfull: XCTestCase {
     func test6BuyCreditsWrongReceipt(){
         let promise = expectation(description: "Buy credits fail")
         //empty receipt
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "app":"rec", "reciept" : ""] as [String : Any]
+        var parameters:[String:Any] = ["app":"rec", "reciept" : ""] as [String : Any]
+        parameters[ServerReuqestKeys.apiKey.rawValue] = AppPersistentData.sharedInstance.apiKey!
         APIClient.sharedInstance.buyCredits(parameters, completionHandler:{(success, data) -> Void in
             if success{
                 XCTFail("Error: Receipt is invalid, server should not accept it")
@@ -125,7 +126,7 @@ class ProfileTestsUnsucessfull: XCTestCase {
     
     func test7UpdateTokenEmptyType() {
         let promise = expectation(description: "Update token fail")
-        let parameters:[String:Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "device_token" : "23432432sdfsdf4dsfsdfdsfsd ", "device_type" : ""]//empty device_type
+        let parameters:[String:Any] = [ServerReuqestKeys.apiKey.rawValue: AppPersistentData.sharedInstance.apiKey!, "device_token" : "23432432sdfsdf4dsfsdfdsfsd ", "device_type" : ""]//empty device_type
         APIClient.sharedInstance.updateToken(parameters,completionHandler:{(success, data) -> Void in
             if success{
                 XCTFail("Error: Token is invalid, server should not accept it")

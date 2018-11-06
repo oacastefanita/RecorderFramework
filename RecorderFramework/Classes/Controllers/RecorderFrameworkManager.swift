@@ -180,7 +180,7 @@ public class RecorderFrameworkManager : NSObject {
     ///
     /// - Parameter user: user object
     /// - Returns: NSDictionary with user data
-    public func createDictFromUser(_ user: User) -> NSDictionary{
+    public func createDictFromUser(_ user: User) -> NSMutableDictionary{
         return RecorderFactory.createDictFromUser(user)
     }
     
@@ -787,7 +787,7 @@ public class RecorderFrameworkManager : NSObject {
     ///
     /// - Parameter file: RecordItem to create NSDictionary from
     /// - Returns: NSDictionary object filled with data from RecordItem
-    public func createDictFromRecordItem(_ file: RecordItem) -> NSDictionary{
+    public func createDictFromRecordItem(_ file: RecordItem) -> NSMutableDictionary{
         return RecorderFactory.createDictFromRecordItem(file)
     }
     

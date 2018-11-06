@@ -83,6 +83,7 @@ public class APIClient : NSObject {
             if completionHandler != nil {
                 completionHandler!(false, "invalid phone number")
             }
+            return
         }
         
         api.doRequest(ServerPaths.registerPhone.rawValue, method: .post, parameters: APIRequestParametersController.createRegisterParameters(phone: number, token:token)) { (success, data) in
@@ -437,8 +438,7 @@ public class APIClient : NSObject {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
         }
-
-        api.doRequest(ServerPaths.updateOrder.rawValue, method: .post, parameters: APIRequestParametersController.createDefaultParameters()) { (success, data) in
+        api.doRequest(ServerPaths.updateOrder.rawValue, method: .post, parameters: parameters) { (success, data) in
             if success {
                 if completionHandler != nil {
                     completionHandler!( true, nil)
@@ -558,7 +558,7 @@ public class APIClient : NSObject {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
         }
-        api.doRequest(ServerPaths.updateFile.rawValue, method: .post, parameters: APIRequestParametersController.createDefaultParameters()) { (success, data) in
+        api.doRequest(ServerPaths.updateFile.rawValue, method: .post, parameters: parameters) { (success, data) in
             if success {
                 if completionHandler != nil {
                     completionHandler!( true, nil)

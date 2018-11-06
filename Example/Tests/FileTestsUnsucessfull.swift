@@ -99,7 +99,8 @@ class FileTestsUnsucessfull: XCTestCase {
             recordItem.firstName = "UnitTestFirstNameUpdate"
             recordItem.text = "UnitTestTextUpdate"
             
-            let dict = RecorderFrameworkManager.sharedInstance.createDictFromRecordItem(recordItem)
+            var dict = RecorderFrameworkManager.sharedInstance.createDictFromRecordItem(recordItem)
+            dict[ServerReuqestKeys.apiKey.rawValue] = AppPersistentData.sharedInstance.apiKey!
             let promise = expectation(description: "Update file fail")
             APIClient.sharedInstance.updateRecordingInfo(recordItem, parameters:dict as! [String : Any], completionHandler: { (success, data) -> Void in
                 if success {
@@ -128,7 +129,8 @@ class FileTestsUnsucessfull: XCTestCase {
             recordItem.firstName = "UnitTestFirstNameUpdate"
             recordItem.text = "UnitTestTextUpdate"
             
-            let dict = RecorderFrameworkManager.sharedInstance.createDictFromRecordItem(recordItem)
+            var dict = RecorderFrameworkManager.sharedInstance.createDictFromRecordItem(recordItem)
+            dict[ServerReuqestKeys.apiKey.rawValue] = AppPersistentData.sharedInstance.apiKey!
             let promise = expectation(description: "Update file fail")
             APIClient.sharedInstance.updateRecordingInfo(recordItem, parameters:dict as! [String : Any], completionHandler: { (success, data) -> Void in
                 if success {
@@ -157,7 +159,8 @@ class FileTestsUnsucessfull: XCTestCase {
             recordItem.firstName = "UnitTestFirstNameUpdate"
             recordItem.text = "UnitTestTextUpdate"
             
-            let dict = RecorderFrameworkManager.sharedInstance.createDictFromRecordItem(recordItem)
+            var dict = RecorderFrameworkManager.sharedInstance.createDictFromRecordItem(recordItem)
+            dict[ServerReuqestKeys.apiKey.rawValue] = AppPersistentData.sharedInstance.apiKey!
             let promise = expectation(description: "Update file fail")
             APIClient.sharedInstance.updateRecordingInfo(recordItem, parameters:dict as! [String : Any], completionHandler: { (success, data) -> Void in
                 if success {
@@ -351,7 +354,8 @@ class FileTestsUnsucessfull: XCTestCase {
     func test17GetRecordingsWrongSource(){
         let promise = expectation(description: "Get recordings fail")
         
-        var parameters:[String : Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "reminder":"true"]
+        var parameters:[String : Any] = ["reminder":"true"]
+        parameters[ServerReuqestKeys.apiKey.rawValue] = AppPersistentData.sharedInstance.apiKey!
         if folderId != nil {
             parameters.updateValue(folderId, forKey: "folder_id")
         }
@@ -371,10 +375,11 @@ class FileTestsUnsucessfull: XCTestCase {
     func test18GetRecordingsWrongId(){
         let promise = expectation(description: "Get recordings fail")
         
-        var parameters:[String : Any] = ["api_key": AppPersistentData.sharedInstance.apiKey!, "reminder":"true"]
+        var parameters:[String : Any] = ["reminder":"true"]
         if folderId != nil {
             parameters.updateValue(folderId!, forKey: "folder_id")
         }
+        parameters[ServerReuqestKeys.apiKey.rawValue] = AppPersistentData.sharedInstance.apiKey!
         parameters["source"] = "all"
         parameters["id"] = "987465132"//wrong id
         parameters["op"] = "less"

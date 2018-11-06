@@ -93,7 +93,8 @@ class FileTests: XCTestCase {
             recordItem.firstName = "UnitTestFirstNameUpdate"
             recordItem.text = "UnitTestTextUpdate"
             
-            let dict = RecorderFrameworkManager.sharedInstance.createDictFromRecordItem(recordItem)
+            var dict = RecorderFrameworkManager.sharedInstance.createDictFromRecordItem(recordItem)
+            dict[ServerReuqestKeys.apiKey.rawValue] = AppPersistentData.sharedInstance.apiKey!
             let promise = expectation(description: "Update file")
             APIClient.sharedInstance.updateRecordingInfo(recordItem, parameters:dict as! [String : Any], completionHandler: { (success, data) -> Void in
                 if(success){

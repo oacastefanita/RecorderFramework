@@ -47,7 +47,7 @@ public class RecorderFactory: NSObject {
         return object
     }
     
-    public class func createDictFromUser(_ user: User) -> NSDictionary{
+    public class func createDictFromUser(_ user: User) -> NSMutableDictionary{
         let dictNew = NSMutableDictionary(dictionary: ["l_name":user.lastName ?? "", "f_name":user.firstName ?? "", "email":user.email ?? "", "max_length":user.maxLenght ?? ""])
         dictNew["time_zone"] = user.timeZone
         dictNew["is_public"] = user.isPublic ?? ""
@@ -85,7 +85,7 @@ public class RecorderFactory: NSObject {
         return object
     }
     
-    public class func createDictFromRecordFolder(_ folder: RecordFolder) -> NSDictionary{
+    public class func createDictFromRecordFolder(_ folder: RecordFolder) -> NSMutableDictionary{
         let dict = NSMutableDictionary(dictionary: ["id":folder.id ?? "", "name":folder.title ?? "", "created":folder.created ?? ""])
         dict["folder_order"] = folder.folderOrder ?? ""
         dict["pass"] = folder.password ?? ""
@@ -184,8 +184,8 @@ public class RecorderFactory: NSObject {
         return object
     }
     
-    public class func createDictFromRecordItem(_ file: RecordItem) -> NSDictionary{
-        let dict = NSDictionary(dictionary: ["folderId":file.folderId, "name":file.text, "id":file.id, "access_number":file.accessNumber, "url":file.url, "share_url":file.shareUrl, "credits":file.credits, "duration":file.duration, "time":file.time,"f_name":file.firstName, "l_name":file.lastName, "email":file.email, "notes":file.notes, "phone":file.phoneNumber, "tags":file.tags, "remind_date":file.remindDate, "remind_days":file.remindDays, "free":file.isFree ? "1":"0","text":file.text, "order_id":file.fileOrder])
+    public class func createDictFromRecordItem(_ file: RecordItem) -> NSMutableDictionary{
+        let dict = NSMutableDictionary(dictionary: ["folderId":file.folderId, "name":file.text, "id":file.id, "access_number":file.accessNumber, "url":file.url, "share_url":file.shareUrl, "credits":file.credits, "duration":file.duration, "time":file.time,"f_name":file.firstName, "l_name":file.lastName, "email":file.email, "notes":file.notes, "phone":file.phoneNumber, "tags":file.tags, "remind_date":file.remindDate, "remind_days":file.remindDays, "free":file.isFree ? "1":"0","text":file.text, "order_id":file.fileOrder])
         return dict
     }
     

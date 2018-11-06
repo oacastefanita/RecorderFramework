@@ -45,9 +45,7 @@ class RegisterTestsUnsuccessful: XCTestCase {
                         XCTFail("Error: Code is invalid, server should not accept it")
                     }
                     else {
-                        if( (data as! String) == "Invalid Code"){
-                            promise.fulfill()
-                        }
+                        promise.fulfill()
                     }
                 })
             }
@@ -67,9 +65,7 @@ class RegisterTestsUnsuccessful: XCTestCase {
                 XCTFail("Error: Phone number is invalid, server should not accept it")
             }
             else {
-                if( (data as! String) == "invalid token"){
-                    promise.fulfill()
-                }
+                promise.fulfill()
             }
         })
         
@@ -99,7 +95,7 @@ class RegisterTestsUnsuccessful: XCTestCase {
                 parameters["device_id"] = RecorderFrameworkManager.sharedInstance.macSN
                 #endif
                 parameters["time_zone"] = TimeZone.current.secondsFromGMT() / 60
-                
+                parameters[ServerReuqestKeys.apiKey.rawValue] = AppPersistentData.sharedInstance.apiKey!
                 APIClient.sharedInstance.sendVerificationCode(parameters:parameters, completionHandler: { (success, data) -> Void in
                     if success {
                         XCTFail("Error: Code is invalid, server should not accept it")
@@ -138,7 +134,7 @@ class RegisterTestsUnsuccessful: XCTestCase {
                 parameters["device_id"] = RecorderFrameworkManager.sharedInstance.macSN
                 #endif
                 parameters["time_zone"] = TimeZone.current.secondsFromGMT() / 60
-                
+                parameters[ServerReuqestKeys.apiKey.rawValue] = AppPersistentData.sharedInstance.apiKey!
                 APIClient.sharedInstance.sendVerificationCode(parameters:parameters, completionHandler: { (success, data) -> Void in
                     if success {
                         XCTFail("Error: Code is invalid, server should not accept it")
@@ -177,7 +173,7 @@ class RegisterTestsUnsuccessful: XCTestCase {
                 parameters["device_id"] = RecorderFrameworkManager.sharedInstance.macSN
                 #endif
                 parameters["time_zone"] = TimeZone.current.secondsFromGMT() / 60
-                
+                parameters[ServerReuqestKeys.apiKey.rawValue] = AppPersistentData.sharedInstance.apiKey!
                 APIClient.sharedInstance.sendVerificationCode(parameters:parameters, completionHandler: { (success, data) -> Void in
                     if success {
                         XCTFail("Error: Code is invalid, server should not accept it")
@@ -216,7 +212,7 @@ class RegisterTestsUnsuccessful: XCTestCase {
                 parameters["device_id"] = RecorderFrameworkManager.sharedInstance.macSN
                 #endif
                 parameters["time_zone"] = TimeZone.current.secondsFromGMT() / 60
-                
+                parameters[ServerReuqestKeys.apiKey.rawValue] = AppPersistentData.sharedInstance.apiKey!
                 APIClient.sharedInstance.sendVerificationCode(parameters:parameters, completionHandler: { (success, data) -> Void in
                     if success {
                         XCTFail("Error: Code is invalid, server should not accept it")
@@ -251,7 +247,7 @@ class RegisterTestsUnsuccessful: XCTestCase {
                 parameters["device_id"] = RecorderFrameworkManager.sharedInstance.macSN
                 #endif
                 parameters["time_zone"] = TimeZone.current.secondsFromGMT() / 60
-                
+                parameters[ServerReuqestKeys.apiKey.rawValue] = AppPersistentData.sharedInstance.apiKey!
                 APIClient.sharedInstance.sendVerificationCode(parameters:parameters, completionHandler: { (success, data) -> Void in
                     if success {
                         XCTFail("Error: Code is invalid, server should not accept it")
@@ -286,7 +282,7 @@ class RegisterTestsUnsuccessful: XCTestCase {
                 parameters["device_id"] = RecorderFrameworkManager.sharedInstance.macSN
                 #endif
                 parameters["time_zone"] = TimeZone.current.secondsFromGMT() / 60
-                
+                parameters[ServerReuqestKeys.apiKey.rawValue] = AppPersistentData.sharedInstance.apiKey!
                 APIClient.sharedInstance.sendVerificationCode(parameters:parameters, completionHandler: { (success, data) -> Void in
                     if success {
                         XCTFail("Error: Code is invalid, server should not accept it")
@@ -323,7 +319,7 @@ class RegisterTestsUnsuccessful: XCTestCase {
                 parameters["device_id"] = RecorderFrameworkManager.sharedInstance.macSN
                 #endif
                 parameters["time_zone"] = TimeZone.current.secondsFromGMT() / 60
-                
+                parameters[ServerReuqestKeys.apiKey.rawValue] = AppPersistentData.sharedInstance.apiKey!
                 APIClient.sharedInstance.sendVerificationCode(parameters:parameters, completionHandler: { (success, data) -> Void in
                     if success {
                         XCTFail("Error: Code is invalid, server should not accept it")
@@ -357,7 +353,7 @@ class RegisterTestsUnsuccessful: XCTestCase {
                 parameters["device_type"] = ""//empty
 
                 parameters["time_zone"] = TimeZone.current.secondsFromGMT() / 60
-                
+                parameters[ServerReuqestKeys.apiKey.rawValue] = AppPersistentData.sharedInstance.apiKey!
                 APIClient.sharedInstance.sendVerificationCode(parameters:parameters, completionHandler: { (success, data) -> Void in
                     if success {
                         XCTFail("Error: Code is invalid, server should not accept it")
@@ -390,7 +386,7 @@ class RegisterTestsUnsuccessful: XCTestCase {
                 parameters["device_type"] = "asdada"//wrong
 
                 parameters["time_zone"] = TimeZone.current.secondsFromGMT() / 60
-                
+                parameters[ServerReuqestKeys.apiKey.rawValue] = AppPersistentData.sharedInstance.apiKey!
                 APIClient.sharedInstance.sendVerificationCode(parameters:parameters, completionHandler: { (success, data) -> Void in
                     if success {
                         XCTFail("Error: Code is invalid, server should not accept it")
@@ -423,7 +419,7 @@ class RegisterTestsUnsuccessful: XCTestCase {
                 parameters["device_id"] = ""//empty
 
                 parameters["time_zone"] = TimeZone.current.secondsFromGMT() / 60
-                
+                parameters[ServerReuqestKeys.apiKey.rawValue] = AppPersistentData.sharedInstance.apiKey!
                 APIClient.sharedInstance.sendVerificationCode(parameters:parameters, completionHandler: { (success, data) -> Void in
                     if success {
                         XCTFail("Error: Code is invalid, server should not accept it")
@@ -461,7 +457,7 @@ class RegisterTestsUnsuccessful: XCTestCase {
                 parameters["device_id"] = RecorderFrameworkManager.sharedInstance.macSN
                 #endif
                 parameters["time_zone"] = "asdasd"//wrong
-                
+                parameters[ServerReuqestKeys.apiKey.rawValue] = AppPersistentData.sharedInstance.apiKey!
                 APIClient.sharedInstance.sendVerificationCode(parameters:parameters, completionHandler: { (success, data) -> Void in
                     if success {
                         XCTFail("Error: Code is invalid, server should not accept it")
