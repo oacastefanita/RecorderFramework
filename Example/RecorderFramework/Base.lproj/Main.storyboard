@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Rgn-bi-hdd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Rgn-bi-hdd">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -1984,6 +1984,7 @@
                         <outlet property="btnRecover" destination="1Cr-ea-hOh" id="d6l-yV-h2l"/>
                         <outlet property="btnStar" destination="tTO-0y-N4P" id="4ei-ex-pq7"/>
                         <outlet property="btnTags" destination="e1d-Mb-iCs" id="sqq-dg-E21"/>
+                        <outlet property="btnTrim" destination="Zel-Wm-7I5" id="PbF-jP-ZGS"/>
                         <outlet property="btnUpdate" destination="Abd-mn-vDq" id="IvO-vp-Zjy"/>
                         <outlet property="recordingTimeLabel" destination="5MA-5a-sxT" id="emz-po-FIN"/>
                         <outlet property="scrollView" destination="2yU-C6-89d" id="SKZ-aj-8Wa"/>
@@ -2010,6 +2011,6 @@
         <segue reference="VCW-3U-8x8"/>
         <segue reference="Lwo-vA-DKq"/>
         <segue reference="CSF-Tg-21a"/>
-        <segue reference="ePg-Zz-p0I"/>
+        <segue reference="hLC-bV-XVH"/>
     </inferredMetricsTieBreakers>
 </document>

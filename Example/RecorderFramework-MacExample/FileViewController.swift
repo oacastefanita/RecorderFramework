@@ -55,7 +55,10 @@ class FileViewController: NSViewController, TitleViewControllerDelegater, AVAudi
             file.id = "Delete"
             folder.recordedItems.append(file)
             fileCreated = true
+            btnTags.isEnabled = false
+            btnTrim.isEnabled = false
         }else{
+            btnRecord.isEnabled = false
             if !file.fileDownloaded || file.localFile == nil {
                 var folder:RecordFolder! = nil
                 
@@ -99,8 +102,10 @@ class FileViewController: NSViewController, TitleViewControllerDelegater, AVAudi
     }
     
     @objc func enableTags(){
-        self.btnTags.isEnabled = true
-        self.btnTrim.isEnabled = true
+        if file.id != "Delete"{
+            self.btnTags.isEnabled = true
+            self.btnTrim.isEnabled = true
+        }
     }
     
     func play() {

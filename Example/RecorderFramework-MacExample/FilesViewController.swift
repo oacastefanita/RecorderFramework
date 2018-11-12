@@ -113,6 +113,9 @@ class FilesViewController: NSViewController, NSTableViewDelegate, NSTableViewDat
                 }else{
                     parameters["top_id"] = 0
                 }
+                if oldIndex + oldIndexOffset == 0 && row == 2{
+                    parameters["top_id"] = files.first?.id!
+                }
                 parameters["folder_id"] = RecordingsManager.sharedInstance.recordFolders[selectedFolder].id!
                 RecorderFrameworkManager.sharedInstance.reorderItems(parameters, completionHandler: ({(success, response) -> Void in
                     

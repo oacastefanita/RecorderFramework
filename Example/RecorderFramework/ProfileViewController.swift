@@ -69,7 +69,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate,UI
         txtPin.text = RecorderFrameworkManager.sharedInstance.getUser().pin
         swtPlayBell.isOn = RecorderFrameworkManager.sharedInstance.getUser().playBeep
         swtPublic.isOn = RecorderFrameworkManager.sharedInstance.getUser().isPublic
-        
+        txtTimezone.isEnabled = false
         path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
         path = (path as String) + "/profile.jpeg"
         RecorderFrameworkManager.sharedInstance.downloadFile(RecorderFrameworkManager.sharedInstance.getUser().imagePath!, atPath: path, completionHandler: ({ (success,response) -> Void in

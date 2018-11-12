@@ -299,7 +299,6 @@ public class RecorderFactory: NSObject {
         if let profile:NSDictionary = dict["profile"] as? NSDictionary {
             AppPersistentData.sharedInstance.user = RecorderFactory.createUserFromDict(profile)
             AppPersistentData.sharedInstance.user.timeZone = "\(TimeZone.current.secondsFromGMT() / 60)"
-            
             #if os(iOS)
             WatchKitController.sharedInstance.sendUser()
             #endif

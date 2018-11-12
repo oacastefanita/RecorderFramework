@@ -21,12 +21,14 @@ class FileInterfaceController: WKInterfaceController {
     @IBOutlet var lblNotes: WKInterfaceLabel!
     @IBOutlet var lblName: WKInterfaceLabel!
     
+    @IBOutlet var btnTags: WKInterfaceButton!
+    
     var file: RecordItem!
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         file = (context as! RecordItem)
-        if !file.fileDownloaded || file.localFile == nil {
+//        if !file.fileDownloaded || file.localFile == nil {
             var folder:RecordFolder! = nil
             
             for iterate in RecordingsManager.sharedInstance.recordFolders {
@@ -48,14 +50,15 @@ class FileInterfaceController: WKInterfaceController {
                     self.play()
                 })
             }
-        }
-        else {
-            lblDownloading.setText("Downloaded")
-            self.play()
-        }
+//        }
+//        else {
+//            lblDownloading.setText("Downloaded")
+//            self.play()
+//        }
         fillView()
     }
     func play(){
+        lblDownloading.setText("Downloaded")
         let fileManager = FileManager.default
         var path = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)!.path
         path += file.localFile
@@ -66,6 +69,7 @@ class FileInterfaceController: WKInterfaceController {
         presentMediaPlayerController(with: URL(fileURLWithPath: path), options: nil, completion: { (success, time, error) in
             self.play()
         })
+        btnTags.setEnabled(true)
     }
     
     func fillView(){

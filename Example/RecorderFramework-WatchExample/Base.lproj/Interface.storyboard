@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14113" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14460.31" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
     <device id="watch38" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="watchOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14033"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14460.16"/>
     </dependencies>
     <scenes>
         <!--Interface Controller-->
@@ -235,13 +235,14 @@
                         <label alignment="left" text="Notes:" id="98E-gp-yrg"/>
                         <label alignment="left" text="Reccurence date:" id="XBd-HJ-hGh"/>
                         <label alignment="left" text="Recurrence days:" id="Mgm-te-d5z"/>
-                        <button width="1" alignment="left" title="Tags" id="vUW-Xh-Z9z">
+                        <button width="1" alignment="left" title="Tags" enabled="NO" id="vUW-Xh-Z9z">
                             <connections>
                                 <action selector="onTags:" destination="Wkq-YD-la7" id="WLh-eq-q3D"/>
                             </connections>
                         </button>
                     </items>
                     <connections>
+                        <outlet property="btnTags" destination="vUW-Xh-Z9z" id="BnT-f7-WBo"/>
                         <outlet property="lblDownloading" destination="Mkf-r5-t36" id="2e0-1S-36Z"/>
                         <outlet property="lblEmail" destination="wsj-el-3mR" id="IhL-SP-ZkE"/>
                         <outlet property="lblFirstName" destination="Z3S-TN-uV4" id="tx6-Vx-4dd"/>

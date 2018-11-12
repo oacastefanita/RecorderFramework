@@ -70,10 +70,10 @@ public class APIClient : NSObject {
         let charcterSet  = NSCharacterSet(charactersIn: "+0123456789").inverted
         let inputString = number.components(separatedBy: charcterSet)
         let filtered = inputString.joined(separator: "")
-        if  !(number == filtered && number.first == "+"){
-            return false
-        }else{
+        if  number == filtered && number.first == "+" && number.count >= 4 && number.count <= 13{
             return true
+        }else{
+            return false
         }
     }
     
@@ -438,7 +438,9 @@ public class APIClient : NSObject {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
         }
-        api.doRequest(ServerPaths.updateOrder.rawValue, method: .post, parameters: parameters) { (success, data) in
+        var withAPI = parameters
+        withAPI[ServerReuqestKeys.apiKey.rawValue] = AppPersistentData.sharedInstance.apiKey!
+        api.doRequest(ServerPaths.updateOrder.rawValue, method: .post, parameters: withAPI) { (success, data) in
             if success {
                 if completionHandler != nil {
                     completionHandler!( true, nil)
@@ -558,7 +560,9 @@ public class APIClient : NSObject {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
         }
-        api.doRequest(ServerPaths.updateFile.rawValue, method: .post, parameters: parameters) { (success, data) in
+        var withAPI = parameters
+        withAPI[ServerReuqestKeys.apiKey.rawValue] = AppPersistentData.sharedInstance.apiKey!
+        api.doRequest(ServerPaths.updateFile.rawValue, method: .post, parameters: withAPI) { (success, data) in
             if success {
                 if completionHandler != nil {
                     completionHandler!( true, nil)
@@ -597,7 +601,9 @@ public class APIClient : NSObject {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
         }
-        api.doRequest(ServerPaths.updateStar.rawValue, method: .post, parameters: parameters) { (success, data) in
+        var withAPI = parameters
+        withAPI[ServerReuqestKeys.apiKey.rawValue] = AppPersistentData.sharedInstance.apiKey!
+        api.doRequest(ServerPaths.updateStar.rawValue, method: .post, parameters: withAPI) { (success, data) in
             if success {
                 if completionHandler != nil {
                     completionHandler!( true, nil)
@@ -1064,8 +1070,9 @@ public class APIClient : NSObject {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
         }
-
-        api.doRequest(ServerPaths.buyCredits.rawValue, method: .post, parameters: parameters) { (success, data) in
+        var withAPI = parameters
+        withAPI[ServerReuqestKeys.apiKey.rawValue] = AppPersistentData.sharedInstance.apiKey!
+        api.doRequest(ServerPaths.buyCredits.rawValue, method: .post, parameters: withAPI) { (success, data) in
             if success {
                 if completionHandler != nil {
                     completionHandler!( true, nil)
@@ -1103,8 +1110,9 @@ public class APIClient : NSObject {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
         }
-        
-        api.doRequest(ServerPaths.updateDeviceToken.rawValue, method: .post, parameters: parameters) { (success, data) in
+        var withAPI = parameters
+        withAPI[ServerReuqestKeys.apiKey.rawValue] = AppPersistentData.sharedInstance.apiKey!
+        api.doRequest(ServerPaths.updateDeviceToken.rawValue, method: .post, parameters: withAPI) { (success, data) in
             if success {
                 if completionHandler != nil {
                     completionHandler!( true, nil)

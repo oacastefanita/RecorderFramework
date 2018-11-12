@@ -47,5 +47,7 @@ class ProfileViewController: NSViewController {
         txtPin.stringValue = RecorderFrameworkManager.sharedInstance.getUser().pin
         btnPlayBell.state = NSControl.StateValue(rawValue: RecorderFrameworkManager.sharedInstance.getUser().playBeep == true ? 1 : 0)
         btnPublic.state = NSControl.StateValue(rawValue: RecorderFrameworkManager.sharedInstance.getUser().isPublic == true ? 1 : 0)
+        txtTimezone.isEnabled = false
+        txtPin.isEnabled = false
     }
 }

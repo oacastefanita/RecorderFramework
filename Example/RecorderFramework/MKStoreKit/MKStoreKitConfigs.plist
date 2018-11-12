@@ -9,17 +9,17 @@
 			<key>ConsumableCount</key>
 			<integer>1</integer>
 			<key>ConsumableId</key>
-			<string>com.werockapps.CallRecorderPremium</string>
+			<string>com.werockapps.RecorderPremium</string>
 		</dict>
 		<key>com.werockapps.CallRecorderPro</key>
 		<dict>
 			<key>ConsumableCount</key>
 			<integer>1</integer>
 			<key>ConsumableId</key>
-			<string>com.werockapps.CallRecorderPro</string>
+			<string>com.werockapps.RecorderPro</string>
 		</dict>
 	</dict>
 	<key>SharedSecret</key>
-	<string>a2bf6cde9c4142d8aa70731898dec29c</string>
+	<string>ad4028657563419bbee853bbfae7d106</string>
 </dict>
 </plist>

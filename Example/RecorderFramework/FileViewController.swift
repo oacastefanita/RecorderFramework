@@ -26,6 +26,7 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
     @IBOutlet weak var btnRecord: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var btnTags: UIButton!
+    @IBOutlet weak var btnTrim: UIButton!
     @IBOutlet weak var btnStar: UIButton!
     @IBOutlet weak var btnRecover: UIButton!
     @IBOutlet weak var waveView: FDWaveformView!
@@ -49,6 +50,7 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.btnTags.isEnabled = false
+        self.btnTrim.isEnabled = false
         
         if file == nil{
             btnUpdate.setTitle("Done", for: .normal)
@@ -58,7 +60,10 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
             folder.recordedItems.append(file)
             fileCreated = true
             self.title = "New recording"
+            btnTags.isEnabled = false
+            btnTrim.isEnabled = false
         }else{
+            btnRecord.isEnabled = false
             self.title = file.text
             btnRecord.isHidden = true
             if !file.fileDownloaded || file.localFile == nil {
@@ -83,7 +88,10 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
     }
     
     @objc func enableTags(){
-        self.btnTags.isEnabled = true
+        if file.id != "Delete"{
+            self.btnTags.isEnabled = true
+            self.btnTrim.isEnabled = true
+        }
     }
     
     func initAudio(){
@@ -269,7 +277,7 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
         if file.id == "Delete"{
             return
         }
-        RecorderFrameworkManager.sharedInstance.star(true, entityId: file.id, isFile: true, completionHandler: { (success, data) -> Void in
+        RecorderFrameworkManager.sharedInstance.star(!file.isStar, entityId: file.id, isFile: true, completionHandler: { (success, data) -> Void in
             if success {
                 self.navigationController?.popToRootViewController(animated: true)
                 self.alert(message: "Request sent")

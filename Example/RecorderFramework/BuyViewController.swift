@@ -47,11 +47,11 @@ class BuyViewController: UIViewController{
     }
     
     @IBAction func buyPremium(){
-        MKStoreKit.shared().initiatePaymentRequestForProduct(withIdentifier: "com.werockapps.CallRecorderPremium")
+        MKStoreKit.shared().initiatePaymentRequestForProduct(withIdentifier: "com.werockapps.RecorderPremium")
     }
     
     @IBAction func buyPro(){
-        MKStoreKit.shared().initiatePaymentRequestForProduct(withIdentifier: "com.werockapps.CallRecorderPro")
+        MKStoreKit.shared().initiatePaymentRequestForProduct(withIdentifier: "com.werockapps.RecorderPro")
     }
     
     @objc func purchaseSucessful(){

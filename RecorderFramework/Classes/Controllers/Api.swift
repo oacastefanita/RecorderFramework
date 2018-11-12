@@ -120,20 +120,10 @@ class Api: NSObject {
                 else {
                     if let dict = response.result.value as? NSDictionary {
                         if dict[ServerResponseKeys.status.rawValue] != nil && (dict[ServerResponseKeys.status.rawValue] as? String) != ServerResponseKeys.ok.rawValue {
-                            if let strError = dict[ServerResponseKeys.message.rawValue] as? String {
-                                if completionHandler != nil {
-                                    callback(false,self.handleError(response.result))
-                                }
+                            if completionHandler != nil {
+                                callback(false,self.handleError(response.result))
                             }
-                            else {
-                                if completionHandler != nil {
-                                    completionHandler!(false, nil)
-                                }
-                            }
-                        }else if let status = dict[ServerResponseKeys.status.rawValue] as? String, status == ServerResponseKeys.error.rawValue {
-                            callback(false,self.handleError(response.result))
-                        }
-                        else {
+                        }else {
                             callback(true,dict as? [String : Any])
                         }
                     }

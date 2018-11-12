@@ -184,7 +184,7 @@ class FileViewController: UIViewController, TitleViewControllerDelegater{
     }
     
     @IBAction func onStar(_ sender: Any) {
-        RecorderFrameworkManager.sharedInstance.star(true, entityId: file.id, isFile: true, completionHandler: { (success, data) -> Void in
+        RecorderFrameworkManager.sharedInstance.star(!file.isStar, entityId: file.id, isFile: true, completionHandler: { (success, data) -> Void in
             if success {
                 self.navigationController?.popToRootViewController(animated: true)
                 self.alert(message: "Request sent")
