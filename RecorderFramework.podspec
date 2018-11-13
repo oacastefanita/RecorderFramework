@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RecorderFramework'
-  s.version          = '0.1.86'
+  s.version          = '0.1.87'
   s.summary          = 'A short description of RecorderFramework.'
 
 # This description is used to generate tags and improve search results.
@@ -26,7 +26,6 @@ TODO: Add long description of the pod here.
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'oacastefanita' => 'oacastefanita@gmail.com' }
   s.source           = { :git => 'https://github.com/oacastefanita/RecorderFramework.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '10.0'
   s.watchos.deployment_target = '3.2'
@@ -35,10 +34,7 @@ TODO: Add long description of the pod here.
 
   s.source_files = 'RecorderFramework/Classes/**/*'
   s.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.0' }
-  # s.resource_bundles = {
-  #   'RecorderFramework' => ['RecorderFramework/Assets/*.png']
-  # }
-  # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'CoreAudio', 'CoreFoundation'
   s.dependency 'Alamofire'
+  s.dependency 'Mixpanel'
 end

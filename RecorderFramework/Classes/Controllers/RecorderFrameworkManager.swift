@@ -1,4 +1,5 @@
 import Foundation
+import Mixpanel
 
 public class RecorderFrameworkManager : NSObject {
     @objc public static let sharedInstance = RecorderFrameworkManager()
@@ -13,6 +14,9 @@ public class RecorderFrameworkManager : NSObject {
         WatchKitController.sharedInstance
         #endif
         AppPersistentData.sharedInstance.loadData()
+//        Mixpanel.init(token: "bd4a2b9b1f2ccc5215cc3a0aabfa9c0e", andFlushInterval: 20)
+        Mixpanel.sharedInstance(withToken: "bd4a2b9b1f2ccc5215cc3a0aabfa9c0e")
+//        Mixpanel.init(token: "bd4a2b9b1f2ccc5215cc3a0aabfa9c0e", launchOptions: nil, flushInterval: 60, trackCrashes: true, automaticPushTracking: true)
     }
     
     /// Upload profile picture

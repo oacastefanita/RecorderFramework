@@ -85,7 +85,6 @@ public class APIClient : NSObject {
             }
             return
         }
-        
         api.doRequest(ServerPaths.registerPhone.rawValue, method: .post, parameters: APIRequestParametersController.createRegisterParameters(phone: number, token:token)) { (success, data) in
             if success {
                 RecorderFactory.fillAppPersistentDataFromDict(data as! NSDictionary)
