@@ -1191,13 +1191,11 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-RecorderFramework-WatchExample Extension/Pods-RecorderFramework-WatchExample Extension-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire-watchOS/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/Mixpanel-watchOS/Mixpanel.framework",
 				"${BUILT_PRODUCTS_DIR}/RecorderFramework-watchOS/RecorderFramework.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mixpanel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RecorderFramework.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -222,12 +222,6 @@ public class RecordItem: NSObject, NSSecureCoding {
         if let value = self.metaFileId {
             aCoder.encode(value, forKey: "metaFileId")
         }
-        if let value = self.metaFileId {
-            aCoder.encode(value, forKey: "metaFileId")
-        }
-        if let value = self.metaFileId {
-            aCoder.encode(value, forKey: "metaFileId")
-        }
         if let value = self.fileSize {
             aCoder.encode(value, forKey: "fileSize")
         }

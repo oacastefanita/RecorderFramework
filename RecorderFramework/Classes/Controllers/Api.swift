@@ -7,7 +7,6 @@
 //
 
 import Alamofire
-import Mixpanel
 
 // all server response keys
 public enum ServerResponseKeys : String {
@@ -31,7 +30,7 @@ class Api: NSObject {
             let url = URL(fileURLWithPath: atPath)
             return (url, [.removePreviousFile, .createIntermediateDirectories])
         }
-        Mixpanel.sharedInstance()?.track("Download File", properties: ["file":fromURL])
+        AnalyticsManager.sharedInstance.track("Download File", properties: ["file":fromURL])
         Alamofire.download(fromURL, to: destination).response { response in
             print(response)
             if response.error == nil {
@@ -40,7 +39,7 @@ class Api: NSObject {
                 }
             }
             else {
-                Mixpanel.sharedInstance()?.track("Donwload Failed \(fromURL)", properties: ["response":response.error.debugDescription, "file":fromURL])
+               AnalyticsManager.sharedInstance.track("Donwload Failed \(fromURL)", properties: ["response":response.error.debugDescription, "file":fromURL])
                 if completionHandler != nil {
                     completionHandler!(false, response.error.debugDescription)
                 }
@@ -49,7 +48,7 @@ class Api: NSObject {
     }
     
     func upload(_ toUrl:String, imagesFiles:[String], fieldNames:[String]? = nil, parameters:[String:Any]? = nil, mimeType:String = "audio/wav", completionHandler:((Bool, Any) -> Void)?) {
-        Mixpanel.sharedInstance()?.track("Upload \(toUrl)", properties: parameters)
+        AnalyticsManager.sharedInstance.track("Upload \(toUrl)", properties: parameters)
         Alamofire.upload(multipartFormData: { (data) in
             var index = 0
             for filePath in imagesFiles {
@@ -91,7 +90,7 @@ class Api: NSObject {
                 
             case .failure(let encodingError):
                 self.completionHandlerLog("UPLOAD RESPONSE:\(toUrl) \(Date())", "ERROR:\(encodingError.localizedDescription)")
-                Mixpanel.sharedInstance()?.track("Upload Failed \(toUrl)", properties: ["response":encodingError.localizedDescription])
+                AnalyticsManager.sharedInstance.track("Upload Failed \(toUrl)", properties: ["response":encodingError.localizedDescription])
                 if completionHandler != nil {
                     completionHandler!(false, encodingError.localizedDescription)
                 }
@@ -108,7 +107,8 @@ class Api: NSObject {
             jsonString = "\(parameters!)"
         }
         self.completionHandlerLog!("\(method) REQUEST:\(self.baseURL + url) \(Date())", "BODY:\(jsonString)")
-        Mixpanel.sharedInstance()?.track("Request \(url)", properties: parameters)
+        AnalyticsManager.sharedInstance.track("Request \(url)", properties: parameters)
+        
         //server request, componse url from base + relative path
         let request = Alamofire.request("\(self.baseURL)\(url)", method: method, parameters: parameters!, encoding: URLEncoding.default, headers:nil).responseJSON { response in
             
@@ -119,13 +119,13 @@ class Api: NSObject {
             
             if let callback = completionHandler {
                 if !response.result.isSuccess {
-                    Mixpanel.sharedInstance()?.track("Request Failed \(url)", properties: ["response":response.result.debugDescription])
+                    AnalyticsManager.sharedInstance.track("Request Failed \(url)", properties: ["response":response.result.debugDescription])
                     callback(false, self.handleError(response.result))
                 }
                 else {
                     if let dict = response.result.value as? NSDictionary {
                         if dict[ServerResponseKeys.status.rawValue] != nil && (dict[ServerResponseKeys.status.rawValue] as? String) != ServerResponseKeys.ok.rawValue {
-                            Mixpanel.sharedInstance()?.track("Request Failed \(url)", properties: dict as! [AnyHashable : Any])
+                            AnalyticsManager.sharedInstance.track("Request Failed \(url)", properties: dict as! [AnyHashable : Any])
                             callback(false,self.handleError(response.result))
                         }else {
                             callback(true,dict as? [String : Any])
@@ -138,7 +138,7 @@ class Api: NSObject {
                         callback(true,["root":"success"])
                     }
                     else {
-                        Mixpanel.sharedInstance()?.track("Request Failed \(url)", properties: ["response":response.result.debugDescription])
+                        AnalyticsManager.sharedInstance.track("Request Failed \(url)", properties: ["response":response.result.debugDescription])
                         callback(false,["error":"Invalid data format received from server."])
                     }
 

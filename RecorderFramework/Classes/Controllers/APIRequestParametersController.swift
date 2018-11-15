@@ -78,6 +78,7 @@ public class APIRequestParametersController: NSObject {
         #elseif os(tvOS)
         parameters[ServerReuqestKeys.mcc.rawValue] = "300"
         parameters[ServerReuqestKeys.deviceType.rawValue] = "ios"
+        parameters[ServerReuqestKeys.deviceId.rawValue] = deviceToken
         #endif
         parameters[ServerReuqestKeys.timeZone.rawValue] = TimeZone.current.secondsFromGMT() / 60 // used to determine when to send pn for remind date
         return parameters
