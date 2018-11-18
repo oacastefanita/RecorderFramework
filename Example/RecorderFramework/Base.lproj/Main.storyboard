@@ -296,6 +296,14 @@
                                     <action selector="onRecordCall:" destination="wvJ-9H-guJ" eventType="touchUpInside" id="oWq-DA-o0f"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fj7-0o-MQ3">
+                                <rect key="frame" x="167" y="414" width="41" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Crash"/>
+                                <connections>
+                                    <action selector="onCrash:" destination="wvJ-9H-guJ" eventType="touchUpInside" id="z05-AS-bj9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -2010,7 +2018,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="VCW-3U-8x8"/>
         <segue reference="Lwo-vA-DKq"/>
-        <segue reference="CSF-Tg-21a"/>
+        <segue reference="C7U-gp-LW3"/>
         <segue reference="hLC-bV-XVH"/>
     </inferredMetricsTieBreakers>
 </document>

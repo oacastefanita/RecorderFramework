@@ -45,6 +45,11 @@ class HomeViewController: UIViewController{
         })
     }
     
+    @IBAction func onCrash(_ sender: Any) {
+        var array:Array<String>? = Array<String>()
+        print(array![10])
+    }
+    
     @IBAction func onGetSettings(_ sender: Any) {
         RecorderFrameworkManager.sharedInstance.getSettings({ (success, data) -> Void in
             if success {

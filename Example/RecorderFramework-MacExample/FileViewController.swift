@@ -147,7 +147,7 @@ class FileViewController: NSViewController, TitleViewControllerDelegater, AVAudi
         }
         let url = URL(fileURLWithPath: path)
         let player = AVPlayer(url: url)
-        waveView.player = player
+//        waveView.player = player
     }
     
     func fillView(){

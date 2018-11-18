@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 #if os(iOS) || os(macOS) || os(tvOS)
 import Mixpanel
 #endif
@@ -15,6 +16,7 @@ public class AnalyticsManager : NSObject {
     
     override public init() {
         super.init()
+        
 #if os(iOS) || os(macOS) || os(tvOS)
         Mixpanel.sharedInstance(withToken: "bd4a2b9b1f2ccc5215cc3a0aabfa9c0e")
 #endif

@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         RecorderFrameworkManager.sharedInstance.isRecorder = false
         MKStoreKit.shared().startProductRequest()
         requestNotificationsPermission()
-        Bugsee.launch(token :"4c279461-6c62-4851-b884-e7e105985a18")
+//        Bugsee.launch(token :"4c279461-6c62-4851-b884-e7e105985a18")
         
         // If a shortcut was launched, display its information and take the appropriate action
         if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
