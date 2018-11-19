@@ -178,7 +178,10 @@ public class APIRequestParametersController: NSObject {
     }
     
     public class func createUploadRecordingParameters(recordItem:RecordItem) -> [String : Any]{
-        var parameters:[String:Any] = [ServerReuqestKeys.apiKey.rawValue: AppPersistentData.sharedInstance.apiKey!, "data": "{\"name\":\"\(recordItem.text!)\",\"notes\":\"\(recordItem.notes!)\",\"tags\":\"\(recordItem.tags)\"}"]
+        var data = RecorderFactory.createDictFromRecordItem(recordItem)
+        data["id"] = nil
+        var parameters:[String:Any] = [ServerReuqestKeys.apiKey.rawValue: AppPersistentData.sharedInstance.apiKey!, "data": data]
+        
         var source = "rec"
         if RecorderFrameworkManager.sharedInstance.isRecorder{
             source = "rem"

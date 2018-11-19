@@ -209,7 +209,7 @@ class FileViewController: NSViewController, TitleViewControllerDelegater, AVAudi
         file.lastName = txtLastName.stringValue
         file.firstName = txtFirstName.stringValue
         file.text = txtName.stringValue
-        
+        file.folderId = Int(folder.id) > 0 ? folder.id : nil
     
         if btnUpdate.title == "Done"{
             file.id = UUID().uuidString
