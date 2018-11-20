@@ -179,11 +179,15 @@ public class APIRequestParametersController: NSObject {
     
     public class func createUploadRecordingParameters(recordItem:RecordItem) -> [String : Any]{
         var data = RecorderFactory.createDictFromRecordItem(recordItem)
-        data["id"] = nil
+        if var id = data["id"] as? String{
+            if id.count > 6{
+                data["id"] = nil
+            }
+        }
         let jsonData = try! JSONSerialization.data(withJSONObject: data)
         let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)
         
-        var parameters:[String:Any] = [ServerReuqestKeys.apiKey.rawValue: AppPersistentData.sharedInstance.apiKey!, "data": jsonString]
+        var parameters:[String:Any] = [ServerReuqestKeys.apiKey.rawValue: AppPersistentData.sharedInstance.apiKey!, "data": jsonString!]
         
         var source = "rec"
         if RecorderFrameworkManager.sharedInstance.isRecorder{

@@ -70,7 +70,7 @@ class Api: NSObject {
                     }
                 }
             }
-            self.completionHandlerLog!("REQUEST:\(toUrl)", " BODY:\(data)")
+            self.completionHandlerLog!("REQUEST:\(toUrl)", " BODY:\(String(describing: parameters!))")
         }, to: toUrl, method:.post, headers:nil) { (result) in
             
             switch result {

@@ -59,9 +59,11 @@ class ProfileViewController: UIViewController {
         txtEmail.text = RecorderFrameworkManager.sharedInstance.getUser().email
         txtTimezone.text = "\(RecorderFrameworkManager.sharedInstance.getUser().timeZone!)"
         txtTimezone.isEnabled = false
+        txtPin.isEnabled = false
         btnSegmentPlayBeep.selectedSegmentIndex = RecorderFrameworkManager.sharedInstance.getUser().playBeep ? 1:0
         btnSegmentPublic.selectedSegmentIndex = RecorderFrameworkManager.sharedInstance.getUser().isPublic ? 1:0
         txtPin.text = RecorderFrameworkManager.sharedInstance.getUser().pin
+        
     }
     
     
