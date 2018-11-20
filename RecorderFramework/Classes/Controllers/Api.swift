@@ -62,9 +62,12 @@ class Api: NSObject {
             }
             if parameters != nil {
                 for (key, value) in parameters! {
-                    let paramsData:Data = NSKeyedArchiver.archivedData(withRootObject: value)
-                    data.append(paramsData, withName: key)
-//                    data.append((value as! AnyObject).data(using: String.Encoding.utf8.rawValue)!, withName: key)
+                    if let string = value as? String{
+                        data.append((value as! AnyObject).data(using: String.Encoding.utf8.rawValue)!, withName: key)
+                    } else{
+                        let paramsData:Data = NSKeyedArchiver.archivedData(withRootObject: value)
+                        data.append(paramsData, withName: key)
+                    }
                 }
             }
             self.completionHandlerLog!("REQUEST:\(toUrl)", " BODY:\(data)")

@@ -154,8 +154,10 @@ class FilesViewController: NSViewController, NSTableViewDelegate, NSTableViewDat
     
     @IBAction func onNewRecording(_ sender: Any) {
         selectedFile = nil
-        self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(rawValue: "showFileFromFiles"), sender: self)
-        self.view.window?.close()
+        if RecordingsManager.sharedInstance.recordFolders[selectedFolder].id! == "0"{
+            self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(rawValue: "showFileFromFiles"), sender: self)
+            self.view.window?.close()
+        }
     }
     
     @IBAction func onCheckPassword(_ sender: Any) {

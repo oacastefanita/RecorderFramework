@@ -184,6 +184,8 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
         if folder != nil{
             btnRecover.isHidden = (folder.id! != "trash")
         }
+        txtReccuranceDays.isEnabled = file.id != "Delete"
+        txtReccuranceDate.isEnabled = file.id != "Delete"
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -248,6 +250,7 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
         file.lastName = txtLastName.text ?? ""
         file.firstName = txtFirstName.text ?? ""
         file.text = txtName.text ?? ""
+        file.folderId = Int(folder.id) ?? 0 > 0 ? folder.id : nil
         
         if btnUpdate.titleLabel?.text == "Done"{
             file.id = UUID().uuidString

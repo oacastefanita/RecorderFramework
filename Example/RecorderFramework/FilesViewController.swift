@@ -70,7 +70,9 @@ class FilesViewController: UIViewController,UITableViewDelegate, UITableViewData
     
     @IBAction func onNewRecording(_ sender: Any) {
         selectedFile = nil
-        self.performSegue(withIdentifier: "showFileFromFiles", sender: self)
+        if RecordingsManager.sharedInstance.recordFolders[selectedFolder].id! == "0"{
+            self.performSegue(withIdentifier: "showFileFromFiles", sender: self)
+        }
     }
     
     @IBAction func onCheckPassword(_ sender: Any) {
