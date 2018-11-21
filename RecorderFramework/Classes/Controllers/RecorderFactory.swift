@@ -157,9 +157,9 @@ public class RecorderFactory: NSObject {
         }
         if let value:String = dict.object(forKey: "remind_date") as? String {
             var timeInterval = 0
-            if let timezone = Int(AppPersistentData.sharedInstance.user.timeZone){
-                timeInterval = timezone * -60
-            }
+//            if let timezone = Int(AppPersistentData.sharedInstance.user.timeZone){
+//                timeInterval = timezone * -60
+//            }
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
             let newDate = dateFormatter.date(from: value)?.addingTimeInterval(TimeInterval(timeInterval))
