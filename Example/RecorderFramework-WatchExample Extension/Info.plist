@@ -19,13 +19,13 @@
 	<key>CFBundleShortVersionString</key>
 	<string>0.5.0</string>
 	<key>CFBundleVersion</key>
-	<string>20181109</string>
+	<string>20181220</string>
 	<key>NSExtension</key>
 	<dict>
 		<key>NSExtensionAttributes</key>
 		<dict>
 			<key>WKAppBundleIdentifier</key>
-			<string>com.codebluestudio.Recorder.watchkitapp</string>
+			<string>com.werockapps.CallRecorder.watchkitapp</string>
 		</dict>
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.watchkit</string>

@@ -296,9 +296,8 @@
                                     <action selector="onRecordCall:" destination="wvJ-9H-guJ" eventType="touchUpInside" id="oWq-DA-o0f"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fj7-0o-MQ3">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fj7-0o-MQ3">
                                 <rect key="frame" x="167" y="414" width="41" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Crash"/>
                                 <connections>
                                     <action selector="onCrash:" destination="wvJ-9H-guJ" eventType="touchUpInside" id="z05-AS-bj9"/>
@@ -316,12 +315,14 @@
                             <constraint firstItem="CJB-35-Iud" firstAttribute="top" secondItem="fwC-VQ-HVx" secondAttribute="bottom" constant="8" id="HIr-8b-aiZ"/>
                             <constraint firstItem="8wj-2K-S9U" firstAttribute="top" secondItem="pLU-Ax-nNq" secondAttribute="bottom" constant="8" id="I9A-yB-bk9"/>
                             <constraint firstItem="pLU-Ax-nNq" firstAttribute="top" secondItem="hps-SP-jaB" secondAttribute="bottom" constant="8" id="J3S-K9-ZdT"/>
+                            <constraint firstItem="fj7-0o-MQ3" firstAttribute="centerX" secondItem="rZ7-JD-gUE" secondAttribute="centerX" id="Mnl-Mc-50F"/>
                             <constraint firstItem="Nwp-yd-9Te" firstAttribute="centerX" secondItem="rZ7-JD-gUE" secondAttribute="centerX" id="Qbe-xR-zyF"/>
                             <constraint firstItem="ORX-p2-C10" firstAttribute="top" secondItem="Kc6-CR-E5d" secondAttribute="bottom" constant="8" id="TSg-nV-glK"/>
                             <constraint firstItem="56n-3I-hbN" firstAttribute="centerX" secondItem="rZ7-JD-gUE" secondAttribute="centerX" id="VLt-i4-sbh"/>
                             <constraint firstItem="hps-SP-jaB" firstAttribute="top" secondItem="ADB-2e-7v1" secondAttribute="bottom" constant="8" id="YTo-Mg-dZn"/>
                             <constraint firstItem="Kc6-CR-E5d" firstAttribute="top" secondItem="CJB-35-Iud" secondAttribute="bottom" constant="8" id="af7-y4-30q"/>
                             <constraint firstItem="CJB-35-Iud" firstAttribute="centerX" secondItem="rZ7-JD-gUE" secondAttribute="centerX" id="euE-Ym-Lkh"/>
+                            <constraint firstItem="fj7-0o-MQ3" firstAttribute="top" secondItem="ORX-p2-C10" secondAttribute="bottom" constant="8" id="g6c-ze-DLS"/>
                             <constraint firstItem="Nwp-yd-9Te" firstAttribute="top" secondItem="8wj-2K-S9U" secondAttribute="bottom" constant="8" id="hW1-O9-zHe"/>
                             <constraint firstItem="fwC-VQ-HVx" firstAttribute="top" secondItem="56n-3I-hbN" secondAttribute="bottom" constant="8" id="lK4-qY-Oft"/>
                             <constraint firstItem="8wj-2K-S9U" firstAttribute="centerX" secondItem="rZ7-JD-gUE" secondAttribute="centerX" id="p6b-RH-dWu"/>
