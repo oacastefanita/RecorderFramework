@@ -23,6 +23,7 @@
     case addPasswordToFolder
     case updateUserProfile
     case uploadMetadata
+    case starItem
 }
 
 public class Action : NSObject, NSCoding {
@@ -297,6 +298,17 @@ protocol CustomActionDelegate {
         addAction(action)
     }
     
+    // MARK: folder actions
+    func starItem(_ star:Bool, entityId:String, isFile:Bool) {
+        let action = Action()
+        action.timeStamp = Date().timeIntervalSince1970
+        action.type = ActionType.starItem
+        action.arg1 = star ? "1" : "0"
+        action.arg2 = isFile ? "1" : "0"
+        action.arg3 = ["id":entityId]
+        addAction(action)
+    }
+    
     // MARK: processing
     
     func startProcessingActions() {
@@ -520,6 +532,11 @@ protocol CustomActionDelegate {
             break
         case ActionType.updateUserProfile:
             APIClient.sharedInstance.updateProfile(params: action!.arg3 as! [String : Any], completionHandler: { (success, data) -> Void in
+                self.moveToNextActionFrom(action, success: success, newActions: newActions)
+            })
+            break
+        case ActionType.starItem:
+            APIClient.sharedInstance.star(action!.arg1 == "1", entityId: action!.arg3!["id"] as! String, isFile: action!.arg2 == "1", completionHandler: { (success, data) -> Void in
                 self.moveToNextActionFrom(action, success: success, newActions: newActions)
             })
             break

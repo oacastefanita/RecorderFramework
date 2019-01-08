@@ -466,7 +466,7 @@ public class RecorderFrameworkManager : NSObject {
     ///   - isFile: boolean indicator of file type
     ///   - completionHandler: block to be called upon receiving the server's response
     public func star(_ star:Bool, entityId:String, isFile:Bool, completionHandler:((Bool, Any?) -> Void)?) {
-        APIClient.sharedInstance.star(star, entityId: entityId, isFile: isFile, completionHandler: completionHandler)
+        ActionsSyncManager.sharedInstance.starItem(star, entityId: entityId, isFile: isFile)
     }
     
     /// Clone file
