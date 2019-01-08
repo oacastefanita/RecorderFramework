@@ -84,10 +84,9 @@ class FoldersViewController: NSViewController, NSTableViewDelegate, NSTableViewD
                 let item = RecorderFrameworkManager.sharedInstance.getFolders()[oldIndex + oldIndexOffset]
                 folders.remove(at: oldIndex + oldIndexOffset)
                 folders.insert(item, at: row - 1)
-                let parameters = ["type":"folder","id":item.id!,"top_id": folders[folders.indexOf(item)! + 1].id!] as [String : Any]
-                RecorderFrameworkManager.sharedInstance.reorderItems(parameters, completionHandler: ({(success, response) -> Void in
-                    
-                }))
+                RecorderFrameworkManager.sharedInstance.reorderItems(false, id: item.id!, topId: folders[folders.indexOf(item)! + 1].id!) { (success, response) in
+                }
+
                 tableView.moveRow(at: oldIndex + oldIndexOffset, to: row - 1)
                 oldIndexOffset -= 1
             } else {
@@ -95,10 +94,10 @@ class FoldersViewController: NSViewController, NSTableViewDelegate, NSTableViewD
                 let item = RecorderFrameworkManager.sharedInstance.getFolders()[oldIndex]
                 folders.remove(at: oldIndex)
                 folders.insert(item, at: row + newIndexOffset)
-                let parameters = ["type":"folder","id":item.id!,"top_id": folders[folders.indexOf(item)! + 1].id!] as [String : Any]
-                RecorderFrameworkManager.sharedInstance.reorderItems(parameters, completionHandler: ({(success, response) -> Void in
-                    
-                }))
+                
+                RecorderFrameworkManager.sharedInstance.reorderItems(false, id: item.id!, topId: folders[folders.indexOf(item)! + 1].id!) { (success, response) in
+                }
+                
                 tableView.moveRow(at: oldIndex, to: row + newIndexOffset)
                 newIndexOffset += 1
             }

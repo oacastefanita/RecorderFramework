@@ -102,24 +102,23 @@ class FilesViewController: NSViewController, NSTableViewDelegate, NSTableViewDat
                 files.remove(at: oldIndex + oldIndexOffset)
                 files.insert(item, at: row - 1)
                 var topItemIndex = files.indexOf(item)!
-                var parameters = ["type":"file","id":item.id!] as [String : Any]
+                
+                var topId = "0"
                 if topItemIndex > 0{
                     topItemIndex = topItemIndex - 1
-                    if topItemIndex == 0 {
-                        parameters["top_id"] = 0
-                    }else{
-                        parameters["top_id"] = files[topItemIndex].id!
+                    if topItemIndex != 0 {
+                        topId = files[topItemIndex].id!
                     }
-                }else{
-                    parameters["top_id"] = 0
                 }
                 if oldIndex + oldIndexOffset == 0 && row == 2{
-                    parameters["top_id"] = files.first?.id!
+                    topId = files.first?.id!
                 }
                 parameters["folder_id"] = RecordingsManager.sharedInstance.recordFolders[selectedFolder].id!
-                RecorderFrameworkManager.sharedInstance.reorderItems(parameters, completionHandler: ({(success, response) -> Void in
+                
+                RecorderFrameworkManager.sharedInstance.reorderItems(true, id: item.id!, folderId: RecordingsManager.sharedInstance.recordFolders[selectedFolder].id!, topId: topId) { (success, response) in
                     
-                }))
+                }
+                
                 tableView.moveRow(at: oldIndex + oldIndexOffset, to: row - 1)
                 oldIndexOffset -= 1
             } else {
@@ -128,21 +127,18 @@ class FilesViewController: NSViewController, NSTableViewDelegate, NSTableViewDat
                 files.remove(at: oldIndex)
                 files.insert(item, at: row + newIndexOffset)
                 var topItemIndex = files.indexOf(item)!
-                var parameters = ["type":"file","id":item.id!] as [String : Any]
+                var topId = "0"
                 if topItemIndex > 0{
                     topItemIndex = topItemIndex - 1
-                    if topItemIndex == 0 {
-                        parameters["top_id"] = 0
-                    }else{
-                        parameters["top_id"] = files[topItemIndex].id!
+                    if topItemIndex != 0 {
+                        topId = files[topItemIndex].id!
                     }
-                }else{
-                    parameters["top_id"] = 0
                 }
-                parameters["folder_id"] = RecordingsManager.sharedInstance.recordFolders[selectedFolder].id!
-                RecorderFrameworkManager.sharedInstance.reorderItems(parameters, completionHandler: ({(success, response) -> Void in
+                
+                RecorderFrameworkManager.sharedInstance.reorderItems(true, id: item.id!, folderId: RecordingsManager.sharedInstance.recordFolders[selectedFolder].id!, topId: topId) { (success, response) in
                     
-                }))
+                }
+                
                 tableView.moveRow(at: oldIndex, to: row + newIndexOffset)
                 newIndexOffset += 1
             }

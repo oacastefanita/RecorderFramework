@@ -385,10 +385,17 @@ public class RecorderFrameworkManager : NSObject {
     /// Reorder folders or files
     ///
     /// - Parameters:
-    ///   - parameters: reorder parameters
+    ///   - file: bool file or folder
+    ///   - id: file or folder id
+    ///   - folderId: in case of a file reorder
+    ///   - topId: id of the top item
     ///   - completionHandler: block to be called upon receiving the server's response
-    public func reorderItems(_ parameters:[String:Any], completionHandler:((Bool, Any?) -> Void)?) {
-        APIClient.sharedInstance.reorderFolders(parameters, completionHandler: completionHandler)
+    public func reorderItems(_ file:Bool, id:String, folderId:String = "", topId:String, completionHandler:((Bool, Any?) -> Void)?) {
+        var parameters = ["type":file ? "file" : "folder","id":id, "top_id":topId] as [String : Any]
+        if file {
+            parameters["folder_id"] = folderId
+        }
+        ActionsSyncManager.sharedInstance.reorderFolders(parameters as! NSMutableDictionary)
     }
     
     /// Rename folder
@@ -669,13 +676,6 @@ public class RecorderFrameworkManager : NSObject {
     ///   - userInfo: NSDictionary containing new user info
     public func updateUserProfile(userInfo:NSMutableDictionary) {
         ActionsSyncManager.sharedInstance.updateUserProfile(userInfo: userInfo)
-    }
-    
-    /// Reorder folders
-    ///
-    /// - Parameter parameters: folder reorder parameters
-    public func reorderFolders(_ parameters:NSMutableDictionary) {
-        ActionsSyncManager.sharedInstance.reorderFolders(parameters)
     }
     
     /// Sync item

@@ -74,10 +74,10 @@ class FoldersViewController: UIViewController,UITableViewDelegate, UITableViewDa
         let item = RecorderFrameworkManager.sharedInstance.getFolders()[sourceIndexPath.row]
         folders.remove(at: sourceIndexPath.row)
         folders.insert(item, at: destinationIndexPath.row)
-        let parameters = ["type":"folder","id":item.id!,"top_id": folders[folders.indexOf(item)! + 1].id!] as [String : Any]
-        RecorderFrameworkManager.sharedInstance.reorderItems(parameters, completionHandler: ({(success, response) -> Void in
+        
+        RecorderFrameworkManager.sharedInstance.reorderItems(false, id: item.id!, topId: folders[folders.indexOf(item)! + 1].id!) { (success, response) in
             
-            }))
+        }
     }
     
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {

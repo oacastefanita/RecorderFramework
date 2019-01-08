@@ -148,24 +148,21 @@ class FilesViewController: UIViewController,UITableViewDelegate, UITableViewData
         files.insert(item, at: destinationIndexPath.row)
         var topItemIndex = files.indexOf(item)!
         var parameters = ["type":"file","id":item.id!] as [String : Any]
-        if topItemIndex > 0{
+        var topId = "0"
+        if topItemIndex > 0 {
             topItemIndex = topItemIndex - 1
-            if topItemIndex == 0 {
-                parameters["top_id"] = 0
-            }else{
-                parameters["top_id"] = files[topItemIndex].id!
+            if topItemIndex != 0 {
+                topId = files[topItemIndex].id!
             }
-        }else{
-            parameters["top_id"] = 0
         }
         if sourceIndexPath.row == 0 && destinationIndexPath.row == 1{
-            parameters["top_id"] = files.first?.id!
+            topId = files.first!.id!
         }
         parameters["folder_id"] = RecordingsManager.sharedInstance.recordFolders[selectedFolder].id!
         onReorder(nil)
-        RecorderFrameworkManager.sharedInstance.reorderItems(parameters, completionHandler: ({(success, response) -> Void in
+        RecorderFrameworkManager.sharedInstance.reorderItems(true, id: item.id!, folderId: RecordingsManager.sharedInstance.recordFolders[selectedFolder].id!, topId: topId) { (success, response) in
             
-        }))
+        }
     }
     
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
