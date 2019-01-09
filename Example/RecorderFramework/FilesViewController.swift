@@ -147,7 +147,7 @@ class FilesViewController: UIViewController,UITableViewDelegate, UITableViewData
         files.remove(at: sourceIndexPath.row)
         files.insert(item, at: destinationIndexPath.row)
         var topItemIndex = files.indexOf(item)!
-        var parameters = ["type":"file","id":item.id!] as [String : Any]
+        
         var topId = "0"
         if topItemIndex > 0 {
             topItemIndex = topItemIndex - 1
@@ -158,7 +158,7 @@ class FilesViewController: UIViewController,UITableViewDelegate, UITableViewData
         if sourceIndexPath.row == 0 && destinationIndexPath.row == 1{
             topId = files.first!.id!
         }
-        parameters["folder_id"] = RecordingsManager.sharedInstance.recordFolders[selectedFolder].id!
+        
         onReorder(nil)
         RecorderFrameworkManager.sharedInstance.reorderItems(true, id: item.id!, folderId: RecordingsManager.sharedInstance.recordFolders[selectedFolder].id!, topId: topId) { (success, response) in
             

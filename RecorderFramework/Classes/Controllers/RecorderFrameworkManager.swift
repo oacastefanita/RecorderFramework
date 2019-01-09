@@ -391,11 +391,11 @@ public class RecorderFrameworkManager : NSObject {
     ///   - topId: id of the top item
     ///   - completionHandler: block to be called upon receiving the server's response
     public func reorderItems(_ file:Bool, id:String, folderId:String = "", topId:String, completionHandler:((Bool, Any?) -> Void)?) {
-        var parameters = ["type":file ? "file" : "folder","id":id, "top_id":topId] as [String : Any]
+        let parameters = NSMutableDictionary(dictionary: ["type":file ? "file" : "folder","id":id, "top_id":topId])
         if file {
             parameters["folder_id"] = folderId
         }
-        ActionsSyncManager.sharedInstance.reorderFolders(parameters as! NSMutableDictionary)
+        ActionsSyncManager.sharedInstance.reorderFolders(parameters)
     }
     
     /// Rename folder
