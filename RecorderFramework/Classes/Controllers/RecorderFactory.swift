@@ -76,6 +76,9 @@ public class RecorderFactory: NSObject {
         if let value:String = dict.object(forKey: "order_id") as? String {
             object.folderOrder  = Int(value)!
         }
+        if let value:String = dict.object(forKey: "is_star") as? String {
+            object.isStar = value == "1"
+        }
         object.recordedItems = [RecordItem]()
         if let values:Array<NSDictionary> = dict.object(forKey: "recordedItems") as? Array<NSDictionary> {
             for dict in values{
@@ -89,6 +92,7 @@ public class RecorderFactory: NSObject {
         let dict = NSMutableDictionary(dictionary: ["id":folder.id ?? "", "name":folder.title ?? "", "created":folder.created ?? ""])
         dict["folder_order"] = folder.folderOrder ?? ""
         dict["pass"] = folder.password ?? ""
+        dict["is_star"] = folder.isStar ? "1" : "0"
         var array = [NSDictionary]()
         for file in folder.recordedItems{
             array.append(RecorderFactory.createDictFromRecordItem(file))
@@ -185,7 +189,7 @@ public class RecorderFactory: NSObject {
     }
     
     public class func createDictFromRecordItem(_ file: RecordItem) -> NSMutableDictionary{
-        let dict = NSMutableDictionary(dictionary: ["folderId":file.folderId, "name":file.text, "id":file.id, "access_number":file.accessNumber, "url":file.url, "share_url":file.shareUrl, "credits":file.credits, "duration":file.duration, "time":file.time,"f_name":file.firstName, "l_name":file.lastName, "email":file.email, "notes":file.notes, "phone":file.phoneNumber, "tags":file.tags, "remind_date":file.remindDate, "remind_days":file.remindDays, "free":file.isFree ? "1":"0","text":file.text, "order_id":file.fileOrder])
+        let dict = NSMutableDictionary(dictionary: ["folderId":file.folderId, "name":file.text, "id":file.id, "access_number":file.accessNumber, "url":file.url, "share_url":file.shareUrl, "credits":file.credits, "duration":file.duration, "time":file.time,"f_name":file.firstName, "l_name":file.lastName, "email":file.email, "notes":file.notes, "phone":file.phoneNumber, "tags":file.tags, "remind_date":file.remindDate, "remind_days":file.remindDays, "free":file.isFree ? "1":"0","text":file.text, "order_id":file.fileOrder, "is_star":file.isStar ? "1" : "0"])
         return dict
     }
     

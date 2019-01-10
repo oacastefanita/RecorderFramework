@@ -1189,7 +1189,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-RecorderFramework-WatchExample Extension/Pods-RecorderFramework-WatchExample Extension-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-RecorderFramework-WatchExample Extension/Pods-RecorderFramework-WatchExample Extension-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire-watchOS/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/RecorderFramework-watchOS/RecorderFramework.framework",
 			);
@@ -1200,7 +1200,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RecorderFramework-WatchExample Extension/Pods-RecorderFramework-WatchExample Extension-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RecorderFramework-WatchExample Extension/Pods-RecorderFramework-WatchExample Extension-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6ADF49085409AE6AE3092249 /* [CP] Check Pods Manifest.lock */ = {
@@ -1263,7 +1263,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-RecorderFramework-TVExample/Pods-RecorderFramework-TVExample-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-RecorderFramework-TVExample/Pods-RecorderFramework-TVExample-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire-tvOS/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Mixpanel-tvOS/Mixpanel.framework",
 				"${BUILT_PRODUCTS_DIR}/RecorderFramework-tvOS/RecorderFramework.framework",
@@ -1276,7 +1276,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RecorderFramework-TVExample/Pods-RecorderFramework-TVExample-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RecorderFramework-TVExample/Pods-RecorderFramework-TVExample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A2B3B8A71FEBFDE5002D5335 /* ShellScript */ = {
@@ -1316,7 +1316,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-RecorderFramework_Example/Pods-RecorderFramework_Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-RecorderFramework_Example/Pods-RecorderFramework_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Mixpanel-iOS/Mixpanel.framework",
 				"${BUILT_PRODUCTS_DIR}/RecorderFramework-iOS/RecorderFramework.framework",
@@ -1331,7 +1331,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RecorderFramework_Example/Pods-RecorderFramework_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RecorderFramework_Example/Pods-RecorderFramework_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DD99B4B401B351DAC275C440 /* [CP] Embed Pods Frameworks */ = {
@@ -1340,7 +1340,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-RecorderFramework_Tests/Pods-RecorderFramework_Tests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-RecorderFramework_Tests/Pods-RecorderFramework_Tests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Mixpanel-iOS/Mixpanel.framework",
 				"${BUILT_PRODUCTS_DIR}/RecorderFramework-iOS/RecorderFramework.framework",
@@ -1353,7 +1353,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RecorderFramework_Tests/Pods-RecorderFramework_Tests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RecorderFramework_Tests/Pods-RecorderFramework_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F417B401B3CEAF5D754A3BE1 /* [CP] Embed Pods Frameworks */ = {
@@ -1362,7 +1362,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-RecorderFramework-MacExample/Pods-RecorderFramework-MacExample-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-RecorderFramework-MacExample/Pods-RecorderFramework-MacExample-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire-macOS/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Mixpanel-macOS/Mixpanel.framework",
 				"${BUILT_PRODUCTS_DIR}/RecorderFramework-macOS/RecorderFramework.framework",
@@ -1375,7 +1375,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RecorderFramework-MacExample/Pods-RecorderFramework-MacExample-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RecorderFramework-MacExample/Pods-RecorderFramework-MacExample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

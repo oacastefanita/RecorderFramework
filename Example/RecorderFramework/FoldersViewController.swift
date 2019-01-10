@@ -44,9 +44,29 @@ class FoldersViewController: UIViewController,UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  tableView.dequeueReusableCell(withIdentifier: "titleCell", for: indexPath)
-        cell.textLabel?.text = RecorderFrameworkManager.sharedInstance.getFolders()[indexPath.row].title
-        cell.detailTextLabel?.text = ""
+        
+        let folder = RecorderFrameworkManager.sharedInstance.getFolders()[indexPath.row]
+        if let lblTitle = cell.contentView.viewWithTag(2) as? UILabel {
+            lblTitle.text = folder.title
+        }
+        
+        if let btnStar = cell.contentView.viewWithTag(1) as? UIButton {
+            cell.contentView.tag = indexPath.row
+            btnStar.setTitle( folder.isStar ? "unstar" : "star" , for: .normal)
+            btnStar.addTarget(self, action: #selector(FoldersViewController.onStar(_:)), for: .touchUpInside)
+        }
+//        cell.textLabel?.text = RecorderFrameworkManager.sharedInstance.getFolders()[indexPath.row].title
+//        cell.detailTextLabel?.text = ""
         return cell
+    }
+    
+    @objc func onStar(_ btn:UIButton) {
+        let index = btn.superview!.tag
+        let folder = RecorderFrameworkManager.sharedInstance.getFolders()[index]
+        RecorderFrameworkManager.sharedInstance.star(!folder.isStar, entityId: folder.id, isFile: false) { (success, result) in
+            var a = 0
+            a = a + 1
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -16,6 +16,7 @@ public class RecordFolder: NSObject, NSCoding {
     @objc public var password: String!
     @objc public var type:StorageType = StorageType.keepLocally
     @objc public var recordedItems = [RecordItem]()
+    @objc public var isStar:Bool = false
     
     override public init() {
         super.init()
