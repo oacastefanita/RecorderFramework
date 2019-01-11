@@ -41,6 +41,9 @@ public class RecordFolder: NSObject, NSCoding {
         if let data = aDecoder.decodeObject(forKey: "recordItems") as? Data {
             recordedItems = NSKeyedUnarchiver.unarchiveObject(with: data) as! Array<RecordItem>
         }
+        if let value = aDecoder.decodeObject(forKey: "is_star") as? String {
+            self.isStar = value == "1"
+        }
     }
     
     public func encode(with aCoder: NSCoder) {
@@ -58,6 +61,8 @@ public class RecordFolder: NSObject, NSCoding {
             aCoder.encode(value, forKey: "password")
         }
 
+        aCoder.encode(isStar ? "1" : "0", forKey: "is_star")
+        
         let data = NSKeyedArchiver.archivedData(withRootObject: recordedItems)
         aCoder.encode(data, forKey: "recordItems")
     }
@@ -80,6 +85,7 @@ public class RecordFolder: NSObject, NSCoding {
         self.title = item.title
         self.created = item.created
         self.folderOrder = item.folderOrder
+        self.isStar = item.isStar
     }
     
     public func folderNextAction(_ currentAction:Action!) -> Action! {

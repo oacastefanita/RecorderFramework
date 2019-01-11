@@ -64,9 +64,8 @@ class FoldersViewController: UIViewController,UITableViewDelegate, UITableViewDa
         let index = btn.superview!.tag
         let folder = RecorderFrameworkManager.sharedInstance.getFolders()[index]
         RecorderFrameworkManager.sharedInstance.star(!folder.isStar, entityId: folder.id, isFile: false) { (success, result) in
-            var a = 0
-            a = a + 1
         }
+        self.navigationController?.popViewController(animated: true)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

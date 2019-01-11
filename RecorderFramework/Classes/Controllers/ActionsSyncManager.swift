@@ -538,6 +538,7 @@ protocol CustomActionDelegate {
         case ActionType.starItem:
             APIClient.sharedInstance.star(action!.arg1 == "1", entityId: action!.arg3!["id"] as! String, isFile: action!.arg2 == "1", completionHandler: { (success, data) -> Void in
                 self.moveToNextActionFrom(action, success: success, newActions: newActions)
+                NotificationCenter.default.post(name: Notification.Name(rawValue: kNotificationRecordingsUpdated), object: nil)
             })
             break
         }

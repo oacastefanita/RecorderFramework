@@ -173,6 +173,9 @@ public class RecorderFactory: NSObject {
                 object.remindDate = ""
             }
         }
+        if let value:String = dict.object(forKey: "is_star") as? String {
+            object.isStar = value == "1"
+        }
         if let value:String = dict.object(forKey: "free") as? String {
             object.isFree = value == "1"
         }
