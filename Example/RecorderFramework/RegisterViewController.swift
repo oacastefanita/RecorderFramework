@@ -8,6 +8,8 @@
 
 import UIKit
 import RecorderFramework
+import ShareFramework
+import FacebookShare
 
 class RegisterViewController: UIViewController,UITextFieldDelegate {
     
@@ -29,6 +31,8 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
     }
 
     @IBAction func onDone(_ sender: Any) {
+        //ShareFacebook.sharedInstance.shareURL(URL(string:"https://www.marinetrade.com")!)
+
         RecorderFrameworkManager.sharedInstance.register(self.txtPhone.text!, completionHandler: { (success, data) -> Void in
             if success {
                 self.performSegue(withIdentifier: "showEnterCodeFromRegister", sender: self)

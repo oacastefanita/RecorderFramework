@@ -24,6 +24,7 @@ target 'RecorderFramework_Example' do
   standard_pods
   pod 'FDWaveformView'
   pod 'Bugsee'
+  pod 'ShareFramework', :git => 'https://Grif@bitbucket.org/Grif/shareframework.git'
 end
 
 target 'RecorderFramework_Tests' do

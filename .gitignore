@@ -87,3 +87,303 @@ Example/Pods/Target Support Files/Alamofire/Alamofire-umbrella.h
 Example/Pods/Target Support Files/Alamofire/Alamofire.modulemap
 Example/Pods/Target Support Files/Alamofire/Alamofire.xcconfig
 Example/Pods/Target Support Files/Alamofire/Info.plist
+Example/Pods/FDWaveformView/LICENSE
+Example/Pods/FDWaveformView/README.md
+Example/Pods/FDWaveformView/Source/FDAudioContext.swift
+Example/Pods/FDWaveformView/Source/FDWaveformRenderOperation.swift
+Example/Pods/FDWaveformView/Source/FDWaveformView.swift
+Example/Pods/Mixpanel/LICENSE
+Example/Pods/Mixpanel/README.md
+Example/Pods/Mixpanel/Mixpanel/_MPTweakBindObserver.h
+Example/Pods/Mixpanel/Mixpanel/_MPTweakBindObserver.m
+Example/Pods/Mixpanel/Mixpanel/AutomaticEvents.h
+Example/Pods/Mixpanel/Mixpanel/AutomaticEvents.m
+Example/Pods/Mixpanel/Mixpanel/AutomaticTracksConstants.h
+Example/Pods/Mixpanel/Mixpanel/Mixpanel+AutomaticTracks.h
+Example/Pods/Mixpanel/Mixpanel/Mixpanel+AutomaticTracks.m
+Example/Pods/Mixpanel/Mixpanel/Mixpanel.h
+Example/Pods/Mixpanel/Mixpanel/Mixpanel.m
+Example/Pods/Mixpanel/Mixpanel/MixpanelExceptionHandler.h
+Example/Pods/Mixpanel/Mixpanel/MixpanelExceptionHandler.m
+Example/Pods/Mixpanel/Mixpanel/MixpanelPeople.h
+Example/Pods/Mixpanel/Mixpanel/MixpanelPeople.m
+Example/Pods/Mixpanel/Mixpanel/MixpanelPeoplePrivate.h
+Example/Pods/Mixpanel/Mixpanel/MixpanelPrivate.h
+Example/Pods/Mixpanel/Mixpanel/MPAbstractABTestDesignerMessage.h
+Example/Pods/Mixpanel/Mixpanel/MPAbstractABTestDesignerMessage.m
+Example/Pods/Mixpanel/Mixpanel/MPABTestDesignerChangeRequestMessage.h
+Example/Pods/Mixpanel/Mixpanel/MPABTestDesignerChangeRequestMessage.m
+Example/Pods/Mixpanel/Mixpanel/MPABTestDesignerChangeResponseMessage.h
+Example/Pods/Mixpanel/Mixpanel/MPABTestDesignerChangeResponseMessage.m
+Example/Pods/Mixpanel/Mixpanel/MPABTestDesignerClearRequestMessage.h
+Example/Pods/Mixpanel/Mixpanel/MPABTestDesignerClearRequestMessage.m
+Example/Pods/Mixpanel/Mixpanel/MPABTestDesignerClearResponseMessage.h
+Example/Pods/Mixpanel/Mixpanel/MPABTestDesignerClearResponseMessage.m
+Example/Pods/Mixpanel/Mixpanel/MPABTestDesignerConnection.h
+Example/Pods/Mixpanel/Mixpanel/MPABTestDesignerConnection.m
+Example/Pods/Mixpanel/Mixpanel/MPABTestDesignerDeviceInfoRequestMessage.h
+Example/Pods/Mixpanel/Mixpanel/MPABTestDesignerDeviceInfoRequestMessage.m
+Example/Pods/Mixpanel/Mixpanel/MPABTestDesignerDeviceInfoResponseMessage.h
+Example/Pods/Mixpanel/Mixpanel/MPABTestDesignerDeviceInfoResponseMessage.m
+Example/Pods/Mixpanel/Mixpanel/MPABTestDesignerDisconnectMessage.h
+Example/Pods/Mixpanel/Mixpanel/MPABTestDesignerDisconnectMessage.m
+Example/Pods/Mixpanel/Mixpanel/MPABTestDesignerMessage.h
+Example/Pods/Mixpanel/Mixpanel/MPABTestDesignerSnapshotRequestMessage.h
+Example/Pods/Mixpanel/Mixpanel/MPABTestDesignerSnapshotRequestMessage.m
+Example/Pods/Mixpanel/Mixpanel/MPABTestDesignerSnapshotResponseMessage.h
+Example/Pods/Mixpanel/Mixpanel/MPABTestDesignerSnapshotResponseMessage.m
+Example/Pods/Mixpanel/Mixpanel/MPABTestDesignerTweakRequestMessage.h
+Example/Pods/Mixpanel/Mixpanel/MPABTestDesignerTweakRequestMessage.m
+Example/Pods/Mixpanel/Mixpanel/MPABTestDesignerTweakResponseMessage.h
+Example/Pods/Mixpanel/Mixpanel/MPABTestDesignerTweakResponseMessage.m
+Example/Pods/Mixpanel/Mixpanel/MPApplicationStateSerializer.h
+Example/Pods/Mixpanel/Mixpanel/MPApplicationStateSerializer.m
+Example/Pods/Mixpanel/Mixpanel/MPBOOLToNSNumberValueTransformer.m
+Example/Pods/Mixpanel/Mixpanel/MPCATransform3DToNSDictionaryValueTransformer.m
+Example/Pods/Mixpanel/Mixpanel/MPCGAffineTransformToNSDictionaryValueTransformer.m
+Example/Pods/Mixpanel/Mixpanel/MPCGColorRefToNSStringValueTransformer.m
+Example/Pods/Mixpanel/Mixpanel/MPCGPointToNSDictionaryValueTransformer.m
+Example/Pods/Mixpanel/Mixpanel/MPCGRectToNSDictionaryValueTransformer.m
+Example/Pods/Mixpanel/Mixpanel/MPCGSizeToNSDictionaryValueTransformer.m
+Example/Pods/Mixpanel/Mixpanel/MPClassDescription.h
+Example/Pods/Mixpanel/Mixpanel/MPClassDescription.m
+Example/Pods/Mixpanel/Mixpanel/MPConnectIntegrations.h
+Example/Pods/Mixpanel/Mixpanel/MPConnectIntegrations.m
+Example/Pods/Mixpanel/Mixpanel/MPDesignerEventBindingMessage.h
+Example/Pods/Mixpanel/Mixpanel/MPDesignerEventBindingRequestMesssage.m
+Example/Pods/Mixpanel/Mixpanel/MPDesignerEventBindingResponseMesssage.m
+Example/Pods/Mixpanel/Mixpanel/MPDesignerSessionCollection.h
+Example/Pods/Mixpanel/Mixpanel/MPDesignerTrackMessage.m
+Example/Pods/Mixpanel/Mixpanel/MPEnumDescription.h
+Example/Pods/Mixpanel/Mixpanel/MPEnumDescription.m
+Example/Pods/Mixpanel/Mixpanel/MPEventBinding.h
+Example/Pods/Mixpanel/Mixpanel/MPEventBinding.m
+Example/Pods/Mixpanel/Mixpanel/MPFoundation.h
+Example/Pods/Mixpanel/Mixpanel/MPLogger.h
+Example/Pods/Mixpanel/Mixpanel/MPMiniNotification.h
+Example/Pods/Mixpanel/Mixpanel/MPMiniNotification.m
+Example/Pods/Mixpanel/Mixpanel/MPNetwork.h
+Example/Pods/Mixpanel/Mixpanel/MPNetwork.m
+Example/Pods/Mixpanel/Mixpanel/MPNetworkPrivate.h
+Example/Pods/Mixpanel/Mixpanel/MPNotification.h
+Example/Pods/Mixpanel/Mixpanel/MPNotification.m
+Example/Pods/Mixpanel/Mixpanel/MPNotificationButton.h
+Example/Pods/Mixpanel/Mixpanel/MPNotificationButton.m
+Example/Pods/Mixpanel/Mixpanel/MPNotificationViewController.h
+Example/Pods/Mixpanel/Mixpanel/MPNotificationViewController.m
+Example/Pods/Mixpanel/Mixpanel/MPNSAttributedStringToNSDictionaryValueTransformer.m
+Example/Pods/Mixpanel/Mixpanel/MPNSNumberToCGFloatValueTransformer.m
+Example/Pods/Mixpanel/Mixpanel/MPObjectIdentifierProvider.h
+Example/Pods/Mixpanel/Mixpanel/MPObjectIdentityProvider.h
+Example/Pods/Mixpanel/Mixpanel/MPObjectIdentityProvider.m
+Example/Pods/Mixpanel/Mixpanel/MPObjectSelector.h
+Example/Pods/Mixpanel/Mixpanel/MPObjectSelector.m
+Example/Pods/Mixpanel/Mixpanel/MPObjectSerializer.h
+Example/Pods/Mixpanel/Mixpanel/MPObjectSerializer.m
+Example/Pods/Mixpanel/Mixpanel/MPObjectSerializerConfig.h
+Example/Pods/Mixpanel/Mixpanel/MPObjectSerializerConfig.m
+Example/Pods/Mixpanel/Mixpanel/MPObjectSerializerContext.h
+Example/Pods/Mixpanel/Mixpanel/MPObjectSerializerContext.m
+Example/Pods/Mixpanel/Mixpanel/MPPassThroughValueTransformer.m
+Example/Pods/Mixpanel/Mixpanel/MPPropertyDescription.h
+Example/Pods/Mixpanel/Mixpanel/MPPropertyDescription.m
+Example/Pods/Mixpanel/Mixpanel/MPResources.h
+Example/Pods/Mixpanel/Mixpanel/MPResources.m
+Example/Pods/Mixpanel/Mixpanel/MPSequenceGenerator.h
+Example/Pods/Mixpanel/Mixpanel/MPSequenceGenerator.m
+Example/Pods/Mixpanel/Mixpanel/MPSwizzle.h
+Example/Pods/Mixpanel/Mixpanel/MPSwizzle.m
+Example/Pods/Mixpanel/Mixpanel/MPSwizzler.h
+Example/Pods/Mixpanel/Mixpanel/MPSwizzler.m
+Example/Pods/Mixpanel/Mixpanel/MPTakeoverNotification.h
+Example/Pods/Mixpanel/Mixpanel/MPTakeoverNotification.m
+Example/Pods/Mixpanel/Mixpanel/MPTakeoverNotificationViewController~ipad.xib
+Example/Pods/Mixpanel/Mixpanel/MPTakeoverNotificationViewController~iphonelandscape.xib
+Example/Pods/Mixpanel/Mixpanel/MPTakeoverNotificationViewController~iphoneportrait.xib
+Example/Pods/Mixpanel/Mixpanel/MPTweak.h
+Example/Pods/Mixpanel/Mixpanel/MPTweak.m
+Example/Pods/Mixpanel/Mixpanel/MPTweakInline.h
+Example/Pods/Mixpanel/Mixpanel/MPTweakInline.m
+Example/Pods/Mixpanel/Mixpanel/MPTweakInlineInternal.h
+Example/Pods/Mixpanel/Mixpanel/MPTweakStore.h
+Example/Pods/Mixpanel/Mixpanel/MPTweakStore.m
+Example/Pods/Mixpanel/Mixpanel/MPTypeDescription.h
+Example/Pods/Mixpanel/Mixpanel/MPTypeDescription.m
+Example/Pods/Mixpanel/Mixpanel/MPUIColorToNSStringValueTransformer.m
+Example/Pods/Mixpanel/Mixpanel/MPUIControlBinding.h
+Example/Pods/Mixpanel/Mixpanel/MPUIControlBinding.m
+Example/Pods/Mixpanel/Mixpanel/MPUIEdgeInsetsToNSDictionaryValueTransformer.m
+Example/Pods/Mixpanel/Mixpanel/MPUIFontToNSDictionaryValueTransformer.m
+Example/Pods/Mixpanel/Mixpanel/MPUIImageToNSDictionaryValueTransformer.m
+Example/Pods/Mixpanel/Mixpanel/MPUITableViewBinding.h
+Example/Pods/Mixpanel/Mixpanel/MPUITableViewBinding.m
+Example/Pods/Mixpanel/Mixpanel/MPValueTransformers.h
+Example/Pods/Mixpanel/Mixpanel/MPVariant.h
+Example/Pods/Mixpanel/Mixpanel/MPVariant.m
+Example/Pods/Mixpanel/Mixpanel/MPWebSocket.h
+Example/Pods/Mixpanel/Mixpanel/MPWebSocket.m
+Example/Pods/Mixpanel/Mixpanel/NSInvocation+MPHelpers.h
+Example/Pods/Mixpanel/Mixpanel/NSInvocation+MPHelpers.m
+Example/Pods/Mixpanel/Mixpanel/NSNotificationCenter+AutomaticTracks.h
+Example/Pods/Mixpanel/Mixpanel/NSNotificationCenter+AutomaticTracks.m
+Example/Pods/Mixpanel/Mixpanel/NSThread+MPHelpers.h
+Example/Pods/Mixpanel/Mixpanel/NSThread+MPHelpers.m
+Example/Pods/Mixpanel/Mixpanel/SessionMetadata.h
+Example/Pods/Mixpanel/Mixpanel/SessionMetadata.m
+Example/Pods/Mixpanel/Mixpanel/UIApplication+AutomaticTracks.h
+Example/Pods/Mixpanel/Mixpanel/UIApplication+AutomaticTracks.m
+Example/Pods/Mixpanel/Mixpanel/UIColor+MPColor.h
+Example/Pods/Mixpanel/Mixpanel/UIColor+MPColor.m
+Example/Pods/Mixpanel/Mixpanel/UIImage+MPAverageColor.h
+Example/Pods/Mixpanel/Mixpanel/UIImage+MPAverageColor.m
+Example/Pods/Mixpanel/Mixpanel/UIImage+MPImageEffects.h
+Example/Pods/Mixpanel/Mixpanel/UIImage+MPImageEffects.m
+Example/Pods/Mixpanel/Mixpanel/UIView+MPHelpers.h
+Example/Pods/Mixpanel/Mixpanel/UIView+MPHelpers.m
+Example/Pods/Mixpanel/Mixpanel/UIViewController+AutomaticTracks.h
+Example/Pods/Mixpanel/Mixpanel/UIViewController+AutomaticTracks.m
+Example/Pods/Mixpanel/Mixpanel/Images/MPArrowLeft.png
+Example/Pods/Mixpanel/Mixpanel/Images/MPArrowLeft@2x.png
+Example/Pods/Mixpanel/Mixpanel/Images/MPArrowRight.png
+Example/Pods/Mixpanel/Mixpanel/Images/MPArrowRight@2x.png
+Example/Pods/Mixpanel/Mixpanel/Images/MPCheckmark.png
+Example/Pods/Mixpanel/Mixpanel/Images/MPCheckmark@2x.png
+Example/Pods/Mixpanel/Mixpanel/Images/MPCloseButton.png
+Example/Pods/Mixpanel/Mixpanel/Images/MPCloseButton@2x.png
+Example/Pods/Mixpanel/Mixpanel/Images/MPCloseButton@3x.png
+Example/Pods/Mixpanel/Mixpanel/Images/MPDismissKeyboard.png
+Example/Pods/Mixpanel/Mixpanel/Images/MPDismissKeyboard@2x.png
+Example/Pods/Mixpanel/Mixpanel/Images/MPLogo.png
+Example/Pods/Mixpanel/Mixpanel/Images/MPLogo@2x.png
+Example/Pods/Mixpanel/Mixpanel/Images/placeholder-image.png
+Example/Pods/Pods.xcodeproj/project.xcworkspace/contents.xcworkspacedata
+Example/Pods/Target Support Files/Alamofire-iOS/Alamofire-iOS-dummy.m
+Example/Pods/Target Support Files/Alamofire-iOS/Alamofire-iOS-Info.plist
+Example/Pods/Target Support Files/Alamofire-iOS/Alamofire-iOS-prefix.pch
+Example/Pods/Target Support Files/Alamofire-iOS/Alamofire-iOS-umbrella.h
+Example/Pods/Target Support Files/Alamofire-iOS/Alamofire-iOS.modulemap
+Example/Pods/Target Support Files/Alamofire-iOS/Alamofire-iOS.xcconfig
+Example/Pods/Target Support Files/Alamofire-iOS/Info.plist
+Example/Pods/Target Support Files/Alamofire-macOS/Alamofire-macOS-dummy.m
+Example/Pods/Target Support Files/Alamofire-macOS/Alamofire-macOS-Info.plist
+Example/Pods/Target Support Files/Alamofire-macOS/Alamofire-macOS-prefix.pch
+Example/Pods/Target Support Files/Alamofire-macOS/Alamofire-macOS-umbrella.h
+Example/Pods/Target Support Files/Alamofire-macOS/Alamofire-macOS.modulemap
+Example/Pods/Target Support Files/Alamofire-macOS/Alamofire-macOS.xcconfig
+Example/Pods/Target Support Files/Alamofire-macOS/Info.plist
+Example/Pods/Target Support Files/Alamofire-tvOS/Alamofire-tvOS-dummy.m
+Example/Pods/Target Support Files/Alamofire-tvOS/Alamofire-tvOS-Info.plist
+Example/Pods/Target Support Files/Alamofire-tvOS/Alamofire-tvOS-prefix.pch
+Example/Pods/Target Support Files/Alamofire-tvOS/Alamofire-tvOS-umbrella.h
+Example/Pods/Target Support Files/Alamofire-tvOS/Alamofire-tvOS.modulemap
+Example/Pods/Target Support Files/Alamofire-tvOS/Alamofire-tvOS.xcconfig
+Example/Pods/Target Support Files/Alamofire-tvOS/Info.plist
+Example/Pods/Target Support Files/Alamofire-watchOS/Alamofire-watchOS-dummy.m
+Example/Pods/Target Support Files/Alamofire-watchOS/Alamofire-watchOS-Info.plist
+Example/Pods/Target Support Files/Alamofire-watchOS/Alamofire-watchOS-prefix.pch
+Example/Pods/Target Support Files/Alamofire-watchOS/Alamofire-watchOS-umbrella.h
+Example/Pods/Target Support Files/Alamofire-watchOS/Alamofire-watchOS.modulemap
+Example/Pods/Target Support Files/Alamofire-watchOS/Alamofire-watchOS.xcconfig
+Example/Pods/Target Support Files/Alamofire-watchOS/Info.plist
+Example/Pods/Target Support Files/FDWaveformView/FDWaveformView-dummy.m
+Example/Pods/Target Support Files/FDWaveformView/FDWaveformView-Info.plist
+Example/Pods/Target Support Files/FDWaveformView/FDWaveformView-prefix.pch
+Example/Pods/Target Support Files/FDWaveformView/FDWaveformView-umbrella.h
+Example/Pods/Target Support Files/FDWaveformView/FDWaveformView.modulemap
+Example/Pods/Target Support Files/FDWaveformView/FDWaveformView.xcconfig
+Example/Pods/Target Support Files/FDWaveformView/Info.plist
+Example/Pods/Target Support Files/Mixpanel-iOS/Info.plist
+Example/Pods/Target Support Files/Mixpanel-iOS/Mixpanel-iOS-dummy.m
+Example/Pods/Target Support Files/Mixpanel-iOS/Mixpanel-iOS-Info.plist
+Example/Pods/Target Support Files/Mixpanel-iOS/Mixpanel-iOS-prefix.pch
+Example/Pods/Target Support Files/Mixpanel-iOS/Mixpanel-iOS-umbrella.h
+Example/Pods/Target Support Files/Mixpanel-iOS/Mixpanel-iOS.modulemap
+Example/Pods/Target Support Files/Mixpanel-iOS/Mixpanel-iOS.xcconfig
+Example/Pods/Target Support Files/Mixpanel-macOS/Info.plist
+Example/Pods/Target Support Files/Mixpanel-macOS/Mixpanel-macOS-dummy.m
+Example/Pods/Target Support Files/Mixpanel-macOS/Mixpanel-macOS-Info.plist
+Example/Pods/Target Support Files/Mixpanel-macOS/Mixpanel-macOS-prefix.pch
+Example/Pods/Target Support Files/Mixpanel-macOS/Mixpanel-macOS-umbrella.h
+Example/Pods/Target Support Files/Mixpanel-macOS/Mixpanel-macOS.modulemap
+Example/Pods/Target Support Files/Mixpanel-macOS/Mixpanel-macOS.xcconfig
+Example/Pods/Target Support Files/Mixpanel-tvOS/Info.plist
+Example/Pods/Target Support Files/Mixpanel-tvOS/Mixpanel-tvOS-dummy.m
+Example/Pods/Target Support Files/Mixpanel-tvOS/Mixpanel-tvOS-Info.plist
+Example/Pods/Target Support Files/Mixpanel-tvOS/Mixpanel-tvOS-prefix.pch
+Example/Pods/Target Support Files/Mixpanel-tvOS/Mixpanel-tvOS-umbrella.h
+Example/Pods/Target Support Files/Mixpanel-tvOS/Mixpanel-tvOS.modulemap
+Example/Pods/Target Support Files/Mixpanel-tvOS/Mixpanel-tvOS.xcconfig
+Example/Pods/Target Support Files/Pods-RecorderFramework-MacExample/Info.plist
+Example/Pods/Target Support Files/Pods-RecorderFramework-MacExample/Pods-RecorderFramework-MacExample-acknowledgements.markdown
+Example/Pods/Target Support Files/Pods-RecorderFramework-MacExample/Pods-RecorderFramework-MacExample-acknowledgements.plist
+Example/Pods/Target Support Files/Pods-RecorderFramework-MacExample/Pods-RecorderFramework-MacExample-dummy.m
+Example/Pods/Target Support Files/Pods-RecorderFramework-MacExample/Pods-RecorderFramework-MacExample-frameworks.sh
+Example/Pods/Target Support Files/Pods-RecorderFramework-MacExample/Pods-RecorderFramework-MacExample-Info.plist
+Example/Pods/Target Support Files/Pods-RecorderFramework-MacExample/Pods-RecorderFramework-MacExample-resources.sh
+Example/Pods/Target Support Files/Pods-RecorderFramework-MacExample/Pods-RecorderFramework-MacExample-umbrella.h
+Example/Pods/Target Support Files/Pods-RecorderFramework-MacExample/Pods-RecorderFramework-MacExample.debug.xcconfig
+Example/Pods/Target Support Files/Pods-RecorderFramework-MacExample/Pods-RecorderFramework-MacExample.modulemap
+Example/Pods/Target Support Files/Pods-RecorderFramework-MacExample/Pods-RecorderFramework-MacExample.release.xcconfig
+Example/Pods/Target Support Files/Pods-RecorderFramework-TVExample/Info.plist
+Example/Pods/Target Support Files/Pods-RecorderFramework-TVExample/Pods-RecorderFramework-TVExample-acknowledgements.markdown
+Example/Pods/Target Support Files/Pods-RecorderFramework-TVExample/Pods-RecorderFramework-TVExample-acknowledgements.plist
+Example/Pods/Target Support Files/Pods-RecorderFramework-TVExample/Pods-RecorderFramework-TVExample-dummy.m
+Example/Pods/Target Support Files/Pods-RecorderFramework-TVExample/Pods-RecorderFramework-TVExample-frameworks.sh
+Example/Pods/Target Support Files/Pods-RecorderFramework-TVExample/Pods-RecorderFramework-TVExample-Info.plist
+Example/Pods/Target Support Files/Pods-RecorderFramework-TVExample/Pods-RecorderFramework-TVExample-resources.sh
+Example/Pods/Target Support Files/Pods-RecorderFramework-TVExample/Pods-RecorderFramework-TVExample-umbrella.h
+Example/Pods/Target Support Files/Pods-RecorderFramework-TVExample/Pods-RecorderFramework-TVExample.debug.xcconfig
+Example/Pods/Target Support Files/Pods-RecorderFramework-TVExample/Pods-RecorderFramework-TVExample.modulemap
+Example/Pods/Target Support Files/Pods-RecorderFramework-TVExample/Pods-RecorderFramework-TVExample.release.xcconfig
+Example/Pods/Target Support Files/Pods-RecorderFramework-WatchExample/Info.plist
+Example/Pods/Target Support Files/Pods-RecorderFramework-WatchExample/Pods-RecorderFramework-WatchExample-acknowledgements.markdown
+Example/Pods/Target Support Files/Pods-RecorderFramework-WatchExample/Pods-RecorderFramework-WatchExample-acknowledgements.plist
+Example/Pods/Target Support Files/Pods-RecorderFramework-WatchExample/Pods-RecorderFramework-WatchExample-dummy.m
+Example/Pods/Target Support Files/Pods-RecorderFramework-WatchExample/Pods-RecorderFramework-WatchExample-frameworks.sh
+Example/Pods/Target Support Files/Pods-RecorderFramework-WatchExample/Pods-RecorderFramework-WatchExample-Info.plist
+Example/Pods/Target Support Files/Pods-RecorderFramework-WatchExample/Pods-RecorderFramework-WatchExample-resources.sh
+Example/Pods/Target Support Files/Pods-RecorderFramework-WatchExample/Pods-RecorderFramework-WatchExample-umbrella.h
+Example/Pods/Target Support Files/Pods-RecorderFramework-WatchExample/Pods-RecorderFramework-WatchExample.debug.xcconfig
+Example/Pods/Target Support Files/Pods-RecorderFramework-WatchExample/Pods-RecorderFramework-WatchExample.modulemap
+Example/Pods/Target Support Files/Pods-RecorderFramework-WatchExample/Pods-RecorderFramework-WatchExample.release.xcconfig
+Example/Pods/Target Support Files/Pods-RecorderFramework-WatchExample Extension/Info.plist
+Example/Pods/Target Support Files/Pods-RecorderFramework-WatchExample Extension/Pods-RecorderFramework-WatchExample Extension-acknowledgements.markdown
+Example/Pods/Target Support Files/Pods-RecorderFramework-WatchExample Extension/Pods-RecorderFramework-WatchExample Extension-acknowledgements.plist
+Example/Pods/Target Support Files/Pods-RecorderFramework-WatchExample Extension/Pods-RecorderFramework-WatchExample Extension-dummy.m
+Example/Pods/Target Support Files/Pods-RecorderFramework-WatchExample Extension/Pods-RecorderFramework-WatchExample Extension-frameworks.sh
+Example/Pods/Target Support Files/Pods-RecorderFramework-WatchExample Extension/Pods-RecorderFramework-WatchExample Extension-Info.plist
+Example/Pods/Target Support Files/Pods-RecorderFramework-WatchExample Extension/Pods-RecorderFramework-WatchExample Extension-resources.sh
+Example/Pods/Target Support Files/Pods-RecorderFramework-WatchExample Extension/Pods-RecorderFramework-WatchExample Extension-umbrella.h
+Example/Pods/Target Support Files/Pods-RecorderFramework-WatchExample Extension/Pods-RecorderFramework-WatchExample Extension.debug.xcconfig
+Example/Pods/Target Support Files/Pods-RecorderFramework-WatchExample Extension/Pods-RecorderFramework-WatchExample Extension.modulemap
+Example/Pods/Target Support Files/Pods-RecorderFramework-WatchExample Extension/Pods-RecorderFramework-WatchExample Extension.release.xcconfig
+Example/Pods/Target Support Files/Pods-RecorderFramework_Example/Pods-RecorderFramework_Example-Info.plist
+Example/Pods/Target Support Files/Pods-RecorderFramework_Tests/Pods-RecorderFramework_Tests-Info.plist
+Example/Pods/Target Support Files/RecorderFramework-iOS/Info.plist
+Example/Pods/Target Support Files/RecorderFramework-iOS/RecorderFramework-iOS-dummy.m
+Example/Pods/Target Support Files/RecorderFramework-iOS/RecorderFramework-iOS-Info.plist
+Example/Pods/Target Support Files/RecorderFramework-iOS/RecorderFramework-iOS-prefix.pch
+Example/Pods/Target Support Files/RecorderFramework-iOS/RecorderFramework-iOS-umbrella.h
+Example/Pods/Target Support Files/RecorderFramework-iOS/RecorderFramework-iOS.modulemap
+Example/Pods/Target Support Files/RecorderFramework-iOS/RecorderFramework-iOS.xcconfig
+Example/Pods/Target Support Files/RecorderFramework-macOS/Info.plist
+Example/Pods/Target Support Files/RecorderFramework-macOS/RecorderFramework-macOS-dummy.m
+Example/Pods/Target Support Files/RecorderFramework-macOS/RecorderFramework-macOS-Info.plist
+Example/Pods/Target Support Files/RecorderFramework-macOS/RecorderFramework-macOS-prefix.pch
+Example/Pods/Target Support Files/RecorderFramework-macOS/RecorderFramework-macOS-umbrella.h
+Example/Pods/Target Support Files/RecorderFramework-macOS/RecorderFramework-macOS.modulemap
+Example/Pods/Target Support Files/RecorderFramework-macOS/RecorderFramework-macOS.xcconfig
+Example/Pods/Target Support Files/RecorderFramework-tvOS/Info.plist
+Example/Pods/Target Support Files/RecorderFramework-tvOS/RecorderFramework-tvOS-dummy.m
+Example/Pods/Target Support Files/RecorderFramework-tvOS/RecorderFramework-tvOS-Info.plist
+Example/Pods/Target Support Files/RecorderFramework-tvOS/RecorderFramework-tvOS-prefix.pch
+Example/Pods/Target Support Files/RecorderFramework-tvOS/RecorderFramework-tvOS-umbrella.h
+Example/Pods/Target Support Files/RecorderFramework-tvOS/RecorderFramework-tvOS.modulemap
+Example/Pods/Target Support Files/RecorderFramework-tvOS/RecorderFramework-tvOS.xcconfig
+Example/Pods/Target Support Files/RecorderFramework-watchOS/Info.plist
+Example/Pods/Target Support Files/RecorderFramework-watchOS/RecorderFramework-watchOS-dummy.m
+Example/Pods/Target Support Files/RecorderFramework-watchOS/RecorderFramework-watchOS-Info.plist
+Example/Pods/Target Support Files/RecorderFramework-watchOS/RecorderFramework-watchOS-prefix.pch
+Example/Pods/Target Support Files/RecorderFramework-watchOS/RecorderFramework-watchOS-umbrella.h
+Example/Pods/Target Support Files/RecorderFramework-watchOS/RecorderFramework-watchOS.modulemap
+Example/Pods/Target Support Files/RecorderFramework-watchOS/RecorderFramework-watchOS.xcconfig
