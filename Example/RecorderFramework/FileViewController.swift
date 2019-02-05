@@ -327,6 +327,9 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
             (segue.destination as! MoveToViewController).file = self.file
         } else if segue.identifier == "showTrimFromFile"{
             (segue.destination as! TrimViewController).file = self.file
+        }else if segue.identifier == "showNewRecordFromFile"{
+            (segue.destination as! NewRecordViewController).file = self.file
+            (segue.destination as! NewRecordViewController).folder = self.folder
         }
     }
     
@@ -337,6 +340,8 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
         }else{
             if isAudioRecordingGranted {
                 btnRecord.setTitle("Stop", for: .normal)
+                self.performSegue(withIdentifier: "showNewRecordFromFile", sender: self)
+                return
                 //Create the session.
                 let session = AVAudioSession.sharedInstance()
                 

@@ -51,6 +51,9 @@ public class RecordItem: NSObject, NSSecureCoding {
     @objc public var remindDays:String! = ""
     @objc public var updated:String! = ""
     @objc public var fileOrder:Int = 0
+    @objc public var created:String! = ""
+    @objc public var chanels:Int = 0
+    @objc public var sampleRate:Int = 0
     
     override public init() {
         super.init()
@@ -158,6 +161,15 @@ public class RecordItem: NSObject, NSSecureCoding {
         if let value = aDecoder.decodeObject(forKey: "fileOrder") as? Int {
             self.fileOrder = value
         }
+        if let value = aDecoder.decodeObject(forKey: "created") as? String {
+            self.created = value
+        }
+        if let value = aDecoder.decodeObject(forKey: "chanels") as? Int {
+            self.chanels = value
+        }
+        if let value = aDecoder.decodeObject(forKey: "sampleRate") as? Int {
+            self.sampleRate = value
+        }
     }
     
     public func encode(with aCoder: NSCoder) {
@@ -228,6 +240,9 @@ public class RecordItem: NSObject, NSSecureCoding {
         if let value = self.text {
             aCoder.encode(value, forKey: "text")
         }
+        if let value = self.created {
+            aCoder.encode(value, forKey: "created")
+        }
         aCoder.encode(fileDownloaded ? "true" : "false", forKey: "fileDownloaded")
         aCoder.encode(fromTrash ? "true" : "false", forKey: "fromTrash")
         aCoder.encode(isStar ? "true" : "false", forKey: "isStar")
@@ -235,6 +250,8 @@ public class RecordItem: NSObject, NSSecureCoding {
         aCoder.encode(tags, forKey: "tags")
         aCoder.encode(isFree ? "true" : "false", forKey: "isFree")
         aCoder.encode(self.fileOrder, forKey: "fileOrder")
+        aCoder.encode(self.chanels, forKey: "chanels")
+        aCoder.encode(self.sampleRate, forKey: "sampleRate")
     }
     
     static public  var supportsSecureCoding : Bool {
@@ -270,6 +287,9 @@ public class RecordItem: NSObject, NSSecureCoding {
         self.isFree = item.isFree
         self.text = item.text
         self.fileOrder = item.fileOrder
+        self.created = item.created
+        self.chanels = item.chanels
+        self.sampleRate = item.sampleRate
     }
     
     public func recordingNextAction(_ currentAction:Action!) -> Action! {

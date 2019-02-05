@@ -126,6 +126,7 @@
 		A2B962F120B1F9B6002B9EF2 /* RegisterTestsUnsuccessful.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B962F020B1F9B5002B9EF2 /* RegisterTestsUnsuccessful.swift */; };
 		A2BF106E1FC823850016CFA3 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BF106D1FC823850016CFA3 /* DatePickerViewController.swift */; };
 		A2BF34A31FAB995400C7006F /* FileInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BF34A21FAB995400C7006F /* FileInterfaceController.swift */; };
+		A2CFB4F522089CD7003F749B /* NewRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CFB4F422089CD7003F749B /* NewRecordViewController.swift */; };
 		A2D3E8121FDE60E7000C0874 /* ViewTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D3E8111FDE60E7000C0874 /* ViewTagViewController.swift */; };
 		A2D405371FAA76140042E605 /* RecordInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D405361FAA76140042E605 /* RecordInterfaceController.swift */; };
 		A2D6BBEA1FB3B90F003C6CE4 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2D6BBE91FB3B90E003C6CE4 /* StoreKit.framework */; };
@@ -354,6 +355,7 @@
 		A2C7DF6F1FD583B100F8AFDA /* ViewTagViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewTagViewController.swift; path = "RecorderFramework-TvExample/ViewTagViewController.swift"; sourceTree = SOURCE_ROOT; };
 		A2C7DF721FD583B200F8AFDA /* FileTagsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileTagsViewController.swift; path = "RecorderFramework-TvExample/FileTagsViewController.swift"; sourceTree = SOURCE_ROOT; };
 		A2C7DF731FD583B200F8AFDA /* PanoramaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PanoramaViewController.swift; path = "RecorderFramework-TvExample/PanoramaViewController.swift"; sourceTree = SOURCE_ROOT; };
+		A2CFB4F422089CD7003F749B /* NewRecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRecordViewController.swift; sourceTree = "<group>"; };
 		A2D3E8111FDE60E7000C0874 /* ViewTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTagViewController.swift; sourceTree = "<group>"; };
 		A2D405361FAA76140042E605 /* RecordInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordInterfaceController.swift; sourceTree = "<group>"; };
 		A2D6BBE81FB3B908003C6CE4 /* RecorderFramework-TVExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "RecorderFramework-TVExample.entitlements"; sourceTree = "<group>"; };
@@ -518,6 +520,7 @@
 				A23A2CB41FA1D84C00E25F87 /* FoldersViewController.swift */,
 				A22A10481FA1E5F400DAFA40 /* FilesViewController.swift */,
 				A22A104A1FA1F00500DAFA40 /* FileViewController.swift */,
+				A2CFB4F422089CD7003F749B /* NewRecordViewController.swift */,
 				A282D8CB1FA4E83900BD3189 /* TitleViewController.swift */,
 				A2FE5C2F1FA74B8F005FD2D1 /* SettingsViewController.swift */,
 				A23EBB711FA761E200F9D188 /* LanguagesViewController.swift */,
@@ -1192,7 +1195,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RecorderFramework-WatchExample Extension/Pods-RecorderFramework-WatchExample Extension-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-RecorderFramework-WatchExample Extension/Pods-RecorderFramework-WatchExample Extension-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire-watchOS/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/RecorderFramework-watchOS/RecorderFramework.framework",
 			);
@@ -1203,7 +1206,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RecorderFramework-WatchExample Extension/Pods-RecorderFramework-WatchExample Extension-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RecorderFramework-WatchExample Extension/Pods-RecorderFramework-WatchExample Extension-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6ADF49085409AE6AE3092249 /* [CP] Check Pods Manifest.lock */ = {
@@ -1266,7 +1269,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RecorderFramework-TVExample/Pods-RecorderFramework-TVExample-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-RecorderFramework-TVExample/Pods-RecorderFramework-TVExample-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire-tvOS/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Mixpanel-tvOS/Mixpanel.framework",
 				"${BUILT_PRODUCTS_DIR}/RecorderFramework-tvOS/RecorderFramework.framework",
@@ -1279,7 +1282,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RecorderFramework-TVExample/Pods-RecorderFramework-TVExample-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RecorderFramework-TVExample/Pods-RecorderFramework-TVExample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A2B3B8A71FEBFDE5002D5335 /* ShellScript */ = {
@@ -1319,7 +1322,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RecorderFramework_Example/Pods-RecorderFramework_Example-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-RecorderFramework_Example/Pods-RecorderFramework_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Mixpanel-iOS/Mixpanel.framework",
 				"${BUILT_PRODUCTS_DIR}/RecorderFramework-iOS/RecorderFramework.framework",
@@ -1329,6 +1332,7 @@
 				"${BUILT_PRODUCTS_DIR}/FDWaveformView/FDWaveformView.framework",
 				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
 				"${BUILT_PRODUCTS_DIR}/FacebookShare/FacebookShare.framework",
+				"${BUILT_PRODUCTS_DIR}/NMSSH/NMSSH.framework",
 				"${BUILT_PRODUCTS_DIR}/ShareFramework/ShareFramework.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -1342,11 +1346,12 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FDWaveformView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookShare.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NMSSH.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ShareFramework.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RecorderFramework_Example/Pods-RecorderFramework_Example-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RecorderFramework_Example/Pods-RecorderFramework_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DD99B4B401B351DAC275C440 /* [CP] Embed Pods Frameworks */ = {
@@ -1355,7 +1360,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RecorderFramework_Tests/Pods-RecorderFramework_Tests-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-RecorderFramework_Tests/Pods-RecorderFramework_Tests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Mixpanel-iOS/Mixpanel.framework",
 				"${BUILT_PRODUCTS_DIR}/RecorderFramework-iOS/RecorderFramework.framework",
@@ -1368,7 +1373,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RecorderFramework_Tests/Pods-RecorderFramework_Tests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RecorderFramework_Tests/Pods-RecorderFramework_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F417B401B3CEAF5D754A3BE1 /* [CP] Embed Pods Frameworks */ = {
@@ -1377,7 +1382,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RecorderFramework-MacExample/Pods-RecorderFramework-MacExample-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-RecorderFramework-MacExample/Pods-RecorderFramework-MacExample-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire-macOS/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Mixpanel-macOS/Mixpanel.framework",
 				"${BUILT_PRODUCTS_DIR}/RecorderFramework-macOS/RecorderFramework.framework",
@@ -1390,7 +1395,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RecorderFramework-MacExample/Pods-RecorderFramework-MacExample-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RecorderFramework-MacExample/Pods-RecorderFramework-MacExample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1424,6 +1429,7 @@
 				A2BF106E1FC823850016CFA3 /* DatePickerViewController.swift in Sources */,
 				A28B443620E0ED3E0072C33C /* MessagesViewController.swift in Sources */,
 				A23EBB721FA761E200F9D188 /* LanguagesViewController.swift in Sources */,
+				A2CFB4F522089CD7003F749B /* NewRecordViewController.swift in Sources */,
 				A2095CD01FD5979200CF96B3 /* LocationManager.swift in Sources */,
 				A24C5D171FA7880300EE9347 /* PhoneNumbersViewController.swift in Sources */,
 				A22A104B1FA1F00500DAFA40 /* FileViewController.swift in Sources */,
