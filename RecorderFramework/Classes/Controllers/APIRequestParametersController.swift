@@ -151,8 +151,8 @@ public class APIRequestParametersController: NSObject {
         return parameters
     }
     
-    public class func createRecoverRecordingParameters(recordItem:RecordItem, folderId:String) -> [String : Any]{
-        let parameters:[String:Any] = [ServerReuqestKeys.apiKey.rawValue: AppPersistentData.sharedInstance.apiKey!, ServerReuqestKeys.id.rawValue : recordItem.id, ServerReuqestKeys.folderId.rawValue : folderId]
+    public class func createRecoverRecordingParameters(recordItem:RecordItem!, folderId:String) -> [String : Any]{
+        let parameters:[String:Any] = [ServerReuqestKeys.apiKey.rawValue: AppPersistentData.sharedInstance.apiKey!, ServerReuqestKeys.id.rawValue : recordItem.id!, ServerReuqestKeys.folderId.rawValue : folderId]
         return parameters
     }
     

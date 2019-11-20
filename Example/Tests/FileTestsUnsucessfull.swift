@@ -294,12 +294,12 @@ class FileTestsUnsucessfull: XCTestCase {
         let promise = expectation(description: "Recover file fail")
         let recordItem = RecordItem()
         recordItem.id = "12349789764589745"//wrong file id
-        APIClient.sharedInstance.recoverRecording(recordItem, folderId:"\(folderId)", completionHandler: { (success, data) -> Void in
+        APIClient.sharedInstance.recoverRecording(recordItem, folderId:"\(folderId!)", completionHandler: { (success, data) -> Void in
             if success {
-                promise.fulfill()
+                XCTFail("Error: \(data)")
             }
             else {
-                XCTFail("Error: \(data)")
+                promise.fulfill()
             }
         })
         waitForExpectations(timeout: 30, handler: nil)
@@ -311,11 +311,11 @@ class FileTestsUnsucessfull: XCTestCase {
         recordItem.id = self.fileId
         //wrong folder id
         APIClient.sharedInstance.recoverRecording(recordItem, folderId:"112346798451", completionHandler: { (success, data) -> Void in
-            if success {
-                promise.fulfill()
+           if success {
+                XCTFail("Error: \(data)")
             }
             else {
-                XCTFail("Error: \(data)")
+                promise.fulfill()
             }
         })
         waitForExpectations(timeout: 30, handler: nil)
