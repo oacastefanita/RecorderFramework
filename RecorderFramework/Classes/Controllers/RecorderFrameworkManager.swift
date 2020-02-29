@@ -4,6 +4,7 @@ public class RecorderFrameworkManager : NSObject {
     @objc public static let sharedInstance = RecorderFrameworkManager()
     
     public var isRecorder = false
+    public var isNoizTube = false
     public var containerName:String!
     public var macSN:String!
     

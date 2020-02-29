@@ -56,6 +56,9 @@ public class APIRequestParametersController: NSObject {
         if RecorderFrameworkManager.sharedInstance.isRecorder{
             appCode = "rem"
         }
+        else if RecorderFrameworkManager.sharedInstance.isNoizTube {
+            appCode = "nzt"
+        }
         
         //no notifications on iOS simulator
         let deviceToken =  AppPersistentData.sharedInstance.notificationToken == nil ? "Simulator" : AppPersistentData.sharedInstance.notificationToken! //used for push notifications
