@@ -252,6 +252,10 @@ class TagViewController: UIViewController, UITextFieldDelegate, UIPickerViewDele
             txtArg1.placeholder = "html URL"
             txtArg2.isHidden = true
             break
+        case .noiztube:
+            txtArg1.placeholder = "NoizTube"
+            txtArg2.isHidden = true
+            break
         }
     }
     

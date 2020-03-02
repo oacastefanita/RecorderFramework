@@ -333,6 +333,14 @@ class ViewTagViewController: UIViewController,UITableViewDelegate, UITableViewDa
             }
             self.lblArg2.isHidden = true
             break
+        case .noiztube:
+            if self.tag.arg != nil{
+                self.lblArg1.text = "Note: " + (self.tag.arg as! String)
+            }else{
+                self.lblArg1.text = "missing argument"
+            }
+            self.lblArg2.isHidden = true
+            break
         }
     }
     

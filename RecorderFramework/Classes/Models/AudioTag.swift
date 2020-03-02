@@ -23,6 +23,7 @@ public enum TagType : String {
     case socialMedia = "socialMedia"
     case imageURL = "imageURL"
     case htmlEmbed = "htmlEmbed"
+    case noiztube = "noiztube"
     public static let allValues = [note, todo, date, alert, images, audio, video, tags, beforeAfter, panorama, productViewer, pageFlip, location, phoneNumber, socialMedia, imageURL, htmlEmbed]
 }
 
