@@ -669,20 +669,22 @@ public class APIClient : NSObject {
         }
         
         let fileManager = FileManager.default
-        var path = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)!.path
-        path += recordItem.localFile
         
-        if URL(fileURLWithPath:path).pathExtension == "caf" {
-            let wavPath = path.replacingOccurrences(of: ".caf", with: ".wav", options: NSString.CompareOptions.literal, range: nil)
-            //                AudioConverter.exportAsset(asWaveFormat: path, destination:wavPath)
-            path = wavPath
+        if !fileManager.fileExists(atPath: recordItem.localFile) {
+            var path = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)!.path
+            path += recordItem.localFile
+            
+            if URL(fileURLWithPath:path).pathExtension == "caf" {
+                let wavPath = path.replacingOccurrences(of: ".caf", with: ".wav", options: NSString.CompareOptions.literal, range: nil)
+                //                AudioConverter.exportAsset(asWaveFormat: path, destination:wavPath)
+                path = wavPath
+            }
+            
+            if !FileManager.default.fileExists(atPath: path ){
+                completionHandler!(false, nil)
+                return
+            }
         }
-        
-        if !FileManager.default.fileExists(atPath: path ){
-            completionHandler!(false, nil)
-            return
-        }
-        
         api.upload(API_BASE_URL + ServerPaths.createFile.rawValue, imagesFiles: [path], fieldNames: ["file"], parameters:APIRequestParametersController.createUploadRecordingParameters(recordItem: recordItem)) { (success, retData) in
             if success {
                 if let data = retData as? [String:Any] {
