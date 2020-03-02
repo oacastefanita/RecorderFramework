@@ -669,9 +669,9 @@ public class APIClient : NSObject {
         }
         
         let fileManager = FileManager.default
-        
+        var path = ""
         if !fileManager.fileExists(atPath: recordItem.localFile) {
-            var path = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)!.path
+            path = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)!.path
             path += recordItem.localFile
             
             if URL(fileURLWithPath:path).pathExtension == "caf" {
@@ -684,6 +684,9 @@ public class APIClient : NSObject {
                 completionHandler!(false, nil)
                 return
             }
+        }
+        else {
+            path = recordItem.localFile
         }
         api.upload(API_BASE_URL + ServerPaths.createFile.rawValue, imagesFiles: [path], fieldNames: ["file"], parameters:APIRequestParametersController.createUploadRecordingParameters(recordItem: recordItem)) { (success, retData) in
             if success {
