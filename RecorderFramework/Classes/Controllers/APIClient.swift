@@ -692,10 +692,20 @@ public class APIClient : NSObject {
             if success {
                 if let data = retData as? [String:Any] {
                     //{"status":"ok","msg":”File Uploaded Successfully",”id”:”1”}
-                    if let value:NSNumber = data["id"] as? NSNumber  {
+                    //{"status":"error","msg":"File is not a valid audio file"}
+                    if let status = data["error"] as? String, status == "error" {
+                        if completionHandler != nil {
+                            if let msg = data["msg"] as? String {
+                                completionHandler!(false, msg)
+                            }else {
+                                completionHandler!(false, "Error occured while uploading file.")
+                            }
+                        }
+                        return
+                    }
+                    else if let value:NSNumber = data["id"] as? NSNumber  {
                         recordItem.id = String(format:"%.0f", value.doubleValue)
                     }
-                    
                     if completionHandler != nil {
                         completionHandler!( true, recordItem.id)
                     }
