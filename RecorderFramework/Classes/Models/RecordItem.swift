@@ -342,7 +342,7 @@ public class RecordItem: NSObject, NSSecureCoding {
     public func setupWithFile(_ filePath:String) {
         audioFilePath = filePath
         if filePath.components(separatedBy: ".").count >= 2{
-            var components = filePath.components(separatedBy: ".").dropLast()
+            let components = filePath.components(separatedBy: ".").dropLast()
             audioMetadataFilePath = components.joined(separator: ".") + "_metadata.json"
         }
         else{
@@ -359,8 +359,8 @@ public class RecordItem: NSObject, NSSecureCoding {
             file.write(toFile: audioMetadataFilePath, atomically: true);
             let outputStream = OutputStream(toFileAtPath: audioMetadataFilePath, append: false)
             outputStream?.open()
-            var error:ErrorPointer
-            JSONSerialization.writeJSONObject(file, to: outputStream!, options: JSONSerialization.WritingOptions.prettyPrinted, error: error)
+            let error = ErrorPointer(nilLiteral: ())
+            JSONSerialization.writeJSONObject(file, to: outputStream!, options: JSONSerialization.WritingOptions.prettyPrinted, error: error) //(file, to: outputStream!, options: JSONSerialization.WritingOptions.prettyPrinted, error: error)
             outputStream?.close()
         } else {
             print("plist already exits at path.")
