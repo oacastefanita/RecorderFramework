@@ -50,7 +50,7 @@ public class APIRequestParametersController: NSObject {
         return [ServerReuqestKeys.phone.rawValue: phone, ServerReuqestKeys.token.rawValue: token]
     }
     
-    public class func createSendVerificationCodeParameters(code: String) -> [String : Any]{
+    public class func createSendVerificationCodeParameters(code: String, phone:String? = nil, notificationToken:String? = nil) -> [String : Any]{
         // either recorder or reminder
         var appCode = "rec"
         if RecorderFrameworkManager.sharedInstance.isRecorder{
@@ -61,8 +61,8 @@ public class APIRequestParametersController: NSObject {
         }
         
         //no notifications on iOS simulator
-        let deviceToken =  AppPersistentData.sharedInstance.notificationToken == nil ? "Simulator" : AppPersistentData.sharedInstance.notificationToken! //used for push notifications
-        var parameters = [ServerReuqestKeys.phone.rawValue: AppPersistentData.sharedInstance.phone!,ServerReuqestKeys.mcc.rawValue:"300" ,ServerReuqestKeys.code.rawValue: code, ServerReuqestKeys.token.rawValue: defaultToken, ServerReuqestKeys.app.rawValue: appCode, ServerReuqestKeys.deviceToken.rawValue:deviceToken] as [String : Any]
+        let deviceToken = notificationToken != nil ? notificationToken! : (AppPersistentData.sharedInstance.notificationToken == nil ? "Simulator" : AppPersistentData.sharedInstance.notificationToken!) //used for push notifications
+        var parameters = [ServerReuqestKeys.phone.rawValue: phone != nil ? phone! : AppPersistentData.sharedInstance.phone!,ServerReuqestKeys.mcc.rawValue:"300" ,ServerReuqestKeys.code.rawValue: code, ServerReuqestKeys.token.rawValue: defaultToken, ServerReuqestKeys.app.rawValue: appCode, ServerReuqestKeys.deviceToken.rawValue:deviceToken] as [String : Any]
         //default token used by server = 55942ee3894f51000530894
         #if os(iOS)
         // find country code by using the phone carrie, default value 300
