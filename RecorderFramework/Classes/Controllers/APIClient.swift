@@ -53,7 +53,7 @@ public class APIClient : NSObject {
     
     @objc public  static let sharedInstance = APIClient()
     
-    var api = Api(baseURL: API_BASE_URL)
+    public var api = Api(baseURL: API_BASE_URL)
     
     override init() {
         super.init()

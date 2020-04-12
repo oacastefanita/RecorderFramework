@@ -17,7 +17,7 @@ public enum ServerResponseKeys : String {
     case code = "code"
 }
 
-class Api: NSObject {
+public class Api: NSObject {
     var baseURL:String
     var completionHandlerLog:((String, String) -> Void)!// for loggin purposes
     
@@ -25,7 +25,7 @@ class Api: NSObject {
         self.baseURL = baseURL
     }
     
-    func downloadFile(_ fromURL:String, atPath:String, completionHandler:((Bool, String) -> Void)?) {
+    public func downloadFile(_ fromURL:String, atPath:String, completionHandler:((Bool, String) -> Void)?) {
         let destination: DownloadRequest.DownloadFileDestination = { _, _ in
             let url = URL(fileURLWithPath: atPath)
             return (url, [.removePreviousFile, .createIntermediateDirectories])
@@ -47,7 +47,7 @@ class Api: NSObject {
         }
     }
     
-    func upload(_ toUrl:String, imagesFiles:[String], fieldNames:[String]? = nil, parameters:[String:Any]? = nil, mimeType:String = "audio/wav", completionHandler:((Bool, Any) -> Void)?) {
+    public func upload(_ toUrl:String, imagesFiles:[String], fieldNames:[String]? = nil, parameters:[String:Any]? = nil, mimeType:String = "audio/wav", completionHandler:((Bool, Any) -> Void)?) {
         AnalyticsManager.sharedInstance.track("Upload \(toUrl)", properties: parameters)
         Alamofire.upload(multipartFormData: { (data) in
             var index = 0
@@ -104,7 +104,7 @@ class Api: NSObject {
         }
     }
     
-    func doRequest(_ url:String, method:HTTPMethod, parameters:[String : Any]!, storeAuthRequest:Bool = false, completionHandler:((Bool, [String : Any]?) -> Void)?) {
+    public func doRequest(_ url:String, method:HTTPMethod, parameters:[String : Any]!, storeAuthRequest:Bool = false, completionHandler:((Bool, [String : Any]?) -> Void)?) {
         
         //for loging purposes
         var jsonString = ""
