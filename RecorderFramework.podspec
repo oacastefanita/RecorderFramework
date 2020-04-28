@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RecorderFramework'
-  s.version          = '2.0.3'
+  s.version          = '2.0.4'
   s.summary          = 'Recorder SDK used to communicate with Recorder API'
 
 # This description is used to generate tags and improve search results.
@@ -34,7 +34,7 @@ Recorder SDK used to communicate with Recorder API. All data retrieved from the 
   s.source_files = 'RecorderFramework/Classes/**/*'
   s.swift_version = '5.0'
   s.frameworks = 'CoreAudio', 'CoreFoundation'
-  s.dependency 'Alamofire'
+  s.dependency 'Alamofire', '~> 4.0'
   s.ios.dependency 'Mixpanel'
   s.tvos.dependency 'Mixpanel'
   s.macos.dependency 'Mixpanel'
