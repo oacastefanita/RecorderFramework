@@ -112,7 +112,7 @@ public class Utils:NSObject {
                     
                     contact = ABPersonCreate().takeRetainedValue()
                     ABRecordSetValue(contact, kABPersonFirstNameProperty, "Call Recorder" as CFTypeRef, nil)
-                    ABPersonSetImageData(contact, NSData(data: UIImagePNGRepresentation(UIImage(named: "ContacsIcon")!)!) as Data as Data as CFData, nil)
+                    //ABPersonSetImageData(contact, NSData(data: UIImage(named: "ContacsIcon")!.pngData())!) as CFData, nil)
                     let phoneNumbers: ABMutableMultiValue = ABMultiValueCreateMutable(ABPropertyType(kABMultiStringPropertyType)).takeRetainedValue()
                     let str = "to record"
                     let cfstr:CFString = str as NSString
@@ -211,7 +211,7 @@ public class AlertController: NSObject, UIAlertViewDelegate {
             alertView.show()
         }
         else {
-            let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
             if let _accept = accept {
                 alert.addAction(UIAlertAction(title: _accept, style: .default, handler: { action in
                     alert.dismiss(animated: false, completion: nil)
@@ -247,7 +247,7 @@ public class AlertController: NSObject, UIAlertViewDelegate {
             alertView.show()
         }
         else {
-            let alert = UIAlertController(title: title, message: nil, preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: title, message: nil, preferredStyle: UIAlertController.Style.alert)
             if let _accept = accept {
                 alert.addAction(UIAlertAction(title: _accept, style: .default, handler: { action in
                     alert.dismiss(animated: false, completion: nil)
@@ -290,7 +290,7 @@ public class AlertController: NSObject, UIAlertViewDelegate {
             alertView.show()
         }
         else {
-            let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
             if let _accept = accept {
                 alert.addAction(UIAlertAction(title: _accept, style: .default, handler: { action in
                     alert.dismiss(animated: false, completion: nil)

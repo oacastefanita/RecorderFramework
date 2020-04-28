@@ -1197,8 +1197,8 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-RecorderFramework-WatchExample Extension/Pods-RecorderFramework-WatchExample Extension-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire-watchOS/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/RecorderFramework-watchOS/RecorderFramework.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire-watchOS6.0/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/RecorderFramework-watchOS6.0/RecorderFramework.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1271,9 +1271,9 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-RecorderFramework-TVExample/Pods-RecorderFramework-TVExample-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire-tvOS/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/Mixpanel-tvOS/Mixpanel.framework",
-				"${BUILT_PRODUCTS_DIR}/RecorderFramework-tvOS/RecorderFramework.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire-tvOS13.0/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Mixpanel-tvOS13.0/Mixpanel.framework",
+				"${BUILT_PRODUCTS_DIR}/RecorderFramework-tvOS13.0/RecorderFramework.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1324,9 +1324,9 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-RecorderFramework_Example/Pods-RecorderFramework_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/Mixpanel-iOS/Mixpanel.framework",
-				"${BUILT_PRODUCTS_DIR}/RecorderFramework-iOS/RecorderFramework.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS13.0/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Mixpanel-iOS13.0/Mixpanel.framework",
+				"${BUILT_PRODUCTS_DIR}/RecorderFramework-iOS13.0/RecorderFramework.framework",
 				"${BUILT_PRODUCTS_DIR}/ADAL/ADAL.framework",
 				"${BUILT_PRODUCTS_DIR}/AppAuth/AppAuth.framework",
 				"${BUILT_PRODUCTS_DIR}/Base32/Base32.framework",
@@ -1398,9 +1398,9 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-RecorderFramework-MacExample/Pods-RecorderFramework-MacExample-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire-macOS/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/Mixpanel-macOS/Mixpanel.framework",
-				"${BUILT_PRODUCTS_DIR}/RecorderFramework-macOS/RecorderFramework.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire-macOS10.15/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Mixpanel-macOS10.15/Mixpanel.framework",
+				"${BUILT_PRODUCTS_DIR}/RecorderFramework-macOS10.15/RecorderFramework.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (

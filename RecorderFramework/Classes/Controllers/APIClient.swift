@@ -1275,7 +1275,7 @@ public class APIClient : NSObject {
         let fileManager = FileManager.default
         var path = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)!.path
         path += recordItem.localFile
-        if (recordItem.localFile.characters.count == 0){
+        if (recordItem.localFile.count == 0){
             return
         }
         path = AudioFileTagManager.sharedInstance.getMetadataFilePath(path)
