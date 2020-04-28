@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RecorderFramework'
-  s.version          = '2.0.2'
+  s.version          = '2.0.3'
   s.summary          = 'Recorder SDK used to communicate with Recorder API'
 
 # This description is used to generate tags and improve search results.
@@ -26,8 +26,8 @@ Recorder SDK used to communicate with Recorder API. All data retrieved from the 
   s.author           = { 'oacastefanita' => 'oacastefanita@gmail.com' }
   s.source           = { :git => 'https://github.com/oacastefanita/RecorderFramework.git', :tag => s.version.to_s }
 
-  s.ios.deployment_target = '13.0'
-  s.watchos.deployment_target = '5.0'
+  s.ios.deployment_target = '10.0'
+  s.watchos.deployment_target = '3.0'
   s.tvos.deployment_target = '10.0'
   s.osx.deployment_target  = '10.0'
 
