@@ -119,7 +119,7 @@ public class APIRequestParametersController: NSObject {
     }
     
     public class func createCreateFolderParameters(name:String, localID:String , pass:String! = nil) -> [String : Any]{
-        var parameters = [ServerReuqestKeys.apiKey.rawValue: AppPersistentData.sharedInstance.apiKey!,ServerReuqestKeys.name.rawValue : name] as [String : Any]
+        var parameters = [ServerReuqestKeys.apiKey.rawValue: AppPersistentData.sharedInstance.apiKey!,ServerReuqestKeys.name.rawValue : name.encodedString()] as [String : Any]
         if pass != nil{
             parameters[ServerReuqestKeys.pass.rawValue] = pass
         }
@@ -135,7 +135,7 @@ public class APIRequestParametersController: NSObject {
     }
     
     public class func createRenameFolderParameters(folderId:String, name:String) -> [String : Any]{
-        let parameters:[String:Any] = [ServerReuqestKeys.apiKey.rawValue: AppPersistentData.sharedInstance.apiKey!, ServerReuqestKeys.id.rawValue : folderId, ServerReuqestKeys.name.rawValue : name]
+        let parameters:[String:Any] = [ServerReuqestKeys.apiKey.rawValue: AppPersistentData.sharedInstance.apiKey!, ServerReuqestKeys.id.rawValue : folderId, ServerReuqestKeys.name.rawValue : name.encodedString()]
         return parameters
     }
     
@@ -176,7 +176,7 @@ public class APIRequestParametersController: NSObject {
     }
     
     public class func createRenameRecordingParameters(recordItem:RecordItem, name:String) -> [String : Any]{
-        let parameters:[String:Any] = [ServerReuqestKeys.apiKey.rawValue: AppPersistentData.sharedInstance.apiKey!, ServerReuqestKeys.id.rawValue : recordItem.id!, ServerReuqestKeys.name.rawValue:name]
+        let parameters:[String:Any] = [ServerReuqestKeys.apiKey.rawValue: AppPersistentData.sharedInstance.apiKey!, ServerReuqestKeys.id.rawValue : recordItem.id!, ServerReuqestKeys.name.rawValue:name.encodedString()]
         return parameters
     }
     

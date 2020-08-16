@@ -11,10 +11,10 @@ public class RecorderFactory: NSObject {
         let object = User()
         
         if let value:String = dict.object(forKey: "f_name") as? String {
-            object.firstName = value
+            object.firstName = value.decodedString()
         }
         if let value:String = dict.object(forKey: "l_name") as? String {
-            object.lastName = value
+            object.lastName = value.decodedString()
         }
         if let value:String = dict.object(forKey: "email") as? String {
             object.email = value
@@ -62,7 +62,7 @@ public class RecorderFactory: NSObject {
         let object = RecordFolder()
         
         if let value:String = dict.object(forKey: "name") as? String {
-            object.title = value
+            object.title = value.decodedString()
         }
         if let value:String = dict.object(forKey: "id") as? String {
             object.id  = value
@@ -89,7 +89,7 @@ public class RecorderFactory: NSObject {
     }
     
     public class func createDictFromRecordFolder(_ folder: RecordFolder) -> NSMutableDictionary{
-        let dict = NSMutableDictionary(dictionary: ["id":folder.id ?? "", "name":folder.title ?? "", "created":folder.created ?? ""])
+        let dict = NSMutableDictionary(dictionary: ["id":folder.id ?? "", "name":folder.title.encodedString() ?? "", "created":folder.created ?? ""])
         dict["folder_order"] = folder.folderOrder ?? ""
         dict["pass"] = folder.password ?? ""
         dict["is_star"] = folder.isStar ? "1" : "0"
@@ -107,7 +107,7 @@ public class RecorderFactory: NSObject {
             object.folderId = value
         }
         if let value:String = dict.object(forKey: "name") as? String {
-            object.text = value
+            object.text = value.decodedString()
         }
         if let value:String = dict.object(forKey: "id") as? String {
             object.id = value
@@ -135,10 +135,10 @@ public class RecorderFactory: NSObject {
             object.lastAccessedTime = "\(value)"
         }
         if let value:String = dict.object(forKey: "f_name") as? String {
-            object.firstName = value
+            object.firstName = value.decodedString()
         }
         if let value:String = dict.object(forKey: "l_name") as? String {
-            object.lastName = value
+            object.lastName = value.decodedString()
         }
         if let value:String = dict.object(forKey: "phone") as? String {
             object.phoneNumber = value
@@ -147,11 +147,11 @@ public class RecorderFactory: NSObject {
             object.email = value
         }
         if let value:String = dict.object(forKey: "notes") as? String {
-            object.notes = value
+            object.notes = value.decodedString()
         }
         
         if let value:String = dict.object(forKey: "tags") as? String {
-            object.tags = value
+            object.tags = value.decodedString()
         }
         if let value:String = dict.object(forKey: "is_star") as? String {
             object.isStar = value == "1"
@@ -183,7 +183,7 @@ public class RecorderFactory: NSObject {
             object.updated = "\(value)"
         }
         if let value:String = dict.object(forKey: "text") as? String {
-            object.text = value
+            object.text = value.decodedString()
         }
         if let value:String = dict.object(forKey: "order_id") as? String {
             object.fileOrder  = Int(value)!
@@ -192,7 +192,7 @@ public class RecorderFactory: NSObject {
     }
     
     public class func createDictFromRecordItem(_ file: RecordItem) -> NSMutableDictionary{
-        let dict = NSMutableDictionary(dictionary: ["folderId":file.folderId, "name":file.text, "id":file.id, "access_number":file.accessNumber, "url":file.url, "share_url":file.shareUrl, "credits":file.credits, "duration":file.duration, "time":file.time,"f_name":file.firstName, "l_name":file.lastName, "email":file.email, "notes":file.notes, "phone":file.phoneNumber, "tags":file.tags, "remind_date":file.remindDate, "remind_days":file.remindDays, "free":file.isFree ? "1":"0","text":file.text, "order_id":file.fileOrder, "is_star":file.isStar ? "1" : "0"])
+        let dict = NSMutableDictionary(dictionary: ["folderId":file.folderId, "name":file.text.encodedString(), "id":file.id, "access_number":file.accessNumber, "url":file.url, "share_url":file.shareUrl, "credits":file.credits, "duration":file.duration, "time":file.time,"f_name":file.firstName.encodedString(), "l_name":file.lastName.encodedString(), "email":file.email, "notes":file.notes.encodedString(), "phone":file.phoneNumber, "tags":file.tags.encodedString(), "remind_date":file.remindDate, "remind_days":file.remindDays, "free":file.isFree ? "1":"0","text":file.text.encodedString(), "order_id":file.fileOrder, "is_star":file.isStar ? "1" : "0"])
         return dict
     }
     
@@ -273,10 +273,10 @@ public class RecorderFactory: NSObject {
             item.id = value
         }
         if let value:String = msg.object(forKey: "title") as? String {
-            item.title = value
+            item.title = value.decodedString()
         }
         if let value:String = msg.object(forKey: "body") as? String {
-            item.body = value
+            item.body = value.decodedString()
         }
         if let value:String = msg.object(forKey: "time") as? String {
             item.time = value
