@@ -337,9 +337,6 @@ public class RecorderFactory: NSObject {
         if let value = dict["code"] as? String {
             AppPersistentData.sharedInstance.verificationCode = value
         }
-        if let value = dict["plan"] as? Int {
-            AppPersistentData.sharedInstance.plan = value
-        }
         AppPersistentData.sharedInstance.saveData()
     }
 }

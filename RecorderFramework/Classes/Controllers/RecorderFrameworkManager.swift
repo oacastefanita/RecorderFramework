@@ -260,7 +260,7 @@ public class RecorderFrameworkManager : NSObject {
     ///
     /// - Returns: plan
     public func getPlan() -> Int{
-        return AppPersistentData.sharedInstance.plan
+        return AppPersistentData.sharedInstance.user.plan
     }
     
     /// Get API Key

@@ -32,7 +32,6 @@ public class AppPersistentData : NSObject {
     @objc public var filePermission:String!
     @objc public var app:String!
     @objc public var defaultPhone:String!
-    public var plan:Int!
     
     // notification
     @objc public var receivedNotification = false
