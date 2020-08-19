@@ -35,7 +35,7 @@ public class RecorderFactory: NSObject {
                 object.isPublic = value
             }
         }
-        if let value:String = dict.object(forKey: "plan") as? String {
+        if let value:Int = dict.object(forKey: "plan") as? Int {
             object.plan = value
         }
         if let value:Int = dict.object(forKey: "time") as? Int {

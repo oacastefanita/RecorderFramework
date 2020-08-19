@@ -17,7 +17,7 @@ public class User: NSObject, NSCoding {
     public var maxLenght:String! = ""
     public var imagePath:String! = ""
     public var timeZone:String! = ""
-    public var plan:String! = ""
+    public var plan:Int! = 0
     public var time:Int! = 0
     public var pin:String! = ""
     
@@ -50,7 +50,7 @@ public class User: NSObject, NSCoding {
         if let value = aDecoder.decodeObject(forKey: "timeZone") as? String {
             self.timeZone = value
         }
-        if let value = aDecoder.decodeObject(forKey: "plan") as? String {
+        if let value = aDecoder.decodeObject(forKey: "plan") as? Int {
             self.plan = value
         }
         if let value = aDecoder.decodeObject(forKey: "time") as? Int {
