@@ -79,6 +79,9 @@ public class RecorderFactory: NSObject {
         if let value:String = dict.object(forKey: "is_star") as? String {
             object.isStar = value == "1"
         }
+        if let value = dict.object(forKey: "color") as? NSNumber, let color = FolderColor(rawValue: value.intValue) {
+            object.color  = color
+        }
         object.recordedItems = [RecordItem]()
         if let values:Array<NSDictionary> = dict.object(forKey: "recordedItems") as? Array<NSDictionary> {
             for dict in values{
@@ -93,6 +96,7 @@ public class RecorderFactory: NSObject {
         dict["folder_order"] = folder.folderOrder ?? ""
         dict["pass"] = folder.password ?? ""
         dict["is_star"] = folder.isStar ? "1" : "0"
+        dict["color"] = folder.color.rawValue
         var array = [NSDictionary]()
         for file in folder.recordedItems{
             array.append(RecorderFactory.createDictFromRecordItem(file))

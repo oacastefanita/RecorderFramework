@@ -8,6 +8,14 @@
 
 import Foundation
 
+@objc public enum FolderColor : Int {
+    case blue = 0
+    case red
+    case purple
+    case green
+}
+
+
 public class RecordFolder: NSObject, NSCoding {
     @objc public var title: String!
     @objc public var id: String!
@@ -17,6 +25,7 @@ public class RecordFolder: NSObject, NSCoding {
     @objc public var type:StorageType = StorageType.keepLocally
     @objc public var recordedItems = [RecordItem]()
     @objc public var isStar:Bool = false
+    @objc public var color:FolderColor = FolderColor.blue
     
     override public init() {
         super.init()
@@ -44,6 +53,9 @@ public class RecordFolder: NSObject, NSCoding {
         if let value = aDecoder.decodeObject(forKey: "is_star") as? String {
             self.isStar = value == "1"
         }
+        if let value = aDecoder.decodeObject(forKey: "folder_color") as? NSNumber, let color = FolderColor(rawValue: value.intValue) {
+            self.color = color
+        }
     }
     
     public func encode(with aCoder: NSCoder) {
@@ -65,6 +77,8 @@ public class RecordFolder: NSObject, NSCoding {
         
         let data = NSKeyedArchiver.archivedData(withRootObject: recordedItems)
         aCoder.encode(data, forKey: "recordItems")
+        
+        aCoder.encode(color.rawValue, forKey: "folder_color")
     }
     
     public func keepOnlyItemsWithIds(_ ids:Array<String>) {
@@ -86,6 +100,7 @@ public class RecordFolder: NSObject, NSCoding {
         self.created = item.created
         self.folderOrder = item.folderOrder
         self.isStar = item.isStar
+        self.color = item.color
     }
     
     public func folderNextAction(_ currentAction:Action!) -> Action! {
