@@ -42,6 +42,7 @@ public enum ServerReuqestKeys : String {
     case parentId = "parent_id"
     case device = "device"
     case code = "code"
+    case color = "color"
 }
 
 public class APIRequestParametersController: NSObject {
@@ -118,8 +119,8 @@ public class APIRequestParametersController: NSObject {
         return [ServerReuqestKeys.apiKey.rawValue: AppPersistentData.sharedInstance.apiKey!]
     }
     
-    public class func createCreateFolderParameters(name:String, localID:String , pass:String! = nil) -> [String : Any]{
-        var parameters = [ServerReuqestKeys.apiKey.rawValue: AppPersistentData.sharedInstance.apiKey!,ServerReuqestKeys.name.rawValue : name.encodedString()] as [String : Any]
+    public class func createCreateFolderParameters(name:String, localID:String , color:Int = 0, pass:String! = nil) -> [String : Any]{
+        var parameters = [ServerReuqestKeys.apiKey.rawValue: AppPersistentData.sharedInstance.apiKey!,ServerReuqestKeys.name.rawValue : name.encodedString(), ServerReuqestKeys.color.rawValue : color] as [String : Any]
         if pass != nil{
             parameters[ServerReuqestKeys.pass.rawValue] = pass
         }

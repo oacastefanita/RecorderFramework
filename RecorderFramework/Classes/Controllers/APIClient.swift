@@ -360,14 +360,14 @@ public class APIClient : NSObject {
         }
     }
     
-    func createFolder(_ name:String, localID:String , pass:String! = nil, completionHandler:((Bool, Any?) -> Void)?)
+    func createFolder(_ name:String, localID:String , color:Int = 0, pass:String! = nil, completionHandler:((Bool, Any?) -> Void)?)
     {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
         }
         
-        api.doRequest(ServerPaths.createFolder.rawValue, method: .post, parameters: APIRequestParametersController.createCreateFolderParameters(name:name, localID:localID, pass:pass)) { (success, data) in
+        api.doRequest(ServerPaths.createFolder.rawValue, method: .post, parameters: APIRequestParametersController.createCreateFolderParameters(name:name, localID:localID, color:color, pass:pass)) { (success, data) in
             if success {
                 var recordFolder = RecordingsManager.sharedInstance.getFolderWithId(localID as String)
                 if recordFolder == nil {
