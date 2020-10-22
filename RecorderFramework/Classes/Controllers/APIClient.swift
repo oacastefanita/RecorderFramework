@@ -467,7 +467,7 @@ public class APIClient : NSObject {
         }
     }
     
-    public func renameFolder(_ folderId:String, name:String, color:Int = 0, completionHandler:((Bool, Any?) -> Void)?) {
+    public func renameFolder(_ folderId:String, name:String, color:String = "0", completionHandler:((Bool, Any?) -> Void)?) {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return

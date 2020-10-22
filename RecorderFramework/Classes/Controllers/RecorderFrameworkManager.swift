@@ -412,8 +412,8 @@ public class RecorderFrameworkManager : NSObject {
     ///   - folderId: folder id
     ///   - name: new folder name
     ///   - completionHandler: block to be called upon receiving the server's response
-    public func renameFolder(_ folderId:String, name:String, completionHandler:((Bool, Any?) -> Void)?) {
-        APIClient.sharedInstance.renameFolder(folderId, name: name, completionHandler: completionHandler)
+    public func renameFolder(_ folderId:String, name:String, color:String, completionHandler:((Bool, Any?) -> Void)?) {
+        APIClient.sharedInstance.renameFolder(folderId, name: name, color: color, completionHandler: completionHandler)
     }
     
     /// Add pass to folder

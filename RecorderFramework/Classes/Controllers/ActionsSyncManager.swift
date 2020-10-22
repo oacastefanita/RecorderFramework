@@ -152,6 +152,7 @@ protocol CustomActionDelegate {
         action.type = ActionType.renameFolder
         action.arg1 = recordFolder.id
         action.arg2 = recordFolder.title
+        action.arg3 = ["color":"\(recordFolder.color.rawValue)"]
         addAction(action)
     }
     
@@ -463,7 +464,7 @@ protocol CustomActionDelegate {
         case ActionType.renameFolder:
             let recordFolder = RecordingsManager.sharedInstance.getFolderByLinkedAction(action!.id)
             if recordFolder != nil {
-                APIClient.sharedInstance.renameFolder((recordFolder?.id)!, name:action!.arg2, completionHandler: { (success, data) -> Void in
+                APIClient.sharedInstance.renameFolder((recordFolder?.id)!, name:action!.arg2, color: action!.arg3["color"] as! String, completionHandler: { (success, data) -> Void in
                     self.moveToNextActionFrom(action, success: success, newActions: newActions)
                     NotificationCenter.default.post(name: Notification.Name(rawValue: kNotificationRecordingsUpdated), object: nil)
                 })
