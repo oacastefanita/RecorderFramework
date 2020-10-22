@@ -135,8 +135,8 @@ public class APIRequestParametersController: NSObject {
         return parameters
     }
     
-    public class func createRenameFolderParameters(folderId:String, name:String) -> [String : Any]{
-        let parameters:[String:Any] = [ServerReuqestKeys.apiKey.rawValue: AppPersistentData.sharedInstance.apiKey!, ServerReuqestKeys.id.rawValue : folderId, ServerReuqestKeys.name.rawValue : name.encodedString()]
+    public class func createRenameFolderParameters(folderId:String, name:String, color:Int = 0) -> [String : Any]{
+        let parameters:[String:Any] = [ServerReuqestKeys.apiKey.rawValue: AppPersistentData.sharedInstance.apiKey!, ServerReuqestKeys.id.rawValue : folderId, ServerReuqestKeys.name.rawValue : name.encodedString(), ServerReuqestKeys.color.rawValue : color]
         return parameters
     }
     

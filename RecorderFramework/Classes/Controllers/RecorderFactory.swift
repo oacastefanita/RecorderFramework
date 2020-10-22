@@ -82,6 +82,9 @@ public class RecorderFactory: NSObject {
         if let value = dict.object(forKey: "color") as? NSNumber, let color = FolderColor(rawValue: value.intValue) {
             object.color  = color
         }
+        else if let strValue = dict.object(forKey: "color") as? String, let value = Int(strValue), let color = FolderColor(rawValue: value) {
+            object.color  = color
+        }
         object.recordedItems = [RecordItem]()
         if let values:Array<NSDictionary> = dict.object(forKey: "recordedItems") as? Array<NSDictionary> {
             for dict in values{

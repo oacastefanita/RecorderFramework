@@ -379,8 +379,17 @@ public class APIClient : NSObject {
                 }else {
                     recordFolder?.title = name as String
                 }
-                if let fColor = FolderColor(rawValue: color) {
-                    recordFolder?.color = fColor
+                if let value = data!["color"] as? NSNumber {
+                    if let fColor = FolderColor(rawValue: value.intValue) {
+                        recordFolder?.color = fColor
+                    }
+                }
+                else if let strValue = data!["color"] as? String {
+                    if let value = Int(strValue) {
+                        if let fColor = FolderColor(rawValue: value) {
+                            recordFolder?.color = fColor
+                        }
+                    }
                 }
                 if let value:NSNumber = data!["id"] as? NSNumber {
                     recordFolder?.id = value.stringValue
@@ -458,13 +467,13 @@ public class APIClient : NSObject {
         }
     }
     
-    public func renameFolder(_ folderId:String, name:String, completionHandler:((Bool, Any?) -> Void)?) {
+    public func renameFolder(_ folderId:String, name:String, color:Int = 0, completionHandler:((Bool, Any?) -> Void)?) {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
         }
         
-        api.doRequest(ServerPaths.updateFolder.rawValue, method: .post, parameters: APIRequestParametersController.createRenameFolderParameters(folderId:folderId, name:name)) { (success, data) in
+        api.doRequest(ServerPaths.updateFolder.rawValue, method: .post, parameters: APIRequestParametersController.createRenameFolderParameters(folderId:folderId, name:name, color: color)) { (success, data) in
             if success {
                 if completionHandler != nil {
                     completionHandler!( true, nil)
