@@ -100,7 +100,7 @@ public class RecordFolder: NSObject, NSCoding {
         self.created = item.created
         self.folderOrder = item.folderOrder
         self.isStar = item.isStar
-        //self.color = item.color
+        self.color = item.color
     }
     
     public func folderNextAction(_ currentAction:Action!) -> Action! {
