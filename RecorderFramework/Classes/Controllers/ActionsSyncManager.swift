@@ -128,6 +128,7 @@ protocol CustomActionDelegate {
         action.timeStamp = Date().timeIntervalSince1970
         action.type = ActionType.createFolder
         action.arg1 = recordFolder.id
+        action.arg2 = "\(recordFolder.color.rawValue)"
         addAction(action)
     }
     
@@ -452,7 +453,7 @@ protocol CustomActionDelegate {
         case ActionType.createFolder:
             let recordFolder = RecordingsManager.sharedInstance.getFolderByLinkedAction(action!.id)
             if recordFolder != nil {
-                APIClient.sharedInstance.createFolder(recordFolder!.title!, localID:recordFolder!.id!, completionHandler: { (success, data) -> Void in
+                APIClient.sharedInstance.createFolder(recordFolder!.title!, localID:recordFolder!.id!, color: action!.arg2, completionHandler: { (success, data) -> Void in
                     self.moveToNextActionFrom(action, success: success, newActions: newActions)
                     NotificationCenter.default.post(name: Notification.Name(rawValue: kNotificationRecordingsUpdated), object: nil)
                 })

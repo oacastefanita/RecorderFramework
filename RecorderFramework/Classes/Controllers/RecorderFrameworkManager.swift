@@ -376,7 +376,7 @@ public class RecorderFrameworkManager : NSObject {
     ///   - name: folder name
     ///   - localID: local id of folder
     ///   - completionHandler: block to be called upon receiving the server's response
-    public func createFolder(_ name:String!, localID:String!, color:Int = 0, completionHandler:((Bool, Any?) -> Void)?){
+    public func createFolder(_ name:String!, localID:String!, color:String = "0", completionHandler:((Bool, Any?) -> Void)?){
         APIClient.sharedInstance.createFolder(name, localID: localID, color:color, completionHandler: completionHandler)
     }
     

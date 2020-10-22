@@ -360,7 +360,7 @@ public class APIClient : NSObject {
         }
     }
     
-    func createFolder(_ name:String, localID:String , color:Int = 0, pass:String! = nil, completionHandler:((Bool, Any?) -> Void)?)
+    func createFolder(_ name:String, localID:String , color:String = "0", pass:String! = nil, completionHandler:((Bool, Any?) -> Void)?)
     {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
