@@ -66,7 +66,7 @@ class FileViewController: UIViewController, TitleViewControllerDelegater, AVAudi
             btnRecord.isEnabled = false
             self.title = file.text
             btnRecord.isHidden = true
-            if !file.fileDownloaded || file.localFile == nil {
+            if (!file.fileDownloaded || file.localFile == nil) && file.duration != "0" {
                 let folder = RecorderFrameworkManager.sharedInstance.folderForItem(file.id)
                 self.recordingTimeLabel.text = "Downloading file."
                 RecorderFrameworkManager.sharedInstance.downloadAudioFile(file, toFolder: folder.id, completionHandler: { (success) in

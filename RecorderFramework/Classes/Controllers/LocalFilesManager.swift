@@ -206,7 +206,7 @@ class LocalFilesManager: NSObject {
         if folder == nil {
             self.downloadFiles(newFiles)
         }
-        else if !item!.fileDownloaded {
+        else if !item!.fileDownloaded && item!.duration != "0" {
             if handleFileSize && remainingFileSize <= 0 && item!.storageType != StorageType.keepLocally {
                 self.downloadFiles(newFiles)
             }
