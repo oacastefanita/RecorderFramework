@@ -227,7 +227,7 @@ class LocalFilesManager: NSObject {
             if handleFileSize && remainingFileSize <= 0 && item!.fileDownloaded && item!.storageType != StorageType.keepLocally {
                 itemsToDelete.append(item!)
             }
-            else {
+            else if !item!.localFile.isEmpty {
                 let fileManager = FileManager.default
                 var path = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)!.path
                 path += item!.localFile
