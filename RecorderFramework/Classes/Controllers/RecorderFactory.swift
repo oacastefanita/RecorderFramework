@@ -26,14 +26,11 @@ public class RecorderFactory: NSObject {
             object.imagePath = value
         }
         if let stringValue:String = dict.object(forKey: "play_beep") as? String {
-            if let value:Bool = (stringValue == "yes" || stringValue == "true" || stringValue == "1"){
-                object.playBeep = value
-            }
+            object.playBeep = (stringValue == "yes" || stringValue == "true" || stringValue == "1")
+            
         }
         if let stringValue:String = dict.object(forKey: "is_public") as? String {
-            if let value:Bool = (stringValue == "yes" || stringValue == "true" || stringValue == "1") {
-                object.isPublic = value
-            }
+            object.isPublic  = (stringValue == "yes" || stringValue == "true" || stringValue == "1") 
         }
         if let value:Int = dict.object(forKey: "plan") as? Int {
             object.plan = value
