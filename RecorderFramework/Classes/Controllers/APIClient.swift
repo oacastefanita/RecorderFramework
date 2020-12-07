@@ -391,6 +391,9 @@ public class APIClient : NSObject {
                         }
                     }
                 }
+                else if let intColor = Int(color), let folderColor = FolderColor(rawValue: intColor) {
+                    recordFolder?.color = folderColor
+                }
                 if let value:NSNumber = data!["id"] as? NSNumber {
                     recordFolder?.id = value.stringValue
                     for action in ActionsSyncManager.sharedInstance.actions {
