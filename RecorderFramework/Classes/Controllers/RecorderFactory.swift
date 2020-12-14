@@ -70,6 +70,9 @@ public class RecorderFactory: NSObject {
         if let value:String = dict.object(forKey: "pass") as? String {
             object.password  = value
         }
+        if let value:String = dict.object(forKey: "pass_hint") as? String {
+            object.passwordHint  = value
+        }
         if let value:String = dict.object(forKey: "order_id") as? String {
             object.folderOrder  = Int(value)!
         }
@@ -95,6 +98,7 @@ public class RecorderFactory: NSObject {
         let dict = NSMutableDictionary(dictionary: ["id":folder.id ?? "", "name":folder.title.encodedString() ?? "", "created":folder.created ?? ""])
         dict["folder_order"] = folder.folderOrder ?? ""
         dict["pass"] = folder.password ?? ""
+        dict["pass_hint"] = folder.passwordHint ?? ""
         dict["is_star"] = folder.isStar ? "1" : "0"
         dict["color"] = folder.color.rawValue
         var array = [NSDictionary]()
