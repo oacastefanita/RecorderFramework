@@ -26,6 +26,7 @@ public enum ServerReuqestKeys : String {
     case id = "id"
     case operation = "op"
     case pass = "pass"
+    case passHint = "pass_hint"
     case query = "q"
     case name = "name"
     case moveTo = "move_to"
@@ -145,8 +146,10 @@ public class APIRequestParametersController: NSObject {
         return parameters
     }
     
-    public class func createAddPassToFolderParameters(folderId:String, pass:String) -> [String : Any]{
-        let parameters:[String:Any] = [ServerReuqestKeys.apiKey.rawValue: AppPersistentData.sharedInstance.apiKey!, ServerReuqestKeys.id.rawValue : folderId, ServerReuqestKeys.pass.rawValue : pass]
+    public class func createAddPassToFolderParameters(folderId:String, pass:String, hint:String) -> [String : Any]{
+        let parameters:[String:Any] = [ServerReuqestKeys.apiKey.rawValue: AppPersistentData.sharedInstance.apiKey!, ServerReuqestKeys.id.rawValue : folderId, ServerReuqestKeys.pass.rawValue : pass,
+            ServerReuqestKeys.passHint.rawValue : hint
+        ]
         return parameters
     }
     

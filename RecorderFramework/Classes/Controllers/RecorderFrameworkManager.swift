@@ -422,8 +422,8 @@ public class RecorderFrameworkManager : NSObject {
     ///   - folderId: folderId
     ///   - pass: new password
     ///   - completionHandler: block to be called upon receiving the server's response
-    public func addPasswordToFolder(_ folderId:String, pass:String, completionHandler:((Bool, Any?) -> Void)?) {
-        APIClient.sharedInstance.addPasswordToFolder(folderId, pass: pass, completionHandler: completionHandler)
+    public func addPasswordToFolder(_ folderId:String, pass:String, hint:String, completionHandler:((Bool, Any?) -> Void)?) {
+        APIClient.sharedInstance.addPasswordToFolder(folderId, pass: pass, hint:hint, completionHandler: completionHandler)
     }
     
     /// Delete Recording

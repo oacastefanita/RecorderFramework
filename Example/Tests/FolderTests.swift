@@ -81,7 +81,8 @@ class FolderTests: XCTestCase {
     func test4AddPassToFolder(){
         let promise = expectation(description: "Add password")
         let newPass = "PassTest"
-        APIClient.sharedInstance.addPasswordToFolder(self.folderId, pass:newPass, completionHandler: { (success, data) -> Void in
+        let hint = "HintTest"
+        APIClient.sharedInstance.addPasswordToFolder(self.folderId, pass:newPass, hint:hint, completionHandler: { (success, data) -> Void in
             if success {
                 APIClient.sharedInstance.verifyFolderPass(newPass,folderId: self.folderId, completionHandler: { (success, data) -> Void in
                     if success {

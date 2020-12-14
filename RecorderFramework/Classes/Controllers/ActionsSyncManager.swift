@@ -163,6 +163,7 @@ protocol CustomActionDelegate {
         action.type = ActionType.addPasswordToFolder
         action.arg1 = recordFolder.id
         action.arg2 = recordFolder.password
+        action.arg3 = ["hint":recordFolder.passwordHint]
         addAction(action)
     }
     
@@ -477,7 +478,11 @@ protocol CustomActionDelegate {
         case ActionType.addPasswordToFolder:
             let recordFolder = RecordingsManager.sharedInstance.getFolderByLinkedAction(action!.id)
             if recordFolder != nil {
-                APIClient.sharedInstance.addPasswordToFolder((recordFolder?.id)!, pass:action!.arg2, completionHandler: { (success, data) -> Void in
+                var hint = ""
+                if let dict = action?.arg3, let passHint = dict["hint"] as? String {
+                    hint = passHint
+                }
+                APIClient.sharedInstance.addPasswordToFolder((recordFolder?.id)!, pass:action!.arg2, hint: hint, completionHandler: { (success, data) -> Void in
                     self.moveToNextActionFrom(action, success: success, newActions: newActions)
                     NotificationCenter.default.post(name: Notification.Name(rawValue: kNotificationRecordingsUpdated), object: nil)
                 })

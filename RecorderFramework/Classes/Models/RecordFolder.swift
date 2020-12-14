@@ -22,6 +22,7 @@ public class RecordFolder: NSObject, NSCoding {
     @objc public var created: String!
     @objc public var folderOrder:Int = 0
     @objc public var password: String!
+    @objc public var passwordHint: String!
     @objc public var type:StorageType = StorageType.keepLocally
     @objc public var recordedItems = [RecordItem]()
     @objc public var isStar:Bool = false
@@ -46,6 +47,9 @@ public class RecordFolder: NSObject, NSCoding {
         }
         if let value = aDecoder.decodeObject(forKey: "password") as? String {
             self.password = value
+        }
+        if let value = aDecoder.decodeObject(forKey: "passwordHint") as? String {
+            self.passwordHint = value
         }
         if let data = aDecoder.decodeObject(forKey: "recordItems") as? Data {
             recordedItems = NSKeyedUnarchiver.unarchiveObject(with: data) as! Array<RecordItem>
@@ -73,6 +77,10 @@ public class RecordFolder: NSObject, NSCoding {
             aCoder.encode(value, forKey: "password")
         }
 
+        if let value = self.passwordHint {
+            aCoder.encode(value, forKey: "passwordHint")
+        }
+        
         aCoder.encode(isStar ? "1" : "0", forKey: "is_star")
         
         let data = NSKeyedArchiver.archivedData(withRootObject: recordedItems)

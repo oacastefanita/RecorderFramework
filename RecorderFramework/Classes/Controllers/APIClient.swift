@@ -489,13 +489,13 @@ public class APIClient : NSObject {
         }
     }
     
-    public func addPasswordToFolder(_ folderId:String, pass:String, completionHandler:((Bool, Any?) -> Void)?) {
+    public func addPasswordToFolder(_ folderId:String, pass:String, hint:String, completionHandler:((Bool, Any?) -> Void)?) {
         if AppPersistentData.sharedInstance.invalidAPIKey {
             completionHandler!(false, "Invalid API Key" as AnyObject)
             return
         }
         
-        api.doRequest(ServerPaths.updateFolder.rawValue, method: .post, parameters: APIRequestParametersController.createAddPassToFolderParameters(folderId: folderId, pass: pass)) { (success, data) in
+        api.doRequest(ServerPaths.updateFolder.rawValue, method: .post, parameters: APIRequestParametersController.createAddPassToFolderParameters(folderId: folderId, pass: pass, hint:hint)) { (success, data) in
             if success {
                 if completionHandler != nil {
                     completionHandler!( true, nil)
