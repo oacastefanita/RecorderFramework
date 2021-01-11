@@ -360,13 +360,13 @@ public class RecordingsManager : NSObject {
         for recordFolder in RecordingsManager.sharedInstance.recordFolders {
             if recordFolder.id == "0" {
                 foundDefault = true
-                if foundAllFiles && foundDefault && foundTrash{
+                if foundAllFiles && foundDefault {//} && foundTrash{
                     break
                 }
             }
             if recordFolder.id == "-99" {
                 foundAllFiles = true
-                if foundAllFiles && foundDefault && foundTrash{
+                if foundAllFiles && foundDefault {//} && foundTrash{
                     break
                 }
             }
