@@ -356,7 +356,7 @@ public class RecordingsManager : NSObject {
     class func checkAndCreateDefaultFolders(){
         var foundDefault = false
         var foundAllFiles = false
-        var foundTrash = false
+//        var foundTrash = false
         for recordFolder in RecordingsManager.sharedInstance.recordFolders {
             if recordFolder.id == "0" {
                 foundDefault = true
@@ -390,11 +390,11 @@ public class RecordingsManager : NSObject {
             defaultFolder.title = "All Files".localized
             RecordingsManager.sharedInstance.recordFolders.insert(defaultFolder, at: 1)
         }
-        if !foundTrash {
-            let defaultFolder = RecordFolder()
-            defaultFolder.id = "trash"
-            defaultFolder.title = "Trash".localized
-            RecordingsManager.sharedInstance.recordFolders.insert(defaultFolder, at: 2)
-        }
+//        if !foundTrash {
+//            let defaultFolder = RecordFolder()
+//            defaultFolder.id = "trash"
+//            defaultFolder.title = "Trash".localized
+//            RecordingsManager.sharedInstance.recordFolders.insert(defaultFolder, at: 2)
+//        }
     }
 } 
