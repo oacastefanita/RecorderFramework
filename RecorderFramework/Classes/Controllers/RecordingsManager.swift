@@ -370,12 +370,12 @@ public class RecordingsManager : NSObject {
                     break
                 }
             }
-            if recordFolder.id == "trash" {
-                foundTrash = true
-                if foundAllFiles && foundDefault && foundTrash{
-                    break
-                }
-            }
+//            if recordFolder.id == "trash" {
+//                foundTrash = true
+//                if foundAllFiles && foundDefault && foundTrash{
+//                    break
+//                }
+//            }
         }
         
         if !foundDefault {
