@@ -7,7 +7,7 @@
 //
 
 public let defaultToken = "55942ee3894f51000530894"
-public let API_BASE_URL = "https://app2.recordphonecalls.co/rapi/ "
+public let API_BASE_URL = "https://app2.recordphonecalls.co/rapi/"
 
 // all server paths
 public enum ServerPaths : String {
