@@ -93,6 +93,7 @@ public class RecordingsManager : NSObject {
     @objc public func getRecordingById(_ id:String) -> RecordItem! {
         for folder in recordFolders {
             for item in folder.recordedItems {
+                item.folderId = folder.id
                 if item.id == id {
                     return item
                 }
