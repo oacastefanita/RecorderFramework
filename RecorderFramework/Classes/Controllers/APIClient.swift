@@ -188,6 +188,38 @@ public class APIClient : NSObject {
                         item.folderId = folderId
                         allIds.append(item.id)
                         
+                        let fileManager = FileManager.default
+                        var path = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)!.path
+                        path = path + ("/" + folderId + "/");
+                        if !FileManager.default.fileExists(atPath: path) {
+                            do {
+                                try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
+                            }catch {
+                                
+                            }
+                        }
+                        path = path + item.url.components(separatedBy: "/").last!
+                        
+                        var isWav = false
+                        var isMP3 = false
+                        if path.range(of: ".wav") != nil {
+                            isWav = true
+                        }
+                        
+                        if path.range(of: ".mp3") != nil {
+                            isMP3 = true
+                        }
+                        if !isWav && !isMP3 {
+                            path = path + ".wav"
+                        }
+                        
+                        // improve: remove local file if already exist and download it again (it may be a broken file)
+                        
+                        if FileManager.default.fileExists(atPath: path) {
+                            item.fileDownloaded = true
+                            item.localFile = "/" + folderId + "/" + item.url.components(separatedBy: "/").last!
+                        }
+                        
                         _ = RecordingsManager.sharedInstance.syncRecordingItem(item, folder:recordFolder)
                     }
                     
