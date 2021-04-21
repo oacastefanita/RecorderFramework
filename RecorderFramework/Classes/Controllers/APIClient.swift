@@ -562,11 +562,11 @@ public class APIClient : NSObject {
                         
                     }
                     
-                    var metaPath = AudioFileTagManager.sharedInstance.getMetadataFilePath(path)
-                    var metaPathTo = AudioFileTagManager.sharedInstance.getMetadataFilePath(toPath)
+                    let metaPath = AudioFileTagManager.sharedInstance.getMetadataFilePath(path)
+                    let metaPathTo = AudioFileTagManager.sharedInstance.getMetadataFilePath(toPath)
                     if FileManager.default.fileExists(atPath: metaPath) {
                         do {
-                            try FileManager.default.moveItem(at: URL(fileURLWithPath:path), to: URL(fileURLWithPath:toPath))
+                            try FileManager.default.moveItem(at: URL(fileURLWithPath:metaPath), to: URL(fileURLWithPath:metaPathTo))
                         } catch {
                             
                         }
