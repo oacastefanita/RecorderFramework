@@ -185,6 +185,7 @@ public class APIClient : NSObject {
                     for call in calls {
                         let item = RecorderFactory.createRecordItemFromDict(call)
                         item.fromTrash = folderId == "trash"
+                        item.folderId = folderId
                         allIds.append(item.id)
                         
                         _ = RecordingsManager.sharedInstance.syncRecordingItem(item, folder:recordFolder)
