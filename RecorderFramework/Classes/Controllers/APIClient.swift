@@ -539,6 +539,29 @@ public class APIClient : NSObject {
         
         api.doRequest(ServerPaths.updateFile.rawValue, method: .post, parameters: APIRequestParametersController.createMoveRecordingParameters(recordItem:recordItem, folderId:folderId)) { (success, data) in
             if success {
+                let fileManager = FileManager.default
+                var path = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)!.path
+                path = path + ("/" + recordItem.folderId + "/")
+                if FileManager.default.fileExists(atPath: path) {
+                    path = path + recordItem.url.components(separatedBy: "/").last!
+                    
+                    var toPath = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)!.path
+                    toPath = toPath + ("/" + folderId + "/")
+                    if !FileManager.default.fileExists(atPath: toPath) {
+                        do {
+                            try FileManager.default.createDirectory(atPath: toPath, withIntermediateDirectories: true, attributes: nil)
+                        }catch {
+                            
+                        }
+                    }
+                    toPath = toPath + recordItem.url.components(separatedBy: "/").last!
+                    do {
+                        try FileManager.default.moveItem(at: URL(fileURLWithPath:path), to: URL(fileURLWithPath:toPath))
+                    } catch {
+                        
+                    }
+                }
+                
                 if completionHandler != nil {
                     completionHandler!( true, nil)
                 }
