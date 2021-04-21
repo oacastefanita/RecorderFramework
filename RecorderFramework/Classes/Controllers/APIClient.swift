@@ -548,7 +548,7 @@ public class APIClient : NSObject {
                     
                     var toPath = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)!.path
                     toPath = toPath + ("/" + folderId + "/")
-                    toPath = toPath + recordItem.url.components(separatedBy: "/").last!
+//                    toPath = toPath + recordItem.url.components(separatedBy: "/").last!
                     if !FileManager.default.fileExists(atPath: toPath) {
                         do {
                             try FileManager.default.createDirectory(atPath: toPath, withIntermediateDirectories: true, attributes: nil)
