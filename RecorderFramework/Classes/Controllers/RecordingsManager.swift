@@ -214,6 +214,7 @@ public class RecordingsManager : NSObject {
                 continue
             }
             for existingItem in recFolder.recordedItems {
+                existingItem.folderId = recFolder.id
                 allFilesFolder.recordedItems.append(existingItem)
             }
         }
