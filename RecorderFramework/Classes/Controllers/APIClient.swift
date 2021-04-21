@@ -572,7 +572,7 @@ public class APIClient : NSObject {
                         }
                     }
                     recordItem.fileDownloaded = true
-                    recordItem.localFile = "/" + toFolder + "/" + recordItem.url.components(separatedBy: "/").last!
+                    recordItem.localFile = "/" + folderId + "/" + recordItem.url.components(separatedBy: "/").last!
                 }
                 
                 if completionHandler != nil {
