@@ -561,6 +561,18 @@ public class APIClient : NSObject {
                     } catch {
                         
                     }
+                    
+                    var metaPath = AudioFileTagManager.sharedInstance.getMetadataFilePath(path)
+                    var metaPathTo = AudioFileTagManager.sharedInstance.getMetadataFilePath(toPath)
+                    if FileManager.default.fileExists(atPath: metaPath) {
+                        do {
+                            try FileManager.default.moveItem(at: URL(fileURLWithPath:path), to: URL(fileURLWithPath:toPath))
+                        } catch {
+                            
+                        }
+                    }
+                    recordItem.fileDownloaded = true
+                    recordItem.localFile = "/" + toFolder + "/" + recordItem.url.components(separatedBy: "/").last!
                 }
                 
                 if completionHandler != nil {
