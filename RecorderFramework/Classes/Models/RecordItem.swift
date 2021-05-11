@@ -353,68 +353,56 @@ public class RecordItem: NSObject, NSSecureCoding {
         if filePath.components(separatedBy: ".").count == 3{
             return
         }
-        //check if file exists
-        if(!FileManager.default.fileExists(atPath: audioMetadataFilePath)) {
-            let file = NSDictionary();
-            file.write(toFile: audioMetadataFilePath, atomically: true);
-            let outputStream = OutputStream(toFileAtPath: audioMetadataFilePath, append: false)
-            outputStream?.open()
-            let error = ErrorPointer(nilLiteral: ())
-            JSONSerialization.writeJSONObject(file, to: outputStream!, options: JSONSerialization.WritingOptions.prettyPrinted, error: error) //(file, to: outputStream!, options: JSONSerialization.WritingOptions.prettyPrinted, error: error)
-            outputStream?.close()
-        } else {
-            print("plist already exits at path.")
-        }
-        
-        let jsonData: Data = try! Data(contentsOf: URL(fileURLWithPath: audioMetadataFilePath))
-        if jsonData.count == 0{
-            return
-        }
-        do {
-            let dict = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
-            
-            audioFileTags = NSMutableArray()
-            
-            if (dict.object(forKey: "tags") != nil){
-                let tags = dict.object(forKey: "tags") as! NSArray
-                for tag in tags {
-                    let newTag = AudioTag()
-                    if let timeStamp = (tag as AnyObject).object(forKey: "timeStamp") as? TimeInterval
-                    {
-                        newTag.timeStamp = timeStamp
-                    }else{
-                        continue
-                    }
-                    if let duration = (tag as AnyObject).object(forKey: "duration") as? TimeInterval{
-                        newTag.duration = duration
-                    }else{
-                        continue
-                    }
-                    
-                    if let arg = (tag as AnyObject).object(forKey:"arg") as? AnyObject{
-                        newTag.arg = arg
-                    }else{
-                        continue
-                    }
-                    
-                    if let arg2 = (tag as AnyObject).object(forKey:"arg2") as? AnyObject{
-                        newTag.arg2 = arg2
-                    }else{
-                        continue
-                    }
-                    
-                    if let value = (tag as AnyObject).object(forKey: "type") as? String
-                    {
-                        if let type = TagType(rawValue: value.lowercased()) {
-                            newTag.type = type
-                            audioFileTags.add(newTag) //add tag only if valid tag type
+        if(FileManager.default.fileExists(atPath: audioMetadataFilePath)) {
+            do {
+                let jsonData: Data = try Data(contentsOf: URL(fileURLWithPath: audioMetadataFilePath))
+                if jsonData.count == 0{
+                    return
+                }
+                let dict = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
+                
+                audioFileTags = NSMutableArray()
+                
+                if (dict.object(forKey: "tags") != nil){
+                    let tags = dict.object(forKey: "tags") as! NSArray
+                    for tag in tags {
+                        let newTag = AudioTag()
+                        if let timeStamp = (tag as AnyObject).object(forKey: "timeStamp") as? TimeInterval
+                        {
+                            newTag.timeStamp = timeStamp
+                        }else{
+                            continue
+                        }
+                        if let duration = (tag as AnyObject).object(forKey: "duration") as? TimeInterval{
+                            newTag.duration = duration
+                        }else{
+                            continue
+                        }
+                        
+                        if let arg = (tag as AnyObject).object(forKey:"arg") as? AnyObject{
+                            newTag.arg = arg
+                        }else{
+                            continue
+                        }
+                        
+                        if let arg2 = (tag as AnyObject).object(forKey:"arg2") as? AnyObject{
+                            newTag.arg2 = arg2
+                        }else{
+                            continue
+                        }
+                        
+                        if let value = (tag as AnyObject).object(forKey: "type") as? String
+                        {
+                            if let type = TagType(rawValue: value.lowercased()) {
+                                newTag.type = type
+                                audioFileTags.add(newTag) //add tag only if valid tag type
+                            }
                         }
                     }
                 }
+            } catch  {
+                
             }
-        }
-        catch {
-            
         }
     }
     
