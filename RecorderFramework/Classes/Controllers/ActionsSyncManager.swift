@@ -348,7 +348,7 @@ protocol CustomActionDelegate {
         if workingActions.count == 0 {
             syncInProgress = false
             self.saveActions()
-            APIClient.sharedInstance.mainSync({ (success) -> Void in
+            APIClient.sharedInstance.mainSync({ (success, data) -> Void in
                 NotificationCenter.default.post(name: Notification.Name(rawValue: kNotificationRecordingsUpdated), object: nil)
             })
             return

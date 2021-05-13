@@ -986,22 +986,22 @@ public class APIClient : NSObject {
         }
     }
     
-    func mainSync(_ completionHandler:((Bool) -> Void)?) {
+    func mainSync(_ completionHandler:((Bool, String?) -> Void)?) {
         if AppPersistentData.sharedInstance.invalidAPIKey {
-            completionHandler!(false)
+            completionHandler!(false, "invalid api key")
             return
         }
         
         if mainSyncInProgress {
             if completionHandler != nil {
-                completionHandler!(false)
+                completionHandler!(false, "sync in progress")
             }
             return
         }
         if AppPersistentData.sharedInstance.apiKey == nil {
             mainSyncInProgress = false
             if completionHandler != nil {
-                completionHandler!(false)
+                completionHandler!(false, "invalid api key")
             }
             return
             //            AppPersistentData.sharedInstance.apiKey = "562a60677fd88562a60677fdc4"
@@ -1010,32 +1010,112 @@ public class APIClient : NSObject {
         mainSyncErrors = 0
         
         APIClient.sharedInstance.getSettings({ (success, data) -> Void in
-            APIClient.sharedInstance.getMessages({ (success, data) -> Void in
-                APIClient.sharedInstance.getLanguages { (success, data) -> Void in
-                    APIClient.sharedInstance.getTranslations(TranslationManager.sharedInstance.currentLanguage, completionHandler:{ (success, data) -> Void in
-                        APIClient.sharedInstance.getProfile({ (success, data) -> Void in
-                            APIClient.sharedInstance.getPhoneNumbers { (success, data) -> Void in
-                                if !success {
-                                    self.mainSyncErrors += 1
-                                }
-                                APIClient.sharedInstance.getFolders({ (success, data) -> Void in
-                                    if !success {
-                                        self.mainSyncErrors += 1
+            if success {
+                APIClient.sharedInstance.getMessages({ (success, data) -> Void in
+                    if success {
+                        APIClient.sharedInstance.getLanguages { (success, data) -> Void in
+                            if success {
+                                APIClient.sharedInstance.getTranslations(TranslationManager.sharedInstance.currentLanguage, completionHandler:{ (success, data) -> Void in
+                                    if success {
+                                        APIClient.sharedInstance.getProfile({ (success, data) -> Void in
+                                            if success {
+                                                APIClient.sharedInstance.getPhoneNumbers { (success, data) -> Void in
+                                                    if success {
+                                                        APIClient.sharedInstance.getFolders({ (success, data) -> Void in
+                                                            if success {
+                                                                self.getRecordings({ (success) -> Void in
+                                                                    self.mainSyncInProgress = false
+                                                                    if success && self.mainSyncErrors == 0 {
+                                                                        if completionHandler != nil {
+                                                                            completionHandler!(true, "")
+                                                                        }
+                                                                        NotificationCenter.default.post(name: Notification.Name(rawValue: kNotificationRecordingsUpdated), object: nil)
+                                                                    }
+                                                                    else {
+                                                                        if let strData = data as? String {
+                                                                            completionHandler?(success, strData)
+                                                                        }
+                                                                        else {
+                                                                            completionHandler?(success, "Error in retrieving recordings")
+                                                                        }
+                                                                    }
+                                                                })
+                                                            }
+                                                            else {
+                                                                self.mainSyncInProgress = false
+                                                                if let strData = data as? String {
+                                                                    completionHandler?(success, strData)
+                                                                }
+                                                                else {
+                                                                    completionHandler?(success, "Error in retrieving folders")
+                                                                }
+                                                            }
+                                                        })
+                                                    }
+                                                    else {
+                                                        self.mainSyncInProgress = false
+                                                        if let strData = data as? String {
+                                                            completionHandler?(success, strData)
+                                                        }
+                                                        else {
+                                                            completionHandler?(success, "Error in retrieving access phone numbers")
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            else {
+                                                self.mainSyncInProgress = false
+                                                if let strData = data as? String {
+                                                    completionHandler?(success, strData)
+                                                }
+                                                else {
+                                                    completionHandler?(success, "Error in retrieving user profile")
+                                                }
+                                            }
+                                        })
                                     }
-                                    
-                                    self.getRecordings({ (success) -> Void in
-                                        if completionHandler != nil {
-                                            completionHandler!(true)
-                                        }
+                                    else {
                                         self.mainSyncInProgress = false
-                                        NotificationCenter.default.post(name: Notification.Name(rawValue: kNotificationRecordingsUpdated), object: nil)
-                                    })
+                                        if let strData = data as? String {
+                                            completionHandler?(success, strData)
+                                        }
+                                        else {
+                                            completionHandler?(success, "Error in retrieving translations")
+                                        }
+                                    }
                                 })
                             }
-                        })
-                    })
+                            else {
+                                self.mainSyncInProgress = false
+                                if let strData = data as? String {
+                                    completionHandler?(success, strData)
+                                }
+                                else {
+                                    completionHandler?(success, "Error in retrieving languages")
+                                }
+                            }
+                        }
+                    }
+                    else {
+                        self.mainSyncInProgress = false
+                        if let strData = data as? String {
+                            completionHandler?(success, strData)
+                        }
+                        else {
+                            completionHandler?(success, "Error in retrieving messages")
+                        }
+                    }
+                })
+            }
+            else {
+                self.mainSyncInProgress = false
+                if let strData = data as? String {
+                    completionHandler?(success, strData)
                 }
-            })
+                else {
+                    completionHandler?(success, "Error in retrieving settings")
+                }
+            }
         })
     }
     
@@ -1121,7 +1201,7 @@ public class APIClient : NSObject {
     func getSettings(_ completionHandler:((Bool, Any?) -> Void)?)
     {
         if AppPersistentData.sharedInstance.invalidAPIKey {
-            completionHandler!(false, "Invalid API Key" as AnyObject)
+            completionHandler!(false, "Invalid API Key")
             return
         }
         

@@ -714,7 +714,7 @@ public class RecorderFrameworkManager : NSObject {
     /// Main Sync
     ///
     /// - Parameter completionHandler: block to be called upon receiving the server's response
-    public func mainSync(_ completionHandler:((Bool) -> Void)?) {
+    public func mainSync(_ completionHandler:((Bool, String?) -> Void)?) {
         APIClient.sharedInstance.mainSync(completionHandler)
     }
     
