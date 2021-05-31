@@ -589,6 +589,18 @@ public class RecorderFrameworkManager : NSObject {
         ActionsSyncManager.sharedInstance.buyCredits(credits, reciept:reciept)
     }
     
+    /// Buy Credits
+    ///
+    /// - Parameters:
+    ///   - credits: number of credits
+    ///   - reciept: in app purchase id
+    ///   - completionHandler: block to be called upon receiving the server's response
+    public func buyCredits(_ credits:Int, reciept:String!, completionHandler:((Bool, Any?) -> Void)?) {
+        ActionsSyncManager.sharedInstance.buyCredits(credits, reciept:reciept) { success, data in
+            completionHandler?(success, data)
+        }
+    }
+    
     /// Create Folder
     ///
     /// - Parameter recordFolder: record folder object

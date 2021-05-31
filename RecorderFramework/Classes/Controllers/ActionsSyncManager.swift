@@ -122,6 +122,12 @@ protocol CustomActionDelegate {
         addAction(action)
     }
     
+    func buyCredits(_ credits:Int, reciept:String!, completionHandler:((Bool, Any?) -> Void)?) {
+        APIClient.sharedInstance.buyCredits(credits, receipt:reciept, completionHandler: { (success, data) -> Void in
+            completionHandler?(success,data)
+        })
+    }
+    
     // MARK: folder actions
     func createFolder(_ recordFolder:RecordFolder) {
         let action = Action()
