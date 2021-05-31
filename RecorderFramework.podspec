@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RecorderFramework'
-  s.version          = '2.0.44'
+  s.version          = '2.0.45'
   s.summary          = 'Recorder SDK used to communicate with Recorder API'
 
 # This description is used to generate tags and improve search results.

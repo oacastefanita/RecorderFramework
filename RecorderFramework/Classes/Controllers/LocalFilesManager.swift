@@ -212,14 +212,22 @@ class LocalFilesManager: NSObject {
             }
             else {
                 APIClient.sharedInstance.downloadAudioFile(item!, toFolder: folder.id, completionHandler: { (success) -> Void in
-                    let fileManager = FileManager.default
-                    var path = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)!.path
-                    path += item!.localFile
-                    
-                    if FileManager.default.fileExists(atPath: path) {
-                        self.remainingFileSize -= (try! Data(contentsOf: URL(fileURLWithPath: path))).count
+                    if success {
+                        let fileManager = FileManager.default
+                        var path = fileManager.containerURL(forSecurityApplicationGroupIdentifier: RecorderFrameworkManager.sharedInstance.containerName)!.path
+                        path += item!.localFile
+                        
+                        if FileManager.default.fileExists(atPath: path) {
+                            do {
+                                let data = try Data(contentsOf: URL(fileURLWithPath: path))
+                                self.remainingFileSize -= data.count
+                            } catch {
+                                
+                            }
+                        }
                     }
                     self.downloadFiles(newFiles)
+                        
                 })
             }
         }
