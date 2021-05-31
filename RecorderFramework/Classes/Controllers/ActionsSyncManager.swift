@@ -329,13 +329,15 @@ protocol CustomActionDelegate {
     }
     
     func moveToNextActionFrom(_ action:Action?, success:Bool, newActions:[Action]){
-        if !success {
-            self.actionsFailed += 1
-        }
-        else {
+        
+        //disabled retry mechanism as it doesn't have a fallback solution
+//        if !success {
+//            self.actionsFailed += 1
+//        }
+//        else {
             self.removeAction(action!.id)
             self.saveActions()
-        }
+//        }
         self.processActions(newActions)
     }
     
