@@ -154,6 +154,9 @@ public class Api: NSObject {
 
     //preety print the error returned by the server
     func handleError(_ result:Result<Any>) -> [String : Any]? {
+        if result.error != nil {
+            return ["error":result.error!.localizedDescription]
+        }
         if let dict = result.value as? NSDictionary {
             if let code = dict[ServerResponseKeys.code.rawValue] as? String {
                 if let message = dict[ServerResponseKeys.message.rawValue] as? String {
